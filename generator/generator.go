@@ -1,0 +1,250 @@
+package generator
+
+import (
+	"context"
+	"embed"
+	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
+	"text/template"
+	"unicode"
+
+	pb "github.com/aprikotdev/speckles/cfg/gen/specs/v1"
+	"github.com/iancoleman/strcase"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
+)
+
+//go:embed templates
+var templatesFS embed.FS
+
+var templs *template.Template
+
+func init() {
+	acronyms := []string{"ACL", "API", "ASCII", "CPU", "CSS", "DNS", "EOF", "GUID", "HTML", "HTTP", "HTTPS", "ID", "IP", "JSON", "LHS", "QPS", "RAM", "RHS", "RPC", "SLA", "SMTP", "SQL", "SSH", "TCP", "TLS", "TTL", "UDP", "UI", "UID", "UUID", "URI", "URL", "UTF8", "VM", "XML", "XMPP", "XSRF", "XSS"}
+
+	for _, a := range acronyms {
+		strcase.ConfigureAcronym(a, a)
+		strcase.ConfigureAcronym(cases.Title(language.Und).String(a), a)
+		strcase.ConfigureAcronym(strings.ToLower(a), a)
+	}
+}
+
+func GenerateAll(ctx context.Context, outPath string, namespaces *pb.Namespaces) (err error) {
+	if len(namespaces.Namespaces) == 0 {
+		return fmt.Errorf("no namespaces specified")
+	}
+
+	files, _ := os.ReadDir(outPath)
+	for _, file := range files {
+		if file.Name() != "builder.go" {
+			if err := os.Remove(filepath.Join(outPath, file.Name())); err != nil {
+				return fmt.Errorf("failed to clean output directory: %w", err)
+			}
+		}
+	}
+
+	fm := template.FuncMap{}
+	fm["capitalize"] = func(s string) string {
+		return cases.Title(language.Und).String(s)
+	}
+	fm["replace"] = func(old, new, src string) string {
+		return strings.ReplaceAll(src, old, new)
+	}
+	fm["trim"] = strings.TrimSpace
+	fm["goPascal"] = strcase.ToCamel
+	fm["comments"] = func(s string) string {
+		maxLen := 80
+		lines := []string{}
+		for _, row := range strings.Split(s, "\n") {
+			row = strings.TrimSpace(row)
+			if row == "" {
+				lines = append(lines, "//")
+				continue
+			}
+			words := strings.Fields(row)
+			lineStart := "// "
+			line := lineStart
+			for _, word := range words {
+				if len(line)+len(word) > maxLen {
+					lines = append(lines, line)
+					line = lineStart
+				}
+				line += word + " "
+			}
+			lines = append(lines, line)
+		}
+		return strings.Join(lines, "\n")
+	}
+	fm["attrIsString"] = func(attr *pb.Attribute_Type) bool {
+		switch attr.Type.(type) {
+		case *pb.Attribute_Type_String_:
+			return true
+		}
+		return false
+	}
+	fm["attrIsDelimited"] = func(attr *pb.Attribute_Type) bool {
+		switch attr.Type.(type) {
+		case *pb.Attribute_Type_Delimited:
+			return true
+		}
+		return false
+	}
+	fm["attrIsKV"] = func(attr *pb.Attribute_Type) bool {
+		switch attr.Type.(type) {
+		case *pb.Attribute_Type_Kv:
+			return true
+		}
+		return false
+	}
+	fm["attrIsRune"] = func(attr *pb.Attribute_Type) bool {
+		switch attr.Type.(type) {
+		case *pb.Attribute_Type_Rune:
+			return true
+		}
+		return false
+	}
+	fm["attrIsBool"] = func(attr *pb.Attribute_Type) bool {
+		switch attr.Type.(type) {
+		case *pb.Attribute_Type_Bool:
+			return true
+		}
+		return false
+	}
+	fm["attrIsInt"] = func(attr *pb.Attribute_Type) bool {
+		switch attr.Type.(type) {
+		case *pb.Attribute_Type_Integer:
+			return true
+		}
+		return false
+	}
+	fm["attrIsNumber"] = func(attr *pb.Attribute_Type) bool {
+		switch attr.Type.(type) {
+		case *pb.Attribute_Type_Number:
+			return true
+		}
+		return false
+	}
+	fm["attrIsChoices"] = func(attr *pb.Attribute_Type) bool {
+		switch attr.Type.(type) {
+		case *pb.Attribute_Type_Choices:
+			return true
+		}
+		return false
+	}
+	fm["choiceSuffix"] = func(choiceName string, choices []*pb.Attribute_Choice) string {
+		if choiceName == "" {
+			return "Empty"
+		}
+		strToReplace := []string{"-"}
+		for _, str := range strToReplace {
+			choiceName = strings.ReplaceAll(choiceName, str, "_")
+		}
+		// Handle single-character choice names that may conflict in casing
+		if len(choiceName) == 1 {
+			for _, choice := range choices {
+				if choiceName != choice.Name {
+					if strings.EqualFold(choiceName, choice.Name) {
+						char := rune(choiceName[0])
+						if unicode.IsUpper(char) {
+							choiceName = "_upper_" + choiceName
+						} else {
+							choiceName = "_lower_" + choiceName
+						}
+						break
+					}
+				}
+			}
+		}
+		choiceName = strcase.ToCamel(choiceName)
+		return choiceName
+	}
+
+	templs, err = template.New("base").Funcs(fm).ParseFS(templatesFS, "templates/*.tmpl")
+	if err != nil {
+		return fmt.Errorf("failed to parse templates: %w", err)
+	}
+
+	for _, ns := range namespaces.Namespaces {
+		ns.Attributes = append(ns.Attributes, namespaces.Attributes...)
+		for _, element := range ns.Elements {
+			if err := generateElement(ctx, outPath, namespaces.Attributes, ns, element); err != nil {
+				return fmt.Errorf("failed to generate element %s: %w", element.Tag, err)
+			}
+		}
+	}
+
+	return nil
+}
+
+func generateElement(_ context.Context, pkgPath string, globalAttributes []*pb.Attribute, ns *pb.Namespace, element *pb.Element) error {
+	if element.Name == "" {
+		element.Name = element.Tag
+	}
+
+	element.Attributes = processAttributes(element, ns, globalAttributes)
+
+	filename := fmt.Sprintf("%s_%s.go", strcase.ToSnake(ns.Name), strcase.ToSnake(element.Tag))
+	elementFilepath := filepath.Join(pkgPath, filename)
+
+	f, err := os.Create(elementFilepath)
+	if err != nil {
+		return fmt.Errorf("failed to create file %s: %w", elementFilepath, err)
+	}
+	defer f.Close()
+
+	templateName := "element.go.tmpl"
+
+	header := "// Code generated by speckles. DO NOT EDIT.\n" +
+		"// Source: generator/templates/" + templateName + "\n" +
+		"\n"
+	if _, err := f.WriteString(header); err != nil {
+		return fmt.Errorf("failed to write header: %w", err)
+	}
+
+	templateData := struct {
+		Namespace *pb.Namespace
+		Element   *pb.Element
+	}{
+		Namespace: ns,
+		Element:   element,
+	}
+
+	if err := templs.ExecuteTemplate(f, templateName, templateData); err != nil {
+		return fmt.Errorf("failed to execute template: %w", err)
+	}
+
+	return nil
+}
+
+func processAttributes(element *pb.Element, ns *pb.Namespace, globalAttributes []*pb.Attribute) []*pb.Attribute {
+	length := len(element.Attributes) + len(ns.Attributes) + len(globalAttributes)
+
+	attrs := make([]*pb.Attribute, 0, length)
+	attrs = append(attrs, element.Attributes...)
+	attrs = append(attrs, ns.Attributes...)
+	attrs = append(attrs, globalAttributes...)
+
+	seenKeys := make(map[string]bool)
+	uniqueAttrs := make([]*pb.Attribute, 0, length)
+
+	for _, attr := range attrs {
+		// Ensure both Name and Key are set
+		if attr.Name == "" {
+			attr.Name = attr.Key
+		}
+		if attr.Key == "" {
+			attr.Key = attr.Name
+		}
+
+		// Skip duplicate attributes based on Key
+		if !seenKeys[attr.Key] {
+			seenKeys[attr.Key] = true
+			attr.Name = strcase.ToCamel(attr.Name)
+			uniqueAttrs = append(uniqueAttrs, attr)
+		}
+	}
+
+	return uniqueAttrs
+}

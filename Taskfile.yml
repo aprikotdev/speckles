@@ -1,0 +1,49 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  VERSION: 0.8.0
+
+interval: 1000ms
+
+tasks:
+  pb:
+    dir: cfg
+    sources:
+      - "**/*.proto"
+      - "**/*.yaml"
+    generates:
+      - "gen/**/*"
+    cmds:
+      - go install github.com/bufbuild/buf/cmd/buf@latest
+      - rm -rf gen
+      - buf dep update
+      - buf generate
+
+  gen:
+    deps:
+      - pb
+    sources:
+      - "generator/generator.go"
+      - "cfg/**/*.go"
+      - "**/*.tmpl"
+    generates:
+      - "elements/**/*.go"
+    cmds:
+      - go install golang.org/x/tools/cmd/goimports@latest
+      - go run cmd/gen/*.go
+      - time goimports -v -w elements
+
+  test:
+    deps:
+      - gen
+    sources:
+      - "**/*.go"
+    cmds:
+      - go test ./...
+
+  default:
+    deps:
+      - test
+    silent: true
