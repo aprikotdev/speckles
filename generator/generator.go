@@ -230,7 +230,7 @@ func processAttributes(element *pb.Element, ns *pb.Namespace, globalAttributes [
 	uniqueAttrs := make([]*pb.Attribute, 0, length)
 
 	for _, attr := range attrs {
-		// Ensure both Name and Key are set
+		// Ensure both name and key are set
 		if attr.Name == "" {
 			attr.Name = attr.Key
 		}
