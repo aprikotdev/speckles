@@ -138,7 +138,7 @@ type SVGFeFuncATypeChoice string
 
 const (
 	// The type of transfer function.
-	SVGFeFuncATypeIdentity SVGFeFuncATypeChoice = "identity"
+	SVGFeFuncATypeIDentity SVGFeFuncATypeChoice = "identity"
 	// The type of transfer function.
 	SVGFeFuncATypeTable SVGFeFuncATypeChoice = "table"
 	// The type of transfer function.

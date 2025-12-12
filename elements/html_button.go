@@ -312,12 +312,12 @@ type ButtonFormenctypeChoice string
 
 const (
 	// The default value if the attribute is not specified.
-	ButtonFormenctypeApplicationxWwwFormUrlencoded ButtonFormenctypeChoice = "application/x-www-form-urlencoded"
+	ButtonFormenctypeApplicationXWwwFormURLencoded ButtonFormenctypeChoice = "application/x-www-form-urlencoded"
 	// Use this value if you are using an enctype that requires a file upload.
-	ButtonFormenctypeMultipartformData ButtonFormenctypeChoice = "multipart/form-data"
+	ButtonFormenctypeMultipartFormData ButtonFormenctypeChoice = "multipart/form-data"
 	// Use this value if you are using a "text/plain" enctype and the form will not
 	// contain any file uploads.
-	ButtonFormenctypeTextplain ButtonFormenctypeChoice = "text/plain"
+	ButtonFormenctypeTextPlain ButtonFormenctypeChoice = "text/plain"
 )
 
 // If the button is a submit button, this attribute specifies the type of

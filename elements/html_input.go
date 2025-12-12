@@ -498,12 +498,12 @@ type InputFormenctypeChoice string
 
 const (
 	// The default value if the attribute is not specified.
-	InputFormenctypeApplicationxWwwFormUrlencoded InputFormenctypeChoice = "application/x-www-form-urlencoded"
+	InputFormenctypeApplicationXWwwFormURLencoded InputFormenctypeChoice = "application/x-www-form-urlencoded"
 	// Use this value if you are using an enctype that requires a file upload.
-	InputFormenctypeMultipartformData InputFormenctypeChoice = "multipart/form-data"
+	InputFormenctypeMultipartFormData InputFormenctypeChoice = "multipart/form-data"
 	// Use this value if you are using a "text/plain" enctype and the form will not
 	// contain any file uploads.
-	InputFormenctypeTextplain InputFormenctypeChoice = "text/plain"
+	InputFormenctypeTextPlain InputFormenctypeChoice = "text/plain"
 )
 
 // Form data set encoding type to use for form submission.

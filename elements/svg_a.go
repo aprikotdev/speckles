@@ -338,7 +338,7 @@ const (
 	SVGAReferrerpolicyStrictOriginWhenCrossOrigin SVGAReferrerpolicyChoice = "strict-origin-when-cross-origin"
 	// The Referer header will contain the origin of the request, unless it is a
 	// cross-origin request, in which case it will be omitted entirely.
-	SVGAReferrerpolicyUnsafeUrl SVGAReferrerpolicyChoice = "unsafe-url"
+	SVGAReferrerpolicyUnsafeURL SVGAReferrerpolicyChoice = "unsafe-url"
 )
 
 // Referrer policy to use when fetching the resource.
@@ -374,7 +374,7 @@ const (
 	SVGARelCanonical SVGARelChoice = "canonical"
 	// Specifies that the browser should preemptively perform DNS resolution for the
 	// target resource's origin.
-	SVGARelDnsPrefetch SVGARelChoice = "dns-prefetch"
+	SVGARelDNSPrefetch SVGARelChoice = "dns-prefetch"
 	// Links to an external resource (an external stylesheet).
 	SVGARelExternal SVGARelChoice = "external"
 	// Links to a help document.

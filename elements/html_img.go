@@ -366,7 +366,7 @@ const (
 	// send no header to a less secure destination (HTTPS->HTTP).
 	ImgReferrerpolicyStrictOriginWhenCrossOrigin ImgReferrerpolicyChoice = "strict-origin-when-cross-origin"
 	// The Referer header will be sent with same-origin and cross-origin requests.
-	ImgReferrerpolicyUnsafeUrl ImgReferrerpolicyChoice = "unsafe-url"
+	ImgReferrerpolicyUnsafeURL ImgReferrerpolicyChoice = "unsafe-url"
 )
 
 // Specifies which referrer to send when fetching the resource. See

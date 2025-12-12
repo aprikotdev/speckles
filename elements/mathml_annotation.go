@@ -139,11 +139,11 @@ type MathMLAnnotationEncodingChoice string
 
 const (
 	//
-	MathMLAnnotationEncodingTextplain MathMLAnnotationEncodingChoice = "text/plain"
+	MathMLAnnotationEncodingTextPlain MathMLAnnotationEncodingChoice = "text/plain"
 	//
-	MathMLAnnotationEncodingTexthtml MathMLAnnotationEncodingChoice = "text/html"
+	MathMLAnnotationEncodingTextHTML MathMLAnnotationEncodingChoice = "text/html"
 	//
-	MathMLAnnotationEncodingApplicationxTex MathMLAnnotationEncodingChoice = "application/x-tex"
+	MathMLAnnotationEncodingApplicationXTex MathMLAnnotationEncodingChoice = "application/x-tex"
 )
 
 // This attribute specifies the encoding used for the text content of the

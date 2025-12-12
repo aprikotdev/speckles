@@ -257,12 +257,12 @@ type FormEnctypeChoice string
 
 const (
 	// The default value if the attribute is not specified.
-	FormEnctypeApplicationxWwwFormUrlencoded FormEnctypeChoice = "application/x-www-form-urlencoded"
+	FormEnctypeApplicationXWwwFormURLencoded FormEnctypeChoice = "application/x-www-form-urlencoded"
 	// Use this value if you are using enctype that requires a file upload.
-	FormEnctypeMultipartformData FormEnctypeChoice = "multipart/form-data"
+	FormEnctypeMultipartFormData FormEnctypeChoice = "multipart/form-data"
 	// Use this value if you are using a "text/plain" enctype and the form will not
 	// contain any file uploads.
-	FormEnctypeTextplain FormEnctypeChoice = "text/plain"
+	FormEnctypeTextPlain FormEnctypeChoice = "text/plain"
 )
 
 // Defines the content type of the form data when the method is POST.

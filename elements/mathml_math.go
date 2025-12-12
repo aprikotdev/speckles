@@ -128,7 +128,7 @@ func (e *MathMLMathElement) IfEscapedF(condition bool, format string, args ...an
 // This attribute specifies the default namespace for elements and attributes in
 // the document. Possible values are http://www.w3.org/1998/Math/MathML and
 // http://www.w3.org/1999/xhtml.
-func (e *MathMLMathElement) Xmlns(c MathMLMathXmlnsChoice) *MathMLMathElement {
+func (e *MathMLMathElement) XMLNS(c MathMLMathXMLNSChoice) *MathMLMathElement {
 	if e.StringAttributes == nil {
 		e.StringAttributes = treemap.New[string, string]()
 	}
@@ -136,20 +136,20 @@ func (e *MathMLMathElement) Xmlns(c MathMLMathXmlnsChoice) *MathMLMathElement {
 	return e
 }
 
-type MathMLMathXmlnsChoice string
+type MathMLMathXMLNSChoice string
 
 const (
 	//
-	MathMLMathXmlnsHttpwwwW3Org1998MathMathMl MathMLMathXmlnsChoice = "http://www.w3.org/1998/Math/MathML"
+	MathMLMathXMLNSHTTPWwwW3Org1998MathMathMl MathMLMathXMLNSChoice = "http://www.w3.org/1998/Math/MathML"
 	//
-	MathMLMathXmlnsHttpwwwW3Org1999xhtml MathMLMathXmlnsChoice = "http://www.w3.org/1999/xhtml"
+	MathMLMathXMLNSHTTPWwwW3Org1999Xhtml MathMLMathXMLNSChoice = "http://www.w3.org/1999/xhtml"
 )
 
 // This attribute specifies the default namespace for elements and attributes in
 // the document. Possible values are http://www.w3.org/1998/Math/MathML and
 // http://www.w3.org/1999/xhtml.
-// Remove the attribute Xmlns from the element.
-func (e *MathMLMathElement) XmlnsRemove() *MathMLMathElement {
+// Remove the attribute XMLNS from the element.
+func (e *MathMLMathElement) XMLNSRemove() *MathMLMathElement {
 	if e.StringAttributes == nil {
 		return e
 	}
@@ -160,7 +160,7 @@ func (e *MathMLMathElement) XmlnsRemove() *MathMLMathElement {
 // This attribute specifies the namespace for elements and attributes in the
 // document whose names start with the letter m. Possible values are
 // http://www.w3.org/1998/Math/MathML and http://www.w3.org/1999/xhtml.
-func (e *MathMLMathElement) Xmlnsm(c MathMLMathXmlnsmChoice) *MathMLMathElement {
+func (e *MathMLMathElement) XMLNSM(c MathMLMathXMLNSMChoice) *MathMLMathElement {
 	if e.StringAttributes == nil {
 		e.StringAttributes = treemap.New[string, string]()
 	}
@@ -168,20 +168,20 @@ func (e *MathMLMathElement) Xmlnsm(c MathMLMathXmlnsmChoice) *MathMLMathElement 
 	return e
 }
 
-type MathMLMathXmlnsmChoice string
+type MathMLMathXMLNSMChoice string
 
 const (
 	//
-	MathMLMathXmlnsmHttpwwwW3Org1998MathMathMl MathMLMathXmlnsmChoice = "http://www.w3.org/1998/Math/MathML"
+	MathMLMathXMLNSMHTTPWwwW3Org1998MathMathMl MathMLMathXMLNSMChoice = "http://www.w3.org/1998/Math/MathML"
 	//
-	MathMLMathXmlnsmHttpwwwW3Org1999xhtml MathMLMathXmlnsmChoice = "http://www.w3.org/1999/xhtml"
+	MathMLMathXMLNSMHTTPWwwW3Org1999Xhtml MathMLMathXMLNSMChoice = "http://www.w3.org/1999/xhtml"
 )
 
 // This attribute specifies the namespace for elements and attributes in the
 // document whose names start with the letter m. Possible values are
 // http://www.w3.org/1998/Math/MathML and http://www.w3.org/1999/xhtml.
-// Remove the attribute Xmlnsm from the element.
-func (e *MathMLMathElement) XmlnsmRemove() *MathMLMathElement {
+// Remove the attribute XMLNSM from the element.
+func (e *MathMLMathElement) XMLNSMRemove() *MathMLMathElement {
 	if e.StringAttributes == nil {
 		return e
 	}
@@ -192,7 +192,7 @@ func (e *MathMLMathElement) XmlnsmRemove() *MathMLMathElement {
 // This attribute specifies the namespace for elements and attributes in the
 // document whose names start with the letters xlink. Possible values are
 // http://www.w3.org/1999/xlink and http://www.w3.org/1999/xhtml.
-func (e *MathMLMathElement) Xmlnsxlink(c MathMLMathXmlnsxlinkChoice) *MathMLMathElement {
+func (e *MathMLMathElement) XMLNSXlink(c MathMLMathXMLNSXlinkChoice) *MathMLMathElement {
 	if e.StringAttributes == nil {
 		e.StringAttributes = treemap.New[string, string]()
 	}
@@ -200,20 +200,20 @@ func (e *MathMLMathElement) Xmlnsxlink(c MathMLMathXmlnsxlinkChoice) *MathMLMath
 	return e
 }
 
-type MathMLMathXmlnsxlinkChoice string
+type MathMLMathXMLNSXlinkChoice string
 
 const (
 	//
-	MathMLMathXmlnsxlinkHttpwwwW3Org1999xlink MathMLMathXmlnsxlinkChoice = "http://www.w3.org/1999/xlink"
+	MathMLMathXMLNSXlinkHTTPWwwW3Org1999Xlink MathMLMathXMLNSXlinkChoice = "http://www.w3.org/1999/xlink"
 	//
-	MathMLMathXmlnsxlinkHttpwwwW3Org1999xhtml MathMLMathXmlnsxlinkChoice = "http://www.w3.org/1999/xhtml"
+	MathMLMathXMLNSXlinkHTTPWwwW3Org1999Xhtml MathMLMathXMLNSXlinkChoice = "http://www.w3.org/1999/xhtml"
 )
 
 // This attribute specifies the namespace for elements and attributes in the
 // document whose names start with the letters xlink. Possible values are
 // http://www.w3.org/1999/xlink and http://www.w3.org/1999/xhtml.
-// Remove the attribute Xmlnsxlink from the element.
-func (e *MathMLMathElement) XmlnsxlinkRemove() *MathMLMathElement {
+// Remove the attribute XMLNSXlink from the element.
+func (e *MathMLMathElement) XMLNSXlinkRemove() *MathMLMathElement {
 	if e.StringAttributes == nil {
 		return e
 	}
@@ -224,7 +224,7 @@ func (e *MathMLMathElement) XmlnsxlinkRemove() *MathMLMathElement {
 // This attribute specifies the namespace for elements and attributes in the
 // document whose names start with the letters xml. Possible values are
 // http://www.w3.org/XML/1998/namespace and http://www.w3.org/1999/xhtml.
-func (e *MathMLMathElement) Xmlnsxml(c MathMLMathXmlnsxmlChoice) *MathMLMathElement {
+func (e *MathMLMathElement) XMLNSXML(c MathMLMathXMLNSXMLChoice) *MathMLMathElement {
 	if e.StringAttributes == nil {
 		e.StringAttributes = treemap.New[string, string]()
 	}
@@ -232,20 +232,20 @@ func (e *MathMLMathElement) Xmlnsxml(c MathMLMathXmlnsxmlChoice) *MathMLMathElem
 	return e
 }
 
-type MathMLMathXmlnsxmlChoice string
+type MathMLMathXMLNSXMLChoice string
 
 const (
 	//
-	MathMLMathXmlnsxmlHttpwwwW3OrgXml1998namespace MathMLMathXmlnsxmlChoice = "http://www.w3.org/XML/1998/namespace"
+	MathMLMathXMLNSXMLHTTPWwwW3OrgXML1998Namespace MathMLMathXMLNSXMLChoice = "http://www.w3.org/XML/1998/namespace"
 	//
-	MathMLMathXmlnsxmlHttpwwwW3Org1999xhtml MathMLMathXmlnsxmlChoice = "http://www.w3.org/1999/xhtml"
+	MathMLMathXMLNSXMLHTTPWwwW3Org1999Xhtml MathMLMathXMLNSXMLChoice = "http://www.w3.org/1999/xhtml"
 )
 
 // This attribute specifies the namespace for elements and attributes in the
 // document whose names start with the letters xml. Possible values are
 // http://www.w3.org/XML/1998/namespace and http://www.w3.org/1999/xhtml.
-// Remove the attribute Xmlnsxml from the element.
-func (e *MathMLMathElement) XmlnsxmlRemove() *MathMLMathElement {
+// Remove the attribute XMLNSXML from the element.
+func (e *MathMLMathElement) XMLNSXMLRemove() *MathMLMathElement {
 	if e.StringAttributes == nil {
 		return e
 	}

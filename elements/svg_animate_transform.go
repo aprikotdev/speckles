@@ -245,11 +245,11 @@ const (
 	// The animation will use the XML namespace.
 	SVGAnimateTransformAttributeTypeXML SVGAnimateTransformAttributeTypeChoice = "XML"
 	// The animation will use the XML ID namespace.
-	SVGAnimateTransformAttributeTypeXmlid SVGAnimateTransformAttributeTypeChoice = "XMLID"
+	SVGAnimateTransformAttributeTypeXMLid SVGAnimateTransformAttributeTypeChoice = "XMLID"
 	// The animation will use the XML LANG namespace.
-	SVGAnimateTransformAttributeTypeXmllang SVGAnimateTransformAttributeTypeChoice = "XMLLANG"
+	SVGAnimateTransformAttributeTypeXMLlang SVGAnimateTransformAttributeTypeChoice = "XMLLANG"
 	// The animation will use the XML SPACE namespace.
-	SVGAnimateTransformAttributeTypeXmlspace SVGAnimateTransformAttributeTypeChoice = "XMLSPACE"
+	SVGAnimateTransformAttributeTypeXMLspace SVGAnimateTransformAttributeTypeChoice = "XMLSPACE"
 )
 
 // The namespace of the attribute to animate.

@@ -339,7 +339,7 @@ const (
 	// send no header to a less secure destination (HTTPS->HTTP).
 	AReferrerpolicyStrictOriginWhenCrossOrigin AReferrerpolicyChoice = "strict-origin-when-cross-origin"
 	// The Referer header will be sent with same-origin and cross-origin requests.
-	AReferrerpolicyUnsafeUrl AReferrerpolicyChoice = "unsafe-url"
+	AReferrerpolicyUnsafeURL AReferrerpolicyChoice = "unsafe-url"
 )
 
 // Specifies which referrer to send when fetching the resource. See

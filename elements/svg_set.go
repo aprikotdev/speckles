@@ -231,7 +231,7 @@ const (
 	SVGSetAttributeTypeXML SVGSetAttributeTypeChoice = "XML"
 	// The namespace in which the target attribute and its associated values are
 	// defined.
-	SVGSetAttributeTypeXmlns SVGSetAttributeTypeChoice = "XMLNS"
+	SVGSetAttributeTypeXMLNS SVGSetAttributeTypeChoice = "XMLNS"
 	// The namespace in which the target attribute and its associated values are
 	// defined.
 	SVGSetAttributeTypeEmpty SVGSetAttributeTypeChoice = "empty"

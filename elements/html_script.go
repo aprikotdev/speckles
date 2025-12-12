@@ -433,7 +433,7 @@ const (
 	// send no header to a less secure destination (HTTPS->HTTP).
 	ScriptReferrerpolicyStrictOriginWhenCrossOrigin ScriptReferrerpolicyChoice = "strict-origin-when-cross-origin"
 	// The Referer header will be sent with same-origin and cross-origin requests.
-	ScriptReferrerpolicyUnsafeUrl ScriptReferrerpolicyChoice = "unsafe-url"
+	ScriptReferrerpolicyUnsafeURL ScriptReferrerpolicyChoice = "unsafe-url"
 )
 
 // Specifies which referrer to send when fetching the resource. See

@@ -206,7 +206,7 @@ func (e *MetaElement) ContentRemove() *MetaElement {
 }
 
 // Provides an HTTP header for the information/value of the content attribute.
-func (e *MetaElement) HttpEquiv(s string) *MetaElement {
+func (e *MetaElement) HTTPEquiv(s string) *MetaElement {
 	if e.StringAttributes == nil {
 		e.StringAttributes = treemap.New[string, string]()
 	}
@@ -215,29 +215,29 @@ func (e *MetaElement) HttpEquiv(s string) *MetaElement {
 }
 
 // Provides an HTTP header for the information/value of the content attribute.
-func (e *MetaElement) HttpEquivF(format string, args ...any) *MetaElement {
-	return e.HttpEquiv(fmt.Sprintf(format, args...))
+func (e *MetaElement) HTTPEquivF(format string, args ...any) *MetaElement {
+	return e.HTTPEquiv(fmt.Sprintf(format, args...))
 }
 
 // Provides an HTTP header for the information/value of the content attribute.
-func (e *MetaElement) IfHttpEquiv(condition bool, s string) *MetaElement {
+func (e *MetaElement) IfHTTPEquiv(condition bool, s string) *MetaElement {
 	if condition {
-		e.HttpEquiv(s)
+		e.HTTPEquiv(s)
 	}
 	return e
 }
 
 // Provides an HTTP header for the information/value of the content attribute.
-func (e *MetaElement) IfHttpEquivF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfHTTPEquivF(condition bool, format string, args ...any) *MetaElement {
 	if condition {
-		e.HttpEquiv(fmt.Sprintf(format, args...))
+		e.HTTPEquiv(fmt.Sprintf(format, args...))
 	}
 	return e
 }
 
 // Provides an HTTP header for the information/value of the content attribute.
-// Remove the attribute HttpEquiv from the element.
-func (e *MetaElement) HttpEquivRemove() *MetaElement {
+// Remove the attribute HTTPEquiv from the element.
+func (e *MetaElement) HTTPEquivRemove() *MetaElement {
 	if e.StringAttributes == nil {
 		return e
 	}
