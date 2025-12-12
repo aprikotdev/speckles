@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"text/template"
 	"unicode"
@@ -129,6 +130,11 @@ func generateElement(_ context.Context, pkgPath string, globalAttributes []*pb.A
 	prefix := strcase.ToSnake(ns.Name)
 
 	suffix := strcase.ToSnake(element.Tag)
+	// Handle special case for h_1 to h_6
+	re := regexp.MustCompile(`^h_[1-6]$`)
+	if re.MatchString(suffix) {
+		suffix = strings.ReplaceAll(suffix, "_", "")
+	}
 
 	filename := fmt.Sprintf("%s_%s.go", prefix, suffix)
 	elementFilepath := filepath.Join(pkgPath, filename)
@@ -229,8 +235,9 @@ func goPascal(input string) string {
 
 	// Check for unformatted acronyms in the output
 	for _, a := range initialisms {
-		if strings.Contains(out, cases.Title(language.Und).String(a)) {
-			panic(fmt.Sprintf("wrong acronym formatting: %s -> %s -> %s", input, s, out))
+		wrong := cases.Title(language.Und).String(a)
+		if strings.Contains(out, wrong) {
+			panic(fmt.Sprintf("error in goPascal func: wrong acronym formatting: %s -> %s -> %s", input, s, out))
 		}
 	}
 
