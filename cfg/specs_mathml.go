@@ -84,12 +84,8 @@ var MathML = &pb.Namespace{
 			Attributes: []*pb.Attribute{
 				{
 					Key:         "encoding",
-					Description: "This attribute specifies the encoding used for the text content of the element. Possible values are text/plain, text/html, and application/x-tex.",
-					Type: AttributeTypeChoices(
-						AttributeTypeChoice("text/plain", ""),
-						AttributeTypeChoice("text/html", ""),
-						AttributeTypeChoice("application/x-tex", ""),
-					),
+					Description: "The encoding of the semantic information in the annotation (e.g., \"application/x-tex\")",
+					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "name",
@@ -104,12 +100,8 @@ var MathML = &pb.Namespace{
 			Attributes: []*pb.Attribute{
 				{
 					Key:         "encoding",
-					Description: "This attribute specifies the encoding used for the text content of the element. Possible values are text/plain, text/html, and application/x-tex.",
-					Type: AttributeTypeChoices(
-						AttributeTypeChoice("text/plain", ""),
-						AttributeTypeChoice("text/html", ""),
-						AttributeTypeChoice("application/x-tex", ""),
-					),
+					Description: "The encoding of the semantic information in the annotation (e.g., \"application/mathml+xml\", \"application/mathml-presentation+xml\", \"application/mathml-content+xml\")",
+					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "name",

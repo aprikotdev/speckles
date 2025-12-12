@@ -15,11 +15,20 @@ func TestMathMLElement(t *testing.T) {
 	})
 }
 
+func TestMathMLAnnotationElement(t *testing.T) {
+	run(t, []result{
+		{
+			Expected: `<annotation encoding="application/x-tex"></annotation>`,
+			Actual:   MathMLAnnotation().Encoding("application/x-tex"),
+		},
+	})
+}
+
 func TestMathMLAnnotationXMLElement(t *testing.T) {
 	run(t, []result{
 		{
-			Expected: `<annotation-xml encoding="application/mathml-content+xml"></annotation-xml>`,
-			Actual:   MathMLAnnotationXML().Encoding("application/mathml-content+xml"),
+			Expected: `<annotation-xml encoding="application/mathml-presentation+xml"></annotation-xml>`,
+			Actual:   MathMLAnnotationXML().Encoding("application/mathml-presentation+xml"),
 		},
 	})
 }
