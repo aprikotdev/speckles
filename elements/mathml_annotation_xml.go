@@ -125,29 +125,47 @@ func (e *MathMLAnnotationXMLElement) IfEscapedF(condition bool, format string, a
 	return e
 }
 
-// This attribute specifies the encoding used for the text content of the
-// element. Possible values are text/plain, text/html, and application/x-tex.
-func (e *MathMLAnnotationXMLElement) Encoding(c MathMLAnnotationXMLEncodingChoice) *MathMLAnnotationXMLElement {
+// The encoding of the semantic information in the annotation (e.g.,
+// "application/mathml+xml", "application/mathml-presentation+xml",
+// "application/mathml-content+xml")
+func (e *MathMLAnnotationXMLElement) Encoding(s string) *MathMLAnnotationXMLElement {
 	if e.StringAttributes == nil {
 		e.StringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("encoding", string(c))
+	e.StringAttributes.Set("encoding", s)
 	return e
 }
 
-type MathMLAnnotationXMLEncodingChoice string
+// The encoding of the semantic information in the annotation (e.g.,
+// "application/mathml+xml", "application/mathml-presentation+xml",
+// "application/mathml-content+xml")
+func (e *MathMLAnnotationXMLElement) EncodingF(format string, args ...any) *MathMLAnnotationXMLElement {
+	return e.Encoding(fmt.Sprintf(format, args...))
+}
 
-const (
-	//
-	MathMLAnnotationXMLEncodingTextPlain MathMLAnnotationXMLEncodingChoice = "text/plain"
-	//
-	MathMLAnnotationXMLEncodingTextHTML MathMLAnnotationXMLEncodingChoice = "text/html"
-	//
-	MathMLAnnotationXMLEncodingApplicationXTex MathMLAnnotationXMLEncodingChoice = "application/x-tex"
-)
+// The encoding of the semantic information in the annotation (e.g.,
+// "application/mathml+xml", "application/mathml-presentation+xml",
+// "application/mathml-content+xml")
+func (e *MathMLAnnotationXMLElement) IfEncoding(condition bool, s string) *MathMLAnnotationXMLElement {
+	if condition {
+		e.Encoding(s)
+	}
+	return e
+}
 
-// This attribute specifies the encoding used for the text content of the
-// element. Possible values are text/plain, text/html, and application/x-tex.
+// The encoding of the semantic information in the annotation (e.g.,
+// "application/mathml+xml", "application/mathml-presentation+xml",
+// "application/mathml-content+xml")
+func (e *MathMLAnnotationXMLElement) IfEncodingF(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
+	if condition {
+		e.Encoding(fmt.Sprintf(format, args...))
+	}
+	return e
+}
+
+// The encoding of the semantic information in the annotation (e.g.,
+// "application/mathml+xml", "application/mathml-presentation+xml",
+// "application/mathml-content+xml")
 // Remove the attribute Encoding from the element.
 func (e *MathMLAnnotationXMLElement) EncodingRemove() *MathMLAnnotationXMLElement {
 	if e.StringAttributes == nil {
