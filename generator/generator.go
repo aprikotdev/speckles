@@ -22,7 +22,7 @@ var templatesFS embed.FS
 var templs *template.Template
 
 func init() {
-	acronyms := []string{"ACL", "API", "ASCII", "CPU", "CSS", "DNS", "EOF", "GUID", "HTML", "HTTP", "HTTPS", "ID", "IP", "JSON", "LHS", "QPS", "RAM", "RHS", "RPC", "SLA", "SMTP", "SQL", "SSH", "TCP", "TLS", "TTL", "UDP", "UI", "UID", "UUID", "URI", "URL", "UTF8", "VM", "XML", "XMPP", "XSRF", "XSS"}
+	acronyms := []string{"ACL", "API", "ASCII", "CPU", "CSS", "DNS", "EOF", "GUID", "HTML", "HTTP", "HTTPS", "ID", "IP", "JSON", "LHS", "QPS", "RAM", "RHS", "RPC", "SLA", "SMTP", "SQL", "SSH", "SVG", "TCP", "TLS", "TTL", "UDP", "UI", "UID", "UUID", "URI", "URL", "UTF8", "VM", "XML", "XMPP", "XSRF", "XSS"}
 
 	for _, a := range acronyms {
 		strcase.ConfigureAcronym(a, a)
@@ -185,7 +185,11 @@ func generateElement(_ context.Context, pkgPath string, globalAttributes []*pb.A
 
 	element.Attributes = processAttributes(element, ns, globalAttributes)
 
-	filename := fmt.Sprintf("%s_%s.go", strcase.ToSnake(ns.Name), strcase.ToSnake(element.Tag))
+	prefix := strcase.ToSnake(ns.Name)
+
+	suffix := strcase.ToSnake(element.Tag)
+
+	filename := fmt.Sprintf("%s_%s.go", prefix, suffix)
 	elementFilepath := filepath.Join(pkgPath, filename)
 
 	f, err := os.Create(elementFilepath)
