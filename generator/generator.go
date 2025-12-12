@@ -21,16 +21,6 @@ var templatesFS embed.FS
 
 var templs *template.Template
 
-func init() {
-	acronyms := []string{"ACL", "API", "ASCII", "CPU", "CSS", "DNS", "EOF", "GUID", "HTML", "HTTP", "HTTPS", "ID", "IP", "JSON", "LHS", "QPS", "RAM", "RHS", "RPC", "SLA", "SMTP", "SQL", "SSH", "SVG", "TCP", "TLS", "TTL", "UDP", "UI", "UID", "UUID", "URI", "URL", "UTF8", "VM", "XML", "XMPP", "XSRF", "XSS"}
-
-	for _, a := range acronyms {
-		strcase.ConfigureAcronym(a, a)
-		strcase.ConfigureAcronym(cases.Title(language.Und).String(a), a)
-		strcase.ConfigureAcronym(strings.ToLower(a), a)
-	}
-}
-
 func GenerateAll(ctx context.Context, outPath string, namespaces *pb.Namespaces) (err error) {
 	if len(namespaces.Namespaces) == 0 {
 		return fmt.Errorf("no namespaces specified")
@@ -45,38 +35,16 @@ func GenerateAll(ctx context.Context, outPath string, namespaces *pb.Namespaces)
 		}
 	}
 
+	for _, a := range initialisms {
+		strcase.ConfigureAcronym(a, a)
+		strcase.ConfigureAcronym(cases.Title(language.Und).String(a), a)
+		strcase.ConfigureAcronym(strings.ToLower(a), a)
+	}
+
 	fm := template.FuncMap{}
-	fm["capitalize"] = func(s string) string {
-		return cases.Title(language.Und).String(s)
-	}
-	fm["replace"] = func(old, new, src string) string {
-		return strings.ReplaceAll(src, old, new)
-	}
-	fm["trim"] = strings.TrimSpace
-	fm["goPascal"] = strcase.ToCamel
-	fm["comments"] = func(s string) string {
-		maxLen := 80
-		lines := []string{}
-		for _, row := range strings.Split(s, "\n") {
-			row = strings.TrimSpace(row)
-			if row == "" {
-				lines = append(lines, "//")
-				continue
-			}
-			words := strings.Fields(row)
-			lineStart := "// "
-			line := lineStart
-			for _, word := range words {
-				if len(line)+len(word) > maxLen {
-					lines = append(lines, line)
-					line = lineStart
-				}
-				line += word + " "
-			}
-			lines = append(lines, line)
-		}
-		return strings.Join(lines, "\n")
-	}
+	fm["goPascal"] = goPascal
+	fm["comments"] = comments
+	fm["choiceSuffix"] = choiceSuffix
 	fm["attrIsString"] = func(attr *pb.Attribute_Type) bool {
 		switch attr.Type.(type) {
 		case *pb.Attribute_Type_String_:
@@ -132,33 +100,6 @@ func GenerateAll(ctx context.Context, outPath string, namespaces *pb.Namespaces)
 			return true
 		}
 		return false
-	}
-	fm["choiceSuffix"] = func(choiceName string, choices []*pb.Attribute_Choice) string {
-		if choiceName == "" {
-			return "Empty"
-		}
-		strToReplace := []string{"-"}
-		for _, str := range strToReplace {
-			choiceName = strings.ReplaceAll(choiceName, str, "_")
-		}
-		// Handle single-character choice names that may conflict in casing
-		if len(choiceName) == 1 {
-			for _, choice := range choices {
-				if choiceName != choice.Name {
-					if strings.EqualFold(choiceName, choice.Name) {
-						char := rune(choiceName[0])
-						if unicode.IsUpper(char) {
-							choiceName = "_upper_" + choiceName
-						} else {
-							choiceName = "_lower_" + choiceName
-						}
-						break
-					}
-				}
-			}
-		}
-		choiceName = strcase.ToCamel(choiceName)
-		return choiceName
 	}
 
 	templs, err = template.New("base").Funcs(fm).ParseFS(templatesFS, "templates/*.tmpl")
@@ -245,10 +186,102 @@ func processAttributes(element *pb.Element, ns *pb.Namespace, globalAttributes [
 		// Skip duplicate attributes based on Key
 		if !seenKeys[attr.Key] {
 			seenKeys[attr.Key] = true
-			attr.Name = strcase.ToCamel(attr.Name)
+			attr.Name = goPascal(attr.Name)
 			uniqueAttrs = append(uniqueAttrs, attr)
 		}
 	}
 
 	return uniqueAttrs
+}
+
+var initialisms = []string{"ACL", "API", "ASCII", "CPU", "CSS", "DNS", "EOF", "GUID", "HTML", "HTTP", "HTTPS", "ID", "IP", "JSON", "LHS", "QPS", "RAM", "RHS", "RPC", "SLA", "SMTP", "SQL", "SSH", "SVG", "TCP", "TLS", "TTL", "UDP", "UI", "UID", "UUID", "URI", "URL", "UTF8", "VM", "XML", "XMLNS", "XMPP", "XSRF", "XSS"}
+
+func goPascal(input string) string {
+	s := input
+
+	toReplace := []string{"-", ":", "/", "."}
+	sep := "_"
+	for _, old := range toReplace {
+		s = strings.ReplaceAll(s, old, sep)
+	}
+
+	// Format each part to match acronyms
+	parts := strings.Split(s, sep)
+
+	if len(parts) == 0 {
+		panic(fmt.Sprintf("no parts for input: %s", input))
+	}
+
+	for i := range parts {
+		if parts[i] != "" {
+			parts[i] = strcase.ToCamel(parts[i])
+		}
+		// Check and replace acronyms
+		for _, initialism := range initialisms {
+			if strings.HasPrefix(parts[i], cases.Title(language.Und).String(initialism)) {
+				result := initialism + parts[i][len(initialism):]
+				parts[i] = result
+			}
+		}
+	}
+
+	out := strings.Join(parts, "")
+
+	// Check for unformatted acronyms in the output
+	for _, a := range initialisms {
+		if strings.Contains(out, cases.Title(language.Und).String(a)) {
+			panic(fmt.Sprintf("wrong acronym formatting: %s -> %s -> %s", input, s, out))
+		}
+	}
+
+	return out
+}
+
+func comments(s string) string {
+	maxLen := 80
+	lines := []string{}
+	for _, row := range strings.Split(s, "\n") {
+		row = strings.TrimSpace(row)
+		if row == "" {
+			lines = append(lines, "//")
+			continue
+		}
+		words := strings.Fields(row)
+		lineStart := "// "
+		line := lineStart
+		for _, word := range words {
+			if len(line)+len(word) > maxLen {
+				lines = append(lines, line)
+				line = lineStart
+			}
+			line += word + " "
+		}
+		lines = append(lines, line)
+	}
+	return strings.Join(lines, "\n")
+}
+
+func choiceSuffix(choiceName string, choices []*pb.Attribute_Choice) string {
+	if choiceName == "" {
+		return "Empty"
+	}
+
+	// Handle single-character choice names that may conflict in casing
+	if len(choiceName) == 1 {
+		for _, choice := range choices {
+			if choiceName != choice.Name {
+				if strings.EqualFold(choiceName, choice.Name) {
+					char := rune(choiceName[0])
+					if unicode.IsUpper(char) {
+						choiceName = "_upper_" + choiceName
+					} else {
+						choiceName = "_lower_" + choiceName
+					}
+					break
+				}
+			}
+		}
+	}
+
+	return goPascal(choiceName)
 }

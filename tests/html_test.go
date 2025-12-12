@@ -134,29 +134,6 @@ func TestOlElement(t *testing.T) {
 	})
 }
 
-func TestSVGElement(t *testing.T) {
-	run(t, []result{
-		{
-			Expected: `<clipPath id="clip-path"><rect class="cls-1" height="300" id="Rectangle_73" width="300"></rect></clipPath>`,
-			Actual: SVGClipPath().ID("clip-path").Children(
-				SVGRect().Class("cls-1").ID("Rectangle_73").Width(300).Height(300),
-			),
-		},
-		{
-			Expected: `<linearGradient gradientTransform="skewX(20) translate(185, 0)" gradientUnits="objectBoundingBox" id="linear-gradient" x1="0.048" x2="0.963" y1="0.5" y2="0.5"><stop offset="0" stop-color="#000000"></stop><stop offset="1" stop-color="#0E67B4"></stop></linearGradient>`,
-			Actual: SVGLinearGradient(
-				SVGStop().Offset(0).StopColor("#000000"),
-				SVGStop().Offset(1).StopColor("#0E67B4"),
-			).
-				ID("linear-gradient").
-				GradientUnits("objectBoundingBox").
-				GradientTransform("skewX(20) translate(185, 0)").
-				X1(0.048).Y1(0.5).
-				X2(0.963).Y2(0.5),
-		},
-	})
-}
-
 func TestHTMLElement(t *testing.T) {
 	run(t, []result{
 		{

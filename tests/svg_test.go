@@ -9,17 +9,15 @@ import (
 func TestSVGSVGElement(t *testing.T) {
 	run(t, []result{
 		{
-			Expected: `<svg height="200" viewBox="0 0 200 200" width="200"><circle cx="100" cy="100" r="80"></circle></svg>`,
+			Expected: `<svg height="200" viewBox="0 0 200 200" width="200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="80"></circle></svg>`,
 			Actual: func() *SVGSVGElement {
 				return SVGSVG().
+					Attr("xmlns", "http://www.w3.org/2000/svg").
 					Width("200").
 					Height("200").
 					ViewBox("0 0 200 200").
 					Children(
-						SVGCircle().
-							Cx(100).
-							Cy(100).
-							R(80),
+						SVGCircle().Cx(100).Cy(100).R(80),
 					)
 			}(),
 		},
