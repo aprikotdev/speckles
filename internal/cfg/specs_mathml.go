@@ -1,7 +1,7 @@
 package cfg
 
 import (
-	pb "github.com/aprikotdev/speckles/cfg/gen/specs/v1"
+	pb "github.com/aprikotdev/speckles/internal/pb/gen/specs/v1"
 )
 
 var MathML = &pb.Namespace{

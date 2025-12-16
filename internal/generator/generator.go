@@ -11,7 +11,7 @@ import (
 	"text/template"
 	"unicode"
 
-	pb "github.com/aprikotdev/speckles/cfg/gen/specs/v1"
+	pb "github.com/aprikotdev/speckles/internal/pb/gen/specs/v1"
 	"github.com/iancoleman/strcase"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
@@ -219,7 +219,9 @@ func goPascal(input string) string {
 	}
 
 	for i := range parts {
-		if parts[i] != "" {
+		if parts[i] == "" {
+			continue
+		} else {
 			parts[i] = strcase.ToCamel(parts[i])
 		}
 		// Check and replace acronyms

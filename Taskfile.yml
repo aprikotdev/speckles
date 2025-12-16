@@ -9,15 +9,15 @@ interval: 1000ms
 
 tasks:
   pb:
-    dir: cfg
+    dir: ./internal/pb
     sources:
-      - "**/*.proto"
-      - "**/*.yaml"
+      - "*.proto"
+      - "*.yaml"
     generates:
       - "gen/**/*"
     cmds:
       - go install github.com/bufbuild/buf/cmd/buf@latest
-      - rm -rf gen
+      - rm -rf ./internal/pb/gen
       - buf dep update
       - buf generate
 
@@ -25,9 +25,9 @@ tasks:
     deps:
       - pb
     sources:
-      - "generator/generator.go"
-      - "cfg/**/*.go"
-      - "**/*.tmpl"
+      - "internal/generator/generator.go"
+      - "internal/cfg/**/*.go"
+      - "internal/generator/templates/*.tmpl"
     generates:
       - "elements/**/*.go"
     cmds:

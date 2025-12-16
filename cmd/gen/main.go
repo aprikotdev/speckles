@@ -6,8 +6,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/aprikotdev/speckles/cfg"
-	"github.com/aprikotdev/speckles/generator"
+	"github.com/aprikotdev/speckles/internal/cfg"
+	"github.com/aprikotdev/speckles/internal/generator"
 )
 
 func main() {
