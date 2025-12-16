@@ -22,37 +22,37 @@ type {{$elStructName}} struct {
 // with the tag "{{.Element.Tag}}" during rendering.
 func {{if $nsPrefix}}{{$nsPrefix}}{{end}}{{$elName}}({{if not $elNoChildren}}children ...ElementRenderer{{end}}) *{{$elStructName}} {
 	e := NewElement("{{.Element.Tag}}", {{if not $elNoChildren}}children...{{end}})
-	e.IsSelfClosing = {{$elNoChildren}}
-	{{if not $elNoChildren}}e.Descendants = children{{end}}
+	e.isSelfClosing = {{$elNoChildren}}
+	{{if not $elNoChildren}}e.descendants = children{{end}}
 	return &{{$elStructName}}{ Element: e }
 }
 
 func (e *{{$elStructName}}) Children(children ...ElementRenderer) *{{$elStructName}} {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func(e *{{$elStructName}}) IfChildren(condition bool, children ...ElementRenderer) *{{$elStructName}} {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func(e *{{$elStructName}}) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *{{$elStructName}} {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
   return e
 }
 
 func (e *{{$elStructName}}) BoolAttr(name string) *{{$elStructName}} {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *{{$elStructName}}) IfBoolAttr(condition bool, name string) *{{$elStruct
 }
 
 func (e *{{$elStructName}}) Attr(name, value string) *{{$elStructName}} {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *{{$elStructName}}) IfAttr(condition bool, name, value string) *{{$elStr
 }
 
 func (e *{{$elStructName}}) Text(text string) *{{$elStructName}} {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *{{$elStructName}}) TextF(format string, args ...any) *{{$elStructName}}
 
 func (e *{{$elStructName}}) IfText(condition bool, text string) *{{$elStructName}} {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *{{$elStructName}}) IfTextF(condition bool, format string, args ...any) *{{$elStructName}} {
     if condition {
-        e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+        e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
     }
     return e
 }
 
 func (e *{{$elStructName}}) Escaped(text string) *{{$elStructName}} {
-    e.Descendants = append(e.Descendants, Escaped(text))
+    e.descendants = append(e.descendants, Escaped(text))
     return e
 }
 
 func (e *{{$elStructName}}) IfEscaped(condition bool, text string) *{{$elStructName}} {
     if condition {
-        e.Descendants = append(e.Descendants, Escaped(text))
+        e.descendants = append(e.descendants, Escaped(text))
     }
     return e
 }
@@ -119,7 +119,7 @@ func (e *{{$elStructName}}) EscapedF(format string, args ...any) *{{$elStructNam
 
 func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...any) *{{$elStructName}} {
     if condition {
-        e.Descendants = append(e.Descendants, EscapedF(format, args...))
+        e.descendants = append(e.descendants, EscapedF(format, args...))
     }
     return e
 }
@@ -128,10 +128,10 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
     {{if .Type | attrIsString -}}
         {{.Description | comments}}
         func(e *{{$elStructName}}) {{.Name}}(s string) *{{$elStructName}}{
-            if e.StringAttributes == nil {
-                e.StringAttributes = treemap.New[string,string]()
+            if e.stringAttributes == nil {
+                e.stringAttributes = treemap.New[string,string]()
             }
-            e.StringAttributes.Set("{{.Key}}", s)
+            e.stringAttributes.Set("{{.Key}}", s)
             return e
         }
 
@@ -159,10 +159,10 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         {{.Description | comments}}
         // Remove the attribute {{.Name}} from the element.
         func(e *{{$elStructName}}) {{.Name}}Remove() *{{$elStructName}}{
-            if e.StringAttributes == nil {
+            if e.stringAttributes == nil {
                 return e
             }
-            e.StringAttributes.Del("{{.Key}}")
+            e.stringAttributes.Del("{{.Key}}")
             return e
         }
 
@@ -171,13 +171,13 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         {{.Description | comments}}
         func(e *{{$elStructName}}) {{.Name}}(s string) *{{$elStructName}}{
             values := strings.Split(s, "{{.Type.Type.Delimited}}")
-            if e.DelimitedStrings == nil {
-                e.DelimitedStrings = treemap.New[string,*DelimitedBuilder[string]]()
+            if e.delimitedStrings == nil {
+                e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
             }
-            ds, ok := e.DelimitedStrings.Get("{{.Key}}")
+            ds, ok := e.delimitedStrings.Get("{{.Key}}")
             if !ok {
-                ds = NewDelimitedBuilder[string]("{{.Type.Type.Delimited}}")
-                e.DelimitedStrings.Set("{{.Key}}", ds)
+                ds = newDelimitedBuilder[string]("{{.Type.Type.Delimited}}")
+                e.delimitedStrings.Set("{{.Key}}", ds)
             }
             ds.Add(values...)
             return e
@@ -194,10 +194,10 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         {{.Description | comments}}
         // Remove the values from the attribute {{.Name}} in the element.
         func(e *{{$elStructName}}) {{.Name}}Remove(s ...string) *{{$elStructName}}{
-            if e.DelimitedStrings == nil {
+            if e.delimitedStrings == nil {
                 return e
             }
-            ds, ok := e.DelimitedStrings.Get("{{.Key}}")
+            ds, ok := e.delimitedStrings.Get("{{.Key}}")
             if !ok {
                 return e
             }
@@ -211,13 +211,13 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
             if len(pairs) == 0 || len(pairs)%2 != 0 {
                 panic("{{.Name}}Pairs requires an even number of arguments representing key-value pairs.")
             }
-            if e.KVStrings == nil {
-                e.KVStrings = treemap.New[string,*KVBuilder]()
+            if e.keyValueStrings == nil {
+                e.keyValueStrings = treemap.New[string,*keyValueBuilder]()
             }
-            kv, ok := e.KVStrings.Get("{{.Key}}")
+            kv, ok := e.keyValueStrings.Get("{{.Key}}")
             if !ok {
-                kv = NewKVBuilder("{{.Type.Type.Kv.KeyValueDelimiter}}", "{{.Type.Type.Kv.PairDelimiter}}")
-                e.KVStrings.Set("{{.Key}}", kv)
+                kv = newKVBuilder("{{.Type.Type.Kv.KeyValueDelimiter}}", "{{.Type.Type.Kv.PairDelimiter}}")
+                e.keyValueStrings.Set("{{.Key}}", kv)
             }
             for i := 0; i < len(pairs)-1; i += 2 {
                 key := strings.TrimSpace(pairs[i])
@@ -232,13 +232,13 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
 
         {{.Description | comments}}
         func (e *{{$elStructName}}) {{.Name}}(s string) *{{$elStructName}} {
-            if e.KVStrings == nil {
-               e.KVStrings = treemap.New[string,*KVBuilder]()
+            if e.keyValueStrings == nil {
+               e.keyValueStrings = treemap.New[string,*keyValueBuilder]()
             }
-            _, ok := e.KVStrings.Get("{{.Key}}")
+            _, ok := e.keyValueStrings.Get("{{.Key}}")
             if !ok {
-                kv := NewKVBuilder("{{.Type.Type.Kv.KeyValueDelimiter}}", "{{.Type.Type.Kv.PairDelimiter}}")
-                e.KVStrings.Set("{{.Key}}", kv)
+                kv := newKVBuilder("{{.Type.Type.Kv.KeyValueDelimiter}}", "{{.Type.Type.Kv.PairDelimiter}}")
+                e.keyValueStrings.Set("{{.Key}}", kv)
             }
             s = strings.TrimRight(s, "{{.Type.Type.Kv.PairDelimiter}}")
             kvPairs := strings.Split(s, "{{.Type.Type.Kv.PairDelimiter}}")
@@ -262,13 +262,13 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
 
         {{.Description | comments}}
         func (e *{{$elStructName}}) {{.Name}}Add(k string, v string) *{{$elStructName}} {
-            if e.KVStrings == nil {
-                e.KVStrings = treemap.New[string,*KVBuilder]()
+            if e.keyValueStrings == nil {
+                e.keyValueStrings = treemap.New[string,*keyValueBuilder]()
             }
-            _, ok := e.KVStrings.Get("{{.Key}}")
+            _, ok := e.keyValueStrings.Get("{{.Key}}")
             if !ok {
-                kv := NewKVBuilder("{{.Type.Type.Kv.KeyValueDelimiter}}", "{{.Type.Type.Kv.PairDelimiter}}")
-                e.KVStrings.Set("{{.Key}}", kv)
+                kv := newKVBuilder("{{.Type.Type.Kv.KeyValueDelimiter}}", "{{.Type.Type.Kv.PairDelimiter}}")
+                e.keyValueStrings.Set("{{.Key}}", kv)
             }
             e.{{.Name}}Pairs(k, v)
             return e
@@ -298,13 +298,13 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         {{.Description | comments}}
         // Add the attributes in the map to the element.
         func (e *{{$elStructName}}) {{.Name}}Map(m map[string]string) *{{$elStructName}} {
-            if e.KVStrings == nil {
-                e.KVStrings = treemap.New[string,*KVBuilder]()
+            if e.keyValueStrings == nil {
+                e.keyValueStrings = treemap.New[string,*keyValueBuilder]()
             }
-            _, ok := e.KVStrings.Get("{{.Key}}")
+            _, ok := e.keyValueStrings.Get("{{.Key}}")
             if !ok {
-								kv := NewKVBuilder("{{.Type.Type.Kv.KeyValueDelimiter}}", "{{.Type.Type.Kv.PairDelimiter}}")
-                e.KVStrings.Set("{{.Key}}", kv)
+								kv := newKVBuilder("{{.Type.Type.Kv.KeyValueDelimiter}}", "{{.Type.Type.Kv.PairDelimiter}}")
+                e.keyValueStrings.Set("{{.Key}}", kv)
             }
             keys := make([]string, 0, len(m))
             for k := range m {
@@ -321,10 +321,10 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         {{.Description | comments}}
         // Remove the attribute {{.Name}} from the element.
         func (e *{{$elStructName}}) {{.Name}}Remove(keys ...string) *{{$elStructName}} {
-            if e.KVStrings == nil {
+            if e.keyValueStrings == nil {
                 return e
             }
-            kv, ok := e.KVStrings.Get("{{.Key}}")
+            kv, ok := e.keyValueStrings.Get("{{.Key}}")
             if !ok {
                 return e
             }
@@ -336,10 +336,10 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         {{$choicePrefix := (printf "%s%s%s" $nsPrefix $elName (.Key | goPascal)) -}}
         {{.Description | comments}}
         func(e *{{$elStructName}}) {{.Name}}(c {{$choicePrefix}}Choice) *{{$elStructName}}{
-            if e.StringAttributes == nil {
-                e.StringAttributes = treemap.New[string,string]()
+            if e.stringAttributes == nil {
+                e.stringAttributes = treemap.New[string,string]()
             }
-            e.StringAttributes.Set("{{.Key}}", string(c))
+            e.stringAttributes.Set("{{.Key}}", string(c))
             return e
         }
 
@@ -357,20 +357,20 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         {{.Description | comments}}
         // Remove the attribute {{.Name}} from the element.
         func(e *{{$elStructName}}) {{.Name}}Remove() *{{$elStructName}}{
-            if e.StringAttributes == nil {
+            if e.stringAttributes == nil {
                 return e
             }
-            e.StringAttributes.Del("{{.Key}}")
+            e.stringAttributes.Del("{{.Key}}")
             return e
         }
 
         {{else if .Type | attrIsInt -}}
         {{.Description | comments}}
         func(e *{{$elStructName}}) {{.Name}}(i int) *{{$elStructName}}{
-            if e.IntAttributes == nil {
-                e.IntAttributes = treemap.New[string,int]()
+            if e.intAttributes == nil {
+                e.intAttributes = treemap.New[string,int]()
             }
-            e.IntAttributes.Set("{{.Key}}", i)
+            e.intAttributes.Set("{{.Key}}", i)
             return e
         }
 
@@ -385,20 +385,20 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         {{.Description | comments}}
         // Remove the attribute {{.Name}} from the element.
         func(e *{{$elStructName}}) {{.Name}}Remove() *{{$elStructName}}{
-            if e.IntAttributes == nil {
+            if e.intAttributes == nil {
                 return e
             }
-            e.IntAttributes.Del("{{.Key}}")
+            e.intAttributes.Del("{{.Key}}")
             return e
         }
 
     {{else if .Type | attrIsNumber -}}
         {{.Description | comments}}
         func(e *{{$elStructName}}) {{.Name}}(f float64) *{{$elStructName}}{
-            if e.FloatAttributes == nil {
-                e.FloatAttributes = treemap.New[string,float64]()
+            if e.floatAttributes == nil {
+                e.floatAttributes = treemap.New[string,float64]()
             }
-            e.FloatAttributes.Set("{{.Key}}", f)
+            e.floatAttributes.Set("{{.Key}}", f)
             return e
         }
 
@@ -428,10 +428,10 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         {{.Description | comments}}
         // Set the attribute {{.Name}} to the value b explicitly.
         func(e *{{$elStructName}}) {{.Name}}Set(b bool) *{{$elStructName}}{
-            if e.BoolAttributes == nil {
-                e.BoolAttributes = treemap.New[string,bool]()
+            if e.boolAttributes == nil {
+                e.boolAttributes = treemap.New[string,bool]()
             }
-            e.BoolAttributes.Set("{{.Key}}", b)
+            e.boolAttributes.Set("{{.Key}}", b)
             return e
         }
 
@@ -446,20 +446,20 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         // Remove the attribute {{.Name}} from the element.
         {{.Description | comments}}
         func(e *{{$elStructName}}) {{.Name}}Remove() *{{$elStructName}}{
-            if e.BoolAttributes == nil {
+            if e.boolAttributes == nil {
                 return e
             }
-            e.BoolAttributes.Del("{{.Key}}")
+            e.boolAttributes.Del("{{.Key}}")
             return e
         }
 
     {{else if .Type | attrIsRune -}}
         {{.Description | comments}}
         func(e *{{$elStructName}}) {{.Name}}(r rune) *{{$elStructName}}{
-            if e.StringAttributes == nil {
-                e.StringAttributes = treemap.New[string,string]()
+            if e.stringAttributes == nil {
+                e.stringAttributes = treemap.New[string,string]()
             }
-            e.StringAttributes.Set("{{.Key}}", string(r))
+            e.stringAttributes.Set("{{.Key}}", string(r))
             return e
         }
 
@@ -474,10 +474,10 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         {{.Description | comments}}
         // Remove the attribute {{.Name}} from the element.
         func(e *{{$elStructName}}) {{.Name}}Remove() *{{$elStructName}}{
-            if e.StringAttributes == nil {
+            if e.stringAttributes == nil {
                 return e
             }
-            e.StringAttributes.Del("{{.Key}}")
+            e.stringAttributes.Del("{{.Key}}")
             return e
         }
 
