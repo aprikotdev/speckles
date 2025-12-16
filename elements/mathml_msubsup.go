@@ -22,37 +22,37 @@ type MathMLMsubsupElement struct {
 // with the tag "msubsup" during rendering.
 func MathMLMsubsup(children ...ElementRenderer) *MathMLMsubsupElement {
 	e := NewElement("msubsup", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &MathMLMsubsupElement{Element: e}
 }
 
 func (e *MathMLMsubsupElement) Children(children ...ElementRenderer) *MathMLMsubsupElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *MathMLMsubsupElement) IfChildren(condition bool, children ...ElementRenderer) *MathMLMsubsupElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *MathMLMsubsupElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *MathMLMsubsupElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *MathMLMsubsupElement) BoolAttr(name string) *MathMLMsubsupElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *MathMLMsubsupElement) IfBoolAttr(condition bool, name string) *MathMLMs
 }
 
 func (e *MathMLMsubsupElement) Attr(name, value string) *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *MathMLMsubsupElement) IfAttr(condition bool, name, value string) *MathM
 }
 
 func (e *MathMLMsubsupElement) Text(text string) *MathMLMsubsupElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *MathMLMsubsupElement) TextF(format string, args ...any) *MathMLMsubsupE
 
 func (e *MathMLMsubsupElement) IfText(condition bool, text string) *MathMLMsubsupElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *MathMLMsubsupElement) IfTextF(condition bool, format string, args ...any) *MathMLMsubsupElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *MathMLMsubsupElement) Escaped(text string) *MathMLMsubsupElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *MathMLMsubsupElement) IfEscaped(condition bool, text string) *MathMLMsubsupElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,7 +119,7 @@ func (e *MathMLMsubsupElement) EscapedF(format string, args ...any) *MathMLMsubs
 
 func (e *MathMLMsubsupElement) IfEscapedF(condition bool, format string, args ...any) *MathMLMsubsupElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -129,13 +129,13 @@ func (e *MathMLMsubsupElement) IfEscapedF(condition bool, format string, args ..
 // class names, they must be separated by whitespace characters.
 func (e *MathMLMsubsupElement) Class(s string) *MathMLMsubsupElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -156,10 +156,10 @@ func (e *MathMLMsubsupElement) IfClass(condition bool, s string) *MathMLMsubsupE
 // class names, they must be separated by whitespace characters.
 // Remove the values from the attribute Class in the element.
 func (e *MathMLMsubsupElement) ClassRemove(s ...string) *MathMLMsubsupElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -172,10 +172,10 @@ func (e *MathMLMsubsupElement) ClassRemove(s ...string) *MathMLMsubsupElement {
 // inherent directionality (such as Arabic or Hebrew). Possible values are ltr
 // (left-to-right) and rtl (right-to-left).
 func (e *MathMLMsubsupElement) Dir(c MathMLMsubsupDirChoice) *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dir", string(c))
+	e.stringAttributes.Set("dir", string(c))
 	return e
 }
 
@@ -194,20 +194,20 @@ const (
 // (left-to-right) and rtl (right-to-left).
 // Remove the attribute Dir from the element.
 func (e *MathMLMsubsupElement) DirRemove() *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dir")
+	e.stringAttributes.Del("dir")
 	return e
 }
 
 // This attribute specifies whether the element should be rendered using
 // displaystyle rules or not. Possible values are true and false.
 func (e *MathMLMsubsupElement) Displaystyle(c MathMLMsubsupDisplaystyleChoice) *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("displaystyle", string(c))
+	e.stringAttributes.Set("displaystyle", string(c))
 	return e
 }
 
@@ -224,20 +224,20 @@ const (
 // displaystyle rules or not. Possible values are true and false.
 // Remove the attribute Displaystyle from the element.
 func (e *MathMLMsubsupElement) DisplaystyleRemove() *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("displaystyle")
+	e.stringAttributes.Del("displaystyle")
 	return e
 }
 
 // This attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLMsubsupElement) ID(s string) *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -269,10 +269,10 @@ func (e *MathMLMsubsupElement) IfIDF(condition bool, format string, args ...any)
 // document.
 // Remove the attribute ID from the element.
 func (e *MathMLMsubsupElement) IDRemove() *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -280,10 +280,10 @@ func (e *MathMLMsubsupElement) IDRemove() *MathMLMsubsupElement {
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLMsubsupElement) Mathbackground(s string) *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("mathbackground", s)
+	e.stringAttributes.Set("mathbackground", s)
 	return e
 }
 
@@ -319,10 +319,10 @@ func (e *MathMLMsubsupElement) IfMathbackgroundF(condition bool, format string, 
 // Color Module [CSS3COLOR].
 // Remove the attribute Mathbackground from the element.
 func (e *MathMLMsubsupElement) MathbackgroundRemove() *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("mathbackground")
+	e.stringAttributes.Del("mathbackground")
 	return e
 }
 
@@ -330,10 +330,10 @@ func (e *MathMLMsubsupElement) MathbackgroundRemove() *MathMLMsubsupElement {
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLMsubsupElement) Mathcolor(s string) *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("mathcolor", s)
+	e.stringAttributes.Set("mathcolor", s)
 	return e
 }
 
@@ -369,20 +369,20 @@ func (e *MathMLMsubsupElement) IfMathcolorF(condition bool, format string, args 
 // Module [CSS3COLOR].
 // Remove the attribute Mathcolor from the element.
 func (e *MathMLMsubsupElement) MathcolorRemove() *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("mathcolor")
+	e.stringAttributes.Del("mathcolor")
 	return e
 }
 
 // This attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLMsubsupElement) MathsizeStr(s string) *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("mathsize", s)
+	e.stringAttributes.Set("mathsize", s)
 	return e
 }
 
@@ -414,10 +414,10 @@ func (e *MathMLMsubsupElement) IfMathsizeStrF(condition bool, format string, arg
 // dimension or a dimensionless number.
 // Remove the attribute MathsizeStr from the element.
 func (e *MathMLMsubsupElement) MathsizeStrRemove() *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("mathsize")
+	e.stringAttributes.Del("mathsize")
 	return e
 }
 
@@ -426,10 +426,10 @@ func (e *MathMLMsubsupElement) MathsizeStrRemove() *MathMLMsubsupElement {
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // attribute matching the value of the nonce attribute.
 func (e *MathMLMsubsupElement) Nonce(s string) *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("nonce", s)
+	e.stringAttributes.Set("nonce", s)
 	return e
 }
 
@@ -469,20 +469,20 @@ func (e *MathMLMsubsupElement) IfNonceF(condition bool, format string, args ...a
 // attribute matching the value of the nonce attribute.
 // Remove the attribute Nonce from the element.
 func (e *MathMLMsubsupElement) NonceRemove() *MathMLMsubsupElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("nonce")
+	e.stringAttributes.Del("nonce")
 	return e
 }
 
 // This attribute specifies the script level of the element. Possible values are
 // an integer between 0 and 7, inclusive.
 func (e *MathMLMsubsupElement) Scriptlevel(i int) *MathMLMsubsupElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("scriptlevel", i)
+	e.intAttributes.Set("scriptlevel", i)
 	return e
 }
 
@@ -499,10 +499,10 @@ func (e *MathMLMsubsupElement) IfScriptlevel(condition bool, i int) *MathMLMsubs
 // an integer between 0 and 7, inclusive.
 // Remove the attribute Scriptlevel from the element.
 func (e *MathMLMsubsupElement) ScriptlevelRemove() *MathMLMsubsupElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("scriptlevel")
+	e.intAttributes.Del("scriptlevel")
 	return e
 }
 
@@ -512,13 +512,13 @@ func (e *MathMLMsubsupElement) StylePairs(pairs ...string) *MathMLMsubsupElement
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -534,13 +534,13 @@ func (e *MathMLMsubsupElement) StylePairs(pairs ...string) *MathMLMsubsupElement
 // This attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMsubsupElement) Style(s string) *MathMLMsubsupElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -566,13 +566,13 @@ func (e *MathMLMsubsupElement) IfStyle(condition bool, s string) *MathMLMsubsupE
 // This attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMsubsupElement) StyleAdd(k string, v string) *MathMLMsubsupElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -606,13 +606,13 @@ func (e *MathMLMsubsupElement) IfStyleAddF(condition bool, k string, format stri
 // set.
 // Add the attributes in the map to the element.
 func (e *MathMLMsubsupElement) StyleMap(m map[string]string) *MathMLMsubsupElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -629,10 +629,10 @@ func (e *MathMLMsubsupElement) StyleMap(m map[string]string) *MathMLMsubsupEleme
 // set.
 // Remove the attribute Style from the element.
 func (e *MathMLMsubsupElement) StyleRemove(keys ...string) *MathMLMsubsupElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}
@@ -644,10 +644,10 @@ func (e *MathMLMsubsupElement) StyleRemove(keys ...string) *MathMLMsubsupElement
 // order for the current document. This value must be a number between 0 and
 // 32767. User agents should ignore leading zeros.
 func (e *MathMLMsubsupElement) Tabindex(i int) *MathMLMsubsupElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("tabindex", i)
+	e.intAttributes.Set("tabindex", i)
 	return e
 }
 
@@ -666,9 +666,9 @@ func (e *MathMLMsubsupElement) IfTabindex(condition bool, i int) *MathMLMsubsupE
 // 32767. User agents should ignore leading zeros.
 // Remove the attribute Tabindex from the element.
 func (e *MathMLMsubsupElement) TabindexRemove() *MathMLMsubsupElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("tabindex")
+	e.intAttributes.Del("tabindex")
 	return e
 }

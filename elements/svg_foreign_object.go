@@ -24,37 +24,37 @@ type SVGForeignObjectElement struct {
 // with the tag "foreignObject" during rendering.
 func SVGForeignObject(children ...ElementRenderer) *SVGForeignObjectElement {
 	e := NewElement("foreignObject", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGForeignObjectElement{Element: e}
 }
 
 func (e *SVGForeignObjectElement) Children(children ...ElementRenderer) *SVGForeignObjectElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGForeignObjectElement) IfChildren(condition bool, children ...ElementRenderer) *SVGForeignObjectElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGForeignObjectElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGForeignObjectElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGForeignObjectElement) BoolAttr(name string) *SVGForeignObjectElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -66,10 +66,10 @@ func (e *SVGForeignObjectElement) IfBoolAttr(condition bool, name string) *SVGFo
 }
 
 func (e *SVGForeignObjectElement) Attr(name, value string) *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -81,7 +81,7 @@ func (e *SVGForeignObjectElement) IfAttr(condition bool, name, value string) *SV
 }
 
 func (e *SVGForeignObjectElement) Text(text string) *SVGForeignObjectElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -91,26 +91,26 @@ func (e *SVGForeignObjectElement) TextF(format string, args ...any) *SVGForeignO
 
 func (e *SVGForeignObjectElement) IfText(condition bool, text string) *SVGForeignObjectElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGForeignObjectElement) IfTextF(condition bool, format string, args ...any) *SVGForeignObjectElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGForeignObjectElement) Escaped(text string) *SVGForeignObjectElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGForeignObjectElement) IfEscaped(condition bool, text string) *SVGForeignObjectElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -121,7 +121,7 @@ func (e *SVGForeignObjectElement) EscapedF(format string, args ...any) *SVGForei
 
 func (e *SVGForeignObjectElement) IfEscapedF(condition bool, format string, args ...any) *SVGForeignObjectElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -129,10 +129,10 @@ func (e *SVGForeignObjectElement) IfEscapedF(condition bool, format string, args
 // The x-axis coordinate of the side of the rectangular region which is closest
 // to the user.
 func (e *SVGForeignObjectElement) X(s string) *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("x", s)
+	e.stringAttributes.Set("x", s)
 	return e
 }
 
@@ -164,20 +164,20 @@ func (e *SVGForeignObjectElement) IfXF(condition bool, format string, args ...an
 // to the user.
 // Remove the attribute X from the element.
 func (e *SVGForeignObjectElement) XRemove() *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("x")
+	e.stringAttributes.Del("x")
 	return e
 }
 
 // The y-axis coordinate of the side of the rectangular region which is closest
 // to the user.
 func (e *SVGForeignObjectElement) Y(s string) *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("y", s)
+	e.stringAttributes.Set("y", s)
 	return e
 }
 
@@ -209,19 +209,19 @@ func (e *SVGForeignObjectElement) IfYF(condition bool, format string, args ...an
 // to the user.
 // Remove the attribute Y from the element.
 func (e *SVGForeignObjectElement) YRemove() *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("y")
+	e.stringAttributes.Del("y")
 	return e
 }
 
 // The width of the rectangular region.
 func (e *SVGForeignObjectElement) Width(s string) *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("width", s)
+	e.stringAttributes.Set("width", s)
 	return e
 }
 
@@ -249,19 +249,19 @@ func (e *SVGForeignObjectElement) IfWidthF(condition bool, format string, args .
 // The width of the rectangular region.
 // Remove the attribute Width from the element.
 func (e *SVGForeignObjectElement) WidthRemove() *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("width")
+	e.stringAttributes.Del("width")
 	return e
 }
 
 // The height of the rectangular region.
 func (e *SVGForeignObjectElement) Height(s string) *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("height", s)
+	e.stringAttributes.Set("height", s)
 	return e
 }
 
@@ -289,20 +289,20 @@ func (e *SVGForeignObjectElement) IfHeightF(condition bool, format string, args 
 // The height of the rectangular region.
 // Remove the attribute Height from the element.
 func (e *SVGForeignObjectElement) HeightRemove() *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("height")
+	e.stringAttributes.Del("height")
 	return e
 }
 
 // A space-separated list of required extensions, indicating that the parent SVG
 // document must include the specified extensions for this element to be valid.
 func (e *SVGForeignObjectElement) RequiredExtensions(s string) *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("requiredExtensions", s)
+	e.stringAttributes.Set("requiredExtensions", s)
 	return e
 }
 
@@ -334,10 +334,10 @@ func (e *SVGForeignObjectElement) IfRequiredExtensionsF(condition bool, format s
 // document must include the specified extensions for this element to be valid.
 // Remove the attribute RequiredExtensions from the element.
 func (e *SVGForeignObjectElement) RequiredExtensionsRemove() *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("requiredExtensions")
+	e.stringAttributes.Del("requiredExtensions")
 	return e
 }
 
@@ -345,10 +345,10 @@ func (e *SVGForeignObjectElement) RequiredExtensionsRemove() *SVGForeignObjectEl
 // document must include support for all of the specified features for this
 // element to be valid.
 func (e *SVGForeignObjectElement) RequiredFeatures(s string) *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("requiredFeatures", s)
+	e.stringAttributes.Set("requiredFeatures", s)
 	return e
 }
 
@@ -384,10 +384,10 @@ func (e *SVGForeignObjectElement) IfRequiredFeaturesF(condition bool, format str
 // element to be valid.
 // Remove the attribute RequiredFeatures from the element.
 func (e *SVGForeignObjectElement) RequiredFeaturesRemove() *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("requiredFeatures")
+	e.stringAttributes.Del("requiredFeatures")
 	return e
 }
 
@@ -395,10 +395,10 @@ func (e *SVGForeignObjectElement) RequiredFeaturesRemove() *SVGForeignObjectElem
 // document must include support for all of the specified languages for this
 // element to be valid.
 func (e *SVGForeignObjectElement) SystemLanguage(s string) *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("systemLanguage", s)
+	e.stringAttributes.Set("systemLanguage", s)
 	return e
 }
 
@@ -434,19 +434,19 @@ func (e *SVGForeignObjectElement) IfSystemLanguageF(condition bool, format strin
 // element to be valid.
 // Remove the attribute SystemLanguage from the element.
 func (e *SVGForeignObjectElement) SystemLanguageRemove() *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("systemLanguage")
+	e.stringAttributes.Del("systemLanguage")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGForeignObjectElement) ID(s string) *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -474,10 +474,10 @@ func (e *SVGForeignObjectElement) IfIDF(condition bool, format string, args ...a
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGForeignObjectElement) IDRemove() *SVGForeignObjectElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -485,13 +485,13 @@ func (e *SVGForeignObjectElement) IDRemove() *SVGForeignObjectElement {
 // sheet)
 func (e *SVGForeignObjectElement) Class(s string) *SVGForeignObjectElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -510,10 +510,10 @@ func (e *SVGForeignObjectElement) IfClass(condition bool, s string) *SVGForeignO
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGForeignObjectElement) ClassRemove(s ...string) *SVGForeignObjectElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -526,13 +526,13 @@ func (e *SVGForeignObjectElement) StylePairs(pairs ...string) *SVGForeignObjectE
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -547,13 +547,13 @@ func (e *SVGForeignObjectElement) StylePairs(pairs ...string) *SVGForeignObjectE
 
 // Specifies an inline CSS style for an element
 func (e *SVGForeignObjectElement) Style(s string) *SVGForeignObjectElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -577,13 +577,13 @@ func (e *SVGForeignObjectElement) IfStyle(condition bool, s string) *SVGForeignO
 
 // Specifies an inline CSS style for an element
 func (e *SVGForeignObjectElement) StyleAdd(k string, v string) *SVGForeignObjectElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -613,13 +613,13 @@ func (e *SVGForeignObjectElement) IfStyleAddF(condition bool, k string, format s
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGForeignObjectElement) StyleMap(m map[string]string) *SVGForeignObjectElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -635,10 +635,10 @@ func (e *SVGForeignObjectElement) StyleMap(m map[string]string) *SVGForeignObjec
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGForeignObjectElement) StyleRemove(keys ...string) *SVGForeignObjectElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

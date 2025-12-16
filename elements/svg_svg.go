@@ -23,37 +23,37 @@ type SVGSVGElement struct {
 // with the tag "svg" during rendering.
 func SVGSVG(children ...ElementRenderer) *SVGSVGElement {
 	e := NewElement("svg", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGSVGElement{Element: e}
 }
 
 func (e *SVGSVGElement) Children(children ...ElementRenderer) *SVGSVGElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGSVGElement) IfChildren(condition bool, children ...ElementRenderer) *SVGSVGElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGSVGElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGSVGElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGSVGElement) BoolAttr(name string) *SVGSVGElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -65,10 +65,10 @@ func (e *SVGSVGElement) IfBoolAttr(condition bool, name string) *SVGSVGElement {
 }
 
 func (e *SVGSVGElement) Attr(name, value string) *SVGSVGElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -80,7 +80,7 @@ func (e *SVGSVGElement) IfAttr(condition bool, name, value string) *SVGSVGElemen
 }
 
 func (e *SVGSVGElement) Text(text string) *SVGSVGElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -90,26 +90,26 @@ func (e *SVGSVGElement) TextF(format string, args ...any) *SVGSVGElement {
 
 func (e *SVGSVGElement) IfText(condition bool, text string) *SVGSVGElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGSVGElement) IfTextF(condition bool, format string, args ...any) *SVGSVGElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGSVGElement) Escaped(text string) *SVGSVGElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGSVGElement) IfEscaped(condition bool, text string) *SVGSVGElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -120,7 +120,7 @@ func (e *SVGSVGElement) EscapedF(format string, args ...any) *SVGSVGElement {
 
 func (e *SVGSVGElement) IfEscapedF(condition bool, format string, args ...any) *SVGSVGElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -128,10 +128,10 @@ func (e *SVGSVGElement) IfEscapedF(condition bool, format string, args ...any) *
 // The x-axis coordinate of the side of the rectangular region which is closest
 // to the user.
 func (e *SVGSVGElement) X(s string) *SVGSVGElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("x", s)
+	e.stringAttributes.Set("x", s)
 	return e
 }
 
@@ -163,20 +163,20 @@ func (e *SVGSVGElement) IfXF(condition bool, format string, args ...any) *SVGSVG
 // to the user.
 // Remove the attribute X from the element.
 func (e *SVGSVGElement) XRemove() *SVGSVGElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("x")
+	e.stringAttributes.Del("x")
 	return e
 }
 
 // The y-axis coordinate of the side of the rectangular region which is closest
 // to the user.
 func (e *SVGSVGElement) Y(s string) *SVGSVGElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("y", s)
+	e.stringAttributes.Set("y", s)
 	return e
 }
 
@@ -208,19 +208,19 @@ func (e *SVGSVGElement) IfYF(condition bool, format string, args ...any) *SVGSVG
 // to the user.
 // Remove the attribute Y from the element.
 func (e *SVGSVGElement) YRemove() *SVGSVGElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("y")
+	e.stringAttributes.Del("y")
 	return e
 }
 
 // The width of the rectangular region.
 func (e *SVGSVGElement) Width(s string) *SVGSVGElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("width", s)
+	e.stringAttributes.Set("width", s)
 	return e
 }
 
@@ -248,19 +248,19 @@ func (e *SVGSVGElement) IfWidthF(condition bool, format string, args ...any) *SV
 // The width of the rectangular region.
 // Remove the attribute Width from the element.
 func (e *SVGSVGElement) WidthRemove() *SVGSVGElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("width")
+	e.stringAttributes.Del("width")
 	return e
 }
 
 // The height of the rectangular region.
 func (e *SVGSVGElement) Height(s string) *SVGSVGElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("height", s)
+	e.stringAttributes.Set("height", s)
 	return e
 }
 
@@ -288,20 +288,20 @@ func (e *SVGSVGElement) IfHeightF(condition bool, format string, args ...any) *S
 // The height of the rectangular region.
 // Remove the attribute Height from the element.
 func (e *SVGSVGElement) HeightRemove() *SVGSVGElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("height")
+	e.stringAttributes.Del("height")
 	return e
 }
 
 // The position and size of the viewport (the viewBox) is defined by the viewBox
 // attribute.
 func (e *SVGSVGElement) ViewBox(s string) *SVGSVGElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("viewBox", s)
+	e.stringAttributes.Set("viewBox", s)
 	return e
 }
 
@@ -333,20 +333,20 @@ func (e *SVGSVGElement) IfViewBoxF(condition bool, format string, args ...any) *
 // attribute.
 // Remove the attribute ViewBox from the element.
 func (e *SVGSVGElement) ViewBoxRemove() *SVGSVGElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("viewBox")
+	e.stringAttributes.Del("viewBox")
 	return e
 }
 
 // Indicates how the viewport is fitted to the rectangle of the given width and
 // height.
 func (e *SVGSVGElement) PreserveAspectRatio(c SVGSVGPreserveAspectRatioChoice) *SVGSVGElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("preserveAspectRatio", string(c))
+	e.stringAttributes.Set("preserveAspectRatio", string(c))
 	return e
 }
 
@@ -385,19 +385,19 @@ const (
 // height.
 // Remove the attribute PreserveAspectRatio from the element.
 func (e *SVGSVGElement) PreserveAspectRatioRemove() *SVGSVGElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("preserveAspectRatio")
+	e.stringAttributes.Del("preserveAspectRatio")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGSVGElement) ID(s string) *SVGSVGElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -425,10 +425,10 @@ func (e *SVGSVGElement) IfIDF(condition bool, format string, args ...any) *SVGSV
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGSVGElement) IDRemove() *SVGSVGElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -436,13 +436,13 @@ func (e *SVGSVGElement) IDRemove() *SVGSVGElement {
 // sheet)
 func (e *SVGSVGElement) Class(s string) *SVGSVGElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -461,10 +461,10 @@ func (e *SVGSVGElement) IfClass(condition bool, s string) *SVGSVGElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGSVGElement) ClassRemove(s ...string) *SVGSVGElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -477,13 +477,13 @@ func (e *SVGSVGElement) StylePairs(pairs ...string) *SVGSVGElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -498,13 +498,13 @@ func (e *SVGSVGElement) StylePairs(pairs ...string) *SVGSVGElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGSVGElement) Style(s string) *SVGSVGElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -528,13 +528,13 @@ func (e *SVGSVGElement) IfStyle(condition bool, s string) *SVGSVGElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGSVGElement) StyleAdd(k string, v string) *SVGSVGElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -564,13 +564,13 @@ func (e *SVGSVGElement) IfStyleAddF(condition bool, k string, format string, arg
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGSVGElement) StyleMap(m map[string]string) *SVGSVGElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -586,10 +586,10 @@ func (e *SVGSVGElement) StyleMap(m map[string]string) *SVGSVGElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGSVGElement) StyleRemove(keys ...string) *SVGSVGElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

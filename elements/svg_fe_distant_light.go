@@ -23,37 +23,37 @@ type SVGFeDistantLightElement struct {
 // with the tag "feDistantLight" during rendering.
 func SVGFeDistantLight(children ...ElementRenderer) *SVGFeDistantLightElement {
 	e := NewElement("feDistantLight", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGFeDistantLightElement{Element: e}
 }
 
 func (e *SVGFeDistantLightElement) Children(children ...ElementRenderer) *SVGFeDistantLightElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGFeDistantLightElement) IfChildren(condition bool, children ...ElementRenderer) *SVGFeDistantLightElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGFeDistantLightElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGFeDistantLightElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGFeDistantLightElement) BoolAttr(name string) *SVGFeDistantLightElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -65,10 +65,10 @@ func (e *SVGFeDistantLightElement) IfBoolAttr(condition bool, name string) *SVGF
 }
 
 func (e *SVGFeDistantLightElement) Attr(name, value string) *SVGFeDistantLightElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -80,7 +80,7 @@ func (e *SVGFeDistantLightElement) IfAttr(condition bool, name, value string) *S
 }
 
 func (e *SVGFeDistantLightElement) Text(text string) *SVGFeDistantLightElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -90,26 +90,26 @@ func (e *SVGFeDistantLightElement) TextF(format string, args ...any) *SVGFeDista
 
 func (e *SVGFeDistantLightElement) IfText(condition bool, text string) *SVGFeDistantLightElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGFeDistantLightElement) IfTextF(condition bool, format string, args ...any) *SVGFeDistantLightElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGFeDistantLightElement) Escaped(text string) *SVGFeDistantLightElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGFeDistantLightElement) IfEscaped(condition bool, text string) *SVGFeDistantLightElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -120,7 +120,7 @@ func (e *SVGFeDistantLightElement) EscapedF(format string, args ...any) *SVGFeDi
 
 func (e *SVGFeDistantLightElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeDistantLightElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -128,10 +128,10 @@ func (e *SVGFeDistantLightElement) IfEscapedF(condition bool, format string, arg
 // The azimuth attribute represent the direction vector of the light source in
 // the XY plane (clockwise), in degrees from the x axis.
 func (e *SVGFeDistantLightElement) Azimuth(f float64) *SVGFeDistantLightElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("azimuth", f)
+	e.floatAttributes.Set("azimuth", f)
 	return e
 }
 
@@ -148,10 +148,10 @@ func (e *SVGFeDistantLightElement) IfAzimuth(condition bool, f float64) *SVGFeDi
 // perpendicular to the XY plane, in degrees from the XY plane towards the z
 // axis (clockwise).
 func (e *SVGFeDistantLightElement) Elevation(f float64) *SVGFeDistantLightElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("elevation", f)
+	e.floatAttributes.Set("elevation", f)
 	return e
 }
 
@@ -167,10 +167,10 @@ func (e *SVGFeDistantLightElement) IfElevation(condition bool, f float64) *SVGFe
 
 // Specifies a unique id for an element
 func (e *SVGFeDistantLightElement) ID(s string) *SVGFeDistantLightElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -198,10 +198,10 @@ func (e *SVGFeDistantLightElement) IfIDF(condition bool, format string, args ...
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGFeDistantLightElement) IDRemove() *SVGFeDistantLightElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -209,13 +209,13 @@ func (e *SVGFeDistantLightElement) IDRemove() *SVGFeDistantLightElement {
 // sheet)
 func (e *SVGFeDistantLightElement) Class(s string) *SVGFeDistantLightElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -234,10 +234,10 @@ func (e *SVGFeDistantLightElement) IfClass(condition bool, s string) *SVGFeDista
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGFeDistantLightElement) ClassRemove(s ...string) *SVGFeDistantLightElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -250,13 +250,13 @@ func (e *SVGFeDistantLightElement) StylePairs(pairs ...string) *SVGFeDistantLigh
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -271,13 +271,13 @@ func (e *SVGFeDistantLightElement) StylePairs(pairs ...string) *SVGFeDistantLigh
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeDistantLightElement) Style(s string) *SVGFeDistantLightElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -301,13 +301,13 @@ func (e *SVGFeDistantLightElement) IfStyle(condition bool, s string) *SVGFeDista
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeDistantLightElement) StyleAdd(k string, v string) *SVGFeDistantLightElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -337,13 +337,13 @@ func (e *SVGFeDistantLightElement) IfStyleAddF(condition bool, k string, format 
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGFeDistantLightElement) StyleMap(m map[string]string) *SVGFeDistantLightElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -359,10 +359,10 @@ func (e *SVGFeDistantLightElement) StyleMap(m map[string]string) *SVGFeDistantLi
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGFeDistantLightElement) StyleRemove(keys ...string) *SVGFeDistantLightElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

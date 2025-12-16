@@ -22,37 +22,37 @@ type SVGFeDisplacementMapElement struct {
 // with the tag "feDisplacementMap" during rendering.
 func SVGFeDisplacementMap(children ...ElementRenderer) *SVGFeDisplacementMapElement {
 	e := NewElement("feDisplacementMap", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGFeDisplacementMapElement{Element: e}
 }
 
 func (e *SVGFeDisplacementMapElement) Children(children ...ElementRenderer) *SVGFeDisplacementMapElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGFeDisplacementMapElement) IfChildren(condition bool, children ...ElementRenderer) *SVGFeDisplacementMapElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGFeDisplacementMapElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGFeDisplacementMapElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGFeDisplacementMapElement) BoolAttr(name string) *SVGFeDisplacementMapElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *SVGFeDisplacementMapElement) IfBoolAttr(condition bool, name string) *S
 }
 
 func (e *SVGFeDisplacementMapElement) Attr(name, value string) *SVGFeDisplacementMapElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *SVGFeDisplacementMapElement) IfAttr(condition bool, name, value string)
 }
 
 func (e *SVGFeDisplacementMapElement) Text(text string) *SVGFeDisplacementMapElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *SVGFeDisplacementMapElement) TextF(format string, args ...any) *SVGFeDi
 
 func (e *SVGFeDisplacementMapElement) IfText(condition bool, text string) *SVGFeDisplacementMapElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGFeDisplacementMapElement) IfTextF(condition bool, format string, args ...any) *SVGFeDisplacementMapElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGFeDisplacementMapElement) Escaped(text string) *SVGFeDisplacementMapElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGFeDisplacementMapElement) IfEscaped(condition bool, text string) *SVGFeDisplacementMapElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,17 +119,17 @@ func (e *SVGFeDisplacementMapElement) EscapedF(format string, args ...any) *SVGF
 
 func (e *SVGFeDisplacementMapElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeDisplacementMapElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The input for this filter.
 func (e *SVGFeDisplacementMapElement) In(s string) *SVGFeDisplacementMapElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("in", s)
+	e.stringAttributes.Set("in", s)
 	return e
 }
 
@@ -157,20 +157,20 @@ func (e *SVGFeDisplacementMapElement) IfInF(condition bool, format string, args 
 // The input for this filter.
 // Remove the attribute In from the element.
 func (e *SVGFeDisplacementMapElement) InRemove() *SVGFeDisplacementMapElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("in")
+	e.stringAttributes.Del("in")
 	return e
 }
 
 // The displacement map. This attribute can take on the same values as the 'in'
 // attribute.
 func (e *SVGFeDisplacementMapElement) In2(s string) *SVGFeDisplacementMapElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("in2", s)
+	e.stringAttributes.Set("in2", s)
 	return e
 }
 
@@ -202,20 +202,20 @@ func (e *SVGFeDisplacementMapElement) IfIn2F(condition bool, format string, args
 // attribute.
 // Remove the attribute In2 from the element.
 func (e *SVGFeDisplacementMapElement) In2Remove() *SVGFeDisplacementMapElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("in2")
+	e.stringAttributes.Del("in2")
 	return e
 }
 
 // The scale attribute defines the maximum value for the in2 displacement. A
 // value of 0 disables the effect of the displacement map.
 func (e *SVGFeDisplacementMapElement) Scale(f float64) *SVGFeDisplacementMapElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("scale", f)
+	e.floatAttributes.Set("scale", f)
 	return e
 }
 
@@ -231,10 +231,10 @@ func (e *SVGFeDisplacementMapElement) IfScale(condition bool, f float64) *SVGFeD
 // The xChannelSelector attribute indicates which color channel from in2 to use
 // to displace the pixels in in the horizontal direction.
 func (e *SVGFeDisplacementMapElement) XChannelSelector(c SVGFeDisplacementMapXChannelSelectorChoice) *SVGFeDisplacementMapElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("xChannelSelector", string(c))
+	e.stringAttributes.Set("xChannelSelector", string(c))
 	return e
 }
 
@@ -255,20 +255,20 @@ const (
 // to displace the pixels in in the horizontal direction.
 // Remove the attribute XChannelSelector from the element.
 func (e *SVGFeDisplacementMapElement) XChannelSelectorRemove() *SVGFeDisplacementMapElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("xChannelSelector")
+	e.stringAttributes.Del("xChannelSelector")
 	return e
 }
 
 // The yChannelSelector attribute indicates which color channel from in2 to use
 // to displace the pixels in in the vertical direction.
 func (e *SVGFeDisplacementMapElement) YChannelSelector(c SVGFeDisplacementMapYChannelSelectorChoice) *SVGFeDisplacementMapElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("yChannelSelector", string(c))
+	e.stringAttributes.Set("yChannelSelector", string(c))
 	return e
 }
 
@@ -289,19 +289,19 @@ const (
 // to displace the pixels in in the vertical direction.
 // Remove the attribute YChannelSelector from the element.
 func (e *SVGFeDisplacementMapElement) YChannelSelectorRemove() *SVGFeDisplacementMapElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("yChannelSelector")
+	e.stringAttributes.Del("yChannelSelector")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGFeDisplacementMapElement) ID(s string) *SVGFeDisplacementMapElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -329,10 +329,10 @@ func (e *SVGFeDisplacementMapElement) IfIDF(condition bool, format string, args 
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGFeDisplacementMapElement) IDRemove() *SVGFeDisplacementMapElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -340,13 +340,13 @@ func (e *SVGFeDisplacementMapElement) IDRemove() *SVGFeDisplacementMapElement {
 // sheet)
 func (e *SVGFeDisplacementMapElement) Class(s string) *SVGFeDisplacementMapElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -365,10 +365,10 @@ func (e *SVGFeDisplacementMapElement) IfClass(condition bool, s string) *SVGFeDi
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGFeDisplacementMapElement) ClassRemove(s ...string) *SVGFeDisplacementMapElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -381,13 +381,13 @@ func (e *SVGFeDisplacementMapElement) StylePairs(pairs ...string) *SVGFeDisplace
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -402,13 +402,13 @@ func (e *SVGFeDisplacementMapElement) StylePairs(pairs ...string) *SVGFeDisplace
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeDisplacementMapElement) Style(s string) *SVGFeDisplacementMapElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -432,13 +432,13 @@ func (e *SVGFeDisplacementMapElement) IfStyle(condition bool, s string) *SVGFeDi
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeDisplacementMapElement) StyleAdd(k string, v string) *SVGFeDisplacementMapElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -468,13 +468,13 @@ func (e *SVGFeDisplacementMapElement) IfStyleAddF(condition bool, k string, form
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGFeDisplacementMapElement) StyleMap(m map[string]string) *SVGFeDisplacementMapElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -490,10 +490,10 @@ func (e *SVGFeDisplacementMapElement) StyleMap(m map[string]string) *SVGFeDispla
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGFeDisplacementMapElement) StyleRemove(keys ...string) *SVGFeDisplacementMapElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

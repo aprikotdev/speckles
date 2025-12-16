@@ -24,37 +24,37 @@ type SVGPolylineElement struct {
 // with the tag "polyline" during rendering.
 func SVGPolyline(children ...ElementRenderer) *SVGPolylineElement {
 	e := NewElement("polyline", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGPolylineElement{Element: e}
 }
 
 func (e *SVGPolylineElement) Children(children ...ElementRenderer) *SVGPolylineElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGPolylineElement) IfChildren(condition bool, children ...ElementRenderer) *SVGPolylineElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGPolylineElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGPolylineElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGPolylineElement) BoolAttr(name string) *SVGPolylineElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -66,10 +66,10 @@ func (e *SVGPolylineElement) IfBoolAttr(condition bool, name string) *SVGPolylin
 }
 
 func (e *SVGPolylineElement) Attr(name, value string) *SVGPolylineElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -81,7 +81,7 @@ func (e *SVGPolylineElement) IfAttr(condition bool, name, value string) *SVGPoly
 }
 
 func (e *SVGPolylineElement) Text(text string) *SVGPolylineElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -91,26 +91,26 @@ func (e *SVGPolylineElement) TextF(format string, args ...any) *SVGPolylineEleme
 
 func (e *SVGPolylineElement) IfText(condition bool, text string) *SVGPolylineElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGPolylineElement) IfTextF(condition bool, format string, args ...any) *SVGPolylineElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGPolylineElement) Escaped(text string) *SVGPolylineElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGPolylineElement) IfEscaped(condition bool, text string) *SVGPolylineElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -121,17 +121,17 @@ func (e *SVGPolylineElement) EscapedF(format string, args ...any) *SVGPolylineEl
 
 func (e *SVGPolylineElement) IfEscapedF(condition bool, format string, args ...any) *SVGPolylineElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // A list of points, each of which is a coordinate pair.
 func (e *SVGPolylineElement) Points(s string) *SVGPolylineElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("points", s)
+	e.stringAttributes.Set("points", s)
 	return e
 }
 
@@ -159,19 +159,19 @@ func (e *SVGPolylineElement) IfPointsF(condition bool, format string, args ...an
 // A list of points, each of which is a coordinate pair.
 // Remove the attribute Points from the element.
 func (e *SVGPolylineElement) PointsRemove() *SVGPolylineElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("points")
+	e.stringAttributes.Del("points")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGPolylineElement) ID(s string) *SVGPolylineElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -199,10 +199,10 @@ func (e *SVGPolylineElement) IfIDF(condition bool, format string, args ...any) *
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGPolylineElement) IDRemove() *SVGPolylineElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -210,13 +210,13 @@ func (e *SVGPolylineElement) IDRemove() *SVGPolylineElement {
 // sheet)
 func (e *SVGPolylineElement) Class(s string) *SVGPolylineElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -235,10 +235,10 @@ func (e *SVGPolylineElement) IfClass(condition bool, s string) *SVGPolylineEleme
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGPolylineElement) ClassRemove(s ...string) *SVGPolylineElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -251,13 +251,13 @@ func (e *SVGPolylineElement) StylePairs(pairs ...string) *SVGPolylineElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -272,13 +272,13 @@ func (e *SVGPolylineElement) StylePairs(pairs ...string) *SVGPolylineElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGPolylineElement) Style(s string) *SVGPolylineElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -302,13 +302,13 @@ func (e *SVGPolylineElement) IfStyle(condition bool, s string) *SVGPolylineEleme
 
 // Specifies an inline CSS style for an element
 func (e *SVGPolylineElement) StyleAdd(k string, v string) *SVGPolylineElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -338,13 +338,13 @@ func (e *SVGPolylineElement) IfStyleAddF(condition bool, k string, format string
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGPolylineElement) StyleMap(m map[string]string) *SVGPolylineElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -360,10 +360,10 @@ func (e *SVGPolylineElement) StyleMap(m map[string]string) *SVGPolylineElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGPolylineElement) StyleRemove(keys ...string) *SVGPolylineElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

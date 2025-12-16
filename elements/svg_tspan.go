@@ -22,37 +22,37 @@ type SVGTspanElement struct {
 // with the tag "tspan" during rendering.
 func SVGTspan(children ...ElementRenderer) *SVGTspanElement {
 	e := NewElement("tspan", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGTspanElement{Element: e}
 }
 
 func (e *SVGTspanElement) Children(children ...ElementRenderer) *SVGTspanElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGTspanElement) IfChildren(condition bool, children ...ElementRenderer) *SVGTspanElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGTspanElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGTspanElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGTspanElement) BoolAttr(name string) *SVGTspanElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *SVGTspanElement) IfBoolAttr(condition bool, name string) *SVGTspanEleme
 }
 
 func (e *SVGTspanElement) Attr(name, value string) *SVGTspanElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *SVGTspanElement) IfAttr(condition bool, name, value string) *SVGTspanEl
 }
 
 func (e *SVGTspanElement) Text(text string) *SVGTspanElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *SVGTspanElement) TextF(format string, args ...any) *SVGTspanElement {
 
 func (e *SVGTspanElement) IfText(condition bool, text string) *SVGTspanElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGTspanElement) IfTextF(condition bool, format string, args ...any) *SVGTspanElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGTspanElement) Escaped(text string) *SVGTspanElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGTspanElement) IfEscaped(condition bool, text string) *SVGTspanElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,17 +119,17 @@ func (e *SVGTspanElement) EscapedF(format string, args ...any) *SVGTspanElement 
 
 func (e *SVGTspanElement) IfEscapedF(condition bool, format string, args ...any) *SVGTspanElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The x-axis coordinate of the current text position.
 func (e *SVGTspanElement) X(f float64) *SVGTspanElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("x", f)
+	e.floatAttributes.Set("x", f)
 	return e
 }
 
@@ -143,10 +143,10 @@ func (e *SVGTspanElement) IfX(condition bool, f float64) *SVGTspanElement {
 
 // The y-axis coordinate of the current text position.
 func (e *SVGTspanElement) Y(f float64) *SVGTspanElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("y", f)
+	e.floatAttributes.Set("y", f)
 	return e
 }
 
@@ -160,10 +160,10 @@ func (e *SVGTspanElement) IfY(condition bool, f float64) *SVGTspanElement {
 
 // The x-axis coordinate of the current text position.
 func (e *SVGTspanElement) Dx(f float64) *SVGTspanElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("dx", f)
+	e.floatAttributes.Set("dx", f)
 	return e
 }
 
@@ -177,10 +177,10 @@ func (e *SVGTspanElement) IfDx(condition bool, f float64) *SVGTspanElement {
 
 // The y-axis coordinate of the current text position.
 func (e *SVGTspanElement) Dy(f float64) *SVGTspanElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("dy", f)
+	e.floatAttributes.Set("dy", f)
 	return e
 }
 
@@ -194,10 +194,10 @@ func (e *SVGTspanElement) IfDy(condition bool, f float64) *SVGTspanElement {
 
 // The rotation angle about the current text position.
 func (e *SVGTspanElement) Rotate(f float64) *SVGTspanElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("rotate", f)
+	e.floatAttributes.Set("rotate", f)
 	return e
 }
 
@@ -211,10 +211,10 @@ func (e *SVGTspanElement) IfRotate(condition bool, f float64) *SVGTspanElement {
 
 // Specifies a unique id for an element
 func (e *SVGTspanElement) ID(s string) *SVGTspanElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -242,10 +242,10 @@ func (e *SVGTspanElement) IfIDF(condition bool, format string, args ...any) *SVG
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGTspanElement) IDRemove() *SVGTspanElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -253,13 +253,13 @@ func (e *SVGTspanElement) IDRemove() *SVGTspanElement {
 // sheet)
 func (e *SVGTspanElement) Class(s string) *SVGTspanElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -278,10 +278,10 @@ func (e *SVGTspanElement) IfClass(condition bool, s string) *SVGTspanElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGTspanElement) ClassRemove(s ...string) *SVGTspanElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -294,13 +294,13 @@ func (e *SVGTspanElement) StylePairs(pairs ...string) *SVGTspanElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -315,13 +315,13 @@ func (e *SVGTspanElement) StylePairs(pairs ...string) *SVGTspanElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGTspanElement) Style(s string) *SVGTspanElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -345,13 +345,13 @@ func (e *SVGTspanElement) IfStyle(condition bool, s string) *SVGTspanElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGTspanElement) StyleAdd(k string, v string) *SVGTspanElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -381,13 +381,13 @@ func (e *SVGTspanElement) IfStyleAddF(condition bool, k string, format string, a
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGTspanElement) StyleMap(m map[string]string) *SVGTspanElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -403,10 +403,10 @@ func (e *SVGTspanElement) StyleMap(m map[string]string) *SVGTspanElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGTspanElement) StyleRemove(keys ...string) *SVGTspanElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

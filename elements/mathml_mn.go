@@ -21,37 +21,37 @@ type MathMLMnElement struct {
 // with the tag "mn" during rendering.
 func MathMLMn(children ...ElementRenderer) *MathMLMnElement {
 	e := NewElement("mn", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &MathMLMnElement{Element: e}
 }
 
 func (e *MathMLMnElement) Children(children ...ElementRenderer) *MathMLMnElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *MathMLMnElement) IfChildren(condition bool, children ...ElementRenderer) *MathMLMnElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *MathMLMnElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *MathMLMnElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *MathMLMnElement) BoolAttr(name string) *MathMLMnElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -63,10 +63,10 @@ func (e *MathMLMnElement) IfBoolAttr(condition bool, name string) *MathMLMnEleme
 }
 
 func (e *MathMLMnElement) Attr(name, value string) *MathMLMnElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -78,7 +78,7 @@ func (e *MathMLMnElement) IfAttr(condition bool, name, value string) *MathMLMnEl
 }
 
 func (e *MathMLMnElement) Text(text string) *MathMLMnElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -88,26 +88,26 @@ func (e *MathMLMnElement) TextF(format string, args ...any) *MathMLMnElement {
 
 func (e *MathMLMnElement) IfText(condition bool, text string) *MathMLMnElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *MathMLMnElement) IfTextF(condition bool, format string, args ...any) *MathMLMnElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *MathMLMnElement) Escaped(text string) *MathMLMnElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *MathMLMnElement) IfEscaped(condition bool, text string) *MathMLMnElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -118,7 +118,7 @@ func (e *MathMLMnElement) EscapedF(format string, args ...any) *MathMLMnElement 
 
 func (e *MathMLMnElement) IfEscapedF(condition bool, format string, args ...any) *MathMLMnElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -128,13 +128,13 @@ func (e *MathMLMnElement) IfEscapedF(condition bool, format string, args ...any)
 // class names, they must be separated by whitespace characters.
 func (e *MathMLMnElement) Class(s string) *MathMLMnElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -155,10 +155,10 @@ func (e *MathMLMnElement) IfClass(condition bool, s string) *MathMLMnElement {
 // class names, they must be separated by whitespace characters.
 // Remove the values from the attribute Class in the element.
 func (e *MathMLMnElement) ClassRemove(s ...string) *MathMLMnElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -171,10 +171,10 @@ func (e *MathMLMnElement) ClassRemove(s ...string) *MathMLMnElement {
 // inherent directionality (such as Arabic or Hebrew). Possible values are ltr
 // (left-to-right) and rtl (right-to-left).
 func (e *MathMLMnElement) Dir(c MathMLMnDirChoice) *MathMLMnElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dir", string(c))
+	e.stringAttributes.Set("dir", string(c))
 	return e
 }
 
@@ -193,20 +193,20 @@ const (
 // (left-to-right) and rtl (right-to-left).
 // Remove the attribute Dir from the element.
 func (e *MathMLMnElement) DirRemove() *MathMLMnElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dir")
+	e.stringAttributes.Del("dir")
 	return e
 }
 
 // This attribute specifies whether the element should be rendered using
 // displaystyle rules or not. Possible values are true and false.
 func (e *MathMLMnElement) Displaystyle(c MathMLMnDisplaystyleChoice) *MathMLMnElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("displaystyle", string(c))
+	e.stringAttributes.Set("displaystyle", string(c))
 	return e
 }
 
@@ -223,20 +223,20 @@ const (
 // displaystyle rules or not. Possible values are true and false.
 // Remove the attribute Displaystyle from the element.
 func (e *MathMLMnElement) DisplaystyleRemove() *MathMLMnElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("displaystyle")
+	e.stringAttributes.Del("displaystyle")
 	return e
 }
 
 // This attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLMnElement) ID(s string) *MathMLMnElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -268,10 +268,10 @@ func (e *MathMLMnElement) IfIDF(condition bool, format string, args ...any) *Mat
 // document.
 // Remove the attribute ID from the element.
 func (e *MathMLMnElement) IDRemove() *MathMLMnElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -279,10 +279,10 @@ func (e *MathMLMnElement) IDRemove() *MathMLMnElement {
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLMnElement) Mathbackground(s string) *MathMLMnElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("mathbackground", s)
+	e.stringAttributes.Set("mathbackground", s)
 	return e
 }
 
@@ -318,10 +318,10 @@ func (e *MathMLMnElement) IfMathbackgroundF(condition bool, format string, args 
 // Color Module [CSS3COLOR].
 // Remove the attribute Mathbackground from the element.
 func (e *MathMLMnElement) MathbackgroundRemove() *MathMLMnElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("mathbackground")
+	e.stringAttributes.Del("mathbackground")
 	return e
 }
 
@@ -329,10 +329,10 @@ func (e *MathMLMnElement) MathbackgroundRemove() *MathMLMnElement {
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLMnElement) Mathcolor(s string) *MathMLMnElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("mathcolor", s)
+	e.stringAttributes.Set("mathcolor", s)
 	return e
 }
 
@@ -368,20 +368,20 @@ func (e *MathMLMnElement) IfMathcolorF(condition bool, format string, args ...an
 // Module [CSS3COLOR].
 // Remove the attribute Mathcolor from the element.
 func (e *MathMLMnElement) MathcolorRemove() *MathMLMnElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("mathcolor")
+	e.stringAttributes.Del("mathcolor")
 	return e
 }
 
 // This attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLMnElement) MathsizeStr(s string) *MathMLMnElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("mathsize", s)
+	e.stringAttributes.Set("mathsize", s)
 	return e
 }
 
@@ -413,10 +413,10 @@ func (e *MathMLMnElement) IfMathsizeStrF(condition bool, format string, args ...
 // dimension or a dimensionless number.
 // Remove the attribute MathsizeStr from the element.
 func (e *MathMLMnElement) MathsizeStrRemove() *MathMLMnElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("mathsize")
+	e.stringAttributes.Del("mathsize")
 	return e
 }
 
@@ -425,10 +425,10 @@ func (e *MathMLMnElement) MathsizeStrRemove() *MathMLMnElement {
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // attribute matching the value of the nonce attribute.
 func (e *MathMLMnElement) Nonce(s string) *MathMLMnElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("nonce", s)
+	e.stringAttributes.Set("nonce", s)
 	return e
 }
 
@@ -468,20 +468,20 @@ func (e *MathMLMnElement) IfNonceF(condition bool, format string, args ...any) *
 // attribute matching the value of the nonce attribute.
 // Remove the attribute Nonce from the element.
 func (e *MathMLMnElement) NonceRemove() *MathMLMnElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("nonce")
+	e.stringAttributes.Del("nonce")
 	return e
 }
 
 // This attribute specifies the script level of the element. Possible values are
 // an integer between 0 and 7, inclusive.
 func (e *MathMLMnElement) Scriptlevel(i int) *MathMLMnElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("scriptlevel", i)
+	e.intAttributes.Set("scriptlevel", i)
 	return e
 }
 
@@ -498,10 +498,10 @@ func (e *MathMLMnElement) IfScriptlevel(condition bool, i int) *MathMLMnElement 
 // an integer between 0 and 7, inclusive.
 // Remove the attribute Scriptlevel from the element.
 func (e *MathMLMnElement) ScriptlevelRemove() *MathMLMnElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("scriptlevel")
+	e.intAttributes.Del("scriptlevel")
 	return e
 }
 
@@ -511,13 +511,13 @@ func (e *MathMLMnElement) StylePairs(pairs ...string) *MathMLMnElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -533,13 +533,13 @@ func (e *MathMLMnElement) StylePairs(pairs ...string) *MathMLMnElement {
 // This attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMnElement) Style(s string) *MathMLMnElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -565,13 +565,13 @@ func (e *MathMLMnElement) IfStyle(condition bool, s string) *MathMLMnElement {
 // This attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMnElement) StyleAdd(k string, v string) *MathMLMnElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -605,13 +605,13 @@ func (e *MathMLMnElement) IfStyleAddF(condition bool, k string, format string, a
 // set.
 // Add the attributes in the map to the element.
 func (e *MathMLMnElement) StyleMap(m map[string]string) *MathMLMnElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -628,10 +628,10 @@ func (e *MathMLMnElement) StyleMap(m map[string]string) *MathMLMnElement {
 // set.
 // Remove the attribute Style from the element.
 func (e *MathMLMnElement) StyleRemove(keys ...string) *MathMLMnElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}
@@ -643,10 +643,10 @@ func (e *MathMLMnElement) StyleRemove(keys ...string) *MathMLMnElement {
 // order for the current document. This value must be a number between 0 and
 // 32767. User agents should ignore leading zeros.
 func (e *MathMLMnElement) Tabindex(i int) *MathMLMnElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("tabindex", i)
+	e.intAttributes.Set("tabindex", i)
 	return e
 }
 
@@ -665,9 +665,9 @@ func (e *MathMLMnElement) IfTabindex(condition bool, i int) *MathMLMnElement {
 // 32767. User agents should ignore leading zeros.
 // Remove the attribute Tabindex from the element.
 func (e *MathMLMnElement) TabindexRemove() *MathMLMnElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("tabindex")
+	e.intAttributes.Del("tabindex")
 	return e
 }

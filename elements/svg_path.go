@@ -22,37 +22,37 @@ type SVGPathElement struct {
 // with the tag "path" during rendering.
 func SVGPath(children ...ElementRenderer) *SVGPathElement {
 	e := NewElement("path", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGPathElement{Element: e}
 }
 
 func (e *SVGPathElement) Children(children ...ElementRenderer) *SVGPathElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGPathElement) IfChildren(condition bool, children ...ElementRenderer) *SVGPathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGPathElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGPathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGPathElement) BoolAttr(name string) *SVGPathElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *SVGPathElement) IfBoolAttr(condition bool, name string) *SVGPathElement
 }
 
 func (e *SVGPathElement) Attr(name, value string) *SVGPathElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *SVGPathElement) IfAttr(condition bool, name, value string) *SVGPathElem
 }
 
 func (e *SVGPathElement) Text(text string) *SVGPathElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *SVGPathElement) TextF(format string, args ...any) *SVGPathElement {
 
 func (e *SVGPathElement) IfText(condition bool, text string) *SVGPathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGPathElement) IfTextF(condition bool, format string, args ...any) *SVGPathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGPathElement) Escaped(text string) *SVGPathElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGPathElement) IfEscaped(condition bool, text string) *SVGPathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,17 +119,17 @@ func (e *SVGPathElement) EscapedF(format string, args ...any) *SVGPathElement {
 
 func (e *SVGPathElement) IfEscapedF(condition bool, format string, args ...any) *SVGPathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The definition of the outline of a shape.
 func (e *SVGPathElement) D(s string) *SVGPathElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("d", s)
+	e.stringAttributes.Set("d", s)
 	return e
 }
 
@@ -157,20 +157,20 @@ func (e *SVGPathElement) IfDF(condition bool, format string, args ...any) *SVGPa
 // The definition of the outline of a shape.
 // Remove the attribute D from the element.
 func (e *SVGPathElement) DRemove() *SVGPathElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("d")
+	e.stringAttributes.Del("d")
 	return e
 }
 
 // The <path> SVG element is the generic element to define a shape. All the
 // basic shapes can be created with a path element.
 func (e *SVGPathElement) Fill(s string) *SVGPathElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("fill", s)
+	e.stringAttributes.Set("fill", s)
 	return e
 }
 
@@ -202,20 +202,20 @@ func (e *SVGPathElement) IfFillF(condition bool, format string, args ...any) *SV
 // basic shapes can be created with a path element.
 // Remove the attribute Fill from the element.
 func (e *SVGPathElement) FillRemove() *SVGPathElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("fill")
+	e.stringAttributes.Del("fill")
 	return e
 }
 
 // The <path> SVG element is the generic element to define a shape. All the
 // basic shapes can be created with a path element.
 func (e *SVGPathElement) FillOpacity(f float64) *SVGPathElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("fill-opacity", f)
+	e.floatAttributes.Set("fill-opacity", f)
 	return e
 }
 
@@ -230,10 +230,10 @@ func (e *SVGPathElement) IfFillOpacity(condition bool, f float64) *SVGPathElemen
 
 // The total length for the path, in user units.
 func (e *SVGPathElement) PathLength(f float64) *SVGPathElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("pathLength", f)
+	e.floatAttributes.Set("pathLength", f)
 	return e
 }
 
@@ -247,10 +247,10 @@ func (e *SVGPathElement) IfPathLength(condition bool, f float64) *SVGPathElement
 
 // Specifies a unique id for an element
 func (e *SVGPathElement) ID(s string) *SVGPathElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -278,10 +278,10 @@ func (e *SVGPathElement) IfIDF(condition bool, format string, args ...any) *SVGP
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGPathElement) IDRemove() *SVGPathElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -289,13 +289,13 @@ func (e *SVGPathElement) IDRemove() *SVGPathElement {
 // sheet)
 func (e *SVGPathElement) Class(s string) *SVGPathElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -314,10 +314,10 @@ func (e *SVGPathElement) IfClass(condition bool, s string) *SVGPathElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGPathElement) ClassRemove(s ...string) *SVGPathElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -330,13 +330,13 @@ func (e *SVGPathElement) StylePairs(pairs ...string) *SVGPathElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -351,13 +351,13 @@ func (e *SVGPathElement) StylePairs(pairs ...string) *SVGPathElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGPathElement) Style(s string) *SVGPathElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -381,13 +381,13 @@ func (e *SVGPathElement) IfStyle(condition bool, s string) *SVGPathElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGPathElement) StyleAdd(k string, v string) *SVGPathElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -417,13 +417,13 @@ func (e *SVGPathElement) IfStyleAddF(condition bool, k string, format string, ar
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGPathElement) StyleMap(m map[string]string) *SVGPathElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -439,10 +439,10 @@ func (e *SVGPathElement) StyleMap(m map[string]string) *SVGPathElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGPathElement) StyleRemove(keys ...string) *SVGPathElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

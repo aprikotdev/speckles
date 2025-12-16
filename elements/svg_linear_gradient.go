@@ -22,37 +22,37 @@ type SVGLinearGradientElement struct {
 // with the tag "linearGradient" during rendering.
 func SVGLinearGradient(children ...ElementRenderer) *SVGLinearGradientElement {
 	e := NewElement("linearGradient", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGLinearGradientElement{Element: e}
 }
 
 func (e *SVGLinearGradientElement) Children(children ...ElementRenderer) *SVGLinearGradientElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGLinearGradientElement) IfChildren(condition bool, children ...ElementRenderer) *SVGLinearGradientElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGLinearGradientElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGLinearGradientElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGLinearGradientElement) BoolAttr(name string) *SVGLinearGradientElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *SVGLinearGradientElement) IfBoolAttr(condition bool, name string) *SVGL
 }
 
 func (e *SVGLinearGradientElement) Attr(name, value string) *SVGLinearGradientElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *SVGLinearGradientElement) IfAttr(condition bool, name, value string) *S
 }
 
 func (e *SVGLinearGradientElement) Text(text string) *SVGLinearGradientElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *SVGLinearGradientElement) TextF(format string, args ...any) *SVGLinearG
 
 func (e *SVGLinearGradientElement) IfText(condition bool, text string) *SVGLinearGradientElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGLinearGradientElement) IfTextF(condition bool, format string, args ...any) *SVGLinearGradientElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGLinearGradientElement) Escaped(text string) *SVGLinearGradientElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGLinearGradientElement) IfEscaped(condition bool, text string) *SVGLinearGradientElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,17 +119,17 @@ func (e *SVGLinearGradientElement) EscapedF(format string, args ...any) *SVGLine
 
 func (e *SVGLinearGradientElement) IfEscapedF(condition bool, format string, args ...any) *SVGLinearGradientElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The coordinate system for attributes x1, y1, x2 and y2.
 func (e *SVGLinearGradientElement) GradientUnits(c SVGLinearGradientGradientUnitsChoice) *SVGLinearGradientElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("gradientUnits", string(c))
+	e.stringAttributes.Set("gradientUnits", string(c))
 	return e
 }
 
@@ -145,20 +145,20 @@ const (
 // The coordinate system for attributes x1, y1, x2 and y2.
 // Remove the attribute GradientUnits from the element.
 func (e *SVGLinearGradientElement) GradientUnitsRemove() *SVGLinearGradientElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("gradientUnits")
+	e.stringAttributes.Del("gradientUnits")
 	return e
 }
 
 // The definition of how the gradient is applied, read about <a
 // href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/gradientTransform">gradientTransform</a>.
 func (e *SVGLinearGradientElement) GradientTransform(s string) *SVGLinearGradientElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("gradientTransform", s)
+	e.stringAttributes.Set("gradientTransform", s)
 	return e
 }
 
@@ -190,19 +190,19 @@ func (e *SVGLinearGradientElement) IfGradientTransformF(condition bool, format s
 // href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/gradientTransform">gradientTransform</a>.
 // Remove the attribute GradientTransform from the element.
 func (e *SVGLinearGradientElement) GradientTransformRemove() *SVGLinearGradientElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("gradientTransform")
+	e.stringAttributes.Del("gradientTransform")
 	return e
 }
 
 // The method by which to fill a shape.
 func (e *SVGLinearGradientElement) SpreadMethod(c SVGLinearGradientSpreadMethodChoice) *SVGLinearGradientElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("spreadMethod", string(c))
+	e.stringAttributes.Set("spreadMethod", string(c))
 	return e
 }
 
@@ -220,19 +220,19 @@ const (
 // The method by which to fill a shape.
 // Remove the attribute SpreadMethod from the element.
 func (e *SVGLinearGradientElement) SpreadMethodRemove() *SVGLinearGradientElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("spreadMethod")
+	e.stringAttributes.Del("spreadMethod")
 	return e
 }
 
 // The x-axis coordinate of the start of the gradient.
 func (e *SVGLinearGradientElement) X1(f float64) *SVGLinearGradientElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("x1", f)
+	e.floatAttributes.Set("x1", f)
 	return e
 }
 
@@ -246,10 +246,10 @@ func (e *SVGLinearGradientElement) IfX1(condition bool, f float64) *SVGLinearGra
 
 // The y-axis coordinate of the start of the gradient.
 func (e *SVGLinearGradientElement) Y1(f float64) *SVGLinearGradientElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("y1", f)
+	e.floatAttributes.Set("y1", f)
 	return e
 }
 
@@ -263,10 +263,10 @@ func (e *SVGLinearGradientElement) IfY1(condition bool, f float64) *SVGLinearGra
 
 // The x-axis coordinate of the end of the gradient.
 func (e *SVGLinearGradientElement) X2(f float64) *SVGLinearGradientElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("x2", f)
+	e.floatAttributes.Set("x2", f)
 	return e
 }
 
@@ -280,10 +280,10 @@ func (e *SVGLinearGradientElement) IfX2(condition bool, f float64) *SVGLinearGra
 
 // The y-axis coordinate of the end of the gradient.
 func (e *SVGLinearGradientElement) Y2(f float64) *SVGLinearGradientElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("y2", f)
+	e.floatAttributes.Set("y2", f)
 	return e
 }
 
@@ -297,10 +297,10 @@ func (e *SVGLinearGradientElement) IfY2(condition bool, f float64) *SVGLinearGra
 
 // Specifies a unique id for an element
 func (e *SVGLinearGradientElement) ID(s string) *SVGLinearGradientElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -328,10 +328,10 @@ func (e *SVGLinearGradientElement) IfIDF(condition bool, format string, args ...
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGLinearGradientElement) IDRemove() *SVGLinearGradientElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -339,13 +339,13 @@ func (e *SVGLinearGradientElement) IDRemove() *SVGLinearGradientElement {
 // sheet)
 func (e *SVGLinearGradientElement) Class(s string) *SVGLinearGradientElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -364,10 +364,10 @@ func (e *SVGLinearGradientElement) IfClass(condition bool, s string) *SVGLinearG
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGLinearGradientElement) ClassRemove(s ...string) *SVGLinearGradientElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -380,13 +380,13 @@ func (e *SVGLinearGradientElement) StylePairs(pairs ...string) *SVGLinearGradien
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -401,13 +401,13 @@ func (e *SVGLinearGradientElement) StylePairs(pairs ...string) *SVGLinearGradien
 
 // Specifies an inline CSS style for an element
 func (e *SVGLinearGradientElement) Style(s string) *SVGLinearGradientElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -431,13 +431,13 @@ func (e *SVGLinearGradientElement) IfStyle(condition bool, s string) *SVGLinearG
 
 // Specifies an inline CSS style for an element
 func (e *SVGLinearGradientElement) StyleAdd(k string, v string) *SVGLinearGradientElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -467,13 +467,13 @@ func (e *SVGLinearGradientElement) IfStyleAddF(condition bool, k string, format 
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGLinearGradientElement) StyleMap(m map[string]string) *SVGLinearGradientElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -489,10 +489,10 @@ func (e *SVGLinearGradientElement) StyleMap(m map[string]string) *SVGLinearGradi
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGLinearGradientElement) StyleRemove(keys ...string) *SVGLinearGradientElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

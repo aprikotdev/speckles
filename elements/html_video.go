@@ -21,37 +21,37 @@ type VideoElement struct {
 // with the tag "video" during rendering.
 func Video(children ...ElementRenderer) *VideoElement {
 	e := NewElement("video", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &VideoElement{Element: e}
 }
 
 func (e *VideoElement) Children(children ...ElementRenderer) *VideoElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *VideoElement) IfChildren(condition bool, children ...ElementRenderer) *VideoElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *VideoElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *VideoElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *VideoElement) BoolAttr(name string) *VideoElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -63,10 +63,10 @@ func (e *VideoElement) IfBoolAttr(condition bool, name string) *VideoElement {
 }
 
 func (e *VideoElement) Attr(name, value string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -78,7 +78,7 @@ func (e *VideoElement) IfAttr(condition bool, name, value string) *VideoElement 
 }
 
 func (e *VideoElement) Text(text string) *VideoElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -88,26 +88,26 @@ func (e *VideoElement) TextF(format string, args ...any) *VideoElement {
 
 func (e *VideoElement) IfText(condition bool, text string) *VideoElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *VideoElement) IfTextF(condition bool, format string, args ...any) *VideoElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *VideoElement) Escaped(text string) *VideoElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *VideoElement) IfEscaped(condition bool, text string) *VideoElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -118,7 +118,7 @@ func (e *VideoElement) EscapedF(format string, args ...any) *VideoElement {
 
 func (e *VideoElement) IfEscapedF(condition bool, format string, args ...any) *VideoElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -140,10 +140,10 @@ func (e *VideoElement) IfAutoplay(condition bool) *VideoElement {
 // The video should play as soon as possible.
 // Set the attribute Autoplay to the value b explicitly.
 func (e *VideoElement) AutoplaySet(b bool) *VideoElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("autoplay", b)
+	e.boolAttributes.Set("autoplay", b)
 	return e
 }
 
@@ -158,10 +158,10 @@ func (e *VideoElement) IfSetAutoplay(condition bool, b bool) *VideoElement {
 // Remove the attribute Autoplay from the element.
 // The video should play as soon as possible.
 func (e *VideoElement) AutoplayRemove() *VideoElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("autoplay")
+	e.boolAttributes.Del("autoplay")
 	return e
 }
 
@@ -182,10 +182,10 @@ func (e *VideoElement) IfControls(condition bool) *VideoElement {
 // Show user agent controls.
 // Set the attribute Controls to the value b explicitly.
 func (e *VideoElement) ControlsSet(b bool) *VideoElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("controls", b)
+	e.boolAttributes.Set("controls", b)
 	return e
 }
 
@@ -200,19 +200,19 @@ func (e *VideoElement) IfSetControls(condition bool, b bool) *VideoElement {
 // Remove the attribute Controls from the element.
 // Show user agent controls.
 func (e *VideoElement) ControlsRemove() *VideoElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("controls")
+	e.boolAttributes.Del("controls")
 	return e
 }
 
 // How the element handles crossorigin requests.
 func (e *VideoElement) Crossorigin(c VideoCrossoriginChoice) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("crossorigin", string(c))
+	e.stringAttributes.Set("crossorigin", string(c))
 	return e
 }
 
@@ -230,19 +230,19 @@ const (
 // How the element handles crossorigin requests.
 // Remove the attribute Crossorigin from the element.
 func (e *VideoElement) CrossoriginRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("crossorigin")
+	e.stringAttributes.Del("crossorigin")
 	return e
 }
 
 // Vertical dimension.
 func (e *VideoElement) Height(i int) *VideoElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("height", i)
+	e.intAttributes.Set("height", i)
 	return e
 }
 
@@ -257,10 +257,10 @@ func (e *VideoElement) IfHeight(condition bool, i int) *VideoElement {
 // Vertical dimension.
 // Remove the attribute Height from the element.
 func (e *VideoElement) HeightRemove() *VideoElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("height")
+	e.intAttributes.Del("height")
 	return e
 }
 
@@ -281,10 +281,10 @@ func (e *VideoElement) IfLoop(condition bool) *VideoElement {
 // Whether to loop the media resource.
 // Set the attribute Loop to the value b explicitly.
 func (e *VideoElement) LoopSet(b bool) *VideoElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("loop", b)
+	e.boolAttributes.Set("loop", b)
 	return e
 }
 
@@ -299,10 +299,10 @@ func (e *VideoElement) IfSetLoop(condition bool, b bool) *VideoElement {
 // Remove the attribute Loop from the element.
 // Whether to loop the media resource.
 func (e *VideoElement) LoopRemove() *VideoElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("loop")
+	e.boolAttributes.Del("loop")
 	return e
 }
 
@@ -323,10 +323,10 @@ func (e *VideoElement) IfMuted(condition bool) *VideoElement {
 // Whether to mute the media resource by default.
 // Set the attribute Muted to the value b explicitly.
 func (e *VideoElement) MutedSet(b bool) *VideoElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("muted", b)
+	e.boolAttributes.Set("muted", b)
 	return e
 }
 
@@ -341,10 +341,10 @@ func (e *VideoElement) IfSetMuted(condition bool, b bool) *VideoElement {
 // Remove the attribute Muted from the element.
 // Whether to mute the media resource by default.
 func (e *VideoElement) MutedRemove() *VideoElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("muted")
+	e.boolAttributes.Del("muted")
 	return e
 }
 
@@ -368,10 +368,10 @@ func (e *VideoElement) IfPlaysinline(condition bool) *VideoElement {
 // playback area.
 // Set the attribute Playsinline to the value b explicitly.
 func (e *VideoElement) PlaysinlineSet(b bool) *VideoElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("playsinline", b)
+	e.boolAttributes.Set("playsinline", b)
 	return e
 }
 
@@ -388,19 +388,19 @@ func (e *VideoElement) IfSetPlaysinline(condition bool, b bool) *VideoElement {
 // Encourage the user agent to display video content within the element's
 // playback area.
 func (e *VideoElement) PlaysinlineRemove() *VideoElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("playsinline")
+	e.boolAttributes.Del("playsinline")
 	return e
 }
 
 // Poster frame to show prior to video playback.
 func (e *VideoElement) Poster(s string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("poster", s)
+	e.stringAttributes.Set("poster", s)
 	return e
 }
 
@@ -428,19 +428,19 @@ func (e *VideoElement) IfPosterF(condition bool, format string, args ...any) *Vi
 // Poster frame to show prior to video playback.
 // Remove the attribute Poster from the element.
 func (e *VideoElement) PosterRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("poster")
+	e.stringAttributes.Del("poster")
 	return e
 }
 
 // Hints how much buffering the media resource will likely need.
 func (e *VideoElement) Preload(c VideoPreloadChoice) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("preload", string(c))
+	e.stringAttributes.Set("preload", string(c))
 	return e
 }
 
@@ -458,19 +458,19 @@ const (
 // Hints how much buffering the media resource will likely need.
 // Remove the attribute Preload from the element.
 func (e *VideoElement) PreloadRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("preload")
+	e.stringAttributes.Del("preload")
 	return e
 }
 
 // Address of the resource.
 func (e *VideoElement) Src(s string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("src", s)
+	e.stringAttributes.Set("src", s)
 	return e
 }
 
@@ -498,19 +498,19 @@ func (e *VideoElement) IfSrcF(condition bool, format string, args ...any) *Video
 // Address of the resource.
 // Remove the attribute Src from the element.
 func (e *VideoElement) SrcRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("src")
+	e.stringAttributes.Del("src")
 	return e
 }
 
 // Horizontal dimension.
 func (e *VideoElement) Width(i int) *VideoElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("width", i)
+	e.intAttributes.Set("width", i)
 	return e
 }
 
@@ -525,10 +525,10 @@ func (e *VideoElement) IfWidth(condition bool, i int) *VideoElement {
 // Horizontal dimension.
 // Remove the attribute Width from the element.
 func (e *VideoElement) WidthRemove() *VideoElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("width")
+	e.intAttributes.Del("width")
 	return e
 }
 
@@ -537,10 +537,10 @@ func (e *VideoElement) WidthRemove() *VideoElement {
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
 func (e *VideoElement) Accesskey(r rune) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("accesskey", string(r))
+	e.stringAttributes.Set("accesskey", string(r))
 	return e
 }
 
@@ -561,10 +561,10 @@ func (e *VideoElement) IfAccesskey(condition bool, r rune) *VideoElement {
 // can be generated by the keyboard).
 // Remove the attribute Accesskey from the element.
 func (e *VideoElement) AccesskeyRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("accesskey")
+	e.stringAttributes.Del("accesskey")
 	return e
 }
 
@@ -580,10 +580,10 @@ func (e *VideoElement) AccesskeyRemove() *VideoElement {
 // behavior varies between browsers. For example: Chrome and Safari default to
 // on/sentences Firefox defaults to off/none.
 func (e *VideoElement) Autocapitalize(c VideoAutocapitalizeChoice) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("autocapitalize", string(c))
+	e.stringAttributes.Set("autocapitalize", string(c))
 	return e
 }
 
@@ -617,10 +617,10 @@ const (
 // on/sentences Firefox defaults to off/none.
 // Remove the attribute Autocapitalize from the element.
 func (e *VideoElement) AutocapitalizeRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("autocapitalize")
+	e.stringAttributes.Del("autocapitalize")
 	return e
 }
 
@@ -680,10 +680,10 @@ func (e *VideoElement) IfAutofocus(condition bool) *VideoElement {
 // created by the preceding content.
 // Set the attribute Autofocus to the value b explicitly.
 func (e *VideoElement) AutofocusSet(b bool) *VideoElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("autofocus", b)
+	e.boolAttributes.Set("autofocus", b)
 	return e
 }
 
@@ -724,10 +724,10 @@ func (e *VideoElement) IfSetAutofocus(condition bool, b bool) *VideoElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *VideoElement) AutofocusRemove() *VideoElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("autofocus")
+	e.boolAttributes.Del("autofocus")
 	return e
 }
 
@@ -737,13 +737,13 @@ func (e *VideoElement) AutofocusRemove() *VideoElement {
 // document.getElementsByClassName.
 func (e *VideoElement) Class(s string) *VideoElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -766,10 +766,10 @@ func (e *VideoElement) IfClass(condition bool, s string) *VideoElement {
 // document.getElementsByClassName.
 // Remove the values from the attribute Class in the element.
 func (e *VideoElement) ClassRemove(s ...string) *VideoElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -781,10 +781,10 @@ func (e *VideoElement) ClassRemove(s ...string) *VideoElement {
 // the element should be editable by the user. If so, the browser modifies its
 // widget to allow editing.
 func (e *VideoElement) Contenteditable(c VideoContenteditableChoice) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("contenteditable", string(c))
+	e.stringAttributes.Set("contenteditable", string(c))
 	return e
 }
 
@@ -807,10 +807,10 @@ const (
 // widget to allow editing.
 // Remove the attribute Contenteditable from the element.
 func (e *VideoElement) ContenteditableRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("contenteditable")
+	e.stringAttributes.Del("contenteditable")
 	return e
 }
 
@@ -828,10 +828,10 @@ func (e *VideoElement) ContenteditableRemove() *VideoElement {
 // directionality, like data coming from user input, eventually stored in a
 // database.
 func (e *VideoElement) Dir(c VideoDirChoice) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dir", string(c))
+	e.stringAttributes.Set("dir", string(c))
 	return e
 }
 
@@ -865,10 +865,10 @@ const (
 // database.
 // Remove the attribute Dir from the element.
 func (e *VideoElement) DirRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dir")
+	e.stringAttributes.Del("dir")
 	return e
 }
 
@@ -876,10 +876,10 @@ func (e *VideoElement) DirRemove() *VideoElement {
 // whether the element can be dragged, either with native browser behavior or
 // the HTML Drag and Drop API.
 func (e *VideoElement) Draggable(c VideoDraggableChoice) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("draggable", string(c))
+	e.stringAttributes.Set("draggable", string(c))
 	return e
 }
 
@@ -905,20 +905,20 @@ const (
 // the HTML Drag and Drop API.
 // Remove the attribute Draggable from the element.
 func (e *VideoElement) DraggableRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("draggable")
+	e.stringAttributes.Del("draggable")
 	return e
 }
 
 // The enterkeyhint global attribute is an enumerated attribute defining what
 // action label (or icon) to present for the enter key on virtual keyboards.
 func (e *VideoElement) Enterkeyhint(c VideoEnterkeyhintChoice) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("enterkeyhint", string(c))
+	e.stringAttributes.Set("enterkeyhint", string(c))
 	return e
 }
 
@@ -948,10 +948,10 @@ const (
 // action label (or icon) to present for the enter key on virtual keyboards.
 // Remove the attribute Enterkeyhint from the element.
 func (e *VideoElement) EnterkeyhintRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("enterkeyhint")
+	e.stringAttributes.Del("enterkeyhint")
 	return e
 }
 
@@ -974,13 +974,13 @@ func (e *VideoElement) EnterkeyhintRemove() *VideoElement {
 // the current structure.
 func (e *VideoElement) Exportparts(s string) *VideoElement {
 	values := strings.Split(s, ",")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
-		ds = NewDelimitedBuilder[string](",")
-		e.DelimitedStrings.Set("exportparts", ds)
+		ds = newDelimitedBuilder[string](",")
+		e.delimitedStrings.Set("exportparts", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1029,10 +1029,10 @@ func (e *VideoElement) IfExportparts(condition bool, s string) *VideoElement {
 // the current structure.
 // Remove the values from the attribute Exportparts in the element.
 func (e *VideoElement) ExportpartsRemove(s ...string) *VideoElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
 		return e
 	}
@@ -1053,10 +1053,10 @@ func (e *VideoElement) ExportpartsRemove(s ...string) *VideoElement {
 // of none, contents, or inline, then the element will not be revealed by find
 // in page or fragment navigation.
 func (e *VideoElement) Hidden(c VideoHiddenChoice) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("hidden", string(c))
+	e.stringAttributes.Set("hidden", string(c))
 	return e
 }
 
@@ -1092,10 +1092,10 @@ const (
 // in page or fragment navigation.
 // Remove the attribute Hidden from the element.
 func (e *VideoElement) HiddenRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("hidden")
+	e.stringAttributes.Del("hidden")
 	return e
 }
 
@@ -1103,10 +1103,10 @@ func (e *VideoElement) HiddenRemove() *VideoElement {
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *VideoElement) ID(s string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -1142,10 +1142,10 @@ func (e *VideoElement) IfIDF(condition bool, format string, args ...any) *VideoE
 // (using a fragment identifier), scripting, or styling (with CSS).
 // Remove the attribute ID from the element.
 func (e *VideoElement) IDRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -1193,10 +1193,10 @@ func (e *VideoElement) IfInert(condition bool) *VideoElement {
 // excluding them from the accessibility tree.
 // Set the attribute Inert to the value b explicitly.
 func (e *VideoElement) InertSet(b bool) *VideoElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("inert", b)
+	e.boolAttributes.Set("inert", b)
 	return e
 }
 
@@ -1229,10 +1229,10 @@ func (e *VideoElement) IfSetInert(condition bool, b bool) *VideoElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *VideoElement) InertRemove() *VideoElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("inert")
+	e.boolAttributes.Del("inert")
 	return e
 }
 
@@ -1246,10 +1246,10 @@ func (e *VideoElement) InertRemove() *VideoElement {
 // appropriate <input> element type. For specific guidance on choosing <input>
 // types, see the Values section.
 func (e *VideoElement) Inputmode(c VideoInputmodeChoice) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("inputmode", string(c))
+	e.stringAttributes.Set("inputmode", string(c))
 	return e
 }
 
@@ -1300,10 +1300,10 @@ const (
 // types, see the Values section.
 // Remove the attribute Inputmode from the element.
 func (e *VideoElement) InputmodeRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("inputmode")
+	e.stringAttributes.Del("inputmode")
 	return e
 }
 
@@ -1313,10 +1313,10 @@ func (e *VideoElement) InputmodeRemove() *VideoElement {
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
 func (e *VideoElement) Is(s string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("is", s)
+	e.stringAttributes.Set("is", s)
 	return e
 }
 
@@ -1360,10 +1360,10 @@ func (e *VideoElement) IfIsF(condition bool, format string, args ...any) *VideoE
 // and extends the element type it is being applied to.
 // Remove the attribute Is from the element.
 func (e *VideoElement) IsRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("is")
+	e.stringAttributes.Del("is")
 	return e
 }
 
@@ -1379,10 +1379,10 @@ func (e *VideoElement) IsRemove() *VideoElement {
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
 func (e *VideoElement) Itemid(s string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemid", s)
+	e.stringAttributes.Set("itemid", s)
 	return e
 }
 
@@ -1450,10 +1450,10 @@ func (e *VideoElement) IfItemidF(condition bool, format string, args ...any) *Vi
 // how items with the same identifier are handled.
 // Remove the attribute Itemid from the element.
 func (e *VideoElement) ItemidRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemid")
+	e.stringAttributes.Del("itemid")
 	return e
 }
 
@@ -1465,10 +1465,10 @@ func (e *VideoElement) ItemidRemove() *VideoElement {
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
 func (e *VideoElement) Itemprop(s string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemprop", s)
+	e.stringAttributes.Set("itemprop", s)
 	return e
 }
 
@@ -1520,10 +1520,10 @@ func (e *VideoElement) IfItempropF(condition bool, format string, args ...any) *
 // <track>, and <video>.
 // Remove the attribute Itemprop from the element.
 func (e *VideoElement) ItempropRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemprop")
+	e.stringAttributes.Del("itemprop")
 	return e
 }
 
@@ -1533,10 +1533,10 @@ func (e *VideoElement) ItempropRemove() *VideoElement {
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
 func (e *VideoElement) Itemref(s string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemref", s)
+	e.stringAttributes.Set("itemref", s)
 	return e
 }
 
@@ -1580,10 +1580,10 @@ func (e *VideoElement) IfItemrefF(condition bool, format string, args ...any) *V
 // specified on elements that have an itemscope attribute specified.
 // Remove the attribute Itemref from the element.
 func (e *VideoElement) ItemrefRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemref")
+	e.stringAttributes.Del("itemref")
 	return e
 }
 
@@ -1622,10 +1622,10 @@ func (e *VideoElement) IfItemscope(condition bool) *VideoElement {
 // <object>, <source>, <track>, and <video>.
 // Set the attribute Itemscope to the value b explicitly.
 func (e *VideoElement) ItemscopeSet(b bool) *VideoElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("itemscope", b)
+	e.boolAttributes.Set("itemscope", b)
 	return e
 }
 
@@ -1652,10 +1652,10 @@ func (e *VideoElement) IfSetItemscope(condition bool, b bool) *VideoElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *VideoElement) ItemscopeRemove() *VideoElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("itemscope")
+	e.boolAttributes.Del("itemscope")
 	return e
 }
 
@@ -1667,10 +1667,10 @@ func (e *VideoElement) ItemscopeRemove() *VideoElement {
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
 func (e *VideoElement) Itemtype(s string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemtype", s)
+	e.stringAttributes.Set("itemtype", s)
 	return e
 }
 
@@ -1722,10 +1722,10 @@ func (e *VideoElement) IfItemtypeF(condition bool, format string, args ...any) *
 // <video>.
 // Remove the attribute Itemtype from the element.
 func (e *VideoElement) ItemtypeRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemtype")
+	e.stringAttributes.Del("itemtype")
 	return e
 }
 
@@ -1735,10 +1735,10 @@ func (e *VideoElement) ItemtypeRemove() *VideoElement {
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 func (e *VideoElement) Lang(s string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("lang", s)
+	e.stringAttributes.Set("lang", s)
 	return e
 }
 
@@ -1782,10 +1782,10 @@ func (e *VideoElement) IfLangF(condition bool, format string, args ...any) *Vide
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 // Remove the attribute Lang from the element.
 func (e *VideoElement) LangRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("lang")
+	e.stringAttributes.Del("lang")
 	return e
 }
 
@@ -1795,10 +1795,10 @@ func (e *VideoElement) LangRemove() *VideoElement {
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
 func (e *VideoElement) Nonce(s string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("nonce", s)
+	e.stringAttributes.Set("nonce", s)
 	return e
 }
 
@@ -1842,10 +1842,10 @@ func (e *VideoElement) IfNonceF(condition bool, format string, args ...any) *Vid
 // execute.
 // Remove the attribute Nonce from the element.
 func (e *VideoElement) NonceRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("nonce")
+	e.stringAttributes.Del("nonce")
 	return e
 }
 
@@ -1854,13 +1854,13 @@ func (e *VideoElement) NonceRemove() *VideoElement {
 // in a shadow tree via the ::part pseudo-element.
 func (e *VideoElement) Part(s string) *VideoElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("part", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("part", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1881,10 +1881,10 @@ func (e *VideoElement) IfPart(condition bool, s string) *VideoElement {
 // in a shadow tree via the ::part pseudo-element.
 // Remove the values from the attribute Part in the element.
 func (e *VideoElement) PartRemove(s ...string) *VideoElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
 		return e
 	}
@@ -1899,10 +1899,10 @@ func (e *VideoElement) PartRemove(s ...string) *VideoElement {
 // popover elements will appear above all other elements in the top layer, and
 // won't be influenced by parent elements' position or overflow styling.
 func (e *VideoElement) Popover(c VideoPopoverChoice) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("popover", string(c))
+	e.stringAttributes.Set("popover", string(c))
 	return e
 }
 
@@ -1930,10 +1930,10 @@ const (
 // won't be influenced by parent elements' position or overflow styling.
 // Remove the attribute Popover from the element.
 func (e *VideoElement) PopoverRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("popover")
+	e.stringAttributes.Del("popover")
 	return e
 }
 
@@ -1942,10 +1942,10 @@ func (e *VideoElement) PopoverRemove() *VideoElement {
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
 func (e *VideoElement) Role(s string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("role", s)
+	e.stringAttributes.Set("role", s)
 	return e
 }
 
@@ -1985,10 +1985,10 @@ func (e *VideoElement) IfRoleF(condition bool, format string, args ...any) *Vide
 // role of an element.
 // Remove the attribute Role from the element.
 func (e *VideoElement) RoleRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("role")
+	e.stringAttributes.Del("role")
 	return e
 }
 
@@ -1997,10 +1997,10 @@ func (e *VideoElement) RoleRemove() *VideoElement {
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
 func (e *VideoElement) Slot(s string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("slot", s)
+	e.stringAttributes.Set("slot", s)
 	return e
 }
 
@@ -2040,10 +2040,10 @@ func (e *VideoElement) IfSlotF(condition bool, format string, args ...any) *Vide
 // value.
 // Remove the attribute Slot from the element.
 func (e *VideoElement) SlotRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("slot")
+	e.stringAttributes.Del("slot")
 	return e
 }
 
@@ -2059,10 +2059,10 @@ func (e *VideoElement) SlotRemove() *VideoElement {
 // "spell-jacking"). You should consider setting spellcheck to false for
 // elements that can contain sensitive information.
 func (e *VideoElement) Spellcheck(c VideoSpellcheckChoice) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("spellcheck", string(c))
+	e.stringAttributes.Set("spellcheck", string(c))
 	return e
 }
 
@@ -2090,10 +2090,10 @@ const (
 // elements that can contain sensitive information.
 // Remove the attribute Spellcheck from the element.
 func (e *VideoElement) SpellcheckRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("spellcheck")
+	e.stringAttributes.Del("spellcheck")
 	return e
 }
 
@@ -2103,13 +2103,13 @@ func (e *VideoElement) StylePairs(pairs ...string) *VideoElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -2125,13 +2125,13 @@ func (e *VideoElement) StylePairs(pairs ...string) *VideoElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *VideoElement) Style(s string) *VideoElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -2157,13 +2157,13 @@ func (e *VideoElement) IfStyle(condition bool, s string) *VideoElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *VideoElement) StyleAdd(k string, v string) *VideoElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -2197,13 +2197,13 @@ func (e *VideoElement) IfStyleAddF(condition bool, k string, format string, args
 // color, font, size, and more. Styles are written in CSS.
 // Add the attributes in the map to the element.
 func (e *VideoElement) StyleMap(m map[string]string) *VideoElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -2220,10 +2220,10 @@ func (e *VideoElement) StyleMap(m map[string]string) *VideoElement {
 // color, font, size, and more. Styles are written in CSS.
 // Remove the attribute Style from the element.
 func (e *VideoElement) StyleRemove(keys ...string) *VideoElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}
@@ -2245,10 +2245,10 @@ func (e *VideoElement) StyleRemove(keys ...string) *VideoElement {
 // If several elements share the same tabindex, their relative order follows
 // their relative position in the document.
 func (e *VideoElement) Tabindex(i int) *VideoElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("tabindex", i)
+	e.intAttributes.Set("tabindex", i)
 	return e
 }
 
@@ -2287,10 +2287,10 @@ func (e *VideoElement) IfTabindex(condition bool, i int) *VideoElement {
 // their relative position in the document.
 // Remove the attribute Tabindex from the element.
 func (e *VideoElement) TabindexRemove() *VideoElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("tabindex")
+	e.intAttributes.Del("tabindex")
 	return e
 }
 
@@ -2311,10 +2311,10 @@ func (e *VideoElement) TabindexRemove() *VideoElement {
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
 func (e *VideoElement) Title(s string) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("title", s)
+	e.stringAttributes.Set("title", s)
 	return e
 }
 
@@ -2402,10 +2402,10 @@ func (e *VideoElement) IfTitleF(condition bool, format string, args ...any) *Vid
 // element, this is not good practice. Use a <label> instead.
 // Remove the attribute Title from the element.
 func (e *VideoElement) TitleRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("title")
+	e.stringAttributes.Del("title")
 	return e
 }
 
@@ -2414,10 +2414,10 @@ func (e *VideoElement) TitleRemove() *VideoElement {
 // children are to be translated when the page is localized, or whether to leave
 // them unchanged.
 func (e *VideoElement) Translate(c VideoTranslateChoice) *VideoElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("translate", string(c))
+	e.stringAttributes.Set("translate", string(c))
 	return e
 }
 
@@ -2438,9 +2438,9 @@ const (
 // them unchanged.
 // Remove the attribute Translate from the element.
 func (e *VideoElement) TranslateRemove() *VideoElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("translate")
+	e.stringAttributes.Del("translate")
 	return e
 }

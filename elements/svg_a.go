@@ -24,37 +24,37 @@ type SVGAElement struct {
 // with the tag "a" during rendering.
 func SVGA(children ...ElementRenderer) *SVGAElement {
 	e := NewElement("a", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGAElement{Element: e}
 }
 
 func (e *SVGAElement) Children(children ...ElementRenderer) *SVGAElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGAElement) IfChildren(condition bool, children ...ElementRenderer) *SVGAElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGAElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGAElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGAElement) BoolAttr(name string) *SVGAElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -66,10 +66,10 @@ func (e *SVGAElement) IfBoolAttr(condition bool, name string) *SVGAElement {
 }
 
 func (e *SVGAElement) Attr(name, value string) *SVGAElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -81,7 +81,7 @@ func (e *SVGAElement) IfAttr(condition bool, name, value string) *SVGAElement {
 }
 
 func (e *SVGAElement) Text(text string) *SVGAElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -91,26 +91,26 @@ func (e *SVGAElement) TextF(format string, args ...any) *SVGAElement {
 
 func (e *SVGAElement) IfText(condition bool, text string) *SVGAElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGAElement) IfTextF(condition bool, format string, args ...any) *SVGAElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGAElement) Escaped(text string) *SVGAElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGAElement) IfEscaped(condition bool, text string) *SVGAElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -121,7 +121,7 @@ func (e *SVGAElement) EscapedF(format string, args ...any) *SVGAElement {
 
 func (e *SVGAElement) IfEscapedF(condition bool, format string, args ...any) *SVGAElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -132,10 +132,10 @@ func (e *SVGAElement) IfEscapedF(condition bool, format string, args ...any) *SV
 // values, though / and \ will be converted to underscores and leading spaces in
 // filenames will be removed.
 func (e *SVGAElement) Download(s string) *SVGAElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("download", s)
+	e.stringAttributes.Set("download", s)
 	return e
 }
 
@@ -179,19 +179,19 @@ func (e *SVGAElement) IfDownloadF(condition bool, format string, args ...any) *S
 // filenames will be removed.
 // Remove the attribute Download from the element.
 func (e *SVGAElement) DownloadRemove() *SVGAElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("download")
+	e.stringAttributes.Del("download")
 	return e
 }
 
 // The URL of a linked resource.
 func (e *SVGAElement) Href(s string) *SVGAElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("href", s)
+	e.stringAttributes.Set("href", s)
 	return e
 }
 
@@ -219,19 +219,19 @@ func (e *SVGAElement) IfHrefF(condition bool, format string, args ...any) *SVGAE
 // The URL of a linked resource.
 // Remove the attribute Href from the element.
 func (e *SVGAElement) HrefRemove() *SVGAElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("href")
+	e.stringAttributes.Del("href")
 	return e
 }
 
 // Specifies the language of the linked resource.
 func (e *SVGAElement) Hreflang(s string) *SVGAElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("hreflang", s)
+	e.stringAttributes.Set("hreflang", s)
 	return e
 }
 
@@ -259,10 +259,10 @@ func (e *SVGAElement) IfHreflangF(condition bool, format string, args ...any) *S
 // Specifies the language of the linked resource.
 // Remove the attribute Hreflang from the element.
 func (e *SVGAElement) HreflangRemove() *SVGAElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("hreflang")
+	e.stringAttributes.Del("hreflang")
 	return e
 }
 
@@ -270,13 +270,13 @@ func (e *SVGAElement) HreflangRemove() *SVGAElement {
 // send POST requests with the body PING to the URLs. Typically for tracking.
 func (e *SVGAElement) Ping(s string) *SVGAElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("ping")
+	ds, ok := e.delimitedStrings.Get("ping")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("ping", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("ping", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -295,10 +295,10 @@ func (e *SVGAElement) IfPing(condition bool, s string) *SVGAElement {
 // send POST requests with the body PING to the URLs. Typically for tracking.
 // Remove the values from the attribute Ping in the element.
 func (e *SVGAElement) PingRemove(s ...string) *SVGAElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("ping")
+	ds, ok := e.delimitedStrings.Get("ping")
 	if !ok {
 		return e
 	}
@@ -308,10 +308,10 @@ func (e *SVGAElement) PingRemove(s ...string) *SVGAElement {
 
 // Referrer policy to use when fetching the resource.
 func (e *SVGAElement) Referrerpolicy(c SVGAReferrerpolicyChoice) *SVGAElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("referrerpolicy", string(c))
+	e.stringAttributes.Set("referrerpolicy", string(c))
 	return e
 }
 
@@ -344,19 +344,19 @@ const (
 // Referrer policy to use when fetching the resource.
 // Remove the attribute Referrerpolicy from the element.
 func (e *SVGAElement) ReferrerpolicyRemove() *SVGAElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("referrerpolicy")
+	e.stringAttributes.Del("referrerpolicy")
 	return e
 }
 
 // Specifies the relationship of the target object to the link object.
 func (e *SVGAElement) Rel(c SVGARelChoice) *SVGAElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("rel", string(c))
+	e.stringAttributes.Set("rel", string(c))
 	return e
 }
 
@@ -427,19 +427,19 @@ const (
 // Specifies the relationship of the target object to the link object.
 // Remove the attribute Rel from the element.
 func (e *SVGAElement) RelRemove() *SVGAElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("rel")
+	e.stringAttributes.Del("rel")
 	return e
 }
 
 // Specifies where to display the linked resource.
 func (e *SVGAElement) Target(c SVGATargetChoice) *SVGAElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("target", string(c))
+	e.stringAttributes.Set("target", string(c))
 	return e
 }
 
@@ -461,19 +461,19 @@ const (
 // Specifies where to display the linked resource.
 // Remove the attribute Target from the element.
 func (e *SVGAElement) TargetRemove() *SVGAElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("target")
+	e.stringAttributes.Del("target")
 	return e
 }
 
 // Specifies the MIME type of the linked resource.
 func (e *SVGAElement) Type(s string) *SVGAElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("type", s)
+	e.stringAttributes.Set("type", s)
 	return e
 }
 
@@ -501,19 +501,19 @@ func (e *SVGAElement) IfTypeF(condition bool, format string, args ...any) *SVGAE
 // Specifies the MIME type of the linked resource.
 // Remove the attribute Type from the element.
 func (e *SVGAElement) TypeRemove() *SVGAElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("type")
+	e.stringAttributes.Del("type")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGAElement) ID(s string) *SVGAElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -541,10 +541,10 @@ func (e *SVGAElement) IfIDF(condition bool, format string, args ...any) *SVGAEle
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGAElement) IDRemove() *SVGAElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -552,13 +552,13 @@ func (e *SVGAElement) IDRemove() *SVGAElement {
 // sheet)
 func (e *SVGAElement) Class(s string) *SVGAElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -577,10 +577,10 @@ func (e *SVGAElement) IfClass(condition bool, s string) *SVGAElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGAElement) ClassRemove(s ...string) *SVGAElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -593,13 +593,13 @@ func (e *SVGAElement) StylePairs(pairs ...string) *SVGAElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -614,13 +614,13 @@ func (e *SVGAElement) StylePairs(pairs ...string) *SVGAElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGAElement) Style(s string) *SVGAElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -644,13 +644,13 @@ func (e *SVGAElement) IfStyle(condition bool, s string) *SVGAElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGAElement) StyleAdd(k string, v string) *SVGAElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -680,13 +680,13 @@ func (e *SVGAElement) IfStyleAddF(condition bool, k string, format string, args 
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGAElement) StyleMap(m map[string]string) *SVGAElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -702,10 +702,10 @@ func (e *SVGAElement) StyleMap(m map[string]string) *SVGAElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGAElement) StyleRemove(keys ...string) *SVGAElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

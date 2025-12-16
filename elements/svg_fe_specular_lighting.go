@@ -25,37 +25,37 @@ type SVGFeSpecularLightingElement struct {
 // with the tag "feSpecularLighting" during rendering.
 func SVGFeSpecularLighting(children ...ElementRenderer) *SVGFeSpecularLightingElement {
 	e := NewElement("feSpecularLighting", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGFeSpecularLightingElement{Element: e}
 }
 
 func (e *SVGFeSpecularLightingElement) Children(children ...ElementRenderer) *SVGFeSpecularLightingElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGFeSpecularLightingElement) IfChildren(condition bool, children ...ElementRenderer) *SVGFeSpecularLightingElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGFeSpecularLightingElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGFeSpecularLightingElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGFeSpecularLightingElement) BoolAttr(name string) *SVGFeSpecularLightingElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -67,10 +67,10 @@ func (e *SVGFeSpecularLightingElement) IfBoolAttr(condition bool, name string) *
 }
 
 func (e *SVGFeSpecularLightingElement) Attr(name, value string) *SVGFeSpecularLightingElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -82,7 +82,7 @@ func (e *SVGFeSpecularLightingElement) IfAttr(condition bool, name, value string
 }
 
 func (e *SVGFeSpecularLightingElement) Text(text string) *SVGFeSpecularLightingElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -92,26 +92,26 @@ func (e *SVGFeSpecularLightingElement) TextF(format string, args ...any) *SVGFeS
 
 func (e *SVGFeSpecularLightingElement) IfText(condition bool, text string) *SVGFeSpecularLightingElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGFeSpecularLightingElement) IfTextF(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGFeSpecularLightingElement) Escaped(text string) *SVGFeSpecularLightingElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGFeSpecularLightingElement) IfEscaped(condition bool, text string) *SVGFeSpecularLightingElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -122,17 +122,17 @@ func (e *SVGFeSpecularLightingElement) EscapedF(format string, args ...any) *SVG
 
 func (e *SVGFeSpecularLightingElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The input for this filter.
 func (e *SVGFeSpecularLightingElement) In(s string) *SVGFeSpecularLightingElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("in", s)
+	e.stringAttributes.Set("in", s)
 	return e
 }
 
@@ -160,20 +160,20 @@ func (e *SVGFeSpecularLightingElement) IfInF(condition bool, format string, args
 // The input for this filter.
 // Remove the attribute In from the element.
 func (e *SVGFeSpecularLightingElement) InRemove() *SVGFeSpecularLightingElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("in")
+	e.stringAttributes.Del("in")
 	return e
 }
 
 // The 'surfaceScale' attribute indicates the height of the surface when the
 // alpha channel is 1.0.
 func (e *SVGFeSpecularLightingElement) SurfaceScale(f float64) *SVGFeSpecularLightingElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("surfaceScale", f)
+	e.floatAttributes.Set("surfaceScale", f)
 	return e
 }
 
@@ -188,10 +188,10 @@ func (e *SVGFeSpecularLightingElement) IfSurfaceScale(condition bool, f float64)
 
 // The specularConstant attribute represents the diffuse reflection constant.
 func (e *SVGFeSpecularLightingElement) SpecularConstant(f float64) *SVGFeSpecularLightingElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("specularConstant", f)
+	e.floatAttributes.Set("specularConstant", f)
 	return e
 }
 
@@ -205,10 +205,10 @@ func (e *SVGFeSpecularLightingElement) IfSpecularConstant(condition bool, f floa
 
 // The specularExponent attribute represents the specular reflection constant.
 func (e *SVGFeSpecularLightingElement) SpecularExponent(f float64) *SVGFeSpecularLightingElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("specularExponent", f)
+	e.floatAttributes.Set("specularExponent", f)
 	return e
 }
 
@@ -224,10 +224,10 @@ func (e *SVGFeSpecularLightingElement) IfSpecularExponent(condition bool, f floa
 // filter units (i.e., units as determined by the value of attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 func (e *SVGFeSpecularLightingElement) KernelUnitLength(s string) *SVGFeSpecularLightingElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("kernelUnitLength", s)
+	e.stringAttributes.Set("kernelUnitLength", s)
 	return e
 }
 
@@ -263,19 +263,19 @@ func (e *SVGFeSpecularLightingElement) IfKernelUnitLengthF(condition bool, forma
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 // Remove the attribute KernelUnitLength from the element.
 func (e *SVGFeSpecularLightingElement) KernelUnitLengthRemove() *SVGFeSpecularLightingElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("kernelUnitLength")
+	e.stringAttributes.Del("kernelUnitLength")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGFeSpecularLightingElement) ID(s string) *SVGFeSpecularLightingElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -303,10 +303,10 @@ func (e *SVGFeSpecularLightingElement) IfIDF(condition bool, format string, args
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGFeSpecularLightingElement) IDRemove() *SVGFeSpecularLightingElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -314,13 +314,13 @@ func (e *SVGFeSpecularLightingElement) IDRemove() *SVGFeSpecularLightingElement 
 // sheet)
 func (e *SVGFeSpecularLightingElement) Class(s string) *SVGFeSpecularLightingElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -339,10 +339,10 @@ func (e *SVGFeSpecularLightingElement) IfClass(condition bool, s string) *SVGFeS
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGFeSpecularLightingElement) ClassRemove(s ...string) *SVGFeSpecularLightingElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -355,13 +355,13 @@ func (e *SVGFeSpecularLightingElement) StylePairs(pairs ...string) *SVGFeSpecula
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -376,13 +376,13 @@ func (e *SVGFeSpecularLightingElement) StylePairs(pairs ...string) *SVGFeSpecula
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeSpecularLightingElement) Style(s string) *SVGFeSpecularLightingElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -406,13 +406,13 @@ func (e *SVGFeSpecularLightingElement) IfStyle(condition bool, s string) *SVGFeS
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeSpecularLightingElement) StyleAdd(k string, v string) *SVGFeSpecularLightingElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -442,13 +442,13 @@ func (e *SVGFeSpecularLightingElement) IfStyleAddF(condition bool, k string, for
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGFeSpecularLightingElement) StyleMap(m map[string]string) *SVGFeSpecularLightingElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -464,10 +464,10 @@ func (e *SVGFeSpecularLightingElement) StyleMap(m map[string]string) *SVGFeSpecu
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGFeSpecularLightingElement) StyleRemove(keys ...string) *SVGFeSpecularLightingElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

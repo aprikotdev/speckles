@@ -22,37 +22,37 @@ type ButtonElement struct {
 // with the tag "button" during rendering.
 func Button(children ...ElementRenderer) *ButtonElement {
 	e := NewElement("button", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &ButtonElement{Element: e}
 }
 
 func (e *ButtonElement) Children(children ...ElementRenderer) *ButtonElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *ButtonElement) IfChildren(condition bool, children ...ElementRenderer) *ButtonElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *ButtonElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *ButtonElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *ButtonElement) BoolAttr(name string) *ButtonElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *ButtonElement) IfBoolAttr(condition bool, name string) *ButtonElement {
 }
 
 func (e *ButtonElement) Attr(name, value string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *ButtonElement) IfAttr(condition bool, name, value string) *ButtonElemen
 }
 
 func (e *ButtonElement) Text(text string) *ButtonElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *ButtonElement) TextF(format string, args ...any) *ButtonElement {
 
 func (e *ButtonElement) IfText(condition bool, text string) *ButtonElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *ButtonElement) IfTextF(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *ButtonElement) Escaped(text string) *ButtonElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *ButtonElement) IfEscaped(condition bool, text string) *ButtonElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,7 +119,7 @@ func (e *ButtonElement) EscapedF(format string, args ...any) *ButtonElement {
 
 func (e *ButtonElement) IfEscapedF(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -144,10 +144,10 @@ func (e *ButtonElement) IfAutofocus(condition bool) *ButtonElement {
 // focused as soon as the page is loaded.
 // Set the attribute Autofocus to the value b explicitly.
 func (e *ButtonElement) AutofocusSet(b bool) *ButtonElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("autofocus", b)
+	e.boolAttributes.Set("autofocus", b)
 	return e
 }
 
@@ -164,10 +164,10 @@ func (e *ButtonElement) IfSetAutofocus(condition bool, b bool) *ButtonElement {
 // A Boolean attribute which, if present, indicates that the button should be
 // focused as soon as the page is loaded.
 func (e *ButtonElement) AutofocusRemove() *ButtonElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("autofocus")
+	e.boolAttributes.Del("autofocus")
 	return e
 }
 
@@ -188,10 +188,10 @@ func (e *ButtonElement) IfDisabled(condition bool) *ButtonElement {
 // A Boolean attribute which is present if the button is disabled.
 // Set the attribute Disabled to the value b explicitly.
 func (e *ButtonElement) DisabledSet(b bool) *ButtonElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("disabled", b)
+	e.boolAttributes.Set("disabled", b)
 	return e
 }
 
@@ -206,19 +206,19 @@ func (e *ButtonElement) IfSetDisabled(condition bool, b bool) *ButtonElement {
 // Remove the attribute Disabled from the element.
 // A Boolean attribute which is present if the button is disabled.
 func (e *ButtonElement) DisabledRemove() *ButtonElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("disabled")
+	e.boolAttributes.Del("disabled")
 	return e
 }
 
 // The id of the form with which to associate the element.
 func (e *ButtonElement) Form(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("form", s)
+	e.stringAttributes.Set("form", s)
 	return e
 }
 
@@ -246,20 +246,20 @@ func (e *ButtonElement) IfFormF(condition bool, format string, args ...any) *But
 // The id of the form with which to associate the element.
 // Remove the attribute Form from the element.
 func (e *ButtonElement) FormRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("form")
+	e.stringAttributes.Del("form")
 	return e
 }
 
 // The URI of a program that processes the information submitted by the button.
 // If specified, it overrides the action attribute of the button's form owner.
 func (e *ButtonElement) Formaction(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("formaction", s)
+	e.stringAttributes.Set("formaction", s)
 	return e
 }
 
@@ -291,20 +291,20 @@ func (e *ButtonElement) IfFormactionF(condition bool, format string, args ...any
 // If specified, it overrides the action attribute of the button's form owner.
 // Remove the attribute Formaction from the element.
 func (e *ButtonElement) FormactionRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("formaction")
+	e.stringAttributes.Del("formaction")
 	return e
 }
 
 // If the button is a submit button, this attribute specifies the type of
 // content that is used to submit the form to the server.
 func (e *ButtonElement) Formenctype(c ButtonFormenctypeChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("formenctype", string(c))
+	e.stringAttributes.Set("formenctype", string(c))
 	return e
 }
 
@@ -324,20 +324,20 @@ const (
 // content that is used to submit the form to the server.
 // Remove the attribute Formenctype from the element.
 func (e *ButtonElement) FormenctypeRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("formenctype")
+	e.stringAttributes.Del("formenctype")
 	return e
 }
 
 // If the button is a submit button, this attribute specifies the HTTP method
 // that the browser uses to submit the form. Possible values are:
 func (e *ButtonElement) Formmethod(c ButtonFormmethodChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("formmethod", string(c))
+	e.stringAttributes.Set("formmethod", string(c))
 	return e
 }
 
@@ -359,10 +359,10 @@ const (
 // that the browser uses to submit the form. Possible values are:
 // Remove the attribute Formmethod from the element.
 func (e *ButtonElement) FormmethodRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("formmethod")
+	e.stringAttributes.Del("formmethod")
 	return e
 }
 
@@ -389,10 +389,10 @@ func (e *ButtonElement) IfFormnovalidate(condition bool) *ButtonElement {
 // specified, it overrides the novalidate attribute of the button's form owner.
 // Set the attribute Formnovalidate to the value b explicitly.
 func (e *ButtonElement) FormnovalidateSet(b bool) *ButtonElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("formnovalidate", b)
+	e.boolAttributes.Set("formnovalidate", b)
 	return e
 }
 
@@ -411,10 +411,10 @@ func (e *ButtonElement) IfSetFormnovalidate(condition bool, b bool) *ButtonEleme
 // form is not to be validated when it is submitted. If this attribute is
 // specified, it overrides the novalidate attribute of the button's form owner.
 func (e *ButtonElement) FormnovalidateRemove() *ButtonElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("formnovalidate")
+	e.boolAttributes.Del("formnovalidate")
 	return e
 }
 
@@ -425,10 +425,10 @@ func (e *ButtonElement) FormnovalidateRemove() *ButtonElement {
 // the target attribute of the button's form owner. The following keywords have
 // special meanings:
 func (e *ButtonElement) Formtarget(c ButtonFormtargetChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("formtarget", string(c))
+	e.stringAttributes.Set("formtarget", string(c))
 	return e
 }
 
@@ -457,19 +457,19 @@ const (
 // special meanings:
 // Remove the attribute Formtarget from the element.
 func (e *ButtonElement) FormtargetRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("formtarget")
+	e.stringAttributes.Del("formtarget")
 	return e
 }
 
 // The name of the button, which is submitted with the form data.
 func (e *ButtonElement) Name(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("name", s)
+	e.stringAttributes.Set("name", s)
 	return e
 }
 
@@ -497,10 +497,10 @@ func (e *ButtonElement) IfNameF(condition bool, format string, args ...any) *But
 // The name of the button, which is submitted with the form data.
 // Remove the attribute Name from the element.
 func (e *ButtonElement) NameRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("name")
+	e.stringAttributes.Del("name")
 	return e
 }
 
@@ -508,10 +508,10 @@ func (e *ButtonElement) NameRemove() *ButtonElement {
 // popover element to control as its value. See the Popover API landing page for
 // more details.
 func (e *ButtonElement) Popovertarget(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("popovertarget", s)
+	e.stringAttributes.Set("popovertarget", s)
 	return e
 }
 
@@ -547,20 +547,20 @@ func (e *ButtonElement) IfPopovertargetF(condition bool, format string, args ...
 // more details.
 // Remove the attribute Popovertarget from the element.
 func (e *ButtonElement) PopovertargetRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("popovertarget")
+	e.stringAttributes.Del("popovertarget")
 	return e
 }
 
 // Specifies the action to take when the popover control button is clicked.
 // Possible values are:
 func (e *ButtonElement) Popovertargetaction(c ButtonPopovertargetactionChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("popovertargetaction", string(c))
+	e.stringAttributes.Set("popovertargetaction", string(c))
 	return e
 }
 
@@ -579,19 +579,19 @@ const (
 // Possible values are:
 // Remove the attribute Popovertargetaction from the element.
 func (e *ButtonElement) PopovertargetactionRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("popovertargetaction")
+	e.stringAttributes.Del("popovertargetaction")
 	return e
 }
 
 // The type of the button. Possible values are:
 func (e *ButtonElement) Type(c ButtonTypeChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("type", string(c))
+	e.stringAttributes.Set("type", string(c))
 	return e
 }
 
@@ -613,20 +613,20 @@ const (
 // The type of the button. Possible values are:
 // Remove the attribute Type from the element.
 func (e *ButtonElement) TypeRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("type")
+	e.stringAttributes.Del("type")
 	return e
 }
 
 // The initial value of the button. This attribute is optional except when the
 // value of the type attribute is radio or checkbox.
 func (e *ButtonElement) Value(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("value", s)
+	e.stringAttributes.Set("value", s)
 	return e
 }
 
@@ -658,10 +658,10 @@ func (e *ButtonElement) IfValueF(condition bool, format string, args ...any) *Bu
 // value of the type attribute is radio or checkbox.
 // Remove the attribute Value from the element.
 func (e *ButtonElement) ValueRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("value")
+	e.stringAttributes.Del("value")
 	return e
 }
 
@@ -670,10 +670,10 @@ func (e *ButtonElement) ValueRemove() *ButtonElement {
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
 func (e *ButtonElement) Accesskey(r rune) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("accesskey", string(r))
+	e.stringAttributes.Set("accesskey", string(r))
 	return e
 }
 
@@ -694,10 +694,10 @@ func (e *ButtonElement) IfAccesskey(condition bool, r rune) *ButtonElement {
 // can be generated by the keyboard).
 // Remove the attribute Accesskey from the element.
 func (e *ButtonElement) AccesskeyRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("accesskey")
+	e.stringAttributes.Del("accesskey")
 	return e
 }
 
@@ -713,10 +713,10 @@ func (e *ButtonElement) AccesskeyRemove() *ButtonElement {
 // behavior varies between browsers. For example: Chrome and Safari default to
 // on/sentences Firefox defaults to off/none.
 func (e *ButtonElement) Autocapitalize(c ButtonAutocapitalizeChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("autocapitalize", string(c))
+	e.stringAttributes.Set("autocapitalize", string(c))
 	return e
 }
 
@@ -750,10 +750,10 @@ const (
 // on/sentences Firefox defaults to off/none.
 // Remove the attribute Autocapitalize from the element.
 func (e *ButtonElement) AutocapitalizeRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("autocapitalize")
+	e.stringAttributes.Del("autocapitalize")
 	return e
 }
 
@@ -763,13 +763,13 @@ func (e *ButtonElement) AutocapitalizeRemove() *ButtonElement {
 // document.getElementsByClassName.
 func (e *ButtonElement) Class(s string) *ButtonElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -792,10 +792,10 @@ func (e *ButtonElement) IfClass(condition bool, s string) *ButtonElement {
 // document.getElementsByClassName.
 // Remove the values from the attribute Class in the element.
 func (e *ButtonElement) ClassRemove(s ...string) *ButtonElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -807,10 +807,10 @@ func (e *ButtonElement) ClassRemove(s ...string) *ButtonElement {
 // the element should be editable by the user. If so, the browser modifies its
 // widget to allow editing.
 func (e *ButtonElement) Contenteditable(c ButtonContenteditableChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("contenteditable", string(c))
+	e.stringAttributes.Set("contenteditable", string(c))
 	return e
 }
 
@@ -833,10 +833,10 @@ const (
 // widget to allow editing.
 // Remove the attribute Contenteditable from the element.
 func (e *ButtonElement) ContenteditableRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("contenteditable")
+	e.stringAttributes.Del("contenteditable")
 	return e
 }
 
@@ -854,10 +854,10 @@ func (e *ButtonElement) ContenteditableRemove() *ButtonElement {
 // directionality, like data coming from user input, eventually stored in a
 // database.
 func (e *ButtonElement) Dir(c ButtonDirChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dir", string(c))
+	e.stringAttributes.Set("dir", string(c))
 	return e
 }
 
@@ -891,10 +891,10 @@ const (
 // database.
 // Remove the attribute Dir from the element.
 func (e *ButtonElement) DirRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dir")
+	e.stringAttributes.Del("dir")
 	return e
 }
 
@@ -902,10 +902,10 @@ func (e *ButtonElement) DirRemove() *ButtonElement {
 // whether the element can be dragged, either with native browser behavior or
 // the HTML Drag and Drop API.
 func (e *ButtonElement) Draggable(c ButtonDraggableChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("draggable", string(c))
+	e.stringAttributes.Set("draggable", string(c))
 	return e
 }
 
@@ -931,20 +931,20 @@ const (
 // the HTML Drag and Drop API.
 // Remove the attribute Draggable from the element.
 func (e *ButtonElement) DraggableRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("draggable")
+	e.stringAttributes.Del("draggable")
 	return e
 }
 
 // The enterkeyhint global attribute is an enumerated attribute defining what
 // action label (or icon) to present for the enter key on virtual keyboards.
 func (e *ButtonElement) Enterkeyhint(c ButtonEnterkeyhintChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("enterkeyhint", string(c))
+	e.stringAttributes.Set("enterkeyhint", string(c))
 	return e
 }
 
@@ -974,10 +974,10 @@ const (
 // action label (or icon) to present for the enter key on virtual keyboards.
 // Remove the attribute Enterkeyhint from the element.
 func (e *ButtonElement) EnterkeyhintRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("enterkeyhint")
+	e.stringAttributes.Del("enterkeyhint")
 	return e
 }
 
@@ -1000,13 +1000,13 @@ func (e *ButtonElement) EnterkeyhintRemove() *ButtonElement {
 // the current structure.
 func (e *ButtonElement) Exportparts(s string) *ButtonElement {
 	values := strings.Split(s, ",")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
-		ds = NewDelimitedBuilder[string](",")
-		e.DelimitedStrings.Set("exportparts", ds)
+		ds = newDelimitedBuilder[string](",")
+		e.delimitedStrings.Set("exportparts", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1055,10 +1055,10 @@ func (e *ButtonElement) IfExportparts(condition bool, s string) *ButtonElement {
 // the current structure.
 // Remove the values from the attribute Exportparts in the element.
 func (e *ButtonElement) ExportpartsRemove(s ...string) *ButtonElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
 		return e
 	}
@@ -1079,10 +1079,10 @@ func (e *ButtonElement) ExportpartsRemove(s ...string) *ButtonElement {
 // of none, contents, or inline, then the element will not be revealed by find
 // in page or fragment navigation.
 func (e *ButtonElement) Hidden(c ButtonHiddenChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("hidden", string(c))
+	e.stringAttributes.Set("hidden", string(c))
 	return e
 }
 
@@ -1118,10 +1118,10 @@ const (
 // in page or fragment navigation.
 // Remove the attribute Hidden from the element.
 func (e *ButtonElement) HiddenRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("hidden")
+	e.stringAttributes.Del("hidden")
 	return e
 }
 
@@ -1129,10 +1129,10 @@ func (e *ButtonElement) HiddenRemove() *ButtonElement {
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *ButtonElement) ID(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -1168,10 +1168,10 @@ func (e *ButtonElement) IfIDF(condition bool, format string, args ...any) *Butto
 // (using a fragment identifier), scripting, or styling (with CSS).
 // Remove the attribute ID from the element.
 func (e *ButtonElement) IDRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -1219,10 +1219,10 @@ func (e *ButtonElement) IfInert(condition bool) *ButtonElement {
 // excluding them from the accessibility tree.
 // Set the attribute Inert to the value b explicitly.
 func (e *ButtonElement) InertSet(b bool) *ButtonElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("inert", b)
+	e.boolAttributes.Set("inert", b)
 	return e
 }
 
@@ -1255,10 +1255,10 @@ func (e *ButtonElement) IfSetInert(condition bool, b bool) *ButtonElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *ButtonElement) InertRemove() *ButtonElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("inert")
+	e.boolAttributes.Del("inert")
 	return e
 }
 
@@ -1272,10 +1272,10 @@ func (e *ButtonElement) InertRemove() *ButtonElement {
 // appropriate <input> element type. For specific guidance on choosing <input>
 // types, see the Values section.
 func (e *ButtonElement) Inputmode(c ButtonInputmodeChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("inputmode", string(c))
+	e.stringAttributes.Set("inputmode", string(c))
 	return e
 }
 
@@ -1326,10 +1326,10 @@ const (
 // types, see the Values section.
 // Remove the attribute Inputmode from the element.
 func (e *ButtonElement) InputmodeRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("inputmode")
+	e.stringAttributes.Del("inputmode")
 	return e
 }
 
@@ -1339,10 +1339,10 @@ func (e *ButtonElement) InputmodeRemove() *ButtonElement {
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
 func (e *ButtonElement) Is(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("is", s)
+	e.stringAttributes.Set("is", s)
 	return e
 }
 
@@ -1386,10 +1386,10 @@ func (e *ButtonElement) IfIsF(condition bool, format string, args ...any) *Butto
 // and extends the element type it is being applied to.
 // Remove the attribute Is from the element.
 func (e *ButtonElement) IsRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("is")
+	e.stringAttributes.Del("is")
 	return e
 }
 
@@ -1405,10 +1405,10 @@ func (e *ButtonElement) IsRemove() *ButtonElement {
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
 func (e *ButtonElement) Itemid(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemid", s)
+	e.stringAttributes.Set("itemid", s)
 	return e
 }
 
@@ -1476,10 +1476,10 @@ func (e *ButtonElement) IfItemidF(condition bool, format string, args ...any) *B
 // how items with the same identifier are handled.
 // Remove the attribute Itemid from the element.
 func (e *ButtonElement) ItemidRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemid")
+	e.stringAttributes.Del("itemid")
 	return e
 }
 
@@ -1491,10 +1491,10 @@ func (e *ButtonElement) ItemidRemove() *ButtonElement {
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
 func (e *ButtonElement) Itemprop(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemprop", s)
+	e.stringAttributes.Set("itemprop", s)
 	return e
 }
 
@@ -1546,10 +1546,10 @@ func (e *ButtonElement) IfItempropF(condition bool, format string, args ...any) 
 // <track>, and <video>.
 // Remove the attribute Itemprop from the element.
 func (e *ButtonElement) ItempropRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemprop")
+	e.stringAttributes.Del("itemprop")
 	return e
 }
 
@@ -1559,10 +1559,10 @@ func (e *ButtonElement) ItempropRemove() *ButtonElement {
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
 func (e *ButtonElement) Itemref(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemref", s)
+	e.stringAttributes.Set("itemref", s)
 	return e
 }
 
@@ -1606,10 +1606,10 @@ func (e *ButtonElement) IfItemrefF(condition bool, format string, args ...any) *
 // specified on elements that have an itemscope attribute specified.
 // Remove the attribute Itemref from the element.
 func (e *ButtonElement) ItemrefRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemref")
+	e.stringAttributes.Del("itemref")
 	return e
 }
 
@@ -1648,10 +1648,10 @@ func (e *ButtonElement) IfItemscope(condition bool) *ButtonElement {
 // <object>, <source>, <track>, and <video>.
 // Set the attribute Itemscope to the value b explicitly.
 func (e *ButtonElement) ItemscopeSet(b bool) *ButtonElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("itemscope", b)
+	e.boolAttributes.Set("itemscope", b)
 	return e
 }
 
@@ -1678,10 +1678,10 @@ func (e *ButtonElement) IfSetItemscope(condition bool, b bool) *ButtonElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *ButtonElement) ItemscopeRemove() *ButtonElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("itemscope")
+	e.boolAttributes.Del("itemscope")
 	return e
 }
 
@@ -1693,10 +1693,10 @@ func (e *ButtonElement) ItemscopeRemove() *ButtonElement {
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
 func (e *ButtonElement) Itemtype(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemtype", s)
+	e.stringAttributes.Set("itemtype", s)
 	return e
 }
 
@@ -1748,10 +1748,10 @@ func (e *ButtonElement) IfItemtypeF(condition bool, format string, args ...any) 
 // <video>.
 // Remove the attribute Itemtype from the element.
 func (e *ButtonElement) ItemtypeRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemtype")
+	e.stringAttributes.Del("itemtype")
 	return e
 }
 
@@ -1761,10 +1761,10 @@ func (e *ButtonElement) ItemtypeRemove() *ButtonElement {
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 func (e *ButtonElement) Lang(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("lang", s)
+	e.stringAttributes.Set("lang", s)
 	return e
 }
 
@@ -1808,10 +1808,10 @@ func (e *ButtonElement) IfLangF(condition bool, format string, args ...any) *But
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 // Remove the attribute Lang from the element.
 func (e *ButtonElement) LangRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("lang")
+	e.stringAttributes.Del("lang")
 	return e
 }
 
@@ -1821,10 +1821,10 @@ func (e *ButtonElement) LangRemove() *ButtonElement {
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
 func (e *ButtonElement) Nonce(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("nonce", s)
+	e.stringAttributes.Set("nonce", s)
 	return e
 }
 
@@ -1868,10 +1868,10 @@ func (e *ButtonElement) IfNonceF(condition bool, format string, args ...any) *Bu
 // execute.
 // Remove the attribute Nonce from the element.
 func (e *ButtonElement) NonceRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("nonce")
+	e.stringAttributes.Del("nonce")
 	return e
 }
 
@@ -1880,13 +1880,13 @@ func (e *ButtonElement) NonceRemove() *ButtonElement {
 // in a shadow tree via the ::part pseudo-element.
 func (e *ButtonElement) Part(s string) *ButtonElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("part", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("part", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1907,10 +1907,10 @@ func (e *ButtonElement) IfPart(condition bool, s string) *ButtonElement {
 // in a shadow tree via the ::part pseudo-element.
 // Remove the values from the attribute Part in the element.
 func (e *ButtonElement) PartRemove(s ...string) *ButtonElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
 		return e
 	}
@@ -1925,10 +1925,10 @@ func (e *ButtonElement) PartRemove(s ...string) *ButtonElement {
 // popover elements will appear above all other elements in the top layer, and
 // won't be influenced by parent elements' position or overflow styling.
 func (e *ButtonElement) Popover(c ButtonPopoverChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("popover", string(c))
+	e.stringAttributes.Set("popover", string(c))
 	return e
 }
 
@@ -1956,10 +1956,10 @@ const (
 // won't be influenced by parent elements' position or overflow styling.
 // Remove the attribute Popover from the element.
 func (e *ButtonElement) PopoverRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("popover")
+	e.stringAttributes.Del("popover")
 	return e
 }
 
@@ -1968,10 +1968,10 @@ func (e *ButtonElement) PopoverRemove() *ButtonElement {
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
 func (e *ButtonElement) Role(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("role", s)
+	e.stringAttributes.Set("role", s)
 	return e
 }
 
@@ -2011,10 +2011,10 @@ func (e *ButtonElement) IfRoleF(condition bool, format string, args ...any) *But
 // role of an element.
 // Remove the attribute Role from the element.
 func (e *ButtonElement) RoleRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("role")
+	e.stringAttributes.Del("role")
 	return e
 }
 
@@ -2023,10 +2023,10 @@ func (e *ButtonElement) RoleRemove() *ButtonElement {
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
 func (e *ButtonElement) Slot(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("slot", s)
+	e.stringAttributes.Set("slot", s)
 	return e
 }
 
@@ -2066,10 +2066,10 @@ func (e *ButtonElement) IfSlotF(condition bool, format string, args ...any) *But
 // value.
 // Remove the attribute Slot from the element.
 func (e *ButtonElement) SlotRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("slot")
+	e.stringAttributes.Del("slot")
 	return e
 }
 
@@ -2085,10 +2085,10 @@ func (e *ButtonElement) SlotRemove() *ButtonElement {
 // "spell-jacking"). You should consider setting spellcheck to false for
 // elements that can contain sensitive information.
 func (e *ButtonElement) Spellcheck(c ButtonSpellcheckChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("spellcheck", string(c))
+	e.stringAttributes.Set("spellcheck", string(c))
 	return e
 }
 
@@ -2116,10 +2116,10 @@ const (
 // elements that can contain sensitive information.
 // Remove the attribute Spellcheck from the element.
 func (e *ButtonElement) SpellcheckRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("spellcheck")
+	e.stringAttributes.Del("spellcheck")
 	return e
 }
 
@@ -2129,13 +2129,13 @@ func (e *ButtonElement) StylePairs(pairs ...string) *ButtonElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -2151,13 +2151,13 @@ func (e *ButtonElement) StylePairs(pairs ...string) *ButtonElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *ButtonElement) Style(s string) *ButtonElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -2183,13 +2183,13 @@ func (e *ButtonElement) IfStyle(condition bool, s string) *ButtonElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *ButtonElement) StyleAdd(k string, v string) *ButtonElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -2223,13 +2223,13 @@ func (e *ButtonElement) IfStyleAddF(condition bool, k string, format string, arg
 // color, font, size, and more. Styles are written in CSS.
 // Add the attributes in the map to the element.
 func (e *ButtonElement) StyleMap(m map[string]string) *ButtonElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -2246,10 +2246,10 @@ func (e *ButtonElement) StyleMap(m map[string]string) *ButtonElement {
 // color, font, size, and more. Styles are written in CSS.
 // Remove the attribute Style from the element.
 func (e *ButtonElement) StyleRemove(keys ...string) *ButtonElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}
@@ -2271,10 +2271,10 @@ func (e *ButtonElement) StyleRemove(keys ...string) *ButtonElement {
 // If several elements share the same tabindex, their relative order follows
 // their relative position in the document.
 func (e *ButtonElement) Tabindex(i int) *ButtonElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("tabindex", i)
+	e.intAttributes.Set("tabindex", i)
 	return e
 }
 
@@ -2313,10 +2313,10 @@ func (e *ButtonElement) IfTabindex(condition bool, i int) *ButtonElement {
 // their relative position in the document.
 // Remove the attribute Tabindex from the element.
 func (e *ButtonElement) TabindexRemove() *ButtonElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("tabindex")
+	e.intAttributes.Del("tabindex")
 	return e
 }
 
@@ -2337,10 +2337,10 @@ func (e *ButtonElement) TabindexRemove() *ButtonElement {
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
 func (e *ButtonElement) Title(s string) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("title", s)
+	e.stringAttributes.Set("title", s)
 	return e
 }
 
@@ -2428,10 +2428,10 @@ func (e *ButtonElement) IfTitleF(condition bool, format string, args ...any) *Bu
 // element, this is not good practice. Use a <label> instead.
 // Remove the attribute Title from the element.
 func (e *ButtonElement) TitleRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("title")
+	e.stringAttributes.Del("title")
 	return e
 }
 
@@ -2440,10 +2440,10 @@ func (e *ButtonElement) TitleRemove() *ButtonElement {
 // children are to be translated when the page is localized, or whether to leave
 // them unchanged.
 func (e *ButtonElement) Translate(c ButtonTranslateChoice) *ButtonElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("translate", string(c))
+	e.stringAttributes.Set("translate", string(c))
 	return e
 }
 
@@ -2464,9 +2464,9 @@ const (
 // them unchanged.
 // Remove the attribute Translate from the element.
 func (e *ButtonElement) TranslateRemove() *ButtonElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("translate")
+	e.stringAttributes.Del("translate")
 	return e
 }

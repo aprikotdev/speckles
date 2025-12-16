@@ -22,37 +22,37 @@ type SVGEllipseElement struct {
 // with the tag "ellipse" during rendering.
 func SVGEllipse(children ...ElementRenderer) *SVGEllipseElement {
 	e := NewElement("ellipse", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGEllipseElement{Element: e}
 }
 
 func (e *SVGEllipseElement) Children(children ...ElementRenderer) *SVGEllipseElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGEllipseElement) IfChildren(condition bool, children ...ElementRenderer) *SVGEllipseElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGEllipseElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGEllipseElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGEllipseElement) BoolAttr(name string) *SVGEllipseElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *SVGEllipseElement) IfBoolAttr(condition bool, name string) *SVGEllipseE
 }
 
 func (e *SVGEllipseElement) Attr(name, value string) *SVGEllipseElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *SVGEllipseElement) IfAttr(condition bool, name, value string) *SVGEllip
 }
 
 func (e *SVGEllipseElement) Text(text string) *SVGEllipseElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *SVGEllipseElement) TextF(format string, args ...any) *SVGEllipseElement
 
 func (e *SVGEllipseElement) IfText(condition bool, text string) *SVGEllipseElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGEllipseElement) IfTextF(condition bool, format string, args ...any) *SVGEllipseElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGEllipseElement) Escaped(text string) *SVGEllipseElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGEllipseElement) IfEscaped(condition bool, text string) *SVGEllipseElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,17 +119,17 @@ func (e *SVGEllipseElement) EscapedF(format string, args ...any) *SVGEllipseElem
 
 func (e *SVGEllipseElement) IfEscapedF(condition bool, format string, args ...any) *SVGEllipseElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The x-axis coordinate of the center of the ellipse.
 func (e *SVGEllipseElement) Cx(f float64) *SVGEllipseElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("cx", f)
+	e.floatAttributes.Set("cx", f)
 	return e
 }
 
@@ -143,10 +143,10 @@ func (e *SVGEllipseElement) IfCx(condition bool, f float64) *SVGEllipseElement {
 
 // The y-axis coordinate of the center of the ellipse.
 func (e *SVGEllipseElement) Cy(f float64) *SVGEllipseElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("cy", f)
+	e.floatAttributes.Set("cy", f)
 	return e
 }
 
@@ -160,10 +160,10 @@ func (e *SVGEllipseElement) IfCy(condition bool, f float64) *SVGEllipseElement {
 
 // The x-axis radius of the ellipse.
 func (e *SVGEllipseElement) Rx(f float64) *SVGEllipseElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("rx", f)
+	e.floatAttributes.Set("rx", f)
 	return e
 }
 
@@ -177,10 +177,10 @@ func (e *SVGEllipseElement) IfRx(condition bool, f float64) *SVGEllipseElement {
 
 // The y-axis radius of the ellipse.
 func (e *SVGEllipseElement) Ry(f float64) *SVGEllipseElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("ry", f)
+	e.floatAttributes.Set("ry", f)
 	return e
 }
 
@@ -194,10 +194,10 @@ func (e *SVGEllipseElement) IfRy(condition bool, f float64) *SVGEllipseElement {
 
 // Specifies a unique id for an element
 func (e *SVGEllipseElement) ID(s string) *SVGEllipseElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -225,10 +225,10 @@ func (e *SVGEllipseElement) IfIDF(condition bool, format string, args ...any) *S
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGEllipseElement) IDRemove() *SVGEllipseElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -236,13 +236,13 @@ func (e *SVGEllipseElement) IDRemove() *SVGEllipseElement {
 // sheet)
 func (e *SVGEllipseElement) Class(s string) *SVGEllipseElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -261,10 +261,10 @@ func (e *SVGEllipseElement) IfClass(condition bool, s string) *SVGEllipseElement
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGEllipseElement) ClassRemove(s ...string) *SVGEllipseElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -277,13 +277,13 @@ func (e *SVGEllipseElement) StylePairs(pairs ...string) *SVGEllipseElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -298,13 +298,13 @@ func (e *SVGEllipseElement) StylePairs(pairs ...string) *SVGEllipseElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGEllipseElement) Style(s string) *SVGEllipseElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -328,13 +328,13 @@ func (e *SVGEllipseElement) IfStyle(condition bool, s string) *SVGEllipseElement
 
 // Specifies an inline CSS style for an element
 func (e *SVGEllipseElement) StyleAdd(k string, v string) *SVGEllipseElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -364,13 +364,13 @@ func (e *SVGEllipseElement) IfStyleAddF(condition bool, k string, format string,
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGEllipseElement) StyleMap(m map[string]string) *SVGEllipseElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -386,10 +386,10 @@ func (e *SVGEllipseElement) StyleMap(m map[string]string) *SVGEllipseElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGEllipseElement) StyleRemove(keys ...string) *SVGEllipseElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

@@ -24,37 +24,37 @@ type SVGFilterElement struct {
 // with the tag "filter" during rendering.
 func SVGFilter(children ...ElementRenderer) *SVGFilterElement {
 	e := NewElement("filter", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGFilterElement{Element: e}
 }
 
 func (e *SVGFilterElement) Children(children ...ElementRenderer) *SVGFilterElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGFilterElement) IfChildren(condition bool, children ...ElementRenderer) *SVGFilterElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGFilterElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGFilterElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGFilterElement) BoolAttr(name string) *SVGFilterElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -66,10 +66,10 @@ func (e *SVGFilterElement) IfBoolAttr(condition bool, name string) *SVGFilterEle
 }
 
 func (e *SVGFilterElement) Attr(name, value string) *SVGFilterElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -81,7 +81,7 @@ func (e *SVGFilterElement) IfAttr(condition bool, name, value string) *SVGFilter
 }
 
 func (e *SVGFilterElement) Text(text string) *SVGFilterElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -91,26 +91,26 @@ func (e *SVGFilterElement) TextF(format string, args ...any) *SVGFilterElement {
 
 func (e *SVGFilterElement) IfText(condition bool, text string) *SVGFilterElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGFilterElement) IfTextF(condition bool, format string, args ...any) *SVGFilterElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGFilterElement) Escaped(text string) *SVGFilterElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGFilterElement) IfEscaped(condition bool, text string) *SVGFilterElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -121,17 +121,17 @@ func (e *SVGFilterElement) EscapedF(format string, args ...any) *SVGFilterElemen
 
 func (e *SVGFilterElement) IfEscapedF(condition bool, format string, args ...any) *SVGFilterElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The coordinate system for attributes x, y, width and height.
 func (e *SVGFilterElement) FilterUnits(c SVGFilterFilterUnitsChoice) *SVGFilterElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("filterUnits", string(c))
+	e.stringAttributes.Set("filterUnits", string(c))
 	return e
 }
 
@@ -147,19 +147,19 @@ const (
 // The coordinate system for attributes x, y, width and height.
 // Remove the attribute FilterUnits from the element.
 func (e *SVGFilterElement) FilterUnitsRemove() *SVGFilterElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("filterUnits")
+	e.stringAttributes.Del("filterUnits")
 	return e
 }
 
 // The coordinate system for the various length values within the filter.
 func (e *SVGFilterElement) PrimitiveUnits(c SVGFilterPrimitiveUnitsChoice) *SVGFilterElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("primitiveUnits", string(c))
+	e.stringAttributes.Set("primitiveUnits", string(c))
 	return e
 }
 
@@ -175,19 +175,19 @@ const (
 // The coordinate system for the various length values within the filter.
 // Remove the attribute PrimitiveUnits from the element.
 func (e *SVGFilterElement) PrimitiveUnitsRemove() *SVGFilterElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("primitiveUnits")
+	e.stringAttributes.Del("primitiveUnits")
 	return e
 }
 
 // The x attribute indicates where the left edge of the filter is placed.
 func (e *SVGFilterElement) X(s string) *SVGFilterElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("x", s)
+	e.stringAttributes.Set("x", s)
 	return e
 }
 
@@ -215,19 +215,19 @@ func (e *SVGFilterElement) IfXF(condition bool, format string, args ...any) *SVG
 // The x attribute indicates where the left edge of the filter is placed.
 // Remove the attribute X from the element.
 func (e *SVGFilterElement) XRemove() *SVGFilterElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("x")
+	e.stringAttributes.Del("x")
 	return e
 }
 
 // The y attribute indicates where the top edge of the filter is placed.
 func (e *SVGFilterElement) Y(s string) *SVGFilterElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("y", s)
+	e.stringAttributes.Set("y", s)
 	return e
 }
 
@@ -255,19 +255,19 @@ func (e *SVGFilterElement) IfYF(condition bool, format string, args ...any) *SVG
 // The y attribute indicates where the top edge of the filter is placed.
 // Remove the attribute Y from the element.
 func (e *SVGFilterElement) YRemove() *SVGFilterElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("y")
+	e.stringAttributes.Del("y")
 	return e
 }
 
 // The width attribute indicates the width of the filter primitive box.
 func (e *SVGFilterElement) Width(s string) *SVGFilterElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("width", s)
+	e.stringAttributes.Set("width", s)
 	return e
 }
 
@@ -295,19 +295,19 @@ func (e *SVGFilterElement) IfWidthF(condition bool, format string, args ...any) 
 // The width attribute indicates the width of the filter primitive box.
 // Remove the attribute Width from the element.
 func (e *SVGFilterElement) WidthRemove() *SVGFilterElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("width")
+	e.stringAttributes.Del("width")
 	return e
 }
 
 // The height attribute indicates the height of the filter primitive box.
 func (e *SVGFilterElement) Height(s string) *SVGFilterElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("height", s)
+	e.stringAttributes.Set("height", s)
 	return e
 }
 
@@ -335,19 +335,19 @@ func (e *SVGFilterElement) IfHeightF(condition bool, format string, args ...any)
 // The height attribute indicates the height of the filter primitive box.
 // Remove the attribute Height from the element.
 func (e *SVGFilterElement) HeightRemove() *SVGFilterElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("height")
+	e.stringAttributes.Del("height")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGFilterElement) ID(s string) *SVGFilterElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -375,10 +375,10 @@ func (e *SVGFilterElement) IfIDF(condition bool, format string, args ...any) *SV
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGFilterElement) IDRemove() *SVGFilterElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -386,13 +386,13 @@ func (e *SVGFilterElement) IDRemove() *SVGFilterElement {
 // sheet)
 func (e *SVGFilterElement) Class(s string) *SVGFilterElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -411,10 +411,10 @@ func (e *SVGFilterElement) IfClass(condition bool, s string) *SVGFilterElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGFilterElement) ClassRemove(s ...string) *SVGFilterElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -427,13 +427,13 @@ func (e *SVGFilterElement) StylePairs(pairs ...string) *SVGFilterElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -448,13 +448,13 @@ func (e *SVGFilterElement) StylePairs(pairs ...string) *SVGFilterElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGFilterElement) Style(s string) *SVGFilterElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -478,13 +478,13 @@ func (e *SVGFilterElement) IfStyle(condition bool, s string) *SVGFilterElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGFilterElement) StyleAdd(k string, v string) *SVGFilterElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -514,13 +514,13 @@ func (e *SVGFilterElement) IfStyleAddF(condition bool, k string, format string, 
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGFilterElement) StyleMap(m map[string]string) *SVGFilterElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -536,10 +536,10 @@ func (e *SVGFilterElement) StyleMap(m map[string]string) *SVGFilterElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGFilterElement) StyleRemove(keys ...string) *SVGFilterElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

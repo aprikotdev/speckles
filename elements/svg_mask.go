@@ -21,37 +21,37 @@ type SVGMaskElement struct {
 // with the tag "mask" during rendering.
 func SVGMask(children ...ElementRenderer) *SVGMaskElement {
 	e := NewElement("mask", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGMaskElement{Element: e}
 }
 
 func (e *SVGMaskElement) Children(children ...ElementRenderer) *SVGMaskElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGMaskElement) IfChildren(condition bool, children ...ElementRenderer) *SVGMaskElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGMaskElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGMaskElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGMaskElement) BoolAttr(name string) *SVGMaskElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -63,10 +63,10 @@ func (e *SVGMaskElement) IfBoolAttr(condition bool, name string) *SVGMaskElement
 }
 
 func (e *SVGMaskElement) Attr(name, value string) *SVGMaskElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -78,7 +78,7 @@ func (e *SVGMaskElement) IfAttr(condition bool, name, value string) *SVGMaskElem
 }
 
 func (e *SVGMaskElement) Text(text string) *SVGMaskElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -88,26 +88,26 @@ func (e *SVGMaskElement) TextF(format string, args ...any) *SVGMaskElement {
 
 func (e *SVGMaskElement) IfText(condition bool, text string) *SVGMaskElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGMaskElement) IfTextF(condition bool, format string, args ...any) *SVGMaskElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGMaskElement) Escaped(text string) *SVGMaskElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGMaskElement) IfEscaped(condition bool, text string) *SVGMaskElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -118,17 +118,17 @@ func (e *SVGMaskElement) EscapedF(format string, args ...any) *SVGMaskElement {
 
 func (e *SVGMaskElement) IfEscapedF(condition bool, format string, args ...any) *SVGMaskElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The coordinate system for attributes x, y, width and height.
 func (e *SVGMaskElement) MaskContentUnits(c SVGMaskMaskContentUnitsChoice) *SVGMaskElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("maskContentUnits", string(c))
+	e.stringAttributes.Set("maskContentUnits", string(c))
 	return e
 }
 
@@ -144,19 +144,19 @@ const (
 // The coordinate system for attributes x, y, width and height.
 // Remove the attribute MaskContentUnits from the element.
 func (e *SVGMaskElement) MaskContentUnitsRemove() *SVGMaskElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("maskContentUnits")
+	e.stringAttributes.Del("maskContentUnits")
 	return e
 }
 
 // The coordinate system for the various length values within the filter.
 func (e *SVGMaskElement) MaskUnits(c SVGMaskMaskUnitsChoice) *SVGMaskElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("maskUnits", string(c))
+	e.stringAttributes.Set("maskUnits", string(c))
 	return e
 }
 
@@ -172,20 +172,20 @@ const (
 // The coordinate system for the various length values within the filter.
 // Remove the attribute MaskUnits from the element.
 func (e *SVGMaskElement) MaskUnitsRemove() *SVGMaskElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("maskUnits")
+	e.stringAttributes.Del("maskUnits")
 	return e
 }
 
 // The x-axis coordinate of the side of the rectangular region which is closest
 // to the user.
 func (e *SVGMaskElement) X(s string) *SVGMaskElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("x", s)
+	e.stringAttributes.Set("x", s)
 	return e
 }
 
@@ -217,20 +217,20 @@ func (e *SVGMaskElement) IfXF(condition bool, format string, args ...any) *SVGMa
 // to the user.
 // Remove the attribute X from the element.
 func (e *SVGMaskElement) XRemove() *SVGMaskElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("x")
+	e.stringAttributes.Del("x")
 	return e
 }
 
 // The y-axis coordinate of the side of the rectangular region which is closest
 // to the user.
 func (e *SVGMaskElement) Y(s string) *SVGMaskElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("y", s)
+	e.stringAttributes.Set("y", s)
 	return e
 }
 
@@ -262,19 +262,19 @@ func (e *SVGMaskElement) IfYF(condition bool, format string, args ...any) *SVGMa
 // to the user.
 // Remove the attribute Y from the element.
 func (e *SVGMaskElement) YRemove() *SVGMaskElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("y")
+	e.stringAttributes.Del("y")
 	return e
 }
 
 // The width of the rectangular region.
 func (e *SVGMaskElement) Width(s string) *SVGMaskElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("width", s)
+	e.stringAttributes.Set("width", s)
 	return e
 }
 
@@ -302,19 +302,19 @@ func (e *SVGMaskElement) IfWidthF(condition bool, format string, args ...any) *S
 // The width of the rectangular region.
 // Remove the attribute Width from the element.
 func (e *SVGMaskElement) WidthRemove() *SVGMaskElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("width")
+	e.stringAttributes.Del("width")
 	return e
 }
 
 // The height of the rectangular region.
 func (e *SVGMaskElement) Height(s string) *SVGMaskElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("height", s)
+	e.stringAttributes.Set("height", s)
 	return e
 }
 
@@ -342,19 +342,19 @@ func (e *SVGMaskElement) IfHeightF(condition bool, format string, args ...any) *
 // The height of the rectangular region.
 // Remove the attribute Height from the element.
 func (e *SVGMaskElement) HeightRemove() *SVGMaskElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("height")
+	e.stringAttributes.Del("height")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGMaskElement) ID(s string) *SVGMaskElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -382,10 +382,10 @@ func (e *SVGMaskElement) IfIDF(condition bool, format string, args ...any) *SVGM
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGMaskElement) IDRemove() *SVGMaskElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -393,13 +393,13 @@ func (e *SVGMaskElement) IDRemove() *SVGMaskElement {
 // sheet)
 func (e *SVGMaskElement) Class(s string) *SVGMaskElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -418,10 +418,10 @@ func (e *SVGMaskElement) IfClass(condition bool, s string) *SVGMaskElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGMaskElement) ClassRemove(s ...string) *SVGMaskElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -434,13 +434,13 @@ func (e *SVGMaskElement) StylePairs(pairs ...string) *SVGMaskElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -455,13 +455,13 @@ func (e *SVGMaskElement) StylePairs(pairs ...string) *SVGMaskElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGMaskElement) Style(s string) *SVGMaskElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -485,13 +485,13 @@ func (e *SVGMaskElement) IfStyle(condition bool, s string) *SVGMaskElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGMaskElement) StyleAdd(k string, v string) *SVGMaskElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -521,13 +521,13 @@ func (e *SVGMaskElement) IfStyleAddF(condition bool, k string, format string, ar
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGMaskElement) StyleMap(m map[string]string) *SVGMaskElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -543,10 +543,10 @@ func (e *SVGMaskElement) StyleMap(m map[string]string) *SVGMaskElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGMaskElement) StyleRemove(keys ...string) *SVGMaskElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

@@ -23,37 +23,37 @@ type SVGFeTurbulenceElement struct {
 // with the tag "feTurbulence" during rendering.
 func SVGFeTurbulence(children ...ElementRenderer) *SVGFeTurbulenceElement {
 	e := NewElement("feTurbulence", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGFeTurbulenceElement{Element: e}
 }
 
 func (e *SVGFeTurbulenceElement) Children(children ...ElementRenderer) *SVGFeTurbulenceElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGFeTurbulenceElement) IfChildren(condition bool, children ...ElementRenderer) *SVGFeTurbulenceElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGFeTurbulenceElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGFeTurbulenceElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGFeTurbulenceElement) BoolAttr(name string) *SVGFeTurbulenceElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -65,10 +65,10 @@ func (e *SVGFeTurbulenceElement) IfBoolAttr(condition bool, name string) *SVGFeT
 }
 
 func (e *SVGFeTurbulenceElement) Attr(name, value string) *SVGFeTurbulenceElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -80,7 +80,7 @@ func (e *SVGFeTurbulenceElement) IfAttr(condition bool, name, value string) *SVG
 }
 
 func (e *SVGFeTurbulenceElement) Text(text string) *SVGFeTurbulenceElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -90,26 +90,26 @@ func (e *SVGFeTurbulenceElement) TextF(format string, args ...any) *SVGFeTurbule
 
 func (e *SVGFeTurbulenceElement) IfText(condition bool, text string) *SVGFeTurbulenceElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGFeTurbulenceElement) IfTextF(condition bool, format string, args ...any) *SVGFeTurbulenceElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGFeTurbulenceElement) Escaped(text string) *SVGFeTurbulenceElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGFeTurbulenceElement) IfEscaped(condition bool, text string) *SVGFeTurbulenceElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -120,7 +120,7 @@ func (e *SVGFeTurbulenceElement) EscapedF(format string, args ...any) *SVGFeTurb
 
 func (e *SVGFeTurbulenceElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeTurbulenceElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -128,10 +128,10 @@ func (e *SVGFeTurbulenceElement) IfEscapedF(condition bool, format string, args 
 // The baseFrequency attribute represent the base frequencies in the X and Y
 // directions of the turbulence function.
 func (e *SVGFeTurbulenceElement) BaseFrequency(s string) *SVGFeTurbulenceElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("baseFrequency", s)
+	e.stringAttributes.Set("baseFrequency", s)
 	return e
 }
 
@@ -163,20 +163,20 @@ func (e *SVGFeTurbulenceElement) IfBaseFrequencyF(condition bool, format string,
 // directions of the turbulence function.
 // Remove the attribute BaseFrequency from the element.
 func (e *SVGFeTurbulenceElement) BaseFrequencyRemove() *SVGFeTurbulenceElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("baseFrequency")
+	e.stringAttributes.Del("baseFrequency")
 	return e
 }
 
 // The numOctaves attribute indicates the number of octaves to be used by the
 // noise function.
 func (e *SVGFeTurbulenceElement) NumOctaves(f float64) *SVGFeTurbulenceElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("numOctaves", f)
+	e.floatAttributes.Set("numOctaves", f)
 	return e
 }
 
@@ -192,10 +192,10 @@ func (e *SVGFeTurbulenceElement) IfNumOctaves(condition bool, f float64) *SVGFeT
 // The seed attribute indicates which number to use to seed the random number
 // generator.
 func (e *SVGFeTurbulenceElement) Seed(f float64) *SVGFeTurbulenceElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("seed", f)
+	e.floatAttributes.Set("seed", f)
 	return e
 }
 
@@ -211,10 +211,10 @@ func (e *SVGFeTurbulenceElement) IfSeed(condition bool, f float64) *SVGFeTurbule
 // The stitchTiles attribute indicates how the Perlin noise function should be
 // tiled. It is ignored if type is not set to 'turbulence'.
 func (e *SVGFeTurbulenceElement) StitchTiles(c SVGFeTurbulenceStitchTilesChoice) *SVGFeTurbulenceElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("stitchTiles", string(c))
+	e.stringAttributes.Set("stitchTiles", string(c))
 	return e
 }
 
@@ -235,19 +235,19 @@ const (
 // tiled. It is ignored if type is not set to 'turbulence'.
 // Remove the attribute StitchTiles from the element.
 func (e *SVGFeTurbulenceElement) StitchTilesRemove() *SVGFeTurbulenceElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("stitchTiles")
+	e.stringAttributes.Del("stitchTiles")
 	return e
 }
 
 // The type of turbulence function.
 func (e *SVGFeTurbulenceElement) Type(c SVGFeTurbulenceTypeChoice) *SVGFeTurbulenceElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("type", string(c))
+	e.stringAttributes.Set("type", string(c))
 	return e
 }
 
@@ -263,19 +263,19 @@ const (
 // The type of turbulence function.
 // Remove the attribute Type from the element.
 func (e *SVGFeTurbulenceElement) TypeRemove() *SVGFeTurbulenceElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("type")
+	e.stringAttributes.Del("type")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGFeTurbulenceElement) ID(s string) *SVGFeTurbulenceElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -303,10 +303,10 @@ func (e *SVGFeTurbulenceElement) IfIDF(condition bool, format string, args ...an
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGFeTurbulenceElement) IDRemove() *SVGFeTurbulenceElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -314,13 +314,13 @@ func (e *SVGFeTurbulenceElement) IDRemove() *SVGFeTurbulenceElement {
 // sheet)
 func (e *SVGFeTurbulenceElement) Class(s string) *SVGFeTurbulenceElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -339,10 +339,10 @@ func (e *SVGFeTurbulenceElement) IfClass(condition bool, s string) *SVGFeTurbule
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGFeTurbulenceElement) ClassRemove(s ...string) *SVGFeTurbulenceElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -355,13 +355,13 @@ func (e *SVGFeTurbulenceElement) StylePairs(pairs ...string) *SVGFeTurbulenceEle
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -376,13 +376,13 @@ func (e *SVGFeTurbulenceElement) StylePairs(pairs ...string) *SVGFeTurbulenceEle
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeTurbulenceElement) Style(s string) *SVGFeTurbulenceElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -406,13 +406,13 @@ func (e *SVGFeTurbulenceElement) IfStyle(condition bool, s string) *SVGFeTurbule
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeTurbulenceElement) StyleAdd(k string, v string) *SVGFeTurbulenceElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -442,13 +442,13 @@ func (e *SVGFeTurbulenceElement) IfStyleAddF(condition bool, k string, format st
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGFeTurbulenceElement) StyleMap(m map[string]string) *SVGFeTurbulenceElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -464,10 +464,10 @@ func (e *SVGFeTurbulenceElement) StyleMap(m map[string]string) *SVGFeTurbulenceE
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGFeTurbulenceElement) StyleRemove(keys ...string) *SVGFeTurbulenceElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

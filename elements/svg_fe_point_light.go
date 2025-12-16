@@ -22,37 +22,37 @@ type SVGFePointLightElement struct {
 // with the tag "fePointLight" during rendering.
 func SVGFePointLight(children ...ElementRenderer) *SVGFePointLightElement {
 	e := NewElement("fePointLight", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGFePointLightElement{Element: e}
 }
 
 func (e *SVGFePointLightElement) Children(children ...ElementRenderer) *SVGFePointLightElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGFePointLightElement) IfChildren(condition bool, children ...ElementRenderer) *SVGFePointLightElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGFePointLightElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGFePointLightElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGFePointLightElement) BoolAttr(name string) *SVGFePointLightElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *SVGFePointLightElement) IfBoolAttr(condition bool, name string) *SVGFeP
 }
 
 func (e *SVGFePointLightElement) Attr(name, value string) *SVGFePointLightElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *SVGFePointLightElement) IfAttr(condition bool, name, value string) *SVG
 }
 
 func (e *SVGFePointLightElement) Text(text string) *SVGFePointLightElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *SVGFePointLightElement) TextF(format string, args ...any) *SVGFePointLi
 
 func (e *SVGFePointLightElement) IfText(condition bool, text string) *SVGFePointLightElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGFePointLightElement) IfTextF(condition bool, format string, args ...any) *SVGFePointLightElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGFePointLightElement) Escaped(text string) *SVGFePointLightElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGFePointLightElement) IfEscaped(condition bool, text string) *SVGFePointLightElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,7 +119,7 @@ func (e *SVGFePointLightElement) EscapedF(format string, args ...any) *SVGFePoin
 
 func (e *SVGFePointLightElement) IfEscapedF(condition bool, format string, args ...any) *SVGFePointLightElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -128,10 +128,10 @@ func (e *SVGFePointLightElement) IfEscapedF(condition bool, format string, args 
 // coordinate system established by attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFePointLightElement) X(f float64) *SVGFePointLightElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("x", f)
+	e.floatAttributes.Set("x", f)
 	return e
 }
 
@@ -149,10 +149,10 @@ func (e *SVGFePointLightElement) IfX(condition bool, f float64) *SVGFePointLight
 // coordinate system established by attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFePointLightElement) Y(f float64) *SVGFePointLightElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("y", f)
+	e.floatAttributes.Set("y", f)
 	return e
 }
 
@@ -170,10 +170,10 @@ func (e *SVGFePointLightElement) IfY(condition bool, f float64) *SVGFePointLight
 // coordinate system established by attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFePointLightElement) Z(f float64) *SVGFePointLightElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("z", f)
+	e.floatAttributes.Set("z", f)
 	return e
 }
 
@@ -189,10 +189,10 @@ func (e *SVGFePointLightElement) IfZ(condition bool, f float64) *SVGFePointLight
 
 // Specifies a unique id for an element
 func (e *SVGFePointLightElement) ID(s string) *SVGFePointLightElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -220,10 +220,10 @@ func (e *SVGFePointLightElement) IfIDF(condition bool, format string, args ...an
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGFePointLightElement) IDRemove() *SVGFePointLightElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -231,13 +231,13 @@ func (e *SVGFePointLightElement) IDRemove() *SVGFePointLightElement {
 // sheet)
 func (e *SVGFePointLightElement) Class(s string) *SVGFePointLightElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -256,10 +256,10 @@ func (e *SVGFePointLightElement) IfClass(condition bool, s string) *SVGFePointLi
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGFePointLightElement) ClassRemove(s ...string) *SVGFePointLightElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -272,13 +272,13 @@ func (e *SVGFePointLightElement) StylePairs(pairs ...string) *SVGFePointLightEle
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -293,13 +293,13 @@ func (e *SVGFePointLightElement) StylePairs(pairs ...string) *SVGFePointLightEle
 
 // Specifies an inline CSS style for an element
 func (e *SVGFePointLightElement) Style(s string) *SVGFePointLightElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -323,13 +323,13 @@ func (e *SVGFePointLightElement) IfStyle(condition bool, s string) *SVGFePointLi
 
 // Specifies an inline CSS style for an element
 func (e *SVGFePointLightElement) StyleAdd(k string, v string) *SVGFePointLightElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -359,13 +359,13 @@ func (e *SVGFePointLightElement) IfStyleAddF(condition bool, k string, format st
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGFePointLightElement) StyleMap(m map[string]string) *SVGFePointLightElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -381,10 +381,10 @@ func (e *SVGFePointLightElement) StyleMap(m map[string]string) *SVGFePointLightE
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGFePointLightElement) StyleRemove(keys ...string) *SVGFePointLightElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

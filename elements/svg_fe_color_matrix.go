@@ -23,37 +23,37 @@ type SVGFeColorMatrixElement struct {
 // with the tag "feColorMatrix" during rendering.
 func SVGFeColorMatrix(children ...ElementRenderer) *SVGFeColorMatrixElement {
 	e := NewElement("feColorMatrix", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGFeColorMatrixElement{Element: e}
 }
 
 func (e *SVGFeColorMatrixElement) Children(children ...ElementRenderer) *SVGFeColorMatrixElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGFeColorMatrixElement) IfChildren(condition bool, children ...ElementRenderer) *SVGFeColorMatrixElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGFeColorMatrixElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGFeColorMatrixElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGFeColorMatrixElement) BoolAttr(name string) *SVGFeColorMatrixElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -65,10 +65,10 @@ func (e *SVGFeColorMatrixElement) IfBoolAttr(condition bool, name string) *SVGFe
 }
 
 func (e *SVGFeColorMatrixElement) Attr(name, value string) *SVGFeColorMatrixElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -80,7 +80,7 @@ func (e *SVGFeColorMatrixElement) IfAttr(condition bool, name, value string) *SV
 }
 
 func (e *SVGFeColorMatrixElement) Text(text string) *SVGFeColorMatrixElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -90,26 +90,26 @@ func (e *SVGFeColorMatrixElement) TextF(format string, args ...any) *SVGFeColorM
 
 func (e *SVGFeColorMatrixElement) IfText(condition bool, text string) *SVGFeColorMatrixElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGFeColorMatrixElement) IfTextF(condition bool, format string, args ...any) *SVGFeColorMatrixElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGFeColorMatrixElement) Escaped(text string) *SVGFeColorMatrixElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGFeColorMatrixElement) IfEscaped(condition bool, text string) *SVGFeColorMatrixElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -120,17 +120,17 @@ func (e *SVGFeColorMatrixElement) EscapedF(format string, args ...any) *SVGFeCol
 
 func (e *SVGFeColorMatrixElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeColorMatrixElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The input for this filter.
 func (e *SVGFeColorMatrixElement) In(s string) *SVGFeColorMatrixElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("in", s)
+	e.stringAttributes.Set("in", s)
 	return e
 }
 
@@ -158,19 +158,19 @@ func (e *SVGFeColorMatrixElement) IfInF(condition bool, format string, args ...a
 // The input for this filter.
 // Remove the attribute In from the element.
 func (e *SVGFeColorMatrixElement) InRemove() *SVGFeColorMatrixElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("in")
+	e.stringAttributes.Del("in")
 	return e
 }
 
 // The type of matrix operation.
 func (e *SVGFeColorMatrixElement) Type(c SVGFeColorMatrixTypeChoice) *SVGFeColorMatrixElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("type", string(c))
+	e.stringAttributes.Set("type", string(c))
 	return e
 }
 
@@ -190,19 +190,19 @@ const (
 // The type of matrix operation.
 // Remove the attribute Type from the element.
 func (e *SVGFeColorMatrixElement) TypeRemove() *SVGFeColorMatrixElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("type")
+	e.stringAttributes.Del("type")
 	return e
 }
 
 // The list of one or more numbers that represent the matrix.
 func (e *SVGFeColorMatrixElement) Values(s string) *SVGFeColorMatrixElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("values", s)
+	e.stringAttributes.Set("values", s)
 	return e
 }
 
@@ -230,19 +230,19 @@ func (e *SVGFeColorMatrixElement) IfValuesF(condition bool, format string, args 
 // The list of one or more numbers that represent the matrix.
 // Remove the attribute Values from the element.
 func (e *SVGFeColorMatrixElement) ValuesRemove() *SVGFeColorMatrixElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("values")
+	e.stringAttributes.Del("values")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGFeColorMatrixElement) ID(s string) *SVGFeColorMatrixElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -270,10 +270,10 @@ func (e *SVGFeColorMatrixElement) IfIDF(condition bool, format string, args ...a
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGFeColorMatrixElement) IDRemove() *SVGFeColorMatrixElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -281,13 +281,13 @@ func (e *SVGFeColorMatrixElement) IDRemove() *SVGFeColorMatrixElement {
 // sheet)
 func (e *SVGFeColorMatrixElement) Class(s string) *SVGFeColorMatrixElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -306,10 +306,10 @@ func (e *SVGFeColorMatrixElement) IfClass(condition bool, s string) *SVGFeColorM
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGFeColorMatrixElement) ClassRemove(s ...string) *SVGFeColorMatrixElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -322,13 +322,13 @@ func (e *SVGFeColorMatrixElement) StylePairs(pairs ...string) *SVGFeColorMatrixE
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -343,13 +343,13 @@ func (e *SVGFeColorMatrixElement) StylePairs(pairs ...string) *SVGFeColorMatrixE
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeColorMatrixElement) Style(s string) *SVGFeColorMatrixElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -373,13 +373,13 @@ func (e *SVGFeColorMatrixElement) IfStyle(condition bool, s string) *SVGFeColorM
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeColorMatrixElement) StyleAdd(k string, v string) *SVGFeColorMatrixElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -409,13 +409,13 @@ func (e *SVGFeColorMatrixElement) IfStyleAddF(condition bool, k string, format s
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGFeColorMatrixElement) StyleMap(m map[string]string) *SVGFeColorMatrixElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -431,10 +431,10 @@ func (e *SVGFeColorMatrixElement) StyleMap(m map[string]string) *SVGFeColorMatri
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGFeColorMatrixElement) StyleRemove(keys ...string) *SVGFeColorMatrixElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

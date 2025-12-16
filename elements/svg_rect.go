@@ -23,37 +23,37 @@ type SVGRectElement struct {
 // with the tag "rect" during rendering.
 func SVGRect(children ...ElementRenderer) *SVGRectElement {
 	e := NewElement("rect", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGRectElement{Element: e}
 }
 
 func (e *SVGRectElement) Children(children ...ElementRenderer) *SVGRectElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGRectElement) IfChildren(condition bool, children ...ElementRenderer) *SVGRectElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGRectElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGRectElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGRectElement) BoolAttr(name string) *SVGRectElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -65,10 +65,10 @@ func (e *SVGRectElement) IfBoolAttr(condition bool, name string) *SVGRectElement
 }
 
 func (e *SVGRectElement) Attr(name, value string) *SVGRectElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -80,7 +80,7 @@ func (e *SVGRectElement) IfAttr(condition bool, name, value string) *SVGRectElem
 }
 
 func (e *SVGRectElement) Text(text string) *SVGRectElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -90,26 +90,26 @@ func (e *SVGRectElement) TextF(format string, args ...any) *SVGRectElement {
 
 func (e *SVGRectElement) IfText(condition bool, text string) *SVGRectElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGRectElement) IfTextF(condition bool, format string, args ...any) *SVGRectElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGRectElement) Escaped(text string) *SVGRectElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGRectElement) IfEscaped(condition bool, text string) *SVGRectElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -120,7 +120,7 @@ func (e *SVGRectElement) EscapedF(format string, args ...any) *SVGRectElement {
 
 func (e *SVGRectElement) IfEscapedF(condition bool, format string, args ...any) *SVGRectElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -128,10 +128,10 @@ func (e *SVGRectElement) IfEscapedF(condition bool, format string, args ...any) 
 // The x-axis coordinate of the side of the rectangle which has the smaller
 // x-axis value.
 func (e *SVGRectElement) X(f float64) *SVGRectElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("x", f)
+	e.floatAttributes.Set("x", f)
 	return e
 }
 
@@ -147,10 +147,10 @@ func (e *SVGRectElement) IfX(condition bool, f float64) *SVGRectElement {
 // The y-axis coordinate of the side of the rectangle which has the smaller
 // y-axis value.
 func (e *SVGRectElement) Y(f float64) *SVGRectElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("y", f)
+	e.floatAttributes.Set("y", f)
 	return e
 }
 
@@ -165,10 +165,10 @@ func (e *SVGRectElement) IfY(condition bool, f float64) *SVGRectElement {
 
 // The width of the rectangle.
 func (e *SVGRectElement) Width(f float64) *SVGRectElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("width", f)
+	e.floatAttributes.Set("width", f)
 	return e
 }
 
@@ -182,10 +182,10 @@ func (e *SVGRectElement) IfWidth(condition bool, f float64) *SVGRectElement {
 
 // The height of the rectangle.
 func (e *SVGRectElement) Height(f float64) *SVGRectElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("height", f)
+	e.floatAttributes.Set("height", f)
 	return e
 }
 
@@ -200,10 +200,10 @@ func (e *SVGRectElement) IfHeight(condition bool, f float64) *SVGRectElement {
 // The x-axis radius of the ellipse used to round off the corners of the
 // rectangle.
 func (e *SVGRectElement) Rx(f float64) *SVGRectElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("rx", f)
+	e.floatAttributes.Set("rx", f)
 	return e
 }
 
@@ -219,10 +219,10 @@ func (e *SVGRectElement) IfRx(condition bool, f float64) *SVGRectElement {
 // The y-axis radius of the ellipse used to round off the corners of the
 // rectangle.
 func (e *SVGRectElement) Ry(f float64) *SVGRectElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("ry", f)
+	e.floatAttributes.Set("ry", f)
 	return e
 }
 
@@ -237,10 +237,10 @@ func (e *SVGRectElement) IfRy(condition bool, f float64) *SVGRectElement {
 
 // Specifies a unique id for an element
 func (e *SVGRectElement) ID(s string) *SVGRectElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -268,10 +268,10 @@ func (e *SVGRectElement) IfIDF(condition bool, format string, args ...any) *SVGR
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGRectElement) IDRemove() *SVGRectElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -279,13 +279,13 @@ func (e *SVGRectElement) IDRemove() *SVGRectElement {
 // sheet)
 func (e *SVGRectElement) Class(s string) *SVGRectElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -304,10 +304,10 @@ func (e *SVGRectElement) IfClass(condition bool, s string) *SVGRectElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGRectElement) ClassRemove(s ...string) *SVGRectElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -320,13 +320,13 @@ func (e *SVGRectElement) StylePairs(pairs ...string) *SVGRectElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -341,13 +341,13 @@ func (e *SVGRectElement) StylePairs(pairs ...string) *SVGRectElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGRectElement) Style(s string) *SVGRectElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -371,13 +371,13 @@ func (e *SVGRectElement) IfStyle(condition bool, s string) *SVGRectElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGRectElement) StyleAdd(k string, v string) *SVGRectElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -407,13 +407,13 @@ func (e *SVGRectElement) IfStyleAddF(condition bool, k string, format string, ar
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGRectElement) StyleMap(m map[string]string) *SVGRectElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -429,10 +429,10 @@ func (e *SVGRectElement) StyleMap(m map[string]string) *SVGRectElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGRectElement) StyleRemove(keys ...string) *SVGRectElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

@@ -29,37 +29,37 @@ type SVGSymbolElement struct {
 // with the tag "symbol" during rendering.
 func SVGSymbol(children ...ElementRenderer) *SVGSymbolElement {
 	e := NewElement("symbol", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGSymbolElement{Element: e}
 }
 
 func (e *SVGSymbolElement) Children(children ...ElementRenderer) *SVGSymbolElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGSymbolElement) IfChildren(condition bool, children ...ElementRenderer) *SVGSymbolElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGSymbolElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGSymbolElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGSymbolElement) BoolAttr(name string) *SVGSymbolElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -71,10 +71,10 @@ func (e *SVGSymbolElement) IfBoolAttr(condition bool, name string) *SVGSymbolEle
 }
 
 func (e *SVGSymbolElement) Attr(name, value string) *SVGSymbolElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -86,7 +86,7 @@ func (e *SVGSymbolElement) IfAttr(condition bool, name, value string) *SVGSymbol
 }
 
 func (e *SVGSymbolElement) Text(text string) *SVGSymbolElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -96,26 +96,26 @@ func (e *SVGSymbolElement) TextF(format string, args ...any) *SVGSymbolElement {
 
 func (e *SVGSymbolElement) IfText(condition bool, text string) *SVGSymbolElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGSymbolElement) IfTextF(condition bool, format string, args ...any) *SVGSymbolElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGSymbolElement) Escaped(text string) *SVGSymbolElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGSymbolElement) IfEscaped(condition bool, text string) *SVGSymbolElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -126,17 +126,17 @@ func (e *SVGSymbolElement) EscapedF(format string, args ...any) *SVGSymbolElemen
 
 func (e *SVGSymbolElement) IfEscapedF(condition bool, format string, args ...any) *SVGSymbolElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // Indicates how the fetched image is fitted into the destination rectangle.
 func (e *SVGSymbolElement) PreserveAspectRatio(c SVGSymbolPreserveAspectRatioChoice) *SVGSymbolElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("preserveAspectRatio", string(c))
+	e.stringAttributes.Set("preserveAspectRatio", string(c))
 	return e
 }
 
@@ -174,19 +174,19 @@ const (
 // Indicates how the fetched image is fitted into the destination rectangle.
 // Remove the attribute PreserveAspectRatio from the element.
 func (e *SVGSymbolElement) PreserveAspectRatioRemove() *SVGSymbolElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("preserveAspectRatio")
+	e.stringAttributes.Del("preserveAspectRatio")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGSymbolElement) ID(s string) *SVGSymbolElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -214,10 +214,10 @@ func (e *SVGSymbolElement) IfIDF(condition bool, format string, args ...any) *SV
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGSymbolElement) IDRemove() *SVGSymbolElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -225,13 +225,13 @@ func (e *SVGSymbolElement) IDRemove() *SVGSymbolElement {
 // sheet)
 func (e *SVGSymbolElement) Class(s string) *SVGSymbolElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -250,10 +250,10 @@ func (e *SVGSymbolElement) IfClass(condition bool, s string) *SVGSymbolElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGSymbolElement) ClassRemove(s ...string) *SVGSymbolElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -266,13 +266,13 @@ func (e *SVGSymbolElement) StylePairs(pairs ...string) *SVGSymbolElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -287,13 +287,13 @@ func (e *SVGSymbolElement) StylePairs(pairs ...string) *SVGSymbolElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGSymbolElement) Style(s string) *SVGSymbolElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -317,13 +317,13 @@ func (e *SVGSymbolElement) IfStyle(condition bool, s string) *SVGSymbolElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGSymbolElement) StyleAdd(k string, v string) *SVGSymbolElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -353,13 +353,13 @@ func (e *SVGSymbolElement) IfStyleAddF(condition bool, k string, format string, 
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGSymbolElement) StyleMap(m map[string]string) *SVGSymbolElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -375,10 +375,10 @@ func (e *SVGSymbolElement) StyleMap(m map[string]string) *SVGSymbolElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGSymbolElement) StyleRemove(keys ...string) *SVGSymbolElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

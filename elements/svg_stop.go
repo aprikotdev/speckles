@@ -23,37 +23,37 @@ type SVGStopElement struct {
 // with the tag "stop" during rendering.
 func SVGStop(children ...ElementRenderer) *SVGStopElement {
 	e := NewElement("stop", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGStopElement{Element: e}
 }
 
 func (e *SVGStopElement) Children(children ...ElementRenderer) *SVGStopElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGStopElement) IfChildren(condition bool, children ...ElementRenderer) *SVGStopElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGStopElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGStopElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGStopElement) BoolAttr(name string) *SVGStopElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -65,10 +65,10 @@ func (e *SVGStopElement) IfBoolAttr(condition bool, name string) *SVGStopElement
 }
 
 func (e *SVGStopElement) Attr(name, value string) *SVGStopElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -80,7 +80,7 @@ func (e *SVGStopElement) IfAttr(condition bool, name, value string) *SVGStopElem
 }
 
 func (e *SVGStopElement) Text(text string) *SVGStopElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -90,26 +90,26 @@ func (e *SVGStopElement) TextF(format string, args ...any) *SVGStopElement {
 
 func (e *SVGStopElement) IfText(condition bool, text string) *SVGStopElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGStopElement) IfTextF(condition bool, format string, args ...any) *SVGStopElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGStopElement) Escaped(text string) *SVGStopElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGStopElement) IfEscaped(condition bool, text string) *SVGStopElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -120,17 +120,17 @@ func (e *SVGStopElement) EscapedF(format string, args ...any) *SVGStopElement {
 
 func (e *SVGStopElement) IfEscapedF(condition bool, format string, args ...any) *SVGStopElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The offset from the start of the gradient where the color first takes effect.
 func (e *SVGStopElement) Offset(f float64) *SVGStopElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("offset", f)
+	e.floatAttributes.Set("offset", f)
 	return e
 }
 
@@ -144,10 +144,10 @@ func (e *SVGStopElement) IfOffset(condition bool, f float64) *SVGStopElement {
 
 // The color of the gradient stop.
 func (e *SVGStopElement) StopColor(s string) *SVGStopElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("stop-color", s)
+	e.stringAttributes.Set("stop-color", s)
 	return e
 }
 
@@ -175,19 +175,19 @@ func (e *SVGStopElement) IfStopColorF(condition bool, format string, args ...any
 // The color of the gradient stop.
 // Remove the attribute StopColor from the element.
 func (e *SVGStopElement) StopColorRemove() *SVGStopElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("stop-color")
+	e.stringAttributes.Del("stop-color")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGStopElement) ID(s string) *SVGStopElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -215,10 +215,10 @@ func (e *SVGStopElement) IfIDF(condition bool, format string, args ...any) *SVGS
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGStopElement) IDRemove() *SVGStopElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -226,13 +226,13 @@ func (e *SVGStopElement) IDRemove() *SVGStopElement {
 // sheet)
 func (e *SVGStopElement) Class(s string) *SVGStopElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -251,10 +251,10 @@ func (e *SVGStopElement) IfClass(condition bool, s string) *SVGStopElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGStopElement) ClassRemove(s ...string) *SVGStopElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -267,13 +267,13 @@ func (e *SVGStopElement) StylePairs(pairs ...string) *SVGStopElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -288,13 +288,13 @@ func (e *SVGStopElement) StylePairs(pairs ...string) *SVGStopElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGStopElement) Style(s string) *SVGStopElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -318,13 +318,13 @@ func (e *SVGStopElement) IfStyle(condition bool, s string) *SVGStopElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGStopElement) StyleAdd(k string, v string) *SVGStopElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -354,13 +354,13 @@ func (e *SVGStopElement) IfStyleAddF(condition bool, k string, format string, ar
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGStopElement) StyleMap(m map[string]string) *SVGStopElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -376,10 +376,10 @@ func (e *SVGStopElement) StyleMap(m map[string]string) *SVGStopElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGStopElement) StyleRemove(keys ...string) *SVGStopElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

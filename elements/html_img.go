@@ -21,37 +21,37 @@ type ImgElement struct {
 // with the tag "img" during rendering.
 func Img() *ImgElement {
 	e := NewElement("img")
-	e.IsSelfClosing = true
+	e.isSelfClosing = true
 
 	return &ImgElement{Element: e}
 }
 
 func (e *ImgElement) Children(children ...ElementRenderer) *ImgElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *ImgElement) IfChildren(condition bool, children ...ElementRenderer) *ImgElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *ImgElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *ImgElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *ImgElement) BoolAttr(name string) *ImgElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -63,10 +63,10 @@ func (e *ImgElement) IfBoolAttr(condition bool, name string) *ImgElement {
 }
 
 func (e *ImgElement) Attr(name, value string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -78,7 +78,7 @@ func (e *ImgElement) IfAttr(condition bool, name, value string) *ImgElement {
 }
 
 func (e *ImgElement) Text(text string) *ImgElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -88,26 +88,26 @@ func (e *ImgElement) TextF(format string, args ...any) *ImgElement {
 
 func (e *ImgElement) IfText(condition bool, text string) *ImgElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *ImgElement) IfTextF(condition bool, format string, args ...any) *ImgElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *ImgElement) Escaped(text string) *ImgElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *ImgElement) IfEscaped(condition bool, text string) *ImgElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -118,17 +118,17 @@ func (e *ImgElement) EscapedF(format string, args ...any) *ImgElement {
 
 func (e *ImgElement) IfEscapedF(condition bool, format string, args ...any) *ImgElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The text alternative of the element's content.
 func (e *ImgElement) Alt(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("alt", s)
+	e.stringAttributes.Set("alt", s)
 	return e
 }
 
@@ -156,19 +156,19 @@ func (e *ImgElement) IfAltF(condition bool, format string, args ...any) *ImgElem
 // The text alternative of the element's content.
 // Remove the attribute Alt from the element.
 func (e *ImgElement) AltRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("alt")
+	e.stringAttributes.Del("alt")
 	return e
 }
 
 // How the element handles crossorigin requests.
 func (e *ImgElement) Crossorigin(c ImgCrossoriginChoice) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("crossorigin", string(c))
+	e.stringAttributes.Set("crossorigin", string(c))
 	return e
 }
 
@@ -186,19 +186,19 @@ const (
 // How the element handles crossorigin requests.
 // Remove the attribute Crossorigin from the element.
 func (e *ImgElement) CrossoriginRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("crossorigin")
+	e.stringAttributes.Del("crossorigin")
 	return e
 }
 
 // The height of the image in pixels.
 func (e *ImgElement) Height(i int) *ImgElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("height", i)
+	e.intAttributes.Set("height", i)
 	return e
 }
 
@@ -213,10 +213,10 @@ func (e *ImgElement) IfHeight(condition bool, i int) *ImgElement {
 // The height of the image in pixels.
 // Remove the attribute Height from the element.
 func (e *ImgElement) HeightRemove() *ImgElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("height")
+	e.intAttributes.Del("height")
 	return e
 }
 
@@ -237,10 +237,10 @@ func (e *ImgElement) IfIsmap(condition bool) *ImgElement {
 // Indicates that the image is part of a server-side image map.
 // Set the attribute Ismap to the value b explicitly.
 func (e *ImgElement) IsmapSet(b bool) *ImgElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("ismap", b)
+	e.boolAttributes.Set("ismap", b)
 	return e
 }
 
@@ -255,19 +255,19 @@ func (e *ImgElement) IfSetIsmap(condition bool, b bool) *ImgElement {
 // Remove the attribute Ismap from the element.
 // Indicates that the image is part of a server-side image map.
 func (e *ImgElement) IsmapRemove() *ImgElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("ismap")
+	e.boolAttributes.Del("ismap")
 	return e
 }
 
 // Indicates how the browser should load the image.
 func (e *ImgElement) Loading(c ImgLoadingChoice) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("loading", string(c))
+	e.stringAttributes.Set("loading", string(c))
 	return e
 }
 
@@ -286,19 +286,19 @@ const (
 // Indicates how the browser should load the image.
 // Remove the attribute Loading from the element.
 func (e *ImgElement) LoadingRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("loading")
+	e.stringAttributes.Del("loading")
 	return e
 }
 
 // A URL to a detailed description of the image.
 func (e *ImgElement) Longdesc(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("longdesc", s)
+	e.stringAttributes.Set("longdesc", s)
 	return e
 }
 
@@ -326,20 +326,20 @@ func (e *ImgElement) IfLongdescF(condition bool, format string, args ...any) *Im
 // A URL to a detailed description of the image.
 // Remove the attribute Longdesc from the element.
 func (e *ImgElement) LongdescRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("longdesc")
+	e.stringAttributes.Del("longdesc")
 	return e
 }
 
 // Specifies which referrer to send when fetching the resource. See
 // Referrer-Policy for possible values and their effects.
 func (e *ImgElement) Referrerpolicy(c ImgReferrerpolicyChoice) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("referrerpolicy", string(c))
+	e.stringAttributes.Set("referrerpolicy", string(c))
 	return e
 }
 
@@ -373,19 +373,19 @@ const (
 // Referrer-Policy for possible values and their effects.
 // Remove the attribute Referrerpolicy from the element.
 func (e *ImgElement) ReferrerpolicyRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("referrerpolicy")
+	e.stringAttributes.Del("referrerpolicy")
 	return e
 }
 
 // A set of source sizes.
 func (e *ImgElement) Sizes(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("sizes", s)
+	e.stringAttributes.Set("sizes", s)
 	return e
 }
 
@@ -413,19 +413,19 @@ func (e *ImgElement) IfSizesF(condition bool, format string, args ...any) *ImgEl
 // A set of source sizes.
 // Remove the attribute Sizes from the element.
 func (e *ImgElement) SizesRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("sizes")
+	e.stringAttributes.Del("sizes")
 	return e
 }
 
 // The image URL.
 func (e *ImgElement) Src(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("src", s)
+	e.stringAttributes.Set("src", s)
 	return e
 }
 
@@ -453,20 +453,20 @@ func (e *ImgElement) IfSrcF(condition bool, format string, args ...any) *ImgElem
 // The image URL.
 // Remove the attribute Src from the element.
 func (e *ImgElement) SrcRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("src")
+	e.stringAttributes.Del("src")
 	return e
 }
 
 // A list of one or more strings separated by commas indicating a set of
 // possible image sources for the user agent to use.
 func (e *ImgElement) Srcset(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("srcset", s)
+	e.stringAttributes.Set("srcset", s)
 	return e
 }
 
@@ -498,19 +498,19 @@ func (e *ImgElement) IfSrcsetF(condition bool, format string, args ...any) *ImgE
 // possible image sources for the user agent to use.
 // Remove the attribute Srcset from the element.
 func (e *ImgElement) SrcsetRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("srcset")
+	e.stringAttributes.Del("srcset")
 	return e
 }
 
 // The <map> element id to use as an image map.
 func (e *ImgElement) Usemap(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("usemap", s)
+	e.stringAttributes.Set("usemap", s)
 	return e
 }
 
@@ -538,19 +538,19 @@ func (e *ImgElement) IfUsemapF(condition bool, format string, args ...any) *ImgE
 // The <map> element id to use as an image map.
 // Remove the attribute Usemap from the element.
 func (e *ImgElement) UsemapRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("usemap")
+	e.stringAttributes.Del("usemap")
 	return e
 }
 
 // The width of the image in pixels.
 func (e *ImgElement) Width(i int) *ImgElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("width", i)
+	e.intAttributes.Set("width", i)
 	return e
 }
 
@@ -565,10 +565,10 @@ func (e *ImgElement) IfWidth(condition bool, i int) *ImgElement {
 // The width of the image in pixels.
 // Remove the attribute Width from the element.
 func (e *ImgElement) WidthRemove() *ImgElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("width")
+	e.intAttributes.Del("width")
 	return e
 }
 
@@ -577,10 +577,10 @@ func (e *ImgElement) WidthRemove() *ImgElement {
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
 func (e *ImgElement) Accesskey(r rune) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("accesskey", string(r))
+	e.stringAttributes.Set("accesskey", string(r))
 	return e
 }
 
@@ -601,10 +601,10 @@ func (e *ImgElement) IfAccesskey(condition bool, r rune) *ImgElement {
 // can be generated by the keyboard).
 // Remove the attribute Accesskey from the element.
 func (e *ImgElement) AccesskeyRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("accesskey")
+	e.stringAttributes.Del("accesskey")
 	return e
 }
 
@@ -620,10 +620,10 @@ func (e *ImgElement) AccesskeyRemove() *ImgElement {
 // behavior varies between browsers. For example: Chrome and Safari default to
 // on/sentences Firefox defaults to off/none.
 func (e *ImgElement) Autocapitalize(c ImgAutocapitalizeChoice) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("autocapitalize", string(c))
+	e.stringAttributes.Set("autocapitalize", string(c))
 	return e
 }
 
@@ -657,10 +657,10 @@ const (
 // on/sentences Firefox defaults to off/none.
 // Remove the attribute Autocapitalize from the element.
 func (e *ImgElement) AutocapitalizeRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("autocapitalize")
+	e.stringAttributes.Del("autocapitalize")
 	return e
 }
 
@@ -720,10 +720,10 @@ func (e *ImgElement) IfAutofocus(condition bool) *ImgElement {
 // created by the preceding content.
 // Set the attribute Autofocus to the value b explicitly.
 func (e *ImgElement) AutofocusSet(b bool) *ImgElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("autofocus", b)
+	e.boolAttributes.Set("autofocus", b)
 	return e
 }
 
@@ -764,10 +764,10 @@ func (e *ImgElement) IfSetAutofocus(condition bool, b bool) *ImgElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *ImgElement) AutofocusRemove() *ImgElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("autofocus")
+	e.boolAttributes.Del("autofocus")
 	return e
 }
 
@@ -777,13 +777,13 @@ func (e *ImgElement) AutofocusRemove() *ImgElement {
 // document.getElementsByClassName.
 func (e *ImgElement) Class(s string) *ImgElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -806,10 +806,10 @@ func (e *ImgElement) IfClass(condition bool, s string) *ImgElement {
 // document.getElementsByClassName.
 // Remove the values from the attribute Class in the element.
 func (e *ImgElement) ClassRemove(s ...string) *ImgElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -821,10 +821,10 @@ func (e *ImgElement) ClassRemove(s ...string) *ImgElement {
 // the element should be editable by the user. If so, the browser modifies its
 // widget to allow editing.
 func (e *ImgElement) Contenteditable(c ImgContenteditableChoice) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("contenteditable", string(c))
+	e.stringAttributes.Set("contenteditable", string(c))
 	return e
 }
 
@@ -847,10 +847,10 @@ const (
 // widget to allow editing.
 // Remove the attribute Contenteditable from the element.
 func (e *ImgElement) ContenteditableRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("contenteditable")
+	e.stringAttributes.Del("contenteditable")
 	return e
 }
 
@@ -868,10 +868,10 @@ func (e *ImgElement) ContenteditableRemove() *ImgElement {
 // directionality, like data coming from user input, eventually stored in a
 // database.
 func (e *ImgElement) Dir(c ImgDirChoice) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dir", string(c))
+	e.stringAttributes.Set("dir", string(c))
 	return e
 }
 
@@ -905,10 +905,10 @@ const (
 // database.
 // Remove the attribute Dir from the element.
 func (e *ImgElement) DirRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dir")
+	e.stringAttributes.Del("dir")
 	return e
 }
 
@@ -916,10 +916,10 @@ func (e *ImgElement) DirRemove() *ImgElement {
 // whether the element can be dragged, either with native browser behavior or
 // the HTML Drag and Drop API.
 func (e *ImgElement) Draggable(c ImgDraggableChoice) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("draggable", string(c))
+	e.stringAttributes.Set("draggable", string(c))
 	return e
 }
 
@@ -945,20 +945,20 @@ const (
 // the HTML Drag and Drop API.
 // Remove the attribute Draggable from the element.
 func (e *ImgElement) DraggableRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("draggable")
+	e.stringAttributes.Del("draggable")
 	return e
 }
 
 // The enterkeyhint global attribute is an enumerated attribute defining what
 // action label (or icon) to present for the enter key on virtual keyboards.
 func (e *ImgElement) Enterkeyhint(c ImgEnterkeyhintChoice) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("enterkeyhint", string(c))
+	e.stringAttributes.Set("enterkeyhint", string(c))
 	return e
 }
 
@@ -988,10 +988,10 @@ const (
 // action label (or icon) to present for the enter key on virtual keyboards.
 // Remove the attribute Enterkeyhint from the element.
 func (e *ImgElement) EnterkeyhintRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("enterkeyhint")
+	e.stringAttributes.Del("enterkeyhint")
 	return e
 }
 
@@ -1014,13 +1014,13 @@ func (e *ImgElement) EnterkeyhintRemove() *ImgElement {
 // the current structure.
 func (e *ImgElement) Exportparts(s string) *ImgElement {
 	values := strings.Split(s, ",")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
-		ds = NewDelimitedBuilder[string](",")
-		e.DelimitedStrings.Set("exportparts", ds)
+		ds = newDelimitedBuilder[string](",")
+		e.delimitedStrings.Set("exportparts", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1069,10 +1069,10 @@ func (e *ImgElement) IfExportparts(condition bool, s string) *ImgElement {
 // the current structure.
 // Remove the values from the attribute Exportparts in the element.
 func (e *ImgElement) ExportpartsRemove(s ...string) *ImgElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
 		return e
 	}
@@ -1093,10 +1093,10 @@ func (e *ImgElement) ExportpartsRemove(s ...string) *ImgElement {
 // of none, contents, or inline, then the element will not be revealed by find
 // in page or fragment navigation.
 func (e *ImgElement) Hidden(c ImgHiddenChoice) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("hidden", string(c))
+	e.stringAttributes.Set("hidden", string(c))
 	return e
 }
 
@@ -1132,10 +1132,10 @@ const (
 // in page or fragment navigation.
 // Remove the attribute Hidden from the element.
 func (e *ImgElement) HiddenRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("hidden")
+	e.stringAttributes.Del("hidden")
 	return e
 }
 
@@ -1143,10 +1143,10 @@ func (e *ImgElement) HiddenRemove() *ImgElement {
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *ImgElement) ID(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -1182,10 +1182,10 @@ func (e *ImgElement) IfIDF(condition bool, format string, args ...any) *ImgEleme
 // (using a fragment identifier), scripting, or styling (with CSS).
 // Remove the attribute ID from the element.
 func (e *ImgElement) IDRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -1233,10 +1233,10 @@ func (e *ImgElement) IfInert(condition bool) *ImgElement {
 // excluding them from the accessibility tree.
 // Set the attribute Inert to the value b explicitly.
 func (e *ImgElement) InertSet(b bool) *ImgElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("inert", b)
+	e.boolAttributes.Set("inert", b)
 	return e
 }
 
@@ -1269,10 +1269,10 @@ func (e *ImgElement) IfSetInert(condition bool, b bool) *ImgElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *ImgElement) InertRemove() *ImgElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("inert")
+	e.boolAttributes.Del("inert")
 	return e
 }
 
@@ -1286,10 +1286,10 @@ func (e *ImgElement) InertRemove() *ImgElement {
 // appropriate <input> element type. For specific guidance on choosing <input>
 // types, see the Values section.
 func (e *ImgElement) Inputmode(c ImgInputmodeChoice) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("inputmode", string(c))
+	e.stringAttributes.Set("inputmode", string(c))
 	return e
 }
 
@@ -1340,10 +1340,10 @@ const (
 // types, see the Values section.
 // Remove the attribute Inputmode from the element.
 func (e *ImgElement) InputmodeRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("inputmode")
+	e.stringAttributes.Del("inputmode")
 	return e
 }
 
@@ -1353,10 +1353,10 @@ func (e *ImgElement) InputmodeRemove() *ImgElement {
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
 func (e *ImgElement) Is(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("is", s)
+	e.stringAttributes.Set("is", s)
 	return e
 }
 
@@ -1400,10 +1400,10 @@ func (e *ImgElement) IfIsF(condition bool, format string, args ...any) *ImgEleme
 // and extends the element type it is being applied to.
 // Remove the attribute Is from the element.
 func (e *ImgElement) IsRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("is")
+	e.stringAttributes.Del("is")
 	return e
 }
 
@@ -1419,10 +1419,10 @@ func (e *ImgElement) IsRemove() *ImgElement {
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
 func (e *ImgElement) Itemid(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemid", s)
+	e.stringAttributes.Set("itemid", s)
 	return e
 }
 
@@ -1490,10 +1490,10 @@ func (e *ImgElement) IfItemidF(condition bool, format string, args ...any) *ImgE
 // how items with the same identifier are handled.
 // Remove the attribute Itemid from the element.
 func (e *ImgElement) ItemidRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemid")
+	e.stringAttributes.Del("itemid")
 	return e
 }
 
@@ -1505,10 +1505,10 @@ func (e *ImgElement) ItemidRemove() *ImgElement {
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
 func (e *ImgElement) Itemprop(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemprop", s)
+	e.stringAttributes.Set("itemprop", s)
 	return e
 }
 
@@ -1560,10 +1560,10 @@ func (e *ImgElement) IfItempropF(condition bool, format string, args ...any) *Im
 // <track>, and <video>.
 // Remove the attribute Itemprop from the element.
 func (e *ImgElement) ItempropRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemprop")
+	e.stringAttributes.Del("itemprop")
 	return e
 }
 
@@ -1573,10 +1573,10 @@ func (e *ImgElement) ItempropRemove() *ImgElement {
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
 func (e *ImgElement) Itemref(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemref", s)
+	e.stringAttributes.Set("itemref", s)
 	return e
 }
 
@@ -1620,10 +1620,10 @@ func (e *ImgElement) IfItemrefF(condition bool, format string, args ...any) *Img
 // specified on elements that have an itemscope attribute specified.
 // Remove the attribute Itemref from the element.
 func (e *ImgElement) ItemrefRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemref")
+	e.stringAttributes.Del("itemref")
 	return e
 }
 
@@ -1662,10 +1662,10 @@ func (e *ImgElement) IfItemscope(condition bool) *ImgElement {
 // <object>, <source>, <track>, and <video>.
 // Set the attribute Itemscope to the value b explicitly.
 func (e *ImgElement) ItemscopeSet(b bool) *ImgElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("itemscope", b)
+	e.boolAttributes.Set("itemscope", b)
 	return e
 }
 
@@ -1692,10 +1692,10 @@ func (e *ImgElement) IfSetItemscope(condition bool, b bool) *ImgElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *ImgElement) ItemscopeRemove() *ImgElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("itemscope")
+	e.boolAttributes.Del("itemscope")
 	return e
 }
 
@@ -1707,10 +1707,10 @@ func (e *ImgElement) ItemscopeRemove() *ImgElement {
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
 func (e *ImgElement) Itemtype(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemtype", s)
+	e.stringAttributes.Set("itemtype", s)
 	return e
 }
 
@@ -1762,10 +1762,10 @@ func (e *ImgElement) IfItemtypeF(condition bool, format string, args ...any) *Im
 // <video>.
 // Remove the attribute Itemtype from the element.
 func (e *ImgElement) ItemtypeRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemtype")
+	e.stringAttributes.Del("itemtype")
 	return e
 }
 
@@ -1775,10 +1775,10 @@ func (e *ImgElement) ItemtypeRemove() *ImgElement {
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 func (e *ImgElement) Lang(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("lang", s)
+	e.stringAttributes.Set("lang", s)
 	return e
 }
 
@@ -1822,10 +1822,10 @@ func (e *ImgElement) IfLangF(condition bool, format string, args ...any) *ImgEle
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 // Remove the attribute Lang from the element.
 func (e *ImgElement) LangRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("lang")
+	e.stringAttributes.Del("lang")
 	return e
 }
 
@@ -1835,10 +1835,10 @@ func (e *ImgElement) LangRemove() *ImgElement {
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
 func (e *ImgElement) Nonce(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("nonce", s)
+	e.stringAttributes.Set("nonce", s)
 	return e
 }
 
@@ -1882,10 +1882,10 @@ func (e *ImgElement) IfNonceF(condition bool, format string, args ...any) *ImgEl
 // execute.
 // Remove the attribute Nonce from the element.
 func (e *ImgElement) NonceRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("nonce")
+	e.stringAttributes.Del("nonce")
 	return e
 }
 
@@ -1894,13 +1894,13 @@ func (e *ImgElement) NonceRemove() *ImgElement {
 // in a shadow tree via the ::part pseudo-element.
 func (e *ImgElement) Part(s string) *ImgElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("part", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("part", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1921,10 +1921,10 @@ func (e *ImgElement) IfPart(condition bool, s string) *ImgElement {
 // in a shadow tree via the ::part pseudo-element.
 // Remove the values from the attribute Part in the element.
 func (e *ImgElement) PartRemove(s ...string) *ImgElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
 		return e
 	}
@@ -1939,10 +1939,10 @@ func (e *ImgElement) PartRemove(s ...string) *ImgElement {
 // popover elements will appear above all other elements in the top layer, and
 // won't be influenced by parent elements' position or overflow styling.
 func (e *ImgElement) Popover(c ImgPopoverChoice) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("popover", string(c))
+	e.stringAttributes.Set("popover", string(c))
 	return e
 }
 
@@ -1970,10 +1970,10 @@ const (
 // won't be influenced by parent elements' position or overflow styling.
 // Remove the attribute Popover from the element.
 func (e *ImgElement) PopoverRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("popover")
+	e.stringAttributes.Del("popover")
 	return e
 }
 
@@ -1982,10 +1982,10 @@ func (e *ImgElement) PopoverRemove() *ImgElement {
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
 func (e *ImgElement) Role(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("role", s)
+	e.stringAttributes.Set("role", s)
 	return e
 }
 
@@ -2025,10 +2025,10 @@ func (e *ImgElement) IfRoleF(condition bool, format string, args ...any) *ImgEle
 // role of an element.
 // Remove the attribute Role from the element.
 func (e *ImgElement) RoleRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("role")
+	e.stringAttributes.Del("role")
 	return e
 }
 
@@ -2037,10 +2037,10 @@ func (e *ImgElement) RoleRemove() *ImgElement {
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
 func (e *ImgElement) Slot(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("slot", s)
+	e.stringAttributes.Set("slot", s)
 	return e
 }
 
@@ -2080,10 +2080,10 @@ func (e *ImgElement) IfSlotF(condition bool, format string, args ...any) *ImgEle
 // value.
 // Remove the attribute Slot from the element.
 func (e *ImgElement) SlotRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("slot")
+	e.stringAttributes.Del("slot")
 	return e
 }
 
@@ -2099,10 +2099,10 @@ func (e *ImgElement) SlotRemove() *ImgElement {
 // "spell-jacking"). You should consider setting spellcheck to false for
 // elements that can contain sensitive information.
 func (e *ImgElement) Spellcheck(c ImgSpellcheckChoice) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("spellcheck", string(c))
+	e.stringAttributes.Set("spellcheck", string(c))
 	return e
 }
 
@@ -2130,10 +2130,10 @@ const (
 // elements that can contain sensitive information.
 // Remove the attribute Spellcheck from the element.
 func (e *ImgElement) SpellcheckRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("spellcheck")
+	e.stringAttributes.Del("spellcheck")
 	return e
 }
 
@@ -2143,13 +2143,13 @@ func (e *ImgElement) StylePairs(pairs ...string) *ImgElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -2165,13 +2165,13 @@ func (e *ImgElement) StylePairs(pairs ...string) *ImgElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *ImgElement) Style(s string) *ImgElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -2197,13 +2197,13 @@ func (e *ImgElement) IfStyle(condition bool, s string) *ImgElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *ImgElement) StyleAdd(k string, v string) *ImgElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -2237,13 +2237,13 @@ func (e *ImgElement) IfStyleAddF(condition bool, k string, format string, args .
 // color, font, size, and more. Styles are written in CSS.
 // Add the attributes in the map to the element.
 func (e *ImgElement) StyleMap(m map[string]string) *ImgElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -2260,10 +2260,10 @@ func (e *ImgElement) StyleMap(m map[string]string) *ImgElement {
 // color, font, size, and more. Styles are written in CSS.
 // Remove the attribute Style from the element.
 func (e *ImgElement) StyleRemove(keys ...string) *ImgElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}
@@ -2285,10 +2285,10 @@ func (e *ImgElement) StyleRemove(keys ...string) *ImgElement {
 // If several elements share the same tabindex, their relative order follows
 // their relative position in the document.
 func (e *ImgElement) Tabindex(i int) *ImgElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("tabindex", i)
+	e.intAttributes.Set("tabindex", i)
 	return e
 }
 
@@ -2327,10 +2327,10 @@ func (e *ImgElement) IfTabindex(condition bool, i int) *ImgElement {
 // their relative position in the document.
 // Remove the attribute Tabindex from the element.
 func (e *ImgElement) TabindexRemove() *ImgElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("tabindex")
+	e.intAttributes.Del("tabindex")
 	return e
 }
 
@@ -2351,10 +2351,10 @@ func (e *ImgElement) TabindexRemove() *ImgElement {
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
 func (e *ImgElement) Title(s string) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("title", s)
+	e.stringAttributes.Set("title", s)
 	return e
 }
 
@@ -2442,10 +2442,10 @@ func (e *ImgElement) IfTitleF(condition bool, format string, args ...any) *ImgEl
 // element, this is not good practice. Use a <label> instead.
 // Remove the attribute Title from the element.
 func (e *ImgElement) TitleRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("title")
+	e.stringAttributes.Del("title")
 	return e
 }
 
@@ -2454,10 +2454,10 @@ func (e *ImgElement) TitleRemove() *ImgElement {
 // children are to be translated when the page is localized, or whether to leave
 // them unchanged.
 func (e *ImgElement) Translate(c ImgTranslateChoice) *ImgElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("translate", string(c))
+	e.stringAttributes.Set("translate", string(c))
 	return e
 }
 
@@ -2478,9 +2478,9 @@ const (
 // them unchanged.
 // Remove the attribute Translate from the element.
 func (e *ImgElement) TranslateRemove() *ImgElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("translate")
+	e.stringAttributes.Del("translate")
 	return e
 }

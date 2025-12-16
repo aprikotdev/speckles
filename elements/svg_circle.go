@@ -22,37 +22,37 @@ type SVGCircleElement struct {
 // with the tag "circle" during rendering.
 func SVGCircle(children ...ElementRenderer) *SVGCircleElement {
 	e := NewElement("circle", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGCircleElement{Element: e}
 }
 
 func (e *SVGCircleElement) Children(children ...ElementRenderer) *SVGCircleElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGCircleElement) IfChildren(condition bool, children ...ElementRenderer) *SVGCircleElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGCircleElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGCircleElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGCircleElement) BoolAttr(name string) *SVGCircleElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *SVGCircleElement) IfBoolAttr(condition bool, name string) *SVGCircleEle
 }
 
 func (e *SVGCircleElement) Attr(name, value string) *SVGCircleElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *SVGCircleElement) IfAttr(condition bool, name, value string) *SVGCircle
 }
 
 func (e *SVGCircleElement) Text(text string) *SVGCircleElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *SVGCircleElement) TextF(format string, args ...any) *SVGCircleElement {
 
 func (e *SVGCircleElement) IfText(condition bool, text string) *SVGCircleElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGCircleElement) IfTextF(condition bool, format string, args ...any) *SVGCircleElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGCircleElement) Escaped(text string) *SVGCircleElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGCircleElement) IfEscaped(condition bool, text string) *SVGCircleElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,17 +119,17 @@ func (e *SVGCircleElement) EscapedF(format string, args ...any) *SVGCircleElemen
 
 func (e *SVGCircleElement) IfEscapedF(condition bool, format string, args ...any) *SVGCircleElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The x-axis coordinate of the center of the circle.
 func (e *SVGCircleElement) Cx(f float64) *SVGCircleElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("cx", f)
+	e.floatAttributes.Set("cx", f)
 	return e
 }
 
@@ -143,10 +143,10 @@ func (e *SVGCircleElement) IfCx(condition bool, f float64) *SVGCircleElement {
 
 // The y-axis coordinate of the center of the circle.
 func (e *SVGCircleElement) Cy(f float64) *SVGCircleElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("cy", f)
+	e.floatAttributes.Set("cy", f)
 	return e
 }
 
@@ -160,10 +160,10 @@ func (e *SVGCircleElement) IfCy(condition bool, f float64) *SVGCircleElement {
 
 // The radius of the circle.
 func (e *SVGCircleElement) R(f float64) *SVGCircleElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("r", f)
+	e.floatAttributes.Set("r", f)
 	return e
 }
 
@@ -177,10 +177,10 @@ func (e *SVGCircleElement) IfR(condition bool, f float64) *SVGCircleElement {
 
 // Specifies a unique id for an element
 func (e *SVGCircleElement) ID(s string) *SVGCircleElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -208,10 +208,10 @@ func (e *SVGCircleElement) IfIDF(condition bool, format string, args ...any) *SV
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGCircleElement) IDRemove() *SVGCircleElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -219,13 +219,13 @@ func (e *SVGCircleElement) IDRemove() *SVGCircleElement {
 // sheet)
 func (e *SVGCircleElement) Class(s string) *SVGCircleElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -244,10 +244,10 @@ func (e *SVGCircleElement) IfClass(condition bool, s string) *SVGCircleElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGCircleElement) ClassRemove(s ...string) *SVGCircleElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -260,13 +260,13 @@ func (e *SVGCircleElement) StylePairs(pairs ...string) *SVGCircleElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -281,13 +281,13 @@ func (e *SVGCircleElement) StylePairs(pairs ...string) *SVGCircleElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGCircleElement) Style(s string) *SVGCircleElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -311,13 +311,13 @@ func (e *SVGCircleElement) IfStyle(condition bool, s string) *SVGCircleElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGCircleElement) StyleAdd(k string, v string) *SVGCircleElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -347,13 +347,13 @@ func (e *SVGCircleElement) IfStyleAddF(condition bool, k string, format string, 
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGCircleElement) StyleMap(m map[string]string) *SVGCircleElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -369,10 +369,10 @@ func (e *SVGCircleElement) StyleMap(m map[string]string) *SVGCircleElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGCircleElement) StyleRemove(keys ...string) *SVGCircleElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

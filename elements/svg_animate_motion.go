@@ -23,37 +23,37 @@ type SVGAnimateMotionElement struct {
 // with the tag "animateMotion" during rendering.
 func SVGAnimateMotion(children ...ElementRenderer) *SVGAnimateMotionElement {
 	e := NewElement("animateMotion", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGAnimateMotionElement{Element: e}
 }
 
 func (e *SVGAnimateMotionElement) Children(children ...ElementRenderer) *SVGAnimateMotionElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGAnimateMotionElement) IfChildren(condition bool, children ...ElementRenderer) *SVGAnimateMotionElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGAnimateMotionElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGAnimateMotionElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGAnimateMotionElement) BoolAttr(name string) *SVGAnimateMotionElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -65,10 +65,10 @@ func (e *SVGAnimateMotionElement) IfBoolAttr(condition bool, name string) *SVGAn
 }
 
 func (e *SVGAnimateMotionElement) Attr(name, value string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -80,7 +80,7 @@ func (e *SVGAnimateMotionElement) IfAttr(condition bool, name, value string) *SV
 }
 
 func (e *SVGAnimateMotionElement) Text(text string) *SVGAnimateMotionElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -90,26 +90,26 @@ func (e *SVGAnimateMotionElement) TextF(format string, args ...any) *SVGAnimateM
 
 func (e *SVGAnimateMotionElement) IfText(condition bool, text string) *SVGAnimateMotionElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGAnimateMotionElement) IfTextF(condition bool, format string, args ...any) *SVGAnimateMotionElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGAnimateMotionElement) Escaped(text string) *SVGAnimateMotionElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGAnimateMotionElement) IfEscaped(condition bool, text string) *SVGAnimateMotionElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -120,17 +120,17 @@ func (e *SVGAnimateMotionElement) EscapedF(format string, args ...any) *SVGAnima
 
 func (e *SVGAnimateMotionElement) IfEscapedF(condition bool, format string, args ...any) *SVGAnimateMotionElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // Controls whether or not the animation is cumulative.
 func (e *SVGAnimateMotionElement) Accumulate(c SVGAnimateMotionAccumulateChoice) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("accumulate", string(c))
+	e.stringAttributes.Set("accumulate", string(c))
 	return e
 }
 
@@ -148,19 +148,19 @@ const (
 // Controls whether or not the animation is cumulative.
 // Remove the attribute Accumulate from the element.
 func (e *SVGAnimateMotionElement) AccumulateRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("accumulate")
+	e.stringAttributes.Del("accumulate")
 	return e
 }
 
 // Controls whether or not the animation is additive.
 func (e *SVGAnimateMotionElement) Additive(c SVGAnimateMotionAdditiveChoice) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("additive", string(c))
+	e.stringAttributes.Set("additive", string(c))
 	return e
 }
 
@@ -176,19 +176,19 @@ const (
 // Controls whether or not the animation is additive.
 // Remove the attribute Additive from the element.
 func (e *SVGAnimateMotionElement) AdditiveRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("additive")
+	e.stringAttributes.Del("additive")
 	return e
 }
 
 // Defines when the animation should begin.
 func (e *SVGAnimateMotionElement) Begin(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("begin", s)
+	e.stringAttributes.Set("begin", s)
 	return e
 }
 
@@ -216,19 +216,19 @@ func (e *SVGAnimateMotionElement) IfBeginF(condition bool, format string, args .
 // Defines when the animation should begin.
 // Remove the attribute Begin from the element.
 func (e *SVGAnimateMotionElement) BeginRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("begin")
+	e.stringAttributes.Del("begin")
 	return e
 }
 
 // Defines a relative offset value for the animation.
 func (e *SVGAnimateMotionElement) By(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("by", s)
+	e.stringAttributes.Set("by", s)
 	return e
 }
 
@@ -256,19 +256,19 @@ func (e *SVGAnimateMotionElement) IfByF(condition bool, format string, args ...a
 // Defines a relative offset value for the animation.
 // Remove the attribute By from the element.
 func (e *SVGAnimateMotionElement) ByRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("by")
+	e.stringAttributes.Del("by")
 	return e
 }
 
 // Defines the pacing of the animation.
 func (e *SVGAnimateMotionElement) CalcMode(c SVGAnimateMotionCalcModeChoice) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("calcMode", string(c))
+	e.stringAttributes.Set("calcMode", string(c))
 	return e
 }
 
@@ -291,19 +291,19 @@ const (
 // Defines the pacing of the animation.
 // Remove the attribute CalcMode from the element.
 func (e *SVGAnimateMotionElement) CalcModeRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("calcMode")
+	e.stringAttributes.Del("calcMode")
 	return e
 }
 
 // Defines the duration of the animation.
 func (e *SVGAnimateMotionElement) Dur(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dur", s)
+	e.stringAttributes.Set("dur", s)
 	return e
 }
 
@@ -331,19 +331,19 @@ func (e *SVGAnimateMotionElement) IfDurF(condition bool, format string, args ...
 // Defines the duration of the animation.
 // Remove the attribute Dur from the element.
 func (e *SVGAnimateMotionElement) DurRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dur")
+	e.stringAttributes.Del("dur")
 	return e
 }
 
 // Defines when the animation should end.
 func (e *SVGAnimateMotionElement) End(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("end", s)
+	e.stringAttributes.Set("end", s)
 	return e
 }
 
@@ -371,19 +371,19 @@ func (e *SVGAnimateMotionElement) IfEndF(condition bool, format string, args ...
 // Defines when the animation should end.
 // Remove the attribute End from the element.
 func (e *SVGAnimateMotionElement) EndRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("end")
+	e.stringAttributes.Del("end")
 	return e
 }
 
 // Defines the fill behavior for the animation.
 func (e *SVGAnimateMotionElement) Fill(c SVGAnimateMotionFillChoice) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("fill", string(c))
+	e.stringAttributes.Set("fill", string(c))
 	return e
 }
 
@@ -399,19 +399,19 @@ const (
 // Defines the fill behavior for the animation.
 // Remove the attribute Fill from the element.
 func (e *SVGAnimateMotionElement) FillRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("fill")
+	e.stringAttributes.Del("fill")
 	return e
 }
 
 // Defines the initial value of the attribute.
 func (e *SVGAnimateMotionElement) From(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("from", s)
+	e.stringAttributes.Set("from", s)
 	return e
 }
 
@@ -439,20 +439,20 @@ func (e *SVGAnimateMotionElement) IfFromF(condition bool, format string, args ..
 // Defines the initial value of the attribute.
 // Remove the attribute From from the element.
 func (e *SVGAnimateMotionElement) FromRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("from")
+	e.stringAttributes.Del("from")
 	return e
 }
 
 // Defines the values for a cubic Bézier function that controls interval
 // pacing.
 func (e *SVGAnimateMotionElement) KeySplines(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("keySplines", s)
+	e.stringAttributes.Set("keySplines", s)
 	return e
 }
 
@@ -484,19 +484,19 @@ func (e *SVGAnimateMotionElement) IfKeySplinesF(condition bool, format string, a
 // pacing.
 // Remove the attribute KeySplines from the element.
 func (e *SVGAnimateMotionElement) KeySplinesRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("keySplines")
+	e.stringAttributes.Del("keySplines")
 	return e
 }
 
 // Defines when the animation should take place in terms of time fractions.
 func (e *SVGAnimateMotionElement) KeyTimes(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("keyTimes", s)
+	e.stringAttributes.Set("keyTimes", s)
 	return e
 }
 
@@ -524,19 +524,19 @@ func (e *SVGAnimateMotionElement) IfKeyTimesF(condition bool, format string, arg
 // Defines when the animation should take place in terms of time fractions.
 // Remove the attribute KeyTimes from the element.
 func (e *SVGAnimateMotionElement) KeyTimesRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("keyTimes")
+	e.stringAttributes.Del("keyTimes")
 	return e
 }
 
 // Defines the maximum value allowed for the attribute.
 func (e *SVGAnimateMotionElement) Max(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("max", s)
+	e.stringAttributes.Set("max", s)
 	return e
 }
 
@@ -564,19 +564,19 @@ func (e *SVGAnimateMotionElement) IfMaxF(condition bool, format string, args ...
 // Defines the maximum value allowed for the attribute.
 // Remove the attribute Max from the element.
 func (e *SVGAnimateMotionElement) MaxRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("max")
+	e.stringAttributes.Del("max")
 	return e
 }
 
 // Defines the minimum value allowed for the attribute.
 func (e *SVGAnimateMotionElement) Min(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("min", s)
+	e.stringAttributes.Set("min", s)
 	return e
 }
 
@@ -604,19 +604,19 @@ func (e *SVGAnimateMotionElement) IfMinF(condition bool, format string, args ...
 // Defines the minimum value allowed for the attribute.
 // Remove the attribute Min from the element.
 func (e *SVGAnimateMotionElement) MinRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("min")
+	e.stringAttributes.Del("min")
 	return e
 }
 
 // Defines the number of times the animation should repeat.
 func (e *SVGAnimateMotionElement) RepeatCount(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("repeatCount", s)
+	e.stringAttributes.Set("repeatCount", s)
 	return e
 }
 
@@ -644,19 +644,19 @@ func (e *SVGAnimateMotionElement) IfRepeatCountF(condition bool, format string, 
 // Defines the number of times the animation should repeat.
 // Remove the attribute RepeatCount from the element.
 func (e *SVGAnimateMotionElement) RepeatCountRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("repeatCount")
+	e.stringAttributes.Del("repeatCount")
 	return e
 }
 
 // Defines the duration for repeating an animation.
 func (e *SVGAnimateMotionElement) RepeatDur(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("repeatDur", s)
+	e.stringAttributes.Set("repeatDur", s)
 	return e
 }
 
@@ -684,19 +684,19 @@ func (e *SVGAnimateMotionElement) IfRepeatDurF(condition bool, format string, ar
 // Defines the duration for repeating an animation.
 // Remove the attribute RepeatDur from the element.
 func (e *SVGAnimateMotionElement) RepeatDurRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("repeatDur")
+	e.stringAttributes.Del("repeatDur")
 	return e
 }
 
 // Defines if an animation should restart after it completes.
 func (e *SVGAnimateMotionElement) Restart(c SVGAnimateMotionRestartChoice) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("restart", string(c))
+	e.stringAttributes.Set("restart", string(c))
 	return e
 }
 
@@ -715,19 +715,19 @@ const (
 // Defines if an animation should restart after it completes.
 // Remove the attribute Restart from the element.
 func (e *SVGAnimateMotionElement) RestartRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("restart")
+	e.stringAttributes.Del("restart")
 	return e
 }
 
 // Defines the ending value of the attribute.
 func (e *SVGAnimateMotionElement) To(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("to", s)
+	e.stringAttributes.Set("to", s)
 	return e
 }
 
@@ -755,19 +755,19 @@ func (e *SVGAnimateMotionElement) IfToF(condition bool, format string, args ...a
 // Defines the ending value of the attribute.
 // Remove the attribute To from the element.
 func (e *SVGAnimateMotionElement) ToRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("to")
+	e.stringAttributes.Del("to")
 	return e
 }
 
 // Defines a list of discrete values to interpolate.
 func (e *SVGAnimateMotionElement) Values(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("values", s)
+	e.stringAttributes.Set("values", s)
 	return e
 }
 
@@ -795,19 +795,19 @@ func (e *SVGAnimateMotionElement) IfValuesF(condition bool, format string, args 
 // Defines a list of discrete values to interpolate.
 // Remove the attribute Values from the element.
 func (e *SVGAnimateMotionElement) ValuesRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("values")
+	e.stringAttributes.Del("values")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGAnimateMotionElement) ID(s string) *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -835,10 +835,10 @@ func (e *SVGAnimateMotionElement) IfIDF(condition bool, format string, args ...a
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGAnimateMotionElement) IDRemove() *SVGAnimateMotionElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -846,13 +846,13 @@ func (e *SVGAnimateMotionElement) IDRemove() *SVGAnimateMotionElement {
 // sheet)
 func (e *SVGAnimateMotionElement) Class(s string) *SVGAnimateMotionElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -871,10 +871,10 @@ func (e *SVGAnimateMotionElement) IfClass(condition bool, s string) *SVGAnimateM
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGAnimateMotionElement) ClassRemove(s ...string) *SVGAnimateMotionElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -887,13 +887,13 @@ func (e *SVGAnimateMotionElement) StylePairs(pairs ...string) *SVGAnimateMotionE
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -908,13 +908,13 @@ func (e *SVGAnimateMotionElement) StylePairs(pairs ...string) *SVGAnimateMotionE
 
 // Specifies an inline CSS style for an element
 func (e *SVGAnimateMotionElement) Style(s string) *SVGAnimateMotionElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -938,13 +938,13 @@ func (e *SVGAnimateMotionElement) IfStyle(condition bool, s string) *SVGAnimateM
 
 // Specifies an inline CSS style for an element
 func (e *SVGAnimateMotionElement) StyleAdd(k string, v string) *SVGAnimateMotionElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -974,13 +974,13 @@ func (e *SVGAnimateMotionElement) IfStyleAddF(condition bool, k string, format s
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGAnimateMotionElement) StyleMap(m map[string]string) *SVGAnimateMotionElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -996,10 +996,10 @@ func (e *SVGAnimateMotionElement) StyleMap(m map[string]string) *SVGAnimateMotio
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGAnimateMotionElement) StyleRemove(keys ...string) *SVGAnimateMotionElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

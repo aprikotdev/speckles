@@ -25,37 +25,37 @@ type LinkElement struct {
 // with the tag "link" during rendering.
 func Link() *LinkElement {
 	e := NewElement("link")
-	e.IsSelfClosing = true
+	e.isSelfClosing = true
 
 	return &LinkElement{Element: e}
 }
 
 func (e *LinkElement) Children(children ...ElementRenderer) *LinkElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *LinkElement) IfChildren(condition bool, children ...ElementRenderer) *LinkElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *LinkElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *LinkElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *LinkElement) BoolAttr(name string) *LinkElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -67,10 +67,10 @@ func (e *LinkElement) IfBoolAttr(condition bool, name string) *LinkElement {
 }
 
 func (e *LinkElement) Attr(name, value string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -82,7 +82,7 @@ func (e *LinkElement) IfAttr(condition bool, name, value string) *LinkElement {
 }
 
 func (e *LinkElement) Text(text string) *LinkElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -92,26 +92,26 @@ func (e *LinkElement) TextF(format string, args ...any) *LinkElement {
 
 func (e *LinkElement) IfText(condition bool, text string) *LinkElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *LinkElement) IfTextF(condition bool, format string, args ...any) *LinkElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *LinkElement) Escaped(text string) *LinkElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *LinkElement) IfEscaped(condition bool, text string) *LinkElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -122,17 +122,17 @@ func (e *LinkElement) EscapedF(format string, args ...any) *LinkElement {
 
 func (e *LinkElement) IfEscapedF(condition bool, format string, args ...any) *LinkElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // Indicates the type of content being loaded by the link target.
 func (e *LinkElement) As(c LinkAsChoice) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("as", string(c))
+	e.stringAttributes.Set("as", string(c))
 	return e
 }
 
@@ -179,19 +179,19 @@ const (
 // Indicates the type of content being loaded by the link target.
 // Remove the attribute As from the element.
 func (e *LinkElement) AsRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("as")
+	e.stringAttributes.Del("as")
 	return e
 }
 
 // How the element handles crossorigin requests.
 func (e *LinkElement) Crossorigin(c LinkCrossoriginChoice) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("crossorigin", string(c))
+	e.stringAttributes.Set("crossorigin", string(c))
 	return e
 }
 
@@ -209,19 +209,19 @@ const (
 // How the element handles crossorigin requests.
 // Remove the attribute Crossorigin from the element.
 func (e *LinkElement) CrossoriginRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("crossorigin")
+	e.stringAttributes.Del("crossorigin")
 	return e
 }
 
 // Address of the hyperlink.
 func (e *LinkElement) Href(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("href", s)
+	e.stringAttributes.Set("href", s)
 	return e
 }
 
@@ -249,19 +249,19 @@ func (e *LinkElement) IfHrefF(condition bool, format string, args ...any) *LinkE
 // Address of the hyperlink.
 // Remove the attribute Href from the element.
 func (e *LinkElement) HrefRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("href")
+	e.stringAttributes.Del("href")
 	return e
 }
 
 // Specifies the language of the linked resource.
 func (e *LinkElement) Hreflang(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("hreflang", s)
+	e.stringAttributes.Set("hreflang", s)
 	return e
 }
 
@@ -289,19 +289,19 @@ func (e *LinkElement) IfHreflangF(condition bool, format string, args ...any) *L
 // Specifies the language of the linked resource.
 // Remove the attribute Hreflang from the element.
 func (e *LinkElement) HreflangRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("hreflang")
+	e.stringAttributes.Del("hreflang")
 	return e
 }
 
 // Security Feature that allows browsers to verify what they fetch.
 func (e *LinkElement) Integrity(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("integrity", s)
+	e.stringAttributes.Set("integrity", s)
 	return e
 }
 
@@ -329,19 +329,19 @@ func (e *LinkElement) IfIntegrityF(condition bool, format string, args ...any) *
 // Security Feature that allows browsers to verify what they fetch.
 // Remove the attribute Integrity from the element.
 func (e *LinkElement) IntegrityRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("integrity")
+	e.stringAttributes.Del("integrity")
 	return e
 }
 
 // Specifies a hint of the media for which the linked resource was designed.
 func (e *LinkElement) Media(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("media", s)
+	e.stringAttributes.Set("media", s)
 	return e
 }
 
@@ -369,20 +369,20 @@ func (e *LinkElement) IfMediaF(condition bool, format string, args ...any) *Link
 // Specifies a hint of the media for which the linked resource was designed.
 // Remove the attribute Media from the element.
 func (e *LinkElement) MediaRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("media")
+	e.stringAttributes.Del("media")
 	return e
 }
 
 // Specifies which referrer to send when fetching the resource. See
 // Referrer-Policy for possible values and their effects.
 func (e *LinkElement) Referrerpolicy(c LinkReferrerpolicyChoice) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("referrerpolicy", string(c))
+	e.stringAttributes.Set("referrerpolicy", string(c))
 	return e
 }
 
@@ -416,19 +416,19 @@ const (
 // Referrer-Policy for possible values and their effects.
 // Remove the attribute Referrerpolicy from the element.
 func (e *LinkElement) ReferrerpolicyRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("referrerpolicy")
+	e.stringAttributes.Del("referrerpolicy")
 	return e
 }
 
 // Specifies the relationship of the target object to the link object.
 func (e *LinkElement) Rel(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("rel", s)
+	e.stringAttributes.Set("rel", s)
 	return e
 }
 
@@ -456,19 +456,19 @@ func (e *LinkElement) IfRelF(condition bool, format string, args ...any) *LinkEl
 // Specifies the relationship of the target object to the link object.
 // Remove the attribute Rel from the element.
 func (e *LinkElement) RelRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("rel")
+	e.stringAttributes.Del("rel")
 	return e
 }
 
 // Sizes of the icons (for rel="icon").
 func (e *LinkElement) Sizes(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("sizes", s)
+	e.stringAttributes.Set("sizes", s)
 	return e
 }
 
@@ -496,19 +496,19 @@ func (e *LinkElement) IfSizesF(condition bool, format string, args ...any) *Link
 // Sizes of the icons (for rel="icon").
 // Remove the attribute Sizes from the element.
 func (e *LinkElement) SizesRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("sizes")
+	e.stringAttributes.Del("sizes")
 	return e
 }
 
 // Specifies the MIME type of the linked resource.
 func (e *LinkElement) Type(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("type", s)
+	e.stringAttributes.Set("type", s)
 	return e
 }
 
@@ -536,10 +536,10 @@ func (e *LinkElement) IfTypeF(condition bool, format string, args ...any) *LinkE
 // Specifies the MIME type of the linked resource.
 // Remove the attribute Type from the element.
 func (e *LinkElement) TypeRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("type")
+	e.stringAttributes.Del("type")
 	return e
 }
 
@@ -548,10 +548,10 @@ func (e *LinkElement) TypeRemove() *LinkElement {
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
 func (e *LinkElement) Accesskey(r rune) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("accesskey", string(r))
+	e.stringAttributes.Set("accesskey", string(r))
 	return e
 }
 
@@ -572,10 +572,10 @@ func (e *LinkElement) IfAccesskey(condition bool, r rune) *LinkElement {
 // can be generated by the keyboard).
 // Remove the attribute Accesskey from the element.
 func (e *LinkElement) AccesskeyRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("accesskey")
+	e.stringAttributes.Del("accesskey")
 	return e
 }
 
@@ -591,10 +591,10 @@ func (e *LinkElement) AccesskeyRemove() *LinkElement {
 // behavior varies between browsers. For example: Chrome and Safari default to
 // on/sentences Firefox defaults to off/none.
 func (e *LinkElement) Autocapitalize(c LinkAutocapitalizeChoice) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("autocapitalize", string(c))
+	e.stringAttributes.Set("autocapitalize", string(c))
 	return e
 }
 
@@ -628,10 +628,10 @@ const (
 // on/sentences Firefox defaults to off/none.
 // Remove the attribute Autocapitalize from the element.
 func (e *LinkElement) AutocapitalizeRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("autocapitalize")
+	e.stringAttributes.Del("autocapitalize")
 	return e
 }
 
@@ -691,10 +691,10 @@ func (e *LinkElement) IfAutofocus(condition bool) *LinkElement {
 // created by the preceding content.
 // Set the attribute Autofocus to the value b explicitly.
 func (e *LinkElement) AutofocusSet(b bool) *LinkElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("autofocus", b)
+	e.boolAttributes.Set("autofocus", b)
 	return e
 }
 
@@ -735,10 +735,10 @@ func (e *LinkElement) IfSetAutofocus(condition bool, b bool) *LinkElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *LinkElement) AutofocusRemove() *LinkElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("autofocus")
+	e.boolAttributes.Del("autofocus")
 	return e
 }
 
@@ -748,13 +748,13 @@ func (e *LinkElement) AutofocusRemove() *LinkElement {
 // document.getElementsByClassName.
 func (e *LinkElement) Class(s string) *LinkElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -777,10 +777,10 @@ func (e *LinkElement) IfClass(condition bool, s string) *LinkElement {
 // document.getElementsByClassName.
 // Remove the values from the attribute Class in the element.
 func (e *LinkElement) ClassRemove(s ...string) *LinkElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -792,10 +792,10 @@ func (e *LinkElement) ClassRemove(s ...string) *LinkElement {
 // the element should be editable by the user. If so, the browser modifies its
 // widget to allow editing.
 func (e *LinkElement) Contenteditable(c LinkContenteditableChoice) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("contenteditable", string(c))
+	e.stringAttributes.Set("contenteditable", string(c))
 	return e
 }
 
@@ -818,10 +818,10 @@ const (
 // widget to allow editing.
 // Remove the attribute Contenteditable from the element.
 func (e *LinkElement) ContenteditableRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("contenteditable")
+	e.stringAttributes.Del("contenteditable")
 	return e
 }
 
@@ -839,10 +839,10 @@ func (e *LinkElement) ContenteditableRemove() *LinkElement {
 // directionality, like data coming from user input, eventually stored in a
 // database.
 func (e *LinkElement) Dir(c LinkDirChoice) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dir", string(c))
+	e.stringAttributes.Set("dir", string(c))
 	return e
 }
 
@@ -876,10 +876,10 @@ const (
 // database.
 // Remove the attribute Dir from the element.
 func (e *LinkElement) DirRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dir")
+	e.stringAttributes.Del("dir")
 	return e
 }
 
@@ -887,10 +887,10 @@ func (e *LinkElement) DirRemove() *LinkElement {
 // whether the element can be dragged, either with native browser behavior or
 // the HTML Drag and Drop API.
 func (e *LinkElement) Draggable(c LinkDraggableChoice) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("draggable", string(c))
+	e.stringAttributes.Set("draggable", string(c))
 	return e
 }
 
@@ -916,20 +916,20 @@ const (
 // the HTML Drag and Drop API.
 // Remove the attribute Draggable from the element.
 func (e *LinkElement) DraggableRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("draggable")
+	e.stringAttributes.Del("draggable")
 	return e
 }
 
 // The enterkeyhint global attribute is an enumerated attribute defining what
 // action label (or icon) to present for the enter key on virtual keyboards.
 func (e *LinkElement) Enterkeyhint(c LinkEnterkeyhintChoice) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("enterkeyhint", string(c))
+	e.stringAttributes.Set("enterkeyhint", string(c))
 	return e
 }
 
@@ -959,10 +959,10 @@ const (
 // action label (or icon) to present for the enter key on virtual keyboards.
 // Remove the attribute Enterkeyhint from the element.
 func (e *LinkElement) EnterkeyhintRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("enterkeyhint")
+	e.stringAttributes.Del("enterkeyhint")
 	return e
 }
 
@@ -985,13 +985,13 @@ func (e *LinkElement) EnterkeyhintRemove() *LinkElement {
 // the current structure.
 func (e *LinkElement) Exportparts(s string) *LinkElement {
 	values := strings.Split(s, ",")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
-		ds = NewDelimitedBuilder[string](",")
-		e.DelimitedStrings.Set("exportparts", ds)
+		ds = newDelimitedBuilder[string](",")
+		e.delimitedStrings.Set("exportparts", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1040,10 +1040,10 @@ func (e *LinkElement) IfExportparts(condition bool, s string) *LinkElement {
 // the current structure.
 // Remove the values from the attribute Exportparts in the element.
 func (e *LinkElement) ExportpartsRemove(s ...string) *LinkElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
 		return e
 	}
@@ -1064,10 +1064,10 @@ func (e *LinkElement) ExportpartsRemove(s ...string) *LinkElement {
 // of none, contents, or inline, then the element will not be revealed by find
 // in page or fragment navigation.
 func (e *LinkElement) Hidden(c LinkHiddenChoice) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("hidden", string(c))
+	e.stringAttributes.Set("hidden", string(c))
 	return e
 }
 
@@ -1103,10 +1103,10 @@ const (
 // in page or fragment navigation.
 // Remove the attribute Hidden from the element.
 func (e *LinkElement) HiddenRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("hidden")
+	e.stringAttributes.Del("hidden")
 	return e
 }
 
@@ -1114,10 +1114,10 @@ func (e *LinkElement) HiddenRemove() *LinkElement {
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *LinkElement) ID(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -1153,10 +1153,10 @@ func (e *LinkElement) IfIDF(condition bool, format string, args ...any) *LinkEle
 // (using a fragment identifier), scripting, or styling (with CSS).
 // Remove the attribute ID from the element.
 func (e *LinkElement) IDRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -1204,10 +1204,10 @@ func (e *LinkElement) IfInert(condition bool) *LinkElement {
 // excluding them from the accessibility tree.
 // Set the attribute Inert to the value b explicitly.
 func (e *LinkElement) InertSet(b bool) *LinkElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("inert", b)
+	e.boolAttributes.Set("inert", b)
 	return e
 }
 
@@ -1240,10 +1240,10 @@ func (e *LinkElement) IfSetInert(condition bool, b bool) *LinkElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *LinkElement) InertRemove() *LinkElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("inert")
+	e.boolAttributes.Del("inert")
 	return e
 }
 
@@ -1257,10 +1257,10 @@ func (e *LinkElement) InertRemove() *LinkElement {
 // appropriate <input> element type. For specific guidance on choosing <input>
 // types, see the Values section.
 func (e *LinkElement) Inputmode(c LinkInputmodeChoice) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("inputmode", string(c))
+	e.stringAttributes.Set("inputmode", string(c))
 	return e
 }
 
@@ -1311,10 +1311,10 @@ const (
 // types, see the Values section.
 // Remove the attribute Inputmode from the element.
 func (e *LinkElement) InputmodeRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("inputmode")
+	e.stringAttributes.Del("inputmode")
 	return e
 }
 
@@ -1324,10 +1324,10 @@ func (e *LinkElement) InputmodeRemove() *LinkElement {
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
 func (e *LinkElement) Is(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("is", s)
+	e.stringAttributes.Set("is", s)
 	return e
 }
 
@@ -1371,10 +1371,10 @@ func (e *LinkElement) IfIsF(condition bool, format string, args ...any) *LinkEle
 // and extends the element type it is being applied to.
 // Remove the attribute Is from the element.
 func (e *LinkElement) IsRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("is")
+	e.stringAttributes.Del("is")
 	return e
 }
 
@@ -1390,10 +1390,10 @@ func (e *LinkElement) IsRemove() *LinkElement {
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
 func (e *LinkElement) Itemid(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemid", s)
+	e.stringAttributes.Set("itemid", s)
 	return e
 }
 
@@ -1461,10 +1461,10 @@ func (e *LinkElement) IfItemidF(condition bool, format string, args ...any) *Lin
 // how items with the same identifier are handled.
 // Remove the attribute Itemid from the element.
 func (e *LinkElement) ItemidRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemid")
+	e.stringAttributes.Del("itemid")
 	return e
 }
 
@@ -1476,10 +1476,10 @@ func (e *LinkElement) ItemidRemove() *LinkElement {
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
 func (e *LinkElement) Itemprop(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemprop", s)
+	e.stringAttributes.Set("itemprop", s)
 	return e
 }
 
@@ -1531,10 +1531,10 @@ func (e *LinkElement) IfItempropF(condition bool, format string, args ...any) *L
 // <track>, and <video>.
 // Remove the attribute Itemprop from the element.
 func (e *LinkElement) ItempropRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemprop")
+	e.stringAttributes.Del("itemprop")
 	return e
 }
 
@@ -1544,10 +1544,10 @@ func (e *LinkElement) ItempropRemove() *LinkElement {
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
 func (e *LinkElement) Itemref(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemref", s)
+	e.stringAttributes.Set("itemref", s)
 	return e
 }
 
@@ -1591,10 +1591,10 @@ func (e *LinkElement) IfItemrefF(condition bool, format string, args ...any) *Li
 // specified on elements that have an itemscope attribute specified.
 // Remove the attribute Itemref from the element.
 func (e *LinkElement) ItemrefRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemref")
+	e.stringAttributes.Del("itemref")
 	return e
 }
 
@@ -1633,10 +1633,10 @@ func (e *LinkElement) IfItemscope(condition bool) *LinkElement {
 // <object>, <source>, <track>, and <video>.
 // Set the attribute Itemscope to the value b explicitly.
 func (e *LinkElement) ItemscopeSet(b bool) *LinkElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("itemscope", b)
+	e.boolAttributes.Set("itemscope", b)
 	return e
 }
 
@@ -1663,10 +1663,10 @@ func (e *LinkElement) IfSetItemscope(condition bool, b bool) *LinkElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *LinkElement) ItemscopeRemove() *LinkElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("itemscope")
+	e.boolAttributes.Del("itemscope")
 	return e
 }
 
@@ -1678,10 +1678,10 @@ func (e *LinkElement) ItemscopeRemove() *LinkElement {
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
 func (e *LinkElement) Itemtype(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemtype", s)
+	e.stringAttributes.Set("itemtype", s)
 	return e
 }
 
@@ -1733,10 +1733,10 @@ func (e *LinkElement) IfItemtypeF(condition bool, format string, args ...any) *L
 // <video>.
 // Remove the attribute Itemtype from the element.
 func (e *LinkElement) ItemtypeRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemtype")
+	e.stringAttributes.Del("itemtype")
 	return e
 }
 
@@ -1746,10 +1746,10 @@ func (e *LinkElement) ItemtypeRemove() *LinkElement {
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 func (e *LinkElement) Lang(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("lang", s)
+	e.stringAttributes.Set("lang", s)
 	return e
 }
 
@@ -1793,10 +1793,10 @@ func (e *LinkElement) IfLangF(condition bool, format string, args ...any) *LinkE
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 // Remove the attribute Lang from the element.
 func (e *LinkElement) LangRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("lang")
+	e.stringAttributes.Del("lang")
 	return e
 }
 
@@ -1806,10 +1806,10 @@ func (e *LinkElement) LangRemove() *LinkElement {
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
 func (e *LinkElement) Nonce(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("nonce", s)
+	e.stringAttributes.Set("nonce", s)
 	return e
 }
 
@@ -1853,10 +1853,10 @@ func (e *LinkElement) IfNonceF(condition bool, format string, args ...any) *Link
 // execute.
 // Remove the attribute Nonce from the element.
 func (e *LinkElement) NonceRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("nonce")
+	e.stringAttributes.Del("nonce")
 	return e
 }
 
@@ -1865,13 +1865,13 @@ func (e *LinkElement) NonceRemove() *LinkElement {
 // in a shadow tree via the ::part pseudo-element.
 func (e *LinkElement) Part(s string) *LinkElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("part", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("part", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1892,10 +1892,10 @@ func (e *LinkElement) IfPart(condition bool, s string) *LinkElement {
 // in a shadow tree via the ::part pseudo-element.
 // Remove the values from the attribute Part in the element.
 func (e *LinkElement) PartRemove(s ...string) *LinkElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
 		return e
 	}
@@ -1910,10 +1910,10 @@ func (e *LinkElement) PartRemove(s ...string) *LinkElement {
 // popover elements will appear above all other elements in the top layer, and
 // won't be influenced by parent elements' position or overflow styling.
 func (e *LinkElement) Popover(c LinkPopoverChoice) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("popover", string(c))
+	e.stringAttributes.Set("popover", string(c))
 	return e
 }
 
@@ -1941,10 +1941,10 @@ const (
 // won't be influenced by parent elements' position or overflow styling.
 // Remove the attribute Popover from the element.
 func (e *LinkElement) PopoverRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("popover")
+	e.stringAttributes.Del("popover")
 	return e
 }
 
@@ -1953,10 +1953,10 @@ func (e *LinkElement) PopoverRemove() *LinkElement {
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
 func (e *LinkElement) Role(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("role", s)
+	e.stringAttributes.Set("role", s)
 	return e
 }
 
@@ -1996,10 +1996,10 @@ func (e *LinkElement) IfRoleF(condition bool, format string, args ...any) *LinkE
 // role of an element.
 // Remove the attribute Role from the element.
 func (e *LinkElement) RoleRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("role")
+	e.stringAttributes.Del("role")
 	return e
 }
 
@@ -2008,10 +2008,10 @@ func (e *LinkElement) RoleRemove() *LinkElement {
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
 func (e *LinkElement) Slot(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("slot", s)
+	e.stringAttributes.Set("slot", s)
 	return e
 }
 
@@ -2051,10 +2051,10 @@ func (e *LinkElement) IfSlotF(condition bool, format string, args ...any) *LinkE
 // value.
 // Remove the attribute Slot from the element.
 func (e *LinkElement) SlotRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("slot")
+	e.stringAttributes.Del("slot")
 	return e
 }
 
@@ -2070,10 +2070,10 @@ func (e *LinkElement) SlotRemove() *LinkElement {
 // "spell-jacking"). You should consider setting spellcheck to false for
 // elements that can contain sensitive information.
 func (e *LinkElement) Spellcheck(c LinkSpellcheckChoice) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("spellcheck", string(c))
+	e.stringAttributes.Set("spellcheck", string(c))
 	return e
 }
 
@@ -2101,10 +2101,10 @@ const (
 // elements that can contain sensitive information.
 // Remove the attribute Spellcheck from the element.
 func (e *LinkElement) SpellcheckRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("spellcheck")
+	e.stringAttributes.Del("spellcheck")
 	return e
 }
 
@@ -2114,13 +2114,13 @@ func (e *LinkElement) StylePairs(pairs ...string) *LinkElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -2136,13 +2136,13 @@ func (e *LinkElement) StylePairs(pairs ...string) *LinkElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *LinkElement) Style(s string) *LinkElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -2168,13 +2168,13 @@ func (e *LinkElement) IfStyle(condition bool, s string) *LinkElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *LinkElement) StyleAdd(k string, v string) *LinkElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -2208,13 +2208,13 @@ func (e *LinkElement) IfStyleAddF(condition bool, k string, format string, args 
 // color, font, size, and more. Styles are written in CSS.
 // Add the attributes in the map to the element.
 func (e *LinkElement) StyleMap(m map[string]string) *LinkElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -2231,10 +2231,10 @@ func (e *LinkElement) StyleMap(m map[string]string) *LinkElement {
 // color, font, size, and more. Styles are written in CSS.
 // Remove the attribute Style from the element.
 func (e *LinkElement) StyleRemove(keys ...string) *LinkElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}
@@ -2256,10 +2256,10 @@ func (e *LinkElement) StyleRemove(keys ...string) *LinkElement {
 // If several elements share the same tabindex, their relative order follows
 // their relative position in the document.
 func (e *LinkElement) Tabindex(i int) *LinkElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("tabindex", i)
+	e.intAttributes.Set("tabindex", i)
 	return e
 }
 
@@ -2298,10 +2298,10 @@ func (e *LinkElement) IfTabindex(condition bool, i int) *LinkElement {
 // their relative position in the document.
 // Remove the attribute Tabindex from the element.
 func (e *LinkElement) TabindexRemove() *LinkElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("tabindex")
+	e.intAttributes.Del("tabindex")
 	return e
 }
 
@@ -2322,10 +2322,10 @@ func (e *LinkElement) TabindexRemove() *LinkElement {
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
 func (e *LinkElement) Title(s string) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("title", s)
+	e.stringAttributes.Set("title", s)
 	return e
 }
 
@@ -2413,10 +2413,10 @@ func (e *LinkElement) IfTitleF(condition bool, format string, args ...any) *Link
 // element, this is not good practice. Use a <label> instead.
 // Remove the attribute Title from the element.
 func (e *LinkElement) TitleRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("title")
+	e.stringAttributes.Del("title")
 	return e
 }
 
@@ -2425,10 +2425,10 @@ func (e *LinkElement) TitleRemove() *LinkElement {
 // children are to be translated when the page is localized, or whether to leave
 // them unchanged.
 func (e *LinkElement) Translate(c LinkTranslateChoice) *LinkElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("translate", string(c))
+	e.stringAttributes.Set("translate", string(c))
 	return e
 }
 
@@ -2449,9 +2449,9 @@ const (
 // them unchanged.
 // Remove the attribute Translate from the element.
 func (e *LinkElement) TranslateRemove() *LinkElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("translate")
+	e.stringAttributes.Del("translate")
 	return e
 }

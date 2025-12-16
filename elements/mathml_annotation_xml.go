@@ -23,37 +23,37 @@ type MathMLAnnotationXMLElement struct {
 // with the tag "annotation-xml" during rendering.
 func MathMLAnnotationXML(children ...ElementRenderer) *MathMLAnnotationXMLElement {
 	e := NewElement("annotation-xml", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &MathMLAnnotationXMLElement{Element: e}
 }
 
 func (e *MathMLAnnotationXMLElement) Children(children ...ElementRenderer) *MathMLAnnotationXMLElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *MathMLAnnotationXMLElement) IfChildren(condition bool, children ...ElementRenderer) *MathMLAnnotationXMLElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *MathMLAnnotationXMLElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *MathMLAnnotationXMLElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *MathMLAnnotationXMLElement) BoolAttr(name string) *MathMLAnnotationXMLElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -65,10 +65,10 @@ func (e *MathMLAnnotationXMLElement) IfBoolAttr(condition bool, name string) *Ma
 }
 
 func (e *MathMLAnnotationXMLElement) Attr(name, value string) *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -80,7 +80,7 @@ func (e *MathMLAnnotationXMLElement) IfAttr(condition bool, name, value string) 
 }
 
 func (e *MathMLAnnotationXMLElement) Text(text string) *MathMLAnnotationXMLElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -90,26 +90,26 @@ func (e *MathMLAnnotationXMLElement) TextF(format string, args ...any) *MathMLAn
 
 func (e *MathMLAnnotationXMLElement) IfText(condition bool, text string) *MathMLAnnotationXMLElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *MathMLAnnotationXMLElement) IfTextF(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *MathMLAnnotationXMLElement) Escaped(text string) *MathMLAnnotationXMLElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *MathMLAnnotationXMLElement) IfEscaped(condition bool, text string) *MathMLAnnotationXMLElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -120,7 +120,7 @@ func (e *MathMLAnnotationXMLElement) EscapedF(format string, args ...any) *MathM
 
 func (e *MathMLAnnotationXMLElement) IfEscapedF(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -129,10 +129,10 @@ func (e *MathMLAnnotationXMLElement) IfEscapedF(condition bool, format string, a
 // "application/mathml+xml", "application/mathml-presentation+xml",
 // "application/mathml-content+xml")
 func (e *MathMLAnnotationXMLElement) Encoding(s string) *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("encoding", s)
+	e.stringAttributes.Set("encoding", s)
 	return e
 }
 
@@ -168,19 +168,19 @@ func (e *MathMLAnnotationXMLElement) IfEncodingF(condition bool, format string, 
 // "application/mathml-content+xml")
 // Remove the attribute Encoding from the element.
 func (e *MathMLAnnotationXMLElement) EncodingRemove() *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("encoding")
+	e.stringAttributes.Del("encoding")
 	return e
 }
 
 // This attribute specifies the name of the annotation.
 func (e *MathMLAnnotationXMLElement) Name(s string) *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("name", s)
+	e.stringAttributes.Set("name", s)
 	return e
 }
 
@@ -208,10 +208,10 @@ func (e *MathMLAnnotationXMLElement) IfNameF(condition bool, format string, args
 // This attribute specifies the name of the annotation.
 // Remove the attribute Name from the element.
 func (e *MathMLAnnotationXMLElement) NameRemove() *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("name")
+	e.stringAttributes.Del("name")
 	return e
 }
 
@@ -220,13 +220,13 @@ func (e *MathMLAnnotationXMLElement) NameRemove() *MathMLAnnotationXMLElement {
 // class names, they must be separated by whitespace characters.
 func (e *MathMLAnnotationXMLElement) Class(s string) *MathMLAnnotationXMLElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -247,10 +247,10 @@ func (e *MathMLAnnotationXMLElement) IfClass(condition bool, s string) *MathMLAn
 // class names, they must be separated by whitespace characters.
 // Remove the values from the attribute Class in the element.
 func (e *MathMLAnnotationXMLElement) ClassRemove(s ...string) *MathMLAnnotationXMLElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -263,10 +263,10 @@ func (e *MathMLAnnotationXMLElement) ClassRemove(s ...string) *MathMLAnnotationX
 // inherent directionality (such as Arabic or Hebrew). Possible values are ltr
 // (left-to-right) and rtl (right-to-left).
 func (e *MathMLAnnotationXMLElement) Dir(c MathMLAnnotationXMLDirChoice) *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dir", string(c))
+	e.stringAttributes.Set("dir", string(c))
 	return e
 }
 
@@ -285,20 +285,20 @@ const (
 // (left-to-right) and rtl (right-to-left).
 // Remove the attribute Dir from the element.
 func (e *MathMLAnnotationXMLElement) DirRemove() *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dir")
+	e.stringAttributes.Del("dir")
 	return e
 }
 
 // This attribute specifies whether the element should be rendered using
 // displaystyle rules or not. Possible values are true and false.
 func (e *MathMLAnnotationXMLElement) Displaystyle(c MathMLAnnotationXMLDisplaystyleChoice) *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("displaystyle", string(c))
+	e.stringAttributes.Set("displaystyle", string(c))
 	return e
 }
 
@@ -315,20 +315,20 @@ const (
 // displaystyle rules or not. Possible values are true and false.
 // Remove the attribute Displaystyle from the element.
 func (e *MathMLAnnotationXMLElement) DisplaystyleRemove() *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("displaystyle")
+	e.stringAttributes.Del("displaystyle")
 	return e
 }
 
 // This attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLAnnotationXMLElement) ID(s string) *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -360,10 +360,10 @@ func (e *MathMLAnnotationXMLElement) IfIDF(condition bool, format string, args .
 // document.
 // Remove the attribute ID from the element.
 func (e *MathMLAnnotationXMLElement) IDRemove() *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -371,10 +371,10 @@ func (e *MathMLAnnotationXMLElement) IDRemove() *MathMLAnnotationXMLElement {
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLAnnotationXMLElement) Mathbackground(s string) *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("mathbackground", s)
+	e.stringAttributes.Set("mathbackground", s)
 	return e
 }
 
@@ -410,10 +410,10 @@ func (e *MathMLAnnotationXMLElement) IfMathbackgroundF(condition bool, format st
 // Color Module [CSS3COLOR].
 // Remove the attribute Mathbackground from the element.
 func (e *MathMLAnnotationXMLElement) MathbackgroundRemove() *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("mathbackground")
+	e.stringAttributes.Del("mathbackground")
 	return e
 }
 
@@ -421,10 +421,10 @@ func (e *MathMLAnnotationXMLElement) MathbackgroundRemove() *MathMLAnnotationXML
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLAnnotationXMLElement) Mathcolor(s string) *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("mathcolor", s)
+	e.stringAttributes.Set("mathcolor", s)
 	return e
 }
 
@@ -460,20 +460,20 @@ func (e *MathMLAnnotationXMLElement) IfMathcolorF(condition bool, format string,
 // Module [CSS3COLOR].
 // Remove the attribute Mathcolor from the element.
 func (e *MathMLAnnotationXMLElement) MathcolorRemove() *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("mathcolor")
+	e.stringAttributes.Del("mathcolor")
 	return e
 }
 
 // This attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLAnnotationXMLElement) MathsizeStr(s string) *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("mathsize", s)
+	e.stringAttributes.Set("mathsize", s)
 	return e
 }
 
@@ -505,10 +505,10 @@ func (e *MathMLAnnotationXMLElement) IfMathsizeStrF(condition bool, format strin
 // dimension or a dimensionless number.
 // Remove the attribute MathsizeStr from the element.
 func (e *MathMLAnnotationXMLElement) MathsizeStrRemove() *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("mathsize")
+	e.stringAttributes.Del("mathsize")
 	return e
 }
 
@@ -517,10 +517,10 @@ func (e *MathMLAnnotationXMLElement) MathsizeStrRemove() *MathMLAnnotationXMLEle
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // attribute matching the value of the nonce attribute.
 func (e *MathMLAnnotationXMLElement) Nonce(s string) *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("nonce", s)
+	e.stringAttributes.Set("nonce", s)
 	return e
 }
 
@@ -560,20 +560,20 @@ func (e *MathMLAnnotationXMLElement) IfNonceF(condition bool, format string, arg
 // attribute matching the value of the nonce attribute.
 // Remove the attribute Nonce from the element.
 func (e *MathMLAnnotationXMLElement) NonceRemove() *MathMLAnnotationXMLElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("nonce")
+	e.stringAttributes.Del("nonce")
 	return e
 }
 
 // This attribute specifies the script level of the element. Possible values are
 // an integer between 0 and 7, inclusive.
 func (e *MathMLAnnotationXMLElement) Scriptlevel(i int) *MathMLAnnotationXMLElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("scriptlevel", i)
+	e.intAttributes.Set("scriptlevel", i)
 	return e
 }
 
@@ -590,10 +590,10 @@ func (e *MathMLAnnotationXMLElement) IfScriptlevel(condition bool, i int) *MathM
 // an integer between 0 and 7, inclusive.
 // Remove the attribute Scriptlevel from the element.
 func (e *MathMLAnnotationXMLElement) ScriptlevelRemove() *MathMLAnnotationXMLElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("scriptlevel")
+	e.intAttributes.Del("scriptlevel")
 	return e
 }
 
@@ -603,13 +603,13 @@ func (e *MathMLAnnotationXMLElement) StylePairs(pairs ...string) *MathMLAnnotati
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -625,13 +625,13 @@ func (e *MathMLAnnotationXMLElement) StylePairs(pairs ...string) *MathMLAnnotati
 // This attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLAnnotationXMLElement) Style(s string) *MathMLAnnotationXMLElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -657,13 +657,13 @@ func (e *MathMLAnnotationXMLElement) IfStyle(condition bool, s string) *MathMLAn
 // This attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLAnnotationXMLElement) StyleAdd(k string, v string) *MathMLAnnotationXMLElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -697,13 +697,13 @@ func (e *MathMLAnnotationXMLElement) IfStyleAddF(condition bool, k string, forma
 // set.
 // Add the attributes in the map to the element.
 func (e *MathMLAnnotationXMLElement) StyleMap(m map[string]string) *MathMLAnnotationXMLElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -720,10 +720,10 @@ func (e *MathMLAnnotationXMLElement) StyleMap(m map[string]string) *MathMLAnnota
 // set.
 // Remove the attribute Style from the element.
 func (e *MathMLAnnotationXMLElement) StyleRemove(keys ...string) *MathMLAnnotationXMLElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}
@@ -735,10 +735,10 @@ func (e *MathMLAnnotationXMLElement) StyleRemove(keys ...string) *MathMLAnnotati
 // order for the current document. This value must be a number between 0 and
 // 32767. User agents should ignore leading zeros.
 func (e *MathMLAnnotationXMLElement) Tabindex(i int) *MathMLAnnotationXMLElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("tabindex", i)
+	e.intAttributes.Set("tabindex", i)
 	return e
 }
 
@@ -757,9 +757,9 @@ func (e *MathMLAnnotationXMLElement) IfTabindex(condition bool, i int) *MathMLAn
 // 32767. User agents should ignore leading zeros.
 // Remove the attribute Tabindex from the element.
 func (e *MathMLAnnotationXMLElement) TabindexRemove() *MathMLAnnotationXMLElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("tabindex")
+	e.intAttributes.Del("tabindex")
 	return e
 }

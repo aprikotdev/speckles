@@ -23,37 +23,37 @@ type SVGFeCompositeElement struct {
 // with the tag "feComposite" during rendering.
 func SVGFeComposite(children ...ElementRenderer) *SVGFeCompositeElement {
 	e := NewElement("feComposite", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGFeCompositeElement{Element: e}
 }
 
 func (e *SVGFeCompositeElement) Children(children ...ElementRenderer) *SVGFeCompositeElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGFeCompositeElement) IfChildren(condition bool, children ...ElementRenderer) *SVGFeCompositeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGFeCompositeElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGFeCompositeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGFeCompositeElement) BoolAttr(name string) *SVGFeCompositeElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -65,10 +65,10 @@ func (e *SVGFeCompositeElement) IfBoolAttr(condition bool, name string) *SVGFeCo
 }
 
 func (e *SVGFeCompositeElement) Attr(name, value string) *SVGFeCompositeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -80,7 +80,7 @@ func (e *SVGFeCompositeElement) IfAttr(condition bool, name, value string) *SVGF
 }
 
 func (e *SVGFeCompositeElement) Text(text string) *SVGFeCompositeElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -90,26 +90,26 @@ func (e *SVGFeCompositeElement) TextF(format string, args ...any) *SVGFeComposit
 
 func (e *SVGFeCompositeElement) IfText(condition bool, text string) *SVGFeCompositeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGFeCompositeElement) IfTextF(condition bool, format string, args ...any) *SVGFeCompositeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGFeCompositeElement) Escaped(text string) *SVGFeCompositeElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGFeCompositeElement) IfEscaped(condition bool, text string) *SVGFeCompositeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -120,17 +120,17 @@ func (e *SVGFeCompositeElement) EscapedF(format string, args ...any) *SVGFeCompo
 
 func (e *SVGFeCompositeElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeCompositeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // Input for the compositing operation.
 func (e *SVGFeCompositeElement) In(s string) *SVGFeCompositeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("in", s)
+	e.stringAttributes.Set("in", s)
 	return e
 }
 
@@ -158,19 +158,19 @@ func (e *SVGFeCompositeElement) IfInF(condition bool, format string, args ...any
 // Input for the compositing operation.
 // Remove the attribute In from the element.
 func (e *SVGFeCompositeElement) InRemove() *SVGFeCompositeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("in")
+	e.stringAttributes.Del("in")
 	return e
 }
 
 // Second input for the compositing operation.
 func (e *SVGFeCompositeElement) In2(s string) *SVGFeCompositeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("in2", s)
+	e.stringAttributes.Set("in2", s)
 	return e
 }
 
@@ -198,19 +198,19 @@ func (e *SVGFeCompositeElement) IfIn2F(condition bool, format string, args ...an
 // Second input for the compositing operation.
 // Remove the attribute In2 from the element.
 func (e *SVGFeCompositeElement) In2Remove() *SVGFeCompositeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("in2")
+	e.stringAttributes.Del("in2")
 	return e
 }
 
 // The type of compositing operation.
 func (e *SVGFeCompositeElement) Operator(c SVGFeCompositeOperatorChoice) *SVGFeCompositeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("operator", string(c))
+	e.stringAttributes.Set("operator", string(c))
 	return e
 }
 
@@ -238,19 +238,19 @@ const (
 // The type of compositing operation.
 // Remove the attribute Operator from the element.
 func (e *SVGFeCompositeElement) OperatorRemove() *SVGFeCompositeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("operator")
+	e.stringAttributes.Del("operator")
 	return e
 }
 
 // First value to use in the arithmetic operation.
 func (e *SVGFeCompositeElement) K1(f float64) *SVGFeCompositeElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("k1", f)
+	e.floatAttributes.Set("k1", f)
 	return e
 }
 
@@ -264,10 +264,10 @@ func (e *SVGFeCompositeElement) IfK1(condition bool, f float64) *SVGFeCompositeE
 
 // Second value to use in the arithmetic operation.
 func (e *SVGFeCompositeElement) K2(f float64) *SVGFeCompositeElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("k2", f)
+	e.floatAttributes.Set("k2", f)
 	return e
 }
 
@@ -281,10 +281,10 @@ func (e *SVGFeCompositeElement) IfK2(condition bool, f float64) *SVGFeCompositeE
 
 // Third value to use in the arithmetic operation.
 func (e *SVGFeCompositeElement) K3(f float64) *SVGFeCompositeElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("k3", f)
+	e.floatAttributes.Set("k3", f)
 	return e
 }
 
@@ -298,10 +298,10 @@ func (e *SVGFeCompositeElement) IfK3(condition bool, f float64) *SVGFeCompositeE
 
 // Fourth value to use in the arithmetic operation.
 func (e *SVGFeCompositeElement) K4(f float64) *SVGFeCompositeElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("k4", f)
+	e.floatAttributes.Set("k4", f)
 	return e
 }
 
@@ -315,10 +315,10 @@ func (e *SVGFeCompositeElement) IfK4(condition bool, f float64) *SVGFeCompositeE
 
 // Specifies a unique id for an element
 func (e *SVGFeCompositeElement) ID(s string) *SVGFeCompositeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -346,10 +346,10 @@ func (e *SVGFeCompositeElement) IfIDF(condition bool, format string, args ...any
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGFeCompositeElement) IDRemove() *SVGFeCompositeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -357,13 +357,13 @@ func (e *SVGFeCompositeElement) IDRemove() *SVGFeCompositeElement {
 // sheet)
 func (e *SVGFeCompositeElement) Class(s string) *SVGFeCompositeElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -382,10 +382,10 @@ func (e *SVGFeCompositeElement) IfClass(condition bool, s string) *SVGFeComposit
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGFeCompositeElement) ClassRemove(s ...string) *SVGFeCompositeElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -398,13 +398,13 @@ func (e *SVGFeCompositeElement) StylePairs(pairs ...string) *SVGFeCompositeEleme
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -419,13 +419,13 @@ func (e *SVGFeCompositeElement) StylePairs(pairs ...string) *SVGFeCompositeEleme
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeCompositeElement) Style(s string) *SVGFeCompositeElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -449,13 +449,13 @@ func (e *SVGFeCompositeElement) IfStyle(condition bool, s string) *SVGFeComposit
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeCompositeElement) StyleAdd(k string, v string) *SVGFeCompositeElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -485,13 +485,13 @@ func (e *SVGFeCompositeElement) IfStyleAddF(condition bool, k string, format str
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGFeCompositeElement) StyleMap(m map[string]string) *SVGFeCompositeElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -507,10 +507,10 @@ func (e *SVGFeCompositeElement) StyleMap(m map[string]string) *SVGFeCompositeEle
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGFeCompositeElement) StyleRemove(keys ...string) *SVGFeCompositeElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

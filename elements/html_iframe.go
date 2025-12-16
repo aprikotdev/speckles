@@ -22,37 +22,37 @@ type IframeElement struct {
 // with the tag "iframe" during rendering.
 func Iframe(children ...ElementRenderer) *IframeElement {
 	e := NewElement("iframe", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &IframeElement{Element: e}
 }
 
 func (e *IframeElement) Children(children ...ElementRenderer) *IframeElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *IframeElement) IfChildren(condition bool, children ...ElementRenderer) *IframeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *IframeElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *IframeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *IframeElement) BoolAttr(name string) *IframeElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *IframeElement) IfBoolAttr(condition bool, name string) *IframeElement {
 }
 
 func (e *IframeElement) Attr(name, value string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *IframeElement) IfAttr(condition bool, name, value string) *IframeElemen
 }
 
 func (e *IframeElement) Text(text string) *IframeElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *IframeElement) TextF(format string, args ...any) *IframeElement {
 
 func (e *IframeElement) IfText(condition bool, text string) *IframeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *IframeElement) IfTextF(condition bool, format string, args ...any) *IframeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *IframeElement) Escaped(text string) *IframeElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *IframeElement) IfEscaped(condition bool, text string) *IframeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,7 +119,7 @@ func (e *IframeElement) EscapedF(format string, args ...any) *IframeElement {
 
 func (e *IframeElement) IfEscapedF(condition bool, format string, args ...any) *IframeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -127,13 +127,13 @@ func (e *IframeElement) IfEscapedF(condition bool, format string, args ...any) *
 // Allows the iframe's contents to be treated as being from a different origin.
 func (e *IframeElement) Allow(s string) *IframeElement {
 	values := strings.Split(s, ",")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("allow")
+	ds, ok := e.delimitedStrings.Get("allow")
 	if !ok {
-		ds = NewDelimitedBuilder[string](",")
-		e.DelimitedStrings.Set("allow", ds)
+		ds = newDelimitedBuilder[string](",")
+		e.delimitedStrings.Set("allow", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -150,10 +150,10 @@ func (e *IframeElement) IfAllow(condition bool, s string) *IframeElement {
 // Allows the iframe's contents to be treated as being from a different origin.
 // Remove the values from the attribute Allow in the element.
 func (e *IframeElement) AllowRemove(s ...string) *IframeElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("allow")
+	ds, ok := e.delimitedStrings.Get("allow")
 	if !ok {
 		return e
 	}
@@ -181,10 +181,10 @@ func (e *IframeElement) IfAllowfullscreen(condition bool) *IframeElement {
 // allowed to use the Fullscreen API.
 // Set the attribute Allowfullscreen to the value b explicitly.
 func (e *IframeElement) AllowfullscreenSet(b bool) *IframeElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("allowfullscreen", b)
+	e.boolAttributes.Set("allowfullscreen", b)
 	return e
 }
 
@@ -201,10 +201,10 @@ func (e *IframeElement) IfSetAllowfullscreen(condition bool, b bool) *IframeElem
 // Allows the iframe to be placed into full screen mode, and iframes are also
 // allowed to use the Fullscreen API.
 func (e *IframeElement) AllowfullscreenRemove() *IframeElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("allowfullscreen")
+	e.boolAttributes.Del("allowfullscreen")
 	return e
 }
 
@@ -228,10 +228,10 @@ func (e *IframeElement) IfAllowpaymentrequest(condition bool) *IframeElement {
 // requests via the browser.
 // Set the attribute Allowpaymentrequest to the value b explicitly.
 func (e *IframeElement) AllowpaymentrequestSet(b bool) *IframeElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("allowpaymentrequest", b)
+	e.boolAttributes.Set("allowpaymentrequest", b)
 	return e
 }
 
@@ -248,19 +248,19 @@ func (e *IframeElement) IfSetAllowpaymentrequest(condition bool, b bool) *Iframe
 // Allows the iframe to use the PaymentRequest interface to make payment
 // requests via the browser.
 func (e *IframeElement) AllowpaymentrequestRemove() *IframeElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("allowpaymentrequest")
+	e.boolAttributes.Del("allowpaymentrequest")
 	return e
 }
 
 // The height of the frame in CSS pixels.
 func (e *IframeElement) Height(i int) *IframeElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("height", i)
+	e.intAttributes.Set("height", i)
 	return e
 }
 
@@ -275,19 +275,19 @@ func (e *IframeElement) IfHeight(condition bool, i int) *IframeElement {
 // The height of the frame in CSS pixels.
 // Remove the attribute Height from the element.
 func (e *IframeElement) HeightRemove() *IframeElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("height")
+	e.intAttributes.Del("height")
 	return e
 }
 
 // The name of the frame.
 func (e *IframeElement) Name(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("name", s)
+	e.stringAttributes.Set("name", s)
 	return e
 }
 
@@ -315,20 +315,20 @@ func (e *IframeElement) IfNameF(condition bool, format string, args ...any) *Ifr
 // The name of the frame.
 // Remove the attribute Name from the element.
 func (e *IframeElement) NameRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("name")
+	e.stringAttributes.Del("name")
 	return e
 }
 
 // Specifies which referrer to send when fetching the resource. See
 // Referrer-Policy for possible values and their effects.
 func (e *IframeElement) Referrerpolicy(c IframeReferrerpolicyChoice) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("referrerpolicy", string(c))
+	e.stringAttributes.Set("referrerpolicy", string(c))
 	return e
 }
 
@@ -362,19 +362,19 @@ const (
 // Referrer-Policy for possible values and their effects.
 // Remove the attribute Referrerpolicy from the element.
 func (e *IframeElement) ReferrerpolicyRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("referrerpolicy")
+	e.stringAttributes.Del("referrerpolicy")
 	return e
 }
 
 // Enables a set of extra restrictions on any content hosted by the iframe.
 func (e *IframeElement) Sandbox(c IframeSandboxChoice) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("sandbox", string(c))
+	e.stringAttributes.Set("sandbox", string(c))
 	return e
 }
 
@@ -409,19 +409,19 @@ const (
 // Enables a set of extra restrictions on any content hosted by the iframe.
 // Remove the attribute Sandbox from the element.
 func (e *IframeElement) SandboxRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("sandbox")
+	e.stringAttributes.Del("sandbox")
 	return e
 }
 
 // The URL of the page to embed.
 func (e *IframeElement) Src(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("src", s)
+	e.stringAttributes.Set("src", s)
 	return e
 }
 
@@ -449,19 +449,19 @@ func (e *IframeElement) IfSrcF(condition bool, format string, args ...any) *Ifra
 // The URL of the page to embed.
 // Remove the attribute Src from the element.
 func (e *IframeElement) SrcRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("src")
+	e.stringAttributes.Del("src")
 	return e
 }
 
 // A document to render in the iframe.
 func (e *IframeElement) Srcdoc(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("srcdoc", s)
+	e.stringAttributes.Set("srcdoc", s)
 	return e
 }
 
@@ -489,19 +489,19 @@ func (e *IframeElement) IfSrcdocF(condition bool, format string, args ...any) *I
 // A document to render in the iframe.
 // Remove the attribute Srcdoc from the element.
 func (e *IframeElement) SrcdocRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("srcdoc")
+	e.stringAttributes.Del("srcdoc")
 	return e
 }
 
 // The width of the frame in CSS pixels.
 func (e *IframeElement) Width(i int) *IframeElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("width", i)
+	e.intAttributes.Set("width", i)
 	return e
 }
 
@@ -516,10 +516,10 @@ func (e *IframeElement) IfWidth(condition bool, i int) *IframeElement {
 // The width of the frame in CSS pixels.
 // Remove the attribute Width from the element.
 func (e *IframeElement) WidthRemove() *IframeElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("width")
+	e.intAttributes.Del("width")
 	return e
 }
 
@@ -528,10 +528,10 @@ func (e *IframeElement) WidthRemove() *IframeElement {
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
 func (e *IframeElement) Accesskey(r rune) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("accesskey", string(r))
+	e.stringAttributes.Set("accesskey", string(r))
 	return e
 }
 
@@ -552,10 +552,10 @@ func (e *IframeElement) IfAccesskey(condition bool, r rune) *IframeElement {
 // can be generated by the keyboard).
 // Remove the attribute Accesskey from the element.
 func (e *IframeElement) AccesskeyRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("accesskey")
+	e.stringAttributes.Del("accesskey")
 	return e
 }
 
@@ -571,10 +571,10 @@ func (e *IframeElement) AccesskeyRemove() *IframeElement {
 // behavior varies between browsers. For example: Chrome and Safari default to
 // on/sentences Firefox defaults to off/none.
 func (e *IframeElement) Autocapitalize(c IframeAutocapitalizeChoice) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("autocapitalize", string(c))
+	e.stringAttributes.Set("autocapitalize", string(c))
 	return e
 }
 
@@ -608,10 +608,10 @@ const (
 // on/sentences Firefox defaults to off/none.
 // Remove the attribute Autocapitalize from the element.
 func (e *IframeElement) AutocapitalizeRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("autocapitalize")
+	e.stringAttributes.Del("autocapitalize")
 	return e
 }
 
@@ -671,10 +671,10 @@ func (e *IframeElement) IfAutofocus(condition bool) *IframeElement {
 // created by the preceding content.
 // Set the attribute Autofocus to the value b explicitly.
 func (e *IframeElement) AutofocusSet(b bool) *IframeElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("autofocus", b)
+	e.boolAttributes.Set("autofocus", b)
 	return e
 }
 
@@ -715,10 +715,10 @@ func (e *IframeElement) IfSetAutofocus(condition bool, b bool) *IframeElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *IframeElement) AutofocusRemove() *IframeElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("autofocus")
+	e.boolAttributes.Del("autofocus")
 	return e
 }
 
@@ -728,13 +728,13 @@ func (e *IframeElement) AutofocusRemove() *IframeElement {
 // document.getElementsByClassName.
 func (e *IframeElement) Class(s string) *IframeElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -757,10 +757,10 @@ func (e *IframeElement) IfClass(condition bool, s string) *IframeElement {
 // document.getElementsByClassName.
 // Remove the values from the attribute Class in the element.
 func (e *IframeElement) ClassRemove(s ...string) *IframeElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -772,10 +772,10 @@ func (e *IframeElement) ClassRemove(s ...string) *IframeElement {
 // the element should be editable by the user. If so, the browser modifies its
 // widget to allow editing.
 func (e *IframeElement) Contenteditable(c IframeContenteditableChoice) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("contenteditable", string(c))
+	e.stringAttributes.Set("contenteditable", string(c))
 	return e
 }
 
@@ -798,10 +798,10 @@ const (
 // widget to allow editing.
 // Remove the attribute Contenteditable from the element.
 func (e *IframeElement) ContenteditableRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("contenteditable")
+	e.stringAttributes.Del("contenteditable")
 	return e
 }
 
@@ -819,10 +819,10 @@ func (e *IframeElement) ContenteditableRemove() *IframeElement {
 // directionality, like data coming from user input, eventually stored in a
 // database.
 func (e *IframeElement) Dir(c IframeDirChoice) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dir", string(c))
+	e.stringAttributes.Set("dir", string(c))
 	return e
 }
 
@@ -856,10 +856,10 @@ const (
 // database.
 // Remove the attribute Dir from the element.
 func (e *IframeElement) DirRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dir")
+	e.stringAttributes.Del("dir")
 	return e
 }
 
@@ -867,10 +867,10 @@ func (e *IframeElement) DirRemove() *IframeElement {
 // whether the element can be dragged, either with native browser behavior or
 // the HTML Drag and Drop API.
 func (e *IframeElement) Draggable(c IframeDraggableChoice) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("draggable", string(c))
+	e.stringAttributes.Set("draggable", string(c))
 	return e
 }
 
@@ -896,20 +896,20 @@ const (
 // the HTML Drag and Drop API.
 // Remove the attribute Draggable from the element.
 func (e *IframeElement) DraggableRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("draggable")
+	e.stringAttributes.Del("draggable")
 	return e
 }
 
 // The enterkeyhint global attribute is an enumerated attribute defining what
 // action label (or icon) to present for the enter key on virtual keyboards.
 func (e *IframeElement) Enterkeyhint(c IframeEnterkeyhintChoice) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("enterkeyhint", string(c))
+	e.stringAttributes.Set("enterkeyhint", string(c))
 	return e
 }
 
@@ -939,10 +939,10 @@ const (
 // action label (or icon) to present for the enter key on virtual keyboards.
 // Remove the attribute Enterkeyhint from the element.
 func (e *IframeElement) EnterkeyhintRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("enterkeyhint")
+	e.stringAttributes.Del("enterkeyhint")
 	return e
 }
 
@@ -965,13 +965,13 @@ func (e *IframeElement) EnterkeyhintRemove() *IframeElement {
 // the current structure.
 func (e *IframeElement) Exportparts(s string) *IframeElement {
 	values := strings.Split(s, ",")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
-		ds = NewDelimitedBuilder[string](",")
-		e.DelimitedStrings.Set("exportparts", ds)
+		ds = newDelimitedBuilder[string](",")
+		e.delimitedStrings.Set("exportparts", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1020,10 +1020,10 @@ func (e *IframeElement) IfExportparts(condition bool, s string) *IframeElement {
 // the current structure.
 // Remove the values from the attribute Exportparts in the element.
 func (e *IframeElement) ExportpartsRemove(s ...string) *IframeElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
 		return e
 	}
@@ -1044,10 +1044,10 @@ func (e *IframeElement) ExportpartsRemove(s ...string) *IframeElement {
 // of none, contents, or inline, then the element will not be revealed by find
 // in page or fragment navigation.
 func (e *IframeElement) Hidden(c IframeHiddenChoice) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("hidden", string(c))
+	e.stringAttributes.Set("hidden", string(c))
 	return e
 }
 
@@ -1083,10 +1083,10 @@ const (
 // in page or fragment navigation.
 // Remove the attribute Hidden from the element.
 func (e *IframeElement) HiddenRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("hidden")
+	e.stringAttributes.Del("hidden")
 	return e
 }
 
@@ -1094,10 +1094,10 @@ func (e *IframeElement) HiddenRemove() *IframeElement {
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *IframeElement) ID(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -1133,10 +1133,10 @@ func (e *IframeElement) IfIDF(condition bool, format string, args ...any) *Ifram
 // (using a fragment identifier), scripting, or styling (with CSS).
 // Remove the attribute ID from the element.
 func (e *IframeElement) IDRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -1184,10 +1184,10 @@ func (e *IframeElement) IfInert(condition bool) *IframeElement {
 // excluding them from the accessibility tree.
 // Set the attribute Inert to the value b explicitly.
 func (e *IframeElement) InertSet(b bool) *IframeElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("inert", b)
+	e.boolAttributes.Set("inert", b)
 	return e
 }
 
@@ -1220,10 +1220,10 @@ func (e *IframeElement) IfSetInert(condition bool, b bool) *IframeElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *IframeElement) InertRemove() *IframeElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("inert")
+	e.boolAttributes.Del("inert")
 	return e
 }
 
@@ -1237,10 +1237,10 @@ func (e *IframeElement) InertRemove() *IframeElement {
 // appropriate <input> element type. For specific guidance on choosing <input>
 // types, see the Values section.
 func (e *IframeElement) Inputmode(c IframeInputmodeChoice) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("inputmode", string(c))
+	e.stringAttributes.Set("inputmode", string(c))
 	return e
 }
 
@@ -1291,10 +1291,10 @@ const (
 // types, see the Values section.
 // Remove the attribute Inputmode from the element.
 func (e *IframeElement) InputmodeRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("inputmode")
+	e.stringAttributes.Del("inputmode")
 	return e
 }
 
@@ -1304,10 +1304,10 @@ func (e *IframeElement) InputmodeRemove() *IframeElement {
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
 func (e *IframeElement) Is(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("is", s)
+	e.stringAttributes.Set("is", s)
 	return e
 }
 
@@ -1351,10 +1351,10 @@ func (e *IframeElement) IfIsF(condition bool, format string, args ...any) *Ifram
 // and extends the element type it is being applied to.
 // Remove the attribute Is from the element.
 func (e *IframeElement) IsRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("is")
+	e.stringAttributes.Del("is")
 	return e
 }
 
@@ -1370,10 +1370,10 @@ func (e *IframeElement) IsRemove() *IframeElement {
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
 func (e *IframeElement) Itemid(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemid", s)
+	e.stringAttributes.Set("itemid", s)
 	return e
 }
 
@@ -1441,10 +1441,10 @@ func (e *IframeElement) IfItemidF(condition bool, format string, args ...any) *I
 // how items with the same identifier are handled.
 // Remove the attribute Itemid from the element.
 func (e *IframeElement) ItemidRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemid")
+	e.stringAttributes.Del("itemid")
 	return e
 }
 
@@ -1456,10 +1456,10 @@ func (e *IframeElement) ItemidRemove() *IframeElement {
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
 func (e *IframeElement) Itemprop(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemprop", s)
+	e.stringAttributes.Set("itemprop", s)
 	return e
 }
 
@@ -1511,10 +1511,10 @@ func (e *IframeElement) IfItempropF(condition bool, format string, args ...any) 
 // <track>, and <video>.
 // Remove the attribute Itemprop from the element.
 func (e *IframeElement) ItempropRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemprop")
+	e.stringAttributes.Del("itemprop")
 	return e
 }
 
@@ -1524,10 +1524,10 @@ func (e *IframeElement) ItempropRemove() *IframeElement {
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
 func (e *IframeElement) Itemref(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemref", s)
+	e.stringAttributes.Set("itemref", s)
 	return e
 }
 
@@ -1571,10 +1571,10 @@ func (e *IframeElement) IfItemrefF(condition bool, format string, args ...any) *
 // specified on elements that have an itemscope attribute specified.
 // Remove the attribute Itemref from the element.
 func (e *IframeElement) ItemrefRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemref")
+	e.stringAttributes.Del("itemref")
 	return e
 }
 
@@ -1613,10 +1613,10 @@ func (e *IframeElement) IfItemscope(condition bool) *IframeElement {
 // <object>, <source>, <track>, and <video>.
 // Set the attribute Itemscope to the value b explicitly.
 func (e *IframeElement) ItemscopeSet(b bool) *IframeElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("itemscope", b)
+	e.boolAttributes.Set("itemscope", b)
 	return e
 }
 
@@ -1643,10 +1643,10 @@ func (e *IframeElement) IfSetItemscope(condition bool, b bool) *IframeElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *IframeElement) ItemscopeRemove() *IframeElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("itemscope")
+	e.boolAttributes.Del("itemscope")
 	return e
 }
 
@@ -1658,10 +1658,10 @@ func (e *IframeElement) ItemscopeRemove() *IframeElement {
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
 func (e *IframeElement) Itemtype(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemtype", s)
+	e.stringAttributes.Set("itemtype", s)
 	return e
 }
 
@@ -1713,10 +1713,10 @@ func (e *IframeElement) IfItemtypeF(condition bool, format string, args ...any) 
 // <video>.
 // Remove the attribute Itemtype from the element.
 func (e *IframeElement) ItemtypeRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemtype")
+	e.stringAttributes.Del("itemtype")
 	return e
 }
 
@@ -1726,10 +1726,10 @@ func (e *IframeElement) ItemtypeRemove() *IframeElement {
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 func (e *IframeElement) Lang(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("lang", s)
+	e.stringAttributes.Set("lang", s)
 	return e
 }
 
@@ -1773,10 +1773,10 @@ func (e *IframeElement) IfLangF(condition bool, format string, args ...any) *Ifr
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 // Remove the attribute Lang from the element.
 func (e *IframeElement) LangRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("lang")
+	e.stringAttributes.Del("lang")
 	return e
 }
 
@@ -1786,10 +1786,10 @@ func (e *IframeElement) LangRemove() *IframeElement {
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
 func (e *IframeElement) Nonce(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("nonce", s)
+	e.stringAttributes.Set("nonce", s)
 	return e
 }
 
@@ -1833,10 +1833,10 @@ func (e *IframeElement) IfNonceF(condition bool, format string, args ...any) *If
 // execute.
 // Remove the attribute Nonce from the element.
 func (e *IframeElement) NonceRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("nonce")
+	e.stringAttributes.Del("nonce")
 	return e
 }
 
@@ -1845,13 +1845,13 @@ func (e *IframeElement) NonceRemove() *IframeElement {
 // in a shadow tree via the ::part pseudo-element.
 func (e *IframeElement) Part(s string) *IframeElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("part", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("part", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1872,10 +1872,10 @@ func (e *IframeElement) IfPart(condition bool, s string) *IframeElement {
 // in a shadow tree via the ::part pseudo-element.
 // Remove the values from the attribute Part in the element.
 func (e *IframeElement) PartRemove(s ...string) *IframeElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
 		return e
 	}
@@ -1890,10 +1890,10 @@ func (e *IframeElement) PartRemove(s ...string) *IframeElement {
 // popover elements will appear above all other elements in the top layer, and
 // won't be influenced by parent elements' position or overflow styling.
 func (e *IframeElement) Popover(c IframePopoverChoice) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("popover", string(c))
+	e.stringAttributes.Set("popover", string(c))
 	return e
 }
 
@@ -1921,10 +1921,10 @@ const (
 // won't be influenced by parent elements' position or overflow styling.
 // Remove the attribute Popover from the element.
 func (e *IframeElement) PopoverRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("popover")
+	e.stringAttributes.Del("popover")
 	return e
 }
 
@@ -1933,10 +1933,10 @@ func (e *IframeElement) PopoverRemove() *IframeElement {
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
 func (e *IframeElement) Role(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("role", s)
+	e.stringAttributes.Set("role", s)
 	return e
 }
 
@@ -1976,10 +1976,10 @@ func (e *IframeElement) IfRoleF(condition bool, format string, args ...any) *Ifr
 // role of an element.
 // Remove the attribute Role from the element.
 func (e *IframeElement) RoleRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("role")
+	e.stringAttributes.Del("role")
 	return e
 }
 
@@ -1988,10 +1988,10 @@ func (e *IframeElement) RoleRemove() *IframeElement {
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
 func (e *IframeElement) Slot(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("slot", s)
+	e.stringAttributes.Set("slot", s)
 	return e
 }
 
@@ -2031,10 +2031,10 @@ func (e *IframeElement) IfSlotF(condition bool, format string, args ...any) *Ifr
 // value.
 // Remove the attribute Slot from the element.
 func (e *IframeElement) SlotRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("slot")
+	e.stringAttributes.Del("slot")
 	return e
 }
 
@@ -2050,10 +2050,10 @@ func (e *IframeElement) SlotRemove() *IframeElement {
 // "spell-jacking"). You should consider setting spellcheck to false for
 // elements that can contain sensitive information.
 func (e *IframeElement) Spellcheck(c IframeSpellcheckChoice) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("spellcheck", string(c))
+	e.stringAttributes.Set("spellcheck", string(c))
 	return e
 }
 
@@ -2081,10 +2081,10 @@ const (
 // elements that can contain sensitive information.
 // Remove the attribute Spellcheck from the element.
 func (e *IframeElement) SpellcheckRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("spellcheck")
+	e.stringAttributes.Del("spellcheck")
 	return e
 }
 
@@ -2094,13 +2094,13 @@ func (e *IframeElement) StylePairs(pairs ...string) *IframeElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -2116,13 +2116,13 @@ func (e *IframeElement) StylePairs(pairs ...string) *IframeElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *IframeElement) Style(s string) *IframeElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -2148,13 +2148,13 @@ func (e *IframeElement) IfStyle(condition bool, s string) *IframeElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *IframeElement) StyleAdd(k string, v string) *IframeElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -2188,13 +2188,13 @@ func (e *IframeElement) IfStyleAddF(condition bool, k string, format string, arg
 // color, font, size, and more. Styles are written in CSS.
 // Add the attributes in the map to the element.
 func (e *IframeElement) StyleMap(m map[string]string) *IframeElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -2211,10 +2211,10 @@ func (e *IframeElement) StyleMap(m map[string]string) *IframeElement {
 // color, font, size, and more. Styles are written in CSS.
 // Remove the attribute Style from the element.
 func (e *IframeElement) StyleRemove(keys ...string) *IframeElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}
@@ -2236,10 +2236,10 @@ func (e *IframeElement) StyleRemove(keys ...string) *IframeElement {
 // If several elements share the same tabindex, their relative order follows
 // their relative position in the document.
 func (e *IframeElement) Tabindex(i int) *IframeElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("tabindex", i)
+	e.intAttributes.Set("tabindex", i)
 	return e
 }
 
@@ -2278,10 +2278,10 @@ func (e *IframeElement) IfTabindex(condition bool, i int) *IframeElement {
 // their relative position in the document.
 // Remove the attribute Tabindex from the element.
 func (e *IframeElement) TabindexRemove() *IframeElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("tabindex")
+	e.intAttributes.Del("tabindex")
 	return e
 }
 
@@ -2302,10 +2302,10 @@ func (e *IframeElement) TabindexRemove() *IframeElement {
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
 func (e *IframeElement) Title(s string) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("title", s)
+	e.stringAttributes.Set("title", s)
 	return e
 }
 
@@ -2393,10 +2393,10 @@ func (e *IframeElement) IfTitleF(condition bool, format string, args ...any) *If
 // element, this is not good practice. Use a <label> instead.
 // Remove the attribute Title from the element.
 func (e *IframeElement) TitleRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("title")
+	e.stringAttributes.Del("title")
 	return e
 }
 
@@ -2405,10 +2405,10 @@ func (e *IframeElement) TitleRemove() *IframeElement {
 // children are to be translated when the page is localized, or whether to leave
 // them unchanged.
 func (e *IframeElement) Translate(c IframeTranslateChoice) *IframeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("translate", string(c))
+	e.stringAttributes.Set("translate", string(c))
 	return e
 }
 
@@ -2429,9 +2429,9 @@ const (
 // them unchanged.
 // Remove the attribute Translate from the element.
 func (e *IframeElement) TranslateRemove() *IframeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("translate")
+	e.stringAttributes.Del("translate")
 	return e
 }

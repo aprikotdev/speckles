@@ -23,37 +23,37 @@ type SVGFeDropShadowElement struct {
 // with the tag "feDropShadow" during rendering.
 func SVGFeDropShadow(children ...ElementRenderer) *SVGFeDropShadowElement {
 	e := NewElement("feDropShadow", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGFeDropShadowElement{Element: e}
 }
 
 func (e *SVGFeDropShadowElement) Children(children ...ElementRenderer) *SVGFeDropShadowElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGFeDropShadowElement) IfChildren(condition bool, children ...ElementRenderer) *SVGFeDropShadowElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGFeDropShadowElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGFeDropShadowElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGFeDropShadowElement) BoolAttr(name string) *SVGFeDropShadowElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -65,10 +65,10 @@ func (e *SVGFeDropShadowElement) IfBoolAttr(condition bool, name string) *SVGFeD
 }
 
 func (e *SVGFeDropShadowElement) Attr(name, value string) *SVGFeDropShadowElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -80,7 +80,7 @@ func (e *SVGFeDropShadowElement) IfAttr(condition bool, name, value string) *SVG
 }
 
 func (e *SVGFeDropShadowElement) Text(text string) *SVGFeDropShadowElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -90,26 +90,26 @@ func (e *SVGFeDropShadowElement) TextF(format string, args ...any) *SVGFeDropSha
 
 func (e *SVGFeDropShadowElement) IfText(condition bool, text string) *SVGFeDropShadowElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGFeDropShadowElement) IfTextF(condition bool, format string, args ...any) *SVGFeDropShadowElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGFeDropShadowElement) Escaped(text string) *SVGFeDropShadowElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGFeDropShadowElement) IfEscaped(condition bool, text string) *SVGFeDropShadowElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -120,7 +120,7 @@ func (e *SVGFeDropShadowElement) EscapedF(format string, args ...any) *SVGFeDrop
 
 func (e *SVGFeDropShadowElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeDropShadowElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -128,10 +128,10 @@ func (e *SVGFeDropShadowElement) IfEscapedF(condition bool, format string, args 
 // The amount of offset in the x direction. If the <length> is 0, the shadow is
 // placed at the same position as the input.
 func (e *SVGFeDropShadowElement) Dx(f float64) *SVGFeDropShadowElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("dx", f)
+	e.floatAttributes.Set("dx", f)
 	return e
 }
 
@@ -147,10 +147,10 @@ func (e *SVGFeDropShadowElement) IfDx(condition bool, f float64) *SVGFeDropShado
 // The amount of offset in the y direction. If the <length> is 0, the shadow is
 // placed at the same position as the input.
 func (e *SVGFeDropShadowElement) Dy(f float64) *SVGFeDropShadowElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("dy", f)
+	e.floatAttributes.Set("dy", f)
 	return e
 }
 
@@ -171,10 +171,10 @@ func (e *SVGFeDropShadowElement) IfDy(condition bool, f float64) *SVGFeDropShado
 // values are not allowed. A value of zero disables the effect of the given
 // filter primitive (i.e., the result is a transparent black image).
 func (e *SVGFeDropShadowElement) StdDeviation(f float64) *SVGFeDropShadowElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("stdDeviation", f)
+	e.floatAttributes.Set("stdDeviation", f)
 	return e
 }
 
@@ -197,10 +197,10 @@ func (e *SVGFeDropShadowElement) IfStdDeviation(condition bool, f float64) *SVGF
 // attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
 func (e *SVGFeDropShadowElement) FloodColor(s string) *SVGFeDropShadowElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("flood-color", s)
+	e.stringAttributes.Set("flood-color", s)
 	return e
 }
 
@@ -240,20 +240,20 @@ func (e *SVGFeDropShadowElement) IfFloodColorF(condition bool, format string, ar
 // black were specified.
 // Remove the attribute FloodColor from the element.
 func (e *SVGFeDropShadowElement) FloodColorRemove() *SVGFeDropShadowElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("flood-color")
+	e.stringAttributes.Del("flood-color")
 	return e
 }
 
 // The flood-opacity attribute indicates the opacity value to use across the
 // current filter primitive subregion defined through the <feFlood> element.
 func (e *SVGFeDropShadowElement) FloodOpacity(f float64) *SVGFeDropShadowElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("flood-opacity", f)
+	e.floatAttributes.Set("flood-opacity", f)
 	return e
 }
 
@@ -268,10 +268,10 @@ func (e *SVGFeDropShadowElement) IfFloodOpacity(condition bool, f float64) *SVGF
 
 // Specifies a unique id for an element
 func (e *SVGFeDropShadowElement) ID(s string) *SVGFeDropShadowElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -299,10 +299,10 @@ func (e *SVGFeDropShadowElement) IfIDF(condition bool, format string, args ...an
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGFeDropShadowElement) IDRemove() *SVGFeDropShadowElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -310,13 +310,13 @@ func (e *SVGFeDropShadowElement) IDRemove() *SVGFeDropShadowElement {
 // sheet)
 func (e *SVGFeDropShadowElement) Class(s string) *SVGFeDropShadowElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -335,10 +335,10 @@ func (e *SVGFeDropShadowElement) IfClass(condition bool, s string) *SVGFeDropSha
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGFeDropShadowElement) ClassRemove(s ...string) *SVGFeDropShadowElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -351,13 +351,13 @@ func (e *SVGFeDropShadowElement) StylePairs(pairs ...string) *SVGFeDropShadowEle
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -372,13 +372,13 @@ func (e *SVGFeDropShadowElement) StylePairs(pairs ...string) *SVGFeDropShadowEle
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeDropShadowElement) Style(s string) *SVGFeDropShadowElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -402,13 +402,13 @@ func (e *SVGFeDropShadowElement) IfStyle(condition bool, s string) *SVGFeDropSha
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeDropShadowElement) StyleAdd(k string, v string) *SVGFeDropShadowElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -438,13 +438,13 @@ func (e *SVGFeDropShadowElement) IfStyleAddF(condition bool, k string, format st
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGFeDropShadowElement) StyleMap(m map[string]string) *SVGFeDropShadowElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -460,10 +460,10 @@ func (e *SVGFeDropShadowElement) StyleMap(m map[string]string) *SVGFeDropShadowE
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGFeDropShadowElement) StyleRemove(keys ...string) *SVGFeDropShadowElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

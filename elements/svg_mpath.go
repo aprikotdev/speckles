@@ -22,37 +22,37 @@ type SVGMpathElement struct {
 // with the tag "mpath" during rendering.
 func SVGMpath(children ...ElementRenderer) *SVGMpathElement {
 	e := NewElement("mpath", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGMpathElement{Element: e}
 }
 
 func (e *SVGMpathElement) Children(children ...ElementRenderer) *SVGMpathElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGMpathElement) IfChildren(condition bool, children ...ElementRenderer) *SVGMpathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGMpathElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGMpathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGMpathElement) BoolAttr(name string) *SVGMpathElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *SVGMpathElement) IfBoolAttr(condition bool, name string) *SVGMpathEleme
 }
 
 func (e *SVGMpathElement) Attr(name, value string) *SVGMpathElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *SVGMpathElement) IfAttr(condition bool, name, value string) *SVGMpathEl
 }
 
 func (e *SVGMpathElement) Text(text string) *SVGMpathElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *SVGMpathElement) TextF(format string, args ...any) *SVGMpathElement {
 
 func (e *SVGMpathElement) IfText(condition bool, text string) *SVGMpathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGMpathElement) IfTextF(condition bool, format string, args ...any) *SVGMpathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGMpathElement) Escaped(text string) *SVGMpathElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGMpathElement) IfEscaped(condition bool, text string) *SVGMpathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,17 +119,17 @@ func (e *SVGMpathElement) EscapedF(format string, args ...any) *SVGMpathElement 
 
 func (e *SVGMpathElement) IfEscapedF(condition bool, format string, args ...any) *SVGMpathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // A URI reference to the motion path definition.
 func (e *SVGMpathElement) Href(s string) *SVGMpathElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("href", s)
+	e.stringAttributes.Set("href", s)
 	return e
 }
 
@@ -157,19 +157,19 @@ func (e *SVGMpathElement) IfHrefF(condition bool, format string, args ...any) *S
 // A URI reference to the motion path definition.
 // Remove the attribute Href from the element.
 func (e *SVGMpathElement) HrefRemove() *SVGMpathElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("href")
+	e.stringAttributes.Del("href")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGMpathElement) ID(s string) *SVGMpathElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -197,10 +197,10 @@ func (e *SVGMpathElement) IfIDF(condition bool, format string, args ...any) *SVG
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGMpathElement) IDRemove() *SVGMpathElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -208,13 +208,13 @@ func (e *SVGMpathElement) IDRemove() *SVGMpathElement {
 // sheet)
 func (e *SVGMpathElement) Class(s string) *SVGMpathElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -233,10 +233,10 @@ func (e *SVGMpathElement) IfClass(condition bool, s string) *SVGMpathElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGMpathElement) ClassRemove(s ...string) *SVGMpathElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -249,13 +249,13 @@ func (e *SVGMpathElement) StylePairs(pairs ...string) *SVGMpathElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -270,13 +270,13 @@ func (e *SVGMpathElement) StylePairs(pairs ...string) *SVGMpathElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGMpathElement) Style(s string) *SVGMpathElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -300,13 +300,13 @@ func (e *SVGMpathElement) IfStyle(condition bool, s string) *SVGMpathElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGMpathElement) StyleAdd(k string, v string) *SVGMpathElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -336,13 +336,13 @@ func (e *SVGMpathElement) IfStyleAddF(condition bool, k string, format string, a
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGMpathElement) StyleMap(m map[string]string) *SVGMpathElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -358,10 +358,10 @@ func (e *SVGMpathElement) StyleMap(m map[string]string) *SVGMpathElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGMpathElement) StyleRemove(keys ...string) *SVGMpathElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

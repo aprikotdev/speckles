@@ -22,37 +22,37 @@ type SVGFeMorphologyElement struct {
 // with the tag "feMorphology" during rendering.
 func SVGFeMorphology(children ...ElementRenderer) *SVGFeMorphologyElement {
 	e := NewElement("feMorphology", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGFeMorphologyElement{Element: e}
 }
 
 func (e *SVGFeMorphologyElement) Children(children ...ElementRenderer) *SVGFeMorphologyElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGFeMorphologyElement) IfChildren(condition bool, children ...ElementRenderer) *SVGFeMorphologyElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGFeMorphologyElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGFeMorphologyElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGFeMorphologyElement) BoolAttr(name string) *SVGFeMorphologyElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *SVGFeMorphologyElement) IfBoolAttr(condition bool, name string) *SVGFeM
 }
 
 func (e *SVGFeMorphologyElement) Attr(name, value string) *SVGFeMorphologyElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *SVGFeMorphologyElement) IfAttr(condition bool, name, value string) *SVG
 }
 
 func (e *SVGFeMorphologyElement) Text(text string) *SVGFeMorphologyElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *SVGFeMorphologyElement) TextF(format string, args ...any) *SVGFeMorphol
 
 func (e *SVGFeMorphologyElement) IfText(condition bool, text string) *SVGFeMorphologyElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGFeMorphologyElement) IfTextF(condition bool, format string, args ...any) *SVGFeMorphologyElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGFeMorphologyElement) Escaped(text string) *SVGFeMorphologyElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGFeMorphologyElement) IfEscaped(condition bool, text string) *SVGFeMorphologyElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,17 +119,17 @@ func (e *SVGFeMorphologyElement) EscapedF(format string, args ...any) *SVGFeMorp
 
 func (e *SVGFeMorphologyElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeMorphologyElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The input for this filter.
 func (e *SVGFeMorphologyElement) In(s string) *SVGFeMorphologyElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("in", s)
+	e.stringAttributes.Set("in", s)
 	return e
 }
 
@@ -157,19 +157,19 @@ func (e *SVGFeMorphologyElement) IfInF(condition bool, format string, args ...an
 // The input for this filter.
 // Remove the attribute In from the element.
 func (e *SVGFeMorphologyElement) InRemove() *SVGFeMorphologyElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("in")
+	e.stringAttributes.Del("in")
 	return e
 }
 
 // The operator attribute defines what type of operation is performed.
 func (e *SVGFeMorphologyElement) Operator(c SVGFeMorphologyOperatorChoice) *SVGFeMorphologyElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("operator", string(c))
+	e.stringAttributes.Set("operator", string(c))
 	return e
 }
 
@@ -185,19 +185,19 @@ const (
 // The operator attribute defines what type of operation is performed.
 // Remove the attribute Operator from the element.
 func (e *SVGFeMorphologyElement) OperatorRemove() *SVGFeMorphologyElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("operator")
+	e.stringAttributes.Del("operator")
 	return e
 }
 
 // The radius attribute indicates the size of the matrix.
 func (e *SVGFeMorphologyElement) Radius(f float64) *SVGFeMorphologyElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("radius", f)
+	e.floatAttributes.Set("radius", f)
 	return e
 }
 
@@ -211,10 +211,10 @@ func (e *SVGFeMorphologyElement) IfRadius(condition bool, f float64) *SVGFeMorph
 
 // Specifies a unique id for an element
 func (e *SVGFeMorphologyElement) ID(s string) *SVGFeMorphologyElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -242,10 +242,10 @@ func (e *SVGFeMorphologyElement) IfIDF(condition bool, format string, args ...an
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGFeMorphologyElement) IDRemove() *SVGFeMorphologyElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -253,13 +253,13 @@ func (e *SVGFeMorphologyElement) IDRemove() *SVGFeMorphologyElement {
 // sheet)
 func (e *SVGFeMorphologyElement) Class(s string) *SVGFeMorphologyElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -278,10 +278,10 @@ func (e *SVGFeMorphologyElement) IfClass(condition bool, s string) *SVGFeMorphol
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGFeMorphologyElement) ClassRemove(s ...string) *SVGFeMorphologyElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -294,13 +294,13 @@ func (e *SVGFeMorphologyElement) StylePairs(pairs ...string) *SVGFeMorphologyEle
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -315,13 +315,13 @@ func (e *SVGFeMorphologyElement) StylePairs(pairs ...string) *SVGFeMorphologyEle
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeMorphologyElement) Style(s string) *SVGFeMorphologyElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -345,13 +345,13 @@ func (e *SVGFeMorphologyElement) IfStyle(condition bool, s string) *SVGFeMorphol
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeMorphologyElement) StyleAdd(k string, v string) *SVGFeMorphologyElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -381,13 +381,13 @@ func (e *SVGFeMorphologyElement) IfStyleAddF(condition bool, k string, format st
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGFeMorphologyElement) StyleMap(m map[string]string) *SVGFeMorphologyElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -403,10 +403,10 @@ func (e *SVGFeMorphologyElement) StyleMap(m map[string]string) *SVGFeMorphologyE
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGFeMorphologyElement) StyleRemove(keys ...string) *SVGFeMorphologyElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

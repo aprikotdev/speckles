@@ -25,37 +25,37 @@ type SVGSetElement struct {
 // with the tag "set" during rendering.
 func SVGSet(children ...ElementRenderer) *SVGSetElement {
 	e := NewElement("set", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGSetElement{Element: e}
 }
 
 func (e *SVGSetElement) Children(children ...ElementRenderer) *SVGSetElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGSetElement) IfChildren(condition bool, children ...ElementRenderer) *SVGSetElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGSetElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGSetElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGSetElement) BoolAttr(name string) *SVGSetElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -67,10 +67,10 @@ func (e *SVGSetElement) IfBoolAttr(condition bool, name string) *SVGSetElement {
 }
 
 func (e *SVGSetElement) Attr(name, value string) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -82,7 +82,7 @@ func (e *SVGSetElement) IfAttr(condition bool, name, value string) *SVGSetElemen
 }
 
 func (e *SVGSetElement) Text(text string) *SVGSetElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -92,26 +92,26 @@ func (e *SVGSetElement) TextF(format string, args ...any) *SVGSetElement {
 
 func (e *SVGSetElement) IfText(condition bool, text string) *SVGSetElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGSetElement) IfTextF(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGSetElement) Escaped(text string) *SVGSetElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGSetElement) IfEscaped(condition bool, text string) *SVGSetElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -122,17 +122,17 @@ func (e *SVGSetElement) EscapedF(format string, args ...any) *SVGSetElement {
 
 func (e *SVGSetElement) IfEscapedF(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The target attribute value to assign on end.
 func (e *SVGSetElement) To(s string) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("to", s)
+	e.stringAttributes.Set("to", s)
 	return e
 }
 
@@ -160,19 +160,19 @@ func (e *SVGSetElement) IfToF(condition bool, format string, args ...any) *SVGSe
 // The target attribute value to assign on end.
 // Remove the attribute To from the element.
 func (e *SVGSetElement) ToRemove() *SVGSetElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("to")
+	e.stringAttributes.Del("to")
 	return e
 }
 
 // The name of the attribute to assign.
 func (e *SVGSetElement) AttributeName(s string) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("attributeName", s)
+	e.stringAttributes.Set("attributeName", s)
 	return e
 }
 
@@ -200,20 +200,20 @@ func (e *SVGSetElement) IfAttributeNameF(condition bool, format string, args ...
 // The name of the attribute to assign.
 // Remove the attribute AttributeName from the element.
 func (e *SVGSetElement) AttributeNameRemove() *SVGSetElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("attributeName")
+	e.stringAttributes.Del("attributeName")
 	return e
 }
 
 // The namespace in which the target attribute and its associated values are
 // defined.
 func (e *SVGSetElement) AttributeType(c SVGSetAttributeTypeChoice) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("attributeType", string(c))
+	e.stringAttributes.Set("attributeType", string(c))
 	return e
 }
 
@@ -241,19 +241,19 @@ const (
 // defined.
 // Remove the attribute AttributeType from the element.
 func (e *SVGSetElement) AttributeTypeRemove() *SVGSetElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("attributeType")
+	e.stringAttributes.Del("attributeType")
 	return e
 }
 
 // The begin time for the element.
 func (e *SVGSetElement) Begin(s string) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("begin", s)
+	e.stringAttributes.Set("begin", s)
 	return e
 }
 
@@ -281,19 +281,19 @@ func (e *SVGSetElement) IfBeginF(condition bool, format string, args ...any) *SV
 // The begin time for the element.
 // Remove the attribute Begin from the element.
 func (e *SVGSetElement) BeginRemove() *SVGSetElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("begin")
+	e.stringAttributes.Del("begin")
 	return e
 }
 
 // The simple duration for the element.
 func (e *SVGSetElement) Dur(s string) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dur", s)
+	e.stringAttributes.Set("dur", s)
 	return e
 }
 
@@ -321,19 +321,19 @@ func (e *SVGSetElement) IfDurF(condition bool, format string, args ...any) *SVGS
 // The simple duration for the element.
 // Remove the attribute Dur from the element.
 func (e *SVGSetElement) DurRemove() *SVGSetElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dur")
+	e.stringAttributes.Del("dur")
 	return e
 }
 
 // The end for the element.
 func (e *SVGSetElement) End(s string) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("end", s)
+	e.stringAttributes.Set("end", s)
 	return e
 }
 
@@ -361,19 +361,19 @@ func (e *SVGSetElement) IfEndF(condition bool, format string, args ...any) *SVGS
 // The end for the element.
 // Remove the attribute End from the element.
 func (e *SVGSetElement) EndRemove() *SVGSetElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("end")
+	e.stringAttributes.Del("end")
 	return e
 }
 
 // The minimum value allowed for the attribute.
 func (e *SVGSetElement) Min(s string) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("min", s)
+	e.stringAttributes.Set("min", s)
 	return e
 }
 
@@ -401,19 +401,19 @@ func (e *SVGSetElement) IfMinF(condition bool, format string, args ...any) *SVGS
 // The minimum value allowed for the attribute.
 // Remove the attribute Min from the element.
 func (e *SVGSetElement) MinRemove() *SVGSetElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("min")
+	e.stringAttributes.Del("min")
 	return e
 }
 
 // The maximum value allowed for the attribute.
 func (e *SVGSetElement) Max(s string) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("max", s)
+	e.stringAttributes.Set("max", s)
 	return e
 }
 
@@ -441,19 +441,19 @@ func (e *SVGSetElement) IfMaxF(condition bool, format string, args ...any) *SVGS
 // The maximum value allowed for the attribute.
 // Remove the attribute Max from the element.
 func (e *SVGSetElement) MaxRemove() *SVGSetElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("max")
+	e.stringAttributes.Del("max")
 	return e
 }
 
 // Defines how the element is restarted.
 func (e *SVGSetElement) Restart(c SVGSetRestartChoice) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("restart", string(c))
+	e.stringAttributes.Set("restart", string(c))
 	return e
 }
 
@@ -471,19 +471,19 @@ const (
 // Defines how the element is restarted.
 // Remove the attribute Restart from the element.
 func (e *SVGSetElement) RestartRemove() *SVGSetElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("restart")
+	e.stringAttributes.Del("restart")
 	return e
 }
 
 // Defines the number of times the element is repeated.
 func (e *SVGSetElement) RepeatCount(s string) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("repeatCount", s)
+	e.stringAttributes.Set("repeatCount", s)
 	return e
 }
 
@@ -511,19 +511,19 @@ func (e *SVGSetElement) IfRepeatCountF(condition bool, format string, args ...an
 // Defines the number of times the element is repeated.
 // Remove the attribute RepeatCount from the element.
 func (e *SVGSetElement) RepeatCountRemove() *SVGSetElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("repeatCount")
+	e.stringAttributes.Del("repeatCount")
 	return e
 }
 
 // Defines the duration for the element to repeat.
 func (e *SVGSetElement) RepeatDur(s string) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("repeatDur", s)
+	e.stringAttributes.Set("repeatDur", s)
 	return e
 }
 
@@ -551,19 +551,19 @@ func (e *SVGSetElement) IfRepeatDurF(condition bool, format string, args ...any)
 // Defines the duration for the element to repeat.
 // Remove the attribute RepeatDur from the element.
 func (e *SVGSetElement) RepeatDurRemove() *SVGSetElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("repeatDur")
+	e.stringAttributes.Del("repeatDur")
 	return e
 }
 
 // Defines the value the animation will have before the begin event.
 func (e *SVGSetElement) Fill(c SVGSetFillChoice) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("fill", string(c))
+	e.stringAttributes.Set("fill", string(c))
 	return e
 }
 
@@ -579,19 +579,19 @@ const (
 // Defines the value the animation will have before the begin event.
 // Remove the attribute Fill from the element.
 func (e *SVGSetElement) FillRemove() *SVGSetElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("fill")
+	e.stringAttributes.Del("fill")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGSetElement) ID(s string) *SVGSetElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -619,10 +619,10 @@ func (e *SVGSetElement) IfIDF(condition bool, format string, args ...any) *SVGSe
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGSetElement) IDRemove() *SVGSetElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -630,13 +630,13 @@ func (e *SVGSetElement) IDRemove() *SVGSetElement {
 // sheet)
 func (e *SVGSetElement) Class(s string) *SVGSetElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -655,10 +655,10 @@ func (e *SVGSetElement) IfClass(condition bool, s string) *SVGSetElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGSetElement) ClassRemove(s ...string) *SVGSetElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -671,13 +671,13 @@ func (e *SVGSetElement) StylePairs(pairs ...string) *SVGSetElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -692,13 +692,13 @@ func (e *SVGSetElement) StylePairs(pairs ...string) *SVGSetElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGSetElement) Style(s string) *SVGSetElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -722,13 +722,13 @@ func (e *SVGSetElement) IfStyle(condition bool, s string) *SVGSetElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGSetElement) StyleAdd(k string, v string) *SVGSetElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -758,13 +758,13 @@ func (e *SVGSetElement) IfStyleAddF(condition bool, k string, format string, arg
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGSetElement) StyleMap(m map[string]string) *SVGSetElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -780,10 +780,10 @@ func (e *SVGSetElement) StyleMap(m map[string]string) *SVGSetElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGSetElement) StyleRemove(keys ...string) *SVGSetElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

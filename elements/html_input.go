@@ -24,37 +24,37 @@ type InputElement struct {
 // with the tag "input" during rendering.
 func Input() *InputElement {
 	e := NewElement("input")
-	e.IsSelfClosing = true
+	e.isSelfClosing = true
 
 	return &InputElement{Element: e}
 }
 
 func (e *InputElement) Children(children ...ElementRenderer) *InputElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *InputElement) IfChildren(condition bool, children ...ElementRenderer) *InputElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *InputElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *InputElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *InputElement) BoolAttr(name string) *InputElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -66,10 +66,10 @@ func (e *InputElement) IfBoolAttr(condition bool, name string) *InputElement {
 }
 
 func (e *InputElement) Attr(name, value string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -81,7 +81,7 @@ func (e *InputElement) IfAttr(condition bool, name, value string) *InputElement 
 }
 
 func (e *InputElement) Text(text string) *InputElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -91,26 +91,26 @@ func (e *InputElement) TextF(format string, args ...any) *InputElement {
 
 func (e *InputElement) IfText(condition bool, text string) *InputElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *InputElement) IfTextF(condition bool, format string, args ...any) *InputElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *InputElement) Escaped(text string) *InputElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *InputElement) IfEscaped(condition bool, text string) *InputElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -121,17 +121,17 @@ func (e *InputElement) EscapedF(format string, args ...any) *InputElement {
 
 func (e *InputElement) IfEscapedF(condition bool, format string, args ...any) *InputElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // Hint for expected file type in file upload controls.
 func (e *InputElement) Accept(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("accept", s)
+	e.stringAttributes.Set("accept", s)
 	return e
 }
 
@@ -159,19 +159,19 @@ func (e *InputElement) IfAcceptF(condition bool, format string, args ...any) *In
 // Hint for expected file type in file upload controls.
 // Remove the attribute Accept from the element.
 func (e *InputElement) AcceptRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("accept")
+	e.stringAttributes.Del("accept")
 	return e
 }
 
 // Alternative text in case an image can't be displayed.
 func (e *InputElement) Alt(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("alt", s)
+	e.stringAttributes.Set("alt", s)
 	return e
 }
 
@@ -199,19 +199,19 @@ func (e *InputElement) IfAltF(condition bool, format string, args ...any) *Input
 // Alternative text in case an image can't be displayed.
 // Remove the attribute Alt from the element.
 func (e *InputElement) AltRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("alt")
+	e.stringAttributes.Del("alt")
 	return e
 }
 
 // Hint for form autofill feature.
 func (e *InputElement) Autocomplete(c InputAutocompleteChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("autocomplete", string(c))
+	e.stringAttributes.Set("autocomplete", string(c))
 	return e
 }
 
@@ -227,10 +227,10 @@ const (
 // Hint for form autofill feature.
 // Remove the attribute Autocomplete from the element.
 func (e *InputElement) AutocompleteRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("autocomplete")
+	e.stringAttributes.Del("autocomplete")
 	return e
 }
 
@@ -251,10 +251,10 @@ func (e *InputElement) IfAutofocus(condition bool) *InputElement {
 // Automatically focus the form control when the page is loaded.
 // Set the attribute Autofocus to the value b explicitly.
 func (e *InputElement) AutofocusSet(b bool) *InputElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("autofocus", b)
+	e.boolAttributes.Set("autofocus", b)
 	return e
 }
 
@@ -269,10 +269,10 @@ func (e *InputElement) IfSetAutofocus(condition bool, b bool) *InputElement {
 // Remove the attribute Autofocus from the element.
 // Automatically focus the form control when the page is loaded.
 func (e *InputElement) AutofocusRemove() *InputElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("autofocus")
+	e.boolAttributes.Del("autofocus")
 	return e
 }
 
@@ -293,10 +293,10 @@ func (e *InputElement) IfChecked(condition bool) *InputElement {
 // Whether the command or control is checked.
 // Set the attribute Checked to the value b explicitly.
 func (e *InputElement) CheckedSet(b bool) *InputElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("checked", b)
+	e.boolAttributes.Set("checked", b)
 	return e
 }
 
@@ -311,20 +311,20 @@ func (e *InputElement) IfSetChecked(condition bool, b bool) *InputElement {
 // Remove the attribute Checked from the element.
 // Whether the command or control is checked.
 func (e *InputElement) CheckedRemove() *InputElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("checked")
+	e.boolAttributes.Del("checked")
 	return e
 }
 
 // Name of form field to use for sending the element's directionality in form
 // submission.
 func (e *InputElement) Dirname(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dirname", s)
+	e.stringAttributes.Set("dirname", s)
 	return e
 }
 
@@ -356,10 +356,10 @@ func (e *InputElement) IfDirnameF(condition bool, format string, args ...any) *I
 // submission.
 // Remove the attribute Dirname from the element.
 func (e *InputElement) DirnameRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dirname")
+	e.stringAttributes.Del("dirname")
 	return e
 }
 
@@ -380,10 +380,10 @@ func (e *InputElement) IfDisabled(condition bool) *InputElement {
 // Whether the form control is disabled.
 // Set the attribute Disabled to the value b explicitly.
 func (e *InputElement) DisabledSet(b bool) *InputElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("disabled", b)
+	e.boolAttributes.Set("disabled", b)
 	return e
 }
 
@@ -398,19 +398,19 @@ func (e *InputElement) IfSetDisabled(condition bool, b bool) *InputElement {
 // Remove the attribute Disabled from the element.
 // Whether the form control is disabled.
 func (e *InputElement) DisabledRemove() *InputElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("disabled")
+	e.boolAttributes.Del("disabled")
 	return e
 }
 
 // Associates the control with a form element.
 func (e *InputElement) Form(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("form", s)
+	e.stringAttributes.Set("form", s)
 	return e
 }
 
@@ -438,19 +438,19 @@ func (e *InputElement) IfFormF(condition bool, format string, args ...any) *Inpu
 // Associates the control with a form element.
 // Remove the attribute Form from the element.
 func (e *InputElement) FormRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("form")
+	e.stringAttributes.Del("form")
 	return e
 }
 
 // URL to use for form submission.
 func (e *InputElement) Formaction(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("formaction", s)
+	e.stringAttributes.Set("formaction", s)
 	return e
 }
 
@@ -478,19 +478,19 @@ func (e *InputElement) IfFormactionF(condition bool, format string, args ...any)
 // URL to use for form submission.
 // Remove the attribute Formaction from the element.
 func (e *InputElement) FormactionRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("formaction")
+	e.stringAttributes.Del("formaction")
 	return e
 }
 
 // Form data set encoding type to use for form submission.
 func (e *InputElement) Formenctype(c InputFormenctypeChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("formenctype", string(c))
+	e.stringAttributes.Set("formenctype", string(c))
 	return e
 }
 
@@ -509,19 +509,19 @@ const (
 // Form data set encoding type to use for form submission.
 // Remove the attribute Formenctype from the element.
 func (e *InputElement) FormenctypeRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("formenctype")
+	e.stringAttributes.Del("formenctype")
 	return e
 }
 
 // HTTP method to use for form submission.
 func (e *InputElement) Formmethod(c InputFormmethodChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("formmethod", string(c))
+	e.stringAttributes.Set("formmethod", string(c))
 	return e
 }
 
@@ -542,10 +542,10 @@ const (
 // HTTP method to use for form submission.
 // Remove the attribute Formmethod from the element.
 func (e *InputElement) FormmethodRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("formmethod")
+	e.stringAttributes.Del("formmethod")
 	return e
 }
 
@@ -566,10 +566,10 @@ func (e *InputElement) IfFormnovalidate(condition bool) *InputElement {
 // Bypass form control validation for form submission.
 // Set the attribute Formnovalidate to the value b explicitly.
 func (e *InputElement) FormnovalidateSet(b bool) *InputElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("formnovalidate", b)
+	e.boolAttributes.Set("formnovalidate", b)
 	return e
 }
 
@@ -584,19 +584,19 @@ func (e *InputElement) IfSetFormnovalidate(condition bool, b bool) *InputElement
 // Remove the attribute Formnovalidate from the element.
 // Bypass form control validation for form submission.
 func (e *InputElement) FormnovalidateRemove() *InputElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("formnovalidate")
+	e.boolAttributes.Del("formnovalidate")
 	return e
 }
 
 // Browsing context for form submission.
 func (e *InputElement) Formtarget(c InputFormtargetChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("formtarget", string(c))
+	e.stringAttributes.Set("formtarget", string(c))
 	return e
 }
 
@@ -620,19 +620,19 @@ const (
 // Browsing context for form submission.
 // Remove the attribute Formtarget from the element.
 func (e *InputElement) FormtargetRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("formtarget")
+	e.stringAttributes.Del("formtarget")
 	return e
 }
 
 // Height of the image in pixels.
 func (e *InputElement) Height(i int) *InputElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("height", i)
+	e.intAttributes.Set("height", i)
 	return e
 }
 
@@ -647,19 +647,19 @@ func (e *InputElement) IfHeight(condition bool, i int) *InputElement {
 // Height of the image in pixels.
 // Remove the attribute Height from the element.
 func (e *InputElement) HeightRemove() *InputElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("height")
+	e.intAttributes.Del("height")
 	return e
 }
 
 // Identifies a list of pre-defined options to suggest to the user.
 func (e *InputElement) List(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("list", s)
+	e.stringAttributes.Set("list", s)
 	return e
 }
 
@@ -687,19 +687,19 @@ func (e *InputElement) IfListF(condition bool, format string, args ...any) *Inpu
 // Identifies a list of pre-defined options to suggest to the user.
 // Remove the attribute List from the element.
 func (e *InputElement) ListRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("list")
+	e.stringAttributes.Del("list")
 	return e
 }
 
 // maximum value of an <input> element with type="number" or type="range".
 func (e *InputElement) MaxStr(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("max", s)
+	e.stringAttributes.Set("max", s)
 	return e
 }
 
@@ -727,10 +727,10 @@ func (e *InputElement) IfMaxStrF(condition bool, format string, args ...any) *In
 // maximum value of an <input> element with type="number" or type="range".
 // Remove the attribute MaxStr from the element.
 func (e *InputElement) MaxStrRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("max")
+	e.stringAttributes.Del("max")
 	return e
 }
 
@@ -740,10 +740,10 @@ func (e *InputElement) MaxStrRemove() *InputElement {
 // maximum length. This value must also be greater than or equal to the value of
 // minlength.
 func (e *InputElement) Maxlength(i int) *InputElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("maxlength", i)
+	e.intAttributes.Set("maxlength", i)
 	return e
 }
 
@@ -766,19 +766,19 @@ func (e *InputElement) IfMaxlength(condition bool, i int) *InputElement {
 // minlength.
 // Remove the attribute Maxlength from the element.
 func (e *InputElement) MaxlengthRemove() *InputElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("maxlength")
+	e.intAttributes.Del("maxlength")
 	return e
 }
 
 // the minimum value of an <input> element with type="number" or type="range".
 func (e *InputElement) MinStr(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("min", s)
+	e.stringAttributes.Set("min", s)
 	return e
 }
 
@@ -806,10 +806,10 @@ func (e *InputElement) IfMinStrF(condition bool, format string, args ...any) *In
 // the minimum value of an <input> element with type="number" or type="range".
 // Remove the attribute MinStr from the element.
 func (e *InputElement) MinStrRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("min")
+	e.stringAttributes.Del("min")
 	return e
 }
 
@@ -819,10 +819,10 @@ func (e *InputElement) MinStrRemove() *InputElement {
 // <input> or <textarea> has no minimum length. This value must also be less
 // than or equal to the value of maxlength.
 func (e *InputElement) Minlength(i int) *InputElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("minlength", i)
+	e.intAttributes.Set("minlength", i)
 	return e
 }
 
@@ -845,10 +845,10 @@ func (e *InputElement) IfMinlength(condition bool, i int) *InputElement {
 // than or equal to the value of maxlength.
 // Remove the attribute Minlength from the element.
 func (e *InputElement) MinlengthRemove() *InputElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("minlength")
+	e.intAttributes.Del("minlength")
 	return e
 }
 
@@ -869,10 +869,10 @@ func (e *InputElement) IfMultiple(condition bool) *InputElement {
 // Whether to allow multiple values.
 // Set the attribute Multiple to the value b explicitly.
 func (e *InputElement) MultipleSet(b bool) *InputElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("multiple", b)
+	e.boolAttributes.Set("multiple", b)
 	return e
 }
 
@@ -887,19 +887,19 @@ func (e *InputElement) IfSetMultiple(condition bool, b bool) *InputElement {
 // Remove the attribute Multiple from the element.
 // Whether to allow multiple values.
 func (e *InputElement) MultipleRemove() *InputElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("multiple")
+	e.boolAttributes.Del("multiple")
 	return e
 }
 
 // Name of the element to use for form submission and in the form.elements API.
 func (e *InputElement) Name(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("name", s)
+	e.stringAttributes.Set("name", s)
 	return e
 }
 
@@ -927,19 +927,19 @@ func (e *InputElement) IfNameF(condition bool, format string, args ...any) *Inpu
 // Name of the element to use for form submission and in the form.elements API.
 // Remove the attribute Name from the element.
 func (e *InputElement) NameRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("name")
+	e.stringAttributes.Del("name")
 	return e
 }
 
 // Pattern to be matched by the form control's value.
 func (e *InputElement) Pattern(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("pattern", s)
+	e.stringAttributes.Set("pattern", s)
 	return e
 }
 
@@ -967,19 +967,19 @@ func (e *InputElement) IfPatternF(condition bool, format string, args ...any) *I
 // Pattern to be matched by the form control's value.
 // Remove the attribute Pattern from the element.
 func (e *InputElement) PatternRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("pattern")
+	e.stringAttributes.Del("pattern")
 	return e
 }
 
 // User-visible label to be placed within the form control.
 func (e *InputElement) Placeholder(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("placeholder", s)
+	e.stringAttributes.Set("placeholder", s)
 	return e
 }
 
@@ -1007,10 +1007,10 @@ func (e *InputElement) IfPlaceholderF(condition bool, format string, args ...any
 // User-visible label to be placed within the form control.
 // Remove the attribute Placeholder from the element.
 func (e *InputElement) PlaceholderRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("placeholder")
+	e.stringAttributes.Del("placeholder")
 	return e
 }
 
@@ -1031,10 +1031,10 @@ func (e *InputElement) IfReadonly(condition bool) *InputElement {
 // Whether to allow the value to be edited by the user.
 // Set the attribute Readonly to the value b explicitly.
 func (e *InputElement) ReadonlySet(b bool) *InputElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("readonly", b)
+	e.boolAttributes.Set("readonly", b)
 	return e
 }
 
@@ -1049,10 +1049,10 @@ func (e *InputElement) IfSetReadonly(condition bool, b bool) *InputElement {
 // Remove the attribute Readonly from the element.
 // Whether to allow the value to be edited by the user.
 func (e *InputElement) ReadonlyRemove() *InputElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("readonly")
+	e.boolAttributes.Del("readonly")
 	return e
 }
 
@@ -1073,10 +1073,10 @@ func (e *InputElement) IfRequired(condition bool) *InputElement {
 // Whether the control is required for form submission.
 // Set the attribute Required to the value b explicitly.
 func (e *InputElement) RequiredSet(b bool) *InputElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("required", b)
+	e.boolAttributes.Set("required", b)
 	return e
 }
 
@@ -1091,19 +1091,19 @@ func (e *InputElement) IfSetRequired(condition bool, b bool) *InputElement {
 // Remove the attribute Required from the element.
 // Whether the control is required for form submission.
 func (e *InputElement) RequiredRemove() *InputElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("required")
+	e.boolAttributes.Del("required")
 	return e
 }
 
 // Size of the control.
 func (e *InputElement) Size(i int) *InputElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("size", i)
+	e.intAttributes.Set("size", i)
 	return e
 }
 
@@ -1118,19 +1118,19 @@ func (e *InputElement) IfSize(condition bool, i int) *InputElement {
 // Size of the control.
 // Remove the attribute Size from the element.
 func (e *InputElement) SizeRemove() *InputElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("size")
+	e.intAttributes.Del("size")
 	return e
 }
 
 // Address of the resource.
 func (e *InputElement) Src(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("src", s)
+	e.stringAttributes.Set("src", s)
 	return e
 }
 
@@ -1158,19 +1158,19 @@ func (e *InputElement) IfSrcF(condition bool, format string, args ...any) *Input
 // Address of the resource.
 // Remove the attribute Src from the element.
 func (e *InputElement) SrcRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("src")
+	e.stringAttributes.Del("src")
 	return e
 }
 
 // Granularity to be matched by the form control's value.
 func (e *InputElement) Step(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("step", s)
+	e.stringAttributes.Set("step", s)
 	return e
 }
 
@@ -1198,19 +1198,19 @@ func (e *InputElement) IfStepF(condition bool, format string, args ...any) *Inpu
 // Granularity to be matched by the form control's value.
 // Remove the attribute Step from the element.
 func (e *InputElement) StepRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("step")
+	e.stringAttributes.Del("step")
 	return e
 }
 
 // Type of form control.
 func (e *InputElement) Type(c InputTypeChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("type", string(c))
+	e.stringAttributes.Set("type", string(c))
 	return e
 }
 
@@ -1275,19 +1275,19 @@ const (
 // Type of form control.
 // Remove the attribute Type from the element.
 func (e *InputElement) TypeRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("type")
+	e.stringAttributes.Del("type")
 	return e
 }
 
 // Value of the form control.
 func (e *InputElement) Value(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("value", s)
+	e.stringAttributes.Set("value", s)
 	return e
 }
 
@@ -1315,19 +1315,19 @@ func (e *InputElement) IfValueF(condition bool, format string, args ...any) *Inp
 // Value of the form control.
 // Remove the attribute Value from the element.
 func (e *InputElement) ValueRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("value")
+	e.stringAttributes.Del("value")
 	return e
 }
 
 // Width of the image in pixels.
 func (e *InputElement) Width(i int) *InputElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("width", i)
+	e.intAttributes.Set("width", i)
 	return e
 }
 
@@ -1342,10 +1342,10 @@ func (e *InputElement) IfWidth(condition bool, i int) *InputElement {
 // Width of the image in pixels.
 // Remove the attribute Width from the element.
 func (e *InputElement) WidthRemove() *InputElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("width")
+	e.intAttributes.Del("width")
 	return e
 }
 
@@ -1354,10 +1354,10 @@ func (e *InputElement) WidthRemove() *InputElement {
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
 func (e *InputElement) Accesskey(r rune) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("accesskey", string(r))
+	e.stringAttributes.Set("accesskey", string(r))
 	return e
 }
 
@@ -1378,10 +1378,10 @@ func (e *InputElement) IfAccesskey(condition bool, r rune) *InputElement {
 // can be generated by the keyboard).
 // Remove the attribute Accesskey from the element.
 func (e *InputElement) AccesskeyRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("accesskey")
+	e.stringAttributes.Del("accesskey")
 	return e
 }
 
@@ -1397,10 +1397,10 @@ func (e *InputElement) AccesskeyRemove() *InputElement {
 // behavior varies between browsers. For example: Chrome and Safari default to
 // on/sentences Firefox defaults to off/none.
 func (e *InputElement) Autocapitalize(c InputAutocapitalizeChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("autocapitalize", string(c))
+	e.stringAttributes.Set("autocapitalize", string(c))
 	return e
 }
 
@@ -1434,10 +1434,10 @@ const (
 // on/sentences Firefox defaults to off/none.
 // Remove the attribute Autocapitalize from the element.
 func (e *InputElement) AutocapitalizeRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("autocapitalize")
+	e.stringAttributes.Del("autocapitalize")
 	return e
 }
 
@@ -1447,13 +1447,13 @@ func (e *InputElement) AutocapitalizeRemove() *InputElement {
 // document.getElementsByClassName.
 func (e *InputElement) Class(s string) *InputElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1476,10 +1476,10 @@ func (e *InputElement) IfClass(condition bool, s string) *InputElement {
 // document.getElementsByClassName.
 // Remove the values from the attribute Class in the element.
 func (e *InputElement) ClassRemove(s ...string) *InputElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -1491,10 +1491,10 @@ func (e *InputElement) ClassRemove(s ...string) *InputElement {
 // the element should be editable by the user. If so, the browser modifies its
 // widget to allow editing.
 func (e *InputElement) Contenteditable(c InputContenteditableChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("contenteditable", string(c))
+	e.stringAttributes.Set("contenteditable", string(c))
 	return e
 }
 
@@ -1517,10 +1517,10 @@ const (
 // widget to allow editing.
 // Remove the attribute Contenteditable from the element.
 func (e *InputElement) ContenteditableRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("contenteditable")
+	e.stringAttributes.Del("contenteditable")
 	return e
 }
 
@@ -1538,10 +1538,10 @@ func (e *InputElement) ContenteditableRemove() *InputElement {
 // directionality, like data coming from user input, eventually stored in a
 // database.
 func (e *InputElement) Dir(c InputDirChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dir", string(c))
+	e.stringAttributes.Set("dir", string(c))
 	return e
 }
 
@@ -1575,10 +1575,10 @@ const (
 // database.
 // Remove the attribute Dir from the element.
 func (e *InputElement) DirRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dir")
+	e.stringAttributes.Del("dir")
 	return e
 }
 
@@ -1586,10 +1586,10 @@ func (e *InputElement) DirRemove() *InputElement {
 // whether the element can be dragged, either with native browser behavior or
 // the HTML Drag and Drop API.
 func (e *InputElement) Draggable(c InputDraggableChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("draggable", string(c))
+	e.stringAttributes.Set("draggable", string(c))
 	return e
 }
 
@@ -1615,20 +1615,20 @@ const (
 // the HTML Drag and Drop API.
 // Remove the attribute Draggable from the element.
 func (e *InputElement) DraggableRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("draggable")
+	e.stringAttributes.Del("draggable")
 	return e
 }
 
 // The enterkeyhint global attribute is an enumerated attribute defining what
 // action label (or icon) to present for the enter key on virtual keyboards.
 func (e *InputElement) Enterkeyhint(c InputEnterkeyhintChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("enterkeyhint", string(c))
+	e.stringAttributes.Set("enterkeyhint", string(c))
 	return e
 }
 
@@ -1658,10 +1658,10 @@ const (
 // action label (or icon) to present for the enter key on virtual keyboards.
 // Remove the attribute Enterkeyhint from the element.
 func (e *InputElement) EnterkeyhintRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("enterkeyhint")
+	e.stringAttributes.Del("enterkeyhint")
 	return e
 }
 
@@ -1684,13 +1684,13 @@ func (e *InputElement) EnterkeyhintRemove() *InputElement {
 // the current structure.
 func (e *InputElement) Exportparts(s string) *InputElement {
 	values := strings.Split(s, ",")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
-		ds = NewDelimitedBuilder[string](",")
-		e.DelimitedStrings.Set("exportparts", ds)
+		ds = newDelimitedBuilder[string](",")
+		e.delimitedStrings.Set("exportparts", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1739,10 +1739,10 @@ func (e *InputElement) IfExportparts(condition bool, s string) *InputElement {
 // the current structure.
 // Remove the values from the attribute Exportparts in the element.
 func (e *InputElement) ExportpartsRemove(s ...string) *InputElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
 		return e
 	}
@@ -1763,10 +1763,10 @@ func (e *InputElement) ExportpartsRemove(s ...string) *InputElement {
 // of none, contents, or inline, then the element will not be revealed by find
 // in page or fragment navigation.
 func (e *InputElement) Hidden(c InputHiddenChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("hidden", string(c))
+	e.stringAttributes.Set("hidden", string(c))
 	return e
 }
 
@@ -1802,10 +1802,10 @@ const (
 // in page or fragment navigation.
 // Remove the attribute Hidden from the element.
 func (e *InputElement) HiddenRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("hidden")
+	e.stringAttributes.Del("hidden")
 	return e
 }
 
@@ -1813,10 +1813,10 @@ func (e *InputElement) HiddenRemove() *InputElement {
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *InputElement) ID(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -1852,10 +1852,10 @@ func (e *InputElement) IfIDF(condition bool, format string, args ...any) *InputE
 // (using a fragment identifier), scripting, or styling (with CSS).
 // Remove the attribute ID from the element.
 func (e *InputElement) IDRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -1903,10 +1903,10 @@ func (e *InputElement) IfInert(condition bool) *InputElement {
 // excluding them from the accessibility tree.
 // Set the attribute Inert to the value b explicitly.
 func (e *InputElement) InertSet(b bool) *InputElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("inert", b)
+	e.boolAttributes.Set("inert", b)
 	return e
 }
 
@@ -1939,10 +1939,10 @@ func (e *InputElement) IfSetInert(condition bool, b bool) *InputElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *InputElement) InertRemove() *InputElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("inert")
+	e.boolAttributes.Del("inert")
 	return e
 }
 
@@ -1956,10 +1956,10 @@ func (e *InputElement) InertRemove() *InputElement {
 // appropriate <input> element type. For specific guidance on choosing <input>
 // types, see the Values section.
 func (e *InputElement) Inputmode(c InputInputmodeChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("inputmode", string(c))
+	e.stringAttributes.Set("inputmode", string(c))
 	return e
 }
 
@@ -2010,10 +2010,10 @@ const (
 // types, see the Values section.
 // Remove the attribute Inputmode from the element.
 func (e *InputElement) InputmodeRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("inputmode")
+	e.stringAttributes.Del("inputmode")
 	return e
 }
 
@@ -2023,10 +2023,10 @@ func (e *InputElement) InputmodeRemove() *InputElement {
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
 func (e *InputElement) Is(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("is", s)
+	e.stringAttributes.Set("is", s)
 	return e
 }
 
@@ -2070,10 +2070,10 @@ func (e *InputElement) IfIsF(condition bool, format string, args ...any) *InputE
 // and extends the element type it is being applied to.
 // Remove the attribute Is from the element.
 func (e *InputElement) IsRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("is")
+	e.stringAttributes.Del("is")
 	return e
 }
 
@@ -2089,10 +2089,10 @@ func (e *InputElement) IsRemove() *InputElement {
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
 func (e *InputElement) Itemid(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemid", s)
+	e.stringAttributes.Set("itemid", s)
 	return e
 }
 
@@ -2160,10 +2160,10 @@ func (e *InputElement) IfItemidF(condition bool, format string, args ...any) *In
 // how items with the same identifier are handled.
 // Remove the attribute Itemid from the element.
 func (e *InputElement) ItemidRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemid")
+	e.stringAttributes.Del("itemid")
 	return e
 }
 
@@ -2175,10 +2175,10 @@ func (e *InputElement) ItemidRemove() *InputElement {
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
 func (e *InputElement) Itemprop(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemprop", s)
+	e.stringAttributes.Set("itemprop", s)
 	return e
 }
 
@@ -2230,10 +2230,10 @@ func (e *InputElement) IfItempropF(condition bool, format string, args ...any) *
 // <track>, and <video>.
 // Remove the attribute Itemprop from the element.
 func (e *InputElement) ItempropRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemprop")
+	e.stringAttributes.Del("itemprop")
 	return e
 }
 
@@ -2243,10 +2243,10 @@ func (e *InputElement) ItempropRemove() *InputElement {
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
 func (e *InputElement) Itemref(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemref", s)
+	e.stringAttributes.Set("itemref", s)
 	return e
 }
 
@@ -2290,10 +2290,10 @@ func (e *InputElement) IfItemrefF(condition bool, format string, args ...any) *I
 // specified on elements that have an itemscope attribute specified.
 // Remove the attribute Itemref from the element.
 func (e *InputElement) ItemrefRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemref")
+	e.stringAttributes.Del("itemref")
 	return e
 }
 
@@ -2332,10 +2332,10 @@ func (e *InputElement) IfItemscope(condition bool) *InputElement {
 // <object>, <source>, <track>, and <video>.
 // Set the attribute Itemscope to the value b explicitly.
 func (e *InputElement) ItemscopeSet(b bool) *InputElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("itemscope", b)
+	e.boolAttributes.Set("itemscope", b)
 	return e
 }
 
@@ -2362,10 +2362,10 @@ func (e *InputElement) IfSetItemscope(condition bool, b bool) *InputElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *InputElement) ItemscopeRemove() *InputElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("itemscope")
+	e.boolAttributes.Del("itemscope")
 	return e
 }
 
@@ -2377,10 +2377,10 @@ func (e *InputElement) ItemscopeRemove() *InputElement {
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
 func (e *InputElement) Itemtype(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemtype", s)
+	e.stringAttributes.Set("itemtype", s)
 	return e
 }
 
@@ -2432,10 +2432,10 @@ func (e *InputElement) IfItemtypeF(condition bool, format string, args ...any) *
 // <video>.
 // Remove the attribute Itemtype from the element.
 func (e *InputElement) ItemtypeRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemtype")
+	e.stringAttributes.Del("itemtype")
 	return e
 }
 
@@ -2445,10 +2445,10 @@ func (e *InputElement) ItemtypeRemove() *InputElement {
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 func (e *InputElement) Lang(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("lang", s)
+	e.stringAttributes.Set("lang", s)
 	return e
 }
 
@@ -2492,10 +2492,10 @@ func (e *InputElement) IfLangF(condition bool, format string, args ...any) *Inpu
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 // Remove the attribute Lang from the element.
 func (e *InputElement) LangRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("lang")
+	e.stringAttributes.Del("lang")
 	return e
 }
 
@@ -2505,10 +2505,10 @@ func (e *InputElement) LangRemove() *InputElement {
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
 func (e *InputElement) Nonce(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("nonce", s)
+	e.stringAttributes.Set("nonce", s)
 	return e
 }
 
@@ -2552,10 +2552,10 @@ func (e *InputElement) IfNonceF(condition bool, format string, args ...any) *Inp
 // execute.
 // Remove the attribute Nonce from the element.
 func (e *InputElement) NonceRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("nonce")
+	e.stringAttributes.Del("nonce")
 	return e
 }
 
@@ -2564,13 +2564,13 @@ func (e *InputElement) NonceRemove() *InputElement {
 // in a shadow tree via the ::part pseudo-element.
 func (e *InputElement) Part(s string) *InputElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("part", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("part", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -2591,10 +2591,10 @@ func (e *InputElement) IfPart(condition bool, s string) *InputElement {
 // in a shadow tree via the ::part pseudo-element.
 // Remove the values from the attribute Part in the element.
 func (e *InputElement) PartRemove(s ...string) *InputElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
 		return e
 	}
@@ -2609,10 +2609,10 @@ func (e *InputElement) PartRemove(s ...string) *InputElement {
 // popover elements will appear above all other elements in the top layer, and
 // won't be influenced by parent elements' position or overflow styling.
 func (e *InputElement) Popover(c InputPopoverChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("popover", string(c))
+	e.stringAttributes.Set("popover", string(c))
 	return e
 }
 
@@ -2640,10 +2640,10 @@ const (
 // won't be influenced by parent elements' position or overflow styling.
 // Remove the attribute Popover from the element.
 func (e *InputElement) PopoverRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("popover")
+	e.stringAttributes.Del("popover")
 	return e
 }
 
@@ -2652,10 +2652,10 @@ func (e *InputElement) PopoverRemove() *InputElement {
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
 func (e *InputElement) Role(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("role", s)
+	e.stringAttributes.Set("role", s)
 	return e
 }
 
@@ -2695,10 +2695,10 @@ func (e *InputElement) IfRoleF(condition bool, format string, args ...any) *Inpu
 // role of an element.
 // Remove the attribute Role from the element.
 func (e *InputElement) RoleRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("role")
+	e.stringAttributes.Del("role")
 	return e
 }
 
@@ -2707,10 +2707,10 @@ func (e *InputElement) RoleRemove() *InputElement {
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
 func (e *InputElement) Slot(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("slot", s)
+	e.stringAttributes.Set("slot", s)
 	return e
 }
 
@@ -2750,10 +2750,10 @@ func (e *InputElement) IfSlotF(condition bool, format string, args ...any) *Inpu
 // value.
 // Remove the attribute Slot from the element.
 func (e *InputElement) SlotRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("slot")
+	e.stringAttributes.Del("slot")
 	return e
 }
 
@@ -2769,10 +2769,10 @@ func (e *InputElement) SlotRemove() *InputElement {
 // "spell-jacking"). You should consider setting spellcheck to false for
 // elements that can contain sensitive information.
 func (e *InputElement) Spellcheck(c InputSpellcheckChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("spellcheck", string(c))
+	e.stringAttributes.Set("spellcheck", string(c))
 	return e
 }
 
@@ -2800,10 +2800,10 @@ const (
 // elements that can contain sensitive information.
 // Remove the attribute Spellcheck from the element.
 func (e *InputElement) SpellcheckRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("spellcheck")
+	e.stringAttributes.Del("spellcheck")
 	return e
 }
 
@@ -2813,13 +2813,13 @@ func (e *InputElement) StylePairs(pairs ...string) *InputElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -2835,13 +2835,13 @@ func (e *InputElement) StylePairs(pairs ...string) *InputElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *InputElement) Style(s string) *InputElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -2867,13 +2867,13 @@ func (e *InputElement) IfStyle(condition bool, s string) *InputElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *InputElement) StyleAdd(k string, v string) *InputElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -2907,13 +2907,13 @@ func (e *InputElement) IfStyleAddF(condition bool, k string, format string, args
 // color, font, size, and more. Styles are written in CSS.
 // Add the attributes in the map to the element.
 func (e *InputElement) StyleMap(m map[string]string) *InputElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -2930,10 +2930,10 @@ func (e *InputElement) StyleMap(m map[string]string) *InputElement {
 // color, font, size, and more. Styles are written in CSS.
 // Remove the attribute Style from the element.
 func (e *InputElement) StyleRemove(keys ...string) *InputElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}
@@ -2955,10 +2955,10 @@ func (e *InputElement) StyleRemove(keys ...string) *InputElement {
 // If several elements share the same tabindex, their relative order follows
 // their relative position in the document.
 func (e *InputElement) Tabindex(i int) *InputElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("tabindex", i)
+	e.intAttributes.Set("tabindex", i)
 	return e
 }
 
@@ -2997,10 +2997,10 @@ func (e *InputElement) IfTabindex(condition bool, i int) *InputElement {
 // their relative position in the document.
 // Remove the attribute Tabindex from the element.
 func (e *InputElement) TabindexRemove() *InputElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("tabindex")
+	e.intAttributes.Del("tabindex")
 	return e
 }
 
@@ -3021,10 +3021,10 @@ func (e *InputElement) TabindexRemove() *InputElement {
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
 func (e *InputElement) Title(s string) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("title", s)
+	e.stringAttributes.Set("title", s)
 	return e
 }
 
@@ -3112,10 +3112,10 @@ func (e *InputElement) IfTitleF(condition bool, format string, args ...any) *Inp
 // element, this is not good practice. Use a <label> instead.
 // Remove the attribute Title from the element.
 func (e *InputElement) TitleRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("title")
+	e.stringAttributes.Del("title")
 	return e
 }
 
@@ -3124,10 +3124,10 @@ func (e *InputElement) TitleRemove() *InputElement {
 // children are to be translated when the page is localized, or whether to leave
 // them unchanged.
 func (e *InputElement) Translate(c InputTranslateChoice) *InputElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("translate", string(c))
+	e.stringAttributes.Set("translate", string(c))
 	return e
 }
 
@@ -3148,9 +3148,9 @@ const (
 // them unchanged.
 // Remove the attribute Translate from the element.
 func (e *InputElement) TranslateRemove() *InputElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("translate")
+	e.stringAttributes.Del("translate")
 	return e
 }

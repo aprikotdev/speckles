@@ -23,37 +23,37 @@ type SVGMarkerElement struct {
 // with the tag "marker" during rendering.
 func SVGMarker(children ...ElementRenderer) *SVGMarkerElement {
 	e := NewElement("marker", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGMarkerElement{Element: e}
 }
 
 func (e *SVGMarkerElement) Children(children ...ElementRenderer) *SVGMarkerElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGMarkerElement) IfChildren(condition bool, children ...ElementRenderer) *SVGMarkerElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGMarkerElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGMarkerElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGMarkerElement) BoolAttr(name string) *SVGMarkerElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -65,10 +65,10 @@ func (e *SVGMarkerElement) IfBoolAttr(condition bool, name string) *SVGMarkerEle
 }
 
 func (e *SVGMarkerElement) Attr(name, value string) *SVGMarkerElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -80,7 +80,7 @@ func (e *SVGMarkerElement) IfAttr(condition bool, name, value string) *SVGMarker
 }
 
 func (e *SVGMarkerElement) Text(text string) *SVGMarkerElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -90,26 +90,26 @@ func (e *SVGMarkerElement) TextF(format string, args ...any) *SVGMarkerElement {
 
 func (e *SVGMarkerElement) IfText(condition bool, text string) *SVGMarkerElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGMarkerElement) IfTextF(condition bool, format string, args ...any) *SVGMarkerElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGMarkerElement) Escaped(text string) *SVGMarkerElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGMarkerElement) IfEscaped(condition bool, text string) *SVGMarkerElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -120,7 +120,7 @@ func (e *SVGMarkerElement) EscapedF(format string, args ...any) *SVGMarkerElemen
 
 func (e *SVGMarkerElement) IfEscapedF(condition bool, format string, args ...any) *SVGMarkerElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -128,10 +128,10 @@ func (e *SVGMarkerElement) IfEscapedF(condition bool, format string, args ...any
 // The x-axis coordinate of the reference point which is to be aligned exactly
 // at the marker position.
 func (e *SVGMarkerElement) RefX(f float64) *SVGMarkerElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("refX", f)
+	e.floatAttributes.Set("refX", f)
 	return e
 }
 
@@ -147,10 +147,10 @@ func (e *SVGMarkerElement) IfRefX(condition bool, f float64) *SVGMarkerElement {
 // The y-axis coordinate of the reference point which is to be aligned exactly
 // at the marker position.
 func (e *SVGMarkerElement) RefY(f float64) *SVGMarkerElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("refY", f)
+	e.floatAttributes.Set("refY", f)
 	return e
 }
 
@@ -165,10 +165,10 @@ func (e *SVGMarkerElement) IfRefY(condition bool, f float64) *SVGMarkerElement {
 
 // The width of the marker viewport.
 func (e *SVGMarkerElement) MarkerWidth(f float64) *SVGMarkerElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("markerWidth", f)
+	e.floatAttributes.Set("markerWidth", f)
 	return e
 }
 
@@ -182,10 +182,10 @@ func (e *SVGMarkerElement) IfMarkerWidth(condition bool, f float64) *SVGMarkerEl
 
 // The height of the marker viewport.
 func (e *SVGMarkerElement) MarkerHeight(f float64) *SVGMarkerElement {
-	if e.FloatAttributes == nil {
-		e.FloatAttributes = treemap.New[string, float64]()
+	if e.floatAttributes == nil {
+		e.floatAttributes = treemap.New[string, float64]()
 	}
-	e.FloatAttributes.Set("markerHeight", f)
+	e.floatAttributes.Set("markerHeight", f)
 	return e
 }
 
@@ -199,10 +199,10 @@ func (e *SVGMarkerElement) IfMarkerHeight(condition bool, f float64) *SVGMarkerE
 
 // The orientation of the marker relative to the shape it is attached to.
 func (e *SVGMarkerElement) Orient(c SVGMarkerOrientChoice) *SVGMarkerElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("orient", string(c))
+	e.stringAttributes.Set("orient", string(c))
 	return e
 }
 
@@ -220,19 +220,19 @@ const (
 // The orientation of the marker relative to the shape it is attached to.
 // Remove the attribute Orient from the element.
 func (e *SVGMarkerElement) OrientRemove() *SVGMarkerElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("orient")
+	e.stringAttributes.Del("orient")
 	return e
 }
 
 // The coordinate system for the various length values within the marker.
 func (e *SVGMarkerElement) MarkerUnits(c SVGMarkerMarkerUnitsChoice) *SVGMarkerElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("markerUnits", string(c))
+	e.stringAttributes.Set("markerUnits", string(c))
 	return e
 }
 
@@ -248,19 +248,19 @@ const (
 // The coordinate system for the various length values within the marker.
 // Remove the attribute MarkerUnits from the element.
 func (e *SVGMarkerElement) MarkerUnitsRemove() *SVGMarkerElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("markerUnits")
+	e.stringAttributes.Del("markerUnits")
 	return e
 }
 
 // The position and size of the marker viewport (the bounds of the marker).
 func (e *SVGMarkerElement) ViewBox(s string) *SVGMarkerElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("viewBox", s)
+	e.stringAttributes.Set("viewBox", s)
 	return e
 }
 
@@ -288,19 +288,19 @@ func (e *SVGMarkerElement) IfViewBoxF(condition bool, format string, args ...any
 // The position and size of the marker viewport (the bounds of the marker).
 // Remove the attribute ViewBox from the element.
 func (e *SVGMarkerElement) ViewBoxRemove() *SVGMarkerElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("viewBox")
+	e.stringAttributes.Del("viewBox")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGMarkerElement) ID(s string) *SVGMarkerElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -328,10 +328,10 @@ func (e *SVGMarkerElement) IfIDF(condition bool, format string, args ...any) *SV
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGMarkerElement) IDRemove() *SVGMarkerElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -339,13 +339,13 @@ func (e *SVGMarkerElement) IDRemove() *SVGMarkerElement {
 // sheet)
 func (e *SVGMarkerElement) Class(s string) *SVGMarkerElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -364,10 +364,10 @@ func (e *SVGMarkerElement) IfClass(condition bool, s string) *SVGMarkerElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGMarkerElement) ClassRemove(s ...string) *SVGMarkerElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -380,13 +380,13 @@ func (e *SVGMarkerElement) StylePairs(pairs ...string) *SVGMarkerElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -401,13 +401,13 @@ func (e *SVGMarkerElement) StylePairs(pairs ...string) *SVGMarkerElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGMarkerElement) Style(s string) *SVGMarkerElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -431,13 +431,13 @@ func (e *SVGMarkerElement) IfStyle(condition bool, s string) *SVGMarkerElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGMarkerElement) StyleAdd(k string, v string) *SVGMarkerElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -467,13 +467,13 @@ func (e *SVGMarkerElement) IfStyleAddF(condition bool, k string, format string, 
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGMarkerElement) StyleMap(m map[string]string) *SVGMarkerElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -489,10 +489,10 @@ func (e *SVGMarkerElement) StyleMap(m map[string]string) *SVGMarkerElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGMarkerElement) StyleRemove(keys ...string) *SVGMarkerElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

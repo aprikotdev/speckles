@@ -22,37 +22,37 @@ type SVGClipPathElement struct {
 // with the tag "clipPath" during rendering.
 func SVGClipPath(children ...ElementRenderer) *SVGClipPathElement {
 	e := NewElement("clipPath", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGClipPathElement{Element: e}
 }
 
 func (e *SVGClipPathElement) Children(children ...ElementRenderer) *SVGClipPathElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGClipPathElement) IfChildren(condition bool, children ...ElementRenderer) *SVGClipPathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGClipPathElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGClipPathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGClipPathElement) BoolAttr(name string) *SVGClipPathElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *SVGClipPathElement) IfBoolAttr(condition bool, name string) *SVGClipPat
 }
 
 func (e *SVGClipPathElement) Attr(name, value string) *SVGClipPathElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *SVGClipPathElement) IfAttr(condition bool, name, value string) *SVGClip
 }
 
 func (e *SVGClipPathElement) Text(text string) *SVGClipPathElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *SVGClipPathElement) TextF(format string, args ...any) *SVGClipPathEleme
 
 func (e *SVGClipPathElement) IfText(condition bool, text string) *SVGClipPathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGClipPathElement) IfTextF(condition bool, format string, args ...any) *SVGClipPathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGClipPathElement) Escaped(text string) *SVGClipPathElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGClipPathElement) IfEscaped(condition bool, text string) *SVGClipPathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,17 +119,17 @@ func (e *SVGClipPathElement) EscapedF(format string, args ...any) *SVGClipPathEl
 
 func (e *SVGClipPathElement) IfEscapedF(condition bool, format string, args ...any) *SVGClipPathElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The coordinate system for the contents of the <clipPath> element.
 func (e *SVGClipPathElement) ClipPathUnits(c SVGClipPathClipPathUnitsChoice) *SVGClipPathElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("clipPathUnits", string(c))
+	e.stringAttributes.Set("clipPathUnits", string(c))
 	return e
 }
 
@@ -150,19 +150,19 @@ const (
 // The coordinate system for the contents of the <clipPath> element.
 // Remove the attribute ClipPathUnits from the element.
 func (e *SVGClipPathElement) ClipPathUnitsRemove() *SVGClipPathElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("clipPathUnits")
+	e.stringAttributes.Del("clipPathUnits")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGClipPathElement) ID(s string) *SVGClipPathElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -190,10 +190,10 @@ func (e *SVGClipPathElement) IfIDF(condition bool, format string, args ...any) *
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGClipPathElement) IDRemove() *SVGClipPathElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -201,13 +201,13 @@ func (e *SVGClipPathElement) IDRemove() *SVGClipPathElement {
 // sheet)
 func (e *SVGClipPathElement) Class(s string) *SVGClipPathElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -226,10 +226,10 @@ func (e *SVGClipPathElement) IfClass(condition bool, s string) *SVGClipPathEleme
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGClipPathElement) ClassRemove(s ...string) *SVGClipPathElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -242,13 +242,13 @@ func (e *SVGClipPathElement) StylePairs(pairs ...string) *SVGClipPathElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -263,13 +263,13 @@ func (e *SVGClipPathElement) StylePairs(pairs ...string) *SVGClipPathElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGClipPathElement) Style(s string) *SVGClipPathElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -293,13 +293,13 @@ func (e *SVGClipPathElement) IfStyle(condition bool, s string) *SVGClipPathEleme
 
 // Specifies an inline CSS style for an element
 func (e *SVGClipPathElement) StyleAdd(k string, v string) *SVGClipPathElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -329,13 +329,13 @@ func (e *SVGClipPathElement) IfStyleAddF(condition bool, k string, format string
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGClipPathElement) StyleMap(m map[string]string) *SVGClipPathElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -351,10 +351,10 @@ func (e *SVGClipPathElement) StyleMap(m map[string]string) *SVGClipPathElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGClipPathElement) StyleRemove(keys ...string) *SVGClipPathElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

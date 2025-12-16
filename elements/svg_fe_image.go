@@ -23,37 +23,37 @@ type SVGFeImageElement struct {
 // with the tag "feImage" during rendering.
 func SVGFeImage(children ...ElementRenderer) *SVGFeImageElement {
 	e := NewElement("feImage", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGFeImageElement{Element: e}
 }
 
 func (e *SVGFeImageElement) Children(children ...ElementRenderer) *SVGFeImageElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGFeImageElement) IfChildren(condition bool, children ...ElementRenderer) *SVGFeImageElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGFeImageElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGFeImageElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGFeImageElement) BoolAttr(name string) *SVGFeImageElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -65,10 +65,10 @@ func (e *SVGFeImageElement) IfBoolAttr(condition bool, name string) *SVGFeImageE
 }
 
 func (e *SVGFeImageElement) Attr(name, value string) *SVGFeImageElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -80,7 +80,7 @@ func (e *SVGFeImageElement) IfAttr(condition bool, name, value string) *SVGFeIma
 }
 
 func (e *SVGFeImageElement) Text(text string) *SVGFeImageElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -90,26 +90,26 @@ func (e *SVGFeImageElement) TextF(format string, args ...any) *SVGFeImageElement
 
 func (e *SVGFeImageElement) IfText(condition bool, text string) *SVGFeImageElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGFeImageElement) IfTextF(condition bool, format string, args ...any) *SVGFeImageElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGFeImageElement) Escaped(text string) *SVGFeImageElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGFeImageElement) IfEscaped(condition bool, text string) *SVGFeImageElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -120,7 +120,7 @@ func (e *SVGFeImageElement) EscapedF(format string, args ...any) *SVGFeImageElem
 
 func (e *SVGFeImageElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeImageElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -142,10 +142,10 @@ func (e *SVGFeImageElement) IfExternalResourcesRequired(condition bool) *SVGFeIm
 // Indicates whether or not to force synchronous behavior.
 // Set the attribute ExternalResourcesRequired to the value b explicitly.
 func (e *SVGFeImageElement) ExternalResourcesRequiredSet(b bool) *SVGFeImageElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("externalResourcesRequired", b)
+	e.boolAttributes.Set("externalResourcesRequired", b)
 	return e
 }
 
@@ -160,19 +160,19 @@ func (e *SVGFeImageElement) IfSetExternalResourcesRequired(condition bool, b boo
 // Remove the attribute ExternalResourcesRequired from the element.
 // Indicates whether or not to force synchronous behavior.
 func (e *SVGFeImageElement) ExternalResourcesRequiredRemove() *SVGFeImageElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("externalResourcesRequired")
+	e.boolAttributes.Del("externalResourcesRequired")
 	return e
 }
 
 // Indicates how the fetched image is fitted into the destination rectangle.
 func (e *SVGFeImageElement) PreserveAspectRatio(c SVGFeImagePreserveAspectRatioChoice) *SVGFeImageElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("preserveAspectRatio", string(c))
+	e.stringAttributes.Set("preserveAspectRatio", string(c))
 	return e
 }
 
@@ -210,19 +210,19 @@ const (
 // Indicates how the fetched image is fitted into the destination rectangle.
 // Remove the attribute PreserveAspectRatio from the element.
 func (e *SVGFeImageElement) PreserveAspectRatioRemove() *SVGFeImageElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("preserveAspectRatio")
+	e.stringAttributes.Del("preserveAspectRatio")
 	return e
 }
 
 // A URI reference to an external resource.
 func (e *SVGFeImageElement) Href(s string) *SVGFeImageElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("href", s)
+	e.stringAttributes.Set("href", s)
 	return e
 }
 
@@ -250,19 +250,19 @@ func (e *SVGFeImageElement) IfHrefF(condition bool, format string, args ...any) 
 // A URI reference to an external resource.
 // Remove the attribute Href from the element.
 func (e *SVGFeImageElement) HrefRemove() *SVGFeImageElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("href")
+	e.stringAttributes.Del("href")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGFeImageElement) ID(s string) *SVGFeImageElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -290,10 +290,10 @@ func (e *SVGFeImageElement) IfIDF(condition bool, format string, args ...any) *S
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGFeImageElement) IDRemove() *SVGFeImageElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -301,13 +301,13 @@ func (e *SVGFeImageElement) IDRemove() *SVGFeImageElement {
 // sheet)
 func (e *SVGFeImageElement) Class(s string) *SVGFeImageElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -326,10 +326,10 @@ func (e *SVGFeImageElement) IfClass(condition bool, s string) *SVGFeImageElement
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGFeImageElement) ClassRemove(s ...string) *SVGFeImageElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -342,13 +342,13 @@ func (e *SVGFeImageElement) StylePairs(pairs ...string) *SVGFeImageElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -363,13 +363,13 @@ func (e *SVGFeImageElement) StylePairs(pairs ...string) *SVGFeImageElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeImageElement) Style(s string) *SVGFeImageElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -393,13 +393,13 @@ func (e *SVGFeImageElement) IfStyle(condition bool, s string) *SVGFeImageElement
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeImageElement) StyleAdd(k string, v string) *SVGFeImageElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -429,13 +429,13 @@ func (e *SVGFeImageElement) IfStyleAddF(condition bool, k string, format string,
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGFeImageElement) StyleMap(m map[string]string) *SVGFeImageElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -451,10 +451,10 @@ func (e *SVGFeImageElement) StyleMap(m map[string]string) *SVGFeImageElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGFeImageElement) StyleRemove(keys ...string) *SVGFeImageElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

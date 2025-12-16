@@ -22,37 +22,37 @@ type SVGScriptElement struct {
 // with the tag "script" during rendering.
 func SVGScript(children ...ElementRenderer) *SVGScriptElement {
 	e := NewElement("script", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGScriptElement{Element: e}
 }
 
 func (e *SVGScriptElement) Children(children ...ElementRenderer) *SVGScriptElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGScriptElement) IfChildren(condition bool, children ...ElementRenderer) *SVGScriptElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGScriptElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGScriptElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGScriptElement) BoolAttr(name string) *SVGScriptElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *SVGScriptElement) IfBoolAttr(condition bool, name string) *SVGScriptEle
 }
 
 func (e *SVGScriptElement) Attr(name, value string) *SVGScriptElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *SVGScriptElement) IfAttr(condition bool, name, value string) *SVGScript
 }
 
 func (e *SVGScriptElement) Text(text string) *SVGScriptElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *SVGScriptElement) TextF(format string, args ...any) *SVGScriptElement {
 
 func (e *SVGScriptElement) IfText(condition bool, text string) *SVGScriptElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGScriptElement) IfTextF(condition bool, format string, args ...any) *SVGScriptElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGScriptElement) Escaped(text string) *SVGScriptElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGScriptElement) IfEscaped(condition bool, text string) *SVGScriptElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,17 +119,17 @@ func (e *SVGScriptElement) EscapedF(format string, args ...any) *SVGScriptElemen
 
 func (e *SVGScriptElement) IfEscapedF(condition bool, format string, args ...any) *SVGScriptElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // The scripting language used for the given script element.
 func (e *SVGScriptElement) Type(s string) *SVGScriptElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("type", s)
+	e.stringAttributes.Set("type", s)
 	return e
 }
 
@@ -157,20 +157,20 @@ func (e *SVGScriptElement) IfTypeF(condition bool, format string, args ...any) *
 // The scripting language used for the given script element.
 // Remove the attribute Type from the element.
 func (e *SVGScriptElement) TypeRemove() *SVGScriptElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("type")
+	e.stringAttributes.Del("type")
 	return e
 }
 
 // A Uniform Resource Identifier (URI) reference that specifies the location of
 // the script to execute.
 func (e *SVGScriptElement) Href(s string) *SVGScriptElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("href", s)
+	e.stringAttributes.Set("href", s)
 	return e
 }
 
@@ -202,19 +202,19 @@ func (e *SVGScriptElement) IfHrefF(condition bool, format string, args ...any) *
 // the script to execute.
 // Remove the attribute Href from the element.
 func (e *SVGScriptElement) HrefRemove() *SVGScriptElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("href")
+	e.stringAttributes.Del("href")
 	return e
 }
 
 // How the element handles crossorigin requests.
 func (e *SVGScriptElement) Crossorigin(c SVGScriptCrossoriginChoice) *SVGScriptElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("crossorigin", string(c))
+	e.stringAttributes.Set("crossorigin", string(c))
 	return e
 }
 
@@ -230,19 +230,19 @@ const (
 // How the element handles crossorigin requests.
 // Remove the attribute Crossorigin from the element.
 func (e *SVGScriptElement) CrossoriginRemove() *SVGScriptElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("crossorigin")
+	e.stringAttributes.Del("crossorigin")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGScriptElement) ID(s string) *SVGScriptElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -270,10 +270,10 @@ func (e *SVGScriptElement) IfIDF(condition bool, format string, args ...any) *SV
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGScriptElement) IDRemove() *SVGScriptElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -281,13 +281,13 @@ func (e *SVGScriptElement) IDRemove() *SVGScriptElement {
 // sheet)
 func (e *SVGScriptElement) Class(s string) *SVGScriptElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -306,10 +306,10 @@ func (e *SVGScriptElement) IfClass(condition bool, s string) *SVGScriptElement {
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGScriptElement) ClassRemove(s ...string) *SVGScriptElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -322,13 +322,13 @@ func (e *SVGScriptElement) StylePairs(pairs ...string) *SVGScriptElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -343,13 +343,13 @@ func (e *SVGScriptElement) StylePairs(pairs ...string) *SVGScriptElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGScriptElement) Style(s string) *SVGScriptElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -373,13 +373,13 @@ func (e *SVGScriptElement) IfStyle(condition bool, s string) *SVGScriptElement {
 
 // Specifies an inline CSS style for an element
 func (e *SVGScriptElement) StyleAdd(k string, v string) *SVGScriptElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -409,13 +409,13 @@ func (e *SVGScriptElement) IfStyleAddF(condition bool, k string, format string, 
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGScriptElement) StyleMap(m map[string]string) *SVGScriptElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -431,10 +431,10 @@ func (e *SVGScriptElement) StyleMap(m map[string]string) *SVGScriptElement {
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGScriptElement) StyleRemove(keys ...string) *SVGScriptElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

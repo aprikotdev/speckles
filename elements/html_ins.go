@@ -22,37 +22,37 @@ type InsElement struct {
 // with the tag "ins" during rendering.
 func Ins(children ...ElementRenderer) *InsElement {
 	e := NewElement("ins", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &InsElement{Element: e}
 }
 
 func (e *InsElement) Children(children ...ElementRenderer) *InsElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *InsElement) IfChildren(condition bool, children ...ElementRenderer) *InsElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *InsElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *InsElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *InsElement) BoolAttr(name string) *InsElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *InsElement) IfBoolAttr(condition bool, name string) *InsElement {
 }
 
 func (e *InsElement) Attr(name, value string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *InsElement) IfAttr(condition bool, name, value string) *InsElement {
 }
 
 func (e *InsElement) Text(text string) *InsElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *InsElement) TextF(format string, args ...any) *InsElement {
 
 func (e *InsElement) IfText(condition bool, text string) *InsElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *InsElement) IfTextF(condition bool, format string, args ...any) *InsElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *InsElement) Escaped(text string) *InsElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *InsElement) IfEscaped(condition bool, text string) *InsElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,17 +119,17 @@ func (e *InsElement) EscapedF(format string, args ...any) *InsElement {
 
 func (e *InsElement) IfEscapedF(condition bool, format string, args ...any) *InsElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // Contains a URI which points to the source of the quote or change.
 func (e *InsElement) Cite(s string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("cite", s)
+	e.stringAttributes.Set("cite", s)
 	return e
 }
 
@@ -157,19 +157,19 @@ func (e *InsElement) IfCiteF(condition bool, format string, args ...any) *InsEle
 // Contains a URI which points to the source of the quote or change.
 // Remove the attribute Cite from the element.
 func (e *InsElement) CiteRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("cite")
+	e.stringAttributes.Del("cite")
 	return e
 }
 
 // Indicates the date and time associated with the element.
 func (e *InsElement) Datetime(s string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("datetime", s)
+	e.stringAttributes.Set("datetime", s)
 	return e
 }
 
@@ -197,10 +197,10 @@ func (e *InsElement) IfDatetimeF(condition bool, format string, args ...any) *In
 // Indicates the date and time associated with the element.
 // Remove the attribute Datetime from the element.
 func (e *InsElement) DatetimeRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("datetime")
+	e.stringAttributes.Del("datetime")
 	return e
 }
 
@@ -209,10 +209,10 @@ func (e *InsElement) DatetimeRemove() *InsElement {
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
 func (e *InsElement) Accesskey(r rune) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("accesskey", string(r))
+	e.stringAttributes.Set("accesskey", string(r))
 	return e
 }
 
@@ -233,10 +233,10 @@ func (e *InsElement) IfAccesskey(condition bool, r rune) *InsElement {
 // can be generated by the keyboard).
 // Remove the attribute Accesskey from the element.
 func (e *InsElement) AccesskeyRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("accesskey")
+	e.stringAttributes.Del("accesskey")
 	return e
 }
 
@@ -252,10 +252,10 @@ func (e *InsElement) AccesskeyRemove() *InsElement {
 // behavior varies between browsers. For example: Chrome and Safari default to
 // on/sentences Firefox defaults to off/none.
 func (e *InsElement) Autocapitalize(c InsAutocapitalizeChoice) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("autocapitalize", string(c))
+	e.stringAttributes.Set("autocapitalize", string(c))
 	return e
 }
 
@@ -289,10 +289,10 @@ const (
 // on/sentences Firefox defaults to off/none.
 // Remove the attribute Autocapitalize from the element.
 func (e *InsElement) AutocapitalizeRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("autocapitalize")
+	e.stringAttributes.Del("autocapitalize")
 	return e
 }
 
@@ -352,10 +352,10 @@ func (e *InsElement) IfAutofocus(condition bool) *InsElement {
 // created by the preceding content.
 // Set the attribute Autofocus to the value b explicitly.
 func (e *InsElement) AutofocusSet(b bool) *InsElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("autofocus", b)
+	e.boolAttributes.Set("autofocus", b)
 	return e
 }
 
@@ -396,10 +396,10 @@ func (e *InsElement) IfSetAutofocus(condition bool, b bool) *InsElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *InsElement) AutofocusRemove() *InsElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("autofocus")
+	e.boolAttributes.Del("autofocus")
 	return e
 }
 
@@ -409,13 +409,13 @@ func (e *InsElement) AutofocusRemove() *InsElement {
 // document.getElementsByClassName.
 func (e *InsElement) Class(s string) *InsElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -438,10 +438,10 @@ func (e *InsElement) IfClass(condition bool, s string) *InsElement {
 // document.getElementsByClassName.
 // Remove the values from the attribute Class in the element.
 func (e *InsElement) ClassRemove(s ...string) *InsElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -453,10 +453,10 @@ func (e *InsElement) ClassRemove(s ...string) *InsElement {
 // the element should be editable by the user. If so, the browser modifies its
 // widget to allow editing.
 func (e *InsElement) Contenteditable(c InsContenteditableChoice) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("contenteditable", string(c))
+	e.stringAttributes.Set("contenteditable", string(c))
 	return e
 }
 
@@ -479,10 +479,10 @@ const (
 // widget to allow editing.
 // Remove the attribute Contenteditable from the element.
 func (e *InsElement) ContenteditableRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("contenteditable")
+	e.stringAttributes.Del("contenteditable")
 	return e
 }
 
@@ -500,10 +500,10 @@ func (e *InsElement) ContenteditableRemove() *InsElement {
 // directionality, like data coming from user input, eventually stored in a
 // database.
 func (e *InsElement) Dir(c InsDirChoice) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dir", string(c))
+	e.stringAttributes.Set("dir", string(c))
 	return e
 }
 
@@ -537,10 +537,10 @@ const (
 // database.
 // Remove the attribute Dir from the element.
 func (e *InsElement) DirRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dir")
+	e.stringAttributes.Del("dir")
 	return e
 }
 
@@ -548,10 +548,10 @@ func (e *InsElement) DirRemove() *InsElement {
 // whether the element can be dragged, either with native browser behavior or
 // the HTML Drag and Drop API.
 func (e *InsElement) Draggable(c InsDraggableChoice) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("draggable", string(c))
+	e.stringAttributes.Set("draggable", string(c))
 	return e
 }
 
@@ -577,20 +577,20 @@ const (
 // the HTML Drag and Drop API.
 // Remove the attribute Draggable from the element.
 func (e *InsElement) DraggableRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("draggable")
+	e.stringAttributes.Del("draggable")
 	return e
 }
 
 // The enterkeyhint global attribute is an enumerated attribute defining what
 // action label (or icon) to present for the enter key on virtual keyboards.
 func (e *InsElement) Enterkeyhint(c InsEnterkeyhintChoice) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("enterkeyhint", string(c))
+	e.stringAttributes.Set("enterkeyhint", string(c))
 	return e
 }
 
@@ -620,10 +620,10 @@ const (
 // action label (or icon) to present for the enter key on virtual keyboards.
 // Remove the attribute Enterkeyhint from the element.
 func (e *InsElement) EnterkeyhintRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("enterkeyhint")
+	e.stringAttributes.Del("enterkeyhint")
 	return e
 }
 
@@ -646,13 +646,13 @@ func (e *InsElement) EnterkeyhintRemove() *InsElement {
 // the current structure.
 func (e *InsElement) Exportparts(s string) *InsElement {
 	values := strings.Split(s, ",")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
-		ds = NewDelimitedBuilder[string](",")
-		e.DelimitedStrings.Set("exportparts", ds)
+		ds = newDelimitedBuilder[string](",")
+		e.delimitedStrings.Set("exportparts", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -701,10 +701,10 @@ func (e *InsElement) IfExportparts(condition bool, s string) *InsElement {
 // the current structure.
 // Remove the values from the attribute Exportparts in the element.
 func (e *InsElement) ExportpartsRemove(s ...string) *InsElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
 		return e
 	}
@@ -725,10 +725,10 @@ func (e *InsElement) ExportpartsRemove(s ...string) *InsElement {
 // of none, contents, or inline, then the element will not be revealed by find
 // in page or fragment navigation.
 func (e *InsElement) Hidden(c InsHiddenChoice) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("hidden", string(c))
+	e.stringAttributes.Set("hidden", string(c))
 	return e
 }
 
@@ -764,10 +764,10 @@ const (
 // in page or fragment navigation.
 // Remove the attribute Hidden from the element.
 func (e *InsElement) HiddenRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("hidden")
+	e.stringAttributes.Del("hidden")
 	return e
 }
 
@@ -775,10 +775,10 @@ func (e *InsElement) HiddenRemove() *InsElement {
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *InsElement) ID(s string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -814,10 +814,10 @@ func (e *InsElement) IfIDF(condition bool, format string, args ...any) *InsEleme
 // (using a fragment identifier), scripting, or styling (with CSS).
 // Remove the attribute ID from the element.
 func (e *InsElement) IDRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -865,10 +865,10 @@ func (e *InsElement) IfInert(condition bool) *InsElement {
 // excluding them from the accessibility tree.
 // Set the attribute Inert to the value b explicitly.
 func (e *InsElement) InertSet(b bool) *InsElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("inert", b)
+	e.boolAttributes.Set("inert", b)
 	return e
 }
 
@@ -901,10 +901,10 @@ func (e *InsElement) IfSetInert(condition bool, b bool) *InsElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *InsElement) InertRemove() *InsElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("inert")
+	e.boolAttributes.Del("inert")
 	return e
 }
 
@@ -918,10 +918,10 @@ func (e *InsElement) InertRemove() *InsElement {
 // appropriate <input> element type. For specific guidance on choosing <input>
 // types, see the Values section.
 func (e *InsElement) Inputmode(c InsInputmodeChoice) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("inputmode", string(c))
+	e.stringAttributes.Set("inputmode", string(c))
 	return e
 }
 
@@ -972,10 +972,10 @@ const (
 // types, see the Values section.
 // Remove the attribute Inputmode from the element.
 func (e *InsElement) InputmodeRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("inputmode")
+	e.stringAttributes.Del("inputmode")
 	return e
 }
 
@@ -985,10 +985,10 @@ func (e *InsElement) InputmodeRemove() *InsElement {
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
 func (e *InsElement) Is(s string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("is", s)
+	e.stringAttributes.Set("is", s)
 	return e
 }
 
@@ -1032,10 +1032,10 @@ func (e *InsElement) IfIsF(condition bool, format string, args ...any) *InsEleme
 // and extends the element type it is being applied to.
 // Remove the attribute Is from the element.
 func (e *InsElement) IsRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("is")
+	e.stringAttributes.Del("is")
 	return e
 }
 
@@ -1051,10 +1051,10 @@ func (e *InsElement) IsRemove() *InsElement {
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
 func (e *InsElement) Itemid(s string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemid", s)
+	e.stringAttributes.Set("itemid", s)
 	return e
 }
 
@@ -1122,10 +1122,10 @@ func (e *InsElement) IfItemidF(condition bool, format string, args ...any) *InsE
 // how items with the same identifier are handled.
 // Remove the attribute Itemid from the element.
 func (e *InsElement) ItemidRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemid")
+	e.stringAttributes.Del("itemid")
 	return e
 }
 
@@ -1137,10 +1137,10 @@ func (e *InsElement) ItemidRemove() *InsElement {
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
 func (e *InsElement) Itemprop(s string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemprop", s)
+	e.stringAttributes.Set("itemprop", s)
 	return e
 }
 
@@ -1192,10 +1192,10 @@ func (e *InsElement) IfItempropF(condition bool, format string, args ...any) *In
 // <track>, and <video>.
 // Remove the attribute Itemprop from the element.
 func (e *InsElement) ItempropRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemprop")
+	e.stringAttributes.Del("itemprop")
 	return e
 }
 
@@ -1205,10 +1205,10 @@ func (e *InsElement) ItempropRemove() *InsElement {
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
 func (e *InsElement) Itemref(s string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemref", s)
+	e.stringAttributes.Set("itemref", s)
 	return e
 }
 
@@ -1252,10 +1252,10 @@ func (e *InsElement) IfItemrefF(condition bool, format string, args ...any) *Ins
 // specified on elements that have an itemscope attribute specified.
 // Remove the attribute Itemref from the element.
 func (e *InsElement) ItemrefRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemref")
+	e.stringAttributes.Del("itemref")
 	return e
 }
 
@@ -1294,10 +1294,10 @@ func (e *InsElement) IfItemscope(condition bool) *InsElement {
 // <object>, <source>, <track>, and <video>.
 // Set the attribute Itemscope to the value b explicitly.
 func (e *InsElement) ItemscopeSet(b bool) *InsElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("itemscope", b)
+	e.boolAttributes.Set("itemscope", b)
 	return e
 }
 
@@ -1324,10 +1324,10 @@ func (e *InsElement) IfSetItemscope(condition bool, b bool) *InsElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *InsElement) ItemscopeRemove() *InsElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("itemscope")
+	e.boolAttributes.Del("itemscope")
 	return e
 }
 
@@ -1339,10 +1339,10 @@ func (e *InsElement) ItemscopeRemove() *InsElement {
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
 func (e *InsElement) Itemtype(s string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemtype", s)
+	e.stringAttributes.Set("itemtype", s)
 	return e
 }
 
@@ -1394,10 +1394,10 @@ func (e *InsElement) IfItemtypeF(condition bool, format string, args ...any) *In
 // <video>.
 // Remove the attribute Itemtype from the element.
 func (e *InsElement) ItemtypeRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemtype")
+	e.stringAttributes.Del("itemtype")
 	return e
 }
 
@@ -1407,10 +1407,10 @@ func (e *InsElement) ItemtypeRemove() *InsElement {
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 func (e *InsElement) Lang(s string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("lang", s)
+	e.stringAttributes.Set("lang", s)
 	return e
 }
 
@@ -1454,10 +1454,10 @@ func (e *InsElement) IfLangF(condition bool, format string, args ...any) *InsEle
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 // Remove the attribute Lang from the element.
 func (e *InsElement) LangRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("lang")
+	e.stringAttributes.Del("lang")
 	return e
 }
 
@@ -1467,10 +1467,10 @@ func (e *InsElement) LangRemove() *InsElement {
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
 func (e *InsElement) Nonce(s string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("nonce", s)
+	e.stringAttributes.Set("nonce", s)
 	return e
 }
 
@@ -1514,10 +1514,10 @@ func (e *InsElement) IfNonceF(condition bool, format string, args ...any) *InsEl
 // execute.
 // Remove the attribute Nonce from the element.
 func (e *InsElement) NonceRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("nonce")
+	e.stringAttributes.Del("nonce")
 	return e
 }
 
@@ -1526,13 +1526,13 @@ func (e *InsElement) NonceRemove() *InsElement {
 // in a shadow tree via the ::part pseudo-element.
 func (e *InsElement) Part(s string) *InsElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("part", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("part", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1553,10 +1553,10 @@ func (e *InsElement) IfPart(condition bool, s string) *InsElement {
 // in a shadow tree via the ::part pseudo-element.
 // Remove the values from the attribute Part in the element.
 func (e *InsElement) PartRemove(s ...string) *InsElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
 		return e
 	}
@@ -1571,10 +1571,10 @@ func (e *InsElement) PartRemove(s ...string) *InsElement {
 // popover elements will appear above all other elements in the top layer, and
 // won't be influenced by parent elements' position or overflow styling.
 func (e *InsElement) Popover(c InsPopoverChoice) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("popover", string(c))
+	e.stringAttributes.Set("popover", string(c))
 	return e
 }
 
@@ -1602,10 +1602,10 @@ const (
 // won't be influenced by parent elements' position or overflow styling.
 // Remove the attribute Popover from the element.
 func (e *InsElement) PopoverRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("popover")
+	e.stringAttributes.Del("popover")
 	return e
 }
 
@@ -1614,10 +1614,10 @@ func (e *InsElement) PopoverRemove() *InsElement {
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
 func (e *InsElement) Role(s string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("role", s)
+	e.stringAttributes.Set("role", s)
 	return e
 }
 
@@ -1657,10 +1657,10 @@ func (e *InsElement) IfRoleF(condition bool, format string, args ...any) *InsEle
 // role of an element.
 // Remove the attribute Role from the element.
 func (e *InsElement) RoleRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("role")
+	e.stringAttributes.Del("role")
 	return e
 }
 
@@ -1669,10 +1669,10 @@ func (e *InsElement) RoleRemove() *InsElement {
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
 func (e *InsElement) Slot(s string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("slot", s)
+	e.stringAttributes.Set("slot", s)
 	return e
 }
 
@@ -1712,10 +1712,10 @@ func (e *InsElement) IfSlotF(condition bool, format string, args ...any) *InsEle
 // value.
 // Remove the attribute Slot from the element.
 func (e *InsElement) SlotRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("slot")
+	e.stringAttributes.Del("slot")
 	return e
 }
 
@@ -1731,10 +1731,10 @@ func (e *InsElement) SlotRemove() *InsElement {
 // "spell-jacking"). You should consider setting spellcheck to false for
 // elements that can contain sensitive information.
 func (e *InsElement) Spellcheck(c InsSpellcheckChoice) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("spellcheck", string(c))
+	e.stringAttributes.Set("spellcheck", string(c))
 	return e
 }
 
@@ -1762,10 +1762,10 @@ const (
 // elements that can contain sensitive information.
 // Remove the attribute Spellcheck from the element.
 func (e *InsElement) SpellcheckRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("spellcheck")
+	e.stringAttributes.Del("spellcheck")
 	return e
 }
 
@@ -1775,13 +1775,13 @@ func (e *InsElement) StylePairs(pairs ...string) *InsElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -1797,13 +1797,13 @@ func (e *InsElement) StylePairs(pairs ...string) *InsElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *InsElement) Style(s string) *InsElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -1829,13 +1829,13 @@ func (e *InsElement) IfStyle(condition bool, s string) *InsElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *InsElement) StyleAdd(k string, v string) *InsElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -1869,13 +1869,13 @@ func (e *InsElement) IfStyleAddF(condition bool, k string, format string, args .
 // color, font, size, and more. Styles are written in CSS.
 // Add the attributes in the map to the element.
 func (e *InsElement) StyleMap(m map[string]string) *InsElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -1892,10 +1892,10 @@ func (e *InsElement) StyleMap(m map[string]string) *InsElement {
 // color, font, size, and more. Styles are written in CSS.
 // Remove the attribute Style from the element.
 func (e *InsElement) StyleRemove(keys ...string) *InsElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}
@@ -1917,10 +1917,10 @@ func (e *InsElement) StyleRemove(keys ...string) *InsElement {
 // If several elements share the same tabindex, their relative order follows
 // their relative position in the document.
 func (e *InsElement) Tabindex(i int) *InsElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("tabindex", i)
+	e.intAttributes.Set("tabindex", i)
 	return e
 }
 
@@ -1959,10 +1959,10 @@ func (e *InsElement) IfTabindex(condition bool, i int) *InsElement {
 // their relative position in the document.
 // Remove the attribute Tabindex from the element.
 func (e *InsElement) TabindexRemove() *InsElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("tabindex")
+	e.intAttributes.Del("tabindex")
 	return e
 }
 
@@ -1983,10 +1983,10 @@ func (e *InsElement) TabindexRemove() *InsElement {
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
 func (e *InsElement) Title(s string) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("title", s)
+	e.stringAttributes.Set("title", s)
 	return e
 }
 
@@ -2074,10 +2074,10 @@ func (e *InsElement) IfTitleF(condition bool, format string, args ...any) *InsEl
 // element, this is not good practice. Use a <label> instead.
 // Remove the attribute Title from the element.
 func (e *InsElement) TitleRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("title")
+	e.stringAttributes.Del("title")
 	return e
 }
 
@@ -2086,10 +2086,10 @@ func (e *InsElement) TitleRemove() *InsElement {
 // children are to be translated when the page is localized, or whether to leave
 // them unchanged.
 func (e *InsElement) Translate(c InsTranslateChoice) *InsElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("translate", string(c))
+	e.stringAttributes.Set("translate", string(c))
 	return e
 }
 
@@ -2110,9 +2110,9 @@ const (
 // them unchanged.
 // Remove the attribute Translate from the element.
 func (e *InsElement) TranslateRemove() *InsElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("translate")
+	e.stringAttributes.Del("translate")
 	return e
 }

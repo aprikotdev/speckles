@@ -22,37 +22,37 @@ type TdElement struct {
 // with the tag "td" during rendering.
 func Td(children ...ElementRenderer) *TdElement {
 	e := NewElement("td", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &TdElement{Element: e}
 }
 
 func (e *TdElement) Children(children ...ElementRenderer) *TdElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *TdElement) IfChildren(condition bool, children ...ElementRenderer) *TdElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *TdElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *TdElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *TdElement) BoolAttr(name string) *TdElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -64,10 +64,10 @@ func (e *TdElement) IfBoolAttr(condition bool, name string) *TdElement {
 }
 
 func (e *TdElement) Attr(name, value string) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -79,7 +79,7 @@ func (e *TdElement) IfAttr(condition bool, name, value string) *TdElement {
 }
 
 func (e *TdElement) Text(text string) *TdElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -89,26 +89,26 @@ func (e *TdElement) TextF(format string, args ...any) *TdElement {
 
 func (e *TdElement) IfText(condition bool, text string) *TdElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *TdElement) IfTextF(condition bool, format string, args ...any) *TdElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *TdElement) Escaped(text string) *TdElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *TdElement) IfEscaped(condition bool, text string) *TdElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -119,17 +119,17 @@ func (e *TdElement) EscapedF(format string, args ...any) *TdElement {
 
 func (e *TdElement) IfEscapedF(condition bool, format string, args ...any) *TdElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
 
 // Number of columns that the cell is to span.
 func (e *TdElement) Colspan(i int) *TdElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("colspan", i)
+	e.intAttributes.Set("colspan", i)
 	return e
 }
 
@@ -144,19 +144,19 @@ func (e *TdElement) IfColspan(condition bool, i int) *TdElement {
 // Number of columns that the cell is to span.
 // Remove the attribute Colspan from the element.
 func (e *TdElement) ColspanRemove() *TdElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("colspan")
+	e.intAttributes.Del("colspan")
 	return e
 }
 
 // Specifies one or more header cells a cell is related to.
 func (e *TdElement) Headers(s string) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("headers", s)
+	e.stringAttributes.Set("headers", s)
 	return e
 }
 
@@ -184,19 +184,19 @@ func (e *TdElement) IfHeadersF(condition bool, format string, args ...any) *TdEl
 // Specifies one or more header cells a cell is related to.
 // Remove the attribute Headers from the element.
 func (e *TdElement) HeadersRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("headers")
+	e.stringAttributes.Del("headers")
 	return e
 }
 
 // Number of rows that the cell is to span.
 func (e *TdElement) Rowspan(i int) *TdElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("rowspan", i)
+	e.intAttributes.Set("rowspan", i)
 	return e
 }
 
@@ -211,10 +211,10 @@ func (e *TdElement) IfRowspan(condition bool, i int) *TdElement {
 // Number of rows that the cell is to span.
 // Remove the attribute Rowspan from the element.
 func (e *TdElement) RowspanRemove() *TdElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("rowspan")
+	e.intAttributes.Del("rowspan")
 	return e
 }
 
@@ -223,10 +223,10 @@ func (e *TdElement) RowspanRemove() *TdElement {
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
 func (e *TdElement) Accesskey(r rune) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("accesskey", string(r))
+	e.stringAttributes.Set("accesskey", string(r))
 	return e
 }
 
@@ -247,10 +247,10 @@ func (e *TdElement) IfAccesskey(condition bool, r rune) *TdElement {
 // can be generated by the keyboard).
 // Remove the attribute Accesskey from the element.
 func (e *TdElement) AccesskeyRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("accesskey")
+	e.stringAttributes.Del("accesskey")
 	return e
 }
 
@@ -266,10 +266,10 @@ func (e *TdElement) AccesskeyRemove() *TdElement {
 // behavior varies between browsers. For example: Chrome and Safari default to
 // on/sentences Firefox defaults to off/none.
 func (e *TdElement) Autocapitalize(c TdAutocapitalizeChoice) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("autocapitalize", string(c))
+	e.stringAttributes.Set("autocapitalize", string(c))
 	return e
 }
 
@@ -303,10 +303,10 @@ const (
 // on/sentences Firefox defaults to off/none.
 // Remove the attribute Autocapitalize from the element.
 func (e *TdElement) AutocapitalizeRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("autocapitalize")
+	e.stringAttributes.Del("autocapitalize")
 	return e
 }
 
@@ -366,10 +366,10 @@ func (e *TdElement) IfAutofocus(condition bool) *TdElement {
 // created by the preceding content.
 // Set the attribute Autofocus to the value b explicitly.
 func (e *TdElement) AutofocusSet(b bool) *TdElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("autofocus", b)
+	e.boolAttributes.Set("autofocus", b)
 	return e
 }
 
@@ -410,10 +410,10 @@ func (e *TdElement) IfSetAutofocus(condition bool, b bool) *TdElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *TdElement) AutofocusRemove() *TdElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("autofocus")
+	e.boolAttributes.Del("autofocus")
 	return e
 }
 
@@ -423,13 +423,13 @@ func (e *TdElement) AutofocusRemove() *TdElement {
 // document.getElementsByClassName.
 func (e *TdElement) Class(s string) *TdElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -452,10 +452,10 @@ func (e *TdElement) IfClass(condition bool, s string) *TdElement {
 // document.getElementsByClassName.
 // Remove the values from the attribute Class in the element.
 func (e *TdElement) ClassRemove(s ...string) *TdElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -467,10 +467,10 @@ func (e *TdElement) ClassRemove(s ...string) *TdElement {
 // the element should be editable by the user. If so, the browser modifies its
 // widget to allow editing.
 func (e *TdElement) Contenteditable(c TdContenteditableChoice) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("contenteditable", string(c))
+	e.stringAttributes.Set("contenteditable", string(c))
 	return e
 }
 
@@ -493,10 +493,10 @@ const (
 // widget to allow editing.
 // Remove the attribute Contenteditable from the element.
 func (e *TdElement) ContenteditableRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("contenteditable")
+	e.stringAttributes.Del("contenteditable")
 	return e
 }
 
@@ -514,10 +514,10 @@ func (e *TdElement) ContenteditableRemove() *TdElement {
 // directionality, like data coming from user input, eventually stored in a
 // database.
 func (e *TdElement) Dir(c TdDirChoice) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dir", string(c))
+	e.stringAttributes.Set("dir", string(c))
 	return e
 }
 
@@ -551,10 +551,10 @@ const (
 // database.
 // Remove the attribute Dir from the element.
 func (e *TdElement) DirRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dir")
+	e.stringAttributes.Del("dir")
 	return e
 }
 
@@ -562,10 +562,10 @@ func (e *TdElement) DirRemove() *TdElement {
 // whether the element can be dragged, either with native browser behavior or
 // the HTML Drag and Drop API.
 func (e *TdElement) Draggable(c TdDraggableChoice) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("draggable", string(c))
+	e.stringAttributes.Set("draggable", string(c))
 	return e
 }
 
@@ -591,20 +591,20 @@ const (
 // the HTML Drag and Drop API.
 // Remove the attribute Draggable from the element.
 func (e *TdElement) DraggableRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("draggable")
+	e.stringAttributes.Del("draggable")
 	return e
 }
 
 // The enterkeyhint global attribute is an enumerated attribute defining what
 // action label (or icon) to present for the enter key on virtual keyboards.
 func (e *TdElement) Enterkeyhint(c TdEnterkeyhintChoice) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("enterkeyhint", string(c))
+	e.stringAttributes.Set("enterkeyhint", string(c))
 	return e
 }
 
@@ -634,10 +634,10 @@ const (
 // action label (or icon) to present for the enter key on virtual keyboards.
 // Remove the attribute Enterkeyhint from the element.
 func (e *TdElement) EnterkeyhintRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("enterkeyhint")
+	e.stringAttributes.Del("enterkeyhint")
 	return e
 }
 
@@ -660,13 +660,13 @@ func (e *TdElement) EnterkeyhintRemove() *TdElement {
 // the current structure.
 func (e *TdElement) Exportparts(s string) *TdElement {
 	values := strings.Split(s, ",")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
-		ds = NewDelimitedBuilder[string](",")
-		e.DelimitedStrings.Set("exportparts", ds)
+		ds = newDelimitedBuilder[string](",")
+		e.delimitedStrings.Set("exportparts", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -715,10 +715,10 @@ func (e *TdElement) IfExportparts(condition bool, s string) *TdElement {
 // the current structure.
 // Remove the values from the attribute Exportparts in the element.
 func (e *TdElement) ExportpartsRemove(s ...string) *TdElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
 		return e
 	}
@@ -739,10 +739,10 @@ func (e *TdElement) ExportpartsRemove(s ...string) *TdElement {
 // of none, contents, or inline, then the element will not be revealed by find
 // in page or fragment navigation.
 func (e *TdElement) Hidden(c TdHiddenChoice) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("hidden", string(c))
+	e.stringAttributes.Set("hidden", string(c))
 	return e
 }
 
@@ -778,10 +778,10 @@ const (
 // in page or fragment navigation.
 // Remove the attribute Hidden from the element.
 func (e *TdElement) HiddenRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("hidden")
+	e.stringAttributes.Del("hidden")
 	return e
 }
 
@@ -789,10 +789,10 @@ func (e *TdElement) HiddenRemove() *TdElement {
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *TdElement) ID(s string) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -828,10 +828,10 @@ func (e *TdElement) IfIDF(condition bool, format string, args ...any) *TdElement
 // (using a fragment identifier), scripting, or styling (with CSS).
 // Remove the attribute ID from the element.
 func (e *TdElement) IDRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -879,10 +879,10 @@ func (e *TdElement) IfInert(condition bool) *TdElement {
 // excluding them from the accessibility tree.
 // Set the attribute Inert to the value b explicitly.
 func (e *TdElement) InertSet(b bool) *TdElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("inert", b)
+	e.boolAttributes.Set("inert", b)
 	return e
 }
 
@@ -915,10 +915,10 @@ func (e *TdElement) IfSetInert(condition bool, b bool) *TdElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *TdElement) InertRemove() *TdElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("inert")
+	e.boolAttributes.Del("inert")
 	return e
 }
 
@@ -932,10 +932,10 @@ func (e *TdElement) InertRemove() *TdElement {
 // appropriate <input> element type. For specific guidance on choosing <input>
 // types, see the Values section.
 func (e *TdElement) Inputmode(c TdInputmodeChoice) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("inputmode", string(c))
+	e.stringAttributes.Set("inputmode", string(c))
 	return e
 }
 
@@ -986,10 +986,10 @@ const (
 // types, see the Values section.
 // Remove the attribute Inputmode from the element.
 func (e *TdElement) InputmodeRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("inputmode")
+	e.stringAttributes.Del("inputmode")
 	return e
 }
 
@@ -999,10 +999,10 @@ func (e *TdElement) InputmodeRemove() *TdElement {
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
 func (e *TdElement) Is(s string) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("is", s)
+	e.stringAttributes.Set("is", s)
 	return e
 }
 
@@ -1046,10 +1046,10 @@ func (e *TdElement) IfIsF(condition bool, format string, args ...any) *TdElement
 // and extends the element type it is being applied to.
 // Remove the attribute Is from the element.
 func (e *TdElement) IsRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("is")
+	e.stringAttributes.Del("is")
 	return e
 }
 
@@ -1065,10 +1065,10 @@ func (e *TdElement) IsRemove() *TdElement {
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
 func (e *TdElement) Itemid(s string) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemid", s)
+	e.stringAttributes.Set("itemid", s)
 	return e
 }
 
@@ -1136,10 +1136,10 @@ func (e *TdElement) IfItemidF(condition bool, format string, args ...any) *TdEle
 // how items with the same identifier are handled.
 // Remove the attribute Itemid from the element.
 func (e *TdElement) ItemidRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemid")
+	e.stringAttributes.Del("itemid")
 	return e
 }
 
@@ -1151,10 +1151,10 @@ func (e *TdElement) ItemidRemove() *TdElement {
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
 func (e *TdElement) Itemprop(s string) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemprop", s)
+	e.stringAttributes.Set("itemprop", s)
 	return e
 }
 
@@ -1206,10 +1206,10 @@ func (e *TdElement) IfItempropF(condition bool, format string, args ...any) *TdE
 // <track>, and <video>.
 // Remove the attribute Itemprop from the element.
 func (e *TdElement) ItempropRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemprop")
+	e.stringAttributes.Del("itemprop")
 	return e
 }
 
@@ -1219,10 +1219,10 @@ func (e *TdElement) ItempropRemove() *TdElement {
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
 func (e *TdElement) Itemref(s string) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemref", s)
+	e.stringAttributes.Set("itemref", s)
 	return e
 }
 
@@ -1266,10 +1266,10 @@ func (e *TdElement) IfItemrefF(condition bool, format string, args ...any) *TdEl
 // specified on elements that have an itemscope attribute specified.
 // Remove the attribute Itemref from the element.
 func (e *TdElement) ItemrefRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemref")
+	e.stringAttributes.Del("itemref")
 	return e
 }
 
@@ -1308,10 +1308,10 @@ func (e *TdElement) IfItemscope(condition bool) *TdElement {
 // <object>, <source>, <track>, and <video>.
 // Set the attribute Itemscope to the value b explicitly.
 func (e *TdElement) ItemscopeSet(b bool) *TdElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("itemscope", b)
+	e.boolAttributes.Set("itemscope", b)
 	return e
 }
 
@@ -1338,10 +1338,10 @@ func (e *TdElement) IfSetItemscope(condition bool, b bool) *TdElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *TdElement) ItemscopeRemove() *TdElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("itemscope")
+	e.boolAttributes.Del("itemscope")
 	return e
 }
 
@@ -1353,10 +1353,10 @@ func (e *TdElement) ItemscopeRemove() *TdElement {
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
 func (e *TdElement) Itemtype(s string) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemtype", s)
+	e.stringAttributes.Set("itemtype", s)
 	return e
 }
 
@@ -1408,10 +1408,10 @@ func (e *TdElement) IfItemtypeF(condition bool, format string, args ...any) *TdE
 // <video>.
 // Remove the attribute Itemtype from the element.
 func (e *TdElement) ItemtypeRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemtype")
+	e.stringAttributes.Del("itemtype")
 	return e
 }
 
@@ -1421,10 +1421,10 @@ func (e *TdElement) ItemtypeRemove() *TdElement {
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 func (e *TdElement) Lang(s string) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("lang", s)
+	e.stringAttributes.Set("lang", s)
 	return e
 }
 
@@ -1468,10 +1468,10 @@ func (e *TdElement) IfLangF(condition bool, format string, args ...any) *TdEleme
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 // Remove the attribute Lang from the element.
 func (e *TdElement) LangRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("lang")
+	e.stringAttributes.Del("lang")
 	return e
 }
 
@@ -1481,10 +1481,10 @@ func (e *TdElement) LangRemove() *TdElement {
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
 func (e *TdElement) Nonce(s string) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("nonce", s)
+	e.stringAttributes.Set("nonce", s)
 	return e
 }
 
@@ -1528,10 +1528,10 @@ func (e *TdElement) IfNonceF(condition bool, format string, args ...any) *TdElem
 // execute.
 // Remove the attribute Nonce from the element.
 func (e *TdElement) NonceRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("nonce")
+	e.stringAttributes.Del("nonce")
 	return e
 }
 
@@ -1540,13 +1540,13 @@ func (e *TdElement) NonceRemove() *TdElement {
 // in a shadow tree via the ::part pseudo-element.
 func (e *TdElement) Part(s string) *TdElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("part", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("part", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1567,10 +1567,10 @@ func (e *TdElement) IfPart(condition bool, s string) *TdElement {
 // in a shadow tree via the ::part pseudo-element.
 // Remove the values from the attribute Part in the element.
 func (e *TdElement) PartRemove(s ...string) *TdElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
 		return e
 	}
@@ -1585,10 +1585,10 @@ func (e *TdElement) PartRemove(s ...string) *TdElement {
 // popover elements will appear above all other elements in the top layer, and
 // won't be influenced by parent elements' position or overflow styling.
 func (e *TdElement) Popover(c TdPopoverChoice) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("popover", string(c))
+	e.stringAttributes.Set("popover", string(c))
 	return e
 }
 
@@ -1616,10 +1616,10 @@ const (
 // won't be influenced by parent elements' position or overflow styling.
 // Remove the attribute Popover from the element.
 func (e *TdElement) PopoverRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("popover")
+	e.stringAttributes.Del("popover")
 	return e
 }
 
@@ -1628,10 +1628,10 @@ func (e *TdElement) PopoverRemove() *TdElement {
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
 func (e *TdElement) Role(s string) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("role", s)
+	e.stringAttributes.Set("role", s)
 	return e
 }
 
@@ -1671,10 +1671,10 @@ func (e *TdElement) IfRoleF(condition bool, format string, args ...any) *TdEleme
 // role of an element.
 // Remove the attribute Role from the element.
 func (e *TdElement) RoleRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("role")
+	e.stringAttributes.Del("role")
 	return e
 }
 
@@ -1683,10 +1683,10 @@ func (e *TdElement) RoleRemove() *TdElement {
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
 func (e *TdElement) Slot(s string) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("slot", s)
+	e.stringAttributes.Set("slot", s)
 	return e
 }
 
@@ -1726,10 +1726,10 @@ func (e *TdElement) IfSlotF(condition bool, format string, args ...any) *TdEleme
 // value.
 // Remove the attribute Slot from the element.
 func (e *TdElement) SlotRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("slot")
+	e.stringAttributes.Del("slot")
 	return e
 }
 
@@ -1745,10 +1745,10 @@ func (e *TdElement) SlotRemove() *TdElement {
 // "spell-jacking"). You should consider setting spellcheck to false for
 // elements that can contain sensitive information.
 func (e *TdElement) Spellcheck(c TdSpellcheckChoice) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("spellcheck", string(c))
+	e.stringAttributes.Set("spellcheck", string(c))
 	return e
 }
 
@@ -1776,10 +1776,10 @@ const (
 // elements that can contain sensitive information.
 // Remove the attribute Spellcheck from the element.
 func (e *TdElement) SpellcheckRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("spellcheck")
+	e.stringAttributes.Del("spellcheck")
 	return e
 }
 
@@ -1789,13 +1789,13 @@ func (e *TdElement) StylePairs(pairs ...string) *TdElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -1811,13 +1811,13 @@ func (e *TdElement) StylePairs(pairs ...string) *TdElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *TdElement) Style(s string) *TdElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -1843,13 +1843,13 @@ func (e *TdElement) IfStyle(condition bool, s string) *TdElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *TdElement) StyleAdd(k string, v string) *TdElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -1883,13 +1883,13 @@ func (e *TdElement) IfStyleAddF(condition bool, k string, format string, args ..
 // color, font, size, and more. Styles are written in CSS.
 // Add the attributes in the map to the element.
 func (e *TdElement) StyleMap(m map[string]string) *TdElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -1906,10 +1906,10 @@ func (e *TdElement) StyleMap(m map[string]string) *TdElement {
 // color, font, size, and more. Styles are written in CSS.
 // Remove the attribute Style from the element.
 func (e *TdElement) StyleRemove(keys ...string) *TdElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}
@@ -1931,10 +1931,10 @@ func (e *TdElement) StyleRemove(keys ...string) *TdElement {
 // If several elements share the same tabindex, their relative order follows
 // their relative position in the document.
 func (e *TdElement) Tabindex(i int) *TdElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("tabindex", i)
+	e.intAttributes.Set("tabindex", i)
 	return e
 }
 
@@ -1973,10 +1973,10 @@ func (e *TdElement) IfTabindex(condition bool, i int) *TdElement {
 // their relative position in the document.
 // Remove the attribute Tabindex from the element.
 func (e *TdElement) TabindexRemove() *TdElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("tabindex")
+	e.intAttributes.Del("tabindex")
 	return e
 }
 
@@ -1997,10 +1997,10 @@ func (e *TdElement) TabindexRemove() *TdElement {
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
 func (e *TdElement) Title(s string) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("title", s)
+	e.stringAttributes.Set("title", s)
 	return e
 }
 
@@ -2088,10 +2088,10 @@ func (e *TdElement) IfTitleF(condition bool, format string, args ...any) *TdElem
 // element, this is not good practice. Use a <label> instead.
 // Remove the attribute Title from the element.
 func (e *TdElement) TitleRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("title")
+	e.stringAttributes.Del("title")
 	return e
 }
 
@@ -2100,10 +2100,10 @@ func (e *TdElement) TitleRemove() *TdElement {
 // children are to be translated when the page is localized, or whether to leave
 // them unchanged.
 func (e *TdElement) Translate(c TdTranslateChoice) *TdElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("translate", string(c))
+	e.stringAttributes.Set("translate", string(c))
 	return e
 }
 
@@ -2124,9 +2124,9 @@ const (
 // them unchanged.
 // Remove the attribute Translate from the element.
 func (e *TdElement) TranslateRemove() *TdElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("translate")
+	e.stringAttributes.Del("translate")
 	return e
 }

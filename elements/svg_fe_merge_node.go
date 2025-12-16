@@ -23,37 +23,37 @@ type SVGFeMergeNodeElement struct {
 // with the tag "feMergeNode" during rendering.
 func SVGFeMergeNode(children ...ElementRenderer) *SVGFeMergeNodeElement {
 	e := NewElement("feMergeNode", children...)
-	e.IsSelfClosing = false
-	e.Descendants = children
+	e.isSelfClosing = false
+	e.descendants = children
 	return &SVGFeMergeNodeElement{Element: e}
 }
 
 func (e *SVGFeMergeNodeElement) Children(children ...ElementRenderer) *SVGFeMergeNodeElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *SVGFeMergeNodeElement) IfChildren(condition bool, children ...ElementRenderer) *SVGFeMergeNodeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *SVGFeMergeNodeElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *SVGFeMergeNodeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *SVGFeMergeNodeElement) BoolAttr(name string) *SVGFeMergeNodeElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -65,10 +65,10 @@ func (e *SVGFeMergeNodeElement) IfBoolAttr(condition bool, name string) *SVGFeMe
 }
 
 func (e *SVGFeMergeNodeElement) Attr(name, value string) *SVGFeMergeNodeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -80,7 +80,7 @@ func (e *SVGFeMergeNodeElement) IfAttr(condition bool, name, value string) *SVGF
 }
 
 func (e *SVGFeMergeNodeElement) Text(text string) *SVGFeMergeNodeElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -90,26 +90,26 @@ func (e *SVGFeMergeNodeElement) TextF(format string, args ...any) *SVGFeMergeNod
 
 func (e *SVGFeMergeNodeElement) IfText(condition bool, text string) *SVGFeMergeNodeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *SVGFeMergeNodeElement) IfTextF(condition bool, format string, args ...any) *SVGFeMergeNodeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *SVGFeMergeNodeElement) Escaped(text string) *SVGFeMergeNodeElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *SVGFeMergeNodeElement) IfEscaped(condition bool, text string) *SVGFeMergeNodeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -120,7 +120,7 @@ func (e *SVGFeMergeNodeElement) EscapedF(format string, args ...any) *SVGFeMerge
 
 func (e *SVGFeMergeNodeElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeMergeNodeElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -128,10 +128,10 @@ func (e *SVGFeMergeNodeElement) IfEscapedF(condition bool, format string, args .
 // The identifier for the input SVGAnimatedString attribute on the given
 // 'feMergeNode' element.
 func (e *SVGFeMergeNodeElement) In(s string) *SVGFeMergeNodeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("in", s)
+	e.stringAttributes.Set("in", s)
 	return e
 }
 
@@ -163,19 +163,19 @@ func (e *SVGFeMergeNodeElement) IfInF(condition bool, format string, args ...any
 // 'feMergeNode' element.
 // Remove the attribute In from the element.
 func (e *SVGFeMergeNodeElement) InRemove() *SVGFeMergeNodeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("in")
+	e.stringAttributes.Del("in")
 	return e
 }
 
 // Specifies a unique id for an element
 func (e *SVGFeMergeNodeElement) ID(s string) *SVGFeMergeNodeElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -203,10 +203,10 @@ func (e *SVGFeMergeNodeElement) IfIDF(condition bool, format string, args ...any
 // Specifies a unique id for an element
 // Remove the attribute ID from the element.
 func (e *SVGFeMergeNodeElement) IDRemove() *SVGFeMergeNodeElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -214,13 +214,13 @@ func (e *SVGFeMergeNodeElement) IDRemove() *SVGFeMergeNodeElement {
 // sheet)
 func (e *SVGFeMergeNodeElement) Class(s string) *SVGFeMergeNodeElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -239,10 +239,10 @@ func (e *SVGFeMergeNodeElement) IfClass(condition bool, s string) *SVGFeMergeNod
 // sheet)
 // Remove the values from the attribute Class in the element.
 func (e *SVGFeMergeNodeElement) ClassRemove(s ...string) *SVGFeMergeNodeElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -255,13 +255,13 @@ func (e *SVGFeMergeNodeElement) StylePairs(pairs ...string) *SVGFeMergeNodeEleme
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -276,13 +276,13 @@ func (e *SVGFeMergeNodeElement) StylePairs(pairs ...string) *SVGFeMergeNodeEleme
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeMergeNodeElement) Style(s string) *SVGFeMergeNodeElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -306,13 +306,13 @@ func (e *SVGFeMergeNodeElement) IfStyle(condition bool, s string) *SVGFeMergeNod
 
 // Specifies an inline CSS style for an element
 func (e *SVGFeMergeNodeElement) StyleAdd(k string, v string) *SVGFeMergeNodeElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -342,13 +342,13 @@ func (e *SVGFeMergeNodeElement) IfStyleAddF(condition bool, k string, format str
 // Specifies an inline CSS style for an element
 // Add the attributes in the map to the element.
 func (e *SVGFeMergeNodeElement) StyleMap(m map[string]string) *SVGFeMergeNodeElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -364,10 +364,10 @@ func (e *SVGFeMergeNodeElement) StyleMap(m map[string]string) *SVGFeMergeNodeEle
 // Specifies an inline CSS style for an element
 // Remove the attribute Style from the element.
 func (e *SVGFeMergeNodeElement) StyleRemove(keys ...string) *SVGFeMergeNodeElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}

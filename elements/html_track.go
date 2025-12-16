@@ -25,37 +25,37 @@ type TrackElement struct {
 // with the tag "track" during rendering.
 func Track() *TrackElement {
 	e := NewElement("track")
-	e.IsSelfClosing = true
+	e.isSelfClosing = true
 
 	return &TrackElement{Element: e}
 }
 
 func (e *TrackElement) Children(children ...ElementRenderer) *TrackElement {
-	e.Descendants = append(e.Descendants, children...)
+	e.descendants = append(e.descendants, children...)
 	return e
 }
 
 func (e *TrackElement) IfChildren(condition bool, children ...ElementRenderer) *TrackElement {
 	if condition {
-		e.Descendants = append(e.Descendants, children...)
+		e.descendants = append(e.descendants, children...)
 	}
 	return e
 }
 
 func (e *TrackElement) TernChildren(condition bool, trueChildren, falseChildren ElementRenderer) *TrackElement {
 	if condition {
-		e.Descendants = append(e.Descendants, trueChildren)
+		e.descendants = append(e.descendants, trueChildren)
 	} else {
-		e.Descendants = append(e.Descendants, falseChildren)
+		e.descendants = append(e.descendants, falseChildren)
 	}
 	return e
 }
 
 func (e *TrackElement) BoolAttr(name string) *TrackElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, true)
 	return e
 }
 
@@ -67,10 +67,10 @@ func (e *TrackElement) IfBoolAttr(condition bool, name string) *TrackElement {
 }
 
 func (e *TrackElement) Attr(name, value string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set(name, value)
+	e.stringAttributes.Set(name, value)
 	return e
 }
 
@@ -82,7 +82,7 @@ func (e *TrackElement) IfAttr(condition bool, name, value string) *TrackElement 
 }
 
 func (e *TrackElement) Text(text string) *TrackElement {
-	e.Descendants = append(e.Descendants, Text(text))
+	e.descendants = append(e.descendants, Text(text))
 	return e
 }
 
@@ -92,26 +92,26 @@ func (e *TrackElement) TextF(format string, args ...any) *TrackElement {
 
 func (e *TrackElement) IfText(condition bool, text string) *TrackElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(text))
+		e.descendants = append(e.descendants, Text(text))
 	}
 	return e
 }
 
 func (e *TrackElement) IfTextF(condition bool, format string, args ...any) *TrackElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Text(fmt.Sprintf(format, args...)))
+		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
 	return e
 }
 
 func (e *TrackElement) Escaped(text string) *TrackElement {
-	e.Descendants = append(e.Descendants, Escaped(text))
+	e.descendants = append(e.descendants, Escaped(text))
 	return e
 }
 
 func (e *TrackElement) IfEscaped(condition bool, text string) *TrackElement {
 	if condition {
-		e.Descendants = append(e.Descendants, Escaped(text))
+		e.descendants = append(e.descendants, Escaped(text))
 	}
 	return e
 }
@@ -122,7 +122,7 @@ func (e *TrackElement) EscapedF(format string, args ...any) *TrackElement {
 
 func (e *TrackElement) IfEscapedF(condition bool, format string, args ...any) *TrackElement {
 	if condition {
-		e.Descendants = append(e.Descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, EscapedF(format, args...))
 	}
 	return e
 }
@@ -144,10 +144,10 @@ func (e *TrackElement) IfDefault(condition bool) *TrackElement {
 // Enables the track if set to true.
 // Set the attribute Default to the value b explicitly.
 func (e *TrackElement) DefaultSet(b bool) *TrackElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("default", b)
+	e.boolAttributes.Set("default", b)
 	return e
 }
 
@@ -162,19 +162,19 @@ func (e *TrackElement) IfSetDefault(condition bool, b bool) *TrackElement {
 // Remove the attribute Default from the element.
 // Enables the track if set to true.
 func (e *TrackElement) DefaultRemove() *TrackElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("default")
+	e.boolAttributes.Del("default")
 	return e
 }
 
 // Specifies the kind of text track.
 func (e *TrackElement) Kind(c TrackKindChoice) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("kind", string(c))
+	e.stringAttributes.Set("kind", string(c))
 	return e
 }
 
@@ -196,19 +196,19 @@ const (
 // Specifies the kind of text track.
 // Remove the attribute Kind from the element.
 func (e *TrackElement) KindRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("kind")
+	e.stringAttributes.Del("kind")
 	return e
 }
 
 // Specifies a user-readable title of the text track.
 func (e *TrackElement) Label(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("label", s)
+	e.stringAttributes.Set("label", s)
 	return e
 }
 
@@ -236,19 +236,19 @@ func (e *TrackElement) IfLabelF(condition bool, format string, args ...any) *Tra
 // Specifies a user-readable title of the text track.
 // Remove the attribute Label from the element.
 func (e *TrackElement) LabelRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("label")
+	e.stringAttributes.Del("label")
 	return e
 }
 
 // Address of the resource.
 func (e *TrackElement) Src(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("src", s)
+	e.stringAttributes.Set("src", s)
 	return e
 }
 
@@ -276,19 +276,19 @@ func (e *TrackElement) IfSrcF(condition bool, format string, args ...any) *Track
 // Address of the resource.
 // Remove the attribute Src from the element.
 func (e *TrackElement) SrcRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("src")
+	e.stringAttributes.Del("src")
 	return e
 }
 
 // Language of the text track.
 func (e *TrackElement) Srclang(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("srclang", s)
+	e.stringAttributes.Set("srclang", s)
 	return e
 }
 
@@ -316,10 +316,10 @@ func (e *TrackElement) IfSrclangF(condition bool, format string, args ...any) *T
 // Language of the text track.
 // Remove the attribute Srclang from the element.
 func (e *TrackElement) SrclangRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("srclang")
+	e.stringAttributes.Del("srclang")
 	return e
 }
 
@@ -328,10 +328,10 @@ func (e *TrackElement) SrclangRemove() *TrackElement {
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
 func (e *TrackElement) Accesskey(r rune) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("accesskey", string(r))
+	e.stringAttributes.Set("accesskey", string(r))
 	return e
 }
 
@@ -352,10 +352,10 @@ func (e *TrackElement) IfAccesskey(condition bool, r rune) *TrackElement {
 // can be generated by the keyboard).
 // Remove the attribute Accesskey from the element.
 func (e *TrackElement) AccesskeyRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("accesskey")
+	e.stringAttributes.Del("accesskey")
 	return e
 }
 
@@ -371,10 +371,10 @@ func (e *TrackElement) AccesskeyRemove() *TrackElement {
 // behavior varies between browsers. For example: Chrome and Safari default to
 // on/sentences Firefox defaults to off/none.
 func (e *TrackElement) Autocapitalize(c TrackAutocapitalizeChoice) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("autocapitalize", string(c))
+	e.stringAttributes.Set("autocapitalize", string(c))
 	return e
 }
 
@@ -408,10 +408,10 @@ const (
 // on/sentences Firefox defaults to off/none.
 // Remove the attribute Autocapitalize from the element.
 func (e *TrackElement) AutocapitalizeRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("autocapitalize")
+	e.stringAttributes.Del("autocapitalize")
 	return e
 }
 
@@ -471,10 +471,10 @@ func (e *TrackElement) IfAutofocus(condition bool) *TrackElement {
 // created by the preceding content.
 // Set the attribute Autofocus to the value b explicitly.
 func (e *TrackElement) AutofocusSet(b bool) *TrackElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("autofocus", b)
+	e.boolAttributes.Set("autofocus", b)
 	return e
 }
 
@@ -515,10 +515,10 @@ func (e *TrackElement) IfSetAutofocus(condition bool, b bool) *TrackElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *TrackElement) AutofocusRemove() *TrackElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("autofocus")
+	e.boolAttributes.Del("autofocus")
 	return e
 }
 
@@ -528,13 +528,13 @@ func (e *TrackElement) AutofocusRemove() *TrackElement {
 // document.getElementsByClassName.
 func (e *TrackElement) Class(s string) *TrackElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("class", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("class", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -557,10 +557,10 @@ func (e *TrackElement) IfClass(condition bool, s string) *TrackElement {
 // document.getElementsByClassName.
 // Remove the values from the attribute Class in the element.
 func (e *TrackElement) ClassRemove(s ...string) *TrackElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("class")
+	ds, ok := e.delimitedStrings.Get("class")
 	if !ok {
 		return e
 	}
@@ -572,10 +572,10 @@ func (e *TrackElement) ClassRemove(s ...string) *TrackElement {
 // the element should be editable by the user. If so, the browser modifies its
 // widget to allow editing.
 func (e *TrackElement) Contenteditable(c TrackContenteditableChoice) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("contenteditable", string(c))
+	e.stringAttributes.Set("contenteditable", string(c))
 	return e
 }
 
@@ -598,10 +598,10 @@ const (
 // widget to allow editing.
 // Remove the attribute Contenteditable from the element.
 func (e *TrackElement) ContenteditableRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("contenteditable")
+	e.stringAttributes.Del("contenteditable")
 	return e
 }
 
@@ -619,10 +619,10 @@ func (e *TrackElement) ContenteditableRemove() *TrackElement {
 // directionality, like data coming from user input, eventually stored in a
 // database.
 func (e *TrackElement) Dir(c TrackDirChoice) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("dir", string(c))
+	e.stringAttributes.Set("dir", string(c))
 	return e
 }
 
@@ -656,10 +656,10 @@ const (
 // database.
 // Remove the attribute Dir from the element.
 func (e *TrackElement) DirRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("dir")
+	e.stringAttributes.Del("dir")
 	return e
 }
 
@@ -667,10 +667,10 @@ func (e *TrackElement) DirRemove() *TrackElement {
 // whether the element can be dragged, either with native browser behavior or
 // the HTML Drag and Drop API.
 func (e *TrackElement) Draggable(c TrackDraggableChoice) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("draggable", string(c))
+	e.stringAttributes.Set("draggable", string(c))
 	return e
 }
 
@@ -696,20 +696,20 @@ const (
 // the HTML Drag and Drop API.
 // Remove the attribute Draggable from the element.
 func (e *TrackElement) DraggableRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("draggable")
+	e.stringAttributes.Del("draggable")
 	return e
 }
 
 // The enterkeyhint global attribute is an enumerated attribute defining what
 // action label (or icon) to present for the enter key on virtual keyboards.
 func (e *TrackElement) Enterkeyhint(c TrackEnterkeyhintChoice) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("enterkeyhint", string(c))
+	e.stringAttributes.Set("enterkeyhint", string(c))
 	return e
 }
 
@@ -739,10 +739,10 @@ const (
 // action label (or icon) to present for the enter key on virtual keyboards.
 // Remove the attribute Enterkeyhint from the element.
 func (e *TrackElement) EnterkeyhintRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("enterkeyhint")
+	e.stringAttributes.Del("enterkeyhint")
 	return e
 }
 
@@ -765,13 +765,13 @@ func (e *TrackElement) EnterkeyhintRemove() *TrackElement {
 // the current structure.
 func (e *TrackElement) Exportparts(s string) *TrackElement {
 	values := strings.Split(s, ",")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
-		ds = NewDelimitedBuilder[string](",")
-		e.DelimitedStrings.Set("exportparts", ds)
+		ds = newDelimitedBuilder[string](",")
+		e.delimitedStrings.Set("exportparts", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -820,10 +820,10 @@ func (e *TrackElement) IfExportparts(condition bool, s string) *TrackElement {
 // the current structure.
 // Remove the values from the attribute Exportparts in the element.
 func (e *TrackElement) ExportpartsRemove(s ...string) *TrackElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("exportparts")
+	ds, ok := e.delimitedStrings.Get("exportparts")
 	if !ok {
 		return e
 	}
@@ -844,10 +844,10 @@ func (e *TrackElement) ExportpartsRemove(s ...string) *TrackElement {
 // of none, contents, or inline, then the element will not be revealed by find
 // in page or fragment navigation.
 func (e *TrackElement) Hidden(c TrackHiddenChoice) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("hidden", string(c))
+	e.stringAttributes.Set("hidden", string(c))
 	return e
 }
 
@@ -883,10 +883,10 @@ const (
 // in page or fragment navigation.
 // Remove the attribute Hidden from the element.
 func (e *TrackElement) HiddenRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("hidden")
+	e.stringAttributes.Del("hidden")
 	return e
 }
 
@@ -894,10 +894,10 @@ func (e *TrackElement) HiddenRemove() *TrackElement {
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *TrackElement) ID(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("id", s)
+	e.stringAttributes.Set("id", s)
 	return e
 }
 
@@ -933,10 +933,10 @@ func (e *TrackElement) IfIDF(condition bool, format string, args ...any) *TrackE
 // (using a fragment identifier), scripting, or styling (with CSS).
 // Remove the attribute ID from the element.
 func (e *TrackElement) IDRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("id")
+	e.stringAttributes.Del("id")
 	return e
 }
 
@@ -984,10 +984,10 @@ func (e *TrackElement) IfInert(condition bool) *TrackElement {
 // excluding them from the accessibility tree.
 // Set the attribute Inert to the value b explicitly.
 func (e *TrackElement) InertSet(b bool) *TrackElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("inert", b)
+	e.boolAttributes.Set("inert", b)
 	return e
 }
 
@@ -1020,10 +1020,10 @@ func (e *TrackElement) IfSetInert(condition bool, b bool) *TrackElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *TrackElement) InertRemove() *TrackElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("inert")
+	e.boolAttributes.Del("inert")
 	return e
 }
 
@@ -1037,10 +1037,10 @@ func (e *TrackElement) InertRemove() *TrackElement {
 // appropriate <input> element type. For specific guidance on choosing <input>
 // types, see the Values section.
 func (e *TrackElement) Inputmode(c TrackInputmodeChoice) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("inputmode", string(c))
+	e.stringAttributes.Set("inputmode", string(c))
 	return e
 }
 
@@ -1091,10 +1091,10 @@ const (
 // types, see the Values section.
 // Remove the attribute Inputmode from the element.
 func (e *TrackElement) InputmodeRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("inputmode")
+	e.stringAttributes.Del("inputmode")
 	return e
 }
 
@@ -1104,10 +1104,10 @@ func (e *TrackElement) InputmodeRemove() *TrackElement {
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
 func (e *TrackElement) Is(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("is", s)
+	e.stringAttributes.Set("is", s)
 	return e
 }
 
@@ -1151,10 +1151,10 @@ func (e *TrackElement) IfIsF(condition bool, format string, args ...any) *TrackE
 // and extends the element type it is being applied to.
 // Remove the attribute Is from the element.
 func (e *TrackElement) IsRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("is")
+	e.stringAttributes.Del("is")
 	return e
 }
 
@@ -1170,10 +1170,10 @@ func (e *TrackElement) IsRemove() *TrackElement {
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
 func (e *TrackElement) Itemid(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemid", s)
+	e.stringAttributes.Set("itemid", s)
 	return e
 }
 
@@ -1241,10 +1241,10 @@ func (e *TrackElement) IfItemidF(condition bool, format string, args ...any) *Tr
 // how items with the same identifier are handled.
 // Remove the attribute Itemid from the element.
 func (e *TrackElement) ItemidRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemid")
+	e.stringAttributes.Del("itemid")
 	return e
 }
 
@@ -1256,10 +1256,10 @@ func (e *TrackElement) ItemidRemove() *TrackElement {
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
 func (e *TrackElement) Itemprop(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemprop", s)
+	e.stringAttributes.Set("itemprop", s)
 	return e
 }
 
@@ -1311,10 +1311,10 @@ func (e *TrackElement) IfItempropF(condition bool, format string, args ...any) *
 // <track>, and <video>.
 // Remove the attribute Itemprop from the element.
 func (e *TrackElement) ItempropRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemprop")
+	e.stringAttributes.Del("itemprop")
 	return e
 }
 
@@ -1324,10 +1324,10 @@ func (e *TrackElement) ItempropRemove() *TrackElement {
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
 func (e *TrackElement) Itemref(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemref", s)
+	e.stringAttributes.Set("itemref", s)
 	return e
 }
 
@@ -1371,10 +1371,10 @@ func (e *TrackElement) IfItemrefF(condition bool, format string, args ...any) *T
 // specified on elements that have an itemscope attribute specified.
 // Remove the attribute Itemref from the element.
 func (e *TrackElement) ItemrefRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemref")
+	e.stringAttributes.Del("itemref")
 	return e
 }
 
@@ -1413,10 +1413,10 @@ func (e *TrackElement) IfItemscope(condition bool) *TrackElement {
 // <object>, <source>, <track>, and <video>.
 // Set the attribute Itemscope to the value b explicitly.
 func (e *TrackElement) ItemscopeSet(b bool) *TrackElement {
-	if e.BoolAttributes == nil {
-		e.BoolAttributes = treemap.New[string, bool]()
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
 	}
-	e.BoolAttributes.Set("itemscope", b)
+	e.boolAttributes.Set("itemscope", b)
 	return e
 }
 
@@ -1443,10 +1443,10 @@ func (e *TrackElement) IfSetItemscope(condition bool, b bool) *TrackElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *TrackElement) ItemscopeRemove() *TrackElement {
-	if e.BoolAttributes == nil {
+	if e.boolAttributes == nil {
 		return e
 	}
-	e.BoolAttributes.Del("itemscope")
+	e.boolAttributes.Del("itemscope")
 	return e
 }
 
@@ -1458,10 +1458,10 @@ func (e *TrackElement) ItemscopeRemove() *TrackElement {
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
 func (e *TrackElement) Itemtype(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("itemtype", s)
+	e.stringAttributes.Set("itemtype", s)
 	return e
 }
 
@@ -1513,10 +1513,10 @@ func (e *TrackElement) IfItemtypeF(condition bool, format string, args ...any) *
 // <video>.
 // Remove the attribute Itemtype from the element.
 func (e *TrackElement) ItemtypeRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("itemtype")
+	e.stringAttributes.Del("itemtype")
 	return e
 }
 
@@ -1526,10 +1526,10 @@ func (e *TrackElement) ItemtypeRemove() *TrackElement {
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 func (e *TrackElement) Lang(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("lang", s)
+	e.stringAttributes.Set("lang", s)
 	return e
 }
 
@@ -1573,10 +1573,10 @@ func (e *TrackElement) IfLangF(condition bool, format string, args ...any) *Trac
 // Languages (BCP47) IETF document. xml:lang has priority over it.
 // Remove the attribute Lang from the element.
 func (e *TrackElement) LangRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("lang")
+	e.stringAttributes.Del("lang")
 	return e
 }
 
@@ -1586,10 +1586,10 @@ func (e *TrackElement) LangRemove() *TrackElement {
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
 func (e *TrackElement) Nonce(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("nonce", s)
+	e.stringAttributes.Set("nonce", s)
 	return e
 }
 
@@ -1633,10 +1633,10 @@ func (e *TrackElement) IfNonceF(condition bool, format string, args ...any) *Tra
 // execute.
 // Remove the attribute Nonce from the element.
 func (e *TrackElement) NonceRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("nonce")
+	e.stringAttributes.Del("nonce")
 	return e
 }
 
@@ -1645,13 +1645,13 @@ func (e *TrackElement) NonceRemove() *TrackElement {
 // in a shadow tree via the ::part pseudo-element.
 func (e *TrackElement) Part(s string) *TrackElement {
 	values := strings.Split(s, " ")
-	if e.DelimitedStrings == nil {
-		e.DelimitedStrings = treemap.New[string, *DelimitedBuilder[string]]()
+	if e.delimitedStrings == nil {
+		e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
-		ds = NewDelimitedBuilder[string](" ")
-		e.DelimitedStrings.Set("part", ds)
+		ds = newDelimitedBuilder[string](" ")
+		e.delimitedStrings.Set("part", ds)
 	}
 	ds.Add(values...)
 	return e
@@ -1672,10 +1672,10 @@ func (e *TrackElement) IfPart(condition bool, s string) *TrackElement {
 // in a shadow tree via the ::part pseudo-element.
 // Remove the values from the attribute Part in the element.
 func (e *TrackElement) PartRemove(s ...string) *TrackElement {
-	if e.DelimitedStrings == nil {
+	if e.delimitedStrings == nil {
 		return e
 	}
-	ds, ok := e.DelimitedStrings.Get("part")
+	ds, ok := e.delimitedStrings.Get("part")
 	if !ok {
 		return e
 	}
@@ -1690,10 +1690,10 @@ func (e *TrackElement) PartRemove(s ...string) *TrackElement {
 // popover elements will appear above all other elements in the top layer, and
 // won't be influenced by parent elements' position or overflow styling.
 func (e *TrackElement) Popover(c TrackPopoverChoice) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("popover", string(c))
+	e.stringAttributes.Set("popover", string(c))
 	return e
 }
 
@@ -1721,10 +1721,10 @@ const (
 // won't be influenced by parent elements' position or overflow styling.
 // Remove the attribute Popover from the element.
 func (e *TrackElement) PopoverRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("popover")
+	e.stringAttributes.Del("popover")
 	return e
 }
 
@@ -1733,10 +1733,10 @@ func (e *TrackElement) PopoverRemove() *TrackElement {
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
 func (e *TrackElement) Role(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("role", s)
+	e.stringAttributes.Set("role", s)
 	return e
 }
 
@@ -1776,10 +1776,10 @@ func (e *TrackElement) IfRoleF(condition bool, format string, args ...any) *Trac
 // role of an element.
 // Remove the attribute Role from the element.
 func (e *TrackElement) RoleRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("role")
+	e.stringAttributes.Del("role")
 	return e
 }
 
@@ -1788,10 +1788,10 @@ func (e *TrackElement) RoleRemove() *TrackElement {
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
 func (e *TrackElement) Slot(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("slot", s)
+	e.stringAttributes.Set("slot", s)
 	return e
 }
 
@@ -1831,10 +1831,10 @@ func (e *TrackElement) IfSlotF(condition bool, format string, args ...any) *Trac
 // value.
 // Remove the attribute Slot from the element.
 func (e *TrackElement) SlotRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("slot")
+	e.stringAttributes.Del("slot")
 	return e
 }
 
@@ -1850,10 +1850,10 @@ func (e *TrackElement) SlotRemove() *TrackElement {
 // "spell-jacking"). You should consider setting spellcheck to false for
 // elements that can contain sensitive information.
 func (e *TrackElement) Spellcheck(c TrackSpellcheckChoice) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("spellcheck", string(c))
+	e.stringAttributes.Set("spellcheck", string(c))
 	return e
 }
 
@@ -1881,10 +1881,10 @@ const (
 // elements that can contain sensitive information.
 // Remove the attribute Spellcheck from the element.
 func (e *TrackElement) SpellcheckRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("spellcheck")
+	e.stringAttributes.Del("spellcheck")
 	return e
 }
 
@@ -1894,13 +1894,13 @@ func (e *TrackElement) StylePairs(pairs ...string) *TrackElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
 		panic("StylePairs requires an even number of arguments representing key-value pairs.")
 	}
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv = NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv = newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	for i := 0; i < len(pairs)-1; i += 2 {
 		key := strings.TrimSpace(pairs[i])
@@ -1916,13 +1916,13 @@ func (e *TrackElement) StylePairs(pairs ...string) *TrackElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *TrackElement) Style(s string) *TrackElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	s = strings.TrimRight(s, ";")
 	kvPairs := strings.Split(s, ";")
@@ -1948,13 +1948,13 @@ func (e *TrackElement) IfStyle(condition bool, s string) *TrackElement {
 // The style global attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *TrackElement) StyleAdd(k string, v string) *TrackElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	e.StylePairs(k, v)
 	return e
@@ -1988,13 +1988,13 @@ func (e *TrackElement) IfStyleAddF(condition bool, k string, format string, args
 // color, font, size, and more. Styles are written in CSS.
 // Add the attributes in the map to the element.
 func (e *TrackElement) StyleMap(m map[string]string) *TrackElement {
-	if e.KVStrings == nil {
-		e.KVStrings = treemap.New[string, *KVBuilder]()
+	if e.keyValueStrings == nil {
+		e.keyValueStrings = treemap.New[string, *keyValueBuilder]()
 	}
-	_, ok := e.KVStrings.Get("style")
+	_, ok := e.keyValueStrings.Get("style")
 	if !ok {
-		kv := NewKVBuilder(":", ";")
-		e.KVStrings.Set("style", kv)
+		kv := newKVBuilder(":", ";")
+		e.keyValueStrings.Set("style", kv)
 	}
 	keys := make([]string, 0, len(m))
 	for k := range m {
@@ -2011,10 +2011,10 @@ func (e *TrackElement) StyleMap(m map[string]string) *TrackElement {
 // color, font, size, and more. Styles are written in CSS.
 // Remove the attribute Style from the element.
 func (e *TrackElement) StyleRemove(keys ...string) *TrackElement {
-	if e.KVStrings == nil {
+	if e.keyValueStrings == nil {
 		return e
 	}
-	kv, ok := e.KVStrings.Get("style")
+	kv, ok := e.keyValueStrings.Get("style")
 	if !ok {
 		return e
 	}
@@ -2036,10 +2036,10 @@ func (e *TrackElement) StyleRemove(keys ...string) *TrackElement {
 // If several elements share the same tabindex, their relative order follows
 // their relative position in the document.
 func (e *TrackElement) Tabindex(i int) *TrackElement {
-	if e.IntAttributes == nil {
-		e.IntAttributes = treemap.New[string, int]()
+	if e.intAttributes == nil {
+		e.intAttributes = treemap.New[string, int]()
 	}
-	e.IntAttributes.Set("tabindex", i)
+	e.intAttributes.Set("tabindex", i)
 	return e
 }
 
@@ -2078,10 +2078,10 @@ func (e *TrackElement) IfTabindex(condition bool, i int) *TrackElement {
 // their relative position in the document.
 // Remove the attribute Tabindex from the element.
 func (e *TrackElement) TabindexRemove() *TrackElement {
-	if e.IntAttributes == nil {
+	if e.intAttributes == nil {
 		return e
 	}
-	e.IntAttributes.Del("tabindex")
+	e.intAttributes.Del("tabindex")
 	return e
 }
 
@@ -2102,10 +2102,10 @@ func (e *TrackElement) TabindexRemove() *TrackElement {
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
 func (e *TrackElement) Title(s string) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("title", s)
+	e.stringAttributes.Set("title", s)
 	return e
 }
 
@@ -2193,10 +2193,10 @@ func (e *TrackElement) IfTitleF(condition bool, format string, args ...any) *Tra
 // element, this is not good practice. Use a <label> instead.
 // Remove the attribute Title from the element.
 func (e *TrackElement) TitleRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("title")
+	e.stringAttributes.Del("title")
 	return e
 }
 
@@ -2205,10 +2205,10 @@ func (e *TrackElement) TitleRemove() *TrackElement {
 // children are to be translated when the page is localized, or whether to leave
 // them unchanged.
 func (e *TrackElement) Translate(c TrackTranslateChoice) *TrackElement {
-	if e.StringAttributes == nil {
-		e.StringAttributes = treemap.New[string, string]()
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.StringAttributes.Set("translate", string(c))
+	e.stringAttributes.Set("translate", string(c))
 	return e
 }
 
@@ -2229,9 +2229,9 @@ const (
 // them unchanged.
 // Remove the attribute Translate from the element.
 func (e *TrackElement) TranslateRemove() *TrackElement {
-	if e.StringAttributes == nil {
+	if e.stringAttributes == nil {
 		return e
 	}
-	e.StringAttributes.Del("translate")
+	e.stringAttributes.Del("translate")
 	return e
 }
