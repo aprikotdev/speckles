@@ -1,14 +1,10 @@
-package cfg
+package config
 
-import (
-	pb "github.com/aprikotdev/speckles/internal/pb/gen/specs/v1"
-)
-
-var SVG = &pb.Namespace{
+var SVG = &Namespace{
 	Name:        "svg",
 	Description: `Scalable Vector Graphics (SVG) is an XML-based markup language for describing two-dimensional based vector graphics. As such, it's a text-based, open Web standard for describing images that can be rendered cleanly at any size and are designed specifically to work well with other web standards including CSS, DOM, JavaScript, and SMIL. SVG is, essentially, to graphics what HTML is to text. SVG images and their related behaviors are defined in XML text files, which means they can be searched, indexed, scripted, and compressed. Additionally, this means they can be created and edited with any text editor or with drawing software. Compared to classic bitmapped image formats such as JPEG or PNG, SVG-format vector images can be rendered at any size without loss of quality and can be easily localized by updating the text within them, without the need of a graphical editor to do so. With proper libraries, SVG files can even be localized on-the-fly.`,
 	Prefix:      "SVG",
-	Attributes: []*pb.Attribute{
+	Attributes: []*Attribute{
 		{
 			Key:         "id",
 			Description: "Specifies a unique id for an element",
@@ -22,17 +18,17 @@ var SVG = &pb.Namespace{
 		{
 			Key:         "style",
 			Description: "Specifies an inline CSS style for an element",
-			Type:        AttributeTypeKVColonSemicolon(),
+			Type:        AttributeTypeKeyValueColonSemicolon(),
 		},
 	},
-	Elements: []*pb.Element{
+	Elements: []*Element{
 		{
 			Tag:         "a",
 			Description: `The <a> SVG element creates a hyperlink to other web pages, files, locations in the same page, email addresses, or any other URL. It is very similar to HTML's <a> element. SVG's <a> element is a container, which means you can create a link around text (like in HTML) but also around any shape.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "download",
-					Description: `Indicates that the hyperlink is to be used for downloading a resource. When used together with the download attribute, the value of the attribute is used as the file name of the downloaded file. There are no restrictions on allowed values, though / and \ will be converted to underscores and leading spaces in filenames will be removed.`,
+					Description: `Indicates that the hyperlink is to be used for downloading a resource. When used together with the download Attribute, the value of the Attribute is used as the file name of the downloaded file. There are no restrictions on allowed values, though / and \ will be converted to underscores and leading spaces in filenames will be removed.`,
 					Type:        AttributeTypeString(),
 				},
 				{
@@ -116,8 +112,8 @@ var SVG = &pb.Namespace{
 
 		{
 			Tag:         "animate",
-			Description: `The <animate> SVG element is used to animate an attribute or property of an element over time.`,
-			Attributes: []*pb.Attribute{
+			Description: `The <animate> SVG element is used to animate an Attribute or property of an element over time.`,
+			Attributes: []*Attribute{
 				{
 					Key:         "accumulate",
 					Description: `Controls whether or not the animation is cumulative.`,
@@ -135,15 +131,15 @@ var SVG = &pb.Namespace{
 					),
 				},
 				{
-					Key:         "attributeName",
-					Description: `The name of the attribute to animate.`,
+					Key:         "AttributeName",
+					Description: `The name of the Attribute to animate.`,
 					Type:        AttributeTypeString(),
 				},
 				{
-					Key:         "attributeType",
-					Description: `The namespace of the attribute to animate.`,
+					Key:         "AttributeType",
+					Description: `The namespace of the Attribute to animate.`,
 					Type: AttributeTypeChoices(
-						AttributeTypeChoice("auto", `If the attribute is a presentation attribute, the animation will use the target element's corresponding baseVal. If the attribute is not a presentation attribute, the animation will use the target element's corresponding animVal.`),
+						AttributeTypeChoice("auto", `If the Attribute is a presentation Attribute, the animation will use the target element's corresponding baseVal. If the Attribute is not a presentation Attribute, the animation will use the target element's corresponding animVal.`),
 						AttributeTypeChoice("CSS", `The animation will use the CSS namespace.`),
 						AttributeTypeChoice("XML", `The animation will use the XML namespace.`),
 						AttributeTypeChoice("XMLID", `The animation will use the XML ID namespace.`),
@@ -185,13 +181,13 @@ var SVG = &pb.Namespace{
 					Key:         "fill",
 					Description: `Defines the fill behavior for the animation.`,
 					Type: AttributeTypeChoices(
-						AttributeTypeChoice("freeze", `The animation will hold the attribute value when the animation ends.`),
-						AttributeTypeChoice("remove", `The animation will remove the attribute value when the animation ends.`),
+						AttributeTypeChoice("freeze", `The animation will hold the Attribute value when the animation ends.`),
+						AttributeTypeChoice("remove", `The animation will remove the Attribute value when the animation ends.`),
 					),
 				},
 				{
 					Key:         "from",
-					Description: `Defines the initial value of the attribute.`,
+					Description: `Defines the initial value of the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
@@ -206,12 +202,12 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "max",
-					Description: `Defines the maximum value allowed for the attribute.`,
+					Description: `Defines the maximum value allowed for the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "min",
-					Description: `Defines the minimum value allowed for the attribute.`,
+					Description: `Defines the minimum value allowed for the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
@@ -235,7 +231,7 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "to",
-					Description: `Defines the ending value of the attribute.`,
+					Description: `Defines the ending value of the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
@@ -248,8 +244,8 @@ var SVG = &pb.Namespace{
 
 		{
 			Tag:         "animateMotion",
-			Description: `The <animateMotion> SVG element is used to animate a transformation attribute on a target element, thereby allowing the animation of translation, rotation, and scaling.`,
-			Attributes: []*pb.Attribute{
+			Description: `The <animateMotion> SVG element is used to animate a transformation Attribute on a target element, thereby allowing the animation of translation, rotation, and scaling.`,
+			Attributes: []*Attribute{
 				{
 					Key:         "accumulate",
 					Description: `Controls whether or not the animation is cumulative.`,
@@ -300,13 +296,13 @@ var SVG = &pb.Namespace{
 					Key:         "fill",
 					Description: `Defines the fill behavior for the animation.`,
 					Type: AttributeTypeChoices(
-						AttributeTypeChoice("freeze", `The animation will hold the attribute value when the animation ends.`),
-						AttributeTypeChoice("remove", `The animation will remove the attribute value when the animation ends.`),
+						AttributeTypeChoice("freeze", `The animation will hold the Attribute value when the animation ends.`),
+						AttributeTypeChoice("remove", `The animation will remove the Attribute value when the animation ends.`),
 					),
 				},
 				{
 					Key:         "from",
-					Description: `Defines the initial value of the attribute.`,
+					Description: `Defines the initial value of the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
@@ -321,12 +317,12 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "max",
-					Description: `Defines the maximum value allowed for the attribute.`,
+					Description: `Defines the maximum value allowed for the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "min",
-					Description: `Defines the minimum value allowed for the attribute.`,
+					Description: `Defines the minimum value allowed for the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
@@ -350,7 +346,7 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "to",
-					Description: `Defines the ending value of the attribute.`,
+					Description: `Defines the ending value of the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
@@ -363,8 +359,8 @@ var SVG = &pb.Namespace{
 
 		{
 			Tag:         "animateTransform",
-			Description: `The <animateTransform> SVG element animates a transformation attribute on a target element, thereby allowing animations to control translation, scaling, rotation and/or skewing.`,
-			Attributes: []*pb.Attribute{
+			Description: `The <animateTransform> SVG element animates a transformation Attribute on a target element, thereby allowing animations to control translation, scaling, rotation and/or skewing.`,
+			Attributes: []*Attribute{
 				{
 					Key:         "accumulate",
 					Description: `Controls whether or not the animation is cumulative.`,
@@ -382,15 +378,15 @@ var SVG = &pb.Namespace{
 					),
 				},
 				{
-					Key:         "attributeName",
-					Description: `The name of the attribute to animate.`,
+					Key:         "AttributeName",
+					Description: `The name of the Attribute to animate.`,
 					Type:        AttributeTypeString(),
 				},
 				{
-					Key:         "attributeType",
-					Description: `The namespace of the attribute to animate.`,
+					Key:         "AttributeType",
+					Description: `The namespace of the Attribute to animate.`,
 					Type: AttributeTypeChoices(
-						AttributeTypeChoice("auto", `If the attribute is a presentation attribute, the animation will use the target element's corresponding baseVal. If the attribute is not a presentation attribute, the animation will use the target element's corresponding animVal.`),
+						AttributeTypeChoice("auto", `If the Attribute is a presentation Attribute, the animation will use the target element's corresponding baseVal. If the Attribute is not a presentation Attribute, the animation will use the target element's corresponding animVal.`),
 						AttributeTypeChoice("CSS", `The animation will use the CSS namespace.`),
 						AttributeTypeChoice("XML", `The animation will use the XML namespace.`),
 						AttributeTypeChoice("XMLID", `The animation will use the XML ID namespace.`),
@@ -432,13 +428,13 @@ var SVG = &pb.Namespace{
 					Key:         "fill",
 					Description: `Defines the fill behavior for the animation.`,
 					Type: AttributeTypeChoices(
-						AttributeTypeChoice("freeze", `The animation will hold the attribute value when the animation ends.`),
-						AttributeTypeChoice("remove", `The animation will remove the attribute value when the animation ends.`),
+						AttributeTypeChoice("freeze", `The animation will hold the Attribute value when the animation ends.`),
+						AttributeTypeChoice("remove", `The animation will remove the Attribute value when the animation ends.`),
 					),
 				},
 				{
 					Key:         "from",
-					Description: `Defines the initial value of the attribute.`,
+					Description: `Defines the initial value of the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
@@ -453,12 +449,12 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "max",
-					Description: `Defines the maximum value allowed for the attribute.`,
+					Description: `Defines the maximum value allowed for the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "min",
-					Description: `Defines the minimum value allowed for the attribute.`,
+					Description: `Defines the minimum value allowed for the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
@@ -482,7 +478,7 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "to",
-					Description: `Defines the ending value of the attribute.`,
+					Description: `Defines the ending value of the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
@@ -505,7 +501,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "circle",
 			Description: `The <circle> SVG element is an SVG basic shape, used to create circles based on a center point and a radius.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "cx",
 					Description: `The x-axis coordinate of the center of the circle.`,
@@ -527,7 +523,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "clipPath",
 			Description: `The <clipPath> SVG element defines a clipping path. A clipping path is used/referenced using the clip-path property.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "clipPathUnits",
 					Description: `The coordinate system for the contents of the <clipPath> element.`,
@@ -552,7 +548,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "ellipse",
 			Description: `The <ellipse> SVG element is an SVG basic shape, used to create ellipses based on a center coordinate, and both their x and y radius.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "cx",
 					Description: `The x-axis coordinate of the center of the ellipse.`,
@@ -578,8 +574,8 @@ var SVG = &pb.Namespace{
 
 		{
 			Tag:         "feBlend",
-			Description: `The <feBlend> SVG filter primitive composes two objects together ruled by a certain blending mode. This is similar to what is known from image editing software when blending two layers. The mode is defined by the mode attribute.`,
-			Attributes: []*pb.Attribute{
+			Description: `The <feBlend> SVG filter primitive composes two objects together ruled by a certain blending mode. This is similar to what is known from image editing software when blending two layers. The mode is defined by the mode Attribute.`,
+			Attributes: []*Attribute{
 				{
 					Key:         "in",
 					Description: `Input for the blending.`,
@@ -607,7 +603,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feColorMatrix",
 			Description: `The <feColorMatrix> SVG filter element changes colors based on a transformation matrix. Every pixel's color value (represented by an [R,G,B,A] vector) is matrix multiplied to create a new color.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "in",
 					Description: `The input for this filter.`,
@@ -634,7 +630,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feComponentTransfer",
 			Description: `The <feComponentTransfer> SVG filter primitive performs color-component-wise remapping of data for each pixel. It allows operations like brightness adjustment, contrast adjustment, color balance or thresholding.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "in",
 					Description: `The input for this filter.`,
@@ -646,7 +642,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feComposite",
 			Description: `The <feComposite> SVG filter primitive performs the combination of two input images pixel-wise in image space using one of the Porter-Duff compositing operations: over, in, atop, out, xor.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "in",
 					Description: `Input for the compositing operation.`,
@@ -695,7 +691,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feConvolveMatrix",
 			Description: `The <feConvolveMatrix> SVG filter primitive applies a matrix convolution filter effect.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "in",
 					Description: `The input for this filter.`,
@@ -713,27 +709,27 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "divisor",
-					Description: `The divisor attribute specifies the value by which to divide the result of applying the convolution operator.`,
+					Description: `The divisor Attribute specifies the value by which to divide the result of applying the convolution operator.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "bias",
-					Description: `The bias attribute shifts the range of the filter. After applying the matrix operation, this bias value is added to each component.`,
+					Description: `The bias Attribute shifts the range of the filter. After applying the matrix operation, this bias value is added to each component.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "targetX",
-					Description: `The targetX attribute determines the positioning in X of the convolution matrix relative to a given target pixel in the input image.`,
+					Description: `The targetX Attribute determines the positioning in X of the convolution matrix relative to a given target pixel in the input image.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "targetY",
-					Description: `The targetY attribute determines the positioning in Y of the convolution matrix relative to a given target pixel in the input image.`,
+					Description: `The targetY Attribute determines the positioning in Y of the convolution matrix relative to a given target pixel in the input image.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "edgeMode",
-					Description: `The edgeMode attribute determines how to extend the input image as necessary with color values so that the matrix operations can be applied when the kernel is positioned at or near the edge of the input image.`,
+					Description: `The edgeMode Attribute determines how to extend the input image as necessary with color values so that the matrix operations can be applied when the kernel is positioned at or near the edge of the input image.`,
 					Type: AttributeTypeChoices(
 						AttributeTypeChoice("duplicate", `The input image is extended along each of its borders as necessary by duplicating the color values at the given edge of the input image.`),
 						AttributeTypeChoice("wrap", `The input image is extended by taking the component values from the opposite edge of the image.`),
@@ -742,12 +738,12 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "kernelUnitLength",
-					Description: `The kernelUnitLength attribute defines the intended distance in current filter units (i.e., units as determined by the value of attribute 'primitiveUnits') for dx and dy in the surface normal calculation formulas.`,
+					Description: `The kernelUnitLength Attribute defines the intended distance in current filter units (i.e., units as determined by the value of Attribute 'primitiveUnits') for dx and dy in the surface normal calculation formulas.`,
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "preserveAlpha",
-					Description: `The preserveAlpha attribute indicates how the convolution will handle the alpha channel of the input image.`,
+					Description: `The preserveAlpha Attribute indicates how the convolution will handle the alpha channel of the input image.`,
 					Type:        AttributeTypeBool(),
 				},
 			},
@@ -756,7 +752,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feDiffuseLighting",
 			Description: `The <feDiffuseLighting> SVG filter primitive lights an image using the alpha channel as a bump map. The resulting image, which is an RGBA opaque image, depends on the light color, light position and surface geometry of the input bump map.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "in",
 					Description: `The input for this filter.`,
@@ -764,17 +760,17 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "surfaceScale",
-					Description: `The 'surfaceScale' attribute indicates the height of the surface when the alpha channel is 1.0.`,
+					Description: `The 'surfaceScale' Attribute indicates the height of the surface when the alpha channel is 1.0.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "diffuseConstant",
-					Description: `The diffuseConstant attribute represents the proportion of the light that is reflected by the surface.`,
+					Description: `The diffuseConstant Attribute represents the proportion of the light that is reflected by the surface.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "kernelUnitLength",
-					Description: `The kernelUnitLength attribute defines the intended distance in current filter units (i.e., units as determined by the value of attribute 'primitiveUnits') for dx and dy in the surface normal calculation formulas.`,
+					Description: `The kernelUnitLength Attribute defines the intended distance in current filter units (i.e., units as determined by the value of Attribute 'primitiveUnits') for dx and dy in the surface normal calculation formulas.`,
 					Type:        AttributeTypeString(),
 				},
 			},
@@ -783,7 +779,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feDisplacementMap",
 			Description: `The <feDisplacementMap> SVG filter primitive uses the pixel values from the image from in2 to spatially displace the image from in.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "in",
 					Description: `The input for this filter.`,
@@ -791,17 +787,17 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "in2",
-					Description: `The displacement map. This attribute can take on the same values as the 'in' attribute.`,
+					Description: `The displacement map. This Attribute can take on the same values as the 'in' Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "scale",
-					Description: `The scale attribute defines the maximum value for the in2 displacement. A value of 0 disables the effect of the displacement map.`,
+					Description: `The scale Attribute defines the maximum value for the in2 displacement. A value of 0 disables the effect of the displacement map.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "xChannelSelector",
-					Description: `The xChannelSelector attribute indicates which color channel from in2 to use to displace the pixels in in the horizontal direction.`,
+					Description: `The xChannelSelector Attribute indicates which color channel from in2 to use to displace the pixels in in the horizontal direction.`,
 					Type: AttributeTypeChoices(
 						AttributeTypeChoice("R", `The red channel of in2 is used to displace the x coordinate of each pixel.`),
 						AttributeTypeChoice("G", `The green channel of in2 is used to displace the x coordinate of each pixel.`),
@@ -811,7 +807,7 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "yChannelSelector",
-					Description: `The yChannelSelector attribute indicates which color channel from in2 to use to displace the pixels in in the vertical direction.`,
+					Description: `The yChannelSelector Attribute indicates which color channel from in2 to use to displace the pixels in in the vertical direction.`,
 					Type: AttributeTypeChoices(
 						AttributeTypeChoice("R", `The red channel of in2 is used to displace the y coordinate of each pixel.`),
 						AttributeTypeChoice("G", `The green channel of in2 is used to displace the y coordinate of each pixel.`),
@@ -825,15 +821,15 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feDistantLight",
 			Description: `The <feDistantLight> SVG filter primitive defines a distant light source that can be used within a lighting filter primitive: <feDiffuseLighting> or <feSpecularLighting>`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "azimuth",
-					Description: `The azimuth attribute represent the direction vector of the light source in the XY plane (clockwise), in degrees from the x axis.`,
+					Description: `The azimuth Attribute represent the direction vector of the light source in the XY plane (clockwise), in degrees from the x axis.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "elevation",
-					Description: `The elevation attribute represent the direction vector of the light source perpendicular to the XY plane, in degrees from the XY plane towards the z axis (clockwise).`,
+					Description: `The elevation Attribute represent the direction vector of the light source perpendicular to the XY plane, in degrees from the XY plane towards the z axis (clockwise).`,
 					Type:        AttributeTypeNumber(),
 				},
 			},
@@ -842,7 +838,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feDropShadow",
 			Description: `The <feDropShadow> filter primitive creates a drop shadow of the input image. It is a shorthand filter, and is defined in terms of the <feGaussianBlur> and <feOffset> filter primitives.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "dx",
 					Description: `The amount of offset in the x direction. If the <length> is 0, the shadow is placed at the same position as the input.`,
@@ -855,17 +851,17 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "stdDeviation",
-					Description: `The standard deviation for the blur operation. If two <numbers> are provided, the first number represents a standard deviation value along the x-axis of the coordinate system established by attribute 'primitiveUnits' on the <filter> element. The second value represents a standard deviation in Y. If one number is provided, then that value is used for both X and Y. Negative values are not allowed. A value of zero disables the effect of the given filter primitive (i.e., the result is a transparent black image).`,
+					Description: `The standard deviation for the blur operation. If two <numbers> are provided, the first number represents a standard deviation value along the x-axis of the coordinate system established by Attribute 'primitiveUnits' on the <filter> element. The second value represents a standard deviation in Y. If one number is provided, then that value is used for both X and Y. Negative values are not allowed. A value of zero disables the effect of the given filter primitive (i.e., the result is a transparent black image).`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "flood-color",
-					Description: `The flood-color attribute indicates what color to use to flood the current filter primitive subregion defined through the <feFlood> element. If attribute 'flood-color' is not specified, then the effect is as if a value of black were specified.`,
+					Description: `The flood-color Attribute indicates what color to use to flood the current filter primitive subregion defined through the <feFlood> element. If Attribute 'flood-color' is not specified, then the effect is as if a value of black were specified.`,
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "flood-opacity",
-					Description: `The flood-opacity attribute indicates the opacity value to use across the current filter primitive subregion defined through the <feFlood> element.`,
+					Description: `The flood-opacity Attribute indicates the opacity value to use across the current filter primitive subregion defined through the <feFlood> element.`,
 					Type:        AttributeTypeNumber(),
 				},
 			},
@@ -874,15 +870,15 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feFlood",
 			Description: `The <feFlood> SVG filter primitive fills the filter subregion with the color and opacity defined by flood-color and flood-opacity.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "flood-color",
-					Description: `The flood-color attribute indicates what color to use to flood the current filter primitive subregion defined through the <feFlood> element. If attribute 'flood-color' is not specified, then the effect is as if a value of black were specified.`,
+					Description: `The flood-color Attribute indicates what color to use to flood the current filter primitive subregion defined through the <feFlood> element. If Attribute 'flood-color' is not specified, then the effect is as if a value of black were specified.`,
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "flood-opacity",
-					Description: `The flood-opacity attribute indicates the opacity value to use across the current filter primitive subregion defined through the <feFlood> element.`,
+					Description: `The flood-opacity Attribute indicates the opacity value to use across the current filter primitive subregion defined through the <feFlood> element.`,
 					Type:        AttributeTypeNumber(),
 				},
 			},
@@ -891,7 +887,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feFuncA",
 			Description: `The <feFuncA> SVG filter primitive defines the transfer function for the alpha component of the input graphic of its parent <feComponentTransfer> element.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "type",
 					Description: `The type of transfer function.`,
@@ -910,27 +906,27 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "slope",
-					Description: `The slope attribute indicates the slope of the linear function.`,
+					Description: `The slope Attribute indicates the slope of the linear function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "intercept",
-					Description: `The intercept attribute indicates the intercept of the linear function.`,
+					Description: `The intercept Attribute indicates the intercept of the linear function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "amplitude",
-					Description: `The amplitude attribute indicates the amplitude of the cubic function.`,
+					Description: `The amplitude Attribute indicates the amplitude of the cubic function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "exponent",
-					Description: `The exponent attribute indicates the exponent of the exponential function.`,
+					Description: `The exponent Attribute indicates the exponent of the exponential function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "offset",
-					Description: `The offset attribute indicates the offset of the function.`,
+					Description: `The offset Attribute indicates the offset of the function.`,
 					Type:        AttributeTypeNumber(),
 				},
 			},
@@ -939,7 +935,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feFuncB",
 			Description: `The <feFuncB> SVG filter primitive defines the transfer function for the blue component of the input graphic of its parent <feComponentTransfer> element.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "type",
 					Description: `The type of transfer function.`,
@@ -958,27 +954,27 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "slope",
-					Description: `The slope attribute indicates the slope of the linear function.`,
+					Description: `The slope Attribute indicates the slope of the linear function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "intercept",
-					Description: `The intercept attribute indicates the intercept of the linear function.`,
+					Description: `The intercept Attribute indicates the intercept of the linear function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "amplitude",
-					Description: `The amplitude attribute indicates the amplitude of the cubic function.`,
+					Description: `The amplitude Attribute indicates the amplitude of the cubic function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "exponent",
-					Description: `The exponent attribute indicates the exponent of the exponential function.`,
+					Description: `The exponent Attribute indicates the exponent of the exponential function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "offset",
-					Description: `The offset attribute indicates the offset of the function.`,
+					Description: `The offset Attribute indicates the offset of the function.`,
 					Type:        AttributeTypeNumber(),
 				},
 			},
@@ -987,7 +983,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feFuncG",
 			Description: `The <feFuncG> SVG filter primitive defines the transfer function for the green component of the input graphic of its parent <feComponentTransfer> element.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "type",
 					Description: `The type of transfer function.`,
@@ -1006,27 +1002,27 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "slope",
-					Description: `The slope attribute indicates the slope of the linear function.`,
+					Description: `The slope Attribute indicates the slope of the linear function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "intercept",
-					Description: `The intercept attribute indicates the intercept of the linear function.`,
+					Description: `The intercept Attribute indicates the intercept of the linear function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "amplitude",
-					Description: `The amplitude attribute indicates the amplitude of the cubic function.`,
+					Description: `The amplitude Attribute indicates the amplitude of the cubic function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "exponent",
-					Description: `The exponent attribute indicates the exponent of the exponential function.`,
+					Description: `The exponent Attribute indicates the exponent of the exponential function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "offset",
-					Description: `The offset attribute indicates the offset of the function.`,
+					Description: `The offset Attribute indicates the offset of the function.`,
 					Type:        AttributeTypeNumber(),
 				},
 			},
@@ -1035,7 +1031,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feFuncR",
 			Description: `The <feFuncR> SVG filter primitive defines the transfer function for the red component of the input graphic of its parent <feComponentTransfer> element.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "type",
 					Description: `The type of transfer function.`,
@@ -1054,27 +1050,27 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "slope",
-					Description: `The slope attribute indicates the slope of the linear function.`,
+					Description: `The slope Attribute indicates the slope of the linear function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "intercept",
-					Description: `The intercept attribute indicates the intercept of the linear function.`,
+					Description: `The intercept Attribute indicates the intercept of the linear function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "amplitude",
-					Description: `The amplitude attribute indicates the amplitude of the cubic function.`,
+					Description: `The amplitude Attribute indicates the amplitude of the cubic function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "exponent",
-					Description: `The exponent attribute indicates the exponent of the exponential function.`,
+					Description: `The exponent Attribute indicates the exponent of the exponential function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "offset",
-					Description: `The offset attribute indicates the offset of the function.`,
+					Description: `The offset Attribute indicates the offset of the function.`,
 					Type:        AttributeTypeNumber(),
 				},
 			},
@@ -1083,7 +1079,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feGaussianBlur",
 			Description: `The <feGaussianBlur> SVG filter primitive blurs the input image by the amount specified in stdDeviation, which defines the bell-curve.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "in",
 					Description: `The input for this filter.`,
@@ -1091,7 +1087,7 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "stdDeviation",
-					Description: `The standard deviation for the blur operation. If two <numbers> are provided, the first number represents a standard deviation value along the x-axis of the coordinate system established by attribute 'primitiveUnits' on the <filter> element. The second value represents a standard deviation in Y. If one number is provided, then that value is used for both X and Y. Negative values are not allowed. A value of zero disables the effect of the given filter primitive (i.e., the result is a transparent black image).`,
+					Description: `The standard deviation for the blur operation. If two <numbers> are provided, the first number represents a standard deviation value along the x-axis of the coordinate system established by Attribute 'primitiveUnits' on the <filter> element. The second value represents a standard deviation in Y. If one number is provided, then that value is used for both X and Y. Negative values are not allowed. A value of zero disables the effect of the given filter primitive (i.e., the result is a transparent black image).`,
 					Type:        AttributeTypeNumber(),
 				},
 			},
@@ -1100,7 +1096,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feImage",
 			Description: `The <feImage> SVG filter primitive fetches image data from an external source and provides the pixel data as output (meaning if the external source is an SVG image, it is rasterized.)`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "externalResourcesRequired",
 					Description: `Indicates whether or not to force synchronous behavior.`,
@@ -1138,10 +1134,10 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feMergeNode",
 			Description: `The <feMergeNode> SVG element allows a series of filter primitives to be connected together graphically. Incoming nodes are blended into the background via the defined compositing operator.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "in",
-					Description: `The identifier for the input SVGAnimatedString attribute on the given 'feMergeNode' element.`,
+					Description: `The identifier for the input SVGAnimatedString Attribute on the given 'feMergeNode' element.`,
 					Type:        AttributeTypeString(),
 				},
 			},
@@ -1150,7 +1146,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feMorphology",
 			Description: `The <feMorphology> SVG filter primitive is used to erode or dilate the input image. It's usefulness lies especially in fattening or thinning effects.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "in",
 					Description: `The input for this filter.`,
@@ -1158,15 +1154,15 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "operator",
-					Description: `The operator attribute defines what type of operation is performed.`,
+					Description: `The operator Attribute defines what type of operation is performed.`,
 					Type: AttributeTypeChoices(
-						AttributeTypeChoice("erode", `The operator attribute defines what type of operation is performed.`),
-						AttributeTypeChoice("dilate", `The operator attribute defines what type of operation is performed.`),
+						AttributeTypeChoice("erode", `The operator Attribute defines what type of operation is performed.`),
+						AttributeTypeChoice("dilate", `The operator Attribute defines what type of operation is performed.`),
 					),
 				},
 				{
 					Key:         "radius",
-					Description: `The radius attribute indicates the size of the matrix.`,
+					Description: `The radius Attribute indicates the size of the matrix.`,
 					Type:        AttributeTypeNumber(),
 				},
 			},
@@ -1174,16 +1170,16 @@ var SVG = &pb.Namespace{
 
 		{
 			Tag:         "feOffset",
-			Description: `The <feOffset> SVG filter primitive allows to offset the input image. The amount of offset can be controlled by attributes dx and dy.`,
-			Attributes: []*pb.Attribute{
+			Description: `The <feOffset> SVG filter primitive allows to offset the input image. The amount of offset can be controlled by Attributes dx and dy.`,
+			Attributes: []*Attribute{
 				{
 					Key:         "dx",
-					Description: `The dx attribute indicates a shift along the x-axis on the kernel matrix.`,
+					Description: `The dx Attribute indicates a shift along the x-axis on the kernel matrix.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "dy",
-					Description: `The dy attribute indicates a shift along the y-axis on the kernel matrix.`,
+					Description: `The dy Attribute indicates a shift along the y-axis on the kernel matrix.`,
 					Type:        AttributeTypeNumber(),
 				},
 			},
@@ -1192,20 +1188,20 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "fePointLight",
 			Description: `The <fePointLight> SVG filter primitive defines a light source at a point on the plane of the user coordinate system.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "x",
-					Description: `The x attribute indicates the x location of the light source in the coordinate system established by attribute 'primitiveUnits' on the <filter> element.`,
+					Description: `The x Attribute indicates the x location of the light source in the coordinate system established by Attribute 'primitiveUnits' on the <filter> element.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "y",
-					Description: `The y attribute indicates the y location of the light source in the coordinate system established by attribute 'primitiveUnits' on the <filter> element.`,
+					Description: `The y Attribute indicates the y location of the light source in the coordinate system established by Attribute 'primitiveUnits' on the <filter> element.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "z",
-					Description: `The z attribute indicates the z location of the light source in the coordinate system established by attribute 'primitiveUnits' on the <filter> element.`,
+					Description: `The z Attribute indicates the z location of the light source in the coordinate system established by Attribute 'primitiveUnits' on the <filter> element.`,
 					Type:        AttributeTypeNumber(),
 				},
 			},
@@ -1214,7 +1210,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feSpecularLighting",
 			Description: `The <feSpecularLighting> SVG filter primitive lights a source graphic using the alpha channel as a bump map. The resulting image is an RGBA image based on the light color. The lighting calculation follows the standard specular component of the Phong lighting model. The resulting image depends on the light color, light position and surface geometry of the input bump map.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "in",
 					Description: `The input for this filter.`,
@@ -1222,22 +1218,22 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "surfaceScale",
-					Description: `The 'surfaceScale' attribute indicates the height of the surface when the alpha channel is 1.0.`,
+					Description: `The 'surfaceScale' Attribute indicates the height of the surface when the alpha channel is 1.0.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "specularConstant",
-					Description: `The specularConstant attribute represents the diffuse reflection constant.`,
+					Description: `The specularConstant Attribute represents the diffuse reflection constant.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "specularExponent",
-					Description: `The specularExponent attribute represents the specular reflection constant.`,
+					Description: `The specularExponent Attribute represents the specular reflection constant.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "kernelUnitLength",
-					Description: `The kernelUnitLength attribute defines the intended distance in current filter units (i.e., units as determined by the value of attribute 'primitiveUnits') for dx and dy in the surface normal calculation formulas.`,
+					Description: `The kernelUnitLength Attribute defines the intended distance in current filter units (i.e., units as determined by the value of Attribute 'primitiveUnits') for dx and dy in the surface normal calculation formulas.`,
 					Type:        AttributeTypeString(),
 				},
 			},
@@ -1246,45 +1242,45 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feSpotLight",
 			Description: `The <feSpotLight> SVG filter primitive allows to create a light source placed at a point x, y, z.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "x",
-					Description: `The x attribute indicates the x location of the light source in the coordinate system established by attribute 'primitiveUnits' on the <filter> element.`,
+					Description: `The x Attribute indicates the x location of the light source in the coordinate system established by Attribute 'primitiveUnits' on the <filter> element.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "y",
-					Description: `The y attribute indicates the y location of the light source in the coordinate system established by attribute 'primitiveUnits' on the <filter> element.`,
+					Description: `The y Attribute indicates the y location of the light source in the coordinate system established by Attribute 'primitiveUnits' on the <filter> element.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "z",
-					Description: `The z attribute indicates the z location of the light source in the coordinate system established by attribute 'primitiveUnits' on the <filter> element.`,
+					Description: `The z Attribute indicates the z location of the light source in the coordinate system established by Attribute 'primitiveUnits' on the <filter> element.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "pointsAtX",
-					Description: `The pointsAtX attribute indicates the x location in the coordinate system established by attribute 'primitiveUnits' on the <filter> element of the point at which the light source is pointing.`,
+					Description: `The pointsAtX Attribute indicates the x location in the coordinate system established by Attribute 'primitiveUnits' on the <filter> element of the point at which the light source is pointing.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "pointsAtY",
-					Description: `The pointsAtY attribute indicates the y location in the coordinate system established by attribute 'primitiveUnits' on the <filter> element of the point at which the light source is pointing.`,
+					Description: `The pointsAtY Attribute indicates the y location in the coordinate system established by Attribute 'primitiveUnits' on the <filter> element of the point at which the light source is pointing.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "pointsAtZ",
-					Description: `The pointsAtZ attribute indicates the z location in the coordinate system established by attribute 'primitiveUnits' on the <filter> element of the point at which the light source is pointing.`,
+					Description: `The pointsAtZ Attribute indicates the z location in the coordinate system established by Attribute 'primitiveUnits' on the <filter> element of the point at which the light source is pointing.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "specularExponent",
-					Description: `The specularExponent attribute represents the specular reflection constant.`,
+					Description: `The specularExponent Attribute represents the specular reflection constant.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "limitingConeAngle",
-					Description: `The limitingConeAngle attribute represents the angle in degrees between the spot light axis and the spot light cone.`,
+					Description: `The limitingConeAngle Attribute represents the angle in degrees between the spot light axis and the spot light cone.`,
 					Type:        AttributeTypeNumber(),
 				},
 			},
@@ -1293,7 +1289,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feTile",
 			Description: `The <feTile> SVG filter primitive allows to fill a target rectangle with a repeated, tiled pattern of an input image. The effect is similar to the one of a <pattern> element, but <feTile> can use complex (i.e., filter) tree as input, and can be animated.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "in",
 					Description: `The input for this filter.`,
@@ -1305,25 +1301,25 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "feTurbulence",
 			Description: `The <feTurbulence> SVG filter primitive creates an image using the Perlin turbulence function. It allows the synthesis of artificial textures like clouds or marble.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "baseFrequency",
-					Description: `The baseFrequency attribute represent the base frequencies in the X and Y directions of the turbulence function.`,
+					Description: `The baseFrequency Attribute represent the base frequencies in the X and Y directions of the turbulence function.`,
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "numOctaves",
-					Description: `The numOctaves attribute indicates the number of octaves to be used by the noise function.`,
+					Description: `The numOctaves Attribute indicates the number of octaves to be used by the noise function.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "seed",
-					Description: `The seed attribute indicates which number to use to seed the random number generator.`,
+					Description: `The seed Attribute indicates which number to use to seed the random number generator.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
 					Key:         "stitchTiles",
-					Description: `The stitchTiles attribute indicates how the Perlin noise function should be tiled. It is ignored if type is not set to 'turbulence'.`,
+					Description: `The stitchTiles Attribute indicates how the Perlin noise function should be tiled. It is ignored if type is not set to 'turbulence'.`,
 					Type: AttributeTypeChoices(
 						AttributeTypeChoice("noStitch", `The <feTurbulence> SVG filter primitive creates an image using the Perlin turbulence function. It allows the synthesis of artificial textures like clouds or marble.`),
 						AttributeTypeChoice("stitch", `The <feTurbulence> SVG filter primitive creates an image using the Perlin turbulence function. It allows the synthesis of artificial textures like clouds or marble.`),
@@ -1342,14 +1338,14 @@ var SVG = &pb.Namespace{
 
 		{
 			Tag:         "filter",
-			Description: `The <filter> SVG element defines a custom filter effect by grouping atomic filter primitives. It is never rendered directly. A filter is referenced by using the filter attribute on the target SVG element or via the filter CSS property.`,
-			Attributes: []*pb.Attribute{
+			Description: `The <filter> SVG element defines a custom filter effect by grouping atomic filter primitives. It is never rendered directly. A filter is referenced by using the filter Attribute on the target SVG element or via the filter CSS property.`,
+			Attributes: []*Attribute{
 				{
 					Key:         "filterUnits",
-					Description: `The coordinate system for attributes x, y, width and height.`,
+					Description: `The coordinate system for Attributes x, y, width and height.`,
 					Type: AttributeTypeChoices(
-						AttributeTypeChoice("userSpaceOnUse", `The coordinate system for attributes x, y, width and height.`),
-						AttributeTypeChoice("objectBoundingBox", `The coordinate system for attributes x, y, width and height.`),
+						AttributeTypeChoice("userSpaceOnUse", `The coordinate system for Attributes x, y, width and height.`),
+						AttributeTypeChoice("objectBoundingBox", `The coordinate system for Attributes x, y, width and height.`),
 					),
 				},
 				{
@@ -1362,22 +1358,22 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "x",
-					Description: `The x attribute indicates where the left edge of the filter is placed.`,
+					Description: `The x Attribute indicates where the left edge of the filter is placed.`,
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "y",
-					Description: `The y attribute indicates where the top edge of the filter is placed.`,
+					Description: `The y Attribute indicates where the top edge of the filter is placed.`,
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "width",
-					Description: `The width attribute indicates the width of the filter primitive box.`,
+					Description: `The width Attribute indicates the width of the filter primitive box.`,
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "height",
-					Description: `The height attribute indicates the height of the filter primitive box.`,
+					Description: `The height Attribute indicates the height of the filter primitive box.`,
 					Type:        AttributeTypeString(),
 				},
 			},
@@ -1386,7 +1382,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "foreignObject",
 			Description: `The <foreignObject> SVG element allows for inclusion of a foreign XML namespace which has its graphical content drawn by a different user agent. The included foreign graphical content is subject to SVG transformations and compositing.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "x",
 					Description: `The x-axis coordinate of the side of the rectangular region which is closest to the user.`,
@@ -1428,7 +1424,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "g",
 			Description: `The <g> SVG element is a container used to group other SVG elements.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "requiredExtensions",
 					Description: `A space-separated list of required extensions, indicating that the parent SVG document must include the specified extensions for this element to be valid.`,
@@ -1450,7 +1446,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "image",
 			Description: `The <image> SVG element includes images inside SVG documents.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "preserveAspectRatio",
 					Description: `Indicates how the fetched image is fitted into the destination rectangle.`,
@@ -1498,7 +1494,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "line",
 			Description: `The <line> SVG element is an SVG basic shape, used to create a line connecting two points.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "x1",
 					Description: `The x-axis coordinate of the starting point of the line.`,
@@ -1525,13 +1521,13 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "linearGradient",
 			Description: `The <linearGradient> SVG element lets authors define linear gradients to fill or stroke graphical elements.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "gradientUnits",
-					Description: `The coordinate system for attributes x1, y1, x2 and y2.`,
+					Description: `The coordinate system for Attributes x1, y1, x2 and y2.`,
 					Type: AttributeTypeChoices(
-						AttributeTypeChoice("userSpaceOnUse", `The coordinate system for attributes x1, y1, x2 and y2.`),
-						AttributeTypeChoice("objectBoundingBox", `The coordinate system for attributes x1, y1, x2 and y2.`),
+						AttributeTypeChoice("userSpaceOnUse", `The coordinate system for Attributes x1, y1, x2 and y2.`),
+						AttributeTypeChoice("objectBoundingBox", `The coordinate system for Attributes x1, y1, x2 and y2.`),
 					),
 				},
 				{
@@ -1574,7 +1570,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "marker",
 			Description: `The <marker> SVG element defines the graphics that is to be used for drawing arrowheads or polymarkers on a given <path>, <line>, <polyline> or <polygon> element.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "refX",
 					Description: `The x-axis coordinate of the reference point which is to be aligned exactly at the marker position.`,
@@ -1623,13 +1619,13 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "mask",
 			Description: `The <mask> SVG element hides portions of SVG elements for user display.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "maskContentUnits",
-					Description: `The coordinate system for attributes x, y, width and height.`,
+					Description: `The coordinate system for Attributes x, y, width and height.`,
 					Type: AttributeTypeChoices(
-						AttributeTypeChoice("userSpaceOnUse", `The coordinate system for attributes x, y, width and height.`),
-						AttributeTypeChoice("objectBoundingBox", `The coordinate system for attributes x, y, width and height.`),
+						AttributeTypeChoice("userSpaceOnUse", `The coordinate system for Attributes x, y, width and height.`),
+						AttributeTypeChoice("objectBoundingBox", `The coordinate system for Attributes x, y, width and height.`),
 					),
 				},
 				{
@@ -1665,8 +1661,8 @@ var SVG = &pb.Namespace{
 
 		{
 			Tag:         "metadata",
-			Description: `The <metadata> SVG element allows to add metadata to SVG content. Metadata is structured information about data. In XML, metadata can be added to an element using for example attributes.`,
-			Attributes: []*pb.Attribute{
+			Description: `The <metadata> SVG element allows to add metadata to SVG content. Metadata is structured information about data. In XML, metadata can be added to an element using for example Attributes.`,
+			Attributes: []*Attribute{
 				{
 					Key:         "requiredExtensions",
 					Description: `A space-separated list of required extensions, indicating that the parent SVG document must include the specified extensions for this element to be valid.`,
@@ -1687,8 +1683,8 @@ var SVG = &pb.Namespace{
 
 		{
 			Tag:         "mpath",
-			Description: `The <mpath> SVG element allows to use the functionality of <animateMotion> to animate the <startOffset> attribute of SVG <textPath> elements.`,
-			Attributes: []*pb.Attribute{
+			Description: `The <mpath> SVG element allows to use the functionality of <animateMotion> to animate the <startOffset> Attribute of SVG <textPath> elements.`,
+			Attributes: []*Attribute{
 				{
 					Key:         "href",
 					Description: `A URI reference to the motion path definition.`,
@@ -1700,7 +1696,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "path",
 			Description: `The <path> SVG element is the generic element to define a shape. All the basic shapes can be created with a path element.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "d",
 					Description: `The definition of the outline of a shape.`,
@@ -1727,13 +1723,13 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "pattern",
 			Description: `The <pattern> SVG element fills a region with a pattern defined by an SVG image.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "patternUnits",
-					Description: `The coordinate system for attributes x, y, width and height.`,
+					Description: `The coordinate system for Attributes x, y, width and height.`,
 					Type: AttributeTypeChoices(
-						AttributeTypeChoice("userSpaceOnUse", `The coordinate system for attributes x, y, width and height.`),
-						AttributeTypeChoice("objectBoundingBox", `The coordinate system for attributes x, y, width and height.`),
+						AttributeTypeChoice("userSpaceOnUse", `The coordinate system for Attributes x, y, width and height.`),
+						AttributeTypeChoice("objectBoundingBox", `The coordinate system for Attributes x, y, width and height.`),
 					),
 				},
 				{
@@ -1780,7 +1776,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "polygon",
 			Description: `The <polygon> SVG element is an SVG basic shape, used to create a vector-based polygonal shape.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "points",
 					Description: `A list of points, each of which is a coordinate pair.`,
@@ -1792,7 +1788,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "polyline",
 			Description: `The <polyline> SVG element is an SVG basic shape, used to create a series of straight lines connecting several points. Typically a polyline is used to create open shapes as the last point doesn't have to be connected to the first point. For closed shapes see the <polygon> element.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "points",
 					Description: `A list of points, each of which is a coordinate pair.`,
@@ -1804,13 +1800,13 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "radialGradient",
 			Description: `The <radialGradient> SVG element lets authors define radial gradients to fill or stroke graphical elements.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "gradientUnits",
-					Description: `The coordinate system for attributes cx, cy and r.`,
+					Description: `The coordinate system for Attributes cx, cy and r.`,
 					Type: AttributeTypeChoices(
-						AttributeTypeChoice("userSpaceOnUse", `The coordinate system for attributes cx, cy and r.`),
-						AttributeTypeChoice("objectBoundingBox", `The coordinate system for attributes cx, cy and r.`),
+						AttributeTypeChoice("userSpaceOnUse", `The coordinate system for Attributes cx, cy and r.`),
+						AttributeTypeChoice("objectBoundingBox", `The coordinate system for Attributes cx, cy and r.`),
 					),
 				},
 				{
@@ -1849,7 +1845,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "rect",
 			Description: `The <rect> SVG element is a basic SVG shape that draws rectangles, defined by their position, width, and height. The shape is created by connecting a line from one point to the other three points.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "x",
 					Description: `The x-axis coordinate of the side of the rectangle which has the smaller x-axis value.`,
@@ -1885,7 +1881,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "script",
 			Description: `The <script> SVG element includes scripts, which can be used to trigger user interface events.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "type",
 					Description: `The scripting language used for the given script element.`,
@@ -1909,27 +1905,27 @@ var SVG = &pb.Namespace{
 
 		{
 			Tag:         "set",
-			Description: `The <set> SVG element provides a simple means of just setting the value of an attribute for a specified duration. It supports all attribute types, including those that cannot reasonably be interpolated, such as string and boolean values. The <set> element is non-additive. The additive and accumulate attributes are not allowed, and will be ignored if specified.`,
-			Attributes: []*pb.Attribute{
+			Description: `The <set> SVG element provides a simple means of just setting the value of an Attribute for a specified duration. It supports all Attribute types, including those that cannot reasonably be interpolated, such as string and boolean values. The <set> element is non-additive. The additive and accumulate Attributes are not allowed, and will be ignored if specified.`,
+			Attributes: []*Attribute{
 				{
 					Key:         "to",
-					Description: `The target attribute value to assign on end.`,
+					Description: `The target Attribute value to assign on end.`,
 					Type:        AttributeTypeString(),
 				},
 				{
-					Key:         "attributeName",
-					Description: `The name of the attribute to assign.`,
+					Key:         "AttributeName",
+					Description: `The name of the Attribute to assign.`,
 					Type:        AttributeTypeString(),
 				},
 				{
-					Key:         "attributeType",
-					Description: `The namespace in which the target attribute and its associated values are defined.`,
+					Key:         "AttributeType",
+					Description: `The namespace in which the target Attribute and its associated values are defined.`,
 					Type: AttributeTypeChoices(
-						AttributeTypeChoice("auto", `The namespace in which the target attribute and its associated values are defined.`),
-						AttributeTypeChoice("CSS", `The namespace in which the target attribute and its associated values are defined.`),
-						AttributeTypeChoice("XML", `The namespace in which the target attribute and its associated values are defined.`),
-						AttributeTypeChoice("XMLNS", `The namespace in which the target attribute and its associated values are defined.`),
-						AttributeTypeChoice("empty", `The namespace in which the target attribute and its associated values are defined.`),
+						AttributeTypeChoice("auto", `The namespace in which the target Attribute and its associated values are defined.`),
+						AttributeTypeChoice("CSS", `The namespace in which the target Attribute and its associated values are defined.`),
+						AttributeTypeChoice("XML", `The namespace in which the target Attribute and its associated values are defined.`),
+						AttributeTypeChoice("XMLNS", `The namespace in which the target Attribute and its associated values are defined.`),
+						AttributeTypeChoice("empty", `The namespace in which the target Attribute and its associated values are defined.`),
 					),
 				},
 				{
@@ -1949,12 +1945,12 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "min",
-					Description: `The minimum value allowed for the attribute.`,
+					Description: `The minimum value allowed for the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "max",
-					Description: `The maximum value allowed for the attribute.`,
+					Description: `The maximum value allowed for the Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
@@ -1989,7 +1985,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "stop",
 			Description: `The <stop> SVG element defines the ramp of colors to use on a gradient, which is a child element to either the <linearGradient> or the <radialGradient> element.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "offset",
 					Description: `The offset from the start of the gradient where the color first takes effect.`,
@@ -2004,8 +2000,8 @@ var SVG = &pb.Namespace{
 		},
 		{
 			Tag:         "style",
-			Description: `The <style> SVG element allows style sheets to be embedded directly within SVG content. SVG's style element has the same attributes as the corresponding element in HTML (see HTML's <style> element).`,
-			Attributes: []*pb.Attribute{
+			Description: `The <style> SVG element allows style sheets to be embedded directly within SVG content. SVG's style element has the same Attributes as the corresponding element in HTML (see HTML's <style> element).`,
+			Attributes: []*Attribute{
 				{
 					Key:         "type",
 					Description: `The style sheet language.`,
@@ -2026,7 +2022,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "svg",
 			Description: `The <svg> element is a container that defines a new coordinate system and viewport. It is used as the outermost element of SVG documents, but it can also be used to embed a SVG fragment inside an SVG or HTML document.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "x",
 					Description: `The x-axis coordinate of the side of the rectangular region which is closest to the user.`,
@@ -2049,7 +2045,7 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "viewBox",
-					Description: `The position and size of the viewport (the viewBox) is defined by the viewBox attribute.`,
+					Description: `The position and size of the viewport (the viewBox) is defined by the viewBox Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 				{
@@ -2073,8 +2069,8 @@ var SVG = &pb.Namespace{
 
 		{
 			Tag:         "switch",
-			Description: `The <switch> SVG element evaluates the requiredFeatures, requiredExtensions and systemLanguage attributes on its direct child elements in order, and then processes and renders the first child for which these attributes evaluate to true. All others will be bypassed and therefore not rendered. If the child element is a container element such as a <g>, then the entire subtree is either processed/rendered or bypassed/not rendered.`,
-			Attributes: []*pb.Attribute{
+			Description: `The <switch> SVG element evaluates the requiredFeatures, requiredExtensions and systemLanguage Attributes on its direct child elements in order, and then processes and renders the first child for which these Attributes evaluate to true. All others will be bypassed and therefore not rendered. If the child element is a container element such as a <g>, then the entire subtree is either processed/rendered or bypassed/not rendered.`,
+			Attributes: []*Attribute{
 				{
 					Key:         "requiredFeatures",
 					Description: `A space-separated list of required features, indicating that the parent SVG document must include support for all of the specified features for this element to be valid.`,
@@ -2096,7 +2092,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "symbol",
 			Description: `The <symbol> SVG element is used to define graphical template objects which can be instantiated by a <use> element. The use of symbol elements for graphics that are used multiple times in the same document adds structure and semantics. Documents that are rich in structure may be rendered graphically, as speech, or as Braille, and thus promote accessibility. note that a symbol element itself is not rendered. Only instances of a symbol element (i.e., a reference to a symbol by a <use> element) are rendered. To render a 'stand-alone' graphic that has been defined using a symbol, a reference to the symbol is referenced using a <use> element.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "preserveAspectRatio",
 					Description: `Indicates how the fetched image is fitted into the destination rectangle.`,
@@ -2118,8 +2114,8 @@ var SVG = &pb.Namespace{
 
 		{
 			Tag:         "text",
-			Description: `The <text> SVG element renders the first character at the initial current text position. This position is modified by the lengthAdjust and textLength attributes.`,
-			Attributes: []*pb.Attribute{
+			Description: `The <text> SVG element renders the first character at the initial current text position. This position is modified by the lengthAdjust and textLength Attributes.`,
+			Attributes: []*Attribute{
 				{
 					Key:         "x",
 					Description: `The x-axis coordinate of the initial current text position.`,
@@ -2147,7 +2143,7 @@ var SVG = &pb.Namespace{
 				},
 				{
 					Key:         "textLength",
-					Description: `The total sum of all of the advance values from rendering all of the characters within this element, including the advance value on the glyph (horizontal or vertical), the effect of properties 'kerning', 'letter-spacing' and 'word-spacing' and adjustments due to attributes 'x' and 'y' on the <text> element.`,
+					Description: `The total sum of all of the advance values from rendering all of the characters within this element, including the advance value on the glyph (horizontal or vertical), the effect of properties 'kerning', 'letter-spacing' and 'word-spacing' and adjustments due to Attributes 'x' and 'y' on the <text> element.`,
 					Type:        AttributeTypeNumber(),
 				},
 				{
@@ -2164,7 +2160,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "textPath",
 			Description: `The <textPath> SVG element defines a set of glyphs that exactly fit along a curve.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "href",
 					Description: `A URI reference to the path to render along.`,
@@ -2201,8 +2197,8 @@ var SVG = &pb.Namespace{
 
 		{
 			Tag:         "tspan",
-			Description: `The <tspan> SVG element lets authors explicitly specify the location of a glyph along the given path via the attributes.`,
-			Attributes: []*pb.Attribute{
+			Description: `The <tspan> SVG element lets authors explicitly specify the location of a glyph along the given path via the Attributes.`,
+			Attributes: []*Attribute{
 				{
 					Key:         "x",
 					Description: `The x-axis coordinate of the current text position.`,
@@ -2234,7 +2230,7 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "use",
 			Description: `The <use> SVG element includes a reference to a <symbol> element and attempts to display the referenced content. The reference is drawn exactly as it was defined. It can be reused as often as needed and can be programmatically manipulated.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "href",
 					Description: `A URI reference to the symbol to use.`,
@@ -2266,10 +2262,10 @@ var SVG = &pb.Namespace{
 		{
 			Tag:         "view",
 			Description: `The <view> SVG element is used to define a view into a &lt;svg&gt; element. It is partially deprecated in SVG 2.0 and should generally not be used.`,
-			Attributes: []*pb.Attribute{
+			Attributes: []*Attribute{
 				{
 					Key:         "viewBox",
-					Description: `The position and size of the viewport (the viewBox) is defined by the viewBox attribute.`,
+					Description: `The position and size of the viewport (the viewBox) is defined by the viewBox Attribute.`,
 					Type:        AttributeTypeString(),
 				},
 			},

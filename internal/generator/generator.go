@@ -9,12 +9,10 @@ import (
 	"regexp"
 	"strings"
 	"text/template"
-	"unicode"
 
-	pb "github.com/aprikotdev/speckles/internal/pb/gen/specs/v1"
+	"github.com/aprikotdev/speckles/internal/caser"
+	"github.com/aprikotdev/speckles/internal/config"
 	"github.com/iancoleman/strcase"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 )
 
 //go:embed templates
@@ -22,96 +20,41 @@ var templatesFS embed.FS
 
 var templs *template.Template
 
-func GenerateAll(ctx context.Context, outPath string, namespaces *pb.Namespaces) (err error) {
-	if len(namespaces.Namespaces) == 0 {
+func GenerateAll(ctx context.Context, outPath string, namespaces []*config.Namespace) (err error) {
+	if len(namespaces) == 0 {
 		return fmt.Errorf("no namespaces specified")
 	}
 
 	files, _ := os.ReadDir(outPath)
 	for _, file := range files {
-		if file.Name() != "builder.go" {
+		if file.Name() != "elements.go" {
 			if err := os.Remove(filepath.Join(outPath, file.Name())); err != nil {
 				return fmt.Errorf("failed to clean output directory: %w", err)
 			}
 		}
 	}
 
-	for _, a := range initialisms {
-		strcase.ConfigureAcronym(a, a)
-		strcase.ConfigureAcronym(cases.Title(language.Und).String(a), a)
-		strcase.ConfigureAcronym(strings.ToLower(a), a)
-	}
-
 	fm := template.FuncMap{}
-	fm["goPascal"] = goPascal
+	fm["goPascal"] = caser.GoPascal
 	fm["comments"] = comments
-	fm["choiceSuffix"] = choiceSuffix
-	fm["attrIsString"] = func(attr *pb.Attribute_Type) bool {
-		switch attr.Type.(type) {
-		case *pb.Attribute_Type_String_:
-			return true
-		}
-		return false
-	}
-	fm["attrIsDelimited"] = func(attr *pb.Attribute_Type) bool {
-		switch attr.Type.(type) {
-		case *pb.Attribute_Type_Delimited:
-			return true
-		}
-		return false
-	}
-	fm["attrIsKV"] = func(attr *pb.Attribute_Type) bool {
-		switch attr.Type.(type) {
-		case *pb.Attribute_Type_Kv:
-			return true
-		}
-		return false
-	}
-	fm["attrIsRune"] = func(attr *pb.Attribute_Type) bool {
-		switch attr.Type.(type) {
-		case *pb.Attribute_Type_Rune:
-			return true
-		}
-		return false
-	}
-	fm["attrIsBool"] = func(attr *pb.Attribute_Type) bool {
-		switch attr.Type.(type) {
-		case *pb.Attribute_Type_Bool:
-			return true
-		}
-		return false
-	}
-	fm["attrIsInt"] = func(attr *pb.Attribute_Type) bool {
-		switch attr.Type.(type) {
-		case *pb.Attribute_Type_Integer:
-			return true
-		}
-		return false
-	}
-	fm["attrIsNumber"] = func(attr *pb.Attribute_Type) bool {
-		switch attr.Type.(type) {
-		case *pb.Attribute_Type_Number:
-			return true
-		}
-		return false
-	}
-	fm["attrIsChoices"] = func(attr *pb.Attribute_Type) bool {
-		switch attr.Type.(type) {
-		case *pb.Attribute_Type_Choices:
-			return true
-		}
-		return false
-	}
+	fm["choiceSuffix"] = config.ChoiceSuffix
+	fm["attrIsBool"] = config.IsAttributeTypeBool
+	fm["attrIsRune"] = config.IsAttributeTypeRune
+	fm["attrIsString"] = config.IsAttributeTypeString
+	fm["attrIsInt"] = config.IsAttributeTypeInt
+	fm["attrIsNumber"] = config.IsAttributeTypeNumber
+	fm["attrIsDelimited"] = config.IsAttributeTypeDelimited
+	fm["attrIsKV"] = config.IsAttributeTypeKeyValue
+	fm["attrIsChoices"] = config.IsAttributeTypeChoices
 
 	templs, err = template.New("base").Funcs(fm).ParseFS(templatesFS, "templates/*.tmpl")
 	if err != nil {
 		return fmt.Errorf("failed to parse templates: %w", err)
 	}
 
-	for _, ns := range namespaces.Namespaces {
-		ns.Attributes = append(ns.Attributes, namespaces.Attributes...)
+	for _, ns := range namespaces {
 		for _, element := range ns.Elements {
-			if err := generateElement(ctx, outPath, namespaces.Attributes, ns, element); err != nil {
+			if err := generateElement(ctx, outPath, ns, element); err != nil {
 				return fmt.Errorf("failed to generate element %s: %w", element.Tag, err)
 			}
 		}
@@ -120,12 +63,12 @@ func GenerateAll(ctx context.Context, outPath string, namespaces *pb.Namespaces)
 	return nil
 }
 
-func generateElement(_ context.Context, pkgPath string, globalAttributes []*pb.Attribute, ns *pb.Namespace, element *pb.Element) error {
+func generateElement(_ context.Context, pkgPath string, ns *config.Namespace, element *config.Element) error {
 	if element.Name == "" {
 		element.Name = element.Tag
 	}
 
-	element.Attributes = processAttributes(element, ns, globalAttributes)
+	element.Attributes = processAttributes(element, ns)
 
 	prefix := strcase.ToSnake(ns.Name)
 
@@ -155,8 +98,8 @@ func generateElement(_ context.Context, pkgPath string, globalAttributes []*pb.A
 	}
 
 	templateData := struct {
-		Namespace *pb.Namespace
-		Element   *pb.Element
+		Namespace *config.Namespace
+		Element   *config.Element
 	}{
 		Namespace: ns,
 		Element:   element,
@@ -169,16 +112,15 @@ func generateElement(_ context.Context, pkgPath string, globalAttributes []*pb.A
 	return nil
 }
 
-func processAttributes(element *pb.Element, ns *pb.Namespace, globalAttributes []*pb.Attribute) []*pb.Attribute {
-	length := len(element.Attributes) + len(ns.Attributes) + len(globalAttributes)
+func processAttributes(element *config.Element, ns *config.Namespace) []*config.Attribute {
+	length := len(element.Attributes) + len(ns.Attributes)
 
-	attrs := make([]*pb.Attribute, 0, length)
+	attrs := make([]*config.Attribute, 0, length)
 	attrs = append(attrs, element.Attributes...)
 	attrs = append(attrs, ns.Attributes...)
-	attrs = append(attrs, globalAttributes...)
 
 	seenKeys := make(map[string]bool)
-	uniqueAttrs := make([]*pb.Attribute, 0, length)
+	uniqueAttrs := make([]*config.Attribute, 0, length)
 
 	for _, attr := range attrs {
 		// Ensure both name and key are set
@@ -192,58 +134,12 @@ func processAttributes(element *pb.Element, ns *pb.Namespace, globalAttributes [
 		// Skip duplicate attributes based on Key
 		if !seenKeys[attr.Key] {
 			seenKeys[attr.Key] = true
-			attr.Name = goPascal(attr.Name)
+			attr.Name = caser.GoPascal(attr.Name)
 			uniqueAttrs = append(uniqueAttrs, attr)
 		}
 	}
 
 	return uniqueAttrs
-}
-
-var initialisms = []string{"ACL", "API", "ASCII", "CPU", "CSS", "DNS", "EOF", "GUID", "HTML", "HTTP", "HTTPS", "ID", "IP", "JSON", "LHS", "QPS", "RAM", "RHS", "RPC", "SLA", "SMTP", "SQL", "SSH", "SVG", "TCP", "TLS", "TTL", "UDP", "UI", "UID", "UUID", "URI", "URL", "UTF8", "VM", "XML", "XMLNS", "XMPP", "XSRF", "XSS"}
-
-func goPascal(input string) string {
-	s := input
-
-	toReplace := []string{"-", ":", "/", "."}
-	sep := "_"
-	for _, old := range toReplace {
-		s = strings.ReplaceAll(s, old, sep)
-	}
-
-	// Format each part to match acronyms
-	parts := strings.Split(s, sep)
-
-	if len(parts) == 0 {
-		panic(fmt.Sprintf("no parts for input: %s", input))
-	}
-
-	for i := range parts {
-		if parts[i] == "" {
-			continue
-		} else {
-			parts[i] = strcase.ToCamel(parts[i])
-		}
-		// Check and replace acronyms
-		for _, initialism := range initialisms {
-			if strings.HasPrefix(parts[i], cases.Title(language.Und).String(initialism)) {
-				result := initialism + parts[i][len(initialism):]
-				parts[i] = result
-			}
-		}
-	}
-
-	out := strings.Join(parts, "")
-
-	// Check for unformatted acronyms in the output
-	for _, a := range initialisms {
-		wrong := cases.Title(language.Und).String(a)
-		if strings.Contains(out, wrong) {
-			panic(fmt.Sprintf("error in goPascal func: wrong acronym formatting: %s -> %s -> %s", input, s, out))
-		}
-	}
-
-	return out
 }
 
 func comments(s string) string {
@@ -268,29 +164,4 @@ func comments(s string) string {
 		lines = append(lines, line)
 	}
 	return strings.Join(lines, "\n")
-}
-
-func choiceSuffix(choiceName string, choices []*pb.Attribute_Choice) string {
-	if choiceName == "" {
-		return "Empty"
-	}
-
-	// Handle single-character choice names that may conflict in casing
-	if len(choiceName) == 1 {
-		for _, choice := range choices {
-			if choiceName != choice.Name {
-				if strings.EqualFold(choiceName, choice.Name) {
-					char := rune(choiceName[0])
-					if unicode.IsUpper(char) {
-						choiceName = "_upper_" + choiceName
-					} else {
-						choiceName = "_lower_" + choiceName
-					}
-					break
-				}
-			}
-		}
-	}
-
-	return goPascal(choiceName)
 }

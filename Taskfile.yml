@@ -2,34 +2,12 @@
 
 version: "3"
 
-vars:
-  VERSION: 0.8.0
-
-interval: 1000ms
-
 tasks:
-  pb:
-    dir: ./internal/pb
-    sources:
-      - "specs/v1/elements.proto"
-      - "buf.yaml"
-      - "buf.gen.yaml"
-    generates:
-      - "gen/**/*"
-    cmds:
-      - go install github.com/bufbuild/buf/cmd/buf@latest
-      - rm -rf ./internal/pb/gen
-      - buf dep update
-      - buf generate
-
   gen:
-    deps:
-      - pb
     sources:
+      - "internal/config/**/*.go"
       - "internal/generator/generator.go"
-      - "internal/cfg/**/*.go"
       - "internal/generator/templates/*.tmpl"
-      - "elements/builder.go"
     generates:
       - "elements/html_*.go"
       - "elements/mathml_*.go"

@@ -170,13 +170,13 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
     {{else if .Type | attrIsDelimited -}}
         {{.Description | comments}}
         func(e *{{$elStructName}}) {{.Name}}(s string) *{{$elStructName}}{
-            values := strings.Split(s, "{{.Type.Type.Delimited}}")
+            values := strings.Split(s, "{{.Type.Delimiter}}")
             if e.delimitedStrings == nil {
                 e.delimitedStrings = treemap.New[string, *delimitedBuilder[string]]()
             }
             ds, ok := e.delimitedStrings.Get("{{.Key}}")
             if !ok {
-                ds = newDelimitedBuilder[string]("{{.Type.Type.Delimited}}")
+                ds = newDelimitedBuilder[string]("{{.Type.Delimiter}}")
                 e.delimitedStrings.Set("{{.Key}}", ds)
             }
             ds.Add(values...)
@@ -216,7 +216,7 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
             }
             kv, ok := e.keyValueStrings.Get("{{.Key}}")
             if !ok {
-                kv = newKVBuilder("{{.Type.Type.Kv.KeyValueDelimiter}}", "{{.Type.Type.Kv.PairDelimiter}}")
+                kv = newKVBuilder("{{.Type.KeyValueDelimiter}}", "{{.Type.PairDelimiter}}")
                 e.keyValueStrings.Set("{{.Key}}", kv)
             }
             for i := 0; i < len(pairs)-1; i += 2 {
@@ -237,13 +237,13 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
             }
             _, ok := e.keyValueStrings.Get("{{.Key}}")
             if !ok {
-                kv := newKVBuilder("{{.Type.Type.Kv.KeyValueDelimiter}}", "{{.Type.Type.Kv.PairDelimiter}}")
+                kv := newKVBuilder("{{.Type.KeyValueDelimiter}}", "{{.Type.PairDelimiter}}")
                 e.keyValueStrings.Set("{{.Key}}", kv)
             }
-            s = strings.TrimRight(s, "{{.Type.Type.Kv.PairDelimiter}}")
-            kvPairs := strings.Split(s, "{{.Type.Type.Kv.PairDelimiter}}")
+            s = strings.TrimRight(s, "{{.Type.PairDelimiter}}")
+            kvPairs := strings.Split(s, "{{.Type.PairDelimiter}}")
             for _, pair := range kvPairs {
-                parts := strings.SplitN(pair, "{{.Type.Type.Kv.KeyValueDelimiter}}", 2)
+                parts := strings.SplitN(pair, "{{.Type.KeyValueDelimiter}}", 2)
                 if len(parts) != 2 {
                     panic(fmt.Sprintf("invalid key-value pair: %q", pair))
                 }
@@ -267,7 +267,7 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
             }
             _, ok := e.keyValueStrings.Get("{{.Key}}")
             if !ok {
-                kv := newKVBuilder("{{.Type.Type.Kv.KeyValueDelimiter}}", "{{.Type.Type.Kv.PairDelimiter}}")
+                kv := newKVBuilder("{{.Type.KeyValueDelimiter}}", "{{.Type.PairDelimiter}}")
                 e.keyValueStrings.Set("{{.Key}}", kv)
             }
             e.{{.Name}}Pairs(k, v)
@@ -303,7 +303,7 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
             }
             _, ok := e.keyValueStrings.Get("{{.Key}}")
             if !ok {
-								kv := newKVBuilder("{{.Type.Type.Kv.KeyValueDelimiter}}", "{{.Type.Type.Kv.PairDelimiter}}")
+								kv := newKVBuilder("{{.Type.KeyValueDelimiter}}", "{{.Type.PairDelimiter}}")
                 e.keyValueStrings.Set("{{.Key}}", kv)
             }
             keys := make([]string, 0, len(m))
@@ -346,7 +346,7 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         type {{$choicePrefix}}Choice string
 
         const(
-				{{$choices := .Type.Type.Choices.Choices -}}
+				{{$choices := .Type.Choices -}}
         {{range $i, $choice := $choices -}}
 						{{$suffix := choiceSuffix $choice.Name $choices -}}
             {{.Description | comments}}

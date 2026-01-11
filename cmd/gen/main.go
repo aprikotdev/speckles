@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/aprikotdev/speckles/internal/cfg"
+	"github.com/aprikotdev/speckles/internal/config"
 	"github.com/aprikotdev/speckles/internal/generator"
 )
 
@@ -22,7 +22,7 @@ func main() {
 }
 
 func run(ctx context.Context) error {
-	if err := generator.GenerateAll(ctx, "./elements", cfg.Default); err != nil {
+	if err := generator.GenerateAll(ctx, "./elements", config.Namespaces()); err != nil {
 		return fmt.Errorf("failed to generate all: %w", err)
 	}
 
