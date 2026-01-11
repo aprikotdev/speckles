@@ -13,7 +13,7 @@ import (
 )
 
 // The <feOffset> SVG filter primitive allows to offset the input image. The
-// amount of offset can be controlled by attributes dx and dy.
+// amount of offset can be controlled by Attributes dx and dy.
 type SVGFeOffsetElement struct {
 	*Element
 }
@@ -124,7 +124,7 @@ func (e *SVGFeOffsetElement) IfEscapedF(condition bool, format string, args ...a
 	return e
 }
 
-// The dx attribute indicates a shift along the x-axis on the kernel matrix.
+// The dx Attribute indicates a shift along the x-axis on the kernel matrix.
 func (e *SVGFeOffsetElement) Dx(f float64) *SVGFeOffsetElement {
 	if e.floatAttributes == nil {
 		e.floatAttributes = treemap.New[string, float64]()
@@ -133,7 +133,7 @@ func (e *SVGFeOffsetElement) Dx(f float64) *SVGFeOffsetElement {
 	return e
 }
 
-// The dx attribute indicates a shift along the x-axis on the kernel matrix.
+// The dx Attribute indicates a shift along the x-axis on the kernel matrix.
 func (e *SVGFeOffsetElement) IfDx(condition bool, f float64) *SVGFeOffsetElement {
 	if condition {
 		e.Dx(f)
@@ -141,7 +141,7 @@ func (e *SVGFeOffsetElement) IfDx(condition bool, f float64) *SVGFeOffsetElement
 	return e
 }
 
-// The dy attribute indicates a shift along the y-axis on the kernel matrix.
+// The dy Attribute indicates a shift along the y-axis on the kernel matrix.
 func (e *SVGFeOffsetElement) Dy(f float64) *SVGFeOffsetElement {
 	if e.floatAttributes == nil {
 		e.floatAttributes = treemap.New[string, float64]()
@@ -150,7 +150,7 @@ func (e *SVGFeOffsetElement) Dy(f float64) *SVGFeOffsetElement {
 	return e
 }
 
-// The dy attribute indicates a shift along the y-axis on the kernel matrix.
+// The dy Attribute indicates a shift along the y-axis on the kernel matrix.
 func (e *SVGFeOffsetElement) IfDy(condition bool, f float64) *SVGFeOffsetElement {
 	if condition {
 		e.Dy(f)

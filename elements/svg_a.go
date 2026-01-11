@@ -127,7 +127,7 @@ func (e *SVGAElement) IfEscapedF(condition bool, format string, args ...any) *SV
 }
 
 // Indicates that the hyperlink is to be used for downloading a resource. When
-// used together with the download attribute, the value of the attribute is used
+// used together with the download Attribute, the value of the Attribute is used
 // as the file name of the downloaded file. There are no restrictions on allowed
 // values, though / and \ will be converted to underscores and leading spaces in
 // filenames will be removed.
@@ -140,7 +140,7 @@ func (e *SVGAElement) Download(s string) *SVGAElement {
 }
 
 // Indicates that the hyperlink is to be used for downloading a resource. When
-// used together with the download attribute, the value of the attribute is used
+// used together with the download Attribute, the value of the Attribute is used
 // as the file name of the downloaded file. There are no restrictions on allowed
 // values, though / and \ will be converted to underscores and leading spaces in
 // filenames will be removed.
@@ -149,7 +149,7 @@ func (e *SVGAElement) DownloadF(format string, args ...any) *SVGAElement {
 }
 
 // Indicates that the hyperlink is to be used for downloading a resource. When
-// used together with the download attribute, the value of the attribute is used
+// used together with the download Attribute, the value of the Attribute is used
 // as the file name of the downloaded file. There are no restrictions on allowed
 // values, though / and \ will be converted to underscores and leading spaces in
 // filenames will be removed.
@@ -161,7 +161,7 @@ func (e *SVGAElement) IfDownload(condition bool, s string) *SVGAElement {
 }
 
 // Indicates that the hyperlink is to be used for downloading a resource. When
-// used together with the download attribute, the value of the attribute is used
+// used together with the download Attribute, the value of the Attribute is used
 // as the file name of the downloaded file. There are no restrictions on allowed
 // values, though / and \ will be converted to underscores and leading spaces in
 // filenames will be removed.
@@ -173,7 +173,7 @@ func (e *SVGAElement) IfDownloadF(condition bool, format string, args ...any) *S
 }
 
 // Indicates that the hyperlink is to be used for downloading a resource. When
-// used together with the download attribute, the value of the attribute is used
+// used together with the download Attribute, the value of the Attribute is used
 // as the file name of the downloaded file. There are no restrictions on allowed
 // values, though / and \ will be converted to underscores and leading spaces in
 // filenames will be removed.

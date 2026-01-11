@@ -296,7 +296,7 @@ func (e *SVGSVGElement) HeightRemove() *SVGSVGElement {
 }
 
 // The position and size of the viewport (the viewBox) is defined by the viewBox
-// attribute.
+// Attribute.
 func (e *SVGSVGElement) ViewBox(s string) *SVGSVGElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -306,13 +306,13 @@ func (e *SVGSVGElement) ViewBox(s string) *SVGSVGElement {
 }
 
 // The position and size of the viewport (the viewBox) is defined by the viewBox
-// attribute.
+// Attribute.
 func (e *SVGSVGElement) ViewBoxF(format string, args ...any) *SVGSVGElement {
 	return e.ViewBox(fmt.Sprintf(format, args...))
 }
 
 // The position and size of the viewport (the viewBox) is defined by the viewBox
-// attribute.
+// Attribute.
 func (e *SVGSVGElement) IfViewBox(condition bool, s string) *SVGSVGElement {
 	if condition {
 		e.ViewBox(s)
@@ -321,7 +321,7 @@ func (e *SVGSVGElement) IfViewBox(condition bool, s string) *SVGSVGElement {
 }
 
 // The position and size of the viewport (the viewBox) is defined by the viewBox
-// attribute.
+// Attribute.
 func (e *SVGSVGElement) IfViewBoxF(condition bool, format string, args ...any) *SVGSVGElement {
 	if condition {
 		e.ViewBox(fmt.Sprintf(format, args...))
@@ -330,7 +330,7 @@ func (e *SVGSVGElement) IfViewBoxF(condition bool, format string, args ...any) *
 }
 
 // The position and size of the viewport (the viewBox) is defined by the viewBox
-// attribute.
+// Attribute.
 // Remove the attribute ViewBox from the element.
 func (e *SVGSVGElement) ViewBoxRemove() *SVGSVGElement {
 	if e.stringAttributes == nil {

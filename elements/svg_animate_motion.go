@@ -12,7 +12,7 @@ import (
 	"github.com/igrmk/treemap/v2"
 )
 
-// The <animateMotion> SVG element is used to animate a transformation attribute
+// The <animateMotion> SVG element is used to animate a transformation Attribute
 // on a target element, thereby allowing the animation of translation, rotation,
 // and scaling.
 type SVGAnimateMotionElement struct {
@@ -390,9 +390,9 @@ func (e *SVGAnimateMotionElement) Fill(c SVGAnimateMotionFillChoice) *SVGAnimate
 type SVGAnimateMotionFillChoice string
 
 const (
-	// The animation will hold the attribute value when the animation ends.
+	// The animation will hold the Attribute value when the animation ends.
 	SVGAnimateMotionFillFreeze SVGAnimateMotionFillChoice = "freeze"
-	// The animation will remove the attribute value when the animation ends.
+	// The animation will remove the Attribute value when the animation ends.
 	SVGAnimateMotionFillRemove SVGAnimateMotionFillChoice = "remove"
 )
 
@@ -406,7 +406,7 @@ func (e *SVGAnimateMotionElement) FillRemove() *SVGAnimateMotionElement {
 	return e
 }
 
-// Defines the initial value of the attribute.
+// Defines the initial value of the Attribute.
 func (e *SVGAnimateMotionElement) From(s string) *SVGAnimateMotionElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -415,12 +415,12 @@ func (e *SVGAnimateMotionElement) From(s string) *SVGAnimateMotionElement {
 	return e
 }
 
-// Defines the initial value of the attribute.
+// Defines the initial value of the Attribute.
 func (e *SVGAnimateMotionElement) FromF(format string, args ...any) *SVGAnimateMotionElement {
 	return e.From(fmt.Sprintf(format, args...))
 }
 
-// Defines the initial value of the attribute.
+// Defines the initial value of the Attribute.
 func (e *SVGAnimateMotionElement) IfFrom(condition bool, s string) *SVGAnimateMotionElement {
 	if condition {
 		e.From(s)
@@ -428,7 +428,7 @@ func (e *SVGAnimateMotionElement) IfFrom(condition bool, s string) *SVGAnimateMo
 	return e
 }
 
-// Defines the initial value of the attribute.
+// Defines the initial value of the Attribute.
 func (e *SVGAnimateMotionElement) IfFromF(condition bool, format string, args ...any) *SVGAnimateMotionElement {
 	if condition {
 		e.From(fmt.Sprintf(format, args...))
@@ -436,7 +436,7 @@ func (e *SVGAnimateMotionElement) IfFromF(condition bool, format string, args ..
 	return e
 }
 
-// Defines the initial value of the attribute.
+// Defines the initial value of the Attribute.
 // Remove the attribute From from the element.
 func (e *SVGAnimateMotionElement) FromRemove() *SVGAnimateMotionElement {
 	if e.stringAttributes == nil {
@@ -531,7 +531,7 @@ func (e *SVGAnimateMotionElement) KeyTimesRemove() *SVGAnimateMotionElement {
 	return e
 }
 
-// Defines the maximum value allowed for the attribute.
+// Defines the maximum value allowed for the Attribute.
 func (e *SVGAnimateMotionElement) Max(s string) *SVGAnimateMotionElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -540,12 +540,12 @@ func (e *SVGAnimateMotionElement) Max(s string) *SVGAnimateMotionElement {
 	return e
 }
 
-// Defines the maximum value allowed for the attribute.
+// Defines the maximum value allowed for the Attribute.
 func (e *SVGAnimateMotionElement) MaxF(format string, args ...any) *SVGAnimateMotionElement {
 	return e.Max(fmt.Sprintf(format, args...))
 }
 
-// Defines the maximum value allowed for the attribute.
+// Defines the maximum value allowed for the Attribute.
 func (e *SVGAnimateMotionElement) IfMax(condition bool, s string) *SVGAnimateMotionElement {
 	if condition {
 		e.Max(s)
@@ -553,7 +553,7 @@ func (e *SVGAnimateMotionElement) IfMax(condition bool, s string) *SVGAnimateMot
 	return e
 }
 
-// Defines the maximum value allowed for the attribute.
+// Defines the maximum value allowed for the Attribute.
 func (e *SVGAnimateMotionElement) IfMaxF(condition bool, format string, args ...any) *SVGAnimateMotionElement {
 	if condition {
 		e.Max(fmt.Sprintf(format, args...))
@@ -561,7 +561,7 @@ func (e *SVGAnimateMotionElement) IfMaxF(condition bool, format string, args ...
 	return e
 }
 
-// Defines the maximum value allowed for the attribute.
+// Defines the maximum value allowed for the Attribute.
 // Remove the attribute Max from the element.
 func (e *SVGAnimateMotionElement) MaxRemove() *SVGAnimateMotionElement {
 	if e.stringAttributes == nil {
@@ -571,7 +571,7 @@ func (e *SVGAnimateMotionElement) MaxRemove() *SVGAnimateMotionElement {
 	return e
 }
 
-// Defines the minimum value allowed for the attribute.
+// Defines the minimum value allowed for the Attribute.
 func (e *SVGAnimateMotionElement) Min(s string) *SVGAnimateMotionElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -580,12 +580,12 @@ func (e *SVGAnimateMotionElement) Min(s string) *SVGAnimateMotionElement {
 	return e
 }
 
-// Defines the minimum value allowed for the attribute.
+// Defines the minimum value allowed for the Attribute.
 func (e *SVGAnimateMotionElement) MinF(format string, args ...any) *SVGAnimateMotionElement {
 	return e.Min(fmt.Sprintf(format, args...))
 }
 
-// Defines the minimum value allowed for the attribute.
+// Defines the minimum value allowed for the Attribute.
 func (e *SVGAnimateMotionElement) IfMin(condition bool, s string) *SVGAnimateMotionElement {
 	if condition {
 		e.Min(s)
@@ -593,7 +593,7 @@ func (e *SVGAnimateMotionElement) IfMin(condition bool, s string) *SVGAnimateMot
 	return e
 }
 
-// Defines the minimum value allowed for the attribute.
+// Defines the minimum value allowed for the Attribute.
 func (e *SVGAnimateMotionElement) IfMinF(condition bool, format string, args ...any) *SVGAnimateMotionElement {
 	if condition {
 		e.Min(fmt.Sprintf(format, args...))
@@ -601,7 +601,7 @@ func (e *SVGAnimateMotionElement) IfMinF(condition bool, format string, args ...
 	return e
 }
 
-// Defines the minimum value allowed for the attribute.
+// Defines the minimum value allowed for the Attribute.
 // Remove the attribute Min from the element.
 func (e *SVGAnimateMotionElement) MinRemove() *SVGAnimateMotionElement {
 	if e.stringAttributes == nil {
@@ -722,7 +722,7 @@ func (e *SVGAnimateMotionElement) RestartRemove() *SVGAnimateMotionElement {
 	return e
 }
 
-// Defines the ending value of the attribute.
+// Defines the ending value of the Attribute.
 func (e *SVGAnimateMotionElement) To(s string) *SVGAnimateMotionElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -731,12 +731,12 @@ func (e *SVGAnimateMotionElement) To(s string) *SVGAnimateMotionElement {
 	return e
 }
 
-// Defines the ending value of the attribute.
+// Defines the ending value of the Attribute.
 func (e *SVGAnimateMotionElement) ToF(format string, args ...any) *SVGAnimateMotionElement {
 	return e.To(fmt.Sprintf(format, args...))
 }
 
-// Defines the ending value of the attribute.
+// Defines the ending value of the Attribute.
 func (e *SVGAnimateMotionElement) IfTo(condition bool, s string) *SVGAnimateMotionElement {
 	if condition {
 		e.To(s)
@@ -744,7 +744,7 @@ func (e *SVGAnimateMotionElement) IfTo(condition bool, s string) *SVGAnimateMoti
 	return e
 }
 
-// Defines the ending value of the attribute.
+// Defines the ending value of the Attribute.
 func (e *SVGAnimateMotionElement) IfToF(condition bool, format string, args ...any) *SVGAnimateMotionElement {
 	if condition {
 		e.To(fmt.Sprintf(format, args...))
@@ -752,7 +752,7 @@ func (e *SVGAnimateMotionElement) IfToF(condition bool, format string, args ...a
 	return e
 }
 
-// Defines the ending value of the attribute.
+// Defines the ending value of the Attribute.
 // Remove the attribute To from the element.
 func (e *SVGAnimateMotionElement) ToRemove() *SVGAnimateMotionElement {
 	if e.stringAttributes == nil {

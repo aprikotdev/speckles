@@ -204,7 +204,7 @@ func (e *SVGFeFuncGElement) TableValuesRemove() *SVGFeFuncGElement {
 	return e
 }
 
-// The slope attribute indicates the slope of the linear function.
+// The slope Attribute indicates the slope of the linear function.
 func (e *SVGFeFuncGElement) Slope(f float64) *SVGFeFuncGElement {
 	if e.floatAttributes == nil {
 		e.floatAttributes = treemap.New[string, float64]()
@@ -213,7 +213,7 @@ func (e *SVGFeFuncGElement) Slope(f float64) *SVGFeFuncGElement {
 	return e
 }
 
-// The slope attribute indicates the slope of the linear function.
+// The slope Attribute indicates the slope of the linear function.
 func (e *SVGFeFuncGElement) IfSlope(condition bool, f float64) *SVGFeFuncGElement {
 	if condition {
 		e.Slope(f)
@@ -221,7 +221,7 @@ func (e *SVGFeFuncGElement) IfSlope(condition bool, f float64) *SVGFeFuncGElemen
 	return e
 }
 
-// The intercept attribute indicates the intercept of the linear function.
+// The intercept Attribute indicates the intercept of the linear function.
 func (e *SVGFeFuncGElement) Intercept(f float64) *SVGFeFuncGElement {
 	if e.floatAttributes == nil {
 		e.floatAttributes = treemap.New[string, float64]()
@@ -230,7 +230,7 @@ func (e *SVGFeFuncGElement) Intercept(f float64) *SVGFeFuncGElement {
 	return e
 }
 
-// The intercept attribute indicates the intercept of the linear function.
+// The intercept Attribute indicates the intercept of the linear function.
 func (e *SVGFeFuncGElement) IfIntercept(condition bool, f float64) *SVGFeFuncGElement {
 	if condition {
 		e.Intercept(f)
@@ -238,7 +238,7 @@ func (e *SVGFeFuncGElement) IfIntercept(condition bool, f float64) *SVGFeFuncGEl
 	return e
 }
 
-// The amplitude attribute indicates the amplitude of the cubic function.
+// The amplitude Attribute indicates the amplitude of the cubic function.
 func (e *SVGFeFuncGElement) Amplitude(f float64) *SVGFeFuncGElement {
 	if e.floatAttributes == nil {
 		e.floatAttributes = treemap.New[string, float64]()
@@ -247,7 +247,7 @@ func (e *SVGFeFuncGElement) Amplitude(f float64) *SVGFeFuncGElement {
 	return e
 }
 
-// The amplitude attribute indicates the amplitude of the cubic function.
+// The amplitude Attribute indicates the amplitude of the cubic function.
 func (e *SVGFeFuncGElement) IfAmplitude(condition bool, f float64) *SVGFeFuncGElement {
 	if condition {
 		e.Amplitude(f)
@@ -255,7 +255,7 @@ func (e *SVGFeFuncGElement) IfAmplitude(condition bool, f float64) *SVGFeFuncGEl
 	return e
 }
 
-// The exponent attribute indicates the exponent of the exponential function.
+// The exponent Attribute indicates the exponent of the exponential function.
 func (e *SVGFeFuncGElement) Exponent(f float64) *SVGFeFuncGElement {
 	if e.floatAttributes == nil {
 		e.floatAttributes = treemap.New[string, float64]()
@@ -264,7 +264,7 @@ func (e *SVGFeFuncGElement) Exponent(f float64) *SVGFeFuncGElement {
 	return e
 }
 
-// The exponent attribute indicates the exponent of the exponential function.
+// The exponent Attribute indicates the exponent of the exponential function.
 func (e *SVGFeFuncGElement) IfExponent(condition bool, f float64) *SVGFeFuncGElement {
 	if condition {
 		e.Exponent(f)
@@ -272,7 +272,7 @@ func (e *SVGFeFuncGElement) IfExponent(condition bool, f float64) *SVGFeFuncGEle
 	return e
 }
 
-// The offset attribute indicates the offset of the function.
+// The offset Attribute indicates the offset of the function.
 func (e *SVGFeFuncGElement) Offset(f float64) *SVGFeFuncGElement {
 	if e.floatAttributes == nil {
 		e.floatAttributes = treemap.New[string, float64]()
@@ -281,7 +281,7 @@ func (e *SVGFeFuncGElement) Offset(f float64) *SVGFeFuncGElement {
 	return e
 }
 
-// The offset attribute indicates the offset of the function.
+// The offset Attribute indicates the offset of the function.
 func (e *SVGFeFuncGElement) IfOffset(condition bool, f float64) *SVGFeFuncGElement {
 	if condition {
 		e.Offset(f)

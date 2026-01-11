@@ -14,7 +14,7 @@ import (
 
 // The <feBlend> SVG filter primitive composes two objects together ruled by a
 // certain blending mode. This is similar to what is known from image editing
-// software when blending two layers. The mode is defined by the mode attribute.
+// software when blending two layers. The mode is defined by the mode Attribute.
 type SVGFeBlendElement struct {
 	*Element
 }

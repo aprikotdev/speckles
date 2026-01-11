@@ -125,7 +125,7 @@ func (e *SVGFeMergeNodeElement) IfEscapedF(condition bool, format string, args .
 	return e
 }
 
-// The identifier for the input SVGAnimatedString attribute on the given
+// The identifier for the input SVGAnimatedString Attribute on the given
 // 'feMergeNode' element.
 func (e *SVGFeMergeNodeElement) In(s string) *SVGFeMergeNodeElement {
 	if e.stringAttributes == nil {
@@ -135,13 +135,13 @@ func (e *SVGFeMergeNodeElement) In(s string) *SVGFeMergeNodeElement {
 	return e
 }
 
-// The identifier for the input SVGAnimatedString attribute on the given
+// The identifier for the input SVGAnimatedString Attribute on the given
 // 'feMergeNode' element.
 func (e *SVGFeMergeNodeElement) InF(format string, args ...any) *SVGFeMergeNodeElement {
 	return e.In(fmt.Sprintf(format, args...))
 }
 
-// The identifier for the input SVGAnimatedString attribute on the given
+// The identifier for the input SVGAnimatedString Attribute on the given
 // 'feMergeNode' element.
 func (e *SVGFeMergeNodeElement) IfIn(condition bool, s string) *SVGFeMergeNodeElement {
 	if condition {
@@ -150,7 +150,7 @@ func (e *SVGFeMergeNodeElement) IfIn(condition bool, s string) *SVGFeMergeNodeEl
 	return e
 }
 
-// The identifier for the input SVGAnimatedString attribute on the given
+// The identifier for the input SVGAnimatedString Attribute on the given
 // 'feMergeNode' element.
 func (e *SVGFeMergeNodeElement) IfInF(condition bool, format string, args ...any) *SVGFeMergeNodeElement {
 	if condition {
@@ -159,7 +159,7 @@ func (e *SVGFeMergeNodeElement) IfInF(condition bool, format string, args ...any
 	return e
 }
 
-// The identifier for the input SVGAnimatedString attribute on the given
+// The identifier for the input SVGAnimatedString Attribute on the given
 // 'feMergeNode' element.
 // Remove the attribute In from the element.
 func (e *SVGFeMergeNodeElement) InRemove() *SVGFeMergeNodeElement {

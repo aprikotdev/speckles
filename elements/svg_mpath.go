@@ -13,7 +13,7 @@ import (
 )
 
 // The <mpath> SVG element allows to use the functionality of <animateMotion> to
-// animate the <startOffset> attribute of SVG <textPath> elements.
+// animate the <startOffset> Attribute of SVG <textPath> elements.
 type SVGMpathElement struct {
 	*Element
 }

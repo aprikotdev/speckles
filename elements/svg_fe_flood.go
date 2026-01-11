@@ -124,9 +124,9 @@ func (e *SVGFeFloodElement) IfEscapedF(condition bool, format string, args ...an
 	return e
 }
 
-// The flood-color attribute indicates what color to use to flood the current
+// The flood-color Attribute indicates what color to use to flood the current
 // filter primitive subregion defined through the <feFlood> element. If
-// attribute 'flood-color' is not specified, then the effect is as if a value of
+// Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
 func (e *SVGFeFloodElement) FloodColor(s string) *SVGFeFloodElement {
 	if e.stringAttributes == nil {
@@ -136,17 +136,17 @@ func (e *SVGFeFloodElement) FloodColor(s string) *SVGFeFloodElement {
 	return e
 }
 
-// The flood-color attribute indicates what color to use to flood the current
+// The flood-color Attribute indicates what color to use to flood the current
 // filter primitive subregion defined through the <feFlood> element. If
-// attribute 'flood-color' is not specified, then the effect is as if a value of
+// Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
 func (e *SVGFeFloodElement) FloodColorF(format string, args ...any) *SVGFeFloodElement {
 	return e.FloodColor(fmt.Sprintf(format, args...))
 }
 
-// The flood-color attribute indicates what color to use to flood the current
+// The flood-color Attribute indicates what color to use to flood the current
 // filter primitive subregion defined through the <feFlood> element. If
-// attribute 'flood-color' is not specified, then the effect is as if a value of
+// Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
 func (e *SVGFeFloodElement) IfFloodColor(condition bool, s string) *SVGFeFloodElement {
 	if condition {
@@ -155,9 +155,9 @@ func (e *SVGFeFloodElement) IfFloodColor(condition bool, s string) *SVGFeFloodEl
 	return e
 }
 
-// The flood-color attribute indicates what color to use to flood the current
+// The flood-color Attribute indicates what color to use to flood the current
 // filter primitive subregion defined through the <feFlood> element. If
-// attribute 'flood-color' is not specified, then the effect is as if a value of
+// Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
 func (e *SVGFeFloodElement) IfFloodColorF(condition bool, format string, args ...any) *SVGFeFloodElement {
 	if condition {
@@ -166,9 +166,9 @@ func (e *SVGFeFloodElement) IfFloodColorF(condition bool, format string, args ..
 	return e
 }
 
-// The flood-color attribute indicates what color to use to flood the current
+// The flood-color Attribute indicates what color to use to flood the current
 // filter primitive subregion defined through the <feFlood> element. If
-// attribute 'flood-color' is not specified, then the effect is as if a value of
+// Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
 // Remove the attribute FloodColor from the element.
 func (e *SVGFeFloodElement) FloodColorRemove() *SVGFeFloodElement {
@@ -179,7 +179,7 @@ func (e *SVGFeFloodElement) FloodColorRemove() *SVGFeFloodElement {
 	return e
 }
 
-// The flood-opacity attribute indicates the opacity value to use across the
+// The flood-opacity Attribute indicates the opacity value to use across the
 // current filter primitive subregion defined through the <feFlood> element.
 func (e *SVGFeFloodElement) FloodOpacity(f float64) *SVGFeFloodElement {
 	if e.floatAttributes == nil {
@@ -189,7 +189,7 @@ func (e *SVGFeFloodElement) FloodOpacity(f float64) *SVGFeFloodElement {
 	return e
 }
 
-// The flood-opacity attribute indicates the opacity value to use across the
+// The flood-opacity Attribute indicates the opacity value to use across the
 // current filter primitive subregion defined through the <feFlood> element.
 func (e *SVGFeFloodElement) IfFloodOpacity(condition bool, f float64) *SVGFeFloodElement {
 	if condition {

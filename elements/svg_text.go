@@ -14,7 +14,7 @@ import (
 
 // The <text> SVG element renders the first character at the initial current
 // text position. This position is modified by the lengthAdjust and textLength
-// attributes.
+// Attributes.
 type SVGTextElement struct {
 	*Element
 }
@@ -213,7 +213,7 @@ func (e *SVGTextElement) IfRotate(condition bool, f float64) *SVGTextElement {
 // The total sum of all of the advance values from rendering all of the
 // characters within this element, including the advance value on the glyph
 // (horizontal or vertical), the effect of properties 'kerning',
-// 'letter-spacing' and 'word-spacing' and adjustments due to attributes 'x' and
+// 'letter-spacing' and 'word-spacing' and adjustments due to Attributes 'x' and
 // 'y' on the <text> element.
 func (e *SVGTextElement) TextLength(f float64) *SVGTextElement {
 	if e.floatAttributes == nil {
@@ -226,7 +226,7 @@ func (e *SVGTextElement) TextLength(f float64) *SVGTextElement {
 // The total sum of all of the advance values from rendering all of the
 // characters within this element, including the advance value on the glyph
 // (horizontal or vertical), the effect of properties 'kerning',
-// 'letter-spacing' and 'word-spacing' and adjustments due to attributes 'x' and
+// 'letter-spacing' and 'word-spacing' and adjustments due to Attributes 'x' and
 // 'y' on the <text> element.
 func (e *SVGTextElement) IfTextLength(condition bool, f float64) *SVGTextElement {
 	if condition {

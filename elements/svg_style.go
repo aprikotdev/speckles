@@ -13,7 +13,7 @@ import (
 )
 
 // The <style> SVG element allows style sheets to be embedded directly within
-// SVG content. SVG's style element has the same attributes as the corresponding
+// SVG content. SVG's style element has the same Attributes as the corresponding
 // element in HTML (see HTML's <style> element).
 type SVGStyleElement struct {
 	*Element

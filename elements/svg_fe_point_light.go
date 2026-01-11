@@ -124,8 +124,8 @@ func (e *SVGFePointLightElement) IfEscapedF(condition bool, format string, args 
 	return e
 }
 
-// The x attribute indicates the x location of the light source in the
-// coordinate system established by attribute 'primitiveUnits' on the <filter>
+// The x Attribute indicates the x location of the light source in the
+// coordinate system established by Attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFePointLightElement) X(f float64) *SVGFePointLightElement {
 	if e.floatAttributes == nil {
@@ -135,8 +135,8 @@ func (e *SVGFePointLightElement) X(f float64) *SVGFePointLightElement {
 	return e
 }
 
-// The x attribute indicates the x location of the light source in the
-// coordinate system established by attribute 'primitiveUnits' on the <filter>
+// The x Attribute indicates the x location of the light source in the
+// coordinate system established by Attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFePointLightElement) IfX(condition bool, f float64) *SVGFePointLightElement {
 	if condition {
@@ -145,8 +145,8 @@ func (e *SVGFePointLightElement) IfX(condition bool, f float64) *SVGFePointLight
 	return e
 }
 
-// The y attribute indicates the y location of the light source in the
-// coordinate system established by attribute 'primitiveUnits' on the <filter>
+// The y Attribute indicates the y location of the light source in the
+// coordinate system established by Attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFePointLightElement) Y(f float64) *SVGFePointLightElement {
 	if e.floatAttributes == nil {
@@ -156,8 +156,8 @@ func (e *SVGFePointLightElement) Y(f float64) *SVGFePointLightElement {
 	return e
 }
 
-// The y attribute indicates the y location of the light source in the
-// coordinate system established by attribute 'primitiveUnits' on the <filter>
+// The y Attribute indicates the y location of the light source in the
+// coordinate system established by Attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFePointLightElement) IfY(condition bool, f float64) *SVGFePointLightElement {
 	if condition {
@@ -166,8 +166,8 @@ func (e *SVGFePointLightElement) IfY(condition bool, f float64) *SVGFePointLight
 	return e
 }
 
-// The z attribute indicates the z location of the light source in the
-// coordinate system established by attribute 'primitiveUnits' on the <filter>
+// The z Attribute indicates the z location of the light source in the
+// coordinate system established by Attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFePointLightElement) Z(f float64) *SVGFePointLightElement {
 	if e.floatAttributes == nil {
@@ -177,8 +177,8 @@ func (e *SVGFePointLightElement) Z(f float64) *SVGFePointLightElement {
 	return e
 }
 
-// The z attribute indicates the z location of the light source in the
-// coordinate system established by attribute 'primitiveUnits' on the <filter>
+// The z Attribute indicates the z location of the light source in the
+// coordinate system established by Attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFePointLightElement) IfZ(condition bool, f float64) *SVGFePointLightElement {
 	if condition {

@@ -14,7 +14,7 @@ import (
 
 // The <metadata> SVG element allows to add metadata to SVG content. Metadata is
 // structured information about data. In XML, metadata can be added to an
-// element using for example attributes.
+// element using for example Attributes.
 type SVGMetadataElement struct {
 	*Element
 }

@@ -164,7 +164,7 @@ func (e *SVGFeMorphologyElement) InRemove() *SVGFeMorphologyElement {
 	return e
 }
 
-// The operator attribute defines what type of operation is performed.
+// The operator Attribute defines what type of operation is performed.
 func (e *SVGFeMorphologyElement) Operator(c SVGFeMorphologyOperatorChoice) *SVGFeMorphologyElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -176,13 +176,13 @@ func (e *SVGFeMorphologyElement) Operator(c SVGFeMorphologyOperatorChoice) *SVGF
 type SVGFeMorphologyOperatorChoice string
 
 const (
-	// The operator attribute defines what type of operation is performed.
+	// The operator Attribute defines what type of operation is performed.
 	SVGFeMorphologyOperatorErode SVGFeMorphologyOperatorChoice = "erode"
-	// The operator attribute defines what type of operation is performed.
+	// The operator Attribute defines what type of operation is performed.
 	SVGFeMorphologyOperatorDilate SVGFeMorphologyOperatorChoice = "dilate"
 )
 
-// The operator attribute defines what type of operation is performed.
+// The operator Attribute defines what type of operation is performed.
 // Remove the attribute Operator from the element.
 func (e *SVGFeMorphologyElement) OperatorRemove() *SVGFeMorphologyElement {
 	if e.stringAttributes == nil {
@@ -192,7 +192,7 @@ func (e *SVGFeMorphologyElement) OperatorRemove() *SVGFeMorphologyElement {
 	return e
 }
 
-// The radius attribute indicates the size of the matrix.
+// The radius Attribute indicates the size of the matrix.
 func (e *SVGFeMorphologyElement) Radius(f float64) *SVGFeMorphologyElement {
 	if e.floatAttributes == nil {
 		e.floatAttributes = treemap.New[string, float64]()
@@ -201,7 +201,7 @@ func (e *SVGFeMorphologyElement) Radius(f float64) *SVGFeMorphologyElement {
 	return e
 }
 
-// The radius attribute indicates the size of the matrix.
+// The radius Attribute indicates the size of the matrix.
 func (e *SVGFeMorphologyElement) IfRadius(condition bool, f float64) *SVGFeMorphologyElement {
 	if condition {
 		e.Radius(f)

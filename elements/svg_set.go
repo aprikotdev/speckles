@@ -13,10 +13,10 @@ import (
 )
 
 // The <set> SVG element provides a simple means of just setting the value of an
-// attribute for a specified duration. It supports all attribute types,
+// Attribute for a specified duration. It supports all Attribute types,
 // including those that cannot reasonably be interpolated, such as string and
 // boolean values. The <set> element is non-additive. The additive and
-// accumulate attributes are not allowed, and will be ignored if specified.
+// accumulate Attributes are not allowed, and will be ignored if specified.
 type SVGSetElement struct {
 	*Element
 }
@@ -127,7 +127,7 @@ func (e *SVGSetElement) IfEscapedF(condition bool, format string, args ...any) *
 	return e
 }
 
-// The target attribute value to assign on end.
+// The target Attribute value to assign on end.
 func (e *SVGSetElement) To(s string) *SVGSetElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -136,12 +136,12 @@ func (e *SVGSetElement) To(s string) *SVGSetElement {
 	return e
 }
 
-// The target attribute value to assign on end.
+// The target Attribute value to assign on end.
 func (e *SVGSetElement) ToF(format string, args ...any) *SVGSetElement {
 	return e.To(fmt.Sprintf(format, args...))
 }
 
-// The target attribute value to assign on end.
+// The target Attribute value to assign on end.
 func (e *SVGSetElement) IfTo(condition bool, s string) *SVGSetElement {
 	if condition {
 		e.To(s)
@@ -149,7 +149,7 @@ func (e *SVGSetElement) IfTo(condition bool, s string) *SVGSetElement {
 	return e
 }
 
-// The target attribute value to assign on end.
+// The target Attribute value to assign on end.
 func (e *SVGSetElement) IfToF(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.To(fmt.Sprintf(format, args...))
@@ -157,7 +157,7 @@ func (e *SVGSetElement) IfToF(condition bool, format string, args ...any) *SVGSe
 	return e
 }
 
-// The target attribute value to assign on end.
+// The target Attribute value to assign on end.
 // Remove the attribute To from the element.
 func (e *SVGSetElement) ToRemove() *SVGSetElement {
 	if e.stringAttributes == nil {
@@ -167,21 +167,21 @@ func (e *SVGSetElement) ToRemove() *SVGSetElement {
 	return e
 }
 
-// The name of the attribute to assign.
+// The name of the Attribute to assign.
 func (e *SVGSetElement) AttributeName(s string) *SVGSetElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.stringAttributes.Set("attributeName", s)
+	e.stringAttributes.Set("AttributeName", s)
 	return e
 }
 
-// The name of the attribute to assign.
+// The name of the Attribute to assign.
 func (e *SVGSetElement) AttributeNameF(format string, args ...any) *SVGSetElement {
 	return e.AttributeName(fmt.Sprintf(format, args...))
 }
 
-// The name of the attribute to assign.
+// The name of the Attribute to assign.
 func (e *SVGSetElement) IfAttributeName(condition bool, s string) *SVGSetElement {
 	if condition {
 		e.AttributeName(s)
@@ -189,7 +189,7 @@ func (e *SVGSetElement) IfAttributeName(condition bool, s string) *SVGSetElement
 	return e
 }
 
-// The name of the attribute to assign.
+// The name of the Attribute to assign.
 func (e *SVGSetElement) IfAttributeNameF(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.AttributeName(fmt.Sprintf(format, args...))
@@ -197,54 +197,54 @@ func (e *SVGSetElement) IfAttributeNameF(condition bool, format string, args ...
 	return e
 }
 
-// The name of the attribute to assign.
+// The name of the Attribute to assign.
 // Remove the attribute AttributeName from the element.
 func (e *SVGSetElement) AttributeNameRemove() *SVGSetElement {
 	if e.stringAttributes == nil {
 		return e
 	}
-	e.stringAttributes.Del("attributeName")
+	e.stringAttributes.Del("AttributeName")
 	return e
 }
 
-// The namespace in which the target attribute and its associated values are
+// The namespace in which the target Attribute and its associated values are
 // defined.
 func (e *SVGSetElement) AttributeType(c SVGSetAttributeTypeChoice) *SVGSetElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
 	}
-	e.stringAttributes.Set("attributeType", string(c))
+	e.stringAttributes.Set("AttributeType", string(c))
 	return e
 }
 
 type SVGSetAttributeTypeChoice string
 
 const (
-	// The namespace in which the target attribute and its associated values are
+	// The namespace in which the target Attribute and its associated values are
 	// defined.
 	SVGSetAttributeTypeAuto SVGSetAttributeTypeChoice = "auto"
-	// The namespace in which the target attribute and its associated values are
+	// The namespace in which the target Attribute and its associated values are
 	// defined.
 	SVGSetAttributeTypeCSS SVGSetAttributeTypeChoice = "CSS"
-	// The namespace in which the target attribute and its associated values are
+	// The namespace in which the target Attribute and its associated values are
 	// defined.
 	SVGSetAttributeTypeXML SVGSetAttributeTypeChoice = "XML"
-	// The namespace in which the target attribute and its associated values are
+	// The namespace in which the target Attribute and its associated values are
 	// defined.
 	SVGSetAttributeTypeXMLNS SVGSetAttributeTypeChoice = "XMLNS"
-	// The namespace in which the target attribute and its associated values are
+	// The namespace in which the target Attribute and its associated values are
 	// defined.
 	SVGSetAttributeTypeEmpty SVGSetAttributeTypeChoice = "empty"
 )
 
-// The namespace in which the target attribute and its associated values are
+// The namespace in which the target Attribute and its associated values are
 // defined.
 // Remove the attribute AttributeType from the element.
 func (e *SVGSetElement) AttributeTypeRemove() *SVGSetElement {
 	if e.stringAttributes == nil {
 		return e
 	}
-	e.stringAttributes.Del("attributeType")
+	e.stringAttributes.Del("AttributeType")
 	return e
 }
 
@@ -368,7 +368,7 @@ func (e *SVGSetElement) EndRemove() *SVGSetElement {
 	return e
 }
 
-// The minimum value allowed for the attribute.
+// The minimum value allowed for the Attribute.
 func (e *SVGSetElement) Min(s string) *SVGSetElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -377,12 +377,12 @@ func (e *SVGSetElement) Min(s string) *SVGSetElement {
 	return e
 }
 
-// The minimum value allowed for the attribute.
+// The minimum value allowed for the Attribute.
 func (e *SVGSetElement) MinF(format string, args ...any) *SVGSetElement {
 	return e.Min(fmt.Sprintf(format, args...))
 }
 
-// The minimum value allowed for the attribute.
+// The minimum value allowed for the Attribute.
 func (e *SVGSetElement) IfMin(condition bool, s string) *SVGSetElement {
 	if condition {
 		e.Min(s)
@@ -390,7 +390,7 @@ func (e *SVGSetElement) IfMin(condition bool, s string) *SVGSetElement {
 	return e
 }
 
-// The minimum value allowed for the attribute.
+// The minimum value allowed for the Attribute.
 func (e *SVGSetElement) IfMinF(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.Min(fmt.Sprintf(format, args...))
@@ -398,7 +398,7 @@ func (e *SVGSetElement) IfMinF(condition bool, format string, args ...any) *SVGS
 	return e
 }
 
-// The minimum value allowed for the attribute.
+// The minimum value allowed for the Attribute.
 // Remove the attribute Min from the element.
 func (e *SVGSetElement) MinRemove() *SVGSetElement {
 	if e.stringAttributes == nil {
@@ -408,7 +408,7 @@ func (e *SVGSetElement) MinRemove() *SVGSetElement {
 	return e
 }
 
-// The maximum value allowed for the attribute.
+// The maximum value allowed for the Attribute.
 func (e *SVGSetElement) Max(s string) *SVGSetElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -417,12 +417,12 @@ func (e *SVGSetElement) Max(s string) *SVGSetElement {
 	return e
 }
 
-// The maximum value allowed for the attribute.
+// The maximum value allowed for the Attribute.
 func (e *SVGSetElement) MaxF(format string, args ...any) *SVGSetElement {
 	return e.Max(fmt.Sprintf(format, args...))
 }
 
-// The maximum value allowed for the attribute.
+// The maximum value allowed for the Attribute.
 func (e *SVGSetElement) IfMax(condition bool, s string) *SVGSetElement {
 	if condition {
 		e.Max(s)
@@ -430,7 +430,7 @@ func (e *SVGSetElement) IfMax(condition bool, s string) *SVGSetElement {
 	return e
 }
 
-// The maximum value allowed for the attribute.
+// The maximum value allowed for the Attribute.
 func (e *SVGSetElement) IfMaxF(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.Max(fmt.Sprintf(format, args...))
@@ -438,7 +438,7 @@ func (e *SVGSetElement) IfMaxF(condition bool, format string, args ...any) *SVGS
 	return e
 }
 
-// The maximum value allowed for the attribute.
+// The maximum value allowed for the Attribute.
 // Remove the attribute Max from the element.
 func (e *SVGSetElement) MaxRemove() *SVGSetElement {
 	if e.stringAttributes == nil {

@@ -166,7 +166,7 @@ func (e *SVGFeGaussianBlurElement) InRemove() *SVGFeGaussianBlurElement {
 
 // The standard deviation for the blur operation. If two <numbers> are provided,
 // the first number represents a standard deviation value along the x-axis of
-// the coordinate system established by attribute 'primitiveUnits' on the
+// the coordinate system established by Attribute 'primitiveUnits' on the
 // <filter> element. The second value represents a standard deviation in Y. If
 // one number is provided, then that value is used for both X and Y. Negative
 // values are not allowed. A value of zero disables the effect of the given
@@ -181,7 +181,7 @@ func (e *SVGFeGaussianBlurElement) StdDeviation(f float64) *SVGFeGaussianBlurEle
 
 // The standard deviation for the blur operation. If two <numbers> are provided,
 // the first number represents a standard deviation value along the x-axis of
-// the coordinate system established by attribute 'primitiveUnits' on the
+// the coordinate system established by Attribute 'primitiveUnits' on the
 // <filter> element. The second value represents a standard deviation in Y. If
 // one number is provided, then that value is used for both X and Y. Negative
 // values are not allowed. A value of zero disables the effect of the given

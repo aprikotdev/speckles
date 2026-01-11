@@ -123,7 +123,7 @@ func (e *MathMLMoElement) IfEscapedF(condition bool, format string, args ...any)
 	return e
 }
 
-// This attribute specifies whether the operator is to be rendered as a fence.
+// This Attribute specifies whether the operator is to be rendered as a fence.
 // Possible values are true and false.
 func (e *MathMLMoElement) Fence(c MathMLMoFenceChoice) *MathMLMoElement {
 	if e.stringAttributes == nil {
@@ -142,7 +142,7 @@ const (
 	MathMLMoFenceFalse MathMLMoFenceChoice = "false"
 )
 
-// This attribute specifies whether the operator is to be rendered as a fence.
+// This Attribute specifies whether the operator is to be rendered as a fence.
 // Possible values are true and false.
 // Remove the attribute Fence from the element.
 func (e *MathMLMoElement) FenceRemove() *MathMLMoElement {
@@ -153,7 +153,7 @@ func (e *MathMLMoElement) FenceRemove() *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the minimum amount of space that should be left on
+// This Attribute specifies the minimum amount of space that should be left on
 // the left side of the operator. Possible values are a dimension or a
 // dimensionless number.
 func (e *MathMLMoElement) Lspace(s string) *MathMLMoElement {
@@ -164,14 +164,14 @@ func (e *MathMLMoElement) Lspace(s string) *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the minimum amount of space that should be left on
+// This Attribute specifies the minimum amount of space that should be left on
 // the left side of the operator. Possible values are a dimension or a
 // dimensionless number.
 func (e *MathMLMoElement) LspaceF(format string, args ...any) *MathMLMoElement {
 	return e.Lspace(fmt.Sprintf(format, args...))
 }
 
-// This attribute specifies the minimum amount of space that should be left on
+// This Attribute specifies the minimum amount of space that should be left on
 // the left side of the operator. Possible values are a dimension or a
 // dimensionless number.
 func (e *MathMLMoElement) IfLspace(condition bool, s string) *MathMLMoElement {
@@ -181,7 +181,7 @@ func (e *MathMLMoElement) IfLspace(condition bool, s string) *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the minimum amount of space that should be left on
+// This Attribute specifies the minimum amount of space that should be left on
 // the left side of the operator. Possible values are a dimension or a
 // dimensionless number.
 func (e *MathMLMoElement) IfLspaceF(condition bool, format string, args ...any) *MathMLMoElement {
@@ -191,7 +191,7 @@ func (e *MathMLMoElement) IfLspaceF(condition bool, format string, args ...any) 
 	return e
 }
 
-// This attribute specifies the minimum amount of space that should be left on
+// This Attribute specifies the minimum amount of space that should be left on
 // the left side of the operator. Possible values are a dimension or a
 // dimensionless number.
 // Remove the attribute Lspace from the element.
@@ -203,7 +203,7 @@ func (e *MathMLMoElement) LspaceRemove() *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the minimum amount of space that should be left on
+// This Attribute specifies the minimum amount of space that should be left on
 // the right side of the operator. Possible values are a dimension or a
 // dimensionless number.
 func (e *MathMLMoElement) Rspace(s string) *MathMLMoElement {
@@ -214,14 +214,14 @@ func (e *MathMLMoElement) Rspace(s string) *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the minimum amount of space that should be left on
+// This Attribute specifies the minimum amount of space that should be left on
 // the right side of the operator. Possible values are a dimension or a
 // dimensionless number.
 func (e *MathMLMoElement) RspaceF(format string, args ...any) *MathMLMoElement {
 	return e.Rspace(fmt.Sprintf(format, args...))
 }
 
-// This attribute specifies the minimum amount of space that should be left on
+// This Attribute specifies the minimum amount of space that should be left on
 // the right side of the operator. Possible values are a dimension or a
 // dimensionless number.
 func (e *MathMLMoElement) IfRspace(condition bool, s string) *MathMLMoElement {
@@ -231,7 +231,7 @@ func (e *MathMLMoElement) IfRspace(condition bool, s string) *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the minimum amount of space that should be left on
+// This Attribute specifies the minimum amount of space that should be left on
 // the right side of the operator. Possible values are a dimension or a
 // dimensionless number.
 func (e *MathMLMoElement) IfRspaceF(condition bool, format string, args ...any) *MathMLMoElement {
@@ -241,7 +241,7 @@ func (e *MathMLMoElement) IfRspaceF(condition bool, format string, args ...any) 
 	return e
 }
 
-// This attribute specifies the minimum amount of space that should be left on
+// This Attribute specifies the minimum amount of space that should be left on
 // the right side of the operator. Possible values are a dimension or a
 // dimensionless number.
 // Remove the attribute Rspace from the element.
@@ -296,7 +296,7 @@ func (e *MathMLMoElement) ClassRemove(s ...string) *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the text directionality of the element, merely
+// This Attribute specifies the text directionality of the element, merely
 // indicating what direction the text flows when surrounded by text with
 // inherent directionality (such as Arabic or Hebrew). Possible values are ltr
 // (left-to-right) and rtl (right-to-left).
@@ -317,7 +317,7 @@ const (
 	MathMLMoDirRtl MathMLMoDirChoice = "rtl"
 )
 
-// This attribute specifies the text directionality of the element, merely
+// This Attribute specifies the text directionality of the element, merely
 // indicating what direction the text flows when surrounded by text with
 // inherent directionality (such as Arabic or Hebrew). Possible values are ltr
 // (left-to-right) and rtl (right-to-left).
@@ -330,7 +330,7 @@ func (e *MathMLMoElement) DirRemove() *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies whether the element should be rendered using
+// This Attribute specifies whether the element should be rendered using
 // displaystyle rules or not. Possible values are true and false.
 func (e *MathMLMoElement) Displaystyle(c MathMLMoDisplaystyleChoice) *MathMLMoElement {
 	if e.stringAttributes == nil {
@@ -349,7 +349,7 @@ const (
 	MathMLMoDisplaystyleFalse MathMLMoDisplaystyleChoice = "false"
 )
 
-// This attribute specifies whether the element should be rendered using
+// This Attribute specifies whether the element should be rendered using
 // displaystyle rules or not. Possible values are true and false.
 // Remove the attribute Displaystyle from the element.
 func (e *MathMLMoElement) DisplaystyleRemove() *MathMLMoElement {
@@ -360,7 +360,7 @@ func (e *MathMLMoElement) DisplaystyleRemove() *MathMLMoElement {
 	return e
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLMoElement) ID(s string) *MathMLMoElement {
 	if e.stringAttributes == nil {
@@ -370,13 +370,13 @@ func (e *MathMLMoElement) ID(s string) *MathMLMoElement {
 	return e
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLMoElement) IDF(format string, args ...any) *MathMLMoElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLMoElement) IfID(condition bool, s string) *MathMLMoElement {
 	if condition {
@@ -385,7 +385,7 @@ func (e *MathMLMoElement) IfID(condition bool, s string) *MathMLMoElement {
 	return e
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLMoElement) IfIDF(condition bool, format string, args ...any) *MathMLMoElement {
 	if condition {
@@ -394,7 +394,7 @@ func (e *MathMLMoElement) IfIDF(condition bool, format string, args ...any) *Mat
 	return e
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 // Remove the attribute ID from the element.
 func (e *MathMLMoElement) IDRemove() *MathMLMoElement {
@@ -405,7 +405,7 @@ func (e *MathMLMoElement) IDRemove() *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLMoElement) Mathbackground(s string) *MathMLMoElement {
@@ -416,14 +416,14 @@ func (e *MathMLMoElement) Mathbackground(s string) *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLMoElement) MathbackgroundF(format string, args ...any) *MathMLMoElement {
 	return e.Mathbackground(fmt.Sprintf(format, args...))
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLMoElement) IfMathbackground(condition bool, s string) *MathMLMoElement {
@@ -433,7 +433,7 @@ func (e *MathMLMoElement) IfMathbackground(condition bool, s string) *MathMLMoEl
 	return e
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLMoElement) IfMathbackgroundF(condition bool, format string, args ...any) *MathMLMoElement {
@@ -443,7 +443,7 @@ func (e *MathMLMoElement) IfMathbackgroundF(condition bool, format string, args 
 	return e
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 // Remove the attribute Mathbackground from the element.
@@ -455,7 +455,7 @@ func (e *MathMLMoElement) MathbackgroundRemove() *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLMoElement) Mathcolor(s string) *MathMLMoElement {
@@ -466,14 +466,14 @@ func (e *MathMLMoElement) Mathcolor(s string) *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLMoElement) MathcolorF(format string, args ...any) *MathMLMoElement {
 	return e.Mathcolor(fmt.Sprintf(format, args...))
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLMoElement) IfMathcolor(condition bool, s string) *MathMLMoElement {
@@ -483,7 +483,7 @@ func (e *MathMLMoElement) IfMathcolor(condition bool, s string) *MathMLMoElement
 	return e
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLMoElement) IfMathcolorF(condition bool, format string, args ...any) *MathMLMoElement {
@@ -493,7 +493,7 @@ func (e *MathMLMoElement) IfMathcolorF(condition bool, format string, args ...an
 	return e
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 // Remove the attribute Mathcolor from the element.
@@ -505,7 +505,7 @@ func (e *MathMLMoElement) MathcolorRemove() *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLMoElement) MathsizeStr(s string) *MathMLMoElement {
 	if e.stringAttributes == nil {
@@ -515,13 +515,13 @@ func (e *MathMLMoElement) MathsizeStr(s string) *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLMoElement) MathsizeStrF(format string, args ...any) *MathMLMoElement {
 	return e.MathsizeStr(fmt.Sprintf(format, args...))
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLMoElement) IfMathsizeStr(condition bool, s string) *MathMLMoElement {
 	if condition {
@@ -530,7 +530,7 @@ func (e *MathMLMoElement) IfMathsizeStr(condition bool, s string) *MathMLMoEleme
 	return e
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLMoElement) IfMathsizeStrF(condition bool, format string, args ...any) *MathMLMoElement {
 	if condition {
@@ -539,7 +539,7 @@ func (e *MathMLMoElement) IfMathsizeStrF(condition bool, format string, args ...
 	return e
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 // Remove the attribute MathsizeStr from the element.
 func (e *MathMLMoElement) MathsizeStrRemove() *MathMLMoElement {
@@ -550,10 +550,10 @@ func (e *MathMLMoElement) MathsizeStrRemove() *MathMLMoElement {
 	return e
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 func (e *MathMLMoElement) Nonce(s string) *MathMLMoElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -562,18 +562,18 @@ func (e *MathMLMoElement) Nonce(s string) *MathMLMoElement {
 	return e
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 func (e *MathMLMoElement) NonceF(format string, args ...any) *MathMLMoElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 func (e *MathMLMoElement) IfNonce(condition bool, s string) *MathMLMoElement {
 	if condition {
 		e.Nonce(s)
@@ -581,10 +581,10 @@ func (e *MathMLMoElement) IfNonce(condition bool, s string) *MathMLMoElement {
 	return e
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 func (e *MathMLMoElement) IfNonceF(condition bool, format string, args ...any) *MathMLMoElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
@@ -592,10 +592,10 @@ func (e *MathMLMoElement) IfNonceF(condition bool, format string, args ...any) *
 	return e
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 // Remove the attribute Nonce from the element.
 func (e *MathMLMoElement) NonceRemove() *MathMLMoElement {
 	if e.stringAttributes == nil {
@@ -605,7 +605,7 @@ func (e *MathMLMoElement) NonceRemove() *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the script level of the element. Possible values are
+// This Attribute specifies the script level of the element. Possible values are
 // an integer between 0 and 7, inclusive.
 func (e *MathMLMoElement) Scriptlevel(i int) *MathMLMoElement {
 	if e.intAttributes == nil {
@@ -615,7 +615,7 @@ func (e *MathMLMoElement) Scriptlevel(i int) *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the script level of the element. Possible values are
+// This Attribute specifies the script level of the element. Possible values are
 // an integer between 0 and 7, inclusive.
 func (e *MathMLMoElement) IfScriptlevel(condition bool, i int) *MathMLMoElement {
 	if condition {
@@ -624,7 +624,7 @@ func (e *MathMLMoElement) IfScriptlevel(condition bool, i int) *MathMLMoElement 
 	return e
 }
 
-// This attribute specifies the script level of the element. Possible values are
+// This Attribute specifies the script level of the element. Possible values are
 // an integer between 0 and 7, inclusive.
 // Remove the attribute Scriptlevel from the element.
 func (e *MathMLMoElement) ScriptlevelRemove() *MathMLMoElement {
@@ -635,7 +635,7 @@ func (e *MathMLMoElement) ScriptlevelRemove() *MathMLMoElement {
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMoElement) StylePairs(pairs ...string) *MathMLMoElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
@@ -660,7 +660,7 @@ func (e *MathMLMoElement) StylePairs(pairs ...string) *MathMLMoElement {
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMoElement) Style(s string) *MathMLMoElement {
 	if e.keyValueStrings == nil {
@@ -683,7 +683,7 @@ func (e *MathMLMoElement) Style(s string) *MathMLMoElement {
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMoElement) IfStyle(condition bool, s string) *MathMLMoElement {
 	if condition {
@@ -692,7 +692,7 @@ func (e *MathMLMoElement) IfStyle(condition bool, s string) *MathMLMoElement {
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMoElement) StyleAdd(k string, v string) *MathMLMoElement {
 	if e.keyValueStrings == nil {
@@ -707,13 +707,13 @@ func (e *MathMLMoElement) StyleAdd(k string, v string) *MathMLMoElement {
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMoElement) StyleAddF(k string, format string, args ...any) *MathMLMoElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMoElement) IfStyleAdd(condition bool, k string, v string) *MathMLMoElement {
 	if condition {
@@ -722,7 +722,7 @@ func (e *MathMLMoElement) IfStyleAdd(condition bool, k string, v string) *MathML
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMoElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MathMLMoElement {
 	if condition {
@@ -731,7 +731,7 @@ func (e *MathMLMoElement) IfStyleAddF(condition bool, k string, format string, a
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 // Add the attributes in the map to the element.
 func (e *MathMLMoElement) StyleMap(m map[string]string) *MathMLMoElement {
@@ -754,7 +754,7 @@ func (e *MathMLMoElement) StyleMap(m map[string]string) *MathMLMoElement {
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 // Remove the attribute Style from the element.
 func (e *MathMLMoElement) StyleRemove(keys ...string) *MathMLMoElement {
@@ -769,7 +769,7 @@ func (e *MathMLMoElement) StyleRemove(keys ...string) *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the position of the current element in the tabbing
+// This Attribute specifies the position of the current element in the tabbing
 // order for the current document. This value must be a number between 0 and
 // 32767. User agents should ignore leading zeros.
 func (e *MathMLMoElement) Tabindex(i int) *MathMLMoElement {
@@ -780,7 +780,7 @@ func (e *MathMLMoElement) Tabindex(i int) *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the position of the current element in the tabbing
+// This Attribute specifies the position of the current element in the tabbing
 // order for the current document. This value must be a number between 0 and
 // 32767. User agents should ignore leading zeros.
 func (e *MathMLMoElement) IfTabindex(condition bool, i int) *MathMLMoElement {
@@ -790,7 +790,7 @@ func (e *MathMLMoElement) IfTabindex(condition bool, i int) *MathMLMoElement {
 	return e
 }
 
-// This attribute specifies the position of the current element in the tabbing
+// This Attribute specifies the position of the current element in the tabbing
 // order for the current document. This value must be a number between 0 and
 // 32767. User agents should ignore leading zeros.
 // Remove the attribute Tabindex from the element.

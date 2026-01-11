@@ -13,8 +13,8 @@ import (
 )
 
 // The <switch> SVG element evaluates the requiredFeatures, requiredExtensions
-// and systemLanguage attributes on its direct child elements in order, and then
-// processes and renders the first child for which these attributes evaluate to
+// and systemLanguage Attributes on its direct child elements in order, and then
+// processes and renders the first child for which these Attributes evaluate to
 // true. All others will be bypassed and therefore not rendered. If the child
 // element is a container element such as a <g>, then the entire subtree is
 // either processed/rendered or bypassed/not rendered.

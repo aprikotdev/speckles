@@ -165,7 +165,7 @@ func (e *SVGFeDropShadowElement) IfDy(condition bool, f float64) *SVGFeDropShado
 
 // The standard deviation for the blur operation. If two <numbers> are provided,
 // the first number represents a standard deviation value along the x-axis of
-// the coordinate system established by attribute 'primitiveUnits' on the
+// the coordinate system established by Attribute 'primitiveUnits' on the
 // <filter> element. The second value represents a standard deviation in Y. If
 // one number is provided, then that value is used for both X and Y. Negative
 // values are not allowed. A value of zero disables the effect of the given
@@ -180,7 +180,7 @@ func (e *SVGFeDropShadowElement) StdDeviation(f float64) *SVGFeDropShadowElement
 
 // The standard deviation for the blur operation. If two <numbers> are provided,
 // the first number represents a standard deviation value along the x-axis of
-// the coordinate system established by attribute 'primitiveUnits' on the
+// the coordinate system established by Attribute 'primitiveUnits' on the
 // <filter> element. The second value represents a standard deviation in Y. If
 // one number is provided, then that value is used for both X and Y. Negative
 // values are not allowed. A value of zero disables the effect of the given
@@ -192,9 +192,9 @@ func (e *SVGFeDropShadowElement) IfStdDeviation(condition bool, f float64) *SVGF
 	return e
 }
 
-// The flood-color attribute indicates what color to use to flood the current
+// The flood-color Attribute indicates what color to use to flood the current
 // filter primitive subregion defined through the <feFlood> element. If
-// attribute 'flood-color' is not specified, then the effect is as if a value of
+// Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
 func (e *SVGFeDropShadowElement) FloodColor(s string) *SVGFeDropShadowElement {
 	if e.stringAttributes == nil {
@@ -204,17 +204,17 @@ func (e *SVGFeDropShadowElement) FloodColor(s string) *SVGFeDropShadowElement {
 	return e
 }
 
-// The flood-color attribute indicates what color to use to flood the current
+// The flood-color Attribute indicates what color to use to flood the current
 // filter primitive subregion defined through the <feFlood> element. If
-// attribute 'flood-color' is not specified, then the effect is as if a value of
+// Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
 func (e *SVGFeDropShadowElement) FloodColorF(format string, args ...any) *SVGFeDropShadowElement {
 	return e.FloodColor(fmt.Sprintf(format, args...))
 }
 
-// The flood-color attribute indicates what color to use to flood the current
+// The flood-color Attribute indicates what color to use to flood the current
 // filter primitive subregion defined through the <feFlood> element. If
-// attribute 'flood-color' is not specified, then the effect is as if a value of
+// Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
 func (e *SVGFeDropShadowElement) IfFloodColor(condition bool, s string) *SVGFeDropShadowElement {
 	if condition {
@@ -223,9 +223,9 @@ func (e *SVGFeDropShadowElement) IfFloodColor(condition bool, s string) *SVGFeDr
 	return e
 }
 
-// The flood-color attribute indicates what color to use to flood the current
+// The flood-color Attribute indicates what color to use to flood the current
 // filter primitive subregion defined through the <feFlood> element. If
-// attribute 'flood-color' is not specified, then the effect is as if a value of
+// Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
 func (e *SVGFeDropShadowElement) IfFloodColorF(condition bool, format string, args ...any) *SVGFeDropShadowElement {
 	if condition {
@@ -234,9 +234,9 @@ func (e *SVGFeDropShadowElement) IfFloodColorF(condition bool, format string, ar
 	return e
 }
 
-// The flood-color attribute indicates what color to use to flood the current
+// The flood-color Attribute indicates what color to use to flood the current
 // filter primitive subregion defined through the <feFlood> element. If
-// attribute 'flood-color' is not specified, then the effect is as if a value of
+// Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
 // Remove the attribute FloodColor from the element.
 func (e *SVGFeDropShadowElement) FloodColorRemove() *SVGFeDropShadowElement {
@@ -247,7 +247,7 @@ func (e *SVGFeDropShadowElement) FloodColorRemove() *SVGFeDropShadowElement {
 	return e
 }
 
-// The flood-opacity attribute indicates the opacity value to use across the
+// The flood-opacity Attribute indicates the opacity value to use across the
 // current filter primitive subregion defined through the <feFlood> element.
 func (e *SVGFeDropShadowElement) FloodOpacity(f float64) *SVGFeDropShadowElement {
 	if e.floatAttributes == nil {
@@ -257,7 +257,7 @@ func (e *SVGFeDropShadowElement) FloodOpacity(f float64) *SVGFeDropShadowElement
 	return e
 }
 
-// The flood-opacity attribute indicates the opacity value to use across the
+// The flood-opacity Attribute indicates the opacity value to use across the
 // current filter primitive subregion defined through the <feFlood> element.
 func (e *SVGFeDropShadowElement) IfFloodOpacity(condition bool, f float64) *SVGFeDropShadowElement {
 	if condition {

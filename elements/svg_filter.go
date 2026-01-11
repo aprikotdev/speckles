@@ -14,7 +14,7 @@ import (
 
 // The <filter> SVG element defines a custom filter effect by grouping atomic
 // filter primitives. It is never rendered directly. A filter is referenced by
-// using the filter attribute on the target SVG element or via the filter CSS
+// using the filter Attribute on the target SVG element or via the filter CSS
 // property.
 type SVGFilterElement struct {
 	*Element
@@ -126,7 +126,7 @@ func (e *SVGFilterElement) IfEscapedF(condition bool, format string, args ...any
 	return e
 }
 
-// The coordinate system for attributes x, y, width and height.
+// The coordinate system for Attributes x, y, width and height.
 func (e *SVGFilterElement) FilterUnits(c SVGFilterFilterUnitsChoice) *SVGFilterElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -138,13 +138,13 @@ func (e *SVGFilterElement) FilterUnits(c SVGFilterFilterUnitsChoice) *SVGFilterE
 type SVGFilterFilterUnitsChoice string
 
 const (
-	// The coordinate system for attributes x, y, width and height.
+	// The coordinate system for Attributes x, y, width and height.
 	SVGFilterFilterUnitsUserSpaceOnUse SVGFilterFilterUnitsChoice = "userSpaceOnUse"
-	// The coordinate system for attributes x, y, width and height.
+	// The coordinate system for Attributes x, y, width and height.
 	SVGFilterFilterUnitsObjectBoundingBox SVGFilterFilterUnitsChoice = "objectBoundingBox"
 )
 
-// The coordinate system for attributes x, y, width and height.
+// The coordinate system for Attributes x, y, width and height.
 // Remove the attribute FilterUnits from the element.
 func (e *SVGFilterElement) FilterUnitsRemove() *SVGFilterElement {
 	if e.stringAttributes == nil {
@@ -182,7 +182,7 @@ func (e *SVGFilterElement) PrimitiveUnitsRemove() *SVGFilterElement {
 	return e
 }
 
-// The x attribute indicates where the left edge of the filter is placed.
+// The x Attribute indicates where the left edge of the filter is placed.
 func (e *SVGFilterElement) X(s string) *SVGFilterElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -191,12 +191,12 @@ func (e *SVGFilterElement) X(s string) *SVGFilterElement {
 	return e
 }
 
-// The x attribute indicates where the left edge of the filter is placed.
+// The x Attribute indicates where the left edge of the filter is placed.
 func (e *SVGFilterElement) XF(format string, args ...any) *SVGFilterElement {
 	return e.X(fmt.Sprintf(format, args...))
 }
 
-// The x attribute indicates where the left edge of the filter is placed.
+// The x Attribute indicates where the left edge of the filter is placed.
 func (e *SVGFilterElement) IfX(condition bool, s string) *SVGFilterElement {
 	if condition {
 		e.X(s)
@@ -204,7 +204,7 @@ func (e *SVGFilterElement) IfX(condition bool, s string) *SVGFilterElement {
 	return e
 }
 
-// The x attribute indicates where the left edge of the filter is placed.
+// The x Attribute indicates where the left edge of the filter is placed.
 func (e *SVGFilterElement) IfXF(condition bool, format string, args ...any) *SVGFilterElement {
 	if condition {
 		e.X(fmt.Sprintf(format, args...))
@@ -212,7 +212,7 @@ func (e *SVGFilterElement) IfXF(condition bool, format string, args ...any) *SVG
 	return e
 }
 
-// The x attribute indicates where the left edge of the filter is placed.
+// The x Attribute indicates where the left edge of the filter is placed.
 // Remove the attribute X from the element.
 func (e *SVGFilterElement) XRemove() *SVGFilterElement {
 	if e.stringAttributes == nil {
@@ -222,7 +222,7 @@ func (e *SVGFilterElement) XRemove() *SVGFilterElement {
 	return e
 }
 
-// The y attribute indicates where the top edge of the filter is placed.
+// The y Attribute indicates where the top edge of the filter is placed.
 func (e *SVGFilterElement) Y(s string) *SVGFilterElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -231,12 +231,12 @@ func (e *SVGFilterElement) Y(s string) *SVGFilterElement {
 	return e
 }
 
-// The y attribute indicates where the top edge of the filter is placed.
+// The y Attribute indicates where the top edge of the filter is placed.
 func (e *SVGFilterElement) YF(format string, args ...any) *SVGFilterElement {
 	return e.Y(fmt.Sprintf(format, args...))
 }
 
-// The y attribute indicates where the top edge of the filter is placed.
+// The y Attribute indicates where the top edge of the filter is placed.
 func (e *SVGFilterElement) IfY(condition bool, s string) *SVGFilterElement {
 	if condition {
 		e.Y(s)
@@ -244,7 +244,7 @@ func (e *SVGFilterElement) IfY(condition bool, s string) *SVGFilterElement {
 	return e
 }
 
-// The y attribute indicates where the top edge of the filter is placed.
+// The y Attribute indicates where the top edge of the filter is placed.
 func (e *SVGFilterElement) IfYF(condition bool, format string, args ...any) *SVGFilterElement {
 	if condition {
 		e.Y(fmt.Sprintf(format, args...))
@@ -252,7 +252,7 @@ func (e *SVGFilterElement) IfYF(condition bool, format string, args ...any) *SVG
 	return e
 }
 
-// The y attribute indicates where the top edge of the filter is placed.
+// The y Attribute indicates where the top edge of the filter is placed.
 // Remove the attribute Y from the element.
 func (e *SVGFilterElement) YRemove() *SVGFilterElement {
 	if e.stringAttributes == nil {
@@ -262,7 +262,7 @@ func (e *SVGFilterElement) YRemove() *SVGFilterElement {
 	return e
 }
 
-// The width attribute indicates the width of the filter primitive box.
+// The width Attribute indicates the width of the filter primitive box.
 func (e *SVGFilterElement) Width(s string) *SVGFilterElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -271,12 +271,12 @@ func (e *SVGFilterElement) Width(s string) *SVGFilterElement {
 	return e
 }
 
-// The width attribute indicates the width of the filter primitive box.
+// The width Attribute indicates the width of the filter primitive box.
 func (e *SVGFilterElement) WidthF(format string, args ...any) *SVGFilterElement {
 	return e.Width(fmt.Sprintf(format, args...))
 }
 
-// The width attribute indicates the width of the filter primitive box.
+// The width Attribute indicates the width of the filter primitive box.
 func (e *SVGFilterElement) IfWidth(condition bool, s string) *SVGFilterElement {
 	if condition {
 		e.Width(s)
@@ -284,7 +284,7 @@ func (e *SVGFilterElement) IfWidth(condition bool, s string) *SVGFilterElement {
 	return e
 }
 
-// The width attribute indicates the width of the filter primitive box.
+// The width Attribute indicates the width of the filter primitive box.
 func (e *SVGFilterElement) IfWidthF(condition bool, format string, args ...any) *SVGFilterElement {
 	if condition {
 		e.Width(fmt.Sprintf(format, args...))
@@ -292,7 +292,7 @@ func (e *SVGFilterElement) IfWidthF(condition bool, format string, args ...any) 
 	return e
 }
 
-// The width attribute indicates the width of the filter primitive box.
+// The width Attribute indicates the width of the filter primitive box.
 // Remove the attribute Width from the element.
 func (e *SVGFilterElement) WidthRemove() *SVGFilterElement {
 	if e.stringAttributes == nil {
@@ -302,7 +302,7 @@ func (e *SVGFilterElement) WidthRemove() *SVGFilterElement {
 	return e
 }
 
-// The height attribute indicates the height of the filter primitive box.
+// The height Attribute indicates the height of the filter primitive box.
 func (e *SVGFilterElement) Height(s string) *SVGFilterElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -311,12 +311,12 @@ func (e *SVGFilterElement) Height(s string) *SVGFilterElement {
 	return e
 }
 
-// The height attribute indicates the height of the filter primitive box.
+// The height Attribute indicates the height of the filter primitive box.
 func (e *SVGFilterElement) HeightF(format string, args ...any) *SVGFilterElement {
 	return e.Height(fmt.Sprintf(format, args...))
 }
 
-// The height attribute indicates the height of the filter primitive box.
+// The height Attribute indicates the height of the filter primitive box.
 func (e *SVGFilterElement) IfHeight(condition bool, s string) *SVGFilterElement {
 	if condition {
 		e.Height(s)
@@ -324,7 +324,7 @@ func (e *SVGFilterElement) IfHeight(condition bool, s string) *SVGFilterElement 
 	return e
 }
 
-// The height attribute indicates the height of the filter primitive box.
+// The height Attribute indicates the height of the filter primitive box.
 func (e *SVGFilterElement) IfHeightF(condition bool, format string, args ...any) *SVGFilterElement {
 	if condition {
 		e.Height(fmt.Sprintf(format, args...))
@@ -332,7 +332,7 @@ func (e *SVGFilterElement) IfHeightF(condition bool, format string, args ...any)
 	return e
 }
 
-// The height attribute indicates the height of the filter primitive box.
+// The height Attribute indicates the height of the filter primitive box.
 // Remove the attribute Height from the element.
 func (e *SVGFilterElement) HeightRemove() *SVGFilterElement {
 	if e.stringAttributes == nil {

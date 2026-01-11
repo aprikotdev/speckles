@@ -244,7 +244,7 @@ func (e *SVGFeConvolveMatrixElement) KernelMatrixRemove() *SVGFeConvolveMatrixEl
 	return e
 }
 
-// The divisor attribute specifies the value by which to divide the result of
+// The divisor Attribute specifies the value by which to divide the result of
 // applying the convolution operator.
 func (e *SVGFeConvolveMatrixElement) Divisor(f float64) *SVGFeConvolveMatrixElement {
 	if e.floatAttributes == nil {
@@ -254,7 +254,7 @@ func (e *SVGFeConvolveMatrixElement) Divisor(f float64) *SVGFeConvolveMatrixElem
 	return e
 }
 
-// The divisor attribute specifies the value by which to divide the result of
+// The divisor Attribute specifies the value by which to divide the result of
 // applying the convolution operator.
 func (e *SVGFeConvolveMatrixElement) IfDivisor(condition bool, f float64) *SVGFeConvolveMatrixElement {
 	if condition {
@@ -263,7 +263,7 @@ func (e *SVGFeConvolveMatrixElement) IfDivisor(condition bool, f float64) *SVGFe
 	return e
 }
 
-// The bias attribute shifts the range of the filter. After applying the matrix
+// The bias Attribute shifts the range of the filter. After applying the matrix
 // operation, this bias value is added to each component.
 func (e *SVGFeConvolveMatrixElement) Bias(f float64) *SVGFeConvolveMatrixElement {
 	if e.floatAttributes == nil {
@@ -273,7 +273,7 @@ func (e *SVGFeConvolveMatrixElement) Bias(f float64) *SVGFeConvolveMatrixElement
 	return e
 }
 
-// The bias attribute shifts the range of the filter. After applying the matrix
+// The bias Attribute shifts the range of the filter. After applying the matrix
 // operation, this bias value is added to each component.
 func (e *SVGFeConvolveMatrixElement) IfBias(condition bool, f float64) *SVGFeConvolveMatrixElement {
 	if condition {
@@ -282,7 +282,7 @@ func (e *SVGFeConvolveMatrixElement) IfBias(condition bool, f float64) *SVGFeCon
 	return e
 }
 
-// The targetX attribute determines the positioning in X of the convolution
+// The targetX Attribute determines the positioning in X of the convolution
 // matrix relative to a given target pixel in the input image.
 func (e *SVGFeConvolveMatrixElement) TargetX(f float64) *SVGFeConvolveMatrixElement {
 	if e.floatAttributes == nil {
@@ -292,7 +292,7 @@ func (e *SVGFeConvolveMatrixElement) TargetX(f float64) *SVGFeConvolveMatrixElem
 	return e
 }
 
-// The targetX attribute determines the positioning in X of the convolution
+// The targetX Attribute determines the positioning in X of the convolution
 // matrix relative to a given target pixel in the input image.
 func (e *SVGFeConvolveMatrixElement) IfTargetX(condition bool, f float64) *SVGFeConvolveMatrixElement {
 	if condition {
@@ -301,7 +301,7 @@ func (e *SVGFeConvolveMatrixElement) IfTargetX(condition bool, f float64) *SVGFe
 	return e
 }
 
-// The targetY attribute determines the positioning in Y of the convolution
+// The targetY Attribute determines the positioning in Y of the convolution
 // matrix relative to a given target pixel in the input image.
 func (e *SVGFeConvolveMatrixElement) TargetY(f float64) *SVGFeConvolveMatrixElement {
 	if e.floatAttributes == nil {
@@ -311,7 +311,7 @@ func (e *SVGFeConvolveMatrixElement) TargetY(f float64) *SVGFeConvolveMatrixElem
 	return e
 }
 
-// The targetY attribute determines the positioning in Y of the convolution
+// The targetY Attribute determines the positioning in Y of the convolution
 // matrix relative to a given target pixel in the input image.
 func (e *SVGFeConvolveMatrixElement) IfTargetY(condition bool, f float64) *SVGFeConvolveMatrixElement {
 	if condition {
@@ -320,7 +320,7 @@ func (e *SVGFeConvolveMatrixElement) IfTargetY(condition bool, f float64) *SVGFe
 	return e
 }
 
-// The edgeMode attribute determines how to extend the input image as necessary
+// The edgeMode Attribute determines how to extend the input image as necessary
 // with color values so that the matrix operations can be applied when the
 // kernel is positioned at or near the edge of the input image.
 func (e *SVGFeConvolveMatrixElement) EdgeMode(c SVGFeConvolveMatrixEdgeModeChoice) *SVGFeConvolveMatrixElement {
@@ -344,7 +344,7 @@ const (
 	SVGFeConvolveMatrixEdgeModeNone SVGFeConvolveMatrixEdgeModeChoice = "none"
 )
 
-// The edgeMode attribute determines how to extend the input image as necessary
+// The edgeMode Attribute determines how to extend the input image as necessary
 // with color values so that the matrix operations can be applied when the
 // kernel is positioned at or near the edge of the input image.
 // Remove the attribute EdgeMode from the element.
@@ -356,8 +356,8 @@ func (e *SVGFeConvolveMatrixElement) EdgeModeRemove() *SVGFeConvolveMatrixElemen
 	return e
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 func (e *SVGFeConvolveMatrixElement) KernelUnitLength(s string) *SVGFeConvolveMatrixElement {
 	if e.stringAttributes == nil {
@@ -367,15 +367,15 @@ func (e *SVGFeConvolveMatrixElement) KernelUnitLength(s string) *SVGFeConvolveMa
 	return e
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 func (e *SVGFeConvolveMatrixElement) KernelUnitLengthF(format string, args ...any) *SVGFeConvolveMatrixElement {
 	return e.KernelUnitLength(fmt.Sprintf(format, args...))
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 func (e *SVGFeConvolveMatrixElement) IfKernelUnitLength(condition bool, s string) *SVGFeConvolveMatrixElement {
 	if condition {
@@ -384,8 +384,8 @@ func (e *SVGFeConvolveMatrixElement) IfKernelUnitLength(condition bool, s string
 	return e
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 func (e *SVGFeConvolveMatrixElement) IfKernelUnitLengthF(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
 	if condition {
@@ -394,8 +394,8 @@ func (e *SVGFeConvolveMatrixElement) IfKernelUnitLengthF(condition bool, format 
 	return e
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 // Remove the attribute KernelUnitLength from the element.
 func (e *SVGFeConvolveMatrixElement) KernelUnitLengthRemove() *SVGFeConvolveMatrixElement {
@@ -406,14 +406,14 @@ func (e *SVGFeConvolveMatrixElement) KernelUnitLengthRemove() *SVGFeConvolveMatr
 	return e
 }
 
-// The preserveAlpha attribute indicates how the convolution will handle the
+// The preserveAlpha Attribute indicates how the convolution will handle the
 // alpha channel of the input image.
 func (e *SVGFeConvolveMatrixElement) PreserveAlpha() *SVGFeConvolveMatrixElement {
 	e.PreserveAlphaSet(true)
 	return e
 }
 
-// The preserveAlpha attribute indicates how the convolution will handle the
+// The preserveAlpha Attribute indicates how the convolution will handle the
 // alpha channel of the input image.
 func (e *SVGFeConvolveMatrixElement) IfPreserveAlpha(condition bool) *SVGFeConvolveMatrixElement {
 	if condition {
@@ -422,7 +422,7 @@ func (e *SVGFeConvolveMatrixElement) IfPreserveAlpha(condition bool) *SVGFeConvo
 	return e
 }
 
-// The preserveAlpha attribute indicates how the convolution will handle the
+// The preserveAlpha Attribute indicates how the convolution will handle the
 // alpha channel of the input image.
 // Set the attribute PreserveAlpha to the value b explicitly.
 func (e *SVGFeConvolveMatrixElement) PreserveAlphaSet(b bool) *SVGFeConvolveMatrixElement {
@@ -433,7 +433,7 @@ func (e *SVGFeConvolveMatrixElement) PreserveAlphaSet(b bool) *SVGFeConvolveMatr
 	return e
 }
 
-// The preserveAlpha attribute indicates how the convolution will handle the
+// The preserveAlpha Attribute indicates how the convolution will handle the
 // alpha channel of the input image.
 func (e *SVGFeConvolveMatrixElement) IfSetPreserveAlpha(condition bool, b bool) *SVGFeConvolveMatrixElement {
 	if condition {
@@ -443,7 +443,7 @@ func (e *SVGFeConvolveMatrixElement) IfSetPreserveAlpha(condition bool, b bool) 
 }
 
 // Remove the attribute PreserveAlpha from the element.
-// The preserveAlpha attribute indicates how the convolution will handle the
+// The preserveAlpha Attribute indicates how the convolution will handle the
 // alpha channel of the input image.
 func (e *SVGFeConvolveMatrixElement) PreserveAlphaRemove() *SVGFeConvolveMatrixElement {
 	if e.boolAttributes == nil {

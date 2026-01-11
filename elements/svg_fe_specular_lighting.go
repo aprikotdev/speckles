@@ -167,7 +167,7 @@ func (e *SVGFeSpecularLightingElement) InRemove() *SVGFeSpecularLightingElement 
 	return e
 }
 
-// The 'surfaceScale' attribute indicates the height of the surface when the
+// The 'surfaceScale' Attribute indicates the height of the surface when the
 // alpha channel is 1.0.
 func (e *SVGFeSpecularLightingElement) SurfaceScale(f float64) *SVGFeSpecularLightingElement {
 	if e.floatAttributes == nil {
@@ -177,7 +177,7 @@ func (e *SVGFeSpecularLightingElement) SurfaceScale(f float64) *SVGFeSpecularLig
 	return e
 }
 
-// The 'surfaceScale' attribute indicates the height of the surface when the
+// The 'surfaceScale' Attribute indicates the height of the surface when the
 // alpha channel is 1.0.
 func (e *SVGFeSpecularLightingElement) IfSurfaceScale(condition bool, f float64) *SVGFeSpecularLightingElement {
 	if condition {
@@ -186,7 +186,7 @@ func (e *SVGFeSpecularLightingElement) IfSurfaceScale(condition bool, f float64)
 	return e
 }
 
-// The specularConstant attribute represents the diffuse reflection constant.
+// The specularConstant Attribute represents the diffuse reflection constant.
 func (e *SVGFeSpecularLightingElement) SpecularConstant(f float64) *SVGFeSpecularLightingElement {
 	if e.floatAttributes == nil {
 		e.floatAttributes = treemap.New[string, float64]()
@@ -195,7 +195,7 @@ func (e *SVGFeSpecularLightingElement) SpecularConstant(f float64) *SVGFeSpecula
 	return e
 }
 
-// The specularConstant attribute represents the diffuse reflection constant.
+// The specularConstant Attribute represents the diffuse reflection constant.
 func (e *SVGFeSpecularLightingElement) IfSpecularConstant(condition bool, f float64) *SVGFeSpecularLightingElement {
 	if condition {
 		e.SpecularConstant(f)
@@ -203,7 +203,7 @@ func (e *SVGFeSpecularLightingElement) IfSpecularConstant(condition bool, f floa
 	return e
 }
 
-// The specularExponent attribute represents the specular reflection constant.
+// The specularExponent Attribute represents the specular reflection constant.
 func (e *SVGFeSpecularLightingElement) SpecularExponent(f float64) *SVGFeSpecularLightingElement {
 	if e.floatAttributes == nil {
 		e.floatAttributes = treemap.New[string, float64]()
@@ -212,7 +212,7 @@ func (e *SVGFeSpecularLightingElement) SpecularExponent(f float64) *SVGFeSpecula
 	return e
 }
 
-// The specularExponent attribute represents the specular reflection constant.
+// The specularExponent Attribute represents the specular reflection constant.
 func (e *SVGFeSpecularLightingElement) IfSpecularExponent(condition bool, f float64) *SVGFeSpecularLightingElement {
 	if condition {
 		e.SpecularExponent(f)
@@ -220,8 +220,8 @@ func (e *SVGFeSpecularLightingElement) IfSpecularExponent(condition bool, f floa
 	return e
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 func (e *SVGFeSpecularLightingElement) KernelUnitLength(s string) *SVGFeSpecularLightingElement {
 	if e.stringAttributes == nil {
@@ -231,15 +231,15 @@ func (e *SVGFeSpecularLightingElement) KernelUnitLength(s string) *SVGFeSpecular
 	return e
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 func (e *SVGFeSpecularLightingElement) KernelUnitLengthF(format string, args ...any) *SVGFeSpecularLightingElement {
 	return e.KernelUnitLength(fmt.Sprintf(format, args...))
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 func (e *SVGFeSpecularLightingElement) IfKernelUnitLength(condition bool, s string) *SVGFeSpecularLightingElement {
 	if condition {
@@ -248,8 +248,8 @@ func (e *SVGFeSpecularLightingElement) IfKernelUnitLength(condition bool, s stri
 	return e
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 func (e *SVGFeSpecularLightingElement) IfKernelUnitLengthF(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
 	if condition {
@@ -258,8 +258,8 @@ func (e *SVGFeSpecularLightingElement) IfKernelUnitLengthF(condition bool, forma
 	return e
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 // Remove the attribute KernelUnitLength from the element.
 func (e *SVGFeSpecularLightingElement) KernelUnitLengthRemove() *SVGFeSpecularLightingElement {

@@ -164,8 +164,8 @@ func (e *SVGFeDisplacementMapElement) InRemove() *SVGFeDisplacementMapElement {
 	return e
 }
 
-// The displacement map. This attribute can take on the same values as the 'in'
-// attribute.
+// The displacement map. This Attribute can take on the same values as the 'in'
+// Attribute.
 func (e *SVGFeDisplacementMapElement) In2(s string) *SVGFeDisplacementMapElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -174,14 +174,14 @@ func (e *SVGFeDisplacementMapElement) In2(s string) *SVGFeDisplacementMapElement
 	return e
 }
 
-// The displacement map. This attribute can take on the same values as the 'in'
-// attribute.
+// The displacement map. This Attribute can take on the same values as the 'in'
+// Attribute.
 func (e *SVGFeDisplacementMapElement) In2F(format string, args ...any) *SVGFeDisplacementMapElement {
 	return e.In2(fmt.Sprintf(format, args...))
 }
 
-// The displacement map. This attribute can take on the same values as the 'in'
-// attribute.
+// The displacement map. This Attribute can take on the same values as the 'in'
+// Attribute.
 func (e *SVGFeDisplacementMapElement) IfIn2(condition bool, s string) *SVGFeDisplacementMapElement {
 	if condition {
 		e.In2(s)
@@ -189,8 +189,8 @@ func (e *SVGFeDisplacementMapElement) IfIn2(condition bool, s string) *SVGFeDisp
 	return e
 }
 
-// The displacement map. This attribute can take on the same values as the 'in'
-// attribute.
+// The displacement map. This Attribute can take on the same values as the 'in'
+// Attribute.
 func (e *SVGFeDisplacementMapElement) IfIn2F(condition bool, format string, args ...any) *SVGFeDisplacementMapElement {
 	if condition {
 		e.In2(fmt.Sprintf(format, args...))
@@ -198,8 +198,8 @@ func (e *SVGFeDisplacementMapElement) IfIn2F(condition bool, format string, args
 	return e
 }
 
-// The displacement map. This attribute can take on the same values as the 'in'
-// attribute.
+// The displacement map. This Attribute can take on the same values as the 'in'
+// Attribute.
 // Remove the attribute In2 from the element.
 func (e *SVGFeDisplacementMapElement) In2Remove() *SVGFeDisplacementMapElement {
 	if e.stringAttributes == nil {
@@ -209,7 +209,7 @@ func (e *SVGFeDisplacementMapElement) In2Remove() *SVGFeDisplacementMapElement {
 	return e
 }
 
-// The scale attribute defines the maximum value for the in2 displacement. A
+// The scale Attribute defines the maximum value for the in2 displacement. A
 // value of 0 disables the effect of the displacement map.
 func (e *SVGFeDisplacementMapElement) Scale(f float64) *SVGFeDisplacementMapElement {
 	if e.floatAttributes == nil {
@@ -219,7 +219,7 @@ func (e *SVGFeDisplacementMapElement) Scale(f float64) *SVGFeDisplacementMapElem
 	return e
 }
 
-// The scale attribute defines the maximum value for the in2 displacement. A
+// The scale Attribute defines the maximum value for the in2 displacement. A
 // value of 0 disables the effect of the displacement map.
 func (e *SVGFeDisplacementMapElement) IfScale(condition bool, f float64) *SVGFeDisplacementMapElement {
 	if condition {
@@ -228,7 +228,7 @@ func (e *SVGFeDisplacementMapElement) IfScale(condition bool, f float64) *SVGFeD
 	return e
 }
 
-// The xChannelSelector attribute indicates which color channel from in2 to use
+// The xChannelSelector Attribute indicates which color channel from in2 to use
 // to displace the pixels in in the horizontal direction.
 func (e *SVGFeDisplacementMapElement) XChannelSelector(c SVGFeDisplacementMapXChannelSelectorChoice) *SVGFeDisplacementMapElement {
 	if e.stringAttributes == nil {
@@ -251,7 +251,7 @@ const (
 	SVGFeDisplacementMapXChannelSelectorA SVGFeDisplacementMapXChannelSelectorChoice = "A"
 )
 
-// The xChannelSelector attribute indicates which color channel from in2 to use
+// The xChannelSelector Attribute indicates which color channel from in2 to use
 // to displace the pixels in in the horizontal direction.
 // Remove the attribute XChannelSelector from the element.
 func (e *SVGFeDisplacementMapElement) XChannelSelectorRemove() *SVGFeDisplacementMapElement {
@@ -262,7 +262,7 @@ func (e *SVGFeDisplacementMapElement) XChannelSelectorRemove() *SVGFeDisplacemen
 	return e
 }
 
-// The yChannelSelector attribute indicates which color channel from in2 to use
+// The yChannelSelector Attribute indicates which color channel from in2 to use
 // to displace the pixels in in the vertical direction.
 func (e *SVGFeDisplacementMapElement) YChannelSelector(c SVGFeDisplacementMapYChannelSelectorChoice) *SVGFeDisplacementMapElement {
 	if e.stringAttributes == nil {
@@ -285,7 +285,7 @@ const (
 	SVGFeDisplacementMapYChannelSelectorA SVGFeDisplacementMapYChannelSelectorChoice = "A"
 )
 
-// The yChannelSelector attribute indicates which color channel from in2 to use
+// The yChannelSelector Attribute indicates which color channel from in2 to use
 // to displace the pixels in in the vertical direction.
 // Remove the attribute YChannelSelector from the element.
 func (e *SVGFeDisplacementMapElement) YChannelSelectorRemove() *SVGFeDisplacementMapElement {

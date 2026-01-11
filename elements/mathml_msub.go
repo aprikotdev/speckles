@@ -166,7 +166,7 @@ func (e *MathMLMsubElement) ClassRemove(s ...string) *MathMLMsubElement {
 	return e
 }
 
-// This attribute specifies the text directionality of the element, merely
+// This Attribute specifies the text directionality of the element, merely
 // indicating what direction the text flows when surrounded by text with
 // inherent directionality (such as Arabic or Hebrew). Possible values are ltr
 // (left-to-right) and rtl (right-to-left).
@@ -187,7 +187,7 @@ const (
 	MathMLMsubDirRtl MathMLMsubDirChoice = "rtl"
 )
 
-// This attribute specifies the text directionality of the element, merely
+// This Attribute specifies the text directionality of the element, merely
 // indicating what direction the text flows when surrounded by text with
 // inherent directionality (such as Arabic or Hebrew). Possible values are ltr
 // (left-to-right) and rtl (right-to-left).
@@ -200,7 +200,7 @@ func (e *MathMLMsubElement) DirRemove() *MathMLMsubElement {
 	return e
 }
 
-// This attribute specifies whether the element should be rendered using
+// This Attribute specifies whether the element should be rendered using
 // displaystyle rules or not. Possible values are true and false.
 func (e *MathMLMsubElement) Displaystyle(c MathMLMsubDisplaystyleChoice) *MathMLMsubElement {
 	if e.stringAttributes == nil {
@@ -219,7 +219,7 @@ const (
 	MathMLMsubDisplaystyleFalse MathMLMsubDisplaystyleChoice = "false"
 )
 
-// This attribute specifies whether the element should be rendered using
+// This Attribute specifies whether the element should be rendered using
 // displaystyle rules or not. Possible values are true and false.
 // Remove the attribute Displaystyle from the element.
 func (e *MathMLMsubElement) DisplaystyleRemove() *MathMLMsubElement {
@@ -230,7 +230,7 @@ func (e *MathMLMsubElement) DisplaystyleRemove() *MathMLMsubElement {
 	return e
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLMsubElement) ID(s string) *MathMLMsubElement {
 	if e.stringAttributes == nil {
@@ -240,13 +240,13 @@ func (e *MathMLMsubElement) ID(s string) *MathMLMsubElement {
 	return e
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLMsubElement) IDF(format string, args ...any) *MathMLMsubElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLMsubElement) IfID(condition bool, s string) *MathMLMsubElement {
 	if condition {
@@ -255,7 +255,7 @@ func (e *MathMLMsubElement) IfID(condition bool, s string) *MathMLMsubElement {
 	return e
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLMsubElement) IfIDF(condition bool, format string, args ...any) *MathMLMsubElement {
 	if condition {
@@ -264,7 +264,7 @@ func (e *MathMLMsubElement) IfIDF(condition bool, format string, args ...any) *M
 	return e
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 // Remove the attribute ID from the element.
 func (e *MathMLMsubElement) IDRemove() *MathMLMsubElement {
@@ -275,7 +275,7 @@ func (e *MathMLMsubElement) IDRemove() *MathMLMsubElement {
 	return e
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLMsubElement) Mathbackground(s string) *MathMLMsubElement {
@@ -286,14 +286,14 @@ func (e *MathMLMsubElement) Mathbackground(s string) *MathMLMsubElement {
 	return e
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLMsubElement) MathbackgroundF(format string, args ...any) *MathMLMsubElement {
 	return e.Mathbackground(fmt.Sprintf(format, args...))
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLMsubElement) IfMathbackground(condition bool, s string) *MathMLMsubElement {
@@ -303,7 +303,7 @@ func (e *MathMLMsubElement) IfMathbackground(condition bool, s string) *MathMLMs
 	return e
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLMsubElement) IfMathbackgroundF(condition bool, format string, args ...any) *MathMLMsubElement {
@@ -313,7 +313,7 @@ func (e *MathMLMsubElement) IfMathbackgroundF(condition bool, format string, arg
 	return e
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 // Remove the attribute Mathbackground from the element.
@@ -325,7 +325,7 @@ func (e *MathMLMsubElement) MathbackgroundRemove() *MathMLMsubElement {
 	return e
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLMsubElement) Mathcolor(s string) *MathMLMsubElement {
@@ -336,14 +336,14 @@ func (e *MathMLMsubElement) Mathcolor(s string) *MathMLMsubElement {
 	return e
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLMsubElement) MathcolorF(format string, args ...any) *MathMLMsubElement {
 	return e.Mathcolor(fmt.Sprintf(format, args...))
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLMsubElement) IfMathcolor(condition bool, s string) *MathMLMsubElement {
@@ -353,7 +353,7 @@ func (e *MathMLMsubElement) IfMathcolor(condition bool, s string) *MathMLMsubEle
 	return e
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLMsubElement) IfMathcolorF(condition bool, format string, args ...any) *MathMLMsubElement {
@@ -363,7 +363,7 @@ func (e *MathMLMsubElement) IfMathcolorF(condition bool, format string, args ...
 	return e
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 // Remove the attribute Mathcolor from the element.
@@ -375,7 +375,7 @@ func (e *MathMLMsubElement) MathcolorRemove() *MathMLMsubElement {
 	return e
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLMsubElement) MathsizeStr(s string) *MathMLMsubElement {
 	if e.stringAttributes == nil {
@@ -385,13 +385,13 @@ func (e *MathMLMsubElement) MathsizeStr(s string) *MathMLMsubElement {
 	return e
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLMsubElement) MathsizeStrF(format string, args ...any) *MathMLMsubElement {
 	return e.MathsizeStr(fmt.Sprintf(format, args...))
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLMsubElement) IfMathsizeStr(condition bool, s string) *MathMLMsubElement {
 	if condition {
@@ -400,7 +400,7 @@ func (e *MathMLMsubElement) IfMathsizeStr(condition bool, s string) *MathMLMsubE
 	return e
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLMsubElement) IfMathsizeStrF(condition bool, format string, args ...any) *MathMLMsubElement {
 	if condition {
@@ -409,7 +409,7 @@ func (e *MathMLMsubElement) IfMathsizeStrF(condition bool, format string, args .
 	return e
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 // Remove the attribute MathsizeStr from the element.
 func (e *MathMLMsubElement) MathsizeStrRemove() *MathMLMsubElement {
@@ -420,10 +420,10 @@ func (e *MathMLMsubElement) MathsizeStrRemove() *MathMLMsubElement {
 	return e
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 func (e *MathMLMsubElement) Nonce(s string) *MathMLMsubElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -432,18 +432,18 @@ func (e *MathMLMsubElement) Nonce(s string) *MathMLMsubElement {
 	return e
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 func (e *MathMLMsubElement) NonceF(format string, args ...any) *MathMLMsubElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 func (e *MathMLMsubElement) IfNonce(condition bool, s string) *MathMLMsubElement {
 	if condition {
 		e.Nonce(s)
@@ -451,10 +451,10 @@ func (e *MathMLMsubElement) IfNonce(condition bool, s string) *MathMLMsubElement
 	return e
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 func (e *MathMLMsubElement) IfNonceF(condition bool, format string, args ...any) *MathMLMsubElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
@@ -462,10 +462,10 @@ func (e *MathMLMsubElement) IfNonceF(condition bool, format string, args ...any)
 	return e
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 // Remove the attribute Nonce from the element.
 func (e *MathMLMsubElement) NonceRemove() *MathMLMsubElement {
 	if e.stringAttributes == nil {
@@ -475,7 +475,7 @@ func (e *MathMLMsubElement) NonceRemove() *MathMLMsubElement {
 	return e
 }
 
-// This attribute specifies the script level of the element. Possible values are
+// This Attribute specifies the script level of the element. Possible values are
 // an integer between 0 and 7, inclusive.
 func (e *MathMLMsubElement) Scriptlevel(i int) *MathMLMsubElement {
 	if e.intAttributes == nil {
@@ -485,7 +485,7 @@ func (e *MathMLMsubElement) Scriptlevel(i int) *MathMLMsubElement {
 	return e
 }
 
-// This attribute specifies the script level of the element. Possible values are
+// This Attribute specifies the script level of the element. Possible values are
 // an integer between 0 and 7, inclusive.
 func (e *MathMLMsubElement) IfScriptlevel(condition bool, i int) *MathMLMsubElement {
 	if condition {
@@ -494,7 +494,7 @@ func (e *MathMLMsubElement) IfScriptlevel(condition bool, i int) *MathMLMsubElem
 	return e
 }
 
-// This attribute specifies the script level of the element. Possible values are
+// This Attribute specifies the script level of the element. Possible values are
 // an integer between 0 and 7, inclusive.
 // Remove the attribute Scriptlevel from the element.
 func (e *MathMLMsubElement) ScriptlevelRemove() *MathMLMsubElement {
@@ -505,7 +505,7 @@ func (e *MathMLMsubElement) ScriptlevelRemove() *MathMLMsubElement {
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMsubElement) StylePairs(pairs ...string) *MathMLMsubElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
@@ -530,7 +530,7 @@ func (e *MathMLMsubElement) StylePairs(pairs ...string) *MathMLMsubElement {
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMsubElement) Style(s string) *MathMLMsubElement {
 	if e.keyValueStrings == nil {
@@ -553,7 +553,7 @@ func (e *MathMLMsubElement) Style(s string) *MathMLMsubElement {
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMsubElement) IfStyle(condition bool, s string) *MathMLMsubElement {
 	if condition {
@@ -562,7 +562,7 @@ func (e *MathMLMsubElement) IfStyle(condition bool, s string) *MathMLMsubElement
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMsubElement) StyleAdd(k string, v string) *MathMLMsubElement {
 	if e.keyValueStrings == nil {
@@ -577,13 +577,13 @@ func (e *MathMLMsubElement) StyleAdd(k string, v string) *MathMLMsubElement {
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMsubElement) StyleAddF(k string, format string, args ...any) *MathMLMsubElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMsubElement) IfStyleAdd(condition bool, k string, v string) *MathMLMsubElement {
 	if condition {
@@ -592,7 +592,7 @@ func (e *MathMLMsubElement) IfStyleAdd(condition bool, k string, v string) *Math
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLMsubElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MathMLMsubElement {
 	if condition {
@@ -601,7 +601,7 @@ func (e *MathMLMsubElement) IfStyleAddF(condition bool, k string, format string,
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 // Add the attributes in the map to the element.
 func (e *MathMLMsubElement) StyleMap(m map[string]string) *MathMLMsubElement {
@@ -624,7 +624,7 @@ func (e *MathMLMsubElement) StyleMap(m map[string]string) *MathMLMsubElement {
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 // Remove the attribute Style from the element.
 func (e *MathMLMsubElement) StyleRemove(keys ...string) *MathMLMsubElement {
@@ -639,7 +639,7 @@ func (e *MathMLMsubElement) StyleRemove(keys ...string) *MathMLMsubElement {
 	return e
 }
 
-// This attribute specifies the position of the current element in the tabbing
+// This Attribute specifies the position of the current element in the tabbing
 // order for the current document. This value must be a number between 0 and
 // 32767. User agents should ignore leading zeros.
 func (e *MathMLMsubElement) Tabindex(i int) *MathMLMsubElement {
@@ -650,7 +650,7 @@ func (e *MathMLMsubElement) Tabindex(i int) *MathMLMsubElement {
 	return e
 }
 
-// This attribute specifies the position of the current element in the tabbing
+// This Attribute specifies the position of the current element in the tabbing
 // order for the current document. This value must be a number between 0 and
 // 32767. User agents should ignore leading zeros.
 func (e *MathMLMsubElement) IfTabindex(condition bool, i int) *MathMLMsubElement {
@@ -660,7 +660,7 @@ func (e *MathMLMsubElement) IfTabindex(condition bool, i int) *MathMLMsubElement
 	return e
 }
 
-// This attribute specifies the position of the current element in the tabbing
+// This Attribute specifies the position of the current element in the tabbing
 // order for the current document. This value must be a number between 0 and
 // 32767. User agents should ignore leading zeros.
 // Remove the attribute Tabindex from the element.

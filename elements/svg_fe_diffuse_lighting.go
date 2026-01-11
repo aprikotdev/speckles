@@ -166,7 +166,7 @@ func (e *SVGFeDiffuseLightingElement) InRemove() *SVGFeDiffuseLightingElement {
 	return e
 }
 
-// The 'surfaceScale' attribute indicates the height of the surface when the
+// The 'surfaceScale' Attribute indicates the height of the surface when the
 // alpha channel is 1.0.
 func (e *SVGFeDiffuseLightingElement) SurfaceScale(f float64) *SVGFeDiffuseLightingElement {
 	if e.floatAttributes == nil {
@@ -176,7 +176,7 @@ func (e *SVGFeDiffuseLightingElement) SurfaceScale(f float64) *SVGFeDiffuseLight
 	return e
 }
 
-// The 'surfaceScale' attribute indicates the height of the surface when the
+// The 'surfaceScale' Attribute indicates the height of the surface when the
 // alpha channel is 1.0.
 func (e *SVGFeDiffuseLightingElement) IfSurfaceScale(condition bool, f float64) *SVGFeDiffuseLightingElement {
 	if condition {
@@ -185,7 +185,7 @@ func (e *SVGFeDiffuseLightingElement) IfSurfaceScale(condition bool, f float64) 
 	return e
 }
 
-// The diffuseConstant attribute represents the proportion of the light that is
+// The diffuseConstant Attribute represents the proportion of the light that is
 // reflected by the surface.
 func (e *SVGFeDiffuseLightingElement) DiffuseConstant(f float64) *SVGFeDiffuseLightingElement {
 	if e.floatAttributes == nil {
@@ -195,7 +195,7 @@ func (e *SVGFeDiffuseLightingElement) DiffuseConstant(f float64) *SVGFeDiffuseLi
 	return e
 }
 
-// The diffuseConstant attribute represents the proportion of the light that is
+// The diffuseConstant Attribute represents the proportion of the light that is
 // reflected by the surface.
 func (e *SVGFeDiffuseLightingElement) IfDiffuseConstant(condition bool, f float64) *SVGFeDiffuseLightingElement {
 	if condition {
@@ -204,8 +204,8 @@ func (e *SVGFeDiffuseLightingElement) IfDiffuseConstant(condition bool, f float6
 	return e
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 func (e *SVGFeDiffuseLightingElement) KernelUnitLength(s string) *SVGFeDiffuseLightingElement {
 	if e.stringAttributes == nil {
@@ -215,15 +215,15 @@ func (e *SVGFeDiffuseLightingElement) KernelUnitLength(s string) *SVGFeDiffuseLi
 	return e
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 func (e *SVGFeDiffuseLightingElement) KernelUnitLengthF(format string, args ...any) *SVGFeDiffuseLightingElement {
 	return e.KernelUnitLength(fmt.Sprintf(format, args...))
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 func (e *SVGFeDiffuseLightingElement) IfKernelUnitLength(condition bool, s string) *SVGFeDiffuseLightingElement {
 	if condition {
@@ -232,8 +232,8 @@ func (e *SVGFeDiffuseLightingElement) IfKernelUnitLength(condition bool, s strin
 	return e
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 func (e *SVGFeDiffuseLightingElement) IfKernelUnitLengthF(condition bool, format string, args ...any) *SVGFeDiffuseLightingElement {
 	if condition {
@@ -242,8 +242,8 @@ func (e *SVGFeDiffuseLightingElement) IfKernelUnitLengthF(condition bool, format
 	return e
 }
 
-// The kernelUnitLength attribute defines the intended distance in current
-// filter units (i.e., units as determined by the value of attribute
+// The kernelUnitLength Attribute defines the intended distance in current
+// filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
 // Remove the attribute KernelUnitLength from the element.
 func (e *SVGFeDiffuseLightingElement) KernelUnitLengthRemove() *SVGFeDiffuseLightingElement {

@@ -123,7 +123,7 @@ func (e *SVGMaskElement) IfEscapedF(condition bool, format string, args ...any) 
 	return e
 }
 
-// The coordinate system for attributes x, y, width and height.
+// The coordinate system for Attributes x, y, width and height.
 func (e *SVGMaskElement) MaskContentUnits(c SVGMaskMaskContentUnitsChoice) *SVGMaskElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -135,13 +135,13 @@ func (e *SVGMaskElement) MaskContentUnits(c SVGMaskMaskContentUnitsChoice) *SVGM
 type SVGMaskMaskContentUnitsChoice string
 
 const (
-	// The coordinate system for attributes x, y, width and height.
+	// The coordinate system for Attributes x, y, width and height.
 	SVGMaskMaskContentUnitsUserSpaceOnUse SVGMaskMaskContentUnitsChoice = "userSpaceOnUse"
-	// The coordinate system for attributes x, y, width and height.
+	// The coordinate system for Attributes x, y, width and height.
 	SVGMaskMaskContentUnitsObjectBoundingBox SVGMaskMaskContentUnitsChoice = "objectBoundingBox"
 )
 
-// The coordinate system for attributes x, y, width and height.
+// The coordinate system for Attributes x, y, width and height.
 // Remove the attribute MaskContentUnits from the element.
 func (e *SVGMaskElement) MaskContentUnitsRemove() *SVGMaskElement {
 	if e.stringAttributes == nil {

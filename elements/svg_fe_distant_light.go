@@ -125,7 +125,7 @@ func (e *SVGFeDistantLightElement) IfEscapedF(condition bool, format string, arg
 	return e
 }
 
-// The azimuth attribute represent the direction vector of the light source in
+// The azimuth Attribute represent the direction vector of the light source in
 // the XY plane (clockwise), in degrees from the x axis.
 func (e *SVGFeDistantLightElement) Azimuth(f float64) *SVGFeDistantLightElement {
 	if e.floatAttributes == nil {
@@ -135,7 +135,7 @@ func (e *SVGFeDistantLightElement) Azimuth(f float64) *SVGFeDistantLightElement 
 	return e
 }
 
-// The azimuth attribute represent the direction vector of the light source in
+// The azimuth Attribute represent the direction vector of the light source in
 // the XY plane (clockwise), in degrees from the x axis.
 func (e *SVGFeDistantLightElement) IfAzimuth(condition bool, f float64) *SVGFeDistantLightElement {
 	if condition {
@@ -144,7 +144,7 @@ func (e *SVGFeDistantLightElement) IfAzimuth(condition bool, f float64) *SVGFeDi
 	return e
 }
 
-// The elevation attribute represent the direction vector of the light source
+// The elevation Attribute represent the direction vector of the light source
 // perpendicular to the XY plane, in degrees from the XY plane towards the z
 // axis (clockwise).
 func (e *SVGFeDistantLightElement) Elevation(f float64) *SVGFeDistantLightElement {
@@ -155,7 +155,7 @@ func (e *SVGFeDistantLightElement) Elevation(f float64) *SVGFeDistantLightElemen
 	return e
 }
 
-// The elevation attribute represent the direction vector of the light source
+// The elevation Attribute represent the direction vector of the light source
 // perpendicular to the XY plane, in degrees from the XY plane towards the z
 // axis (clockwise).
 func (e *SVGFeDistantLightElement) IfElevation(condition bool, f float64) *SVGFeDistantLightElement {

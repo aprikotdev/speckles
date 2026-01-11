@@ -124,8 +124,8 @@ func (e *SVGFeSpotLightElement) IfEscapedF(condition bool, format string, args .
 	return e
 }
 
-// The x attribute indicates the x location of the light source in the
-// coordinate system established by attribute 'primitiveUnits' on the <filter>
+// The x Attribute indicates the x location of the light source in the
+// coordinate system established by Attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFeSpotLightElement) X(f float64) *SVGFeSpotLightElement {
 	if e.floatAttributes == nil {
@@ -135,8 +135,8 @@ func (e *SVGFeSpotLightElement) X(f float64) *SVGFeSpotLightElement {
 	return e
 }
 
-// The x attribute indicates the x location of the light source in the
-// coordinate system established by attribute 'primitiveUnits' on the <filter>
+// The x Attribute indicates the x location of the light source in the
+// coordinate system established by Attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFeSpotLightElement) IfX(condition bool, f float64) *SVGFeSpotLightElement {
 	if condition {
@@ -145,8 +145,8 @@ func (e *SVGFeSpotLightElement) IfX(condition bool, f float64) *SVGFeSpotLightEl
 	return e
 }
 
-// The y attribute indicates the y location of the light source in the
-// coordinate system established by attribute 'primitiveUnits' on the <filter>
+// The y Attribute indicates the y location of the light source in the
+// coordinate system established by Attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFeSpotLightElement) Y(f float64) *SVGFeSpotLightElement {
 	if e.floatAttributes == nil {
@@ -156,8 +156,8 @@ func (e *SVGFeSpotLightElement) Y(f float64) *SVGFeSpotLightElement {
 	return e
 }
 
-// The y attribute indicates the y location of the light source in the
-// coordinate system established by attribute 'primitiveUnits' on the <filter>
+// The y Attribute indicates the y location of the light source in the
+// coordinate system established by Attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFeSpotLightElement) IfY(condition bool, f float64) *SVGFeSpotLightElement {
 	if condition {
@@ -166,8 +166,8 @@ func (e *SVGFeSpotLightElement) IfY(condition bool, f float64) *SVGFeSpotLightEl
 	return e
 }
 
-// The z attribute indicates the z location of the light source in the
-// coordinate system established by attribute 'primitiveUnits' on the <filter>
+// The z Attribute indicates the z location of the light source in the
+// coordinate system established by Attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFeSpotLightElement) Z(f float64) *SVGFeSpotLightElement {
 	if e.floatAttributes == nil {
@@ -177,8 +177,8 @@ func (e *SVGFeSpotLightElement) Z(f float64) *SVGFeSpotLightElement {
 	return e
 }
 
-// The z attribute indicates the z location of the light source in the
-// coordinate system established by attribute 'primitiveUnits' on the <filter>
+// The z Attribute indicates the z location of the light source in the
+// coordinate system established by Attribute 'primitiveUnits' on the <filter>
 // element.
 func (e *SVGFeSpotLightElement) IfZ(condition bool, f float64) *SVGFeSpotLightElement {
 	if condition {
@@ -187,8 +187,8 @@ func (e *SVGFeSpotLightElement) IfZ(condition bool, f float64) *SVGFeSpotLightEl
 	return e
 }
 
-// The pointsAtX attribute indicates the x location in the coordinate system
-// established by attribute 'primitiveUnits' on the <filter> element of the
+// The pointsAtX Attribute indicates the x location in the coordinate system
+// established by Attribute 'primitiveUnits' on the <filter> element of the
 // point at which the light source is pointing.
 func (e *SVGFeSpotLightElement) PointsAtX(f float64) *SVGFeSpotLightElement {
 	if e.floatAttributes == nil {
@@ -198,8 +198,8 @@ func (e *SVGFeSpotLightElement) PointsAtX(f float64) *SVGFeSpotLightElement {
 	return e
 }
 
-// The pointsAtX attribute indicates the x location in the coordinate system
-// established by attribute 'primitiveUnits' on the <filter> element of the
+// The pointsAtX Attribute indicates the x location in the coordinate system
+// established by Attribute 'primitiveUnits' on the <filter> element of the
 // point at which the light source is pointing.
 func (e *SVGFeSpotLightElement) IfPointsAtX(condition bool, f float64) *SVGFeSpotLightElement {
 	if condition {
@@ -208,8 +208,8 @@ func (e *SVGFeSpotLightElement) IfPointsAtX(condition bool, f float64) *SVGFeSpo
 	return e
 }
 
-// The pointsAtY attribute indicates the y location in the coordinate system
-// established by attribute 'primitiveUnits' on the <filter> element of the
+// The pointsAtY Attribute indicates the y location in the coordinate system
+// established by Attribute 'primitiveUnits' on the <filter> element of the
 // point at which the light source is pointing.
 func (e *SVGFeSpotLightElement) PointsAtY(f float64) *SVGFeSpotLightElement {
 	if e.floatAttributes == nil {
@@ -219,8 +219,8 @@ func (e *SVGFeSpotLightElement) PointsAtY(f float64) *SVGFeSpotLightElement {
 	return e
 }
 
-// The pointsAtY attribute indicates the y location in the coordinate system
-// established by attribute 'primitiveUnits' on the <filter> element of the
+// The pointsAtY Attribute indicates the y location in the coordinate system
+// established by Attribute 'primitiveUnits' on the <filter> element of the
 // point at which the light source is pointing.
 func (e *SVGFeSpotLightElement) IfPointsAtY(condition bool, f float64) *SVGFeSpotLightElement {
 	if condition {
@@ -229,8 +229,8 @@ func (e *SVGFeSpotLightElement) IfPointsAtY(condition bool, f float64) *SVGFeSpo
 	return e
 }
 
-// The pointsAtZ attribute indicates the z location in the coordinate system
-// established by attribute 'primitiveUnits' on the <filter> element of the
+// The pointsAtZ Attribute indicates the z location in the coordinate system
+// established by Attribute 'primitiveUnits' on the <filter> element of the
 // point at which the light source is pointing.
 func (e *SVGFeSpotLightElement) PointsAtZ(f float64) *SVGFeSpotLightElement {
 	if e.floatAttributes == nil {
@@ -240,8 +240,8 @@ func (e *SVGFeSpotLightElement) PointsAtZ(f float64) *SVGFeSpotLightElement {
 	return e
 }
 
-// The pointsAtZ attribute indicates the z location in the coordinate system
-// established by attribute 'primitiveUnits' on the <filter> element of the
+// The pointsAtZ Attribute indicates the z location in the coordinate system
+// established by Attribute 'primitiveUnits' on the <filter> element of the
 // point at which the light source is pointing.
 func (e *SVGFeSpotLightElement) IfPointsAtZ(condition bool, f float64) *SVGFeSpotLightElement {
 	if condition {
@@ -250,7 +250,7 @@ func (e *SVGFeSpotLightElement) IfPointsAtZ(condition bool, f float64) *SVGFeSpo
 	return e
 }
 
-// The specularExponent attribute represents the specular reflection constant.
+// The specularExponent Attribute represents the specular reflection constant.
 func (e *SVGFeSpotLightElement) SpecularExponent(f float64) *SVGFeSpotLightElement {
 	if e.floatAttributes == nil {
 		e.floatAttributes = treemap.New[string, float64]()
@@ -259,7 +259,7 @@ func (e *SVGFeSpotLightElement) SpecularExponent(f float64) *SVGFeSpotLightEleme
 	return e
 }
 
-// The specularExponent attribute represents the specular reflection constant.
+// The specularExponent Attribute represents the specular reflection constant.
 func (e *SVGFeSpotLightElement) IfSpecularExponent(condition bool, f float64) *SVGFeSpotLightElement {
 	if condition {
 		e.SpecularExponent(f)
@@ -267,7 +267,7 @@ func (e *SVGFeSpotLightElement) IfSpecularExponent(condition bool, f float64) *S
 	return e
 }
 
-// The limitingConeAngle attribute represents the angle in degrees between the
+// The limitingConeAngle Attribute represents the angle in degrees between the
 // spot light axis and the spot light cone.
 func (e *SVGFeSpotLightElement) LimitingConeAngle(f float64) *SVGFeSpotLightElement {
 	if e.floatAttributes == nil {
@@ -277,7 +277,7 @@ func (e *SVGFeSpotLightElement) LimitingConeAngle(f float64) *SVGFeSpotLightElem
 	return e
 }
 
-// The limitingConeAngle attribute represents the angle in degrees between the
+// The limitingConeAngle Attribute represents the angle in degrees between the
 // spot light axis and the spot light cone.
 func (e *SVGFeSpotLightElement) IfLimitingConeAngle(condition bool, f float64) *SVGFeSpotLightElement {
 	if condition {

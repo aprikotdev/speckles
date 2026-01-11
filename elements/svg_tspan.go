@@ -13,7 +13,7 @@ import (
 )
 
 // The <tspan> SVG element lets authors explicitly specify the location of a
-// glyph along the given path via the attributes.
+// glyph along the given path via the Attributes.
 type SVGTspanElement struct {
 	*Element
 }

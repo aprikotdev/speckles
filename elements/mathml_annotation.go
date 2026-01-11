@@ -170,7 +170,7 @@ func (e *MathMLAnnotationElement) EncodingRemove() *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute specifies the name of the annotation.
+// This Attribute specifies the name of the annotation.
 func (e *MathMLAnnotationElement) Name(s string) *MathMLAnnotationElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -179,12 +179,12 @@ func (e *MathMLAnnotationElement) Name(s string) *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute specifies the name of the annotation.
+// This Attribute specifies the name of the annotation.
 func (e *MathMLAnnotationElement) NameF(format string, args ...any) *MathMLAnnotationElement {
 	return e.Name(fmt.Sprintf(format, args...))
 }
 
-// This attribute specifies the name of the annotation.
+// This Attribute specifies the name of the annotation.
 func (e *MathMLAnnotationElement) IfName(condition bool, s string) *MathMLAnnotationElement {
 	if condition {
 		e.Name(s)
@@ -192,7 +192,7 @@ func (e *MathMLAnnotationElement) IfName(condition bool, s string) *MathMLAnnota
 	return e
 }
 
-// This attribute specifies the name of the annotation.
+// This Attribute specifies the name of the annotation.
 func (e *MathMLAnnotationElement) IfNameF(condition bool, format string, args ...any) *MathMLAnnotationElement {
 	if condition {
 		e.Name(fmt.Sprintf(format, args...))
@@ -200,7 +200,7 @@ func (e *MathMLAnnotationElement) IfNameF(condition bool, format string, args ..
 	return e
 }
 
-// This attribute specifies the name of the annotation.
+// This Attribute specifies the name of the annotation.
 // Remove the attribute Name from the element.
 func (e *MathMLAnnotationElement) NameRemove() *MathMLAnnotationElement {
 	if e.stringAttributes == nil {
@@ -253,7 +253,7 @@ func (e *MathMLAnnotationElement) ClassRemove(s ...string) *MathMLAnnotationElem
 	return e
 }
 
-// This attribute specifies the text directionality of the element, merely
+// This Attribute specifies the text directionality of the element, merely
 // indicating what direction the text flows when surrounded by text with
 // inherent directionality (such as Arabic or Hebrew). Possible values are ltr
 // (left-to-right) and rtl (right-to-left).
@@ -274,7 +274,7 @@ const (
 	MathMLAnnotationDirRtl MathMLAnnotationDirChoice = "rtl"
 )
 
-// This attribute specifies the text directionality of the element, merely
+// This Attribute specifies the text directionality of the element, merely
 // indicating what direction the text flows when surrounded by text with
 // inherent directionality (such as Arabic or Hebrew). Possible values are ltr
 // (left-to-right) and rtl (right-to-left).
@@ -287,7 +287,7 @@ func (e *MathMLAnnotationElement) DirRemove() *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute specifies whether the element should be rendered using
+// This Attribute specifies whether the element should be rendered using
 // displaystyle rules or not. Possible values are true and false.
 func (e *MathMLAnnotationElement) Displaystyle(c MathMLAnnotationDisplaystyleChoice) *MathMLAnnotationElement {
 	if e.stringAttributes == nil {
@@ -306,7 +306,7 @@ const (
 	MathMLAnnotationDisplaystyleFalse MathMLAnnotationDisplaystyleChoice = "false"
 )
 
-// This attribute specifies whether the element should be rendered using
+// This Attribute specifies whether the element should be rendered using
 // displaystyle rules or not. Possible values are true and false.
 // Remove the attribute Displaystyle from the element.
 func (e *MathMLAnnotationElement) DisplaystyleRemove() *MathMLAnnotationElement {
@@ -317,7 +317,7 @@ func (e *MathMLAnnotationElement) DisplaystyleRemove() *MathMLAnnotationElement 
 	return e
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLAnnotationElement) ID(s string) *MathMLAnnotationElement {
 	if e.stringAttributes == nil {
@@ -327,13 +327,13 @@ func (e *MathMLAnnotationElement) ID(s string) *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLAnnotationElement) IDF(format string, args ...any) *MathMLAnnotationElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLAnnotationElement) IfID(condition bool, s string) *MathMLAnnotationElement {
 	if condition {
@@ -342,7 +342,7 @@ func (e *MathMLAnnotationElement) IfID(condition bool, s string) *MathMLAnnotati
 	return e
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 func (e *MathMLAnnotationElement) IfIDF(condition bool, format string, args ...any) *MathMLAnnotationElement {
 	if condition {
@@ -351,7 +351,7 @@ func (e *MathMLAnnotationElement) IfIDF(condition bool, format string, args ...a
 	return e
 }
 
-// This attribute assigns a name to an element. This name must be unique in a
+// This Attribute assigns a name to an element. This name must be unique in a
 // document.
 // Remove the attribute ID from the element.
 func (e *MathMLAnnotationElement) IDRemove() *MathMLAnnotationElement {
@@ -362,7 +362,7 @@ func (e *MathMLAnnotationElement) IDRemove() *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLAnnotationElement) Mathbackground(s string) *MathMLAnnotationElement {
@@ -373,14 +373,14 @@ func (e *MathMLAnnotationElement) Mathbackground(s string) *MathMLAnnotationElem
 	return e
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLAnnotationElement) MathbackgroundF(format string, args ...any) *MathMLAnnotationElement {
 	return e.Mathbackground(fmt.Sprintf(format, args...))
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLAnnotationElement) IfMathbackground(condition bool, s string) *MathMLAnnotationElement {
@@ -390,7 +390,7 @@ func (e *MathMLAnnotationElement) IfMathbackground(condition bool, s string) *Ma
 	return e
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 func (e *MathMLAnnotationElement) IfMathbackgroundF(condition bool, format string, args ...any) *MathMLAnnotationElement {
@@ -400,7 +400,7 @@ func (e *MathMLAnnotationElement) IfMathbackgroundF(condition bool, format strin
 	return e
 }
 
-// This attribute specifies the background color of the element. Possible values
+// This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
 // Remove the attribute Mathbackground from the element.
@@ -412,7 +412,7 @@ func (e *MathMLAnnotationElement) MathbackgroundRemove() *MathMLAnnotationElemen
 	return e
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLAnnotationElement) Mathcolor(s string) *MathMLAnnotationElement {
@@ -423,14 +423,14 @@ func (e *MathMLAnnotationElement) Mathcolor(s string) *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLAnnotationElement) MathcolorF(format string, args ...any) *MathMLAnnotationElement {
 	return e.Mathcolor(fmt.Sprintf(format, args...))
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLAnnotationElement) IfMathcolor(condition bool, s string) *MathMLAnnotationElement {
@@ -440,7 +440,7 @@ func (e *MathMLAnnotationElement) IfMathcolor(condition bool, s string) *MathMLA
 	return e
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 func (e *MathMLAnnotationElement) IfMathcolorF(condition bool, format string, args ...any) *MathMLAnnotationElement {
@@ -450,7 +450,7 @@ func (e *MathMLAnnotationElement) IfMathcolorF(condition bool, format string, ar
 	return e
 }
 
-// This attribute specifies the color of the element. Possible values are a
+// This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
 // Remove the attribute Mathcolor from the element.
@@ -462,7 +462,7 @@ func (e *MathMLAnnotationElement) MathcolorRemove() *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLAnnotationElement) MathsizeStr(s string) *MathMLAnnotationElement {
 	if e.stringAttributes == nil {
@@ -472,13 +472,13 @@ func (e *MathMLAnnotationElement) MathsizeStr(s string) *MathMLAnnotationElement
 	return e
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLAnnotationElement) MathsizeStrF(format string, args ...any) *MathMLAnnotationElement {
 	return e.MathsizeStr(fmt.Sprintf(format, args...))
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLAnnotationElement) IfMathsizeStr(condition bool, s string) *MathMLAnnotationElement {
 	if condition {
@@ -487,7 +487,7 @@ func (e *MathMLAnnotationElement) IfMathsizeStr(condition bool, s string) *MathM
 	return e
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 func (e *MathMLAnnotationElement) IfMathsizeStrF(condition bool, format string, args ...any) *MathMLAnnotationElement {
 	if condition {
@@ -496,7 +496,7 @@ func (e *MathMLAnnotationElement) IfMathsizeStrF(condition bool, format string, 
 	return e
 }
 
-// This attribute specifies the size of the element. Possible values are a
+// This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
 // Remove the attribute MathsizeStr from the element.
 func (e *MathMLAnnotationElement) MathsizeStrRemove() *MathMLAnnotationElement {
@@ -507,10 +507,10 @@ func (e *MathMLAnnotationElement) MathsizeStrRemove() *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 func (e *MathMLAnnotationElement) Nonce(s string) *MathMLAnnotationElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -519,18 +519,18 @@ func (e *MathMLAnnotationElement) Nonce(s string) *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 func (e *MathMLAnnotationElement) NonceF(format string, args ...any) *MathMLAnnotationElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 func (e *MathMLAnnotationElement) IfNonce(condition bool, s string) *MathMLAnnotationElement {
 	if condition {
 		e.Nonce(s)
@@ -538,10 +538,10 @@ func (e *MathMLAnnotationElement) IfNonce(condition bool, s string) *MathMLAnnot
 	return e
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 func (e *MathMLAnnotationElement) IfNonceF(condition bool, format string, args ...any) *MathMLAnnotationElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
@@ -549,10 +549,10 @@ func (e *MathMLAnnotationElement) IfNonceF(condition bool, format string, args .
 	return e
 }
 
-// This attribute declares a cryptographic nonce (number used once) that should
+// This Attribute declares a cryptographic nonce (number used once) that should
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
-// attribute matching the value of the nonce attribute.
+// Attribute matching the value of the nonce Attribute.
 // Remove the attribute Nonce from the element.
 func (e *MathMLAnnotationElement) NonceRemove() *MathMLAnnotationElement {
 	if e.stringAttributes == nil {
@@ -562,7 +562,7 @@ func (e *MathMLAnnotationElement) NonceRemove() *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute specifies the script level of the element. Possible values are
+// This Attribute specifies the script level of the element. Possible values are
 // an integer between 0 and 7, inclusive.
 func (e *MathMLAnnotationElement) Scriptlevel(i int) *MathMLAnnotationElement {
 	if e.intAttributes == nil {
@@ -572,7 +572,7 @@ func (e *MathMLAnnotationElement) Scriptlevel(i int) *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute specifies the script level of the element. Possible values are
+// This Attribute specifies the script level of the element. Possible values are
 // an integer between 0 and 7, inclusive.
 func (e *MathMLAnnotationElement) IfScriptlevel(condition bool, i int) *MathMLAnnotationElement {
 	if condition {
@@ -581,7 +581,7 @@ func (e *MathMLAnnotationElement) IfScriptlevel(condition bool, i int) *MathMLAn
 	return e
 }
 
-// This attribute specifies the script level of the element. Possible values are
+// This Attribute specifies the script level of the element. Possible values are
 // an integer between 0 and 7, inclusive.
 // Remove the attribute Scriptlevel from the element.
 func (e *MathMLAnnotationElement) ScriptlevelRemove() *MathMLAnnotationElement {
@@ -592,7 +592,7 @@ func (e *MathMLAnnotationElement) ScriptlevelRemove() *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLAnnotationElement) StylePairs(pairs ...string) *MathMLAnnotationElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
@@ -617,7 +617,7 @@ func (e *MathMLAnnotationElement) StylePairs(pairs ...string) *MathMLAnnotationE
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLAnnotationElement) Style(s string) *MathMLAnnotationElement {
 	if e.keyValueStrings == nil {
@@ -640,7 +640,7 @@ func (e *MathMLAnnotationElement) Style(s string) *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLAnnotationElement) IfStyle(condition bool, s string) *MathMLAnnotationElement {
 	if condition {
@@ -649,7 +649,7 @@ func (e *MathMLAnnotationElement) IfStyle(condition bool, s string) *MathMLAnnot
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLAnnotationElement) StyleAdd(k string, v string) *MathMLAnnotationElement {
 	if e.keyValueStrings == nil {
@@ -664,13 +664,13 @@ func (e *MathMLAnnotationElement) StyleAdd(k string, v string) *MathMLAnnotation
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLAnnotationElement) StyleAddF(k string, format string, args ...any) *MathMLAnnotationElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLAnnotationElement) IfStyleAdd(condition bool, k string, v string) *MathMLAnnotationElement {
 	if condition {
@@ -679,7 +679,7 @@ func (e *MathMLAnnotationElement) IfStyleAdd(condition bool, k string, v string)
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 func (e *MathMLAnnotationElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MathMLAnnotationElement {
 	if condition {
@@ -688,7 +688,7 @@ func (e *MathMLAnnotationElement) IfStyleAddF(condition bool, k string, format s
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 // Add the attributes in the map to the element.
 func (e *MathMLAnnotationElement) StyleMap(m map[string]string) *MathMLAnnotationElement {
@@ -711,7 +711,7 @@ func (e *MathMLAnnotationElement) StyleMap(m map[string]string) *MathMLAnnotatio
 	return e
 }
 
-// This attribute offers advisory information about the element for which it is
+// This Attribute offers advisory information about the element for which it is
 // set.
 // Remove the attribute Style from the element.
 func (e *MathMLAnnotationElement) StyleRemove(keys ...string) *MathMLAnnotationElement {
@@ -726,7 +726,7 @@ func (e *MathMLAnnotationElement) StyleRemove(keys ...string) *MathMLAnnotationE
 	return e
 }
 
-// This attribute specifies the position of the current element in the tabbing
+// This Attribute specifies the position of the current element in the tabbing
 // order for the current document. This value must be a number between 0 and
 // 32767. User agents should ignore leading zeros.
 func (e *MathMLAnnotationElement) Tabindex(i int) *MathMLAnnotationElement {
@@ -737,7 +737,7 @@ func (e *MathMLAnnotationElement) Tabindex(i int) *MathMLAnnotationElement {
 	return e
 }
 
-// This attribute specifies the position of the current element in the tabbing
+// This Attribute specifies the position of the current element in the tabbing
 // order for the current document. This value must be a number between 0 and
 // 32767. User agents should ignore leading zeros.
 func (e *MathMLAnnotationElement) IfTabindex(condition bool, i int) *MathMLAnnotationElement {
@@ -747,7 +747,7 @@ func (e *MathMLAnnotationElement) IfTabindex(condition bool, i int) *MathMLAnnot
 	return e
 }
 
-// This attribute specifies the position of the current element in the tabbing
+// This Attribute specifies the position of the current element in the tabbing
 // order for the current document. This value must be a number between 0 and
 // 32767. User agents should ignore leading zeros.
 // Remove the attribute Tabindex from the element.

@@ -124,14 +124,14 @@ func (e *ButtonElement) IfEscapedF(condition bool, format string, args ...any) *
 	return e
 }
 
-// A Boolean attribute which, if present, indicates that the button should be
+// A Boolean Attribute which, if present, indicates that the button should be
 // focused as soon as the page is loaded.
 func (e *ButtonElement) Autofocus() *ButtonElement {
 	e.AutofocusSet(true)
 	return e
 }
 
-// A Boolean attribute which, if present, indicates that the button should be
+// A Boolean Attribute which, if present, indicates that the button should be
 // focused as soon as the page is loaded.
 func (e *ButtonElement) IfAutofocus(condition bool) *ButtonElement {
 	if condition {
@@ -140,7 +140,7 @@ func (e *ButtonElement) IfAutofocus(condition bool) *ButtonElement {
 	return e
 }
 
-// A Boolean attribute which, if present, indicates that the button should be
+// A Boolean Attribute which, if present, indicates that the button should be
 // focused as soon as the page is loaded.
 // Set the attribute Autofocus to the value b explicitly.
 func (e *ButtonElement) AutofocusSet(b bool) *ButtonElement {
@@ -151,7 +151,7 @@ func (e *ButtonElement) AutofocusSet(b bool) *ButtonElement {
 	return e
 }
 
-// A Boolean attribute which, if present, indicates that the button should be
+// A Boolean Attribute which, if present, indicates that the button should be
 // focused as soon as the page is loaded.
 func (e *ButtonElement) IfSetAutofocus(condition bool, b bool) *ButtonElement {
 	if condition {
@@ -161,7 +161,7 @@ func (e *ButtonElement) IfSetAutofocus(condition bool, b bool) *ButtonElement {
 }
 
 // Remove the attribute Autofocus from the element.
-// A Boolean attribute which, if present, indicates that the button should be
+// A Boolean Attribute which, if present, indicates that the button should be
 // focused as soon as the page is loaded.
 func (e *ButtonElement) AutofocusRemove() *ButtonElement {
 	if e.boolAttributes == nil {
@@ -171,13 +171,13 @@ func (e *ButtonElement) AutofocusRemove() *ButtonElement {
 	return e
 }
 
-// A Boolean attribute which is present if the button is disabled.
+// A Boolean Attribute which is present if the button is disabled.
 func (e *ButtonElement) Disabled() *ButtonElement {
 	e.DisabledSet(true)
 	return e
 }
 
-// A Boolean attribute which is present if the button is disabled.
+// A Boolean Attribute which is present if the button is disabled.
 func (e *ButtonElement) IfDisabled(condition bool) *ButtonElement {
 	if condition {
 		e.DisabledSet(true)
@@ -185,7 +185,7 @@ func (e *ButtonElement) IfDisabled(condition bool) *ButtonElement {
 	return e
 }
 
-// A Boolean attribute which is present if the button is disabled.
+// A Boolean Attribute which is present if the button is disabled.
 // Set the attribute Disabled to the value b explicitly.
 func (e *ButtonElement) DisabledSet(b bool) *ButtonElement {
 	if e.boolAttributes == nil {
@@ -195,7 +195,7 @@ func (e *ButtonElement) DisabledSet(b bool) *ButtonElement {
 	return e
 }
 
-// A Boolean attribute which is present if the button is disabled.
+// A Boolean Attribute which is present if the button is disabled.
 func (e *ButtonElement) IfSetDisabled(condition bool, b bool) *ButtonElement {
 	if condition {
 		e.DisabledSet(b)
@@ -204,7 +204,7 @@ func (e *ButtonElement) IfSetDisabled(condition bool, b bool) *ButtonElement {
 }
 
 // Remove the attribute Disabled from the element.
-// A Boolean attribute which is present if the button is disabled.
+// A Boolean Attribute which is present if the button is disabled.
 func (e *ButtonElement) DisabledRemove() *ButtonElement {
 	if e.boolAttributes == nil {
 		return e
@@ -254,7 +254,7 @@ func (e *ButtonElement) FormRemove() *ButtonElement {
 }
 
 // The URI of a program that processes the information submitted by the button.
-// If specified, it overrides the action attribute of the button's form owner.
+// If specified, it overrides the action Attribute of the button's form owner.
 func (e *ButtonElement) Formaction(s string) *ButtonElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -264,13 +264,13 @@ func (e *ButtonElement) Formaction(s string) *ButtonElement {
 }
 
 // The URI of a program that processes the information submitted by the button.
-// If specified, it overrides the action attribute of the button's form owner.
+// If specified, it overrides the action Attribute of the button's form owner.
 func (e *ButtonElement) FormactionF(format string, args ...any) *ButtonElement {
 	return e.Formaction(fmt.Sprintf(format, args...))
 }
 
 // The URI of a program that processes the information submitted by the button.
-// If specified, it overrides the action attribute of the button's form owner.
+// If specified, it overrides the action Attribute of the button's form owner.
 func (e *ButtonElement) IfFormaction(condition bool, s string) *ButtonElement {
 	if condition {
 		e.Formaction(s)
@@ -279,7 +279,7 @@ func (e *ButtonElement) IfFormaction(condition bool, s string) *ButtonElement {
 }
 
 // The URI of a program that processes the information submitted by the button.
-// If specified, it overrides the action attribute of the button's form owner.
+// If specified, it overrides the action Attribute of the button's form owner.
 func (e *ButtonElement) IfFormactionF(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Formaction(fmt.Sprintf(format, args...))
@@ -288,7 +288,7 @@ func (e *ButtonElement) IfFormactionF(condition bool, format string, args ...any
 }
 
 // The URI of a program that processes the information submitted by the button.
-// If specified, it overrides the action attribute of the button's form owner.
+// If specified, it overrides the action Attribute of the button's form owner.
 // Remove the attribute Formaction from the element.
 func (e *ButtonElement) FormactionRemove() *ButtonElement {
 	if e.stringAttributes == nil {
@@ -298,7 +298,7 @@ func (e *ButtonElement) FormactionRemove() *ButtonElement {
 	return e
 }
 
-// If the button is a submit button, this attribute specifies the type of
+// If the button is a submit button, this Attribute specifies the type of
 // content that is used to submit the form to the server.
 func (e *ButtonElement) Formenctype(c ButtonFormenctypeChoice) *ButtonElement {
 	if e.stringAttributes == nil {
@@ -320,7 +320,7 @@ const (
 	ButtonFormenctypeTextPlain ButtonFormenctypeChoice = "text/plain"
 )
 
-// If the button is a submit button, this attribute specifies the type of
+// If the button is a submit button, this Attribute specifies the type of
 // content that is used to submit the form to the server.
 // Remove the attribute Formenctype from the element.
 func (e *ButtonElement) FormenctypeRemove() *ButtonElement {
@@ -331,7 +331,7 @@ func (e *ButtonElement) FormenctypeRemove() *ButtonElement {
 	return e
 }
 
-// If the button is a submit button, this attribute specifies the HTTP method
+// If the button is a submit button, this Attribute specifies the HTTP method
 // that the browser uses to submit the form. Possible values are:
 func (e *ButtonElement) Formmethod(c ButtonFormmethodChoice) *ButtonElement {
 	if e.stringAttributes == nil {
@@ -355,7 +355,7 @@ const (
 	ButtonFormmethodDialog ButtonFormmethodChoice = "dialog"
 )
 
-// If the button is a submit button, this attribute specifies the HTTP method
+// If the button is a submit button, this Attribute specifies the HTTP method
 // that the browser uses to submit the form. Possible values are:
 // Remove the attribute Formmethod from the element.
 func (e *ButtonElement) FormmethodRemove() *ButtonElement {
@@ -366,7 +366,7 @@ func (e *ButtonElement) FormmethodRemove() *ButtonElement {
 	return e
 }
 
-// If the button is a submit button, this Boolean attribute specifies that the
+// If the button is a submit button, this Boolean Attribute specifies that the
 // form is not to be validated when it is submitted. If this attribute is
 // specified, it overrides the novalidate attribute of the button's form owner.
 func (e *ButtonElement) Formnovalidate() *ButtonElement {
@@ -374,7 +374,7 @@ func (e *ButtonElement) Formnovalidate() *ButtonElement {
 	return e
 }
 
-// If the button is a submit button, this Boolean attribute specifies that the
+// If the button is a submit button, this Boolean Attribute specifies that the
 // form is not to be validated when it is submitted. If this attribute is
 // specified, it overrides the novalidate attribute of the button's form owner.
 func (e *ButtonElement) IfFormnovalidate(condition bool) *ButtonElement {
@@ -384,7 +384,7 @@ func (e *ButtonElement) IfFormnovalidate(condition bool) *ButtonElement {
 	return e
 }
 
-// If the button is a submit button, this Boolean attribute specifies that the
+// If the button is a submit button, this Boolean Attribute specifies that the
 // form is not to be validated when it is submitted. If this attribute is
 // specified, it overrides the novalidate attribute of the button's form owner.
 // Set the attribute Formnovalidate to the value b explicitly.
@@ -396,7 +396,7 @@ func (e *ButtonElement) FormnovalidateSet(b bool) *ButtonElement {
 	return e
 }
 
-// If the button is a submit button, this Boolean attribute specifies that the
+// If the button is a submit button, this Boolean Attribute specifies that the
 // form is not to be validated when it is submitted. If this attribute is
 // specified, it overrides the novalidate attribute of the button's form owner.
 func (e *ButtonElement) IfSetFormnovalidate(condition bool, b bool) *ButtonElement {
@@ -407,7 +407,7 @@ func (e *ButtonElement) IfSetFormnovalidate(condition bool, b bool) *ButtonEleme
 }
 
 // Remove the attribute Formnovalidate from the element.
-// If the button is a submit button, this Boolean attribute specifies that the
+// If the button is a submit button, this Boolean Attribute specifies that the
 // form is not to be validated when it is submitted. If this attribute is
 // specified, it overrides the novalidate attribute of the button's form owner.
 func (e *ButtonElement) FormnovalidateRemove() *ButtonElement {
@@ -418,7 +418,7 @@ func (e *ButtonElement) FormnovalidateRemove() *ButtonElement {
 	return e
 }
 
-// If the button is a submit button, this attribute is a name or keyword
+// If the button is a submit button, this Attribute is a name or keyword
 // indicating where to display the response that is received after submitting
 // the form. This is a name of, or keyword for, a browsing context (for example,
 // tab, window, or inline frame). If this attribute is specified, it overrides
@@ -449,7 +449,7 @@ const (
 	ButtonFormtargetTop ButtonFormtargetChoice = "_top"
 )
 
-// If the button is a submit button, this attribute is a name or keyword
+// If the button is a submit button, this Attribute is a name or keyword
 // indicating where to display the response that is received after submitting
 // the form. This is a name of, or keyword for, a browsing context (for example,
 // tab, window, or inline frame). If this attribute is specified, it overrides
@@ -620,7 +620,7 @@ func (e *ButtonElement) TypeRemove() *ButtonElement {
 	return e
 }
 
-// The initial value of the button. This attribute is optional except when the
+// The initial value of the button. This Attribute is optional except when the
 // value of the type attribute is radio or checkbox.
 func (e *ButtonElement) Value(s string) *ButtonElement {
 	if e.stringAttributes == nil {
@@ -630,13 +630,13 @@ func (e *ButtonElement) Value(s string) *ButtonElement {
 	return e
 }
 
-// The initial value of the button. This attribute is optional except when the
+// The initial value of the button. This Attribute is optional except when the
 // value of the type attribute is radio or checkbox.
 func (e *ButtonElement) ValueF(format string, args ...any) *ButtonElement {
 	return e.Value(fmt.Sprintf(format, args...))
 }
 
-// The initial value of the button. This attribute is optional except when the
+// The initial value of the button. This Attribute is optional except when the
 // value of the type attribute is radio or checkbox.
 func (e *ButtonElement) IfValue(condition bool, s string) *ButtonElement {
 	if condition {
@@ -645,7 +645,7 @@ func (e *ButtonElement) IfValue(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The initial value of the button. This attribute is optional except when the
+// The initial value of the button. This Attribute is optional except when the
 // value of the type attribute is radio or checkbox.
 func (e *ButtonElement) IfValueF(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
@@ -654,7 +654,7 @@ func (e *ButtonElement) IfValueF(condition bool, format string, args ...any) *Bu
 	return e
 }
 
-// The initial value of the button. This attribute is optional except when the
+// The initial value of the button. This Attribute is optional except when the
 // value of the type attribute is radio or checkbox.
 // Remove the attribute Value from the element.
 func (e *ButtonElement) ValueRemove() *ButtonElement {
@@ -665,7 +665,7 @@ func (e *ButtonElement) ValueRemove() *ButtonElement {
 	return e
 }
 
-// The accesskey global attribute provides a hint for generating a keyboard
+// The accesskey global Attribute provides a hint for generating a keyboard
 // shortcut for the current element. The attribute value must consist of a
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
@@ -677,7 +677,7 @@ func (e *ButtonElement) Accesskey(r rune) *ButtonElement {
 	return e
 }
 
-// The accesskey global attribute provides a hint for generating a keyboard
+// The accesskey global Attribute provides a hint for generating a keyboard
 // shortcut for the current element. The attribute value must consist of a
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
@@ -688,7 +688,7 @@ func (e *ButtonElement) IfAccesskey(condition bool, r rune) *ButtonElement {
 	return e
 }
 
-// The accesskey global attribute provides a hint for generating a keyboard
+// The accesskey global Attribute provides a hint for generating a keyboard
 // shortcut for the current element. The attribute value must consist of a
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
@@ -701,7 +701,7 @@ func (e *ButtonElement) AccesskeyRemove() *ButtonElement {
 	return e
 }
 
-// The autocapitalize global attribute is an enumerated attribute that controls
+// The autocapitalize global Attribute is an enumerated attribute that controls
 // whether and how text input is automatically capitalized as it is
 // entered/edited by the user. autocapitalize can be set on <input> and
 // <textarea> elements, and on their containing <form> elements. When
@@ -737,7 +737,7 @@ const (
 	ButtonAutocapitalizeCharacters ButtonAutocapitalizeChoice = "characters"
 )
 
-// The autocapitalize global attribute is an enumerated attribute that controls
+// The autocapitalize global Attribute is an enumerated attribute that controls
 // whether and how text input is automatically capitalized as it is
 // entered/edited by the user. autocapitalize can be set on <input> and
 // <textarea> elements, and on their containing <form> elements. When
@@ -757,7 +757,7 @@ func (e *ButtonElement) AutocapitalizeRemove() *ButtonElement {
 	return e
 }
 
-// The class global attribute is a space-separated list of the case-sensitive
+// The class global Attribute is a space-separated list of the case-sensitive
 // classes of the element. Classes allow CSS and JavaScript to select and access
 // specific elements via the class selectors or functions like the DOM method
 // document.getElementsByClassName.
@@ -775,7 +775,7 @@ func (e *ButtonElement) Class(s string) *ButtonElement {
 	return e
 }
 
-// The class global attribute is a space-separated list of the case-sensitive
+// The class global Attribute is a space-separated list of the case-sensitive
 // classes of the element. Classes allow CSS and JavaScript to select and access
 // specific elements via the class selectors or functions like the DOM method
 // document.getElementsByClassName.
@@ -786,7 +786,7 @@ func (e *ButtonElement) IfClass(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The class global attribute is a space-separated list of the case-sensitive
+// The class global Attribute is a space-separated list of the case-sensitive
 // classes of the element. Classes allow CSS and JavaScript to select and access
 // specific elements via the class selectors or functions like the DOM method
 // document.getElementsByClassName.
@@ -803,7 +803,7 @@ func (e *ButtonElement) ClassRemove(s ...string) *ButtonElement {
 	return e
 }
 
-// The contenteditable global attribute is an enumerated attribute indicating if
+// The contenteditable global Attribute is an enumerated attribute indicating if
 // the element should be editable by the user. If so, the browser modifies its
 // widget to allow editing.
 func (e *ButtonElement) Contenteditable(c ButtonContenteditableChoice) *ButtonElement {
@@ -828,7 +828,7 @@ const (
 	ButtonContenteditablePlaintextOnly ButtonContenteditableChoice = "plaintext-only"
 )
 
-// The contenteditable global attribute is an enumerated attribute indicating if
+// The contenteditable global Attribute is an enumerated attribute indicating if
 // the element should be editable by the user. If so, the browser modifies its
 // widget to allow editing.
 // Remove the attribute Contenteditable from the element.
@@ -840,7 +840,7 @@ func (e *ButtonElement) ContenteditableRemove() *ButtonElement {
 	return e
 }
 
-// The dir global attribute is an enumerated attribute that indicates the
+// The dir global Attribute is an enumerated attribute that indicates the
 // directionality of the element's text. Note: This attribute is mandatory for
 // the <bdo> element where it has a different semantic meaning. This attribute
 // is not inherited by the <bdi> element. If not set, its value is auto. This
@@ -876,7 +876,7 @@ const (
 	ButtonDirAuto ButtonDirChoice = "auto"
 )
 
-// The dir global attribute is an enumerated attribute that indicates the
+// The dir global Attribute is an enumerated attribute that indicates the
 // directionality of the element's text. Note: This attribute is mandatory for
 // the <bdo> element where it has a different semantic meaning. This attribute
 // is not inherited by the <bdi> element. If not set, its value is auto. This
@@ -898,7 +898,7 @@ func (e *ButtonElement) DirRemove() *ButtonElement {
 	return e
 }
 
-// The draggable global attribute is an enumerated attribute that indicates
+// The draggable global Attribute is an enumerated attribute that indicates
 // whether the element can be dragged, either with native browser behavior or
 // the HTML Drag and Drop API.
 func (e *ButtonElement) Draggable(c ButtonDraggableChoice) *ButtonElement {
@@ -926,7 +926,7 @@ const (
 	ButtonDraggableAuto ButtonDraggableChoice = "auto"
 )
 
-// The draggable global attribute is an enumerated attribute that indicates
+// The draggable global Attribute is an enumerated attribute that indicates
 // whether the element can be dragged, either with native browser behavior or
 // the HTML Drag and Drop API.
 // Remove the attribute Draggable from the element.
@@ -938,7 +938,7 @@ func (e *ButtonElement) DraggableRemove() *ButtonElement {
 	return e
 }
 
-// The enterkeyhint global attribute is an enumerated attribute defining what
+// The enterkeyhint global Attribute is an enumerated attribute defining what
 // action label (or icon) to present for the enter key on virtual keyboards.
 func (e *ButtonElement) Enterkeyhint(c ButtonEnterkeyhintChoice) *ButtonElement {
 	if e.stringAttributes == nil {
@@ -970,7 +970,7 @@ const (
 	ButtonEnterkeyhintSend ButtonEnterkeyhintChoice = "send"
 )
 
-// The enterkeyhint global attribute is an enumerated attribute defining what
+// The enterkeyhint global Attribute is an enumerated attribute defining what
 // action label (or icon) to present for the enter key on virtual keyboards.
 // Remove the attribute Enterkeyhint from the element.
 func (e *ButtonElement) EnterkeyhintRemove() *ButtonElement {
@@ -981,7 +981,7 @@ func (e *ButtonElement) EnterkeyhintRemove() *ButtonElement {
 	return e
 }
 
-// The exportparts global attribute allows you to select and style elements
+// The exportparts global Attribute allows you to select and style elements
 // existing in nested shadow trees, by exporting their part names. The shadow
 // tree is an isolated structure where identifiers, classes, and styles cannot
 // be reached by selectors or queries belonging to a regular DOM. To apply a
@@ -1012,7 +1012,7 @@ func (e *ButtonElement) Exportparts(s string) *ButtonElement {
 	return e
 }
 
-// The exportparts global attribute allows you to select and style elements
+// The exportparts global Attribute allows you to select and style elements
 // existing in nested shadow trees, by exporting their part names. The shadow
 // tree is an isolated structure where identifiers, classes, and styles cannot
 // be reached by selectors or queries belonging to a regular DOM. To apply a
@@ -1036,7 +1036,7 @@ func (e *ButtonElement) IfExportparts(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The exportparts global attribute allows you to select and style elements
+// The exportparts global Attribute allows you to select and style elements
 // existing in nested shadow trees, by exporting their part names. The shadow
 // tree is an isolated structure where identifiers, classes, and styles cannot
 // be reached by selectors or queries belonging to a regular DOM. To apply a
@@ -1066,7 +1066,7 @@ func (e *ButtonElement) ExportpartsRemove(s ...string) *ButtonElement {
 	return e
 }
 
-// The hidden global attribute is a Boolean attribute indicating that the
+// The hidden global Attribute is a Boolean attribute indicating that the
 // element is not yet, or is no longer, relevant. For example, it can be used to
 // hide elements of the page that can't be used until the login process has been
 // completed. Note that browsers typically implement hidden until found using
@@ -1104,7 +1104,7 @@ const (
 	ButtonHiddenUntilFound ButtonHiddenChoice = "until-found"
 )
 
-// The hidden global attribute is a Boolean attribute indicating that the
+// The hidden global Attribute is a Boolean attribute indicating that the
 // element is not yet, or is no longer, relevant. For example, it can be used to
 // hide elements of the page that can't be used until the login process has been
 // completed. Note that browsers typically implement hidden until found using
@@ -1125,7 +1125,7 @@ func (e *ButtonElement) HiddenRemove() *ButtonElement {
 	return e
 }
 
-// The id global attribute defines a unique identifier (ID) which must be unique
+// The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *ButtonElement) ID(s string) *ButtonElement {
@@ -1136,14 +1136,14 @@ func (e *ButtonElement) ID(s string) *ButtonElement {
 	return e
 }
 
-// The id global attribute defines a unique identifier (ID) which must be unique
+// The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *ButtonElement) IDF(format string, args ...any) *ButtonElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
-// The id global attribute defines a unique identifier (ID) which must be unique
+// The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *ButtonElement) IfID(condition bool, s string) *ButtonElement {
@@ -1153,7 +1153,7 @@ func (e *ButtonElement) IfID(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The id global attribute defines a unique identifier (ID) which must be unique
+// The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *ButtonElement) IfIDF(condition bool, format string, args ...any) *ButtonElement {
@@ -1163,7 +1163,7 @@ func (e *ButtonElement) IfIDF(condition bool, format string, args ...any) *Butto
 	return e
 }
 
-// The id global attribute defines a unique identifier (ID) which must be unique
+// The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 // Remove the attribute ID from the element.
@@ -1175,7 +1175,7 @@ func (e *ButtonElement) IDRemove() *ButtonElement {
 	return e
 }
 
-// The inert global attribute is a Boolean attribute indicating that the browser
+// The inert global Attribute is a Boolean attribute indicating that the browser
 // will ignore the element. With the inert attribute, all of the element's flat
 // tree descendants (such as modal <dialog>s) that don't otherwise escape
 // inertness are ignored. The inert attribute also makes the browser ignore
@@ -1190,7 +1190,7 @@ func (e *ButtonElement) Inert() *ButtonElement {
 	return e
 }
 
-// The inert global attribute is a Boolean attribute indicating that the browser
+// The inert global Attribute is a Boolean attribute indicating that the browser
 // will ignore the element. With the inert attribute, all of the element's flat
 // tree descendants (such as modal <dialog>s) that don't otherwise escape
 // inertness are ignored. The inert attribute also makes the browser ignore
@@ -1207,7 +1207,7 @@ func (e *ButtonElement) IfInert(condition bool) *ButtonElement {
 	return e
 }
 
-// The inert global attribute is a Boolean attribute indicating that the browser
+// The inert global Attribute is a Boolean attribute indicating that the browser
 // will ignore the element. With the inert attribute, all of the element's flat
 // tree descendants (such as modal <dialog>s) that don't otherwise escape
 // inertness are ignored. The inert attribute also makes the browser ignore
@@ -1226,7 +1226,7 @@ func (e *ButtonElement) InertSet(b bool) *ButtonElement {
 	return e
 }
 
-// The inert global attribute is a Boolean attribute indicating that the browser
+// The inert global Attribute is a Boolean attribute indicating that the browser
 // will ignore the element. With the inert attribute, all of the element's flat
 // tree descendants (such as modal <dialog>s) that don't otherwise escape
 // inertness are ignored. The inert attribute also makes the browser ignore
@@ -1244,7 +1244,7 @@ func (e *ButtonElement) IfSetInert(condition bool, b bool) *ButtonElement {
 }
 
 // Remove the attribute Inert from the element.
-// The inert global attribute is a Boolean attribute indicating that the browser
+// The inert global Attribute is a Boolean attribute indicating that the browser
 // will ignore the element. With the inert attribute, all of the element's flat
 // tree descendants (such as modal <dialog>s) that don't otherwise escape
 // inertness are ignored. The inert attribute also makes the browser ignore
@@ -1262,7 +1262,7 @@ func (e *ButtonElement) InertRemove() *ButtonElement {
 	return e
 }
 
-// The inputmode global attribute is an enumerated attribute that hints at the
+// The inputmode global Attribute is an enumerated attribute that hints at the
 // type of data that might be entered by the user while editing the element or
 // its contents. This allows a browser to display an appropriate virtual
 // keyboard. It is used primarily on <input> elements, but is usable on any
@@ -1315,7 +1315,7 @@ const (
 	ButtonInputmodeURL ButtonInputmodeChoice = "url"
 )
 
-// The inputmode global attribute is an enumerated attribute that hints at the
+// The inputmode global Attribute is an enumerated attribute that hints at the
 // type of data that might be entered by the user while editing the element or
 // its contents. This allows a browser to display an appropriate virtual
 // keyboard. It is used primarily on <input> elements, but is usable on any
@@ -1333,7 +1333,7 @@ func (e *ButtonElement) InputmodeRemove() *ButtonElement {
 	return e
 }
 
-// The is global attribute allows you to specify that a standard HTML element
+// The is global Attribute allows you to specify that a standard HTML element
 // should behave like a defined custom built-in element (see Using custom
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
@@ -1346,7 +1346,7 @@ func (e *ButtonElement) Is(s string) *ButtonElement {
 	return e
 }
 
-// The is global attribute allows you to specify that a standard HTML element
+// The is global Attribute allows you to specify that a standard HTML element
 // should behave like a defined custom built-in element (see Using custom
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
@@ -1355,7 +1355,7 @@ func (e *ButtonElement) IsF(format string, args ...any) *ButtonElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
-// The is global attribute allows you to specify that a standard HTML element
+// The is global Attribute allows you to specify that a standard HTML element
 // should behave like a defined custom built-in element (see Using custom
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
@@ -1367,7 +1367,7 @@ func (e *ButtonElement) IfIs(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The is global attribute allows you to specify that a standard HTML element
+// The is global Attribute allows you to specify that a standard HTML element
 // should behave like a defined custom built-in element (see Using custom
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
@@ -1379,7 +1379,7 @@ func (e *ButtonElement) IfIsF(condition bool, format string, args ...any) *Butto
 	return e
 }
 
-// The is global attribute allows you to specify that a standard HTML element
+// The is global Attribute allows you to specify that a standard HTML element
 // should behave like a defined custom built-in element (see Using custom
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
@@ -1393,10 +1393,10 @@ func (e *ButtonElement) IsRemove() *ButtonElement {
 	return e
 }
 
-// The itemid global attribute provides microdata in the form of a unique,
+// The itemid global Attribute provides microdata in the form of a unique,
 // global identifier of an item.
 //
-// An itemid attribute can only be specified for an element that has both
+// An itemid Attribute can only be specified for an element that has both
 // itemscope and itemtype attributes. Also, itemid can only be specified on
 // elements that possess an itemscope attribute whose corresponding itemtype
 // refers to or defines a vocabulary that supports global identifiers. The exact
@@ -1412,10 +1412,10 @@ func (e *ButtonElement) Itemid(s string) *ButtonElement {
 	return e
 }
 
-// The itemid global attribute provides microdata in the form of a unique,
+// The itemid global Attribute provides microdata in the form of a unique,
 // global identifier of an item.
 //
-// An itemid attribute can only be specified for an element that has both
+// An itemid Attribute can only be specified for an element that has both
 // itemscope and itemtype attributes. Also, itemid can only be specified on
 // elements that possess an itemscope attribute whose corresponding itemtype
 // refers to or defines a vocabulary that supports global identifiers. The exact
@@ -1427,10 +1427,10 @@ func (e *ButtonElement) ItemidF(format string, args ...any) *ButtonElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
-// The itemid global attribute provides microdata in the form of a unique,
+// The itemid global Attribute provides microdata in the form of a unique,
 // global identifier of an item.
 //
-// An itemid attribute can only be specified for an element that has both
+// An itemid Attribute can only be specified for an element that has both
 // itemscope and itemtype attributes. Also, itemid can only be specified on
 // elements that possess an itemscope attribute whose corresponding itemtype
 // refers to or defines a vocabulary that supports global identifiers. The exact
@@ -1445,10 +1445,10 @@ func (e *ButtonElement) IfItemid(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The itemid global attribute provides microdata in the form of a unique,
+// The itemid global Attribute provides microdata in the form of a unique,
 // global identifier of an item.
 //
-// An itemid attribute can only be specified for an element that has both
+// An itemid Attribute can only be specified for an element that has both
 // itemscope and itemtype attributes. Also, itemid can only be specified on
 // elements that possess an itemscope attribute whose corresponding itemtype
 // refers to or defines a vocabulary that supports global identifiers. The exact
@@ -1463,10 +1463,10 @@ func (e *ButtonElement) IfItemidF(condition bool, format string, args ...any) *B
 	return e
 }
 
-// The itemid global attribute provides microdata in the form of a unique,
+// The itemid global Attribute provides microdata in the form of a unique,
 // global identifier of an item.
 //
-// An itemid attribute can only be specified for an element that has both
+// An itemid Attribute can only be specified for an element that has both
 // itemscope and itemtype attributes. Also, itemid can only be specified on
 // elements that possess an itemscope attribute whose corresponding itemtype
 // refers to or defines a vocabulary that supports global identifiers. The exact
@@ -1483,7 +1483,7 @@ func (e *ButtonElement) ItemidRemove() *ButtonElement {
 	return e
 }
 
-// The itemprop global attribute is used to add properties to an item. Every
+// The itemprop global Attribute is used to add properties to an item. Every
 // HTML element can have an itemprop attribute specified, and an itemprop
 // consists of a name-value pair. Each name-value pair is called a property, and
 // a group of one or more properties forms an item. Property values are either a
@@ -1498,7 +1498,7 @@ func (e *ButtonElement) Itemprop(s string) *ButtonElement {
 	return e
 }
 
-// The itemprop global attribute is used to add properties to an item. Every
+// The itemprop global Attribute is used to add properties to an item. Every
 // HTML element can have an itemprop attribute specified, and an itemprop
 // consists of a name-value pair. Each name-value pair is called a property, and
 // a group of one or more properties forms an item. Property values are either a
@@ -1509,7 +1509,7 @@ func (e *ButtonElement) ItempropF(format string, args ...any) *ButtonElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
-// The itemprop global attribute is used to add properties to an item. Every
+// The itemprop global Attribute is used to add properties to an item. Every
 // HTML element can have an itemprop attribute specified, and an itemprop
 // consists of a name-value pair. Each name-value pair is called a property, and
 // a group of one or more properties forms an item. Property values are either a
@@ -1523,7 +1523,7 @@ func (e *ButtonElement) IfItemprop(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The itemprop global attribute is used to add properties to an item. Every
+// The itemprop global Attribute is used to add properties to an item. Every
 // HTML element can have an itemprop attribute specified, and an itemprop
 // consists of a name-value pair. Each name-value pair is called a property, and
 // a group of one or more properties forms an item. Property values are either a
@@ -1537,7 +1537,7 @@ func (e *ButtonElement) IfItempropF(condition bool, format string, args ...any) 
 	return e
 }
 
-// The itemprop global attribute is used to add properties to an item. Every
+// The itemprop global Attribute is used to add properties to an item. Every
 // HTML element can have an itemprop attribute specified, and an itemprop
 // consists of a name-value pair. Each name-value pair is called a property, and
 // a group of one or more properties forms an item. Property values are either a
@@ -1554,7 +1554,7 @@ func (e *ButtonElement) ItempropRemove() *ButtonElement {
 }
 
 // Properties that are not descendants of an element with the itemscope
-// attribute can be associated with an item using the global attribute itemref.
+// Attribute can be associated with an item using the global attribute itemref.
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
@@ -1567,7 +1567,7 @@ func (e *ButtonElement) Itemref(s string) *ButtonElement {
 }
 
 // Properties that are not descendants of an element with the itemscope
-// attribute can be associated with an item using the global attribute itemref.
+// Attribute can be associated with an item using the global attribute itemref.
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
@@ -1576,7 +1576,7 @@ func (e *ButtonElement) ItemrefF(format string, args ...any) *ButtonElement {
 }
 
 // Properties that are not descendants of an element with the itemscope
-// attribute can be associated with an item using the global attribute itemref.
+// Attribute can be associated with an item using the global attribute itemref.
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
@@ -1588,7 +1588,7 @@ func (e *ButtonElement) IfItemref(condition bool, s string) *ButtonElement {
 }
 
 // Properties that are not descendants of an element with the itemscope
-// attribute can be associated with an item using the global attribute itemref.
+// Attribute can be associated with an item using the global attribute itemref.
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
@@ -1600,7 +1600,7 @@ func (e *ButtonElement) IfItemrefF(condition bool, format string, args ...any) *
 }
 
 // Properties that are not descendants of an element with the itemscope
-// attribute can be associated with an item using the global attribute itemref.
+// Attribute can be associated with an item using the global attribute itemref.
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
@@ -1613,7 +1613,7 @@ func (e *ButtonElement) ItemrefRemove() *ButtonElement {
 	return e
 }
 
-// The itemscope global attribute is used to add an item to a microdata DOM
+// The itemscope global Attribute is used to add an item to a microdata DOM
 // tree. Every HTML element can have an itemscope attribute specified, and an
 // itemscope consists of a name-value pair. Each name-value pair is called a
 // property, and a group of one or more properties forms an item. Property
@@ -1625,7 +1625,7 @@ func (e *ButtonElement) Itemscope() *ButtonElement {
 	return e
 }
 
-// The itemscope global attribute is used to add an item to a microdata DOM
+// The itemscope global Attribute is used to add an item to a microdata DOM
 // tree. Every HTML element can have an itemscope attribute specified, and an
 // itemscope consists of a name-value pair. Each name-value pair is called a
 // property, and a group of one or more properties forms an item. Property
@@ -1639,7 +1639,7 @@ func (e *ButtonElement) IfItemscope(condition bool) *ButtonElement {
 	return e
 }
 
-// The itemscope global attribute is used to add an item to a microdata DOM
+// The itemscope global Attribute is used to add an item to a microdata DOM
 // tree. Every HTML element can have an itemscope attribute specified, and an
 // itemscope consists of a name-value pair. Each name-value pair is called a
 // property, and a group of one or more properties forms an item. Property
@@ -1655,7 +1655,7 @@ func (e *ButtonElement) ItemscopeSet(b bool) *ButtonElement {
 	return e
 }
 
-// The itemscope global attribute is used to add an item to a microdata DOM
+// The itemscope global Attribute is used to add an item to a microdata DOM
 // tree. Every HTML element can have an itemscope attribute specified, and an
 // itemscope consists of a name-value pair. Each name-value pair is called a
 // property, and a group of one or more properties forms an item. Property
@@ -1670,7 +1670,7 @@ func (e *ButtonElement) IfSetItemscope(condition bool, b bool) *ButtonElement {
 }
 
 // Remove the attribute Itemscope from the element.
-// The itemscope global attribute is used to add an item to a microdata DOM
+// The itemscope global Attribute is used to add an item to a microdata DOM
 // tree. Every HTML element can have an itemscope attribute specified, and an
 // itemscope consists of a name-value pair. Each name-value pair is called a
 // property, and a group of one or more properties forms an item. Property
@@ -1685,7 +1685,7 @@ func (e *ButtonElement) ItemscopeRemove() *ButtonElement {
 	return e
 }
 
-// The itemtype global attribute is used to add types to an item. Every HTML
+// The itemtype global Attribute is used to add types to an item. Every HTML
 // element can have an itemtype attribute specified, and an itemtype consists of
 // a name-value pair. Each name-value pair is called a property, and a group of
 // one or more properties forms an item. Property values are either a string or
@@ -1700,7 +1700,7 @@ func (e *ButtonElement) Itemtype(s string) *ButtonElement {
 	return e
 }
 
-// The itemtype global attribute is used to add types to an item. Every HTML
+// The itemtype global Attribute is used to add types to an item. Every HTML
 // element can have an itemtype attribute specified, and an itemtype consists of
 // a name-value pair. Each name-value pair is called a property, and a group of
 // one or more properties forms an item. Property values are either a string or
@@ -1711,7 +1711,7 @@ func (e *ButtonElement) ItemtypeF(format string, args ...any) *ButtonElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
-// The itemtype global attribute is used to add types to an item. Every HTML
+// The itemtype global Attribute is used to add types to an item. Every HTML
 // element can have an itemtype attribute specified, and an itemtype consists of
 // a name-value pair. Each name-value pair is called a property, and a group of
 // one or more properties forms an item. Property values are either a string or
@@ -1725,7 +1725,7 @@ func (e *ButtonElement) IfItemtype(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The itemtype global attribute is used to add types to an item. Every HTML
+// The itemtype global Attribute is used to add types to an item. Every HTML
 // element can have an itemtype attribute specified, and an itemtype consists of
 // a name-value pair. Each name-value pair is called a property, and a group of
 // one or more properties forms an item. Property values are either a string or
@@ -1739,7 +1739,7 @@ func (e *ButtonElement) IfItemtypeF(condition bool, format string, args ...any) 
 	return e
 }
 
-// The itemtype global attribute is used to add types to an item. Every HTML
+// The itemtype global Attribute is used to add types to an item. Every HTML
 // element can have an itemtype attribute specified, and an itemtype consists of
 // a name-value pair. Each name-value pair is called a property, and a group of
 // one or more properties forms an item. Property values are either a string or
@@ -1755,7 +1755,7 @@ func (e *ButtonElement) ItemtypeRemove() *ButtonElement {
 	return e
 }
 
-// The lang global attribute helps define the language of an element: the
+// The lang global Attribute helps define the language of an element: the
 // language that non-editable elements are written in or the language that
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
@@ -1768,7 +1768,7 @@ func (e *ButtonElement) Lang(s string) *ButtonElement {
 	return e
 }
 
-// The lang global attribute helps define the language of an element: the
+// The lang global Attribute helps define the language of an element: the
 // language that non-editable elements are written in or the language that
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
@@ -1777,7 +1777,7 @@ func (e *ButtonElement) LangF(format string, args ...any) *ButtonElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
-// The lang global attribute helps define the language of an element: the
+// The lang global Attribute helps define the language of an element: the
 // language that non-editable elements are written in or the language that
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
@@ -1789,7 +1789,7 @@ func (e *ButtonElement) IfLang(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The lang global attribute helps define the language of an element: the
+// The lang global Attribute helps define the language of an element: the
 // language that non-editable elements are written in or the language that
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
@@ -1801,7 +1801,7 @@ func (e *ButtonElement) IfLangF(condition bool, format string, args ...any) *But
 	return e
 }
 
-// The lang global attribute helps define the language of an element: the
+// The lang global Attribute helps define the language of an element: the
 // language that non-editable elements are written in or the language that
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
@@ -1815,7 +1815,7 @@ func (e *ButtonElement) LangRemove() *ButtonElement {
 	return e
 }
 
-// The nonce global attribute is a unique identifier used to declare inline
+// The nonce global Attribute is a unique identifier used to declare inline
 // scripts and style elements to be used in a specific document. It is a
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
@@ -1828,7 +1828,7 @@ func (e *ButtonElement) Nonce(s string) *ButtonElement {
 	return e
 }
 
-// The nonce global attribute is a unique identifier used to declare inline
+// The nonce global Attribute is a unique identifier used to declare inline
 // scripts and style elements to be used in a specific document. It is a
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
@@ -1837,7 +1837,7 @@ func (e *ButtonElement) NonceF(format string, args ...any) *ButtonElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
-// The nonce global attribute is a unique identifier used to declare inline
+// The nonce global Attribute is a unique identifier used to declare inline
 // scripts and style elements to be used in a specific document. It is a
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
@@ -1849,7 +1849,7 @@ func (e *ButtonElement) IfNonce(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The nonce global attribute is a unique identifier used to declare inline
+// The nonce global Attribute is a unique identifier used to declare inline
 // scripts and style elements to be used in a specific document. It is a
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
@@ -1861,7 +1861,7 @@ func (e *ButtonElement) IfNonceF(condition bool, format string, args ...any) *Bu
 	return e
 }
 
-// The nonce global attribute is a unique identifier used to declare inline
+// The nonce global Attribute is a unique identifier used to declare inline
 // scripts and style elements to be used in a specific document. It is a
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
@@ -1875,7 +1875,7 @@ func (e *ButtonElement) NonceRemove() *ButtonElement {
 	return e
 }
 
-// The part global attribute contains a space-separated list of the part names
+// The part global Attribute contains a space-separated list of the part names
 // of the element. Part names allows CSS to select and style specific elements
 // in a shadow tree via the ::part pseudo-element.
 func (e *ButtonElement) Part(s string) *ButtonElement {
@@ -1892,7 +1892,7 @@ func (e *ButtonElement) Part(s string) *ButtonElement {
 	return e
 }
 
-// The part global attribute contains a space-separated list of the part names
+// The part global Attribute contains a space-separated list of the part names
 // of the element. Part names allows CSS to select and style specific elements
 // in a shadow tree via the ::part pseudo-element.
 func (e *ButtonElement) IfPart(condition bool, s string) *ButtonElement {
@@ -1902,7 +1902,7 @@ func (e *ButtonElement) IfPart(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The part global attribute contains a space-separated list of the part names
+// The part global Attribute contains a space-separated list of the part names
 // of the element. Part names allows CSS to select and style specific elements
 // in a shadow tree via the ::part pseudo-element.
 // Remove the values from the attribute Part in the element.
@@ -1918,7 +1918,7 @@ func (e *ButtonElement) PartRemove(s ...string) *ButtonElement {
 	return e
 }
 
-// The popover global attribute is used to designate an element as a popover
+// The popover global Attribute is used to designate an element as a popover
 // element. Popover elements are hidden via display: none until opened via an
 // invoking/control element (i.e. a <button> or <input type="button"> with a
 // popovertarget attribute) or a HTMLElement.showPopover() call. When open,
@@ -1948,7 +1948,7 @@ const (
 	ButtonPopoverManual ButtonPopoverChoice = "manual"
 )
 
-// The popover global attribute is used to designate an element as a popover
+// The popover global Attribute is used to designate an element as a popover
 // element. Popover elements are hidden via display: none until opened via an
 // invoking/control element (i.e. a <button> or <input type="button"> with a
 // popovertarget attribute) or a HTMLElement.showPopover() call. When open,
@@ -1963,7 +1963,7 @@ func (e *ButtonElement) PopoverRemove() *ButtonElement {
 	return e
 }
 
-// The role global attribute is used to define the purpose or state of an
+// The role global Attribute is used to define the purpose or state of an
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
@@ -1975,7 +1975,7 @@ func (e *ButtonElement) Role(s string) *ButtonElement {
 	return e
 }
 
-// The role global attribute is used to define the purpose or state of an
+// The role global Attribute is used to define the purpose or state of an
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
@@ -1983,7 +1983,7 @@ func (e *ButtonElement) RoleF(format string, args ...any) *ButtonElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
-// The role global attribute is used to define the purpose or state of an
+// The role global Attribute is used to define the purpose or state of an
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
@@ -1994,7 +1994,7 @@ func (e *ButtonElement) IfRole(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The role global attribute is used to define the purpose or state of an
+// The role global Attribute is used to define the purpose or state of an
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
@@ -2005,7 +2005,7 @@ func (e *ButtonElement) IfRoleF(condition bool, format string, args ...any) *But
 	return e
 }
 
-// The role global attribute is used to define the purpose or state of an
+// The role global Attribute is used to define the purpose or state of an
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
@@ -2018,7 +2018,7 @@ func (e *ButtonElement) RoleRemove() *ButtonElement {
 	return e
 }
 
-// The slot global attribute assigns a slot in a shadow DOM shadow tree to an
+// The slot global Attribute assigns a slot in a shadow DOM shadow tree to an
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
@@ -2030,7 +2030,7 @@ func (e *ButtonElement) Slot(s string) *ButtonElement {
 	return e
 }
 
-// The slot global attribute assigns a slot in a shadow DOM shadow tree to an
+// The slot global Attribute assigns a slot in a shadow DOM shadow tree to an
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
@@ -2038,7 +2038,7 @@ func (e *ButtonElement) SlotF(format string, args ...any) *ButtonElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
-// The slot global attribute assigns a slot in a shadow DOM shadow tree to an
+// The slot global Attribute assigns a slot in a shadow DOM shadow tree to an
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
@@ -2049,7 +2049,7 @@ func (e *ButtonElement) IfSlot(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The slot global attribute assigns a slot in a shadow DOM shadow tree to an
+// The slot global Attribute assigns a slot in a shadow DOM shadow tree to an
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
@@ -2060,7 +2060,7 @@ func (e *ButtonElement) IfSlotF(condition bool, format string, args ...any) *But
 	return e
 }
 
-// The slot global attribute assigns a slot in a shadow DOM shadow tree to an
+// The slot global Attribute assigns a slot in a shadow DOM shadow tree to an
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
@@ -2073,7 +2073,7 @@ func (e *ButtonElement) SlotRemove() *ButtonElement {
 	return e
 }
 
-// The spellcheck global attribute is an enumerated attribute that defines
+// The spellcheck global Attribute is an enumerated attribute that defines
 // whether the element may be checked for spelling errors. If this attribute is
 // not set, its default value is element-type and browser-defined. This default
 // value may also be inherited, which means that the element content will be
@@ -2103,7 +2103,7 @@ const (
 	ButtonSpellcheckFalse ButtonSpellcheckChoice = "false"
 )
 
-// The spellcheck global attribute is an enumerated attribute that defines
+// The spellcheck global Attribute is an enumerated attribute that defines
 // whether the element may be checked for spelling errors. If this attribute is
 // not set, its default value is element-type and browser-defined. This default
 // value may also be inherited, which means that the element content will be
@@ -2123,7 +2123,7 @@ func (e *ButtonElement) SpellcheckRemove() *ButtonElement {
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *ButtonElement) StylePairs(pairs ...string) *ButtonElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
@@ -2148,7 +2148,7 @@ func (e *ButtonElement) StylePairs(pairs ...string) *ButtonElement {
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *ButtonElement) Style(s string) *ButtonElement {
 	if e.keyValueStrings == nil {
@@ -2171,7 +2171,7 @@ func (e *ButtonElement) Style(s string) *ButtonElement {
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *ButtonElement) IfStyle(condition bool, s string) *ButtonElement {
 	if condition {
@@ -2180,7 +2180,7 @@ func (e *ButtonElement) IfStyle(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *ButtonElement) StyleAdd(k string, v string) *ButtonElement {
 	if e.keyValueStrings == nil {
@@ -2195,13 +2195,13 @@ func (e *ButtonElement) StyleAdd(k string, v string) *ButtonElement {
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *ButtonElement) StyleAddF(k string, format string, args ...any) *ButtonElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *ButtonElement) IfStyleAdd(condition bool, k string, v string) *ButtonElement {
 	if condition {
@@ -2210,7 +2210,7 @@ func (e *ButtonElement) IfStyleAdd(condition bool, k string, v string) *ButtonEl
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *ButtonElement) IfStyleAddF(condition bool, k string, format string, args ...any) *ButtonElement {
 	if condition {
@@ -2219,7 +2219,7 @@ func (e *ButtonElement) IfStyleAddF(condition bool, k string, format string, arg
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 // Add the attributes in the map to the element.
 func (e *ButtonElement) StyleMap(m map[string]string) *ButtonElement {
@@ -2242,7 +2242,7 @@ func (e *ButtonElement) StyleMap(m map[string]string) *ButtonElement {
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 // Remove the attribute Style from the element.
 func (e *ButtonElement) StyleRemove(keys ...string) *ButtonElement {
@@ -2257,7 +2257,7 @@ func (e *ButtonElement) StyleRemove(keys ...string) *ButtonElement {
 	return e
 }
 
-// The tabindex global attribute indicates if its element can be focused, and
+// The tabindex global Attribute indicates if its element can be focused, and
 // if/where it participates in sequential keyboard navigation (usually with the
 // Tab key, hence the name). It accepts an integer as a value, with different
 // results depending on the integer's value: a negative value (usually
@@ -2278,7 +2278,7 @@ func (e *ButtonElement) Tabindex(i int) *ButtonElement {
 	return e
 }
 
-// The tabindex global attribute indicates if its element can be focused, and
+// The tabindex global Attribute indicates if its element can be focused, and
 // if/where it participates in sequential keyboard navigation (usually with the
 // Tab key, hence the name). It accepts an integer as a value, with different
 // results depending on the integer's value: a negative value (usually
@@ -2298,7 +2298,7 @@ func (e *ButtonElement) IfTabindex(condition bool, i int) *ButtonElement {
 	return e
 }
 
-// The tabindex global attribute indicates if its element can be focused, and
+// The tabindex global Attribute indicates if its element can be focused, and
 // if/where it participates in sequential keyboard navigation (usually with the
 // Tab key, hence the name). It accepts an integer as a value, with different
 // results depending on the integer's value: a negative value (usually
@@ -2320,7 +2320,7 @@ func (e *ButtonElement) TabindexRemove() *ButtonElement {
 	return e
 }
 
-// The title global attribute contains text representing advisory information
+// The title global Attribute contains text representing advisory information
 // related to the element it belongs to. Such information can typically, but not
 // necessarily, be presented to the user as a tooltip. The main use of the title
 // attribute is to label <iframe> elements for assistive technology. The title
@@ -2344,7 +2344,7 @@ func (e *ButtonElement) Title(s string) *ButtonElement {
 	return e
 }
 
-// The title global attribute contains text representing advisory information
+// The title global Attribute contains text representing advisory information
 // related to the element it belongs to. Such information can typically, but not
 // necessarily, be presented to the user as a tooltip. The main use of the title
 // attribute is to label <iframe> elements for assistive technology. The title
@@ -2364,7 +2364,7 @@ func (e *ButtonElement) TitleF(format string, args ...any) *ButtonElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
-// The title global attribute contains text representing advisory information
+// The title global Attribute contains text representing advisory information
 // related to the element it belongs to. Such information can typically, but not
 // necessarily, be presented to the user as a tooltip. The main use of the title
 // attribute is to label <iframe> elements for assistive technology. The title
@@ -2387,7 +2387,7 @@ func (e *ButtonElement) IfTitle(condition bool, s string) *ButtonElement {
 	return e
 }
 
-// The title global attribute contains text representing advisory information
+// The title global Attribute contains text representing advisory information
 // related to the element it belongs to. Such information can typically, but not
 // necessarily, be presented to the user as a tooltip. The main use of the title
 // attribute is to label <iframe> elements for assistive technology. The title
@@ -2410,7 +2410,7 @@ func (e *ButtonElement) IfTitleF(condition bool, format string, args ...any) *Bu
 	return e
 }
 
-// The title global attribute contains text representing advisory information
+// The title global Attribute contains text representing advisory information
 // related to the element it belongs to. Such information can typically, but not
 // necessarily, be presented to the user as a tooltip. The main use of the title
 // attribute is to label <iframe> elements for assistive technology. The title
@@ -2435,7 +2435,7 @@ func (e *ButtonElement) TitleRemove() *ButtonElement {
 	return e
 }
 
-// The translate global attribute is an enumerated attribute that is used to
+// The translate global Attribute is an enumerated attribute that is used to
 // specify whether an element's attribute values and the values of its Text node
 // children are to be translated when the page is localized, or whether to leave
 // them unchanged.
@@ -2458,7 +2458,7 @@ const (
 	ButtonTranslateNo ButtonTranslateChoice = "no"
 )
 
-// The translate global attribute is an enumerated attribute that is used to
+// The translate global Attribute is an enumerated attribute that is used to
 // specify whether an element's attribute values and the values of its Text node
 // children are to be translated when the page is localized, or whether to leave
 // them unchanged.

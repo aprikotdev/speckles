@@ -125,7 +125,7 @@ func (e *SVGFeTurbulenceElement) IfEscapedF(condition bool, format string, args 
 	return e
 }
 
-// The baseFrequency attribute represent the base frequencies in the X and Y
+// The baseFrequency Attribute represent the base frequencies in the X and Y
 // directions of the turbulence function.
 func (e *SVGFeTurbulenceElement) BaseFrequency(s string) *SVGFeTurbulenceElement {
 	if e.stringAttributes == nil {
@@ -135,13 +135,13 @@ func (e *SVGFeTurbulenceElement) BaseFrequency(s string) *SVGFeTurbulenceElement
 	return e
 }
 
-// The baseFrequency attribute represent the base frequencies in the X and Y
+// The baseFrequency Attribute represent the base frequencies in the X and Y
 // directions of the turbulence function.
 func (e *SVGFeTurbulenceElement) BaseFrequencyF(format string, args ...any) *SVGFeTurbulenceElement {
 	return e.BaseFrequency(fmt.Sprintf(format, args...))
 }
 
-// The baseFrequency attribute represent the base frequencies in the X and Y
+// The baseFrequency Attribute represent the base frequencies in the X and Y
 // directions of the turbulence function.
 func (e *SVGFeTurbulenceElement) IfBaseFrequency(condition bool, s string) *SVGFeTurbulenceElement {
 	if condition {
@@ -150,7 +150,7 @@ func (e *SVGFeTurbulenceElement) IfBaseFrequency(condition bool, s string) *SVGF
 	return e
 }
 
-// The baseFrequency attribute represent the base frequencies in the X and Y
+// The baseFrequency Attribute represent the base frequencies in the X and Y
 // directions of the turbulence function.
 func (e *SVGFeTurbulenceElement) IfBaseFrequencyF(condition bool, format string, args ...any) *SVGFeTurbulenceElement {
 	if condition {
@@ -159,7 +159,7 @@ func (e *SVGFeTurbulenceElement) IfBaseFrequencyF(condition bool, format string,
 	return e
 }
 
-// The baseFrequency attribute represent the base frequencies in the X and Y
+// The baseFrequency Attribute represent the base frequencies in the X and Y
 // directions of the turbulence function.
 // Remove the attribute BaseFrequency from the element.
 func (e *SVGFeTurbulenceElement) BaseFrequencyRemove() *SVGFeTurbulenceElement {
@@ -170,7 +170,7 @@ func (e *SVGFeTurbulenceElement) BaseFrequencyRemove() *SVGFeTurbulenceElement {
 	return e
 }
 
-// The numOctaves attribute indicates the number of octaves to be used by the
+// The numOctaves Attribute indicates the number of octaves to be used by the
 // noise function.
 func (e *SVGFeTurbulenceElement) NumOctaves(f float64) *SVGFeTurbulenceElement {
 	if e.floatAttributes == nil {
@@ -180,7 +180,7 @@ func (e *SVGFeTurbulenceElement) NumOctaves(f float64) *SVGFeTurbulenceElement {
 	return e
 }
 
-// The numOctaves attribute indicates the number of octaves to be used by the
+// The numOctaves Attribute indicates the number of octaves to be used by the
 // noise function.
 func (e *SVGFeTurbulenceElement) IfNumOctaves(condition bool, f float64) *SVGFeTurbulenceElement {
 	if condition {
@@ -189,7 +189,7 @@ func (e *SVGFeTurbulenceElement) IfNumOctaves(condition bool, f float64) *SVGFeT
 	return e
 }
 
-// The seed attribute indicates which number to use to seed the random number
+// The seed Attribute indicates which number to use to seed the random number
 // generator.
 func (e *SVGFeTurbulenceElement) Seed(f float64) *SVGFeTurbulenceElement {
 	if e.floatAttributes == nil {
@@ -199,7 +199,7 @@ func (e *SVGFeTurbulenceElement) Seed(f float64) *SVGFeTurbulenceElement {
 	return e
 }
 
-// The seed attribute indicates which number to use to seed the random number
+// The seed Attribute indicates which number to use to seed the random number
 // generator.
 func (e *SVGFeTurbulenceElement) IfSeed(condition bool, f float64) *SVGFeTurbulenceElement {
 	if condition {
@@ -208,7 +208,7 @@ func (e *SVGFeTurbulenceElement) IfSeed(condition bool, f float64) *SVGFeTurbule
 	return e
 }
 
-// The stitchTiles attribute indicates how the Perlin noise function should be
+// The stitchTiles Attribute indicates how the Perlin noise function should be
 // tiled. It is ignored if type is not set to 'turbulence'.
 func (e *SVGFeTurbulenceElement) StitchTiles(c SVGFeTurbulenceStitchTilesChoice) *SVGFeTurbulenceElement {
 	if e.stringAttributes == nil {
@@ -231,7 +231,7 @@ const (
 	SVGFeTurbulenceStitchTilesStitch SVGFeTurbulenceStitchTilesChoice = "stitch"
 )
 
-// The stitchTiles attribute indicates how the Perlin noise function should be
+// The stitchTiles Attribute indicates how the Perlin noise function should be
 // tiled. It is ignored if type is not set to 'turbulence'.
 // Remove the attribute StitchTiles from the element.
 func (e *SVGFeTurbulenceElement) StitchTilesRemove() *SVGFeTurbulenceElement {

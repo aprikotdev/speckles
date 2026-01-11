@@ -124,7 +124,7 @@ func (e *SVGPatternElement) IfEscapedF(condition bool, format string, args ...an
 	return e
 }
 
-// The coordinate system for attributes x, y, width and height.
+// The coordinate system for Attributes x, y, width and height.
 func (e *SVGPatternElement) PatternUnits(c SVGPatternPatternUnitsChoice) *SVGPatternElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -136,13 +136,13 @@ func (e *SVGPatternElement) PatternUnits(c SVGPatternPatternUnitsChoice) *SVGPat
 type SVGPatternPatternUnitsChoice string
 
 const (
-	// The coordinate system for attributes x, y, width and height.
+	// The coordinate system for Attributes x, y, width and height.
 	SVGPatternPatternUnitsUserSpaceOnUse SVGPatternPatternUnitsChoice = "userSpaceOnUse"
-	// The coordinate system for attributes x, y, width and height.
+	// The coordinate system for Attributes x, y, width and height.
 	SVGPatternPatternUnitsObjectBoundingBox SVGPatternPatternUnitsChoice = "objectBoundingBox"
 )
 
-// The coordinate system for attributes x, y, width and height.
+// The coordinate system for Attributes x, y, width and height.
 // Remove the attribute PatternUnits from the element.
 func (e *SVGPatternElement) PatternUnitsRemove() *SVGPatternElement {
 	if e.stringAttributes == nil {

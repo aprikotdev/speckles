@@ -124,7 +124,7 @@ func (e *SVGLinearGradientElement) IfEscapedF(condition bool, format string, arg
 	return e
 }
 
-// The coordinate system for attributes x1, y1, x2 and y2.
+// The coordinate system for Attributes x1, y1, x2 and y2.
 func (e *SVGLinearGradientElement) GradientUnits(c SVGLinearGradientGradientUnitsChoice) *SVGLinearGradientElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -136,13 +136,13 @@ func (e *SVGLinearGradientElement) GradientUnits(c SVGLinearGradientGradientUnit
 type SVGLinearGradientGradientUnitsChoice string
 
 const (
-	// The coordinate system for attributes x1, y1, x2 and y2.
+	// The coordinate system for Attributes x1, y1, x2 and y2.
 	SVGLinearGradientGradientUnitsUserSpaceOnUse SVGLinearGradientGradientUnitsChoice = "userSpaceOnUse"
-	// The coordinate system for attributes x1, y1, x2 and y2.
+	// The coordinate system for Attributes x1, y1, x2 and y2.
 	SVGLinearGradientGradientUnitsObjectBoundingBox SVGLinearGradientGradientUnitsChoice = "objectBoundingBox"
 )
 
-// The coordinate system for attributes x1, y1, x2 and y2.
+// The coordinate system for Attributes x1, y1, x2 and y2.
 // Remove the attribute GradientUnits from the element.
 func (e *SVGLinearGradientElement) GradientUnitsRemove() *SVGLinearGradientElement {
 	if e.stringAttributes == nil {

@@ -124,7 +124,7 @@ func (e *FieldsetElement) IfEscapedF(condition bool, format string, args ...any)
 	return e
 }
 
-// If this Boolean attribute is set, all form controls that are descendants of
+// If this Boolean Attribute is set, all form controls that are descendants of
 // the <fieldset>, are disabled, meaning they are not editable and won't be
 // submitted along with the <form>. They won't receive any browsing events, like
 // mouse clicks or focus-related events. By default browsers display such
@@ -135,7 +135,7 @@ func (e *FieldsetElement) Disabled() *FieldsetElement {
 	return e
 }
 
-// If this Boolean attribute is set, all form controls that are descendants of
+// If this Boolean Attribute is set, all form controls that are descendants of
 // the <fieldset>, are disabled, meaning they are not editable and won't be
 // submitted along with the <form>. They won't receive any browsing events, like
 // mouse clicks or focus-related events. By default browsers display such
@@ -148,7 +148,7 @@ func (e *FieldsetElement) IfDisabled(condition bool) *FieldsetElement {
 	return e
 }
 
-// If this Boolean attribute is set, all form controls that are descendants of
+// If this Boolean Attribute is set, all form controls that are descendants of
 // the <fieldset>, are disabled, meaning they are not editable and won't be
 // submitted along with the <form>. They won't receive any browsing events, like
 // mouse clicks or focus-related events. By default browsers display such
@@ -163,7 +163,7 @@ func (e *FieldsetElement) DisabledSet(b bool) *FieldsetElement {
 	return e
 }
 
-// If this Boolean attribute is set, all form controls that are descendants of
+// If this Boolean Attribute is set, all form controls that are descendants of
 // the <fieldset>, are disabled, meaning they are not editable and won't be
 // submitted along with the <form>. They won't receive any browsing events, like
 // mouse clicks or focus-related events. By default browsers display such
@@ -177,7 +177,7 @@ func (e *FieldsetElement) IfSetDisabled(condition bool, b bool) *FieldsetElement
 }
 
 // Remove the attribute Disabled from the element.
-// If this Boolean attribute is set, all form controls that are descendants of
+// If this Boolean Attribute is set, all form controls that are descendants of
 // the <fieldset>, are disabled, meaning they are not editable and won't be
 // submitted along with the <form>. They won't receive any browsing events, like
 // mouse clicks or focus-related events. By default browsers display such
@@ -191,7 +191,7 @@ func (e *FieldsetElement) DisabledRemove() *FieldsetElement {
 	return e
 }
 
-// This attribute takes the value of the id attribute of a <form> element you
+// This Attribute takes the value of the id attribute of a <form> element you
 // want the <fieldset> to be part of, even if it is not inside the form. Please
 // note that usage of this is confusing — if you want the <input> elements
 // inside the <fieldset> to be associated with the form, you need to use the
@@ -205,7 +205,7 @@ func (e *FieldsetElement) Form(s string) *FieldsetElement {
 	return e
 }
 
-// This attribute takes the value of the id attribute of a <form> element you
+// This Attribute takes the value of the id attribute of a <form> element you
 // want the <fieldset> to be part of, even if it is not inside the form. Please
 // note that usage of this is confusing — if you want the <input> elements
 // inside the <fieldset> to be associated with the form, you need to use the
@@ -215,7 +215,7 @@ func (e *FieldsetElement) FormF(format string, args ...any) *FieldsetElement {
 	return e.Form(fmt.Sprintf(format, args...))
 }
 
-// This attribute takes the value of the id attribute of a <form> element you
+// This Attribute takes the value of the id attribute of a <form> element you
 // want the <fieldset> to be part of, even if it is not inside the form. Please
 // note that usage of this is confusing — if you want the <input> elements
 // inside the <fieldset> to be associated with the form, you need to use the
@@ -228,7 +228,7 @@ func (e *FieldsetElement) IfForm(condition bool, s string) *FieldsetElement {
 	return e
 }
 
-// This attribute takes the value of the id attribute of a <form> element you
+// This Attribute takes the value of the id attribute of a <form> element you
 // want the <fieldset> to be part of, even if it is not inside the form. Please
 // note that usage of this is confusing — if you want the <input> elements
 // inside the <fieldset> to be associated with the form, you need to use the
@@ -241,7 +241,7 @@ func (e *FieldsetElement) IfFormF(condition bool, format string, args ...any) *F
 	return e
 }
 
-// This attribute takes the value of the id attribute of a <form> element you
+// This Attribute takes the value of the id attribute of a <form> element you
 // want the <fieldset> to be part of, even if it is not inside the form. Please
 // note that usage of this is confusing — if you want the <input> elements
 // inside the <fieldset> to be associated with the form, you need to use the
@@ -296,7 +296,7 @@ func (e *FieldsetElement) NameRemove() *FieldsetElement {
 	return e
 }
 
-// The accesskey global attribute provides a hint for generating a keyboard
+// The accesskey global Attribute provides a hint for generating a keyboard
 // shortcut for the current element. The attribute value must consist of a
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
@@ -308,7 +308,7 @@ func (e *FieldsetElement) Accesskey(r rune) *FieldsetElement {
 	return e
 }
 
-// The accesskey global attribute provides a hint for generating a keyboard
+// The accesskey global Attribute provides a hint for generating a keyboard
 // shortcut for the current element. The attribute value must consist of a
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
@@ -319,7 +319,7 @@ func (e *FieldsetElement) IfAccesskey(condition bool, r rune) *FieldsetElement {
 	return e
 }
 
-// The accesskey global attribute provides a hint for generating a keyboard
+// The accesskey global Attribute provides a hint for generating a keyboard
 // shortcut for the current element. The attribute value must consist of a
 // single printable character (which includes accented and other characters that
 // can be generated by the keyboard).
@@ -332,7 +332,7 @@ func (e *FieldsetElement) AccesskeyRemove() *FieldsetElement {
 	return e
 }
 
-// The autocapitalize global attribute is an enumerated attribute that controls
+// The autocapitalize global Attribute is an enumerated attribute that controls
 // whether and how text input is automatically capitalized as it is
 // entered/edited by the user. autocapitalize can be set on <input> and
 // <textarea> elements, and on their containing <form> elements. When
@@ -368,7 +368,7 @@ const (
 	FieldsetAutocapitalizeCharacters FieldsetAutocapitalizeChoice = "characters"
 )
 
-// The autocapitalize global attribute is an enumerated attribute that controls
+// The autocapitalize global Attribute is an enumerated attribute that controls
 // whether and how text input is automatically capitalized as it is
 // entered/edited by the user. autocapitalize can be set on <input> and
 // <textarea> elements, and on their containing <form> elements. When
@@ -388,7 +388,7 @@ func (e *FieldsetElement) AutocapitalizeRemove() *FieldsetElement {
 	return e
 }
 
-// The autofocus global attribute is a Boolean attribute indicating that an
+// The autofocus global Attribute is a Boolean attribute indicating that an
 // element should be focused on page load, or when the <dialog> that it is part
 // of is displayed.
 // Accessibility concerns Automatically focusing a form control can confuse
@@ -396,7 +396,7 @@ func (e *FieldsetElement) AutocapitalizeRemove() *FieldsetElement {
 // cognitive impairments. When autofocus is assigned, screen-readers "teleport"
 // their user to the form control without warning them beforehand.
 // Use careful consideration for accessibility when applying the autofocus
-// attribute. Automatically focusing on a control can cause the page to scroll
+// Attribute. Automatically focusing on a control can cause the page to scroll
 // on load. The focus can also cause dynamic keyboards to display on some touch
 // devices. While a screen reader will announce the label of the form control
 // receiving focus, the screen reader will not announce anything before the
@@ -407,7 +407,7 @@ func (e *FieldsetElement) Autofocus() *FieldsetElement {
 	return e
 }
 
-// The autofocus global attribute is a Boolean attribute indicating that an
+// The autofocus global Attribute is a Boolean attribute indicating that an
 // element should be focused on page load, or when the <dialog> that it is part
 // of is displayed.
 // Accessibility concerns Automatically focusing a form control can confuse
@@ -415,7 +415,7 @@ func (e *FieldsetElement) Autofocus() *FieldsetElement {
 // cognitive impairments. When autofocus is assigned, screen-readers "teleport"
 // their user to the form control without warning them beforehand.
 // Use careful consideration for accessibility when applying the autofocus
-// attribute. Automatically focusing on a control can cause the page to scroll
+// Attribute. Automatically focusing on a control can cause the page to scroll
 // on load. The focus can also cause dynamic keyboards to display on some touch
 // devices. While a screen reader will announce the label of the form control
 // receiving focus, the screen reader will not announce anything before the
@@ -428,7 +428,7 @@ func (e *FieldsetElement) IfAutofocus(condition bool) *FieldsetElement {
 	return e
 }
 
-// The autofocus global attribute is a Boolean attribute indicating that an
+// The autofocus global Attribute is a Boolean attribute indicating that an
 // element should be focused on page load, or when the <dialog> that it is part
 // of is displayed.
 // Accessibility concerns Automatically focusing a form control can confuse
@@ -436,7 +436,7 @@ func (e *FieldsetElement) IfAutofocus(condition bool) *FieldsetElement {
 // cognitive impairments. When autofocus is assigned, screen-readers "teleport"
 // their user to the form control without warning them beforehand.
 // Use careful consideration for accessibility when applying the autofocus
-// attribute. Automatically focusing on a control can cause the page to scroll
+// Attribute. Automatically focusing on a control can cause the page to scroll
 // on load. The focus can also cause dynamic keyboards to display on some touch
 // devices. While a screen reader will announce the label of the form control
 // receiving focus, the screen reader will not announce anything before the
@@ -451,7 +451,7 @@ func (e *FieldsetElement) AutofocusSet(b bool) *FieldsetElement {
 	return e
 }
 
-// The autofocus global attribute is a Boolean attribute indicating that an
+// The autofocus global Attribute is a Boolean attribute indicating that an
 // element should be focused on page load, or when the <dialog> that it is part
 // of is displayed.
 // Accessibility concerns Automatically focusing a form control can confuse
@@ -459,7 +459,7 @@ func (e *FieldsetElement) AutofocusSet(b bool) *FieldsetElement {
 // cognitive impairments. When autofocus is assigned, screen-readers "teleport"
 // their user to the form control without warning them beforehand.
 // Use careful consideration for accessibility when applying the autofocus
-// attribute. Automatically focusing on a control can cause the page to scroll
+// Attribute. Automatically focusing on a control can cause the page to scroll
 // on load. The focus can also cause dynamic keyboards to display on some touch
 // devices. While a screen reader will announce the label of the form control
 // receiving focus, the screen reader will not announce anything before the
@@ -473,7 +473,7 @@ func (e *FieldsetElement) IfSetAutofocus(condition bool, b bool) *FieldsetElemen
 }
 
 // Remove the attribute Autofocus from the element.
-// The autofocus global attribute is a Boolean attribute indicating that an
+// The autofocus global Attribute is a Boolean attribute indicating that an
 // element should be focused on page load, or when the <dialog> that it is part
 // of is displayed.
 // Accessibility concerns Automatically focusing a form control can confuse
@@ -481,7 +481,7 @@ func (e *FieldsetElement) IfSetAutofocus(condition bool, b bool) *FieldsetElemen
 // cognitive impairments. When autofocus is assigned, screen-readers "teleport"
 // their user to the form control without warning them beforehand.
 // Use careful consideration for accessibility when applying the autofocus
-// attribute. Automatically focusing on a control can cause the page to scroll
+// Attribute. Automatically focusing on a control can cause the page to scroll
 // on load. The focus can also cause dynamic keyboards to display on some touch
 // devices. While a screen reader will announce the label of the form control
 // receiving focus, the screen reader will not announce anything before the
@@ -495,7 +495,7 @@ func (e *FieldsetElement) AutofocusRemove() *FieldsetElement {
 	return e
 }
 
-// The class global attribute is a space-separated list of the case-sensitive
+// The class global Attribute is a space-separated list of the case-sensitive
 // classes of the element. Classes allow CSS and JavaScript to select and access
 // specific elements via the class selectors or functions like the DOM method
 // document.getElementsByClassName.
@@ -513,7 +513,7 @@ func (e *FieldsetElement) Class(s string) *FieldsetElement {
 	return e
 }
 
-// The class global attribute is a space-separated list of the case-sensitive
+// The class global Attribute is a space-separated list of the case-sensitive
 // classes of the element. Classes allow CSS and JavaScript to select and access
 // specific elements via the class selectors or functions like the DOM method
 // document.getElementsByClassName.
@@ -524,7 +524,7 @@ func (e *FieldsetElement) IfClass(condition bool, s string) *FieldsetElement {
 	return e
 }
 
-// The class global attribute is a space-separated list of the case-sensitive
+// The class global Attribute is a space-separated list of the case-sensitive
 // classes of the element. Classes allow CSS and JavaScript to select and access
 // specific elements via the class selectors or functions like the DOM method
 // document.getElementsByClassName.
@@ -541,7 +541,7 @@ func (e *FieldsetElement) ClassRemove(s ...string) *FieldsetElement {
 	return e
 }
 
-// The contenteditable global attribute is an enumerated attribute indicating if
+// The contenteditable global Attribute is an enumerated attribute indicating if
 // the element should be editable by the user. If so, the browser modifies its
 // widget to allow editing.
 func (e *FieldsetElement) Contenteditable(c FieldsetContenteditableChoice) *FieldsetElement {
@@ -566,7 +566,7 @@ const (
 	FieldsetContenteditablePlaintextOnly FieldsetContenteditableChoice = "plaintext-only"
 )
 
-// The contenteditable global attribute is an enumerated attribute indicating if
+// The contenteditable global Attribute is an enumerated attribute indicating if
 // the element should be editable by the user. If so, the browser modifies its
 // widget to allow editing.
 // Remove the attribute Contenteditable from the element.
@@ -578,7 +578,7 @@ func (e *FieldsetElement) ContenteditableRemove() *FieldsetElement {
 	return e
 }
 
-// The dir global attribute is an enumerated attribute that indicates the
+// The dir global Attribute is an enumerated attribute that indicates the
 // directionality of the element's text. Note: This attribute is mandatory for
 // the <bdo> element where it has a different semantic meaning. This attribute
 // is not inherited by the <bdi> element. If not set, its value is auto. This
@@ -614,7 +614,7 @@ const (
 	FieldsetDirAuto FieldsetDirChoice = "auto"
 )
 
-// The dir global attribute is an enumerated attribute that indicates the
+// The dir global Attribute is an enumerated attribute that indicates the
 // directionality of the element's text. Note: This attribute is mandatory for
 // the <bdo> element where it has a different semantic meaning. This attribute
 // is not inherited by the <bdi> element. If not set, its value is auto. This
@@ -636,7 +636,7 @@ func (e *FieldsetElement) DirRemove() *FieldsetElement {
 	return e
 }
 
-// The draggable global attribute is an enumerated attribute that indicates
+// The draggable global Attribute is an enumerated attribute that indicates
 // whether the element can be dragged, either with native browser behavior or
 // the HTML Drag and Drop API.
 func (e *FieldsetElement) Draggable(c FieldsetDraggableChoice) *FieldsetElement {
@@ -664,7 +664,7 @@ const (
 	FieldsetDraggableAuto FieldsetDraggableChoice = "auto"
 )
 
-// The draggable global attribute is an enumerated attribute that indicates
+// The draggable global Attribute is an enumerated attribute that indicates
 // whether the element can be dragged, either with native browser behavior or
 // the HTML Drag and Drop API.
 // Remove the attribute Draggable from the element.
@@ -676,7 +676,7 @@ func (e *FieldsetElement) DraggableRemove() *FieldsetElement {
 	return e
 }
 
-// The enterkeyhint global attribute is an enumerated attribute defining what
+// The enterkeyhint global Attribute is an enumerated attribute defining what
 // action label (or icon) to present for the enter key on virtual keyboards.
 func (e *FieldsetElement) Enterkeyhint(c FieldsetEnterkeyhintChoice) *FieldsetElement {
 	if e.stringAttributes == nil {
@@ -708,7 +708,7 @@ const (
 	FieldsetEnterkeyhintSend FieldsetEnterkeyhintChoice = "send"
 )
 
-// The enterkeyhint global attribute is an enumerated attribute defining what
+// The enterkeyhint global Attribute is an enumerated attribute defining what
 // action label (or icon) to present for the enter key on virtual keyboards.
 // Remove the attribute Enterkeyhint from the element.
 func (e *FieldsetElement) EnterkeyhintRemove() *FieldsetElement {
@@ -719,7 +719,7 @@ func (e *FieldsetElement) EnterkeyhintRemove() *FieldsetElement {
 	return e
 }
 
-// The exportparts global attribute allows you to select and style elements
+// The exportparts global Attribute allows you to select and style elements
 // existing in nested shadow trees, by exporting their part names. The shadow
 // tree is an isolated structure where identifiers, classes, and styles cannot
 // be reached by selectors or queries belonging to a regular DOM. To apply a
@@ -750,7 +750,7 @@ func (e *FieldsetElement) Exportparts(s string) *FieldsetElement {
 	return e
 }
 
-// The exportparts global attribute allows you to select and style elements
+// The exportparts global Attribute allows you to select and style elements
 // existing in nested shadow trees, by exporting their part names. The shadow
 // tree is an isolated structure where identifiers, classes, and styles cannot
 // be reached by selectors or queries belonging to a regular DOM. To apply a
@@ -774,7 +774,7 @@ func (e *FieldsetElement) IfExportparts(condition bool, s string) *FieldsetEleme
 	return e
 }
 
-// The exportparts global attribute allows you to select and style elements
+// The exportparts global Attribute allows you to select and style elements
 // existing in nested shadow trees, by exporting their part names. The shadow
 // tree is an isolated structure where identifiers, classes, and styles cannot
 // be reached by selectors or queries belonging to a regular DOM. To apply a
@@ -804,7 +804,7 @@ func (e *FieldsetElement) ExportpartsRemove(s ...string) *FieldsetElement {
 	return e
 }
 
-// The hidden global attribute is a Boolean attribute indicating that the
+// The hidden global Attribute is a Boolean attribute indicating that the
 // element is not yet, or is no longer, relevant. For example, it can be used to
 // hide elements of the page that can't be used until the login process has been
 // completed. Note that browsers typically implement hidden until found using
@@ -842,7 +842,7 @@ const (
 	FieldsetHiddenUntilFound FieldsetHiddenChoice = "until-found"
 )
 
-// The hidden global attribute is a Boolean attribute indicating that the
+// The hidden global Attribute is a Boolean attribute indicating that the
 // element is not yet, or is no longer, relevant. For example, it can be used to
 // hide elements of the page that can't be used until the login process has been
 // completed. Note that browsers typically implement hidden until found using
@@ -863,7 +863,7 @@ func (e *FieldsetElement) HiddenRemove() *FieldsetElement {
 	return e
 }
 
-// The id global attribute defines a unique identifier (ID) which must be unique
+// The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *FieldsetElement) ID(s string) *FieldsetElement {
@@ -874,14 +874,14 @@ func (e *FieldsetElement) ID(s string) *FieldsetElement {
 	return e
 }
 
-// The id global attribute defines a unique identifier (ID) which must be unique
+// The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *FieldsetElement) IDF(format string, args ...any) *FieldsetElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
-// The id global attribute defines a unique identifier (ID) which must be unique
+// The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *FieldsetElement) IfID(condition bool, s string) *FieldsetElement {
@@ -891,7 +891,7 @@ func (e *FieldsetElement) IfID(condition bool, s string) *FieldsetElement {
 	return e
 }
 
-// The id global attribute defines a unique identifier (ID) which must be unique
+// The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 func (e *FieldsetElement) IfIDF(condition bool, format string, args ...any) *FieldsetElement {
@@ -901,7 +901,7 @@ func (e *FieldsetElement) IfIDF(condition bool, format string, args ...any) *Fie
 	return e
 }
 
-// The id global attribute defines a unique identifier (ID) which must be unique
+// The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
 // Remove the attribute ID from the element.
@@ -913,7 +913,7 @@ func (e *FieldsetElement) IDRemove() *FieldsetElement {
 	return e
 }
 
-// The inert global attribute is a Boolean attribute indicating that the browser
+// The inert global Attribute is a Boolean attribute indicating that the browser
 // will ignore the element. With the inert attribute, all of the element's flat
 // tree descendants (such as modal <dialog>s) that don't otherwise escape
 // inertness are ignored. The inert attribute also makes the browser ignore
@@ -928,7 +928,7 @@ func (e *FieldsetElement) Inert() *FieldsetElement {
 	return e
 }
 
-// The inert global attribute is a Boolean attribute indicating that the browser
+// The inert global Attribute is a Boolean attribute indicating that the browser
 // will ignore the element. With the inert attribute, all of the element's flat
 // tree descendants (such as modal <dialog>s) that don't otherwise escape
 // inertness are ignored. The inert attribute also makes the browser ignore
@@ -945,7 +945,7 @@ func (e *FieldsetElement) IfInert(condition bool) *FieldsetElement {
 	return e
 }
 
-// The inert global attribute is a Boolean attribute indicating that the browser
+// The inert global Attribute is a Boolean attribute indicating that the browser
 // will ignore the element. With the inert attribute, all of the element's flat
 // tree descendants (such as modal <dialog>s) that don't otherwise escape
 // inertness are ignored. The inert attribute also makes the browser ignore
@@ -964,7 +964,7 @@ func (e *FieldsetElement) InertSet(b bool) *FieldsetElement {
 	return e
 }
 
-// The inert global attribute is a Boolean attribute indicating that the browser
+// The inert global Attribute is a Boolean attribute indicating that the browser
 // will ignore the element. With the inert attribute, all of the element's flat
 // tree descendants (such as modal <dialog>s) that don't otherwise escape
 // inertness are ignored. The inert attribute also makes the browser ignore
@@ -982,7 +982,7 @@ func (e *FieldsetElement) IfSetInert(condition bool, b bool) *FieldsetElement {
 }
 
 // Remove the attribute Inert from the element.
-// The inert global attribute is a Boolean attribute indicating that the browser
+// The inert global Attribute is a Boolean attribute indicating that the browser
 // will ignore the element. With the inert attribute, all of the element's flat
 // tree descendants (such as modal <dialog>s) that don't otherwise escape
 // inertness are ignored. The inert attribute also makes the browser ignore
@@ -1000,7 +1000,7 @@ func (e *FieldsetElement) InertRemove() *FieldsetElement {
 	return e
 }
 
-// The inputmode global attribute is an enumerated attribute that hints at the
+// The inputmode global Attribute is an enumerated attribute that hints at the
 // type of data that might be entered by the user while editing the element or
 // its contents. This allows a browser to display an appropriate virtual
 // keyboard. It is used primarily on <input> elements, but is usable on any
@@ -1053,7 +1053,7 @@ const (
 	FieldsetInputmodeURL FieldsetInputmodeChoice = "url"
 )
 
-// The inputmode global attribute is an enumerated attribute that hints at the
+// The inputmode global Attribute is an enumerated attribute that hints at the
 // type of data that might be entered by the user while editing the element or
 // its contents. This allows a browser to display an appropriate virtual
 // keyboard. It is used primarily on <input> elements, but is usable on any
@@ -1071,7 +1071,7 @@ func (e *FieldsetElement) InputmodeRemove() *FieldsetElement {
 	return e
 }
 
-// The is global attribute allows you to specify that a standard HTML element
+// The is global Attribute allows you to specify that a standard HTML element
 // should behave like a defined custom built-in element (see Using custom
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
@@ -1084,7 +1084,7 @@ func (e *FieldsetElement) Is(s string) *FieldsetElement {
 	return e
 }
 
-// The is global attribute allows you to specify that a standard HTML element
+// The is global Attribute allows you to specify that a standard HTML element
 // should behave like a defined custom built-in element (see Using custom
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
@@ -1093,7 +1093,7 @@ func (e *FieldsetElement) IsF(format string, args ...any) *FieldsetElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
-// The is global attribute allows you to specify that a standard HTML element
+// The is global Attribute allows you to specify that a standard HTML element
 // should behave like a defined custom built-in element (see Using custom
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
@@ -1105,7 +1105,7 @@ func (e *FieldsetElement) IfIs(condition bool, s string) *FieldsetElement {
 	return e
 }
 
-// The is global attribute allows you to specify that a standard HTML element
+// The is global Attribute allows you to specify that a standard HTML element
 // should behave like a defined custom built-in element (see Using custom
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
@@ -1117,7 +1117,7 @@ func (e *FieldsetElement) IfIsF(condition bool, format string, args ...any) *Fie
 	return e
 }
 
-// The is global attribute allows you to specify that a standard HTML element
+// The is global Attribute allows you to specify that a standard HTML element
 // should behave like a defined custom built-in element (see Using custom
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
@@ -1131,10 +1131,10 @@ func (e *FieldsetElement) IsRemove() *FieldsetElement {
 	return e
 }
 
-// The itemid global attribute provides microdata in the form of a unique,
+// The itemid global Attribute provides microdata in the form of a unique,
 // global identifier of an item.
 //
-// An itemid attribute can only be specified for an element that has both
+// An itemid Attribute can only be specified for an element that has both
 // itemscope and itemtype attributes. Also, itemid can only be specified on
 // elements that possess an itemscope attribute whose corresponding itemtype
 // refers to or defines a vocabulary that supports global identifiers. The exact
@@ -1150,10 +1150,10 @@ func (e *FieldsetElement) Itemid(s string) *FieldsetElement {
 	return e
 }
 
-// The itemid global attribute provides microdata in the form of a unique,
+// The itemid global Attribute provides microdata in the form of a unique,
 // global identifier of an item.
 //
-// An itemid attribute can only be specified for an element that has both
+// An itemid Attribute can only be specified for an element that has both
 // itemscope and itemtype attributes. Also, itemid can only be specified on
 // elements that possess an itemscope attribute whose corresponding itemtype
 // refers to or defines a vocabulary that supports global identifiers. The exact
@@ -1165,10 +1165,10 @@ func (e *FieldsetElement) ItemidF(format string, args ...any) *FieldsetElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
-// The itemid global attribute provides microdata in the form of a unique,
+// The itemid global Attribute provides microdata in the form of a unique,
 // global identifier of an item.
 //
-// An itemid attribute can only be specified for an element that has both
+// An itemid Attribute can only be specified for an element that has both
 // itemscope and itemtype attributes. Also, itemid can only be specified on
 // elements that possess an itemscope attribute whose corresponding itemtype
 // refers to or defines a vocabulary that supports global identifiers. The exact
@@ -1183,10 +1183,10 @@ func (e *FieldsetElement) IfItemid(condition bool, s string) *FieldsetElement {
 	return e
 }
 
-// The itemid global attribute provides microdata in the form of a unique,
+// The itemid global Attribute provides microdata in the form of a unique,
 // global identifier of an item.
 //
-// An itemid attribute can only be specified for an element that has both
+// An itemid Attribute can only be specified for an element that has both
 // itemscope and itemtype attributes. Also, itemid can only be specified on
 // elements that possess an itemscope attribute whose corresponding itemtype
 // refers to or defines a vocabulary that supports global identifiers. The exact
@@ -1201,10 +1201,10 @@ func (e *FieldsetElement) IfItemidF(condition bool, format string, args ...any) 
 	return e
 }
 
-// The itemid global attribute provides microdata in the form of a unique,
+// The itemid global Attribute provides microdata in the form of a unique,
 // global identifier of an item.
 //
-// An itemid attribute can only be specified for an element that has both
+// An itemid Attribute can only be specified for an element that has both
 // itemscope and itemtype attributes. Also, itemid can only be specified on
 // elements that possess an itemscope attribute whose corresponding itemtype
 // refers to or defines a vocabulary that supports global identifiers. The exact
@@ -1221,7 +1221,7 @@ func (e *FieldsetElement) ItemidRemove() *FieldsetElement {
 	return e
 }
 
-// The itemprop global attribute is used to add properties to an item. Every
+// The itemprop global Attribute is used to add properties to an item. Every
 // HTML element can have an itemprop attribute specified, and an itemprop
 // consists of a name-value pair. Each name-value pair is called a property, and
 // a group of one or more properties forms an item. Property values are either a
@@ -1236,7 +1236,7 @@ func (e *FieldsetElement) Itemprop(s string) *FieldsetElement {
 	return e
 }
 
-// The itemprop global attribute is used to add properties to an item. Every
+// The itemprop global Attribute is used to add properties to an item. Every
 // HTML element can have an itemprop attribute specified, and an itemprop
 // consists of a name-value pair. Each name-value pair is called a property, and
 // a group of one or more properties forms an item. Property values are either a
@@ -1247,7 +1247,7 @@ func (e *FieldsetElement) ItempropF(format string, args ...any) *FieldsetElement
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
-// The itemprop global attribute is used to add properties to an item. Every
+// The itemprop global Attribute is used to add properties to an item. Every
 // HTML element can have an itemprop attribute specified, and an itemprop
 // consists of a name-value pair. Each name-value pair is called a property, and
 // a group of one or more properties forms an item. Property values are either a
@@ -1261,7 +1261,7 @@ func (e *FieldsetElement) IfItemprop(condition bool, s string) *FieldsetElement 
 	return e
 }
 
-// The itemprop global attribute is used to add properties to an item. Every
+// The itemprop global Attribute is used to add properties to an item. Every
 // HTML element can have an itemprop attribute specified, and an itemprop
 // consists of a name-value pair. Each name-value pair is called a property, and
 // a group of one or more properties forms an item. Property values are either a
@@ -1275,7 +1275,7 @@ func (e *FieldsetElement) IfItempropF(condition bool, format string, args ...any
 	return e
 }
 
-// The itemprop global attribute is used to add properties to an item. Every
+// The itemprop global Attribute is used to add properties to an item. Every
 // HTML element can have an itemprop attribute specified, and an itemprop
 // consists of a name-value pair. Each name-value pair is called a property, and
 // a group of one or more properties forms an item. Property values are either a
@@ -1292,7 +1292,7 @@ func (e *FieldsetElement) ItempropRemove() *FieldsetElement {
 }
 
 // Properties that are not descendants of an element with the itemscope
-// attribute can be associated with an item using the global attribute itemref.
+// Attribute can be associated with an item using the global attribute itemref.
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
@@ -1305,7 +1305,7 @@ func (e *FieldsetElement) Itemref(s string) *FieldsetElement {
 }
 
 // Properties that are not descendants of an element with the itemscope
-// attribute can be associated with an item using the global attribute itemref.
+// Attribute can be associated with an item using the global attribute itemref.
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
@@ -1314,7 +1314,7 @@ func (e *FieldsetElement) ItemrefF(format string, args ...any) *FieldsetElement 
 }
 
 // Properties that are not descendants of an element with the itemscope
-// attribute can be associated with an item using the global attribute itemref.
+// Attribute can be associated with an item using the global attribute itemref.
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
@@ -1326,7 +1326,7 @@ func (e *FieldsetElement) IfItemref(condition bool, s string) *FieldsetElement {
 }
 
 // Properties that are not descendants of an element with the itemscope
-// attribute can be associated with an item using the global attribute itemref.
+// Attribute can be associated with an item using the global attribute itemref.
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
@@ -1338,7 +1338,7 @@ func (e *FieldsetElement) IfItemrefF(condition bool, format string, args ...any)
 }
 
 // Properties that are not descendants of an element with the itemscope
-// attribute can be associated with an item using the global attribute itemref.
+// Attribute can be associated with an item using the global attribute itemref.
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
@@ -1351,7 +1351,7 @@ func (e *FieldsetElement) ItemrefRemove() *FieldsetElement {
 	return e
 }
 
-// The itemscope global attribute is used to add an item to a microdata DOM
+// The itemscope global Attribute is used to add an item to a microdata DOM
 // tree. Every HTML element can have an itemscope attribute specified, and an
 // itemscope consists of a name-value pair. Each name-value pair is called a
 // property, and a group of one or more properties forms an item. Property
@@ -1363,7 +1363,7 @@ func (e *FieldsetElement) Itemscope() *FieldsetElement {
 	return e
 }
 
-// The itemscope global attribute is used to add an item to a microdata DOM
+// The itemscope global Attribute is used to add an item to a microdata DOM
 // tree. Every HTML element can have an itemscope attribute specified, and an
 // itemscope consists of a name-value pair. Each name-value pair is called a
 // property, and a group of one or more properties forms an item. Property
@@ -1377,7 +1377,7 @@ func (e *FieldsetElement) IfItemscope(condition bool) *FieldsetElement {
 	return e
 }
 
-// The itemscope global attribute is used to add an item to a microdata DOM
+// The itemscope global Attribute is used to add an item to a microdata DOM
 // tree. Every HTML element can have an itemscope attribute specified, and an
 // itemscope consists of a name-value pair. Each name-value pair is called a
 // property, and a group of one or more properties forms an item. Property
@@ -1393,7 +1393,7 @@ func (e *FieldsetElement) ItemscopeSet(b bool) *FieldsetElement {
 	return e
 }
 
-// The itemscope global attribute is used to add an item to a microdata DOM
+// The itemscope global Attribute is used to add an item to a microdata DOM
 // tree. Every HTML element can have an itemscope attribute specified, and an
 // itemscope consists of a name-value pair. Each name-value pair is called a
 // property, and a group of one or more properties forms an item. Property
@@ -1408,7 +1408,7 @@ func (e *FieldsetElement) IfSetItemscope(condition bool, b bool) *FieldsetElemen
 }
 
 // Remove the attribute Itemscope from the element.
-// The itemscope global attribute is used to add an item to a microdata DOM
+// The itemscope global Attribute is used to add an item to a microdata DOM
 // tree. Every HTML element can have an itemscope attribute specified, and an
 // itemscope consists of a name-value pair. Each name-value pair is called a
 // property, and a group of one or more properties forms an item. Property
@@ -1423,7 +1423,7 @@ func (e *FieldsetElement) ItemscopeRemove() *FieldsetElement {
 	return e
 }
 
-// The itemtype global attribute is used to add types to an item. Every HTML
+// The itemtype global Attribute is used to add types to an item. Every HTML
 // element can have an itemtype attribute specified, and an itemtype consists of
 // a name-value pair. Each name-value pair is called a property, and a group of
 // one or more properties forms an item. Property values are either a string or
@@ -1438,7 +1438,7 @@ func (e *FieldsetElement) Itemtype(s string) *FieldsetElement {
 	return e
 }
 
-// The itemtype global attribute is used to add types to an item. Every HTML
+// The itemtype global Attribute is used to add types to an item. Every HTML
 // element can have an itemtype attribute specified, and an itemtype consists of
 // a name-value pair. Each name-value pair is called a property, and a group of
 // one or more properties forms an item. Property values are either a string or
@@ -1449,7 +1449,7 @@ func (e *FieldsetElement) ItemtypeF(format string, args ...any) *FieldsetElement
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
-// The itemtype global attribute is used to add types to an item. Every HTML
+// The itemtype global Attribute is used to add types to an item. Every HTML
 // element can have an itemtype attribute specified, and an itemtype consists of
 // a name-value pair. Each name-value pair is called a property, and a group of
 // one or more properties forms an item. Property values are either a string or
@@ -1463,7 +1463,7 @@ func (e *FieldsetElement) IfItemtype(condition bool, s string) *FieldsetElement 
 	return e
 }
 
-// The itemtype global attribute is used to add types to an item. Every HTML
+// The itemtype global Attribute is used to add types to an item. Every HTML
 // element can have an itemtype attribute specified, and an itemtype consists of
 // a name-value pair. Each name-value pair is called a property, and a group of
 // one or more properties forms an item. Property values are either a string or
@@ -1477,7 +1477,7 @@ func (e *FieldsetElement) IfItemtypeF(condition bool, format string, args ...any
 	return e
 }
 
-// The itemtype global attribute is used to add types to an item. Every HTML
+// The itemtype global Attribute is used to add types to an item. Every HTML
 // element can have an itemtype attribute specified, and an itemtype consists of
 // a name-value pair. Each name-value pair is called a property, and a group of
 // one or more properties forms an item. Property values are either a string or
@@ -1493,7 +1493,7 @@ func (e *FieldsetElement) ItemtypeRemove() *FieldsetElement {
 	return e
 }
 
-// The lang global attribute helps define the language of an element: the
+// The lang global Attribute helps define the language of an element: the
 // language that non-editable elements are written in or the language that
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
@@ -1506,7 +1506,7 @@ func (e *FieldsetElement) Lang(s string) *FieldsetElement {
 	return e
 }
 
-// The lang global attribute helps define the language of an element: the
+// The lang global Attribute helps define the language of an element: the
 // language that non-editable elements are written in or the language that
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
@@ -1515,7 +1515,7 @@ func (e *FieldsetElement) LangF(format string, args ...any) *FieldsetElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
-// The lang global attribute helps define the language of an element: the
+// The lang global Attribute helps define the language of an element: the
 // language that non-editable elements are written in or the language that
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
@@ -1527,7 +1527,7 @@ func (e *FieldsetElement) IfLang(condition bool, s string) *FieldsetElement {
 	return e
 }
 
-// The lang global attribute helps define the language of an element: the
+// The lang global Attribute helps define the language of an element: the
 // language that non-editable elements are written in or the language that
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
@@ -1539,7 +1539,7 @@ func (e *FieldsetElement) IfLangF(condition bool, format string, args ...any) *F
 	return e
 }
 
-// The lang global attribute helps define the language of an element: the
+// The lang global Attribute helps define the language of an element: the
 // language that non-editable elements are written in or the language that
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
@@ -1553,7 +1553,7 @@ func (e *FieldsetElement) LangRemove() *FieldsetElement {
 	return e
 }
 
-// The nonce global attribute is a unique identifier used to declare inline
+// The nonce global Attribute is a unique identifier used to declare inline
 // scripts and style elements to be used in a specific document. It is a
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
@@ -1566,7 +1566,7 @@ func (e *FieldsetElement) Nonce(s string) *FieldsetElement {
 	return e
 }
 
-// The nonce global attribute is a unique identifier used to declare inline
+// The nonce global Attribute is a unique identifier used to declare inline
 // scripts and style elements to be used in a specific document. It is a
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
@@ -1575,7 +1575,7 @@ func (e *FieldsetElement) NonceF(format string, args ...any) *FieldsetElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
-// The nonce global attribute is a unique identifier used to declare inline
+// The nonce global Attribute is a unique identifier used to declare inline
 // scripts and style elements to be used in a specific document. It is a
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
@@ -1587,7 +1587,7 @@ func (e *FieldsetElement) IfNonce(condition bool, s string) *FieldsetElement {
 	return e
 }
 
-// The nonce global attribute is a unique identifier used to declare inline
+// The nonce global Attribute is a unique identifier used to declare inline
 // scripts and style elements to be used in a specific document. It is a
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
@@ -1599,7 +1599,7 @@ func (e *FieldsetElement) IfNonceF(condition bool, format string, args ...any) *
 	return e
 }
 
-// The nonce global attribute is a unique identifier used to declare inline
+// The nonce global Attribute is a unique identifier used to declare inline
 // scripts and style elements to be used in a specific document. It is a
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
@@ -1613,7 +1613,7 @@ func (e *FieldsetElement) NonceRemove() *FieldsetElement {
 	return e
 }
 
-// The part global attribute contains a space-separated list of the part names
+// The part global Attribute contains a space-separated list of the part names
 // of the element. Part names allows CSS to select and style specific elements
 // in a shadow tree via the ::part pseudo-element.
 func (e *FieldsetElement) Part(s string) *FieldsetElement {
@@ -1630,7 +1630,7 @@ func (e *FieldsetElement) Part(s string) *FieldsetElement {
 	return e
 }
 
-// The part global attribute contains a space-separated list of the part names
+// The part global Attribute contains a space-separated list of the part names
 // of the element. Part names allows CSS to select and style specific elements
 // in a shadow tree via the ::part pseudo-element.
 func (e *FieldsetElement) IfPart(condition bool, s string) *FieldsetElement {
@@ -1640,7 +1640,7 @@ func (e *FieldsetElement) IfPart(condition bool, s string) *FieldsetElement {
 	return e
 }
 
-// The part global attribute contains a space-separated list of the part names
+// The part global Attribute contains a space-separated list of the part names
 // of the element. Part names allows CSS to select and style specific elements
 // in a shadow tree via the ::part pseudo-element.
 // Remove the values from the attribute Part in the element.
@@ -1656,7 +1656,7 @@ func (e *FieldsetElement) PartRemove(s ...string) *FieldsetElement {
 	return e
 }
 
-// The popover global attribute is used to designate an element as a popover
+// The popover global Attribute is used to designate an element as a popover
 // element. Popover elements are hidden via display: none until opened via an
 // invoking/control element (i.e. a <button> or <input type="button"> with a
 // popovertarget attribute) or a HTMLElement.showPopover() call. When open,
@@ -1686,7 +1686,7 @@ const (
 	FieldsetPopoverManual FieldsetPopoverChoice = "manual"
 )
 
-// The popover global attribute is used to designate an element as a popover
+// The popover global Attribute is used to designate an element as a popover
 // element. Popover elements are hidden via display: none until opened via an
 // invoking/control element (i.e. a <button> or <input type="button"> with a
 // popovertarget attribute) or a HTMLElement.showPopover() call. When open,
@@ -1701,7 +1701,7 @@ func (e *FieldsetElement) PopoverRemove() *FieldsetElement {
 	return e
 }
 
-// The role global attribute is used to define the purpose or state of an
+// The role global Attribute is used to define the purpose or state of an
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
@@ -1713,7 +1713,7 @@ func (e *FieldsetElement) Role(s string) *FieldsetElement {
 	return e
 }
 
-// The role global attribute is used to define the purpose or state of an
+// The role global Attribute is used to define the purpose or state of an
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
@@ -1721,7 +1721,7 @@ func (e *FieldsetElement) RoleF(format string, args ...any) *FieldsetElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
-// The role global attribute is used to define the purpose or state of an
+// The role global Attribute is used to define the purpose or state of an
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
@@ -1732,7 +1732,7 @@ func (e *FieldsetElement) IfRole(condition bool, s string) *FieldsetElement {
 	return e
 }
 
-// The role global attribute is used to define the purpose or state of an
+// The role global Attribute is used to define the purpose or state of an
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
@@ -1743,7 +1743,7 @@ func (e *FieldsetElement) IfRoleF(condition bool, format string, args ...any) *F
 	return e
 }
 
-// The role global attribute is used to define the purpose or state of an
+// The role global Attribute is used to define the purpose or state of an
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
@@ -1756,7 +1756,7 @@ func (e *FieldsetElement) RoleRemove() *FieldsetElement {
 	return e
 }
 
-// The slot global attribute assigns a slot in a shadow DOM shadow tree to an
+// The slot global Attribute assigns a slot in a shadow DOM shadow tree to an
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
@@ -1768,7 +1768,7 @@ func (e *FieldsetElement) Slot(s string) *FieldsetElement {
 	return e
 }
 
-// The slot global attribute assigns a slot in a shadow DOM shadow tree to an
+// The slot global Attribute assigns a slot in a shadow DOM shadow tree to an
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
@@ -1776,7 +1776,7 @@ func (e *FieldsetElement) SlotF(format string, args ...any) *FieldsetElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
-// The slot global attribute assigns a slot in a shadow DOM shadow tree to an
+// The slot global Attribute assigns a slot in a shadow DOM shadow tree to an
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
@@ -1787,7 +1787,7 @@ func (e *FieldsetElement) IfSlot(condition bool, s string) *FieldsetElement {
 	return e
 }
 
-// The slot global attribute assigns a slot in a shadow DOM shadow tree to an
+// The slot global Attribute assigns a slot in a shadow DOM shadow tree to an
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
@@ -1798,7 +1798,7 @@ func (e *FieldsetElement) IfSlotF(condition bool, format string, args ...any) *F
 	return e
 }
 
-// The slot global attribute assigns a slot in a shadow DOM shadow tree to an
+// The slot global Attribute assigns a slot in a shadow DOM shadow tree to an
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
@@ -1811,7 +1811,7 @@ func (e *FieldsetElement) SlotRemove() *FieldsetElement {
 	return e
 }
 
-// The spellcheck global attribute is an enumerated attribute that defines
+// The spellcheck global Attribute is an enumerated attribute that defines
 // whether the element may be checked for spelling errors. If this attribute is
 // not set, its default value is element-type and browser-defined. This default
 // value may also be inherited, which means that the element content will be
@@ -1841,7 +1841,7 @@ const (
 	FieldsetSpellcheckFalse FieldsetSpellcheckChoice = "false"
 )
 
-// The spellcheck global attribute is an enumerated attribute that defines
+// The spellcheck global Attribute is an enumerated attribute that defines
 // whether the element may be checked for spelling errors. If this attribute is
 // not set, its default value is element-type and browser-defined. This default
 // value may also be inherited, which means that the element content will be
@@ -1861,7 +1861,7 @@ func (e *FieldsetElement) SpellcheckRemove() *FieldsetElement {
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *FieldsetElement) StylePairs(pairs ...string) *FieldsetElement {
 	if len(pairs) == 0 || len(pairs)%2 != 0 {
@@ -1886,7 +1886,7 @@ func (e *FieldsetElement) StylePairs(pairs ...string) *FieldsetElement {
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *FieldsetElement) Style(s string) *FieldsetElement {
 	if e.keyValueStrings == nil {
@@ -1909,7 +1909,7 @@ func (e *FieldsetElement) Style(s string) *FieldsetElement {
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *FieldsetElement) IfStyle(condition bool, s string) *FieldsetElement {
 	if condition {
@@ -1918,7 +1918,7 @@ func (e *FieldsetElement) IfStyle(condition bool, s string) *FieldsetElement {
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *FieldsetElement) StyleAdd(k string, v string) *FieldsetElement {
 	if e.keyValueStrings == nil {
@@ -1933,13 +1933,13 @@ func (e *FieldsetElement) StyleAdd(k string, v string) *FieldsetElement {
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *FieldsetElement) StyleAddF(k string, format string, args ...any) *FieldsetElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *FieldsetElement) IfStyleAdd(condition bool, k string, v string) *FieldsetElement {
 	if condition {
@@ -1948,7 +1948,7 @@ func (e *FieldsetElement) IfStyleAdd(condition bool, k string, v string) *Fields
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 func (e *FieldsetElement) IfStyleAddF(condition bool, k string, format string, args ...any) *FieldsetElement {
 	if condition {
@@ -1957,7 +1957,7 @@ func (e *FieldsetElement) IfStyleAddF(condition bool, k string, format string, a
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 // Add the attributes in the map to the element.
 func (e *FieldsetElement) StyleMap(m map[string]string) *FieldsetElement {
@@ -1980,7 +1980,7 @@ func (e *FieldsetElement) StyleMap(m map[string]string) *FieldsetElement {
 	return e
 }
 
-// The style global attribute is used to add styles to an element, such as
+// The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
 // Remove the attribute Style from the element.
 func (e *FieldsetElement) StyleRemove(keys ...string) *FieldsetElement {
@@ -1995,7 +1995,7 @@ func (e *FieldsetElement) StyleRemove(keys ...string) *FieldsetElement {
 	return e
 }
 
-// The tabindex global attribute indicates if its element can be focused, and
+// The tabindex global Attribute indicates if its element can be focused, and
 // if/where it participates in sequential keyboard navigation (usually with the
 // Tab key, hence the name). It accepts an integer as a value, with different
 // results depending on the integer's value: a negative value (usually
@@ -2016,7 +2016,7 @@ func (e *FieldsetElement) Tabindex(i int) *FieldsetElement {
 	return e
 }
 
-// The tabindex global attribute indicates if its element can be focused, and
+// The tabindex global Attribute indicates if its element can be focused, and
 // if/where it participates in sequential keyboard navigation (usually with the
 // Tab key, hence the name). It accepts an integer as a value, with different
 // results depending on the integer's value: a negative value (usually
@@ -2036,7 +2036,7 @@ func (e *FieldsetElement) IfTabindex(condition bool, i int) *FieldsetElement {
 	return e
 }
 
-// The tabindex global attribute indicates if its element can be focused, and
+// The tabindex global Attribute indicates if its element can be focused, and
 // if/where it participates in sequential keyboard navigation (usually with the
 // Tab key, hence the name). It accepts an integer as a value, with different
 // results depending on the integer's value: a negative value (usually
@@ -2058,7 +2058,7 @@ func (e *FieldsetElement) TabindexRemove() *FieldsetElement {
 	return e
 }
 
-// The title global attribute contains text representing advisory information
+// The title global Attribute contains text representing advisory information
 // related to the element it belongs to. Such information can typically, but not
 // necessarily, be presented to the user as a tooltip. The main use of the title
 // attribute is to label <iframe> elements for assistive technology. The title
@@ -2082,7 +2082,7 @@ func (e *FieldsetElement) Title(s string) *FieldsetElement {
 	return e
 }
 
-// The title global attribute contains text representing advisory information
+// The title global Attribute contains text representing advisory information
 // related to the element it belongs to. Such information can typically, but not
 // necessarily, be presented to the user as a tooltip. The main use of the title
 // attribute is to label <iframe> elements for assistive technology. The title
@@ -2102,7 +2102,7 @@ func (e *FieldsetElement) TitleF(format string, args ...any) *FieldsetElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
-// The title global attribute contains text representing advisory information
+// The title global Attribute contains text representing advisory information
 // related to the element it belongs to. Such information can typically, but not
 // necessarily, be presented to the user as a tooltip. The main use of the title
 // attribute is to label <iframe> elements for assistive technology. The title
@@ -2125,7 +2125,7 @@ func (e *FieldsetElement) IfTitle(condition bool, s string) *FieldsetElement {
 	return e
 }
 
-// The title global attribute contains text representing advisory information
+// The title global Attribute contains text representing advisory information
 // related to the element it belongs to. Such information can typically, but not
 // necessarily, be presented to the user as a tooltip. The main use of the title
 // attribute is to label <iframe> elements for assistive technology. The title
@@ -2148,7 +2148,7 @@ func (e *FieldsetElement) IfTitleF(condition bool, format string, args ...any) *
 	return e
 }
 
-// The title global attribute contains text representing advisory information
+// The title global Attribute contains text representing advisory information
 // related to the element it belongs to. Such information can typically, but not
 // necessarily, be presented to the user as a tooltip. The main use of the title
 // attribute is to label <iframe> elements for assistive technology. The title
@@ -2173,7 +2173,7 @@ func (e *FieldsetElement) TitleRemove() *FieldsetElement {
 	return e
 }
 
-// The translate global attribute is an enumerated attribute that is used to
+// The translate global Attribute is an enumerated attribute that is used to
 // specify whether an element's attribute values and the values of its Text node
 // children are to be translated when the page is localized, or whether to leave
 // them unchanged.
@@ -2196,7 +2196,7 @@ const (
 	FieldsetTranslateNo FieldsetTranslateChoice = "no"
 )
 
-// The translate global attribute is an enumerated attribute that is used to
+// The translate global Attribute is an enumerated attribute that is used to
 // specify whether an element's attribute values and the values of its Text node
 // children are to be translated when the page is localized, or whether to leave
 // them unchanged.
