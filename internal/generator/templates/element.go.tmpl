@@ -83,7 +83,7 @@ func (e *{{$elStructName}}) Text(text string) *{{$elStructName}} {
 	return e
 }
 
-func (e *{{$elStructName}}) TextF(format string, args ...any) *{{$elStructName}} {
+func (e *{{$elStructName}}) Textf(format string, args ...any) *{{$elStructName}} {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *{{$elStructName}}) IfText(condition bool, text string) *{{$elStructName
 	return e
 }
 
-func (e *{{$elStructName}}) IfTextF(condition bool, format string, args ...any) *{{$elStructName}} {
+func (e *{{$elStructName}}) IfTextf(condition bool, format string, args ...any) *{{$elStructName}} {
     if condition {
         e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
     }
@@ -113,13 +113,13 @@ func (e *{{$elStructName}}) IfEscaped(condition bool, text string) *{{$elStructN
     return e
 }
 
-func (e *{{$elStructName}}) EscapedF(format string, args ...any) *{{$elStructName}} {
+func (e *{{$elStructName}}) Escapedf(format string, args ...any) *{{$elStructName}} {
     return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...any) *{{$elStructName}} {
+func (e *{{$elStructName}}) IfEscapedf(condition bool, format string, args ...any) *{{$elStructName}} {
     if condition {
-        e.descendants = append(e.descendants, EscapedF(format, args...))
+        e.descendants = append(e.descendants, Escapedf(format, args...))
     }
     return e
 }
@@ -136,7 +136,7 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         }
 
         {{.Description | comments}}
-        func(e *{{$elStructName}}) {{.Name}}F(format string, args ...any) *{{$elStructName}}{
+        func(e *{{$elStructName}}) {{.Name}}f(format string, args ...any) *{{$elStructName}}{
             return e.{{.Name}}(fmt.Sprintf(format, args...))
         }
 
@@ -149,7 +149,7 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         }
 
         {{.Description | comments}}
-        func(e *{{$elStructName}}) If{{.Name}}F(condition bool, format string, args ...any) *{{$elStructName}}{
+        func(e *{{$elStructName}}) If{{.Name}}f(condition bool, format string, args ...any) *{{$elStructName}}{
             if condition {
                 e.{{.Name}}(fmt.Sprintf(format, args...))
             }
@@ -275,7 +275,7 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         }
 
         {{.Description | comments}}
-        func (e *{{$elStructName}}) {{.Name}}AddF(k string, format string, args ...any) *{{$elStructName}} {
+        func (e *{{$elStructName}}) {{.Name}}Addf(k string, format string, args ...any) *{{$elStructName}} {
             return e.{{.Name}}Add(k, fmt.Sprintf(format, args...))
         }
 
@@ -288,9 +288,9 @@ func (e *{{$elStructName}}) IfEscapedF(condition bool, format string, args ...an
         }
 
         {{.Description | comments}}
-        func (e *{{$elStructName}}) If{{.Name}}AddF(condition bool, k string, format string, args ...any) *{{$elStructName}} {
+        func (e *{{$elStructName}}) If{{.Name}}Addf(condition bool, k string, format string, args ...any) *{{$elStructName}} {
             if condition {
-                e.{{.Name}}AddF(k, format, args...)
+                e.{{.Name}}Addf(k, format, args...)
             }
             return e
         }

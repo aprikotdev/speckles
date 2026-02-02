@@ -66,7 +66,7 @@ func TestHeaderElement(t *testing.T) {
 		{
 			Expected: `<header><title>Alice's Home Page</title><div class="header">Page Header</div></header>`,
 			Actual: Header().Children(
-				Title().TextF("%s's Home Page", "Alice"),
+				Title().Textf("%s's Home Page", "Alice"),
 				Div().Class("header").Text("Page Header"),
 			),
 		},
@@ -89,7 +89,7 @@ func TestSectionElement(t *testing.T) {
 			Actual: Section(
 				Div().Class("content").Children(
 					Div().Class("welcome").Children(
-						H4().TextF("Hello %s", "John"),
+						H4().Textf("Hello %s", "John"),
 						Div().Class("raw").Text(`<a href="http://john.com">This is some raw content</a>`),
 						Div().Class("enc").Escaped(`&lt;a href=&#34;http://john.com&#34;&gt;This is some encoded content&lt;/a&gt;`),
 					),
@@ -97,8 +97,8 @@ func TestSectionElement(t *testing.T) {
 						count := i + 1
 						return Tern(
 							count == 1,
-							P().TextF("%s has %d message", "John", count),
-							P().TextF("%s has %d messages", "John", count),
+							P().Textf("%s has %d message", "John", count),
+							P().Textf("%s has %d messages", "John", count),
 						)
 					}),
 				),
@@ -113,7 +113,7 @@ func TestOlElement(t *testing.T) {
 			Expected: `<ol reversed start="5" type="a"><li>Item 5</li><li>Item 6</li><li>Item 7</li></ol>`,
 			Actual: Ol().Reversed().Start(5).Type(OlTypeLowerA).Children(
 				Range([]int{5, 6, 7}, func(i int) ElementRenderer {
-					return Li().TextF("Item %d", i)
+					return Li().Textf("Item %d", i)
 				}),
 			),
 		},
@@ -192,7 +192,7 @@ func TestGrouper(t *testing.T) {
 
 	header := func(title string) ElementRenderer {
 		return Header(
-			Title().TextF("%s's Home Page", title),
+			Title().Textf("%s's Home Page", title),
 			Div().Class("header").Text("Page Header"),
 		)
 	}
@@ -223,7 +223,7 @@ func TestGrouper(t *testing.T) {
 					Section(
 						Div(
 							Div(
-								H4().TextF("Hello %s", u.FirstName),
+								H4().Textf("Hello %s", u.FirstName),
 								Div().Class("raw").Text(u.RawContent),
 								Div().Class("enc").Escaped(u.EscapedContent),
 							).Class("welcome"),
@@ -231,8 +231,8 @@ func TestGrouper(t *testing.T) {
 								count := i + 1
 								return Tern(
 									count == 1,
-									P().TextF("%s has %d message", u.FirstName, count),
-									P().TextF("%s has %d messages", u.FirstName, count),
+									P().Textf("%s has %d message", u.FirstName, count),
+									P().Textf("%s has %d messages", u.FirstName, count),
 								)
 							}),
 						).Class("content"),

@@ -296,7 +296,7 @@ func Text(text string) *TextContent {
 	return (*TextContent)(&text)
 }
 
-func TextF(format string, args ...any) *TextContent {
+func Textf(format string, args ...any) *TextContent {
 	return Text(fmt.Sprintf(format, args...))
 }
 
@@ -311,7 +311,7 @@ func Escaped(text string) *EscapedContent {
 	return (*EscapedContent)(&text)
 }
 
-func EscapedF(format string, args ...any) *EscapedContent {
+func Escapedf(format string, args ...any) *EscapedContent {
 	return Escaped(fmt.Sprintf(format, args...))
 }
 
