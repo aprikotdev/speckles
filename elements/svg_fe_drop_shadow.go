@@ -84,7 +84,7 @@ func (e *SVGFeDropShadowElement) Text(text string) *SVGFeDropShadowElement {
 	return e
 }
 
-func (e *SVGFeDropShadowElement) TextF(format string, args ...any) *SVGFeDropShadowElement {
+func (e *SVGFeDropShadowElement) Textf(format string, args ...any) *SVGFeDropShadowElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGFeDropShadowElement) IfText(condition bool, text string) *SVGFeDropS
 	return e
 }
 
-func (e *SVGFeDropShadowElement) IfTextF(condition bool, format string, args ...any) *SVGFeDropShadowElement {
+func (e *SVGFeDropShadowElement) IfTextf(condition bool, format string, args ...any) *SVGFeDropShadowElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGFeDropShadowElement) IfEscaped(condition bool, text string) *SVGFeDr
 	return e
 }
 
-func (e *SVGFeDropShadowElement) EscapedF(format string, args ...any) *SVGFeDropShadowElement {
+func (e *SVGFeDropShadowElement) Escapedf(format string, args ...any) *SVGFeDropShadowElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeDropShadowElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeDropShadowElement {
+func (e *SVGFeDropShadowElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeDropShadowElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -208,7 +208,7 @@ func (e *SVGFeDropShadowElement) FloodColor(s string) *SVGFeDropShadowElement {
 // filter primitive subregion defined through the <feFlood> element. If
 // Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
-func (e *SVGFeDropShadowElement) FloodColorF(format string, args ...any) *SVGFeDropShadowElement {
+func (e *SVGFeDropShadowElement) FloodColorf(format string, args ...any) *SVGFeDropShadowElement {
 	return e.FloodColor(fmt.Sprintf(format, args...))
 }
 
@@ -227,7 +227,7 @@ func (e *SVGFeDropShadowElement) IfFloodColor(condition bool, s string) *SVGFeDr
 // filter primitive subregion defined through the <feFlood> element. If
 // Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
-func (e *SVGFeDropShadowElement) IfFloodColorF(condition bool, format string, args ...any) *SVGFeDropShadowElement {
+func (e *SVGFeDropShadowElement) IfFloodColorf(condition bool, format string, args ...any) *SVGFeDropShadowElement {
 	if condition {
 		e.FloodColor(fmt.Sprintf(format, args...))
 	}
@@ -276,7 +276,7 @@ func (e *SVGFeDropShadowElement) ID(s string) *SVGFeDropShadowElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeDropShadowElement) IDF(format string, args ...any) *SVGFeDropShadowElement {
+func (e *SVGFeDropShadowElement) IDf(format string, args ...any) *SVGFeDropShadowElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -289,7 +289,7 @@ func (e *SVGFeDropShadowElement) IfID(condition bool, s string) *SVGFeDropShadow
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeDropShadowElement) IfIDF(condition bool, format string, args ...any) *SVGFeDropShadowElement {
+func (e *SVGFeDropShadowElement) IfIDf(condition bool, format string, args ...any) *SVGFeDropShadowElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -415,7 +415,7 @@ func (e *SVGFeDropShadowElement) StyleAdd(k string, v string) *SVGFeDropShadowEl
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeDropShadowElement) StyleAddF(k string, format string, args ...any) *SVGFeDropShadowElement {
+func (e *SVGFeDropShadowElement) StyleAddf(k string, format string, args ...any) *SVGFeDropShadowElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -428,9 +428,9 @@ func (e *SVGFeDropShadowElement) IfStyleAdd(condition bool, k string, v string) 
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeDropShadowElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeDropShadowElement {
+func (e *SVGFeDropShadowElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeDropShadowElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

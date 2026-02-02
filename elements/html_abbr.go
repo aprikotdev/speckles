@@ -84,7 +84,7 @@ func (e *AbbrElement) Text(text string) *AbbrElement {
 	return e
 }
 
-func (e *AbbrElement) TextF(format string, args ...any) *AbbrElement {
+func (e *AbbrElement) Textf(format string, args ...any) *AbbrElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *AbbrElement) IfText(condition bool, text string) *AbbrElement {
 	return e
 }
 
-func (e *AbbrElement) IfTextF(condition bool, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfTextf(condition bool, format string, args ...any) *AbbrElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *AbbrElement) IfEscaped(condition bool, text string) *AbbrElement {
 	return e
 }
 
-func (e *AbbrElement) EscapedF(format string, args ...any) *AbbrElement {
+func (e *AbbrElement) Escapedf(format string, args ...any) *AbbrElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *AbbrElement) IfEscapedF(condition bool, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfEscapedf(condition bool, format string, args ...any) *AbbrElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -137,7 +137,7 @@ func (e *AbbrElement) Title(s string) *AbbrElement {
 
 // Contains a string that represents the full term or expansion of the
 // abbreviation or acronym, as defined by the abbr element.
-func (e *AbbrElement) TitleF(format string, args ...any) *AbbrElement {
+func (e *AbbrElement) Titlef(format string, args ...any) *AbbrElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -152,7 +152,7 @@ func (e *AbbrElement) IfTitle(condition bool, s string) *AbbrElement {
 
 // Contains a string that represents the full term or expansion of the
 // abbreviation or acronym, as defined by the abbr element.
-func (e *AbbrElement) IfTitleF(condition bool, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfTitlef(condition bool, format string, args ...any) *AbbrElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}
@@ -751,7 +751,7 @@ func (e *AbbrElement) ID(s string) *AbbrElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *AbbrElement) IDF(format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IDf(format string, args ...any) *AbbrElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -768,7 +768,7 @@ func (e *AbbrElement) IfID(condition bool, s string) *AbbrElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *AbbrElement) IfIDF(condition bool, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfIDf(condition bool, format string, args ...any) *AbbrElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -963,7 +963,7 @@ func (e *AbbrElement) Is(s string) *AbbrElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *AbbrElement) IsF(format string, args ...any) *AbbrElement {
+func (e *AbbrElement) Isf(format string, args ...any) *AbbrElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -984,7 +984,7 @@ func (e *AbbrElement) IfIs(condition bool, s string) *AbbrElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *AbbrElement) IfIsF(condition bool, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfIsf(condition bool, format string, args ...any) *AbbrElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1035,7 +1035,7 @@ func (e *AbbrElement) Itemid(s string) *AbbrElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *AbbrElement) ItemidF(format string, args ...any) *AbbrElement {
+func (e *AbbrElement) Itemidf(format string, args ...any) *AbbrElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1068,7 +1068,7 @@ func (e *AbbrElement) IfItemid(condition bool, s string) *AbbrElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *AbbrElement) IfItemidF(condition bool, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfItemidf(condition bool, format string, args ...any) *AbbrElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1117,7 +1117,7 @@ func (e *AbbrElement) Itemprop(s string) *AbbrElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *AbbrElement) ItempropF(format string, args ...any) *AbbrElement {
+func (e *AbbrElement) Itempropf(format string, args ...any) *AbbrElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1142,7 +1142,7 @@ func (e *AbbrElement) IfItemprop(condition bool, s string) *AbbrElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *AbbrElement) IfItempropF(condition bool, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfItempropf(condition bool, format string, args ...any) *AbbrElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1183,7 +1183,7 @@ func (e *AbbrElement) Itemref(s string) *AbbrElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *AbbrElement) ItemrefF(format string, args ...any) *AbbrElement {
+func (e *AbbrElement) Itemreff(format string, args ...any) *AbbrElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1204,7 +1204,7 @@ func (e *AbbrElement) IfItemref(condition bool, s string) *AbbrElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *AbbrElement) IfItemrefF(condition bool, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfItemreff(condition bool, format string, args ...any) *AbbrElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1319,7 +1319,7 @@ func (e *AbbrElement) Itemtype(s string) *AbbrElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *AbbrElement) ItemtypeF(format string, args ...any) *AbbrElement {
+func (e *AbbrElement) Itemtypef(format string, args ...any) *AbbrElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1344,7 +1344,7 @@ func (e *AbbrElement) IfItemtype(condition bool, s string) *AbbrElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *AbbrElement) IfItemtypeF(condition bool, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfItemtypef(condition bool, format string, args ...any) *AbbrElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1385,7 +1385,7 @@ func (e *AbbrElement) Lang(s string) *AbbrElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *AbbrElement) LangF(format string, args ...any) *AbbrElement {
+func (e *AbbrElement) Langf(format string, args ...any) *AbbrElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1406,7 +1406,7 @@ func (e *AbbrElement) IfLang(condition bool, s string) *AbbrElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *AbbrElement) IfLangF(condition bool, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfLangf(condition bool, format string, args ...any) *AbbrElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1445,7 +1445,7 @@ func (e *AbbrElement) Nonce(s string) *AbbrElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *AbbrElement) NonceF(format string, args ...any) *AbbrElement {
+func (e *AbbrElement) Noncef(format string, args ...any) *AbbrElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1466,7 +1466,7 @@ func (e *AbbrElement) IfNonce(condition bool, s string) *AbbrElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *AbbrElement) IfNonceF(condition bool, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfNoncef(condition bool, format string, args ...any) *AbbrElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1591,7 +1591,7 @@ func (e *AbbrElement) Role(s string) *AbbrElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *AbbrElement) RoleF(format string, args ...any) *AbbrElement {
+func (e *AbbrElement) Rolef(format string, args ...any) *AbbrElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1610,7 +1610,7 @@ func (e *AbbrElement) IfRole(condition bool, s string) *AbbrElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *AbbrElement) IfRoleF(condition bool, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfRolef(condition bool, format string, args ...any) *AbbrElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1646,7 +1646,7 @@ func (e *AbbrElement) Slot(s string) *AbbrElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *AbbrElement) SlotF(format string, args ...any) *AbbrElement {
+func (e *AbbrElement) Slotf(format string, args ...any) *AbbrElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1665,7 +1665,7 @@ func (e *AbbrElement) IfSlot(condition bool, s string) *AbbrElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *AbbrElement) IfSlotF(condition bool, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfSlotf(condition bool, format string, args ...any) *AbbrElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1809,7 +1809,7 @@ func (e *AbbrElement) StyleAdd(k string, v string) *AbbrElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *AbbrElement) StyleAddF(k string, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) StyleAddf(k string, format string, args ...any) *AbbrElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1824,9 +1824,9 @@ func (e *AbbrElement) IfStyleAdd(condition bool, k string, v string) *AbbrElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *AbbrElement) IfStyleAddF(condition bool, k string, format string, args ...any) *AbbrElement {
+func (e *AbbrElement) IfStyleAddf(condition bool, k string, format string, args ...any) *AbbrElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

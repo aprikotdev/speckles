@@ -83,7 +83,7 @@ func (e *SVGFeConvolveMatrixElement) Text(text string) *SVGFeConvolveMatrixEleme
 	return e
 }
 
-func (e *SVGFeConvolveMatrixElement) TextF(format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) Textf(format string, args ...any) *SVGFeConvolveMatrixElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGFeConvolveMatrixElement) IfText(condition bool, text string) *SVGFeC
 	return e
 }
 
-func (e *SVGFeConvolveMatrixElement) IfTextF(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) IfTextf(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGFeConvolveMatrixElement) IfEscaped(condition bool, text string) *SVG
 	return e
 }
 
-func (e *SVGFeConvolveMatrixElement) EscapedF(format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) Escapedf(format string, args ...any) *SVGFeConvolveMatrixElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeConvolveMatrixElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *SVGFeConvolveMatrixElement) In(s string) *SVGFeConvolveMatrixElement {
 }
 
 // The input for this filter.
-func (e *SVGFeConvolveMatrixElement) InF(format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) Inf(format string, args ...any) *SVGFeConvolveMatrixElement {
 	return e.In(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *SVGFeConvolveMatrixElement) IfIn(condition bool, s string) *SVGFeConvol
 }
 
 // The input for this filter.
-func (e *SVGFeConvolveMatrixElement) IfInF(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) IfInf(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
 	if condition {
 		e.In(fmt.Sprintf(format, args...))
 	}
@@ -174,7 +174,7 @@ func (e *SVGFeConvolveMatrixElement) Order(s string) *SVGFeConvolveMatrixElement
 }
 
 // The number of cells in each dimension for 'kernelMatrix'
-func (e *SVGFeConvolveMatrixElement) OrderF(format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) Orderf(format string, args ...any) *SVGFeConvolveMatrixElement {
 	return e.Order(fmt.Sprintf(format, args...))
 }
 
@@ -187,7 +187,7 @@ func (e *SVGFeConvolveMatrixElement) IfOrder(condition bool, s string) *SVGFeCon
 }
 
 // The number of cells in each dimension for 'kernelMatrix'
-func (e *SVGFeConvolveMatrixElement) IfOrderF(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) IfOrderf(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
 	if condition {
 		e.Order(fmt.Sprintf(format, args...))
 	}
@@ -214,7 +214,7 @@ func (e *SVGFeConvolveMatrixElement) KernelMatrix(s string) *SVGFeConvolveMatrix
 }
 
 // A list of numbers that make up the kernel matrix for the convolution.
-func (e *SVGFeConvolveMatrixElement) KernelMatrixF(format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) KernelMatrixf(format string, args ...any) *SVGFeConvolveMatrixElement {
 	return e.KernelMatrix(fmt.Sprintf(format, args...))
 }
 
@@ -227,7 +227,7 @@ func (e *SVGFeConvolveMatrixElement) IfKernelMatrix(condition bool, s string) *S
 }
 
 // A list of numbers that make up the kernel matrix for the convolution.
-func (e *SVGFeConvolveMatrixElement) IfKernelMatrixF(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) IfKernelMatrixf(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
 	if condition {
 		e.KernelMatrix(fmt.Sprintf(format, args...))
 	}
@@ -370,7 +370,7 @@ func (e *SVGFeConvolveMatrixElement) KernelUnitLength(s string) *SVGFeConvolveMa
 // The kernelUnitLength Attribute defines the intended distance in current
 // filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
-func (e *SVGFeConvolveMatrixElement) KernelUnitLengthF(format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) KernelUnitLengthf(format string, args ...any) *SVGFeConvolveMatrixElement {
 	return e.KernelUnitLength(fmt.Sprintf(format, args...))
 }
 
@@ -387,7 +387,7 @@ func (e *SVGFeConvolveMatrixElement) IfKernelUnitLength(condition bool, s string
 // The kernelUnitLength Attribute defines the intended distance in current
 // filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
-func (e *SVGFeConvolveMatrixElement) IfKernelUnitLengthF(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) IfKernelUnitLengthf(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
 	if condition {
 		e.KernelUnitLength(fmt.Sprintf(format, args...))
 	}
@@ -463,7 +463,7 @@ func (e *SVGFeConvolveMatrixElement) ID(s string) *SVGFeConvolveMatrixElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeConvolveMatrixElement) IDF(format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) IDf(format string, args ...any) *SVGFeConvolveMatrixElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -476,7 +476,7 @@ func (e *SVGFeConvolveMatrixElement) IfID(condition bool, s string) *SVGFeConvol
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeConvolveMatrixElement) IfIDF(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) IfIDf(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -602,7 +602,7 @@ func (e *SVGFeConvolveMatrixElement) StyleAdd(k string, v string) *SVGFeConvolve
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeConvolveMatrixElement) StyleAddF(k string, format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) StyleAddf(k string, format string, args ...any) *SVGFeConvolveMatrixElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -615,9 +615,9 @@ func (e *SVGFeConvolveMatrixElement) IfStyleAdd(condition bool, k string, v stri
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeConvolveMatrixElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeConvolveMatrixElement {
+func (e *SVGFeConvolveMatrixElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeConvolveMatrixElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

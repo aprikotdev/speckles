@@ -83,7 +83,7 @@ func (e *SVGScriptElement) Text(text string) *SVGScriptElement {
 	return e
 }
 
-func (e *SVGScriptElement) TextF(format string, args ...any) *SVGScriptElement {
+func (e *SVGScriptElement) Textf(format string, args ...any) *SVGScriptElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGScriptElement) IfText(condition bool, text string) *SVGScriptElement
 	return e
 }
 
-func (e *SVGScriptElement) IfTextF(condition bool, format string, args ...any) *SVGScriptElement {
+func (e *SVGScriptElement) IfTextf(condition bool, format string, args ...any) *SVGScriptElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGScriptElement) IfEscaped(condition bool, text string) *SVGScriptElem
 	return e
 }
 
-func (e *SVGScriptElement) EscapedF(format string, args ...any) *SVGScriptElement {
+func (e *SVGScriptElement) Escapedf(format string, args ...any) *SVGScriptElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGScriptElement) IfEscapedF(condition bool, format string, args ...any) *SVGScriptElement {
+func (e *SVGScriptElement) IfEscapedf(condition bool, format string, args ...any) *SVGScriptElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *SVGScriptElement) Type(s string) *SVGScriptElement {
 }
 
 // The scripting language used for the given script element.
-func (e *SVGScriptElement) TypeF(format string, args ...any) *SVGScriptElement {
+func (e *SVGScriptElement) Typef(format string, args ...any) *SVGScriptElement {
 	return e.Type(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *SVGScriptElement) IfType(condition bool, s string) *SVGScriptElement {
 }
 
 // The scripting language used for the given script element.
-func (e *SVGScriptElement) IfTypeF(condition bool, format string, args ...any) *SVGScriptElement {
+func (e *SVGScriptElement) IfTypef(condition bool, format string, args ...any) *SVGScriptElement {
 	if condition {
 		e.Type(fmt.Sprintf(format, args...))
 	}
@@ -176,7 +176,7 @@ func (e *SVGScriptElement) Href(s string) *SVGScriptElement {
 
 // A Uniform Resource Identifier (URI) reference that specifies the location of
 // the script to execute.
-func (e *SVGScriptElement) HrefF(format string, args ...any) *SVGScriptElement {
+func (e *SVGScriptElement) Hreff(format string, args ...any) *SVGScriptElement {
 	return e.Href(fmt.Sprintf(format, args...))
 }
 
@@ -191,7 +191,7 @@ func (e *SVGScriptElement) IfHref(condition bool, s string) *SVGScriptElement {
 
 // A Uniform Resource Identifier (URI) reference that specifies the location of
 // the script to execute.
-func (e *SVGScriptElement) IfHrefF(condition bool, format string, args ...any) *SVGScriptElement {
+func (e *SVGScriptElement) IfHreff(condition bool, format string, args ...any) *SVGScriptElement {
 	if condition {
 		e.Href(fmt.Sprintf(format, args...))
 	}
@@ -247,7 +247,7 @@ func (e *SVGScriptElement) ID(s string) *SVGScriptElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGScriptElement) IDF(format string, args ...any) *SVGScriptElement {
+func (e *SVGScriptElement) IDf(format string, args ...any) *SVGScriptElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -260,7 +260,7 @@ func (e *SVGScriptElement) IfID(condition bool, s string) *SVGScriptElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGScriptElement) IfIDF(condition bool, format string, args ...any) *SVGScriptElement {
+func (e *SVGScriptElement) IfIDf(condition bool, format string, args ...any) *SVGScriptElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -386,7 +386,7 @@ func (e *SVGScriptElement) StyleAdd(k string, v string) *SVGScriptElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGScriptElement) StyleAddF(k string, format string, args ...any) *SVGScriptElement {
+func (e *SVGScriptElement) StyleAddf(k string, format string, args ...any) *SVGScriptElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -399,9 +399,9 @@ func (e *SVGScriptElement) IfStyleAdd(condition bool, k string, v string) *SVGSc
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGScriptElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGScriptElement {
+func (e *SVGScriptElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGScriptElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

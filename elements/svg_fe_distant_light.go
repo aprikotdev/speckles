@@ -84,7 +84,7 @@ func (e *SVGFeDistantLightElement) Text(text string) *SVGFeDistantLightElement {
 	return e
 }
 
-func (e *SVGFeDistantLightElement) TextF(format string, args ...any) *SVGFeDistantLightElement {
+func (e *SVGFeDistantLightElement) Textf(format string, args ...any) *SVGFeDistantLightElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGFeDistantLightElement) IfText(condition bool, text string) *SVGFeDis
 	return e
 }
 
-func (e *SVGFeDistantLightElement) IfTextF(condition bool, format string, args ...any) *SVGFeDistantLightElement {
+func (e *SVGFeDistantLightElement) IfTextf(condition bool, format string, args ...any) *SVGFeDistantLightElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGFeDistantLightElement) IfEscaped(condition bool, text string) *SVGFe
 	return e
 }
 
-func (e *SVGFeDistantLightElement) EscapedF(format string, args ...any) *SVGFeDistantLightElement {
+func (e *SVGFeDistantLightElement) Escapedf(format string, args ...any) *SVGFeDistantLightElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeDistantLightElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeDistantLightElement {
+func (e *SVGFeDistantLightElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeDistantLightElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -175,7 +175,7 @@ func (e *SVGFeDistantLightElement) ID(s string) *SVGFeDistantLightElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeDistantLightElement) IDF(format string, args ...any) *SVGFeDistantLightElement {
+func (e *SVGFeDistantLightElement) IDf(format string, args ...any) *SVGFeDistantLightElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -188,7 +188,7 @@ func (e *SVGFeDistantLightElement) IfID(condition bool, s string) *SVGFeDistantL
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeDistantLightElement) IfIDF(condition bool, format string, args ...any) *SVGFeDistantLightElement {
+func (e *SVGFeDistantLightElement) IfIDf(condition bool, format string, args ...any) *SVGFeDistantLightElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -314,7 +314,7 @@ func (e *SVGFeDistantLightElement) StyleAdd(k string, v string) *SVGFeDistantLig
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeDistantLightElement) StyleAddF(k string, format string, args ...any) *SVGFeDistantLightElement {
+func (e *SVGFeDistantLightElement) StyleAddf(k string, format string, args ...any) *SVGFeDistantLightElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -327,9 +327,9 @@ func (e *SVGFeDistantLightElement) IfStyleAdd(condition bool, k string, v string
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeDistantLightElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeDistantLightElement {
+func (e *SVGFeDistantLightElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeDistantLightElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

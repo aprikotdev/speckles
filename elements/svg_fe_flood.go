@@ -83,7 +83,7 @@ func (e *SVGFeFloodElement) Text(text string) *SVGFeFloodElement {
 	return e
 }
 
-func (e *SVGFeFloodElement) TextF(format string, args ...any) *SVGFeFloodElement {
+func (e *SVGFeFloodElement) Textf(format string, args ...any) *SVGFeFloodElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGFeFloodElement) IfText(condition bool, text string) *SVGFeFloodEleme
 	return e
 }
 
-func (e *SVGFeFloodElement) IfTextF(condition bool, format string, args ...any) *SVGFeFloodElement {
+func (e *SVGFeFloodElement) IfTextf(condition bool, format string, args ...any) *SVGFeFloodElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGFeFloodElement) IfEscaped(condition bool, text string) *SVGFeFloodEl
 	return e
 }
 
-func (e *SVGFeFloodElement) EscapedF(format string, args ...any) *SVGFeFloodElement {
+func (e *SVGFeFloodElement) Escapedf(format string, args ...any) *SVGFeFloodElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeFloodElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeFloodElement {
+func (e *SVGFeFloodElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeFloodElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -140,7 +140,7 @@ func (e *SVGFeFloodElement) FloodColor(s string) *SVGFeFloodElement {
 // filter primitive subregion defined through the <feFlood> element. If
 // Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
-func (e *SVGFeFloodElement) FloodColorF(format string, args ...any) *SVGFeFloodElement {
+func (e *SVGFeFloodElement) FloodColorf(format string, args ...any) *SVGFeFloodElement {
 	return e.FloodColor(fmt.Sprintf(format, args...))
 }
 
@@ -159,7 +159,7 @@ func (e *SVGFeFloodElement) IfFloodColor(condition bool, s string) *SVGFeFloodEl
 // filter primitive subregion defined through the <feFlood> element. If
 // Attribute 'flood-color' is not specified, then the effect is as if a value of
 // black were specified.
-func (e *SVGFeFloodElement) IfFloodColorF(condition bool, format string, args ...any) *SVGFeFloodElement {
+func (e *SVGFeFloodElement) IfFloodColorf(condition bool, format string, args ...any) *SVGFeFloodElement {
 	if condition {
 		e.FloodColor(fmt.Sprintf(format, args...))
 	}
@@ -208,7 +208,7 @@ func (e *SVGFeFloodElement) ID(s string) *SVGFeFloodElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeFloodElement) IDF(format string, args ...any) *SVGFeFloodElement {
+func (e *SVGFeFloodElement) IDf(format string, args ...any) *SVGFeFloodElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -221,7 +221,7 @@ func (e *SVGFeFloodElement) IfID(condition bool, s string) *SVGFeFloodElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeFloodElement) IfIDF(condition bool, format string, args ...any) *SVGFeFloodElement {
+func (e *SVGFeFloodElement) IfIDf(condition bool, format string, args ...any) *SVGFeFloodElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -347,7 +347,7 @@ func (e *SVGFeFloodElement) StyleAdd(k string, v string) *SVGFeFloodElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeFloodElement) StyleAddF(k string, format string, args ...any) *SVGFeFloodElement {
+func (e *SVGFeFloodElement) StyleAddf(k string, format string, args ...any) *SVGFeFloodElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -360,9 +360,9 @@ func (e *SVGFeFloodElement) IfStyleAdd(condition bool, k string, v string) *SVGF
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeFloodElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeFloodElement {
+func (e *SVGFeFloodElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeFloodElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

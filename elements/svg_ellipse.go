@@ -83,7 +83,7 @@ func (e *SVGEllipseElement) Text(text string) *SVGEllipseElement {
 	return e
 }
 
-func (e *SVGEllipseElement) TextF(format string, args ...any) *SVGEllipseElement {
+func (e *SVGEllipseElement) Textf(format string, args ...any) *SVGEllipseElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGEllipseElement) IfText(condition bool, text string) *SVGEllipseEleme
 	return e
 }
 
-func (e *SVGEllipseElement) IfTextF(condition bool, format string, args ...any) *SVGEllipseElement {
+func (e *SVGEllipseElement) IfTextf(condition bool, format string, args ...any) *SVGEllipseElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGEllipseElement) IfEscaped(condition bool, text string) *SVGEllipseEl
 	return e
 }
 
-func (e *SVGEllipseElement) EscapedF(format string, args ...any) *SVGEllipseElement {
+func (e *SVGEllipseElement) Escapedf(format string, args ...any) *SVGEllipseElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGEllipseElement) IfEscapedF(condition bool, format string, args ...any) *SVGEllipseElement {
+func (e *SVGEllipseElement) IfEscapedf(condition bool, format string, args ...any) *SVGEllipseElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -202,7 +202,7 @@ func (e *SVGEllipseElement) ID(s string) *SVGEllipseElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGEllipseElement) IDF(format string, args ...any) *SVGEllipseElement {
+func (e *SVGEllipseElement) IDf(format string, args ...any) *SVGEllipseElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -215,7 +215,7 @@ func (e *SVGEllipseElement) IfID(condition bool, s string) *SVGEllipseElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGEllipseElement) IfIDF(condition bool, format string, args ...any) *SVGEllipseElement {
+func (e *SVGEllipseElement) IfIDf(condition bool, format string, args ...any) *SVGEllipseElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -341,7 +341,7 @@ func (e *SVGEllipseElement) StyleAdd(k string, v string) *SVGEllipseElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGEllipseElement) StyleAddF(k string, format string, args ...any) *SVGEllipseElement {
+func (e *SVGEllipseElement) StyleAddf(k string, format string, args ...any) *SVGEllipseElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -354,9 +354,9 @@ func (e *SVGEllipseElement) IfStyleAdd(condition bool, k string, v string) *SVGE
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGEllipseElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGEllipseElement {
+func (e *SVGEllipseElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGEllipseElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

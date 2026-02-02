@@ -83,7 +83,7 @@ func (e *UlElement) Text(text string) *UlElement {
 	return e
 }
 
-func (e *UlElement) TextF(format string, args ...any) *UlElement {
+func (e *UlElement) Textf(format string, args ...any) *UlElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *UlElement) IfText(condition bool, text string) *UlElement {
 	return e
 }
 
-func (e *UlElement) IfTextF(condition bool, format string, args ...any) *UlElement {
+func (e *UlElement) IfTextf(condition bool, format string, args ...any) *UlElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *UlElement) IfEscaped(condition bool, text string) *UlElement {
 	return e
 }
 
-func (e *UlElement) EscapedF(format string, args ...any) *UlElement {
+func (e *UlElement) Escapedf(format string, args ...any) *UlElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *UlElement) IfEscapedF(condition bool, format string, args ...any) *UlElement {
+func (e *UlElement) IfEscapedf(condition bool, format string, args ...any) *UlElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -735,7 +735,7 @@ func (e *UlElement) ID(s string) *UlElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *UlElement) IDF(format string, args ...any) *UlElement {
+func (e *UlElement) IDf(format string, args ...any) *UlElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -752,7 +752,7 @@ func (e *UlElement) IfID(condition bool, s string) *UlElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *UlElement) IfIDF(condition bool, format string, args ...any) *UlElement {
+func (e *UlElement) IfIDf(condition bool, format string, args ...any) *UlElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -947,7 +947,7 @@ func (e *UlElement) Is(s string) *UlElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *UlElement) IsF(format string, args ...any) *UlElement {
+func (e *UlElement) Isf(format string, args ...any) *UlElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -968,7 +968,7 @@ func (e *UlElement) IfIs(condition bool, s string) *UlElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *UlElement) IfIsF(condition bool, format string, args ...any) *UlElement {
+func (e *UlElement) IfIsf(condition bool, format string, args ...any) *UlElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1019,7 +1019,7 @@ func (e *UlElement) Itemid(s string) *UlElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *UlElement) ItemidF(format string, args ...any) *UlElement {
+func (e *UlElement) Itemidf(format string, args ...any) *UlElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1052,7 +1052,7 @@ func (e *UlElement) IfItemid(condition bool, s string) *UlElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *UlElement) IfItemidF(condition bool, format string, args ...any) *UlElement {
+func (e *UlElement) IfItemidf(condition bool, format string, args ...any) *UlElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1101,7 +1101,7 @@ func (e *UlElement) Itemprop(s string) *UlElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *UlElement) ItempropF(format string, args ...any) *UlElement {
+func (e *UlElement) Itempropf(format string, args ...any) *UlElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1126,7 +1126,7 @@ func (e *UlElement) IfItemprop(condition bool, s string) *UlElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *UlElement) IfItempropF(condition bool, format string, args ...any) *UlElement {
+func (e *UlElement) IfItempropf(condition bool, format string, args ...any) *UlElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1167,7 +1167,7 @@ func (e *UlElement) Itemref(s string) *UlElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *UlElement) ItemrefF(format string, args ...any) *UlElement {
+func (e *UlElement) Itemreff(format string, args ...any) *UlElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1188,7 +1188,7 @@ func (e *UlElement) IfItemref(condition bool, s string) *UlElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *UlElement) IfItemrefF(condition bool, format string, args ...any) *UlElement {
+func (e *UlElement) IfItemreff(condition bool, format string, args ...any) *UlElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1303,7 +1303,7 @@ func (e *UlElement) Itemtype(s string) *UlElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *UlElement) ItemtypeF(format string, args ...any) *UlElement {
+func (e *UlElement) Itemtypef(format string, args ...any) *UlElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1328,7 +1328,7 @@ func (e *UlElement) IfItemtype(condition bool, s string) *UlElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *UlElement) IfItemtypeF(condition bool, format string, args ...any) *UlElement {
+func (e *UlElement) IfItemtypef(condition bool, format string, args ...any) *UlElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1369,7 +1369,7 @@ func (e *UlElement) Lang(s string) *UlElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *UlElement) LangF(format string, args ...any) *UlElement {
+func (e *UlElement) Langf(format string, args ...any) *UlElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1390,7 +1390,7 @@ func (e *UlElement) IfLang(condition bool, s string) *UlElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *UlElement) IfLangF(condition bool, format string, args ...any) *UlElement {
+func (e *UlElement) IfLangf(condition bool, format string, args ...any) *UlElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1429,7 +1429,7 @@ func (e *UlElement) Nonce(s string) *UlElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *UlElement) NonceF(format string, args ...any) *UlElement {
+func (e *UlElement) Noncef(format string, args ...any) *UlElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1450,7 +1450,7 @@ func (e *UlElement) IfNonce(condition bool, s string) *UlElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *UlElement) IfNonceF(condition bool, format string, args ...any) *UlElement {
+func (e *UlElement) IfNoncef(condition bool, format string, args ...any) *UlElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1575,7 +1575,7 @@ func (e *UlElement) Role(s string) *UlElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *UlElement) RoleF(format string, args ...any) *UlElement {
+func (e *UlElement) Rolef(format string, args ...any) *UlElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1594,7 +1594,7 @@ func (e *UlElement) IfRole(condition bool, s string) *UlElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *UlElement) IfRoleF(condition bool, format string, args ...any) *UlElement {
+func (e *UlElement) IfRolef(condition bool, format string, args ...any) *UlElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1630,7 +1630,7 @@ func (e *UlElement) Slot(s string) *UlElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *UlElement) SlotF(format string, args ...any) *UlElement {
+func (e *UlElement) Slotf(format string, args ...any) *UlElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1649,7 +1649,7 @@ func (e *UlElement) IfSlot(condition bool, s string) *UlElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *UlElement) IfSlotF(condition bool, format string, args ...any) *UlElement {
+func (e *UlElement) IfSlotf(condition bool, format string, args ...any) *UlElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1793,7 +1793,7 @@ func (e *UlElement) StyleAdd(k string, v string) *UlElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *UlElement) StyleAddF(k string, format string, args ...any) *UlElement {
+func (e *UlElement) StyleAddf(k string, format string, args ...any) *UlElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1808,9 +1808,9 @@ func (e *UlElement) IfStyleAdd(condition bool, k string, v string) *UlElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *UlElement) IfStyleAddF(condition bool, k string, format string, args ...any) *UlElement {
+func (e *UlElement) IfStyleAddf(condition bool, k string, format string, args ...any) *UlElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1956,7 +1956,7 @@ func (e *UlElement) Title(s string) *UlElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *UlElement) TitleF(format string, args ...any) *UlElement {
+func (e *UlElement) Titlef(format string, args ...any) *UlElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1999,7 +1999,7 @@ func (e *UlElement) IfTitle(condition bool, s string) *UlElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *UlElement) IfTitleF(condition bool, format string, args ...any) *UlElement {
+func (e *UlElement) IfTitlef(condition bool, format string, args ...any) *UlElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

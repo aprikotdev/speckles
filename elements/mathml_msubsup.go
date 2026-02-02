@@ -83,7 +83,7 @@ func (e *MathMLMsubsupElement) Text(text string) *MathMLMsubsupElement {
 	return e
 }
 
-func (e *MathMLMsubsupElement) TextF(format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) Textf(format string, args ...any) *MathMLMsubsupElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *MathMLMsubsupElement) IfText(condition bool, text string) *MathMLMsubsu
 	return e
 }
 
-func (e *MathMLMsubsupElement) IfTextF(condition bool, format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) IfTextf(condition bool, format string, args ...any) *MathMLMsubsupElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *MathMLMsubsupElement) IfEscaped(condition bool, text string) *MathMLMsu
 	return e
 }
 
-func (e *MathMLMsubsupElement) EscapedF(format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) Escapedf(format string, args ...any) *MathMLMsubsupElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *MathMLMsubsupElement) IfEscapedF(condition bool, format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) IfEscapedf(condition bool, format string, args ...any) *MathMLMsubsupElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -243,7 +243,7 @@ func (e *MathMLMsubsupElement) ID(s string) *MathMLMsubsupElement {
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLMsubsupElement) IDF(format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) IDf(format string, args ...any) *MathMLMsubsupElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -258,7 +258,7 @@ func (e *MathMLMsubsupElement) IfID(condition bool, s string) *MathMLMsubsupElem
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLMsubsupElement) IfIDF(condition bool, format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) IfIDf(condition bool, format string, args ...any) *MathMLMsubsupElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -290,7 +290,7 @@ func (e *MathMLMsubsupElement) Mathbackground(s string) *MathMLMsubsupElement {
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLMsubsupElement) MathbackgroundF(format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) Mathbackgroundf(format string, args ...any) *MathMLMsubsupElement {
 	return e.Mathbackground(fmt.Sprintf(format, args...))
 }
 
@@ -307,7 +307,7 @@ func (e *MathMLMsubsupElement) IfMathbackground(condition bool, s string) *MathM
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLMsubsupElement) IfMathbackgroundF(condition bool, format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) IfMathbackgroundf(condition bool, format string, args ...any) *MathMLMsubsupElement {
 	if condition {
 		e.Mathbackground(fmt.Sprintf(format, args...))
 	}
@@ -340,7 +340,7 @@ func (e *MathMLMsubsupElement) Mathcolor(s string) *MathMLMsubsupElement {
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLMsubsupElement) MathcolorF(format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) Mathcolorf(format string, args ...any) *MathMLMsubsupElement {
 	return e.Mathcolor(fmt.Sprintf(format, args...))
 }
 
@@ -357,7 +357,7 @@ func (e *MathMLMsubsupElement) IfMathcolor(condition bool, s string) *MathMLMsub
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLMsubsupElement) IfMathcolorF(condition bool, format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) IfMathcolorf(condition bool, format string, args ...any) *MathMLMsubsupElement {
 	if condition {
 		e.Mathcolor(fmt.Sprintf(format, args...))
 	}
@@ -388,7 +388,7 @@ func (e *MathMLMsubsupElement) MathsizeStr(s string) *MathMLMsubsupElement {
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLMsubsupElement) MathsizeStrF(format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) MathsizeStrf(format string, args ...any) *MathMLMsubsupElement {
 	return e.MathsizeStr(fmt.Sprintf(format, args...))
 }
 
@@ -403,7 +403,7 @@ func (e *MathMLMsubsupElement) IfMathsizeStr(condition bool, s string) *MathMLMs
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLMsubsupElement) IfMathsizeStrF(condition bool, format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) IfMathsizeStrf(condition bool, format string, args ...any) *MathMLMsubsupElement {
 	if condition {
 		e.MathsizeStr(fmt.Sprintf(format, args...))
 	}
@@ -437,7 +437,7 @@ func (e *MathMLMsubsupElement) Nonce(s string) *MathMLMsubsupElement {
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLMsubsupElement) NonceF(format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) Noncef(format string, args ...any) *MathMLMsubsupElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -456,7 +456,7 @@ func (e *MathMLMsubsupElement) IfNonce(condition bool, s string) *MathMLMsubsupE
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLMsubsupElement) IfNonceF(condition bool, format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) IfNoncef(condition bool, format string, args ...any) *MathMLMsubsupElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -580,7 +580,7 @@ func (e *MathMLMsubsupElement) StyleAdd(k string, v string) *MathMLMsubsupElemen
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLMsubsupElement) StyleAddF(k string, format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) StyleAddf(k string, format string, args ...any) *MathMLMsubsupElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -595,9 +595,9 @@ func (e *MathMLMsubsupElement) IfStyleAdd(condition bool, k string, v string) *M
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLMsubsupElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MathMLMsubsupElement {
+func (e *MathMLMsubsupElement) IfStyleAddf(condition bool, k string, format string, args ...any) *MathMLMsubsupElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

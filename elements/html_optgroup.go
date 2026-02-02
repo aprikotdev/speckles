@@ -83,7 +83,7 @@ func (e *OptgroupElement) Text(text string) *OptgroupElement {
 	return e
 }
 
-func (e *OptgroupElement) TextF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) Textf(format string, args ...any) *OptgroupElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *OptgroupElement) IfText(condition bool, text string) *OptgroupElement {
 	return e
 }
 
-func (e *OptgroupElement) IfTextF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfTextf(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *OptgroupElement) IfEscaped(condition bool, text string) *OptgroupElemen
 	return e
 }
 
-func (e *OptgroupElement) EscapedF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) Escapedf(format string, args ...any) *OptgroupElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *OptgroupElement) IfEscapedF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfEscapedf(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -176,7 +176,7 @@ func (e *OptgroupElement) Label(s string) *OptgroupElement {
 }
 
 // User-visible label to give the option group a caption.
-func (e *OptgroupElement) LabelF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) Labelf(format string, args ...any) *OptgroupElement {
 	return e.Label(fmt.Sprintf(format, args...))
 }
 
@@ -189,7 +189,7 @@ func (e *OptgroupElement) IfLabel(condition bool, s string) *OptgroupElement {
 }
 
 // User-visible label to give the option group a caption.
-func (e *OptgroupElement) IfLabelF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfLabelf(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
 		e.Label(fmt.Sprintf(format, args...))
 	}
@@ -787,7 +787,7 @@ func (e *OptgroupElement) ID(s string) *OptgroupElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *OptgroupElement) IDF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IDf(format string, args ...any) *OptgroupElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -804,7 +804,7 @@ func (e *OptgroupElement) IfID(condition bool, s string) *OptgroupElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *OptgroupElement) IfIDF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfIDf(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -999,7 +999,7 @@ func (e *OptgroupElement) Is(s string) *OptgroupElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *OptgroupElement) IsF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) Isf(format string, args ...any) *OptgroupElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1020,7 +1020,7 @@ func (e *OptgroupElement) IfIs(condition bool, s string) *OptgroupElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *OptgroupElement) IfIsF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfIsf(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1071,7 +1071,7 @@ func (e *OptgroupElement) Itemid(s string) *OptgroupElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *OptgroupElement) ItemidF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) Itemidf(format string, args ...any) *OptgroupElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1104,7 +1104,7 @@ func (e *OptgroupElement) IfItemid(condition bool, s string) *OptgroupElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *OptgroupElement) IfItemidF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfItemidf(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1153,7 +1153,7 @@ func (e *OptgroupElement) Itemprop(s string) *OptgroupElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *OptgroupElement) ItempropF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) Itempropf(format string, args ...any) *OptgroupElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1178,7 +1178,7 @@ func (e *OptgroupElement) IfItemprop(condition bool, s string) *OptgroupElement 
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *OptgroupElement) IfItempropF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfItempropf(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1219,7 +1219,7 @@ func (e *OptgroupElement) Itemref(s string) *OptgroupElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *OptgroupElement) ItemrefF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) Itemreff(format string, args ...any) *OptgroupElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1240,7 +1240,7 @@ func (e *OptgroupElement) IfItemref(condition bool, s string) *OptgroupElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *OptgroupElement) IfItemrefF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfItemreff(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1355,7 +1355,7 @@ func (e *OptgroupElement) Itemtype(s string) *OptgroupElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *OptgroupElement) ItemtypeF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) Itemtypef(format string, args ...any) *OptgroupElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1380,7 +1380,7 @@ func (e *OptgroupElement) IfItemtype(condition bool, s string) *OptgroupElement 
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *OptgroupElement) IfItemtypeF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfItemtypef(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1421,7 +1421,7 @@ func (e *OptgroupElement) Lang(s string) *OptgroupElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *OptgroupElement) LangF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) Langf(format string, args ...any) *OptgroupElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1442,7 +1442,7 @@ func (e *OptgroupElement) IfLang(condition bool, s string) *OptgroupElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *OptgroupElement) IfLangF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfLangf(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1481,7 +1481,7 @@ func (e *OptgroupElement) Nonce(s string) *OptgroupElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *OptgroupElement) NonceF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) Noncef(format string, args ...any) *OptgroupElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1502,7 +1502,7 @@ func (e *OptgroupElement) IfNonce(condition bool, s string) *OptgroupElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *OptgroupElement) IfNonceF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfNoncef(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1627,7 +1627,7 @@ func (e *OptgroupElement) Role(s string) *OptgroupElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *OptgroupElement) RoleF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) Rolef(format string, args ...any) *OptgroupElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1646,7 +1646,7 @@ func (e *OptgroupElement) IfRole(condition bool, s string) *OptgroupElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *OptgroupElement) IfRoleF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfRolef(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1682,7 +1682,7 @@ func (e *OptgroupElement) Slot(s string) *OptgroupElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *OptgroupElement) SlotF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) Slotf(format string, args ...any) *OptgroupElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1701,7 +1701,7 @@ func (e *OptgroupElement) IfSlot(condition bool, s string) *OptgroupElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *OptgroupElement) IfSlotF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfSlotf(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1845,7 +1845,7 @@ func (e *OptgroupElement) StyleAdd(k string, v string) *OptgroupElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *OptgroupElement) StyleAddF(k string, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) StyleAddf(k string, format string, args ...any) *OptgroupElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1860,9 +1860,9 @@ func (e *OptgroupElement) IfStyleAdd(condition bool, k string, v string) *Optgro
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *OptgroupElement) IfStyleAddF(condition bool, k string, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfStyleAddf(condition bool, k string, format string, args ...any) *OptgroupElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2008,7 +2008,7 @@ func (e *OptgroupElement) Title(s string) *OptgroupElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *OptgroupElement) TitleF(format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) Titlef(format string, args ...any) *OptgroupElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2051,7 +2051,7 @@ func (e *OptgroupElement) IfTitle(condition bool, s string) *OptgroupElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *OptgroupElement) IfTitleF(condition bool, format string, args ...any) *OptgroupElement {
+func (e *OptgroupElement) IfTitlef(condition bool, format string, args ...any) *OptgroupElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

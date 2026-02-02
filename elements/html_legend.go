@@ -83,7 +83,7 @@ func (e *LegendElement) Text(text string) *LegendElement {
 	return e
 }
 
-func (e *LegendElement) TextF(format string, args ...any) *LegendElement {
+func (e *LegendElement) Textf(format string, args ...any) *LegendElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *LegendElement) IfText(condition bool, text string) *LegendElement {
 	return e
 }
 
-func (e *LegendElement) IfTextF(condition bool, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfTextf(condition bool, format string, args ...any) *LegendElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *LegendElement) IfEscaped(condition bool, text string) *LegendElement {
 	return e
 }
 
-func (e *LegendElement) EscapedF(format string, args ...any) *LegendElement {
+func (e *LegendElement) Escapedf(format string, args ...any) *LegendElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *LegendElement) IfEscapedF(condition bool, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfEscapedf(condition bool, format string, args ...any) *LegendElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -705,7 +705,7 @@ func (e *LegendElement) ID(s string) *LegendElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *LegendElement) IDF(format string, args ...any) *LegendElement {
+func (e *LegendElement) IDf(format string, args ...any) *LegendElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -722,7 +722,7 @@ func (e *LegendElement) IfID(condition bool, s string) *LegendElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *LegendElement) IfIDF(condition bool, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfIDf(condition bool, format string, args ...any) *LegendElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -917,7 +917,7 @@ func (e *LegendElement) Is(s string) *LegendElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *LegendElement) IsF(format string, args ...any) *LegendElement {
+func (e *LegendElement) Isf(format string, args ...any) *LegendElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -938,7 +938,7 @@ func (e *LegendElement) IfIs(condition bool, s string) *LegendElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *LegendElement) IfIsF(condition bool, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfIsf(condition bool, format string, args ...any) *LegendElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -989,7 +989,7 @@ func (e *LegendElement) Itemid(s string) *LegendElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *LegendElement) ItemidF(format string, args ...any) *LegendElement {
+func (e *LegendElement) Itemidf(format string, args ...any) *LegendElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1022,7 +1022,7 @@ func (e *LegendElement) IfItemid(condition bool, s string) *LegendElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *LegendElement) IfItemidF(condition bool, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfItemidf(condition bool, format string, args ...any) *LegendElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1071,7 +1071,7 @@ func (e *LegendElement) Itemprop(s string) *LegendElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *LegendElement) ItempropF(format string, args ...any) *LegendElement {
+func (e *LegendElement) Itempropf(format string, args ...any) *LegendElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1096,7 +1096,7 @@ func (e *LegendElement) IfItemprop(condition bool, s string) *LegendElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *LegendElement) IfItempropF(condition bool, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfItempropf(condition bool, format string, args ...any) *LegendElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1137,7 +1137,7 @@ func (e *LegendElement) Itemref(s string) *LegendElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *LegendElement) ItemrefF(format string, args ...any) *LegendElement {
+func (e *LegendElement) Itemreff(format string, args ...any) *LegendElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1158,7 +1158,7 @@ func (e *LegendElement) IfItemref(condition bool, s string) *LegendElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *LegendElement) IfItemrefF(condition bool, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfItemreff(condition bool, format string, args ...any) *LegendElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1273,7 +1273,7 @@ func (e *LegendElement) Itemtype(s string) *LegendElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *LegendElement) ItemtypeF(format string, args ...any) *LegendElement {
+func (e *LegendElement) Itemtypef(format string, args ...any) *LegendElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1298,7 +1298,7 @@ func (e *LegendElement) IfItemtype(condition bool, s string) *LegendElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *LegendElement) IfItemtypeF(condition bool, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfItemtypef(condition bool, format string, args ...any) *LegendElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1339,7 +1339,7 @@ func (e *LegendElement) Lang(s string) *LegendElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *LegendElement) LangF(format string, args ...any) *LegendElement {
+func (e *LegendElement) Langf(format string, args ...any) *LegendElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1360,7 +1360,7 @@ func (e *LegendElement) IfLang(condition bool, s string) *LegendElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *LegendElement) IfLangF(condition bool, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfLangf(condition bool, format string, args ...any) *LegendElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1399,7 +1399,7 @@ func (e *LegendElement) Nonce(s string) *LegendElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *LegendElement) NonceF(format string, args ...any) *LegendElement {
+func (e *LegendElement) Noncef(format string, args ...any) *LegendElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1420,7 +1420,7 @@ func (e *LegendElement) IfNonce(condition bool, s string) *LegendElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *LegendElement) IfNonceF(condition bool, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfNoncef(condition bool, format string, args ...any) *LegendElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1545,7 +1545,7 @@ func (e *LegendElement) Role(s string) *LegendElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *LegendElement) RoleF(format string, args ...any) *LegendElement {
+func (e *LegendElement) Rolef(format string, args ...any) *LegendElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1564,7 +1564,7 @@ func (e *LegendElement) IfRole(condition bool, s string) *LegendElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *LegendElement) IfRoleF(condition bool, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfRolef(condition bool, format string, args ...any) *LegendElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1600,7 +1600,7 @@ func (e *LegendElement) Slot(s string) *LegendElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *LegendElement) SlotF(format string, args ...any) *LegendElement {
+func (e *LegendElement) Slotf(format string, args ...any) *LegendElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1619,7 +1619,7 @@ func (e *LegendElement) IfSlot(condition bool, s string) *LegendElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *LegendElement) IfSlotF(condition bool, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfSlotf(condition bool, format string, args ...any) *LegendElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1763,7 +1763,7 @@ func (e *LegendElement) StyleAdd(k string, v string) *LegendElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *LegendElement) StyleAddF(k string, format string, args ...any) *LegendElement {
+func (e *LegendElement) StyleAddf(k string, format string, args ...any) *LegendElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1778,9 +1778,9 @@ func (e *LegendElement) IfStyleAdd(condition bool, k string, v string) *LegendEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *LegendElement) IfStyleAddF(condition bool, k string, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfStyleAddf(condition bool, k string, format string, args ...any) *LegendElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1926,7 +1926,7 @@ func (e *LegendElement) Title(s string) *LegendElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *LegendElement) TitleF(format string, args ...any) *LegendElement {
+func (e *LegendElement) Titlef(format string, args ...any) *LegendElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1969,7 +1969,7 @@ func (e *LegendElement) IfTitle(condition bool, s string) *LegendElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *LegendElement) IfTitleF(condition bool, format string, args ...any) *LegendElement {
+func (e *LegendElement) IfTitlef(condition bool, format string, args ...any) *LegendElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

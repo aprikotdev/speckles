@@ -84,7 +84,7 @@ func (e *BrElement) Text(text string) *BrElement {
 	return e
 }
 
-func (e *BrElement) TextF(format string, args ...any) *BrElement {
+func (e *BrElement) Textf(format string, args ...any) *BrElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *BrElement) IfText(condition bool, text string) *BrElement {
 	return e
 }
 
-func (e *BrElement) IfTextF(condition bool, format string, args ...any) *BrElement {
+func (e *BrElement) IfTextf(condition bool, format string, args ...any) *BrElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *BrElement) IfEscaped(condition bool, text string) *BrElement {
 	return e
 }
 
-func (e *BrElement) EscapedF(format string, args ...any) *BrElement {
+func (e *BrElement) Escapedf(format string, args ...any) *BrElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *BrElement) IfEscapedF(condition bool, format string, args ...any) *BrElement {
+func (e *BrElement) IfEscapedf(condition bool, format string, args ...any) *BrElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -706,7 +706,7 @@ func (e *BrElement) ID(s string) *BrElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *BrElement) IDF(format string, args ...any) *BrElement {
+func (e *BrElement) IDf(format string, args ...any) *BrElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -723,7 +723,7 @@ func (e *BrElement) IfID(condition bool, s string) *BrElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *BrElement) IfIDF(condition bool, format string, args ...any) *BrElement {
+func (e *BrElement) IfIDf(condition bool, format string, args ...any) *BrElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -918,7 +918,7 @@ func (e *BrElement) Is(s string) *BrElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *BrElement) IsF(format string, args ...any) *BrElement {
+func (e *BrElement) Isf(format string, args ...any) *BrElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -939,7 +939,7 @@ func (e *BrElement) IfIs(condition bool, s string) *BrElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *BrElement) IfIsF(condition bool, format string, args ...any) *BrElement {
+func (e *BrElement) IfIsf(condition bool, format string, args ...any) *BrElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -990,7 +990,7 @@ func (e *BrElement) Itemid(s string) *BrElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *BrElement) ItemidF(format string, args ...any) *BrElement {
+func (e *BrElement) Itemidf(format string, args ...any) *BrElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1023,7 +1023,7 @@ func (e *BrElement) IfItemid(condition bool, s string) *BrElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *BrElement) IfItemidF(condition bool, format string, args ...any) *BrElement {
+func (e *BrElement) IfItemidf(condition bool, format string, args ...any) *BrElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1072,7 +1072,7 @@ func (e *BrElement) Itemprop(s string) *BrElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *BrElement) ItempropF(format string, args ...any) *BrElement {
+func (e *BrElement) Itempropf(format string, args ...any) *BrElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *BrElement) IfItemprop(condition bool, s string) *BrElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *BrElement) IfItempropF(condition bool, format string, args ...any) *BrElement {
+func (e *BrElement) IfItempropf(condition bool, format string, args ...any) *BrElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1138,7 +1138,7 @@ func (e *BrElement) Itemref(s string) *BrElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *BrElement) ItemrefF(format string, args ...any) *BrElement {
+func (e *BrElement) Itemreff(format string, args ...any) *BrElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1159,7 +1159,7 @@ func (e *BrElement) IfItemref(condition bool, s string) *BrElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *BrElement) IfItemrefF(condition bool, format string, args ...any) *BrElement {
+func (e *BrElement) IfItemreff(condition bool, format string, args ...any) *BrElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1274,7 +1274,7 @@ func (e *BrElement) Itemtype(s string) *BrElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *BrElement) ItemtypeF(format string, args ...any) *BrElement {
+func (e *BrElement) Itemtypef(format string, args ...any) *BrElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1299,7 +1299,7 @@ func (e *BrElement) IfItemtype(condition bool, s string) *BrElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *BrElement) IfItemtypeF(condition bool, format string, args ...any) *BrElement {
+func (e *BrElement) IfItemtypef(condition bool, format string, args ...any) *BrElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1340,7 +1340,7 @@ func (e *BrElement) Lang(s string) *BrElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *BrElement) LangF(format string, args ...any) *BrElement {
+func (e *BrElement) Langf(format string, args ...any) *BrElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1361,7 +1361,7 @@ func (e *BrElement) IfLang(condition bool, s string) *BrElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *BrElement) IfLangF(condition bool, format string, args ...any) *BrElement {
+func (e *BrElement) IfLangf(condition bool, format string, args ...any) *BrElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1400,7 +1400,7 @@ func (e *BrElement) Nonce(s string) *BrElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *BrElement) NonceF(format string, args ...any) *BrElement {
+func (e *BrElement) Noncef(format string, args ...any) *BrElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *BrElement) IfNonce(condition bool, s string) *BrElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *BrElement) IfNonceF(condition bool, format string, args ...any) *BrElement {
+func (e *BrElement) IfNoncef(condition bool, format string, args ...any) *BrElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1546,7 +1546,7 @@ func (e *BrElement) Role(s string) *BrElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *BrElement) RoleF(format string, args ...any) *BrElement {
+func (e *BrElement) Rolef(format string, args ...any) *BrElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1565,7 +1565,7 @@ func (e *BrElement) IfRole(condition bool, s string) *BrElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *BrElement) IfRoleF(condition bool, format string, args ...any) *BrElement {
+func (e *BrElement) IfRolef(condition bool, format string, args ...any) *BrElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1601,7 +1601,7 @@ func (e *BrElement) Slot(s string) *BrElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *BrElement) SlotF(format string, args ...any) *BrElement {
+func (e *BrElement) Slotf(format string, args ...any) *BrElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1620,7 +1620,7 @@ func (e *BrElement) IfSlot(condition bool, s string) *BrElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *BrElement) IfSlotF(condition bool, format string, args ...any) *BrElement {
+func (e *BrElement) IfSlotf(condition bool, format string, args ...any) *BrElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1764,7 +1764,7 @@ func (e *BrElement) StyleAdd(k string, v string) *BrElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *BrElement) StyleAddF(k string, format string, args ...any) *BrElement {
+func (e *BrElement) StyleAddf(k string, format string, args ...any) *BrElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1779,9 +1779,9 @@ func (e *BrElement) IfStyleAdd(condition bool, k string, v string) *BrElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *BrElement) IfStyleAddF(condition bool, k string, format string, args ...any) *BrElement {
+func (e *BrElement) IfStyleAddf(condition bool, k string, format string, args ...any) *BrElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1927,7 +1927,7 @@ func (e *BrElement) Title(s string) *BrElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *BrElement) TitleF(format string, args ...any) *BrElement {
+func (e *BrElement) Titlef(format string, args ...any) *BrElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1970,7 +1970,7 @@ func (e *BrElement) IfTitle(condition bool, s string) *BrElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *BrElement) IfTitleF(condition bool, format string, args ...any) *BrElement {
+func (e *BrElement) IfTitlef(condition bool, format string, args ...any) *BrElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

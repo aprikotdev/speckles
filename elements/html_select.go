@@ -83,7 +83,7 @@ func (e *SelectElement) Text(text string) *SelectElement {
 	return e
 }
 
-func (e *SelectElement) TextF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Textf(format string, args ...any) *SelectElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SelectElement) IfText(condition bool, text string) *SelectElement {
 	return e
 }
 
-func (e *SelectElement) IfTextF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfTextf(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SelectElement) IfEscaped(condition bool, text string) *SelectElement {
 	return e
 }
 
-func (e *SelectElement) EscapedF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Escapedf(format string, args ...any) *SelectElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SelectElement) IfEscapedF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfEscapedf(condition bool, format string, args ...any) *SelectElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -204,7 +204,7 @@ func (e *SelectElement) Form(s string) *SelectElement {
 }
 
 // Associates the control with a form element.
-func (e *SelectElement) FormF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Formf(format string, args ...any) *SelectElement {
 	return e.Form(fmt.Sprintf(format, args...))
 }
 
@@ -217,7 +217,7 @@ func (e *SelectElement) IfForm(condition bool, s string) *SelectElement {
 }
 
 // Associates the control with a form element.
-func (e *SelectElement) IfFormF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfFormf(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.Form(fmt.Sprintf(format, args...))
 	}
@@ -286,7 +286,7 @@ func (e *SelectElement) Name(s string) *SelectElement {
 }
 
 // Name of the element to use for form submission and in the form.elements API.
-func (e *SelectElement) NameF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Namef(format string, args ...any) *SelectElement {
 	return e.Name(fmt.Sprintf(format, args...))
 }
 
@@ -299,7 +299,7 @@ func (e *SelectElement) IfName(condition bool, s string) *SelectElement {
 }
 
 // Name of the element to use for form submission and in the form.elements API.
-func (e *SelectElement) IfNameF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfNamef(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.Name(fmt.Sprintf(format, args...))
 	}
@@ -966,7 +966,7 @@ func (e *SelectElement) ID(s string) *SelectElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *SelectElement) IDF(format string, args ...any) *SelectElement {
+func (e *SelectElement) IDf(format string, args ...any) *SelectElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -983,7 +983,7 @@ func (e *SelectElement) IfID(condition bool, s string) *SelectElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *SelectElement) IfIDF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfIDf(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1178,7 +1178,7 @@ func (e *SelectElement) Is(s string) *SelectElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *SelectElement) IsF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Isf(format string, args ...any) *SelectElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1199,7 +1199,7 @@ func (e *SelectElement) IfIs(condition bool, s string) *SelectElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *SelectElement) IfIsF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfIsf(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1250,7 +1250,7 @@ func (e *SelectElement) Itemid(s string) *SelectElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *SelectElement) ItemidF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Itemidf(format string, args ...any) *SelectElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1283,7 +1283,7 @@ func (e *SelectElement) IfItemid(condition bool, s string) *SelectElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *SelectElement) IfItemidF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfItemidf(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1332,7 +1332,7 @@ func (e *SelectElement) Itemprop(s string) *SelectElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *SelectElement) ItempropF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Itempropf(format string, args ...any) *SelectElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1357,7 +1357,7 @@ func (e *SelectElement) IfItemprop(condition bool, s string) *SelectElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *SelectElement) IfItempropF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfItempropf(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1398,7 +1398,7 @@ func (e *SelectElement) Itemref(s string) *SelectElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *SelectElement) ItemrefF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Itemreff(format string, args ...any) *SelectElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1419,7 +1419,7 @@ func (e *SelectElement) IfItemref(condition bool, s string) *SelectElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *SelectElement) IfItemrefF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfItemreff(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1534,7 +1534,7 @@ func (e *SelectElement) Itemtype(s string) *SelectElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *SelectElement) ItemtypeF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Itemtypef(format string, args ...any) *SelectElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1559,7 +1559,7 @@ func (e *SelectElement) IfItemtype(condition bool, s string) *SelectElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *SelectElement) IfItemtypeF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfItemtypef(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1600,7 +1600,7 @@ func (e *SelectElement) Lang(s string) *SelectElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *SelectElement) LangF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Langf(format string, args ...any) *SelectElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1621,7 +1621,7 @@ func (e *SelectElement) IfLang(condition bool, s string) *SelectElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *SelectElement) IfLangF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfLangf(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1660,7 +1660,7 @@ func (e *SelectElement) Nonce(s string) *SelectElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *SelectElement) NonceF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Noncef(format string, args ...any) *SelectElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1681,7 +1681,7 @@ func (e *SelectElement) IfNonce(condition bool, s string) *SelectElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *SelectElement) IfNonceF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfNoncef(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1806,7 +1806,7 @@ func (e *SelectElement) Role(s string) *SelectElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *SelectElement) RoleF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Rolef(format string, args ...any) *SelectElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1825,7 +1825,7 @@ func (e *SelectElement) IfRole(condition bool, s string) *SelectElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *SelectElement) IfRoleF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfRolef(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1861,7 +1861,7 @@ func (e *SelectElement) Slot(s string) *SelectElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *SelectElement) SlotF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Slotf(format string, args ...any) *SelectElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1880,7 +1880,7 @@ func (e *SelectElement) IfSlot(condition bool, s string) *SelectElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *SelectElement) IfSlotF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfSlotf(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -2024,7 +2024,7 @@ func (e *SelectElement) StyleAdd(k string, v string) *SelectElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *SelectElement) StyleAddF(k string, format string, args ...any) *SelectElement {
+func (e *SelectElement) StyleAddf(k string, format string, args ...any) *SelectElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -2039,9 +2039,9 @@ func (e *SelectElement) IfStyleAdd(condition bool, k string, v string) *SelectEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *SelectElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SelectElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2187,7 +2187,7 @@ func (e *SelectElement) Title(s string) *SelectElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *SelectElement) TitleF(format string, args ...any) *SelectElement {
+func (e *SelectElement) Titlef(format string, args ...any) *SelectElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2230,7 +2230,7 @@ func (e *SelectElement) IfTitle(condition bool, s string) *SelectElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *SelectElement) IfTitleF(condition bool, format string, args ...any) *SelectElement {
+func (e *SelectElement) IfTitlef(condition bool, format string, args ...any) *SelectElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

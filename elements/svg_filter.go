@@ -85,7 +85,7 @@ func (e *SVGFilterElement) Text(text string) *SVGFilterElement {
 	return e
 }
 
-func (e *SVGFilterElement) TextF(format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) Textf(format string, args ...any) *SVGFilterElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *SVGFilterElement) IfText(condition bool, text string) *SVGFilterElement
 	return e
 }
 
-func (e *SVGFilterElement) IfTextF(condition bool, format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) IfTextf(condition bool, format string, args ...any) *SVGFilterElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *SVGFilterElement) IfEscaped(condition bool, text string) *SVGFilterElem
 	return e
 }
 
-func (e *SVGFilterElement) EscapedF(format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) Escapedf(format string, args ...any) *SVGFilterElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFilterElement) IfEscapedF(condition bool, format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) IfEscapedf(condition bool, format string, args ...any) *SVGFilterElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -192,7 +192,7 @@ func (e *SVGFilterElement) X(s string) *SVGFilterElement {
 }
 
 // The x Attribute indicates where the left edge of the filter is placed.
-func (e *SVGFilterElement) XF(format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) Xf(format string, args ...any) *SVGFilterElement {
 	return e.X(fmt.Sprintf(format, args...))
 }
 
@@ -205,7 +205,7 @@ func (e *SVGFilterElement) IfX(condition bool, s string) *SVGFilterElement {
 }
 
 // The x Attribute indicates where the left edge of the filter is placed.
-func (e *SVGFilterElement) IfXF(condition bool, format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) IfXf(condition bool, format string, args ...any) *SVGFilterElement {
 	if condition {
 		e.X(fmt.Sprintf(format, args...))
 	}
@@ -232,7 +232,7 @@ func (e *SVGFilterElement) Y(s string) *SVGFilterElement {
 }
 
 // The y Attribute indicates where the top edge of the filter is placed.
-func (e *SVGFilterElement) YF(format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) Yf(format string, args ...any) *SVGFilterElement {
 	return e.Y(fmt.Sprintf(format, args...))
 }
 
@@ -245,7 +245,7 @@ func (e *SVGFilterElement) IfY(condition bool, s string) *SVGFilterElement {
 }
 
 // The y Attribute indicates where the top edge of the filter is placed.
-func (e *SVGFilterElement) IfYF(condition bool, format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) IfYf(condition bool, format string, args ...any) *SVGFilterElement {
 	if condition {
 		e.Y(fmt.Sprintf(format, args...))
 	}
@@ -272,7 +272,7 @@ func (e *SVGFilterElement) Width(s string) *SVGFilterElement {
 }
 
 // The width Attribute indicates the width of the filter primitive box.
-func (e *SVGFilterElement) WidthF(format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) Widthf(format string, args ...any) *SVGFilterElement {
 	return e.Width(fmt.Sprintf(format, args...))
 }
 
@@ -285,7 +285,7 @@ func (e *SVGFilterElement) IfWidth(condition bool, s string) *SVGFilterElement {
 }
 
 // The width Attribute indicates the width of the filter primitive box.
-func (e *SVGFilterElement) IfWidthF(condition bool, format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) IfWidthf(condition bool, format string, args ...any) *SVGFilterElement {
 	if condition {
 		e.Width(fmt.Sprintf(format, args...))
 	}
@@ -312,7 +312,7 @@ func (e *SVGFilterElement) Height(s string) *SVGFilterElement {
 }
 
 // The height Attribute indicates the height of the filter primitive box.
-func (e *SVGFilterElement) HeightF(format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) Heightf(format string, args ...any) *SVGFilterElement {
 	return e.Height(fmt.Sprintf(format, args...))
 }
 
@@ -325,7 +325,7 @@ func (e *SVGFilterElement) IfHeight(condition bool, s string) *SVGFilterElement 
 }
 
 // The height Attribute indicates the height of the filter primitive box.
-func (e *SVGFilterElement) IfHeightF(condition bool, format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) IfHeightf(condition bool, format string, args ...any) *SVGFilterElement {
 	if condition {
 		e.Height(fmt.Sprintf(format, args...))
 	}
@@ -352,7 +352,7 @@ func (e *SVGFilterElement) ID(s string) *SVGFilterElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFilterElement) IDF(format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) IDf(format string, args ...any) *SVGFilterElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -365,7 +365,7 @@ func (e *SVGFilterElement) IfID(condition bool, s string) *SVGFilterElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFilterElement) IfIDF(condition bool, format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) IfIDf(condition bool, format string, args ...any) *SVGFilterElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -491,7 +491,7 @@ func (e *SVGFilterElement) StyleAdd(k string, v string) *SVGFilterElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFilterElement) StyleAddF(k string, format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) StyleAddf(k string, format string, args ...any) *SVGFilterElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -504,9 +504,9 @@ func (e *SVGFilterElement) IfStyleAdd(condition bool, k string, v string) *SVGFi
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFilterElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFilterElement {
+func (e *SVGFilterElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFilterElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

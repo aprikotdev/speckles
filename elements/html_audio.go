@@ -85,7 +85,7 @@ func (e *AudioElement) Text(text string) *AudioElement {
 	return e
 }
 
-func (e *AudioElement) TextF(format string, args ...any) *AudioElement {
+func (e *AudioElement) Textf(format string, args ...any) *AudioElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *AudioElement) IfText(condition bool, text string) *AudioElement {
 	return e
 }
 
-func (e *AudioElement) IfTextF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfTextf(condition bool, format string, args ...any) *AudioElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *AudioElement) IfEscaped(condition bool, text string) *AudioElement {
 	return e
 }
 
-func (e *AudioElement) EscapedF(format string, args ...any) *AudioElement {
+func (e *AudioElement) Escapedf(format string, args ...any) *AudioElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *AudioElement) IfEscapedF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfEscapedf(condition bool, format string, args ...any) *AudioElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -377,7 +377,7 @@ func (e *AudioElement) Src(s string) *AudioElement {
 }
 
 // The URL of the embeddable content.
-func (e *AudioElement) SrcF(format string, args ...any) *AudioElement {
+func (e *AudioElement) Srcf(format string, args ...any) *AudioElement {
 	return e.Src(fmt.Sprintf(format, args...))
 }
 
@@ -390,7 +390,7 @@ func (e *AudioElement) IfSrc(condition bool, s string) *AudioElement {
 }
 
 // The URL of the embeddable content.
-func (e *AudioElement) IfSrcF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfSrcf(condition bool, format string, args ...any) *AudioElement {
 	if condition {
 		e.Src(fmt.Sprintf(format, args...))
 	}
@@ -988,7 +988,7 @@ func (e *AudioElement) ID(s string) *AudioElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *AudioElement) IDF(format string, args ...any) *AudioElement {
+func (e *AudioElement) IDf(format string, args ...any) *AudioElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -1005,7 +1005,7 @@ func (e *AudioElement) IfID(condition bool, s string) *AudioElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *AudioElement) IfIDF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfIDf(condition bool, format string, args ...any) *AudioElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1200,7 +1200,7 @@ func (e *AudioElement) Is(s string) *AudioElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *AudioElement) IsF(format string, args ...any) *AudioElement {
+func (e *AudioElement) Isf(format string, args ...any) *AudioElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1221,7 +1221,7 @@ func (e *AudioElement) IfIs(condition bool, s string) *AudioElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *AudioElement) IfIsF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfIsf(condition bool, format string, args ...any) *AudioElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1272,7 +1272,7 @@ func (e *AudioElement) Itemid(s string) *AudioElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *AudioElement) ItemidF(format string, args ...any) *AudioElement {
+func (e *AudioElement) Itemidf(format string, args ...any) *AudioElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1305,7 +1305,7 @@ func (e *AudioElement) IfItemid(condition bool, s string) *AudioElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *AudioElement) IfItemidF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfItemidf(condition bool, format string, args ...any) *AudioElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1354,7 +1354,7 @@ func (e *AudioElement) Itemprop(s string) *AudioElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *AudioElement) ItempropF(format string, args ...any) *AudioElement {
+func (e *AudioElement) Itempropf(format string, args ...any) *AudioElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1379,7 +1379,7 @@ func (e *AudioElement) IfItemprop(condition bool, s string) *AudioElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *AudioElement) IfItempropF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfItempropf(condition bool, format string, args ...any) *AudioElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1420,7 +1420,7 @@ func (e *AudioElement) Itemref(s string) *AudioElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *AudioElement) ItemrefF(format string, args ...any) *AudioElement {
+func (e *AudioElement) Itemreff(format string, args ...any) *AudioElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1441,7 +1441,7 @@ func (e *AudioElement) IfItemref(condition bool, s string) *AudioElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *AudioElement) IfItemrefF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfItemreff(condition bool, format string, args ...any) *AudioElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1556,7 +1556,7 @@ func (e *AudioElement) Itemtype(s string) *AudioElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *AudioElement) ItemtypeF(format string, args ...any) *AudioElement {
+func (e *AudioElement) Itemtypef(format string, args ...any) *AudioElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1581,7 +1581,7 @@ func (e *AudioElement) IfItemtype(condition bool, s string) *AudioElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *AudioElement) IfItemtypeF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfItemtypef(condition bool, format string, args ...any) *AudioElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1622,7 +1622,7 @@ func (e *AudioElement) Lang(s string) *AudioElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *AudioElement) LangF(format string, args ...any) *AudioElement {
+func (e *AudioElement) Langf(format string, args ...any) *AudioElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1643,7 +1643,7 @@ func (e *AudioElement) IfLang(condition bool, s string) *AudioElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *AudioElement) IfLangF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfLangf(condition bool, format string, args ...any) *AudioElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1682,7 +1682,7 @@ func (e *AudioElement) Nonce(s string) *AudioElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *AudioElement) NonceF(format string, args ...any) *AudioElement {
+func (e *AudioElement) Noncef(format string, args ...any) *AudioElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1703,7 +1703,7 @@ func (e *AudioElement) IfNonce(condition bool, s string) *AudioElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *AudioElement) IfNonceF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfNoncef(condition bool, format string, args ...any) *AudioElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1828,7 +1828,7 @@ func (e *AudioElement) Role(s string) *AudioElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *AudioElement) RoleF(format string, args ...any) *AudioElement {
+func (e *AudioElement) Rolef(format string, args ...any) *AudioElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1847,7 +1847,7 @@ func (e *AudioElement) IfRole(condition bool, s string) *AudioElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *AudioElement) IfRoleF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfRolef(condition bool, format string, args ...any) *AudioElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1883,7 +1883,7 @@ func (e *AudioElement) Slot(s string) *AudioElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *AudioElement) SlotF(format string, args ...any) *AudioElement {
+func (e *AudioElement) Slotf(format string, args ...any) *AudioElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1902,7 +1902,7 @@ func (e *AudioElement) IfSlot(condition bool, s string) *AudioElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *AudioElement) IfSlotF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfSlotf(condition bool, format string, args ...any) *AudioElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -2046,7 +2046,7 @@ func (e *AudioElement) StyleAdd(k string, v string) *AudioElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *AudioElement) StyleAddF(k string, format string, args ...any) *AudioElement {
+func (e *AudioElement) StyleAddf(k string, format string, args ...any) *AudioElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -2061,9 +2061,9 @@ func (e *AudioElement) IfStyleAdd(condition bool, k string, v string) *AudioElem
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *AudioElement) IfStyleAddF(condition bool, k string, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfStyleAddf(condition bool, k string, format string, args ...any) *AudioElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2209,7 +2209,7 @@ func (e *AudioElement) Title(s string) *AudioElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *AudioElement) TitleF(format string, args ...any) *AudioElement {
+func (e *AudioElement) Titlef(format string, args ...any) *AudioElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2252,7 +2252,7 @@ func (e *AudioElement) IfTitle(condition bool, s string) *AudioElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *AudioElement) IfTitleF(condition bool, format string, args ...any) *AudioElement {
+func (e *AudioElement) IfTitlef(condition bool, format string, args ...any) *AudioElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

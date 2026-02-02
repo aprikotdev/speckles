@@ -84,7 +84,7 @@ func (e *StrongElement) Text(text string) *StrongElement {
 	return e
 }
 
-func (e *StrongElement) TextF(format string, args ...any) *StrongElement {
+func (e *StrongElement) Textf(format string, args ...any) *StrongElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *StrongElement) IfText(condition bool, text string) *StrongElement {
 	return e
 }
 
-func (e *StrongElement) IfTextF(condition bool, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfTextf(condition bool, format string, args ...any) *StrongElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *StrongElement) IfEscaped(condition bool, text string) *StrongElement {
 	return e
 }
 
-func (e *StrongElement) EscapedF(format string, args ...any) *StrongElement {
+func (e *StrongElement) Escapedf(format string, args ...any) *StrongElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *StrongElement) IfEscapedF(condition bool, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfEscapedf(condition bool, format string, args ...any) *StrongElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -706,7 +706,7 @@ func (e *StrongElement) ID(s string) *StrongElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *StrongElement) IDF(format string, args ...any) *StrongElement {
+func (e *StrongElement) IDf(format string, args ...any) *StrongElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -723,7 +723,7 @@ func (e *StrongElement) IfID(condition bool, s string) *StrongElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *StrongElement) IfIDF(condition bool, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfIDf(condition bool, format string, args ...any) *StrongElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -918,7 +918,7 @@ func (e *StrongElement) Is(s string) *StrongElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *StrongElement) IsF(format string, args ...any) *StrongElement {
+func (e *StrongElement) Isf(format string, args ...any) *StrongElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -939,7 +939,7 @@ func (e *StrongElement) IfIs(condition bool, s string) *StrongElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *StrongElement) IfIsF(condition bool, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfIsf(condition bool, format string, args ...any) *StrongElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -990,7 +990,7 @@ func (e *StrongElement) Itemid(s string) *StrongElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *StrongElement) ItemidF(format string, args ...any) *StrongElement {
+func (e *StrongElement) Itemidf(format string, args ...any) *StrongElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1023,7 +1023,7 @@ func (e *StrongElement) IfItemid(condition bool, s string) *StrongElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *StrongElement) IfItemidF(condition bool, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfItemidf(condition bool, format string, args ...any) *StrongElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1072,7 +1072,7 @@ func (e *StrongElement) Itemprop(s string) *StrongElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *StrongElement) ItempropF(format string, args ...any) *StrongElement {
+func (e *StrongElement) Itempropf(format string, args ...any) *StrongElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *StrongElement) IfItemprop(condition bool, s string) *StrongElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *StrongElement) IfItempropF(condition bool, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfItempropf(condition bool, format string, args ...any) *StrongElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1138,7 +1138,7 @@ func (e *StrongElement) Itemref(s string) *StrongElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *StrongElement) ItemrefF(format string, args ...any) *StrongElement {
+func (e *StrongElement) Itemreff(format string, args ...any) *StrongElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1159,7 +1159,7 @@ func (e *StrongElement) IfItemref(condition bool, s string) *StrongElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *StrongElement) IfItemrefF(condition bool, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfItemreff(condition bool, format string, args ...any) *StrongElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1274,7 +1274,7 @@ func (e *StrongElement) Itemtype(s string) *StrongElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *StrongElement) ItemtypeF(format string, args ...any) *StrongElement {
+func (e *StrongElement) Itemtypef(format string, args ...any) *StrongElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1299,7 +1299,7 @@ func (e *StrongElement) IfItemtype(condition bool, s string) *StrongElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *StrongElement) IfItemtypeF(condition bool, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfItemtypef(condition bool, format string, args ...any) *StrongElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1340,7 +1340,7 @@ func (e *StrongElement) Lang(s string) *StrongElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *StrongElement) LangF(format string, args ...any) *StrongElement {
+func (e *StrongElement) Langf(format string, args ...any) *StrongElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1361,7 +1361,7 @@ func (e *StrongElement) IfLang(condition bool, s string) *StrongElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *StrongElement) IfLangF(condition bool, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfLangf(condition bool, format string, args ...any) *StrongElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1400,7 +1400,7 @@ func (e *StrongElement) Nonce(s string) *StrongElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *StrongElement) NonceF(format string, args ...any) *StrongElement {
+func (e *StrongElement) Noncef(format string, args ...any) *StrongElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *StrongElement) IfNonce(condition bool, s string) *StrongElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *StrongElement) IfNonceF(condition bool, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfNoncef(condition bool, format string, args ...any) *StrongElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1546,7 +1546,7 @@ func (e *StrongElement) Role(s string) *StrongElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *StrongElement) RoleF(format string, args ...any) *StrongElement {
+func (e *StrongElement) Rolef(format string, args ...any) *StrongElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1565,7 +1565,7 @@ func (e *StrongElement) IfRole(condition bool, s string) *StrongElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *StrongElement) IfRoleF(condition bool, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfRolef(condition bool, format string, args ...any) *StrongElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1601,7 +1601,7 @@ func (e *StrongElement) Slot(s string) *StrongElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *StrongElement) SlotF(format string, args ...any) *StrongElement {
+func (e *StrongElement) Slotf(format string, args ...any) *StrongElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1620,7 +1620,7 @@ func (e *StrongElement) IfSlot(condition bool, s string) *StrongElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *StrongElement) IfSlotF(condition bool, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfSlotf(condition bool, format string, args ...any) *StrongElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1764,7 +1764,7 @@ func (e *StrongElement) StyleAdd(k string, v string) *StrongElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *StrongElement) StyleAddF(k string, format string, args ...any) *StrongElement {
+func (e *StrongElement) StyleAddf(k string, format string, args ...any) *StrongElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1779,9 +1779,9 @@ func (e *StrongElement) IfStyleAdd(condition bool, k string, v string) *StrongEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *StrongElement) IfStyleAddF(condition bool, k string, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfStyleAddf(condition bool, k string, format string, args ...any) *StrongElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1927,7 +1927,7 @@ func (e *StrongElement) Title(s string) *StrongElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *StrongElement) TitleF(format string, args ...any) *StrongElement {
+func (e *StrongElement) Titlef(format string, args ...any) *StrongElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1970,7 +1970,7 @@ func (e *StrongElement) IfTitle(condition bool, s string) *StrongElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *StrongElement) IfTitleF(condition bool, format string, args ...any) *StrongElement {
+func (e *StrongElement) IfTitlef(condition bool, format string, args ...any) *StrongElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

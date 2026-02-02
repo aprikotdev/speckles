@@ -83,7 +83,7 @@ func (e *SVGFeDisplacementMapElement) Text(text string) *SVGFeDisplacementMapEle
 	return e
 }
 
-func (e *SVGFeDisplacementMapElement) TextF(format string, args ...any) *SVGFeDisplacementMapElement {
+func (e *SVGFeDisplacementMapElement) Textf(format string, args ...any) *SVGFeDisplacementMapElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGFeDisplacementMapElement) IfText(condition bool, text string) *SVGFe
 	return e
 }
 
-func (e *SVGFeDisplacementMapElement) IfTextF(condition bool, format string, args ...any) *SVGFeDisplacementMapElement {
+func (e *SVGFeDisplacementMapElement) IfTextf(condition bool, format string, args ...any) *SVGFeDisplacementMapElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGFeDisplacementMapElement) IfEscaped(condition bool, text string) *SV
 	return e
 }
 
-func (e *SVGFeDisplacementMapElement) EscapedF(format string, args ...any) *SVGFeDisplacementMapElement {
+func (e *SVGFeDisplacementMapElement) Escapedf(format string, args ...any) *SVGFeDisplacementMapElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeDisplacementMapElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeDisplacementMapElement {
+func (e *SVGFeDisplacementMapElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeDisplacementMapElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *SVGFeDisplacementMapElement) In(s string) *SVGFeDisplacementMapElement 
 }
 
 // The input for this filter.
-func (e *SVGFeDisplacementMapElement) InF(format string, args ...any) *SVGFeDisplacementMapElement {
+func (e *SVGFeDisplacementMapElement) Inf(format string, args ...any) *SVGFeDisplacementMapElement {
 	return e.In(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *SVGFeDisplacementMapElement) IfIn(condition bool, s string) *SVGFeDispl
 }
 
 // The input for this filter.
-func (e *SVGFeDisplacementMapElement) IfInF(condition bool, format string, args ...any) *SVGFeDisplacementMapElement {
+func (e *SVGFeDisplacementMapElement) IfInf(condition bool, format string, args ...any) *SVGFeDisplacementMapElement {
 	if condition {
 		e.In(fmt.Sprintf(format, args...))
 	}
@@ -176,7 +176,7 @@ func (e *SVGFeDisplacementMapElement) In2(s string) *SVGFeDisplacementMapElement
 
 // The displacement map. This Attribute can take on the same values as the 'in'
 // Attribute.
-func (e *SVGFeDisplacementMapElement) In2F(format string, args ...any) *SVGFeDisplacementMapElement {
+func (e *SVGFeDisplacementMapElement) In2f(format string, args ...any) *SVGFeDisplacementMapElement {
 	return e.In2(fmt.Sprintf(format, args...))
 }
 
@@ -191,7 +191,7 @@ func (e *SVGFeDisplacementMapElement) IfIn2(condition bool, s string) *SVGFeDisp
 
 // The displacement map. This Attribute can take on the same values as the 'in'
 // Attribute.
-func (e *SVGFeDisplacementMapElement) IfIn2F(condition bool, format string, args ...any) *SVGFeDisplacementMapElement {
+func (e *SVGFeDisplacementMapElement) IfIn2f(condition bool, format string, args ...any) *SVGFeDisplacementMapElement {
 	if condition {
 		e.In2(fmt.Sprintf(format, args...))
 	}
@@ -306,7 +306,7 @@ func (e *SVGFeDisplacementMapElement) ID(s string) *SVGFeDisplacementMapElement 
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeDisplacementMapElement) IDF(format string, args ...any) *SVGFeDisplacementMapElement {
+func (e *SVGFeDisplacementMapElement) IDf(format string, args ...any) *SVGFeDisplacementMapElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -319,7 +319,7 @@ func (e *SVGFeDisplacementMapElement) IfID(condition bool, s string) *SVGFeDispl
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeDisplacementMapElement) IfIDF(condition bool, format string, args ...any) *SVGFeDisplacementMapElement {
+func (e *SVGFeDisplacementMapElement) IfIDf(condition bool, format string, args ...any) *SVGFeDisplacementMapElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -445,7 +445,7 @@ func (e *SVGFeDisplacementMapElement) StyleAdd(k string, v string) *SVGFeDisplac
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeDisplacementMapElement) StyleAddF(k string, format string, args ...any) *SVGFeDisplacementMapElement {
+func (e *SVGFeDisplacementMapElement) StyleAddf(k string, format string, args ...any) *SVGFeDisplacementMapElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -458,9 +458,9 @@ func (e *SVGFeDisplacementMapElement) IfStyleAdd(condition bool, k string, v str
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeDisplacementMapElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeDisplacementMapElement {
+func (e *SVGFeDisplacementMapElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeDisplacementMapElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

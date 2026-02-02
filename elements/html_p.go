@@ -82,7 +82,7 @@ func (e *PElement) Text(text string) *PElement {
 	return e
 }
 
-func (e *PElement) TextF(format string, args ...any) *PElement {
+func (e *PElement) Textf(format string, args ...any) *PElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -93,7 +93,7 @@ func (e *PElement) IfText(condition bool, text string) *PElement {
 	return e
 }
 
-func (e *PElement) IfTextF(condition bool, format string, args ...any) *PElement {
+func (e *PElement) IfTextf(condition bool, format string, args ...any) *PElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -112,13 +112,13 @@ func (e *PElement) IfEscaped(condition bool, text string) *PElement {
 	return e
 }
 
-func (e *PElement) EscapedF(format string, args ...any) *PElement {
+func (e *PElement) Escapedf(format string, args ...any) *PElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *PElement) IfEscapedF(condition bool, format string, args ...any) *PElement {
+func (e *PElement) IfEscapedf(condition bool, format string, args ...any) *PElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -704,7 +704,7 @@ func (e *PElement) ID(s string) *PElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *PElement) IDF(format string, args ...any) *PElement {
+func (e *PElement) IDf(format string, args ...any) *PElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -721,7 +721,7 @@ func (e *PElement) IfID(condition bool, s string) *PElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *PElement) IfIDF(condition bool, format string, args ...any) *PElement {
+func (e *PElement) IfIDf(condition bool, format string, args ...any) *PElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -916,7 +916,7 @@ func (e *PElement) Is(s string) *PElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *PElement) IsF(format string, args ...any) *PElement {
+func (e *PElement) Isf(format string, args ...any) *PElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -937,7 +937,7 @@ func (e *PElement) IfIs(condition bool, s string) *PElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *PElement) IfIsF(condition bool, format string, args ...any) *PElement {
+func (e *PElement) IfIsf(condition bool, format string, args ...any) *PElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -988,7 +988,7 @@ func (e *PElement) Itemid(s string) *PElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *PElement) ItemidF(format string, args ...any) *PElement {
+func (e *PElement) Itemidf(format string, args ...any) *PElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1021,7 +1021,7 @@ func (e *PElement) IfItemid(condition bool, s string) *PElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *PElement) IfItemidF(condition bool, format string, args ...any) *PElement {
+func (e *PElement) IfItemidf(condition bool, format string, args ...any) *PElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1070,7 +1070,7 @@ func (e *PElement) Itemprop(s string) *PElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *PElement) ItempropF(format string, args ...any) *PElement {
+func (e *PElement) Itempropf(format string, args ...any) *PElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1095,7 +1095,7 @@ func (e *PElement) IfItemprop(condition bool, s string) *PElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *PElement) IfItempropF(condition bool, format string, args ...any) *PElement {
+func (e *PElement) IfItempropf(condition bool, format string, args ...any) *PElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1136,7 +1136,7 @@ func (e *PElement) Itemref(s string) *PElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *PElement) ItemrefF(format string, args ...any) *PElement {
+func (e *PElement) Itemreff(format string, args ...any) *PElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1157,7 +1157,7 @@ func (e *PElement) IfItemref(condition bool, s string) *PElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *PElement) IfItemrefF(condition bool, format string, args ...any) *PElement {
+func (e *PElement) IfItemreff(condition bool, format string, args ...any) *PElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1272,7 +1272,7 @@ func (e *PElement) Itemtype(s string) *PElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *PElement) ItemtypeF(format string, args ...any) *PElement {
+func (e *PElement) Itemtypef(format string, args ...any) *PElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1297,7 +1297,7 @@ func (e *PElement) IfItemtype(condition bool, s string) *PElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *PElement) IfItemtypeF(condition bool, format string, args ...any) *PElement {
+func (e *PElement) IfItemtypef(condition bool, format string, args ...any) *PElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1338,7 +1338,7 @@ func (e *PElement) Lang(s string) *PElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *PElement) LangF(format string, args ...any) *PElement {
+func (e *PElement) Langf(format string, args ...any) *PElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1359,7 +1359,7 @@ func (e *PElement) IfLang(condition bool, s string) *PElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *PElement) IfLangF(condition bool, format string, args ...any) *PElement {
+func (e *PElement) IfLangf(condition bool, format string, args ...any) *PElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1398,7 +1398,7 @@ func (e *PElement) Nonce(s string) *PElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *PElement) NonceF(format string, args ...any) *PElement {
+func (e *PElement) Noncef(format string, args ...any) *PElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1419,7 +1419,7 @@ func (e *PElement) IfNonce(condition bool, s string) *PElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *PElement) IfNonceF(condition bool, format string, args ...any) *PElement {
+func (e *PElement) IfNoncef(condition bool, format string, args ...any) *PElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1544,7 +1544,7 @@ func (e *PElement) Role(s string) *PElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *PElement) RoleF(format string, args ...any) *PElement {
+func (e *PElement) Rolef(format string, args ...any) *PElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1563,7 +1563,7 @@ func (e *PElement) IfRole(condition bool, s string) *PElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *PElement) IfRoleF(condition bool, format string, args ...any) *PElement {
+func (e *PElement) IfRolef(condition bool, format string, args ...any) *PElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1599,7 +1599,7 @@ func (e *PElement) Slot(s string) *PElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *PElement) SlotF(format string, args ...any) *PElement {
+func (e *PElement) Slotf(format string, args ...any) *PElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1618,7 +1618,7 @@ func (e *PElement) IfSlot(condition bool, s string) *PElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *PElement) IfSlotF(condition bool, format string, args ...any) *PElement {
+func (e *PElement) IfSlotf(condition bool, format string, args ...any) *PElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1762,7 +1762,7 @@ func (e *PElement) StyleAdd(k string, v string) *PElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *PElement) StyleAddF(k string, format string, args ...any) *PElement {
+func (e *PElement) StyleAddf(k string, format string, args ...any) *PElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1777,9 +1777,9 @@ func (e *PElement) IfStyleAdd(condition bool, k string, v string) *PElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *PElement) IfStyleAddF(condition bool, k string, format string, args ...any) *PElement {
+func (e *PElement) IfStyleAddf(condition bool, k string, format string, args ...any) *PElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1925,7 +1925,7 @@ func (e *PElement) Title(s string) *PElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *PElement) TitleF(format string, args ...any) *PElement {
+func (e *PElement) Titlef(format string, args ...any) *PElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1968,7 +1968,7 @@ func (e *PElement) IfTitle(condition bool, s string) *PElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *PElement) IfTitleF(condition bool, format string, args ...any) *PElement {
+func (e *PElement) IfTitlef(condition bool, format string, args ...any) *PElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

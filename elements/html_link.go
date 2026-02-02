@@ -86,7 +86,7 @@ func (e *LinkElement) Text(text string) *LinkElement {
 	return e
 }
 
-func (e *LinkElement) TextF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Textf(format string, args ...any) *LinkElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -97,7 +97,7 @@ func (e *LinkElement) IfText(condition bool, text string) *LinkElement {
 	return e
 }
 
-func (e *LinkElement) IfTextF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfTextf(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -116,13 +116,13 @@ func (e *LinkElement) IfEscaped(condition bool, text string) *LinkElement {
 	return e
 }
 
-func (e *LinkElement) EscapedF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Escapedf(format string, args ...any) *LinkElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *LinkElement) IfEscapedF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfEscapedf(condition bool, format string, args ...any) *LinkElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -226,7 +226,7 @@ func (e *LinkElement) Href(s string) *LinkElement {
 }
 
 // Address of the hyperlink.
-func (e *LinkElement) HrefF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Hreff(format string, args ...any) *LinkElement {
 	return e.Href(fmt.Sprintf(format, args...))
 }
 
@@ -239,7 +239,7 @@ func (e *LinkElement) IfHref(condition bool, s string) *LinkElement {
 }
 
 // Address of the hyperlink.
-func (e *LinkElement) IfHrefF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfHreff(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Href(fmt.Sprintf(format, args...))
 	}
@@ -266,7 +266,7 @@ func (e *LinkElement) Hreflang(s string) *LinkElement {
 }
 
 // Specifies the language of the linked resource.
-func (e *LinkElement) HreflangF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Hreflangf(format string, args ...any) *LinkElement {
 	return e.Hreflang(fmt.Sprintf(format, args...))
 }
 
@@ -279,7 +279,7 @@ func (e *LinkElement) IfHreflang(condition bool, s string) *LinkElement {
 }
 
 // Specifies the language of the linked resource.
-func (e *LinkElement) IfHreflangF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfHreflangf(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Hreflang(fmt.Sprintf(format, args...))
 	}
@@ -306,7 +306,7 @@ func (e *LinkElement) Integrity(s string) *LinkElement {
 }
 
 // Security Feature that allows browsers to verify what they fetch.
-func (e *LinkElement) IntegrityF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Integrityf(format string, args ...any) *LinkElement {
 	return e.Integrity(fmt.Sprintf(format, args...))
 }
 
@@ -319,7 +319,7 @@ func (e *LinkElement) IfIntegrity(condition bool, s string) *LinkElement {
 }
 
 // Security Feature that allows browsers to verify what they fetch.
-func (e *LinkElement) IfIntegrityF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfIntegrityf(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Integrity(fmt.Sprintf(format, args...))
 	}
@@ -346,7 +346,7 @@ func (e *LinkElement) Media(s string) *LinkElement {
 }
 
 // Specifies a hint of the media for which the linked resource was designed.
-func (e *LinkElement) MediaF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Mediaf(format string, args ...any) *LinkElement {
 	return e.Media(fmt.Sprintf(format, args...))
 }
 
@@ -359,7 +359,7 @@ func (e *LinkElement) IfMedia(condition bool, s string) *LinkElement {
 }
 
 // Specifies a hint of the media for which the linked resource was designed.
-func (e *LinkElement) IfMediaF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfMediaf(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Media(fmt.Sprintf(format, args...))
 	}
@@ -433,7 +433,7 @@ func (e *LinkElement) Rel(s string) *LinkElement {
 }
 
 // Specifies the relationship of the target object to the link object.
-func (e *LinkElement) RelF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Relf(format string, args ...any) *LinkElement {
 	return e.Rel(fmt.Sprintf(format, args...))
 }
 
@@ -446,7 +446,7 @@ func (e *LinkElement) IfRel(condition bool, s string) *LinkElement {
 }
 
 // Specifies the relationship of the target object to the link object.
-func (e *LinkElement) IfRelF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfRelf(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Rel(fmt.Sprintf(format, args...))
 	}
@@ -473,7 +473,7 @@ func (e *LinkElement) Sizes(s string) *LinkElement {
 }
 
 // Sizes of the icons (for rel="icon").
-func (e *LinkElement) SizesF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Sizesf(format string, args ...any) *LinkElement {
 	return e.Sizes(fmt.Sprintf(format, args...))
 }
 
@@ -486,7 +486,7 @@ func (e *LinkElement) IfSizes(condition bool, s string) *LinkElement {
 }
 
 // Sizes of the icons (for rel="icon").
-func (e *LinkElement) IfSizesF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfSizesf(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Sizes(fmt.Sprintf(format, args...))
 	}
@@ -513,7 +513,7 @@ func (e *LinkElement) Type(s string) *LinkElement {
 }
 
 // Specifies the MIME type of the linked resource.
-func (e *LinkElement) TypeF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Typef(format string, args ...any) *LinkElement {
 	return e.Type(fmt.Sprintf(format, args...))
 }
 
@@ -526,7 +526,7 @@ func (e *LinkElement) IfType(condition bool, s string) *LinkElement {
 }
 
 // Specifies the MIME type of the linked resource.
-func (e *LinkElement) IfTypeF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfTypef(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Type(fmt.Sprintf(format, args...))
 	}
@@ -1124,7 +1124,7 @@ func (e *LinkElement) ID(s string) *LinkElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *LinkElement) IDF(format string, args ...any) *LinkElement {
+func (e *LinkElement) IDf(format string, args ...any) *LinkElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -1141,7 +1141,7 @@ func (e *LinkElement) IfID(condition bool, s string) *LinkElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *LinkElement) IfIDF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfIDf(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1336,7 +1336,7 @@ func (e *LinkElement) Is(s string) *LinkElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *LinkElement) IsF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Isf(format string, args ...any) *LinkElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1357,7 +1357,7 @@ func (e *LinkElement) IfIs(condition bool, s string) *LinkElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *LinkElement) IfIsF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfIsf(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1408,7 +1408,7 @@ func (e *LinkElement) Itemid(s string) *LinkElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *LinkElement) ItemidF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Itemidf(format string, args ...any) *LinkElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1441,7 +1441,7 @@ func (e *LinkElement) IfItemid(condition bool, s string) *LinkElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *LinkElement) IfItemidF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfItemidf(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1490,7 +1490,7 @@ func (e *LinkElement) Itemprop(s string) *LinkElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *LinkElement) ItempropF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Itempropf(format string, args ...any) *LinkElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1515,7 +1515,7 @@ func (e *LinkElement) IfItemprop(condition bool, s string) *LinkElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *LinkElement) IfItempropF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfItempropf(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1556,7 +1556,7 @@ func (e *LinkElement) Itemref(s string) *LinkElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *LinkElement) ItemrefF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Itemreff(format string, args ...any) *LinkElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1577,7 +1577,7 @@ func (e *LinkElement) IfItemref(condition bool, s string) *LinkElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *LinkElement) IfItemrefF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfItemreff(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1692,7 +1692,7 @@ func (e *LinkElement) Itemtype(s string) *LinkElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *LinkElement) ItemtypeF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Itemtypef(format string, args ...any) *LinkElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1717,7 +1717,7 @@ func (e *LinkElement) IfItemtype(condition bool, s string) *LinkElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *LinkElement) IfItemtypeF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfItemtypef(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1758,7 +1758,7 @@ func (e *LinkElement) Lang(s string) *LinkElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *LinkElement) LangF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Langf(format string, args ...any) *LinkElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1779,7 +1779,7 @@ func (e *LinkElement) IfLang(condition bool, s string) *LinkElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *LinkElement) IfLangF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfLangf(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1818,7 +1818,7 @@ func (e *LinkElement) Nonce(s string) *LinkElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *LinkElement) NonceF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Noncef(format string, args ...any) *LinkElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1839,7 +1839,7 @@ func (e *LinkElement) IfNonce(condition bool, s string) *LinkElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *LinkElement) IfNonceF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfNoncef(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1964,7 +1964,7 @@ func (e *LinkElement) Role(s string) *LinkElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *LinkElement) RoleF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Rolef(format string, args ...any) *LinkElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1983,7 +1983,7 @@ func (e *LinkElement) IfRole(condition bool, s string) *LinkElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *LinkElement) IfRoleF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfRolef(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -2019,7 +2019,7 @@ func (e *LinkElement) Slot(s string) *LinkElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *LinkElement) SlotF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Slotf(format string, args ...any) *LinkElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -2038,7 +2038,7 @@ func (e *LinkElement) IfSlot(condition bool, s string) *LinkElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *LinkElement) IfSlotF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfSlotf(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -2182,7 +2182,7 @@ func (e *LinkElement) StyleAdd(k string, v string) *LinkElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *LinkElement) StyleAddF(k string, format string, args ...any) *LinkElement {
+func (e *LinkElement) StyleAddf(k string, format string, args ...any) *LinkElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -2197,9 +2197,9 @@ func (e *LinkElement) IfStyleAdd(condition bool, k string, v string) *LinkElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *LinkElement) IfStyleAddF(condition bool, k string, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfStyleAddf(condition bool, k string, format string, args ...any) *LinkElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2345,7 +2345,7 @@ func (e *LinkElement) Title(s string) *LinkElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *LinkElement) TitleF(format string, args ...any) *LinkElement {
+func (e *LinkElement) Titlef(format string, args ...any) *LinkElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2388,7 +2388,7 @@ func (e *LinkElement) IfTitle(condition bool, s string) *LinkElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *LinkElement) IfTitleF(condition bool, format string, args ...any) *LinkElement {
+func (e *LinkElement) IfTitlef(condition bool, format string, args ...any) *LinkElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

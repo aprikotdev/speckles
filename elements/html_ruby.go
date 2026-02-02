@@ -83,7 +83,7 @@ func (e *RubyElement) Text(text string) *RubyElement {
 	return e
 }
 
-func (e *RubyElement) TextF(format string, args ...any) *RubyElement {
+func (e *RubyElement) Textf(format string, args ...any) *RubyElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *RubyElement) IfText(condition bool, text string) *RubyElement {
 	return e
 }
 
-func (e *RubyElement) IfTextF(condition bool, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfTextf(condition bool, format string, args ...any) *RubyElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *RubyElement) IfEscaped(condition bool, text string) *RubyElement {
 	return e
 }
 
-func (e *RubyElement) EscapedF(format string, args ...any) *RubyElement {
+func (e *RubyElement) Escapedf(format string, args ...any) *RubyElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *RubyElement) IfEscapedF(condition bool, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfEscapedf(condition bool, format string, args ...any) *RubyElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -705,7 +705,7 @@ func (e *RubyElement) ID(s string) *RubyElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *RubyElement) IDF(format string, args ...any) *RubyElement {
+func (e *RubyElement) IDf(format string, args ...any) *RubyElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -722,7 +722,7 @@ func (e *RubyElement) IfID(condition bool, s string) *RubyElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *RubyElement) IfIDF(condition bool, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfIDf(condition bool, format string, args ...any) *RubyElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -917,7 +917,7 @@ func (e *RubyElement) Is(s string) *RubyElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *RubyElement) IsF(format string, args ...any) *RubyElement {
+func (e *RubyElement) Isf(format string, args ...any) *RubyElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -938,7 +938,7 @@ func (e *RubyElement) IfIs(condition bool, s string) *RubyElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *RubyElement) IfIsF(condition bool, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfIsf(condition bool, format string, args ...any) *RubyElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -989,7 +989,7 @@ func (e *RubyElement) Itemid(s string) *RubyElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *RubyElement) ItemidF(format string, args ...any) *RubyElement {
+func (e *RubyElement) Itemidf(format string, args ...any) *RubyElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1022,7 +1022,7 @@ func (e *RubyElement) IfItemid(condition bool, s string) *RubyElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *RubyElement) IfItemidF(condition bool, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfItemidf(condition bool, format string, args ...any) *RubyElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1071,7 +1071,7 @@ func (e *RubyElement) Itemprop(s string) *RubyElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *RubyElement) ItempropF(format string, args ...any) *RubyElement {
+func (e *RubyElement) Itempropf(format string, args ...any) *RubyElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1096,7 +1096,7 @@ func (e *RubyElement) IfItemprop(condition bool, s string) *RubyElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *RubyElement) IfItempropF(condition bool, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfItempropf(condition bool, format string, args ...any) *RubyElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1137,7 +1137,7 @@ func (e *RubyElement) Itemref(s string) *RubyElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *RubyElement) ItemrefF(format string, args ...any) *RubyElement {
+func (e *RubyElement) Itemreff(format string, args ...any) *RubyElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1158,7 +1158,7 @@ func (e *RubyElement) IfItemref(condition bool, s string) *RubyElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *RubyElement) IfItemrefF(condition bool, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfItemreff(condition bool, format string, args ...any) *RubyElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1273,7 +1273,7 @@ func (e *RubyElement) Itemtype(s string) *RubyElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *RubyElement) ItemtypeF(format string, args ...any) *RubyElement {
+func (e *RubyElement) Itemtypef(format string, args ...any) *RubyElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1298,7 +1298,7 @@ func (e *RubyElement) IfItemtype(condition bool, s string) *RubyElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *RubyElement) IfItemtypeF(condition bool, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfItemtypef(condition bool, format string, args ...any) *RubyElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1339,7 +1339,7 @@ func (e *RubyElement) Lang(s string) *RubyElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *RubyElement) LangF(format string, args ...any) *RubyElement {
+func (e *RubyElement) Langf(format string, args ...any) *RubyElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1360,7 +1360,7 @@ func (e *RubyElement) IfLang(condition bool, s string) *RubyElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *RubyElement) IfLangF(condition bool, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfLangf(condition bool, format string, args ...any) *RubyElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1399,7 +1399,7 @@ func (e *RubyElement) Nonce(s string) *RubyElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *RubyElement) NonceF(format string, args ...any) *RubyElement {
+func (e *RubyElement) Noncef(format string, args ...any) *RubyElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1420,7 +1420,7 @@ func (e *RubyElement) IfNonce(condition bool, s string) *RubyElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *RubyElement) IfNonceF(condition bool, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfNoncef(condition bool, format string, args ...any) *RubyElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1545,7 +1545,7 @@ func (e *RubyElement) Role(s string) *RubyElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *RubyElement) RoleF(format string, args ...any) *RubyElement {
+func (e *RubyElement) Rolef(format string, args ...any) *RubyElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1564,7 +1564,7 @@ func (e *RubyElement) IfRole(condition bool, s string) *RubyElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *RubyElement) IfRoleF(condition bool, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfRolef(condition bool, format string, args ...any) *RubyElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1600,7 +1600,7 @@ func (e *RubyElement) Slot(s string) *RubyElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *RubyElement) SlotF(format string, args ...any) *RubyElement {
+func (e *RubyElement) Slotf(format string, args ...any) *RubyElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1619,7 +1619,7 @@ func (e *RubyElement) IfSlot(condition bool, s string) *RubyElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *RubyElement) IfSlotF(condition bool, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfSlotf(condition bool, format string, args ...any) *RubyElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1763,7 +1763,7 @@ func (e *RubyElement) StyleAdd(k string, v string) *RubyElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *RubyElement) StyleAddF(k string, format string, args ...any) *RubyElement {
+func (e *RubyElement) StyleAddf(k string, format string, args ...any) *RubyElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1778,9 +1778,9 @@ func (e *RubyElement) IfStyleAdd(condition bool, k string, v string) *RubyElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *RubyElement) IfStyleAddF(condition bool, k string, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfStyleAddf(condition bool, k string, format string, args ...any) *RubyElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1926,7 +1926,7 @@ func (e *RubyElement) Title(s string) *RubyElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *RubyElement) TitleF(format string, args ...any) *RubyElement {
+func (e *RubyElement) Titlef(format string, args ...any) *RubyElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1969,7 +1969,7 @@ func (e *RubyElement) IfTitle(condition bool, s string) *RubyElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *RubyElement) IfTitleF(condition bool, format string, args ...any) *RubyElement {
+func (e *RubyElement) IfTitlef(condition bool, format string, args ...any) *RubyElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

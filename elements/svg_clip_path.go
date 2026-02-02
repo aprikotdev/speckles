@@ -83,7 +83,7 @@ func (e *SVGClipPathElement) Text(text string) *SVGClipPathElement {
 	return e
 }
 
-func (e *SVGClipPathElement) TextF(format string, args ...any) *SVGClipPathElement {
+func (e *SVGClipPathElement) Textf(format string, args ...any) *SVGClipPathElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGClipPathElement) IfText(condition bool, text string) *SVGClipPathEle
 	return e
 }
 
-func (e *SVGClipPathElement) IfTextF(condition bool, format string, args ...any) *SVGClipPathElement {
+func (e *SVGClipPathElement) IfTextf(condition bool, format string, args ...any) *SVGClipPathElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGClipPathElement) IfEscaped(condition bool, text string) *SVGClipPath
 	return e
 }
 
-func (e *SVGClipPathElement) EscapedF(format string, args ...any) *SVGClipPathElement {
+func (e *SVGClipPathElement) Escapedf(format string, args ...any) *SVGClipPathElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGClipPathElement) IfEscapedF(condition bool, format string, args ...any) *SVGClipPathElement {
+func (e *SVGClipPathElement) IfEscapedf(condition bool, format string, args ...any) *SVGClipPathElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -167,7 +167,7 @@ func (e *SVGClipPathElement) ID(s string) *SVGClipPathElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGClipPathElement) IDF(format string, args ...any) *SVGClipPathElement {
+func (e *SVGClipPathElement) IDf(format string, args ...any) *SVGClipPathElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -180,7 +180,7 @@ func (e *SVGClipPathElement) IfID(condition bool, s string) *SVGClipPathElement 
 }
 
 // Specifies a unique id for an element
-func (e *SVGClipPathElement) IfIDF(condition bool, format string, args ...any) *SVGClipPathElement {
+func (e *SVGClipPathElement) IfIDf(condition bool, format string, args ...any) *SVGClipPathElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -306,7 +306,7 @@ func (e *SVGClipPathElement) StyleAdd(k string, v string) *SVGClipPathElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGClipPathElement) StyleAddF(k string, format string, args ...any) *SVGClipPathElement {
+func (e *SVGClipPathElement) StyleAddf(k string, format string, args ...any) *SVGClipPathElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -319,9 +319,9 @@ func (e *SVGClipPathElement) IfStyleAdd(condition bool, k string, v string) *SVG
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGClipPathElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGClipPathElement {
+func (e *SVGClipPathElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGClipPathElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

@@ -85,7 +85,7 @@ func (e *SVGUseElement) Text(text string) *SVGUseElement {
 	return e
 }
 
-func (e *SVGUseElement) TextF(format string, args ...any) *SVGUseElement {
+func (e *SVGUseElement) Textf(format string, args ...any) *SVGUseElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *SVGUseElement) IfText(condition bool, text string) *SVGUseElement {
 	return e
 }
 
-func (e *SVGUseElement) IfTextF(condition bool, format string, args ...any) *SVGUseElement {
+func (e *SVGUseElement) IfTextf(condition bool, format string, args ...any) *SVGUseElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *SVGUseElement) IfEscaped(condition bool, text string) *SVGUseElement {
 	return e
 }
 
-func (e *SVGUseElement) EscapedF(format string, args ...any) *SVGUseElement {
+func (e *SVGUseElement) Escapedf(format string, args ...any) *SVGUseElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGUseElement) IfEscapedF(condition bool, format string, args ...any) *SVGUseElement {
+func (e *SVGUseElement) IfEscapedf(condition bool, format string, args ...any) *SVGUseElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -136,7 +136,7 @@ func (e *SVGUseElement) Href(s string) *SVGUseElement {
 }
 
 // A URI reference to the symbol to use.
-func (e *SVGUseElement) HrefF(format string, args ...any) *SVGUseElement {
+func (e *SVGUseElement) Hreff(format string, args ...any) *SVGUseElement {
 	return e.Href(fmt.Sprintf(format, args...))
 }
 
@@ -149,7 +149,7 @@ func (e *SVGUseElement) IfHref(condition bool, s string) *SVGUseElement {
 }
 
 // A URI reference to the symbol to use.
-func (e *SVGUseElement) IfHrefF(condition bool, format string, args ...any) *SVGUseElement {
+func (e *SVGUseElement) IfHreff(condition bool, format string, args ...any) *SVGUseElement {
 	if condition {
 		e.Href(fmt.Sprintf(format, args...))
 	}
@@ -248,7 +248,7 @@ func (e *SVGUseElement) ID(s string) *SVGUseElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGUseElement) IDF(format string, args ...any) *SVGUseElement {
+func (e *SVGUseElement) IDf(format string, args ...any) *SVGUseElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -261,7 +261,7 @@ func (e *SVGUseElement) IfID(condition bool, s string) *SVGUseElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGUseElement) IfIDF(condition bool, format string, args ...any) *SVGUseElement {
+func (e *SVGUseElement) IfIDf(condition bool, format string, args ...any) *SVGUseElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -387,7 +387,7 @@ func (e *SVGUseElement) StyleAdd(k string, v string) *SVGUseElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGUseElement) StyleAddF(k string, format string, args ...any) *SVGUseElement {
+func (e *SVGUseElement) StyleAddf(k string, format string, args ...any) *SVGUseElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -400,9 +400,9 @@ func (e *SVGUseElement) IfStyleAdd(condition bool, k string, v string) *SVGUseEl
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGUseElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGUseElement {
+func (e *SVGUseElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGUseElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

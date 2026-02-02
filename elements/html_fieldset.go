@@ -83,7 +83,7 @@ func (e *FieldsetElement) Text(text string) *FieldsetElement {
 	return e
 }
 
-func (e *FieldsetElement) TextF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Textf(format string, args ...any) *FieldsetElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *FieldsetElement) IfText(condition bool, text string) *FieldsetElement {
 	return e
 }
 
-func (e *FieldsetElement) IfTextF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfTextf(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *FieldsetElement) IfEscaped(condition bool, text string) *FieldsetElemen
 	return e
 }
 
-func (e *FieldsetElement) EscapedF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Escapedf(format string, args ...any) *FieldsetElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *FieldsetElement) IfEscapedF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfEscapedf(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -211,7 +211,7 @@ func (e *FieldsetElement) Form(s string) *FieldsetElement {
 // inside the <fieldset> to be associated with the form, you need to use the
 // form attribute directly on those elements. You can check which elements are
 // associated with a form via JavaScript, using HTMLFormElement.elements.
-func (e *FieldsetElement) FormF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Formf(format string, args ...any) *FieldsetElement {
 	return e.Form(fmt.Sprintf(format, args...))
 }
 
@@ -234,7 +234,7 @@ func (e *FieldsetElement) IfForm(condition bool, s string) *FieldsetElement {
 // inside the <fieldset> to be associated with the form, you need to use the
 // form attribute directly on those elements. You can check which elements are
 // associated with a form via JavaScript, using HTMLFormElement.elements.
-func (e *FieldsetElement) IfFormF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfFormf(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.Form(fmt.Sprintf(format, args...))
 	}
@@ -266,7 +266,7 @@ func (e *FieldsetElement) Name(s string) *FieldsetElement {
 }
 
 // The name associated with the group.
-func (e *FieldsetElement) NameF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Namef(format string, args ...any) *FieldsetElement {
 	return e.Name(fmt.Sprintf(format, args...))
 }
 
@@ -279,7 +279,7 @@ func (e *FieldsetElement) IfName(condition bool, s string) *FieldsetElement {
 }
 
 // The name associated with the group.
-func (e *FieldsetElement) IfNameF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfNamef(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.Name(fmt.Sprintf(format, args...))
 	}
@@ -877,7 +877,7 @@ func (e *FieldsetElement) ID(s string) *FieldsetElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *FieldsetElement) IDF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IDf(format string, args ...any) *FieldsetElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -894,7 +894,7 @@ func (e *FieldsetElement) IfID(condition bool, s string) *FieldsetElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *FieldsetElement) IfIDF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfIDf(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1089,7 +1089,7 @@ func (e *FieldsetElement) Is(s string) *FieldsetElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *FieldsetElement) IsF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Isf(format string, args ...any) *FieldsetElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1110,7 +1110,7 @@ func (e *FieldsetElement) IfIs(condition bool, s string) *FieldsetElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *FieldsetElement) IfIsF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfIsf(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1161,7 +1161,7 @@ func (e *FieldsetElement) Itemid(s string) *FieldsetElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *FieldsetElement) ItemidF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Itemidf(format string, args ...any) *FieldsetElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1194,7 +1194,7 @@ func (e *FieldsetElement) IfItemid(condition bool, s string) *FieldsetElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *FieldsetElement) IfItemidF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfItemidf(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1243,7 +1243,7 @@ func (e *FieldsetElement) Itemprop(s string) *FieldsetElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *FieldsetElement) ItempropF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Itempropf(format string, args ...any) *FieldsetElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1268,7 +1268,7 @@ func (e *FieldsetElement) IfItemprop(condition bool, s string) *FieldsetElement 
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *FieldsetElement) IfItempropF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfItempropf(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1309,7 +1309,7 @@ func (e *FieldsetElement) Itemref(s string) *FieldsetElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *FieldsetElement) ItemrefF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Itemreff(format string, args ...any) *FieldsetElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1330,7 +1330,7 @@ func (e *FieldsetElement) IfItemref(condition bool, s string) *FieldsetElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *FieldsetElement) IfItemrefF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfItemreff(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1445,7 +1445,7 @@ func (e *FieldsetElement) Itemtype(s string) *FieldsetElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *FieldsetElement) ItemtypeF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Itemtypef(format string, args ...any) *FieldsetElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1470,7 +1470,7 @@ func (e *FieldsetElement) IfItemtype(condition bool, s string) *FieldsetElement 
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *FieldsetElement) IfItemtypeF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfItemtypef(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1511,7 +1511,7 @@ func (e *FieldsetElement) Lang(s string) *FieldsetElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *FieldsetElement) LangF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Langf(format string, args ...any) *FieldsetElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1532,7 +1532,7 @@ func (e *FieldsetElement) IfLang(condition bool, s string) *FieldsetElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *FieldsetElement) IfLangF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfLangf(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1571,7 +1571,7 @@ func (e *FieldsetElement) Nonce(s string) *FieldsetElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *FieldsetElement) NonceF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Noncef(format string, args ...any) *FieldsetElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1592,7 +1592,7 @@ func (e *FieldsetElement) IfNonce(condition bool, s string) *FieldsetElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *FieldsetElement) IfNonceF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfNoncef(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1717,7 +1717,7 @@ func (e *FieldsetElement) Role(s string) *FieldsetElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *FieldsetElement) RoleF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Rolef(format string, args ...any) *FieldsetElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1736,7 +1736,7 @@ func (e *FieldsetElement) IfRole(condition bool, s string) *FieldsetElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *FieldsetElement) IfRoleF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfRolef(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1772,7 +1772,7 @@ func (e *FieldsetElement) Slot(s string) *FieldsetElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *FieldsetElement) SlotF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Slotf(format string, args ...any) *FieldsetElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1791,7 +1791,7 @@ func (e *FieldsetElement) IfSlot(condition bool, s string) *FieldsetElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *FieldsetElement) IfSlotF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfSlotf(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1935,7 +1935,7 @@ func (e *FieldsetElement) StyleAdd(k string, v string) *FieldsetElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *FieldsetElement) StyleAddF(k string, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) StyleAddf(k string, format string, args ...any) *FieldsetElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1950,9 +1950,9 @@ func (e *FieldsetElement) IfStyleAdd(condition bool, k string, v string) *Fields
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *FieldsetElement) IfStyleAddF(condition bool, k string, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfStyleAddf(condition bool, k string, format string, args ...any) *FieldsetElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2098,7 +2098,7 @@ func (e *FieldsetElement) Title(s string) *FieldsetElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *FieldsetElement) TitleF(format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) Titlef(format string, args ...any) *FieldsetElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2141,7 +2141,7 @@ func (e *FieldsetElement) IfTitle(condition bool, s string) *FieldsetElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *FieldsetElement) IfTitleF(condition bool, format string, args ...any) *FieldsetElement {
+func (e *FieldsetElement) IfTitlef(condition bool, format string, args ...any) *FieldsetElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

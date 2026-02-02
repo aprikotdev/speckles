@@ -83,7 +83,7 @@ func (e *LabelElement) Text(text string) *LabelElement {
 	return e
 }
 
-func (e *LabelElement) TextF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Textf(format string, args ...any) *LabelElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *LabelElement) IfText(condition bool, text string) *LabelElement {
 	return e
 }
 
-func (e *LabelElement) IfTextF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfTextf(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *LabelElement) IfEscaped(condition bool, text string) *LabelElement {
 	return e
 }
 
-func (e *LabelElement) EscapedF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Escapedf(format string, args ...any) *LabelElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *LabelElement) IfEscapedF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfEscapedf(condition bool, format string, args ...any) *LabelElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *LabelElement) For(s string) *LabelElement {
 }
 
 // Describes elements which belongs to this one.
-func (e *LabelElement) ForF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Forf(format string, args ...any) *LabelElement {
 	return e.For(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *LabelElement) IfFor(condition bool, s string) *LabelElement {
 }
 
 // Describes elements which belongs to this one.
-func (e *LabelElement) IfForF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfForf(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.For(fmt.Sprintf(format, args...))
 	}
@@ -174,7 +174,7 @@ func (e *LabelElement) Form(s string) *LabelElement {
 }
 
 // Specifies the form that is the owner of the element.
-func (e *LabelElement) FormF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Formf(format string, args ...any) *LabelElement {
 	return e.Form(fmt.Sprintf(format, args...))
 }
 
@@ -187,7 +187,7 @@ func (e *LabelElement) IfForm(condition bool, s string) *LabelElement {
 }
 
 // Specifies the form that is the owner of the element.
-func (e *LabelElement) IfFormF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfFormf(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.Form(fmt.Sprintf(format, args...))
 	}
@@ -785,7 +785,7 @@ func (e *LabelElement) ID(s string) *LabelElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *LabelElement) IDF(format string, args ...any) *LabelElement {
+func (e *LabelElement) IDf(format string, args ...any) *LabelElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -802,7 +802,7 @@ func (e *LabelElement) IfID(condition bool, s string) *LabelElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *LabelElement) IfIDF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfIDf(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -997,7 +997,7 @@ func (e *LabelElement) Is(s string) *LabelElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *LabelElement) IsF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Isf(format string, args ...any) *LabelElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1018,7 +1018,7 @@ func (e *LabelElement) IfIs(condition bool, s string) *LabelElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *LabelElement) IfIsF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfIsf(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1069,7 +1069,7 @@ func (e *LabelElement) Itemid(s string) *LabelElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *LabelElement) ItemidF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Itemidf(format string, args ...any) *LabelElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1102,7 +1102,7 @@ func (e *LabelElement) IfItemid(condition bool, s string) *LabelElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *LabelElement) IfItemidF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfItemidf(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1151,7 +1151,7 @@ func (e *LabelElement) Itemprop(s string) *LabelElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *LabelElement) ItempropF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Itempropf(format string, args ...any) *LabelElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1176,7 +1176,7 @@ func (e *LabelElement) IfItemprop(condition bool, s string) *LabelElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *LabelElement) IfItempropF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfItempropf(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1217,7 +1217,7 @@ func (e *LabelElement) Itemref(s string) *LabelElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *LabelElement) ItemrefF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Itemreff(format string, args ...any) *LabelElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1238,7 +1238,7 @@ func (e *LabelElement) IfItemref(condition bool, s string) *LabelElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *LabelElement) IfItemrefF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfItemreff(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1353,7 +1353,7 @@ func (e *LabelElement) Itemtype(s string) *LabelElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *LabelElement) ItemtypeF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Itemtypef(format string, args ...any) *LabelElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1378,7 +1378,7 @@ func (e *LabelElement) IfItemtype(condition bool, s string) *LabelElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *LabelElement) IfItemtypeF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfItemtypef(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1419,7 +1419,7 @@ func (e *LabelElement) Lang(s string) *LabelElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *LabelElement) LangF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Langf(format string, args ...any) *LabelElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1440,7 +1440,7 @@ func (e *LabelElement) IfLang(condition bool, s string) *LabelElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *LabelElement) IfLangF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfLangf(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1479,7 +1479,7 @@ func (e *LabelElement) Nonce(s string) *LabelElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *LabelElement) NonceF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Noncef(format string, args ...any) *LabelElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1500,7 +1500,7 @@ func (e *LabelElement) IfNonce(condition bool, s string) *LabelElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *LabelElement) IfNonceF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfNoncef(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1625,7 +1625,7 @@ func (e *LabelElement) Role(s string) *LabelElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *LabelElement) RoleF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Rolef(format string, args ...any) *LabelElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1644,7 +1644,7 @@ func (e *LabelElement) IfRole(condition bool, s string) *LabelElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *LabelElement) IfRoleF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfRolef(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1680,7 +1680,7 @@ func (e *LabelElement) Slot(s string) *LabelElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *LabelElement) SlotF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Slotf(format string, args ...any) *LabelElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1699,7 +1699,7 @@ func (e *LabelElement) IfSlot(condition bool, s string) *LabelElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *LabelElement) IfSlotF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfSlotf(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1843,7 +1843,7 @@ func (e *LabelElement) StyleAdd(k string, v string) *LabelElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *LabelElement) StyleAddF(k string, format string, args ...any) *LabelElement {
+func (e *LabelElement) StyleAddf(k string, format string, args ...any) *LabelElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1858,9 +1858,9 @@ func (e *LabelElement) IfStyleAdd(condition bool, k string, v string) *LabelElem
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *LabelElement) IfStyleAddF(condition bool, k string, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfStyleAddf(condition bool, k string, format string, args ...any) *LabelElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2006,7 +2006,7 @@ func (e *LabelElement) Title(s string) *LabelElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *LabelElement) TitleF(format string, args ...any) *LabelElement {
+func (e *LabelElement) Titlef(format string, args ...any) *LabelElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2049,7 +2049,7 @@ func (e *LabelElement) IfTitle(condition bool, s string) *LabelElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *LabelElement) IfTitleF(condition bool, format string, args ...any) *LabelElement {
+func (e *LabelElement) IfTitlef(condition bool, format string, args ...any) *LabelElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

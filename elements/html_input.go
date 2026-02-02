@@ -85,7 +85,7 @@ func (e *InputElement) Text(text string) *InputElement {
 	return e
 }
 
-func (e *InputElement) TextF(format string, args ...any) *InputElement {
+func (e *InputElement) Textf(format string, args ...any) *InputElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *InputElement) IfText(condition bool, text string) *InputElement {
 	return e
 }
 
-func (e *InputElement) IfTextF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfTextf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *InputElement) IfEscaped(condition bool, text string) *InputElement {
 	return e
 }
 
-func (e *InputElement) EscapedF(format string, args ...any) *InputElement {
+func (e *InputElement) Escapedf(format string, args ...any) *InputElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *InputElement) IfEscapedF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfEscapedf(condition bool, format string, args ...any) *InputElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -136,7 +136,7 @@ func (e *InputElement) Accept(s string) *InputElement {
 }
 
 // Hint for expected file type in file upload controls.
-func (e *InputElement) AcceptF(format string, args ...any) *InputElement {
+func (e *InputElement) Acceptf(format string, args ...any) *InputElement {
 	return e.Accept(fmt.Sprintf(format, args...))
 }
 
@@ -149,7 +149,7 @@ func (e *InputElement) IfAccept(condition bool, s string) *InputElement {
 }
 
 // Hint for expected file type in file upload controls.
-func (e *InputElement) IfAcceptF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfAcceptf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Accept(fmt.Sprintf(format, args...))
 	}
@@ -176,7 +176,7 @@ func (e *InputElement) Alt(s string) *InputElement {
 }
 
 // Alternative text in case an image can't be displayed.
-func (e *InputElement) AltF(format string, args ...any) *InputElement {
+func (e *InputElement) Altf(format string, args ...any) *InputElement {
 	return e.Alt(fmt.Sprintf(format, args...))
 }
 
@@ -189,7 +189,7 @@ func (e *InputElement) IfAlt(condition bool, s string) *InputElement {
 }
 
 // Alternative text in case an image can't be displayed.
-func (e *InputElement) IfAltF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfAltf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Alt(fmt.Sprintf(format, args...))
 	}
@@ -330,7 +330,7 @@ func (e *InputElement) Dirname(s string) *InputElement {
 
 // Name of form field to use for sending the element's directionality in form
 // submission.
-func (e *InputElement) DirnameF(format string, args ...any) *InputElement {
+func (e *InputElement) Dirnamef(format string, args ...any) *InputElement {
 	return e.Dirname(fmt.Sprintf(format, args...))
 }
 
@@ -345,7 +345,7 @@ func (e *InputElement) IfDirname(condition bool, s string) *InputElement {
 
 // Name of form field to use for sending the element's directionality in form
 // submission.
-func (e *InputElement) IfDirnameF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfDirnamef(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Dirname(fmt.Sprintf(format, args...))
 	}
@@ -415,7 +415,7 @@ func (e *InputElement) Form(s string) *InputElement {
 }
 
 // Associates the control with a form element.
-func (e *InputElement) FormF(format string, args ...any) *InputElement {
+func (e *InputElement) Formf(format string, args ...any) *InputElement {
 	return e.Form(fmt.Sprintf(format, args...))
 }
 
@@ -428,7 +428,7 @@ func (e *InputElement) IfForm(condition bool, s string) *InputElement {
 }
 
 // Associates the control with a form element.
-func (e *InputElement) IfFormF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfFormf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Form(fmt.Sprintf(format, args...))
 	}
@@ -455,7 +455,7 @@ func (e *InputElement) Formaction(s string) *InputElement {
 }
 
 // URL to use for form submission.
-func (e *InputElement) FormactionF(format string, args ...any) *InputElement {
+func (e *InputElement) Formactionf(format string, args ...any) *InputElement {
 	return e.Formaction(fmt.Sprintf(format, args...))
 }
 
@@ -468,7 +468,7 @@ func (e *InputElement) IfFormaction(condition bool, s string) *InputElement {
 }
 
 // URL to use for form submission.
-func (e *InputElement) IfFormactionF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfFormactionf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Formaction(fmt.Sprintf(format, args...))
 	}
@@ -664,7 +664,7 @@ func (e *InputElement) List(s string) *InputElement {
 }
 
 // Identifies a list of pre-defined options to suggest to the user.
-func (e *InputElement) ListF(format string, args ...any) *InputElement {
+func (e *InputElement) Listf(format string, args ...any) *InputElement {
 	return e.List(fmt.Sprintf(format, args...))
 }
 
@@ -677,7 +677,7 @@ func (e *InputElement) IfList(condition bool, s string) *InputElement {
 }
 
 // Identifies a list of pre-defined options to suggest to the user.
-func (e *InputElement) IfListF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfListf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.List(fmt.Sprintf(format, args...))
 	}
@@ -704,7 +704,7 @@ func (e *InputElement) MaxStr(s string) *InputElement {
 }
 
 // maximum value of an <input> element with type="number" or type="range".
-func (e *InputElement) MaxStrF(format string, args ...any) *InputElement {
+func (e *InputElement) MaxStrf(format string, args ...any) *InputElement {
 	return e.MaxStr(fmt.Sprintf(format, args...))
 }
 
@@ -717,7 +717,7 @@ func (e *InputElement) IfMaxStr(condition bool, s string) *InputElement {
 }
 
 // maximum value of an <input> element with type="number" or type="range".
-func (e *InputElement) IfMaxStrF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfMaxStrf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.MaxStr(fmt.Sprintf(format, args...))
 	}
@@ -783,7 +783,7 @@ func (e *InputElement) MinStr(s string) *InputElement {
 }
 
 // the minimum value of an <input> element with type="number" or type="range".
-func (e *InputElement) MinStrF(format string, args ...any) *InputElement {
+func (e *InputElement) MinStrf(format string, args ...any) *InputElement {
 	return e.MinStr(fmt.Sprintf(format, args...))
 }
 
@@ -796,7 +796,7 @@ func (e *InputElement) IfMinStr(condition bool, s string) *InputElement {
 }
 
 // the minimum value of an <input> element with type="number" or type="range".
-func (e *InputElement) IfMinStrF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfMinStrf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.MinStr(fmt.Sprintf(format, args...))
 	}
@@ -904,7 +904,7 @@ func (e *InputElement) Name(s string) *InputElement {
 }
 
 // Name of the element to use for form submission and in the form.elements API.
-func (e *InputElement) NameF(format string, args ...any) *InputElement {
+func (e *InputElement) Namef(format string, args ...any) *InputElement {
 	return e.Name(fmt.Sprintf(format, args...))
 }
 
@@ -917,7 +917,7 @@ func (e *InputElement) IfName(condition bool, s string) *InputElement {
 }
 
 // Name of the element to use for form submission and in the form.elements API.
-func (e *InputElement) IfNameF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfNamef(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Name(fmt.Sprintf(format, args...))
 	}
@@ -944,7 +944,7 @@ func (e *InputElement) Pattern(s string) *InputElement {
 }
 
 // Pattern to be matched by the form control's value.
-func (e *InputElement) PatternF(format string, args ...any) *InputElement {
+func (e *InputElement) Patternf(format string, args ...any) *InputElement {
 	return e.Pattern(fmt.Sprintf(format, args...))
 }
 
@@ -957,7 +957,7 @@ func (e *InputElement) IfPattern(condition bool, s string) *InputElement {
 }
 
 // Pattern to be matched by the form control's value.
-func (e *InputElement) IfPatternF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfPatternf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Pattern(fmt.Sprintf(format, args...))
 	}
@@ -984,7 +984,7 @@ func (e *InputElement) Placeholder(s string) *InputElement {
 }
 
 // User-visible label to be placed within the form control.
-func (e *InputElement) PlaceholderF(format string, args ...any) *InputElement {
+func (e *InputElement) Placeholderf(format string, args ...any) *InputElement {
 	return e.Placeholder(fmt.Sprintf(format, args...))
 }
 
@@ -997,7 +997,7 @@ func (e *InputElement) IfPlaceholder(condition bool, s string) *InputElement {
 }
 
 // User-visible label to be placed within the form control.
-func (e *InputElement) IfPlaceholderF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfPlaceholderf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Placeholder(fmt.Sprintf(format, args...))
 	}
@@ -1135,7 +1135,7 @@ func (e *InputElement) Src(s string) *InputElement {
 }
 
 // Address of the resource.
-func (e *InputElement) SrcF(format string, args ...any) *InputElement {
+func (e *InputElement) Srcf(format string, args ...any) *InputElement {
 	return e.Src(fmt.Sprintf(format, args...))
 }
 
@@ -1148,7 +1148,7 @@ func (e *InputElement) IfSrc(condition bool, s string) *InputElement {
 }
 
 // Address of the resource.
-func (e *InputElement) IfSrcF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfSrcf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Src(fmt.Sprintf(format, args...))
 	}
@@ -1175,7 +1175,7 @@ func (e *InputElement) Step(s string) *InputElement {
 }
 
 // Granularity to be matched by the form control's value.
-func (e *InputElement) StepF(format string, args ...any) *InputElement {
+func (e *InputElement) Stepf(format string, args ...any) *InputElement {
 	return e.Step(fmt.Sprintf(format, args...))
 }
 
@@ -1188,7 +1188,7 @@ func (e *InputElement) IfStep(condition bool, s string) *InputElement {
 }
 
 // Granularity to be matched by the form control's value.
-func (e *InputElement) IfStepF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfStepf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Step(fmt.Sprintf(format, args...))
 	}
@@ -1292,7 +1292,7 @@ func (e *InputElement) Value(s string) *InputElement {
 }
 
 // Value of the form control.
-func (e *InputElement) ValueF(format string, args ...any) *InputElement {
+func (e *InputElement) Valuef(format string, args ...any) *InputElement {
 	return e.Value(fmt.Sprintf(format, args...))
 }
 
@@ -1305,7 +1305,7 @@ func (e *InputElement) IfValue(condition bool, s string) *InputElement {
 }
 
 // Value of the form control.
-func (e *InputElement) IfValueF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfValuef(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Value(fmt.Sprintf(format, args...))
 	}
@@ -1823,7 +1823,7 @@ func (e *InputElement) ID(s string) *InputElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *InputElement) IDF(format string, args ...any) *InputElement {
+func (e *InputElement) IDf(format string, args ...any) *InputElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -1840,7 +1840,7 @@ func (e *InputElement) IfID(condition bool, s string) *InputElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *InputElement) IfIDF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfIDf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -2035,7 +2035,7 @@ func (e *InputElement) Is(s string) *InputElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *InputElement) IsF(format string, args ...any) *InputElement {
+func (e *InputElement) Isf(format string, args ...any) *InputElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -2056,7 +2056,7 @@ func (e *InputElement) IfIs(condition bool, s string) *InputElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *InputElement) IfIsF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfIsf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -2107,7 +2107,7 @@ func (e *InputElement) Itemid(s string) *InputElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *InputElement) ItemidF(format string, args ...any) *InputElement {
+func (e *InputElement) Itemidf(format string, args ...any) *InputElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -2140,7 +2140,7 @@ func (e *InputElement) IfItemid(condition bool, s string) *InputElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *InputElement) IfItemidF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfItemidf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -2189,7 +2189,7 @@ func (e *InputElement) Itemprop(s string) *InputElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *InputElement) ItempropF(format string, args ...any) *InputElement {
+func (e *InputElement) Itempropf(format string, args ...any) *InputElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -2214,7 +2214,7 @@ func (e *InputElement) IfItemprop(condition bool, s string) *InputElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *InputElement) IfItempropF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfItempropf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -2255,7 +2255,7 @@ func (e *InputElement) Itemref(s string) *InputElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *InputElement) ItemrefF(format string, args ...any) *InputElement {
+func (e *InputElement) Itemreff(format string, args ...any) *InputElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -2276,7 +2276,7 @@ func (e *InputElement) IfItemref(condition bool, s string) *InputElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *InputElement) IfItemrefF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfItemreff(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -2391,7 +2391,7 @@ func (e *InputElement) Itemtype(s string) *InputElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *InputElement) ItemtypeF(format string, args ...any) *InputElement {
+func (e *InputElement) Itemtypef(format string, args ...any) *InputElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -2416,7 +2416,7 @@ func (e *InputElement) IfItemtype(condition bool, s string) *InputElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *InputElement) IfItemtypeF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfItemtypef(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -2457,7 +2457,7 @@ func (e *InputElement) Lang(s string) *InputElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *InputElement) LangF(format string, args ...any) *InputElement {
+func (e *InputElement) Langf(format string, args ...any) *InputElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -2478,7 +2478,7 @@ func (e *InputElement) IfLang(condition bool, s string) *InputElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *InputElement) IfLangF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfLangf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -2517,7 +2517,7 @@ func (e *InputElement) Nonce(s string) *InputElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *InputElement) NonceF(format string, args ...any) *InputElement {
+func (e *InputElement) Noncef(format string, args ...any) *InputElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -2538,7 +2538,7 @@ func (e *InputElement) IfNonce(condition bool, s string) *InputElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *InputElement) IfNonceF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfNoncef(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -2663,7 +2663,7 @@ func (e *InputElement) Role(s string) *InputElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *InputElement) RoleF(format string, args ...any) *InputElement {
+func (e *InputElement) Rolef(format string, args ...any) *InputElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -2682,7 +2682,7 @@ func (e *InputElement) IfRole(condition bool, s string) *InputElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *InputElement) IfRoleF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfRolef(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -2718,7 +2718,7 @@ func (e *InputElement) Slot(s string) *InputElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *InputElement) SlotF(format string, args ...any) *InputElement {
+func (e *InputElement) Slotf(format string, args ...any) *InputElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -2737,7 +2737,7 @@ func (e *InputElement) IfSlot(condition bool, s string) *InputElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *InputElement) IfSlotF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfSlotf(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -2881,7 +2881,7 @@ func (e *InputElement) StyleAdd(k string, v string) *InputElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *InputElement) StyleAddF(k string, format string, args ...any) *InputElement {
+func (e *InputElement) StyleAddf(k string, format string, args ...any) *InputElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -2896,9 +2896,9 @@ func (e *InputElement) IfStyleAdd(condition bool, k string, v string) *InputElem
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *InputElement) IfStyleAddF(condition bool, k string, format string, args ...any) *InputElement {
+func (e *InputElement) IfStyleAddf(condition bool, k string, format string, args ...any) *InputElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -3044,7 +3044,7 @@ func (e *InputElement) Title(s string) *InputElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *InputElement) TitleF(format string, args ...any) *InputElement {
+func (e *InputElement) Titlef(format string, args ...any) *InputElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -3087,7 +3087,7 @@ func (e *InputElement) IfTitle(condition bool, s string) *InputElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *InputElement) IfTitleF(condition bool, format string, args ...any) *InputElement {
+func (e *InputElement) IfTitlef(condition bool, format string, args ...any) *InputElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

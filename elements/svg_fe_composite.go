@@ -84,7 +84,7 @@ func (e *SVGFeCompositeElement) Text(text string) *SVGFeCompositeElement {
 	return e
 }
 
-func (e *SVGFeCompositeElement) TextF(format string, args ...any) *SVGFeCompositeElement {
+func (e *SVGFeCompositeElement) Textf(format string, args ...any) *SVGFeCompositeElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGFeCompositeElement) IfText(condition bool, text string) *SVGFeCompos
 	return e
 }
 
-func (e *SVGFeCompositeElement) IfTextF(condition bool, format string, args ...any) *SVGFeCompositeElement {
+func (e *SVGFeCompositeElement) IfTextf(condition bool, format string, args ...any) *SVGFeCompositeElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGFeCompositeElement) IfEscaped(condition bool, text string) *SVGFeCom
 	return e
 }
 
-func (e *SVGFeCompositeElement) EscapedF(format string, args ...any) *SVGFeCompositeElement {
+func (e *SVGFeCompositeElement) Escapedf(format string, args ...any) *SVGFeCompositeElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeCompositeElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeCompositeElement {
+func (e *SVGFeCompositeElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeCompositeElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -135,7 +135,7 @@ func (e *SVGFeCompositeElement) In(s string) *SVGFeCompositeElement {
 }
 
 // Input for the compositing operation.
-func (e *SVGFeCompositeElement) InF(format string, args ...any) *SVGFeCompositeElement {
+func (e *SVGFeCompositeElement) Inf(format string, args ...any) *SVGFeCompositeElement {
 	return e.In(fmt.Sprintf(format, args...))
 }
 
@@ -148,7 +148,7 @@ func (e *SVGFeCompositeElement) IfIn(condition bool, s string) *SVGFeCompositeEl
 }
 
 // Input for the compositing operation.
-func (e *SVGFeCompositeElement) IfInF(condition bool, format string, args ...any) *SVGFeCompositeElement {
+func (e *SVGFeCompositeElement) IfInf(condition bool, format string, args ...any) *SVGFeCompositeElement {
 	if condition {
 		e.In(fmt.Sprintf(format, args...))
 	}
@@ -175,7 +175,7 @@ func (e *SVGFeCompositeElement) In2(s string) *SVGFeCompositeElement {
 }
 
 // Second input for the compositing operation.
-func (e *SVGFeCompositeElement) In2F(format string, args ...any) *SVGFeCompositeElement {
+func (e *SVGFeCompositeElement) In2f(format string, args ...any) *SVGFeCompositeElement {
 	return e.In2(fmt.Sprintf(format, args...))
 }
 
@@ -188,7 +188,7 @@ func (e *SVGFeCompositeElement) IfIn2(condition bool, s string) *SVGFeCompositeE
 }
 
 // Second input for the compositing operation.
-func (e *SVGFeCompositeElement) IfIn2F(condition bool, format string, args ...any) *SVGFeCompositeElement {
+func (e *SVGFeCompositeElement) IfIn2f(condition bool, format string, args ...any) *SVGFeCompositeElement {
 	if condition {
 		e.In2(fmt.Sprintf(format, args...))
 	}
@@ -323,7 +323,7 @@ func (e *SVGFeCompositeElement) ID(s string) *SVGFeCompositeElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeCompositeElement) IDF(format string, args ...any) *SVGFeCompositeElement {
+func (e *SVGFeCompositeElement) IDf(format string, args ...any) *SVGFeCompositeElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -336,7 +336,7 @@ func (e *SVGFeCompositeElement) IfID(condition bool, s string) *SVGFeCompositeEl
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeCompositeElement) IfIDF(condition bool, format string, args ...any) *SVGFeCompositeElement {
+func (e *SVGFeCompositeElement) IfIDf(condition bool, format string, args ...any) *SVGFeCompositeElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -462,7 +462,7 @@ func (e *SVGFeCompositeElement) StyleAdd(k string, v string) *SVGFeCompositeElem
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeCompositeElement) StyleAddF(k string, format string, args ...any) *SVGFeCompositeElement {
+func (e *SVGFeCompositeElement) StyleAddf(k string, format string, args ...any) *SVGFeCompositeElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -475,9 +475,9 @@ func (e *SVGFeCompositeElement) IfStyleAdd(condition bool, k string, v string) *
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeCompositeElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeCompositeElement {
+func (e *SVGFeCompositeElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeCompositeElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

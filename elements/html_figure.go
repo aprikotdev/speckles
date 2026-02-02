@@ -84,7 +84,7 @@ func (e *FigureElement) Text(text string) *FigureElement {
 	return e
 }
 
-func (e *FigureElement) TextF(format string, args ...any) *FigureElement {
+func (e *FigureElement) Textf(format string, args ...any) *FigureElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *FigureElement) IfText(condition bool, text string) *FigureElement {
 	return e
 }
 
-func (e *FigureElement) IfTextF(condition bool, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfTextf(condition bool, format string, args ...any) *FigureElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *FigureElement) IfEscaped(condition bool, text string) *FigureElement {
 	return e
 }
 
-func (e *FigureElement) EscapedF(format string, args ...any) *FigureElement {
+func (e *FigureElement) Escapedf(format string, args ...any) *FigureElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *FigureElement) IfEscapedF(condition bool, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfEscapedf(condition bool, format string, args ...any) *FigureElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -706,7 +706,7 @@ func (e *FigureElement) ID(s string) *FigureElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *FigureElement) IDF(format string, args ...any) *FigureElement {
+func (e *FigureElement) IDf(format string, args ...any) *FigureElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -723,7 +723,7 @@ func (e *FigureElement) IfID(condition bool, s string) *FigureElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *FigureElement) IfIDF(condition bool, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfIDf(condition bool, format string, args ...any) *FigureElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -918,7 +918,7 @@ func (e *FigureElement) Is(s string) *FigureElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *FigureElement) IsF(format string, args ...any) *FigureElement {
+func (e *FigureElement) Isf(format string, args ...any) *FigureElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -939,7 +939,7 @@ func (e *FigureElement) IfIs(condition bool, s string) *FigureElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *FigureElement) IfIsF(condition bool, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfIsf(condition bool, format string, args ...any) *FigureElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -990,7 +990,7 @@ func (e *FigureElement) Itemid(s string) *FigureElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *FigureElement) ItemidF(format string, args ...any) *FigureElement {
+func (e *FigureElement) Itemidf(format string, args ...any) *FigureElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1023,7 +1023,7 @@ func (e *FigureElement) IfItemid(condition bool, s string) *FigureElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *FigureElement) IfItemidF(condition bool, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfItemidf(condition bool, format string, args ...any) *FigureElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1072,7 +1072,7 @@ func (e *FigureElement) Itemprop(s string) *FigureElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *FigureElement) ItempropF(format string, args ...any) *FigureElement {
+func (e *FigureElement) Itempropf(format string, args ...any) *FigureElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *FigureElement) IfItemprop(condition bool, s string) *FigureElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *FigureElement) IfItempropF(condition bool, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfItempropf(condition bool, format string, args ...any) *FigureElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1138,7 +1138,7 @@ func (e *FigureElement) Itemref(s string) *FigureElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *FigureElement) ItemrefF(format string, args ...any) *FigureElement {
+func (e *FigureElement) Itemreff(format string, args ...any) *FigureElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1159,7 +1159,7 @@ func (e *FigureElement) IfItemref(condition bool, s string) *FigureElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *FigureElement) IfItemrefF(condition bool, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfItemreff(condition bool, format string, args ...any) *FigureElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1274,7 +1274,7 @@ func (e *FigureElement) Itemtype(s string) *FigureElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *FigureElement) ItemtypeF(format string, args ...any) *FigureElement {
+func (e *FigureElement) Itemtypef(format string, args ...any) *FigureElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1299,7 +1299,7 @@ func (e *FigureElement) IfItemtype(condition bool, s string) *FigureElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *FigureElement) IfItemtypeF(condition bool, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfItemtypef(condition bool, format string, args ...any) *FigureElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1340,7 +1340,7 @@ func (e *FigureElement) Lang(s string) *FigureElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *FigureElement) LangF(format string, args ...any) *FigureElement {
+func (e *FigureElement) Langf(format string, args ...any) *FigureElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1361,7 +1361,7 @@ func (e *FigureElement) IfLang(condition bool, s string) *FigureElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *FigureElement) IfLangF(condition bool, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfLangf(condition bool, format string, args ...any) *FigureElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1400,7 +1400,7 @@ func (e *FigureElement) Nonce(s string) *FigureElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *FigureElement) NonceF(format string, args ...any) *FigureElement {
+func (e *FigureElement) Noncef(format string, args ...any) *FigureElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *FigureElement) IfNonce(condition bool, s string) *FigureElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *FigureElement) IfNonceF(condition bool, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfNoncef(condition bool, format string, args ...any) *FigureElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1546,7 +1546,7 @@ func (e *FigureElement) Role(s string) *FigureElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *FigureElement) RoleF(format string, args ...any) *FigureElement {
+func (e *FigureElement) Rolef(format string, args ...any) *FigureElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1565,7 +1565,7 @@ func (e *FigureElement) IfRole(condition bool, s string) *FigureElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *FigureElement) IfRoleF(condition bool, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfRolef(condition bool, format string, args ...any) *FigureElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1601,7 +1601,7 @@ func (e *FigureElement) Slot(s string) *FigureElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *FigureElement) SlotF(format string, args ...any) *FigureElement {
+func (e *FigureElement) Slotf(format string, args ...any) *FigureElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1620,7 +1620,7 @@ func (e *FigureElement) IfSlot(condition bool, s string) *FigureElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *FigureElement) IfSlotF(condition bool, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfSlotf(condition bool, format string, args ...any) *FigureElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1764,7 +1764,7 @@ func (e *FigureElement) StyleAdd(k string, v string) *FigureElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *FigureElement) StyleAddF(k string, format string, args ...any) *FigureElement {
+func (e *FigureElement) StyleAddf(k string, format string, args ...any) *FigureElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1779,9 +1779,9 @@ func (e *FigureElement) IfStyleAdd(condition bool, k string, v string) *FigureEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *FigureElement) IfStyleAddF(condition bool, k string, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfStyleAddf(condition bool, k string, format string, args ...any) *FigureElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1927,7 +1927,7 @@ func (e *FigureElement) Title(s string) *FigureElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *FigureElement) TitleF(format string, args ...any) *FigureElement {
+func (e *FigureElement) Titlef(format string, args ...any) *FigureElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1970,7 +1970,7 @@ func (e *FigureElement) IfTitle(condition bool, s string) *FigureElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *FigureElement) IfTitleF(condition bool, format string, args ...any) *FigureElement {
+func (e *FigureElement) IfTitlef(condition bool, format string, args ...any) *FigureElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

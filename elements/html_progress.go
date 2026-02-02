@@ -83,7 +83,7 @@ func (e *ProgressElement) Text(text string) *ProgressElement {
 	return e
 }
 
-func (e *ProgressElement) TextF(format string, args ...any) *ProgressElement {
+func (e *ProgressElement) Textf(format string, args ...any) *ProgressElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *ProgressElement) IfText(condition bool, text string) *ProgressElement {
 	return e
 }
 
-func (e *ProgressElement) IfTextF(condition bool, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfTextf(condition bool, format string, args ...any) *ProgressElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *ProgressElement) IfEscaped(condition bool, text string) *ProgressElemen
 	return e
 }
 
-func (e *ProgressElement) EscapedF(format string, args ...any) *ProgressElement {
+func (e *ProgressElement) Escapedf(format string, args ...any) *ProgressElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *ProgressElement) IfEscapedF(condition bool, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfEscapedf(condition bool, format string, args ...any) *ProgressElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -739,7 +739,7 @@ func (e *ProgressElement) ID(s string) *ProgressElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ProgressElement) IDF(format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IDf(format string, args ...any) *ProgressElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -756,7 +756,7 @@ func (e *ProgressElement) IfID(condition bool, s string) *ProgressElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ProgressElement) IfIDF(condition bool, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfIDf(condition bool, format string, args ...any) *ProgressElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -951,7 +951,7 @@ func (e *ProgressElement) Is(s string) *ProgressElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ProgressElement) IsF(format string, args ...any) *ProgressElement {
+func (e *ProgressElement) Isf(format string, args ...any) *ProgressElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -972,7 +972,7 @@ func (e *ProgressElement) IfIs(condition bool, s string) *ProgressElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ProgressElement) IfIsF(condition bool, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfIsf(condition bool, format string, args ...any) *ProgressElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1023,7 +1023,7 @@ func (e *ProgressElement) Itemid(s string) *ProgressElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ProgressElement) ItemidF(format string, args ...any) *ProgressElement {
+func (e *ProgressElement) Itemidf(format string, args ...any) *ProgressElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1056,7 +1056,7 @@ func (e *ProgressElement) IfItemid(condition bool, s string) *ProgressElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ProgressElement) IfItemidF(condition bool, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfItemidf(condition bool, format string, args ...any) *ProgressElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1105,7 +1105,7 @@ func (e *ProgressElement) Itemprop(s string) *ProgressElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ProgressElement) ItempropF(format string, args ...any) *ProgressElement {
+func (e *ProgressElement) Itempropf(format string, args ...any) *ProgressElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1130,7 +1130,7 @@ func (e *ProgressElement) IfItemprop(condition bool, s string) *ProgressElement 
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ProgressElement) IfItempropF(condition bool, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfItempropf(condition bool, format string, args ...any) *ProgressElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1171,7 +1171,7 @@ func (e *ProgressElement) Itemref(s string) *ProgressElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ProgressElement) ItemrefF(format string, args ...any) *ProgressElement {
+func (e *ProgressElement) Itemreff(format string, args ...any) *ProgressElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1192,7 +1192,7 @@ func (e *ProgressElement) IfItemref(condition bool, s string) *ProgressElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ProgressElement) IfItemrefF(condition bool, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfItemreff(condition bool, format string, args ...any) *ProgressElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1307,7 +1307,7 @@ func (e *ProgressElement) Itemtype(s string) *ProgressElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ProgressElement) ItemtypeF(format string, args ...any) *ProgressElement {
+func (e *ProgressElement) Itemtypef(format string, args ...any) *ProgressElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1332,7 +1332,7 @@ func (e *ProgressElement) IfItemtype(condition bool, s string) *ProgressElement 
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ProgressElement) IfItemtypeF(condition bool, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfItemtypef(condition bool, format string, args ...any) *ProgressElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1373,7 +1373,7 @@ func (e *ProgressElement) Lang(s string) *ProgressElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ProgressElement) LangF(format string, args ...any) *ProgressElement {
+func (e *ProgressElement) Langf(format string, args ...any) *ProgressElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1394,7 +1394,7 @@ func (e *ProgressElement) IfLang(condition bool, s string) *ProgressElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ProgressElement) IfLangF(condition bool, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfLangf(condition bool, format string, args ...any) *ProgressElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1433,7 +1433,7 @@ func (e *ProgressElement) Nonce(s string) *ProgressElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *ProgressElement) NonceF(format string, args ...any) *ProgressElement {
+func (e *ProgressElement) Noncef(format string, args ...any) *ProgressElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1454,7 +1454,7 @@ func (e *ProgressElement) IfNonce(condition bool, s string) *ProgressElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *ProgressElement) IfNonceF(condition bool, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfNoncef(condition bool, format string, args ...any) *ProgressElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1579,7 +1579,7 @@ func (e *ProgressElement) Role(s string) *ProgressElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ProgressElement) RoleF(format string, args ...any) *ProgressElement {
+func (e *ProgressElement) Rolef(format string, args ...any) *ProgressElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1598,7 +1598,7 @@ func (e *ProgressElement) IfRole(condition bool, s string) *ProgressElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ProgressElement) IfRoleF(condition bool, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfRolef(condition bool, format string, args ...any) *ProgressElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1634,7 +1634,7 @@ func (e *ProgressElement) Slot(s string) *ProgressElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ProgressElement) SlotF(format string, args ...any) *ProgressElement {
+func (e *ProgressElement) Slotf(format string, args ...any) *ProgressElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1653,7 +1653,7 @@ func (e *ProgressElement) IfSlot(condition bool, s string) *ProgressElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ProgressElement) IfSlotF(condition bool, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfSlotf(condition bool, format string, args ...any) *ProgressElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1797,7 +1797,7 @@ func (e *ProgressElement) StyleAdd(k string, v string) *ProgressElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ProgressElement) StyleAddF(k string, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) StyleAddf(k string, format string, args ...any) *ProgressElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1812,9 +1812,9 @@ func (e *ProgressElement) IfStyleAdd(condition bool, k string, v string) *Progre
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ProgressElement) IfStyleAddF(condition bool, k string, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfStyleAddf(condition bool, k string, format string, args ...any) *ProgressElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1960,7 +1960,7 @@ func (e *ProgressElement) Title(s string) *ProgressElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ProgressElement) TitleF(format string, args ...any) *ProgressElement {
+func (e *ProgressElement) Titlef(format string, args ...any) *ProgressElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2003,7 +2003,7 @@ func (e *ProgressElement) IfTitle(condition bool, s string) *ProgressElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ProgressElement) IfTitleF(condition bool, format string, args ...any) *ProgressElement {
+func (e *ProgressElement) IfTitlef(condition bool, format string, args ...any) *ProgressElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

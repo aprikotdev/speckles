@@ -83,7 +83,7 @@ func (e *IframeElement) Text(text string) *IframeElement {
 	return e
 }
 
-func (e *IframeElement) TextF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Textf(format string, args ...any) *IframeElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *IframeElement) IfText(condition bool, text string) *IframeElement {
 	return e
 }
 
-func (e *IframeElement) IfTextF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfTextf(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *IframeElement) IfEscaped(condition bool, text string) *IframeElement {
 	return e
 }
 
-func (e *IframeElement) EscapedF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Escapedf(format string, args ...any) *IframeElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *IframeElement) IfEscapedF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfEscapedf(condition bool, format string, args ...any) *IframeElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -292,7 +292,7 @@ func (e *IframeElement) Name(s string) *IframeElement {
 }
 
 // The name of the frame.
-func (e *IframeElement) NameF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Namef(format string, args ...any) *IframeElement {
 	return e.Name(fmt.Sprintf(format, args...))
 }
 
@@ -305,7 +305,7 @@ func (e *IframeElement) IfName(condition bool, s string) *IframeElement {
 }
 
 // The name of the frame.
-func (e *IframeElement) IfNameF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfNamef(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.Name(fmt.Sprintf(format, args...))
 	}
@@ -426,7 +426,7 @@ func (e *IframeElement) Src(s string) *IframeElement {
 }
 
 // The URL of the page to embed.
-func (e *IframeElement) SrcF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Srcf(format string, args ...any) *IframeElement {
 	return e.Src(fmt.Sprintf(format, args...))
 }
 
@@ -439,7 +439,7 @@ func (e *IframeElement) IfSrc(condition bool, s string) *IframeElement {
 }
 
 // The URL of the page to embed.
-func (e *IframeElement) IfSrcF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfSrcf(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.Src(fmt.Sprintf(format, args...))
 	}
@@ -466,7 +466,7 @@ func (e *IframeElement) Srcdoc(s string) *IframeElement {
 }
 
 // A document to render in the iframe.
-func (e *IframeElement) SrcdocF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Srcdocf(format string, args ...any) *IframeElement {
 	return e.Srcdoc(fmt.Sprintf(format, args...))
 }
 
@@ -479,7 +479,7 @@ func (e *IframeElement) IfSrcdoc(condition bool, s string) *IframeElement {
 }
 
 // A document to render in the iframe.
-func (e *IframeElement) IfSrcdocF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfSrcdocf(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.Srcdoc(fmt.Sprintf(format, args...))
 	}
@@ -1104,7 +1104,7 @@ func (e *IframeElement) ID(s string) *IframeElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *IframeElement) IDF(format string, args ...any) *IframeElement {
+func (e *IframeElement) IDf(format string, args ...any) *IframeElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -1121,7 +1121,7 @@ func (e *IframeElement) IfID(condition bool, s string) *IframeElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *IframeElement) IfIDF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfIDf(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1316,7 +1316,7 @@ func (e *IframeElement) Is(s string) *IframeElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *IframeElement) IsF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Isf(format string, args ...any) *IframeElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1337,7 +1337,7 @@ func (e *IframeElement) IfIs(condition bool, s string) *IframeElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *IframeElement) IfIsF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfIsf(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1388,7 +1388,7 @@ func (e *IframeElement) Itemid(s string) *IframeElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *IframeElement) ItemidF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Itemidf(format string, args ...any) *IframeElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *IframeElement) IfItemid(condition bool, s string) *IframeElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *IframeElement) IfItemidF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfItemidf(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1470,7 +1470,7 @@ func (e *IframeElement) Itemprop(s string) *IframeElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *IframeElement) ItempropF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Itempropf(format string, args ...any) *IframeElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1495,7 +1495,7 @@ func (e *IframeElement) IfItemprop(condition bool, s string) *IframeElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *IframeElement) IfItempropF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfItempropf(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1536,7 +1536,7 @@ func (e *IframeElement) Itemref(s string) *IframeElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *IframeElement) ItemrefF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Itemreff(format string, args ...any) *IframeElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1557,7 +1557,7 @@ func (e *IframeElement) IfItemref(condition bool, s string) *IframeElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *IframeElement) IfItemrefF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfItemreff(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1672,7 +1672,7 @@ func (e *IframeElement) Itemtype(s string) *IframeElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *IframeElement) ItemtypeF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Itemtypef(format string, args ...any) *IframeElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1697,7 +1697,7 @@ func (e *IframeElement) IfItemtype(condition bool, s string) *IframeElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *IframeElement) IfItemtypeF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfItemtypef(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1738,7 +1738,7 @@ func (e *IframeElement) Lang(s string) *IframeElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *IframeElement) LangF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Langf(format string, args ...any) *IframeElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1759,7 +1759,7 @@ func (e *IframeElement) IfLang(condition bool, s string) *IframeElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *IframeElement) IfLangF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfLangf(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1798,7 +1798,7 @@ func (e *IframeElement) Nonce(s string) *IframeElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *IframeElement) NonceF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Noncef(format string, args ...any) *IframeElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1819,7 +1819,7 @@ func (e *IframeElement) IfNonce(condition bool, s string) *IframeElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *IframeElement) IfNonceF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfNoncef(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1944,7 +1944,7 @@ func (e *IframeElement) Role(s string) *IframeElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *IframeElement) RoleF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Rolef(format string, args ...any) *IframeElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1963,7 +1963,7 @@ func (e *IframeElement) IfRole(condition bool, s string) *IframeElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *IframeElement) IfRoleF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfRolef(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1999,7 +1999,7 @@ func (e *IframeElement) Slot(s string) *IframeElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *IframeElement) SlotF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Slotf(format string, args ...any) *IframeElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -2018,7 +2018,7 @@ func (e *IframeElement) IfSlot(condition bool, s string) *IframeElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *IframeElement) IfSlotF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfSlotf(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -2162,7 +2162,7 @@ func (e *IframeElement) StyleAdd(k string, v string) *IframeElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *IframeElement) StyleAddF(k string, format string, args ...any) *IframeElement {
+func (e *IframeElement) StyleAddf(k string, format string, args ...any) *IframeElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -2177,9 +2177,9 @@ func (e *IframeElement) IfStyleAdd(condition bool, k string, v string) *IframeEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *IframeElement) IfStyleAddF(condition bool, k string, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfStyleAddf(condition bool, k string, format string, args ...any) *IframeElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2325,7 +2325,7 @@ func (e *IframeElement) Title(s string) *IframeElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *IframeElement) TitleF(format string, args ...any) *IframeElement {
+func (e *IframeElement) Titlef(format string, args ...any) *IframeElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2368,7 +2368,7 @@ func (e *IframeElement) IfTitle(condition bool, s string) *IframeElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *IframeElement) IfTitleF(condition bool, format string, args ...any) *IframeElement {
+func (e *IframeElement) IfTitlef(condition bool, format string, args ...any) *IframeElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

@@ -83,7 +83,7 @@ func (e *HgroupElement) Text(text string) *HgroupElement {
 	return e
 }
 
-func (e *HgroupElement) TextF(format string, args ...any) *HgroupElement {
+func (e *HgroupElement) Textf(format string, args ...any) *HgroupElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *HgroupElement) IfText(condition bool, text string) *HgroupElement {
 	return e
 }
 
-func (e *HgroupElement) IfTextF(condition bool, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfTextf(condition bool, format string, args ...any) *HgroupElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *HgroupElement) IfEscaped(condition bool, text string) *HgroupElement {
 	return e
 }
 
-func (e *HgroupElement) EscapedF(format string, args ...any) *HgroupElement {
+func (e *HgroupElement) Escapedf(format string, args ...any) *HgroupElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *HgroupElement) IfEscapedF(condition bool, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfEscapedf(condition bool, format string, args ...any) *HgroupElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -705,7 +705,7 @@ func (e *HgroupElement) ID(s string) *HgroupElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *HgroupElement) IDF(format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IDf(format string, args ...any) *HgroupElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -722,7 +722,7 @@ func (e *HgroupElement) IfID(condition bool, s string) *HgroupElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *HgroupElement) IfIDF(condition bool, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfIDf(condition bool, format string, args ...any) *HgroupElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -917,7 +917,7 @@ func (e *HgroupElement) Is(s string) *HgroupElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *HgroupElement) IsF(format string, args ...any) *HgroupElement {
+func (e *HgroupElement) Isf(format string, args ...any) *HgroupElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -938,7 +938,7 @@ func (e *HgroupElement) IfIs(condition bool, s string) *HgroupElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *HgroupElement) IfIsF(condition bool, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfIsf(condition bool, format string, args ...any) *HgroupElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -989,7 +989,7 @@ func (e *HgroupElement) Itemid(s string) *HgroupElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *HgroupElement) ItemidF(format string, args ...any) *HgroupElement {
+func (e *HgroupElement) Itemidf(format string, args ...any) *HgroupElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1022,7 +1022,7 @@ func (e *HgroupElement) IfItemid(condition bool, s string) *HgroupElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *HgroupElement) IfItemidF(condition bool, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfItemidf(condition bool, format string, args ...any) *HgroupElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1071,7 +1071,7 @@ func (e *HgroupElement) Itemprop(s string) *HgroupElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *HgroupElement) ItempropF(format string, args ...any) *HgroupElement {
+func (e *HgroupElement) Itempropf(format string, args ...any) *HgroupElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1096,7 +1096,7 @@ func (e *HgroupElement) IfItemprop(condition bool, s string) *HgroupElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *HgroupElement) IfItempropF(condition bool, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfItempropf(condition bool, format string, args ...any) *HgroupElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1137,7 +1137,7 @@ func (e *HgroupElement) Itemref(s string) *HgroupElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *HgroupElement) ItemrefF(format string, args ...any) *HgroupElement {
+func (e *HgroupElement) Itemreff(format string, args ...any) *HgroupElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1158,7 +1158,7 @@ func (e *HgroupElement) IfItemref(condition bool, s string) *HgroupElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *HgroupElement) IfItemrefF(condition bool, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfItemreff(condition bool, format string, args ...any) *HgroupElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1273,7 +1273,7 @@ func (e *HgroupElement) Itemtype(s string) *HgroupElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *HgroupElement) ItemtypeF(format string, args ...any) *HgroupElement {
+func (e *HgroupElement) Itemtypef(format string, args ...any) *HgroupElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1298,7 +1298,7 @@ func (e *HgroupElement) IfItemtype(condition bool, s string) *HgroupElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *HgroupElement) IfItemtypeF(condition bool, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfItemtypef(condition bool, format string, args ...any) *HgroupElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1339,7 +1339,7 @@ func (e *HgroupElement) Lang(s string) *HgroupElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *HgroupElement) LangF(format string, args ...any) *HgroupElement {
+func (e *HgroupElement) Langf(format string, args ...any) *HgroupElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1360,7 +1360,7 @@ func (e *HgroupElement) IfLang(condition bool, s string) *HgroupElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *HgroupElement) IfLangF(condition bool, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfLangf(condition bool, format string, args ...any) *HgroupElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1399,7 +1399,7 @@ func (e *HgroupElement) Nonce(s string) *HgroupElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *HgroupElement) NonceF(format string, args ...any) *HgroupElement {
+func (e *HgroupElement) Noncef(format string, args ...any) *HgroupElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1420,7 +1420,7 @@ func (e *HgroupElement) IfNonce(condition bool, s string) *HgroupElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *HgroupElement) IfNonceF(condition bool, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfNoncef(condition bool, format string, args ...any) *HgroupElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1545,7 +1545,7 @@ func (e *HgroupElement) Role(s string) *HgroupElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *HgroupElement) RoleF(format string, args ...any) *HgroupElement {
+func (e *HgroupElement) Rolef(format string, args ...any) *HgroupElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1564,7 +1564,7 @@ func (e *HgroupElement) IfRole(condition bool, s string) *HgroupElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *HgroupElement) IfRoleF(condition bool, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfRolef(condition bool, format string, args ...any) *HgroupElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1600,7 +1600,7 @@ func (e *HgroupElement) Slot(s string) *HgroupElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *HgroupElement) SlotF(format string, args ...any) *HgroupElement {
+func (e *HgroupElement) Slotf(format string, args ...any) *HgroupElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1619,7 +1619,7 @@ func (e *HgroupElement) IfSlot(condition bool, s string) *HgroupElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *HgroupElement) IfSlotF(condition bool, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfSlotf(condition bool, format string, args ...any) *HgroupElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1763,7 +1763,7 @@ func (e *HgroupElement) StyleAdd(k string, v string) *HgroupElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *HgroupElement) StyleAddF(k string, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) StyleAddf(k string, format string, args ...any) *HgroupElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1778,9 +1778,9 @@ func (e *HgroupElement) IfStyleAdd(condition bool, k string, v string) *HgroupEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *HgroupElement) IfStyleAddF(condition bool, k string, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfStyleAddf(condition bool, k string, format string, args ...any) *HgroupElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1926,7 +1926,7 @@ func (e *HgroupElement) Title(s string) *HgroupElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *HgroupElement) TitleF(format string, args ...any) *HgroupElement {
+func (e *HgroupElement) Titlef(format string, args ...any) *HgroupElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1969,7 +1969,7 @@ func (e *HgroupElement) IfTitle(condition bool, s string) *HgroupElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *HgroupElement) IfTitleF(condition bool, format string, args ...any) *HgroupElement {
+func (e *HgroupElement) IfTitlef(condition bool, format string, args ...any) *HgroupElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

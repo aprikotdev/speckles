@@ -83,7 +83,7 @@ func (e *SVGMpathElement) Text(text string) *SVGMpathElement {
 	return e
 }
 
-func (e *SVGMpathElement) TextF(format string, args ...any) *SVGMpathElement {
+func (e *SVGMpathElement) Textf(format string, args ...any) *SVGMpathElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGMpathElement) IfText(condition bool, text string) *SVGMpathElement {
 	return e
 }
 
-func (e *SVGMpathElement) IfTextF(condition bool, format string, args ...any) *SVGMpathElement {
+func (e *SVGMpathElement) IfTextf(condition bool, format string, args ...any) *SVGMpathElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGMpathElement) IfEscaped(condition bool, text string) *SVGMpathElemen
 	return e
 }
 
-func (e *SVGMpathElement) EscapedF(format string, args ...any) *SVGMpathElement {
+func (e *SVGMpathElement) Escapedf(format string, args ...any) *SVGMpathElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGMpathElement) IfEscapedF(condition bool, format string, args ...any) *SVGMpathElement {
+func (e *SVGMpathElement) IfEscapedf(condition bool, format string, args ...any) *SVGMpathElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *SVGMpathElement) Href(s string) *SVGMpathElement {
 }
 
 // A URI reference to the motion path definition.
-func (e *SVGMpathElement) HrefF(format string, args ...any) *SVGMpathElement {
+func (e *SVGMpathElement) Hreff(format string, args ...any) *SVGMpathElement {
 	return e.Href(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *SVGMpathElement) IfHref(condition bool, s string) *SVGMpathElement {
 }
 
 // A URI reference to the motion path definition.
-func (e *SVGMpathElement) IfHrefF(condition bool, format string, args ...any) *SVGMpathElement {
+func (e *SVGMpathElement) IfHreff(condition bool, format string, args ...any) *SVGMpathElement {
 	if condition {
 		e.Href(fmt.Sprintf(format, args...))
 	}
@@ -174,7 +174,7 @@ func (e *SVGMpathElement) ID(s string) *SVGMpathElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGMpathElement) IDF(format string, args ...any) *SVGMpathElement {
+func (e *SVGMpathElement) IDf(format string, args ...any) *SVGMpathElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -187,7 +187,7 @@ func (e *SVGMpathElement) IfID(condition bool, s string) *SVGMpathElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGMpathElement) IfIDF(condition bool, format string, args ...any) *SVGMpathElement {
+func (e *SVGMpathElement) IfIDf(condition bool, format string, args ...any) *SVGMpathElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -313,7 +313,7 @@ func (e *SVGMpathElement) StyleAdd(k string, v string) *SVGMpathElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGMpathElement) StyleAddF(k string, format string, args ...any) *SVGMpathElement {
+func (e *SVGMpathElement) StyleAddf(k string, format string, args ...any) *SVGMpathElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -326,9 +326,9 @@ func (e *SVGMpathElement) IfStyleAdd(condition bool, k string, v string) *SVGMpa
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGMpathElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGMpathElement {
+func (e *SVGMpathElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGMpathElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

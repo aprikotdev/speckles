@@ -82,7 +82,7 @@ func (e *ColgroupElement) Text(text string) *ColgroupElement {
 	return e
 }
 
-func (e *ColgroupElement) TextF(format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) Textf(format string, args ...any) *ColgroupElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -93,7 +93,7 @@ func (e *ColgroupElement) IfText(condition bool, text string) *ColgroupElement {
 	return e
 }
 
-func (e *ColgroupElement) IfTextF(condition bool, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfTextf(condition bool, format string, args ...any) *ColgroupElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -112,13 +112,13 @@ func (e *ColgroupElement) IfEscaped(condition bool, text string) *ColgroupElemen
 	return e
 }
 
-func (e *ColgroupElement) EscapedF(format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) Escapedf(format string, args ...any) *ColgroupElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *ColgroupElement) IfEscapedF(condition bool, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfEscapedf(condition bool, format string, args ...any) *ColgroupElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -731,7 +731,7 @@ func (e *ColgroupElement) ID(s string) *ColgroupElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ColgroupElement) IDF(format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IDf(format string, args ...any) *ColgroupElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -748,7 +748,7 @@ func (e *ColgroupElement) IfID(condition bool, s string) *ColgroupElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ColgroupElement) IfIDF(condition bool, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfIDf(condition bool, format string, args ...any) *ColgroupElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -943,7 +943,7 @@ func (e *ColgroupElement) Is(s string) *ColgroupElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ColgroupElement) IsF(format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) Isf(format string, args ...any) *ColgroupElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -964,7 +964,7 @@ func (e *ColgroupElement) IfIs(condition bool, s string) *ColgroupElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ColgroupElement) IfIsF(condition bool, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfIsf(condition bool, format string, args ...any) *ColgroupElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1015,7 +1015,7 @@ func (e *ColgroupElement) Itemid(s string) *ColgroupElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ColgroupElement) ItemidF(format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) Itemidf(format string, args ...any) *ColgroupElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1048,7 +1048,7 @@ func (e *ColgroupElement) IfItemid(condition bool, s string) *ColgroupElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ColgroupElement) IfItemidF(condition bool, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfItemidf(condition bool, format string, args ...any) *ColgroupElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1097,7 +1097,7 @@ func (e *ColgroupElement) Itemprop(s string) *ColgroupElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ColgroupElement) ItempropF(format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) Itempropf(format string, args ...any) *ColgroupElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1122,7 +1122,7 @@ func (e *ColgroupElement) IfItemprop(condition bool, s string) *ColgroupElement 
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ColgroupElement) IfItempropF(condition bool, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfItempropf(condition bool, format string, args ...any) *ColgroupElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1163,7 +1163,7 @@ func (e *ColgroupElement) Itemref(s string) *ColgroupElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ColgroupElement) ItemrefF(format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) Itemreff(format string, args ...any) *ColgroupElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1184,7 +1184,7 @@ func (e *ColgroupElement) IfItemref(condition bool, s string) *ColgroupElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ColgroupElement) IfItemrefF(condition bool, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfItemreff(condition bool, format string, args ...any) *ColgroupElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1299,7 +1299,7 @@ func (e *ColgroupElement) Itemtype(s string) *ColgroupElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ColgroupElement) ItemtypeF(format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) Itemtypef(format string, args ...any) *ColgroupElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1324,7 +1324,7 @@ func (e *ColgroupElement) IfItemtype(condition bool, s string) *ColgroupElement 
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ColgroupElement) IfItemtypeF(condition bool, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfItemtypef(condition bool, format string, args ...any) *ColgroupElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1365,7 +1365,7 @@ func (e *ColgroupElement) Lang(s string) *ColgroupElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ColgroupElement) LangF(format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) Langf(format string, args ...any) *ColgroupElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1386,7 +1386,7 @@ func (e *ColgroupElement) IfLang(condition bool, s string) *ColgroupElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ColgroupElement) IfLangF(condition bool, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfLangf(condition bool, format string, args ...any) *ColgroupElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1425,7 +1425,7 @@ func (e *ColgroupElement) Nonce(s string) *ColgroupElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *ColgroupElement) NonceF(format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) Noncef(format string, args ...any) *ColgroupElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1446,7 +1446,7 @@ func (e *ColgroupElement) IfNonce(condition bool, s string) *ColgroupElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *ColgroupElement) IfNonceF(condition bool, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfNoncef(condition bool, format string, args ...any) *ColgroupElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1571,7 +1571,7 @@ func (e *ColgroupElement) Role(s string) *ColgroupElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ColgroupElement) RoleF(format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) Rolef(format string, args ...any) *ColgroupElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1590,7 +1590,7 @@ func (e *ColgroupElement) IfRole(condition bool, s string) *ColgroupElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ColgroupElement) IfRoleF(condition bool, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfRolef(condition bool, format string, args ...any) *ColgroupElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1626,7 +1626,7 @@ func (e *ColgroupElement) Slot(s string) *ColgroupElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ColgroupElement) SlotF(format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) Slotf(format string, args ...any) *ColgroupElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1645,7 +1645,7 @@ func (e *ColgroupElement) IfSlot(condition bool, s string) *ColgroupElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ColgroupElement) IfSlotF(condition bool, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfSlotf(condition bool, format string, args ...any) *ColgroupElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1789,7 +1789,7 @@ func (e *ColgroupElement) StyleAdd(k string, v string) *ColgroupElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ColgroupElement) StyleAddF(k string, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) StyleAddf(k string, format string, args ...any) *ColgroupElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1804,9 +1804,9 @@ func (e *ColgroupElement) IfStyleAdd(condition bool, k string, v string) *Colgro
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ColgroupElement) IfStyleAddF(condition bool, k string, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfStyleAddf(condition bool, k string, format string, args ...any) *ColgroupElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1952,7 +1952,7 @@ func (e *ColgroupElement) Title(s string) *ColgroupElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ColgroupElement) TitleF(format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) Titlef(format string, args ...any) *ColgroupElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1995,7 +1995,7 @@ func (e *ColgroupElement) IfTitle(condition bool, s string) *ColgroupElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ColgroupElement) IfTitleF(condition bool, format string, args ...any) *ColgroupElement {
+func (e *ColgroupElement) IfTitlef(condition bool, format string, args ...any) *ColgroupElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

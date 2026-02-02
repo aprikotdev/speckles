@@ -82,7 +82,7 @@ func (e *SVGGElement) Text(text string) *SVGGElement {
 	return e
 }
 
-func (e *SVGGElement) TextF(format string, args ...any) *SVGGElement {
+func (e *SVGGElement) Textf(format string, args ...any) *SVGGElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -93,7 +93,7 @@ func (e *SVGGElement) IfText(condition bool, text string) *SVGGElement {
 	return e
 }
 
-func (e *SVGGElement) IfTextF(condition bool, format string, args ...any) *SVGGElement {
+func (e *SVGGElement) IfTextf(condition bool, format string, args ...any) *SVGGElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -112,13 +112,13 @@ func (e *SVGGElement) IfEscaped(condition bool, text string) *SVGGElement {
 	return e
 }
 
-func (e *SVGGElement) EscapedF(format string, args ...any) *SVGGElement {
+func (e *SVGGElement) Escapedf(format string, args ...any) *SVGGElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGGElement) IfEscapedF(condition bool, format string, args ...any) *SVGGElement {
+func (e *SVGGElement) IfEscapedf(condition bool, format string, args ...any) *SVGGElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -135,7 +135,7 @@ func (e *SVGGElement) RequiredExtensions(s string) *SVGGElement {
 
 // A space-separated list of required extensions, indicating that the parent SVG
 // document must include the specified extensions for this element to be valid.
-func (e *SVGGElement) RequiredExtensionsF(format string, args ...any) *SVGGElement {
+func (e *SVGGElement) RequiredExtensionsf(format string, args ...any) *SVGGElement {
 	return e.RequiredExtensions(fmt.Sprintf(format, args...))
 }
 
@@ -150,7 +150,7 @@ func (e *SVGGElement) IfRequiredExtensions(condition bool, s string) *SVGGElemen
 
 // A space-separated list of required extensions, indicating that the parent SVG
 // document must include the specified extensions for this element to be valid.
-func (e *SVGGElement) IfRequiredExtensionsF(condition bool, format string, args ...any) *SVGGElement {
+func (e *SVGGElement) IfRequiredExtensionsf(condition bool, format string, args ...any) *SVGGElement {
 	if condition {
 		e.RequiredExtensions(fmt.Sprintf(format, args...))
 	}
@@ -182,7 +182,7 @@ func (e *SVGGElement) RequiredFeatures(s string) *SVGGElement {
 // A space-separated list of required features, indicating that the parent SVG
 // document must include support for all of the specified features for this
 // element to be valid.
-func (e *SVGGElement) RequiredFeaturesF(format string, args ...any) *SVGGElement {
+func (e *SVGGElement) RequiredFeaturesf(format string, args ...any) *SVGGElement {
 	return e.RequiredFeatures(fmt.Sprintf(format, args...))
 }
 
@@ -199,7 +199,7 @@ func (e *SVGGElement) IfRequiredFeatures(condition bool, s string) *SVGGElement 
 // A space-separated list of required features, indicating that the parent SVG
 // document must include support for all of the specified features for this
 // element to be valid.
-func (e *SVGGElement) IfRequiredFeaturesF(condition bool, format string, args ...any) *SVGGElement {
+func (e *SVGGElement) IfRequiredFeaturesf(condition bool, format string, args ...any) *SVGGElement {
 	if condition {
 		e.RequiredFeatures(fmt.Sprintf(format, args...))
 	}
@@ -232,7 +232,7 @@ func (e *SVGGElement) SystemLanguage(s string) *SVGGElement {
 // A space-separated list of language codes, indicating that the parent SVG
 // document must include support for all of the specified languages for this
 // element to be valid.
-func (e *SVGGElement) SystemLanguageF(format string, args ...any) *SVGGElement {
+func (e *SVGGElement) SystemLanguagef(format string, args ...any) *SVGGElement {
 	return e.SystemLanguage(fmt.Sprintf(format, args...))
 }
 
@@ -249,7 +249,7 @@ func (e *SVGGElement) IfSystemLanguage(condition bool, s string) *SVGGElement {
 // A space-separated list of language codes, indicating that the parent SVG
 // document must include support for all of the specified languages for this
 // element to be valid.
-func (e *SVGGElement) IfSystemLanguageF(condition bool, format string, args ...any) *SVGGElement {
+func (e *SVGGElement) IfSystemLanguagef(condition bool, format string, args ...any) *SVGGElement {
 	if condition {
 		e.SystemLanguage(fmt.Sprintf(format, args...))
 	}
@@ -278,7 +278,7 @@ func (e *SVGGElement) ID(s string) *SVGGElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGGElement) IDF(format string, args ...any) *SVGGElement {
+func (e *SVGGElement) IDf(format string, args ...any) *SVGGElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -291,7 +291,7 @@ func (e *SVGGElement) IfID(condition bool, s string) *SVGGElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGGElement) IfIDF(condition bool, format string, args ...any) *SVGGElement {
+func (e *SVGGElement) IfIDf(condition bool, format string, args ...any) *SVGGElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -417,7 +417,7 @@ func (e *SVGGElement) StyleAdd(k string, v string) *SVGGElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGGElement) StyleAddF(k string, format string, args ...any) *SVGGElement {
+func (e *SVGGElement) StyleAddf(k string, format string, args ...any) *SVGGElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -430,9 +430,9 @@ func (e *SVGGElement) IfStyleAdd(condition bool, k string, v string) *SVGGElemen
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGGElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGGElement {
+func (e *SVGGElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGGElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

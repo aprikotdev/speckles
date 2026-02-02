@@ -83,7 +83,7 @@ func (e *SVGFeSpotLightElement) Text(text string) *SVGFeSpotLightElement {
 	return e
 }
 
-func (e *SVGFeSpotLightElement) TextF(format string, args ...any) *SVGFeSpotLightElement {
+func (e *SVGFeSpotLightElement) Textf(format string, args ...any) *SVGFeSpotLightElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGFeSpotLightElement) IfText(condition bool, text string) *SVGFeSpotLi
 	return e
 }
 
-func (e *SVGFeSpotLightElement) IfTextF(condition bool, format string, args ...any) *SVGFeSpotLightElement {
+func (e *SVGFeSpotLightElement) IfTextf(condition bool, format string, args ...any) *SVGFeSpotLightElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGFeSpotLightElement) IfEscaped(condition bool, text string) *SVGFeSpo
 	return e
 }
 
-func (e *SVGFeSpotLightElement) EscapedF(format string, args ...any) *SVGFeSpotLightElement {
+func (e *SVGFeSpotLightElement) Escapedf(format string, args ...any) *SVGFeSpotLightElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeSpotLightElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeSpotLightElement {
+func (e *SVGFeSpotLightElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeSpotLightElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -296,7 +296,7 @@ func (e *SVGFeSpotLightElement) ID(s string) *SVGFeSpotLightElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeSpotLightElement) IDF(format string, args ...any) *SVGFeSpotLightElement {
+func (e *SVGFeSpotLightElement) IDf(format string, args ...any) *SVGFeSpotLightElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -309,7 +309,7 @@ func (e *SVGFeSpotLightElement) IfID(condition bool, s string) *SVGFeSpotLightEl
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeSpotLightElement) IfIDF(condition bool, format string, args ...any) *SVGFeSpotLightElement {
+func (e *SVGFeSpotLightElement) IfIDf(condition bool, format string, args ...any) *SVGFeSpotLightElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -435,7 +435,7 @@ func (e *SVGFeSpotLightElement) StyleAdd(k string, v string) *SVGFeSpotLightElem
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeSpotLightElement) StyleAddF(k string, format string, args ...any) *SVGFeSpotLightElement {
+func (e *SVGFeSpotLightElement) StyleAddf(k string, format string, args ...any) *SVGFeSpotLightElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -448,9 +448,9 @@ func (e *SVGFeSpotLightElement) IfStyleAdd(condition bool, k string, v string) *
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeSpotLightElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeSpotLightElement {
+func (e *SVGFeSpotLightElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeSpotLightElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

@@ -83,7 +83,7 @@ func (e *SVGPathElement) Text(text string) *SVGPathElement {
 	return e
 }
 
-func (e *SVGPathElement) TextF(format string, args ...any) *SVGPathElement {
+func (e *SVGPathElement) Textf(format string, args ...any) *SVGPathElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGPathElement) IfText(condition bool, text string) *SVGPathElement {
 	return e
 }
 
-func (e *SVGPathElement) IfTextF(condition bool, format string, args ...any) *SVGPathElement {
+func (e *SVGPathElement) IfTextf(condition bool, format string, args ...any) *SVGPathElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGPathElement) IfEscaped(condition bool, text string) *SVGPathElement 
 	return e
 }
 
-func (e *SVGPathElement) EscapedF(format string, args ...any) *SVGPathElement {
+func (e *SVGPathElement) Escapedf(format string, args ...any) *SVGPathElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGPathElement) IfEscapedF(condition bool, format string, args ...any) *SVGPathElement {
+func (e *SVGPathElement) IfEscapedf(condition bool, format string, args ...any) *SVGPathElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *SVGPathElement) D(s string) *SVGPathElement {
 }
 
 // The definition of the outline of a shape.
-func (e *SVGPathElement) DF(format string, args ...any) *SVGPathElement {
+func (e *SVGPathElement) Df(format string, args ...any) *SVGPathElement {
 	return e.D(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *SVGPathElement) IfD(condition bool, s string) *SVGPathElement {
 }
 
 // The definition of the outline of a shape.
-func (e *SVGPathElement) IfDF(condition bool, format string, args ...any) *SVGPathElement {
+func (e *SVGPathElement) IfDf(condition bool, format string, args ...any) *SVGPathElement {
 	if condition {
 		e.D(fmt.Sprintf(format, args...))
 	}
@@ -176,7 +176,7 @@ func (e *SVGPathElement) Fill(s string) *SVGPathElement {
 
 // The <path> SVG element is the generic element to define a shape. All the
 // basic shapes can be created with a path element.
-func (e *SVGPathElement) FillF(format string, args ...any) *SVGPathElement {
+func (e *SVGPathElement) Fillf(format string, args ...any) *SVGPathElement {
 	return e.Fill(fmt.Sprintf(format, args...))
 }
 
@@ -191,7 +191,7 @@ func (e *SVGPathElement) IfFill(condition bool, s string) *SVGPathElement {
 
 // The <path> SVG element is the generic element to define a shape. All the
 // basic shapes can be created with a path element.
-func (e *SVGPathElement) IfFillF(condition bool, format string, args ...any) *SVGPathElement {
+func (e *SVGPathElement) IfFillf(condition bool, format string, args ...any) *SVGPathElement {
 	if condition {
 		e.Fill(fmt.Sprintf(format, args...))
 	}
@@ -255,7 +255,7 @@ func (e *SVGPathElement) ID(s string) *SVGPathElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGPathElement) IDF(format string, args ...any) *SVGPathElement {
+func (e *SVGPathElement) IDf(format string, args ...any) *SVGPathElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -268,7 +268,7 @@ func (e *SVGPathElement) IfID(condition bool, s string) *SVGPathElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGPathElement) IfIDF(condition bool, format string, args ...any) *SVGPathElement {
+func (e *SVGPathElement) IfIDf(condition bool, format string, args ...any) *SVGPathElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -394,7 +394,7 @@ func (e *SVGPathElement) StyleAdd(k string, v string) *SVGPathElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGPathElement) StyleAddF(k string, format string, args ...any) *SVGPathElement {
+func (e *SVGPathElement) StyleAddf(k string, format string, args ...any) *SVGPathElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -407,9 +407,9 @@ func (e *SVGPathElement) IfStyleAdd(condition bool, k string, v string) *SVGPath
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGPathElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGPathElement {
+func (e *SVGPathElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGPathElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

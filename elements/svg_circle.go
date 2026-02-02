@@ -83,7 +83,7 @@ func (e *SVGCircleElement) Text(text string) *SVGCircleElement {
 	return e
 }
 
-func (e *SVGCircleElement) TextF(format string, args ...any) *SVGCircleElement {
+func (e *SVGCircleElement) Textf(format string, args ...any) *SVGCircleElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGCircleElement) IfText(condition bool, text string) *SVGCircleElement
 	return e
 }
 
-func (e *SVGCircleElement) IfTextF(condition bool, format string, args ...any) *SVGCircleElement {
+func (e *SVGCircleElement) IfTextf(condition bool, format string, args ...any) *SVGCircleElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGCircleElement) IfEscaped(condition bool, text string) *SVGCircleElem
 	return e
 }
 
-func (e *SVGCircleElement) EscapedF(format string, args ...any) *SVGCircleElement {
+func (e *SVGCircleElement) Escapedf(format string, args ...any) *SVGCircleElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGCircleElement) IfEscapedF(condition bool, format string, args ...any) *SVGCircleElement {
+func (e *SVGCircleElement) IfEscapedf(condition bool, format string, args ...any) *SVGCircleElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -185,7 +185,7 @@ func (e *SVGCircleElement) ID(s string) *SVGCircleElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGCircleElement) IDF(format string, args ...any) *SVGCircleElement {
+func (e *SVGCircleElement) IDf(format string, args ...any) *SVGCircleElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -198,7 +198,7 @@ func (e *SVGCircleElement) IfID(condition bool, s string) *SVGCircleElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGCircleElement) IfIDF(condition bool, format string, args ...any) *SVGCircleElement {
+func (e *SVGCircleElement) IfIDf(condition bool, format string, args ...any) *SVGCircleElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -324,7 +324,7 @@ func (e *SVGCircleElement) StyleAdd(k string, v string) *SVGCircleElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGCircleElement) StyleAddF(k string, format string, args ...any) *SVGCircleElement {
+func (e *SVGCircleElement) StyleAddf(k string, format string, args ...any) *SVGCircleElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -337,9 +337,9 @@ func (e *SVGCircleElement) IfStyleAdd(condition bool, k string, v string) *SVGCi
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGCircleElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGCircleElement {
+func (e *SVGCircleElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGCircleElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

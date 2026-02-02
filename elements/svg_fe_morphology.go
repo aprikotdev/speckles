@@ -83,7 +83,7 @@ func (e *SVGFeMorphologyElement) Text(text string) *SVGFeMorphologyElement {
 	return e
 }
 
-func (e *SVGFeMorphologyElement) TextF(format string, args ...any) *SVGFeMorphologyElement {
+func (e *SVGFeMorphologyElement) Textf(format string, args ...any) *SVGFeMorphologyElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGFeMorphologyElement) IfText(condition bool, text string) *SVGFeMorph
 	return e
 }
 
-func (e *SVGFeMorphologyElement) IfTextF(condition bool, format string, args ...any) *SVGFeMorphologyElement {
+func (e *SVGFeMorphologyElement) IfTextf(condition bool, format string, args ...any) *SVGFeMorphologyElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGFeMorphologyElement) IfEscaped(condition bool, text string) *SVGFeMo
 	return e
 }
 
-func (e *SVGFeMorphologyElement) EscapedF(format string, args ...any) *SVGFeMorphologyElement {
+func (e *SVGFeMorphologyElement) Escapedf(format string, args ...any) *SVGFeMorphologyElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeMorphologyElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeMorphologyElement {
+func (e *SVGFeMorphologyElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeMorphologyElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *SVGFeMorphologyElement) In(s string) *SVGFeMorphologyElement {
 }
 
 // The input for this filter.
-func (e *SVGFeMorphologyElement) InF(format string, args ...any) *SVGFeMorphologyElement {
+func (e *SVGFeMorphologyElement) Inf(format string, args ...any) *SVGFeMorphologyElement {
 	return e.In(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *SVGFeMorphologyElement) IfIn(condition bool, s string) *SVGFeMorphology
 }
 
 // The input for this filter.
-func (e *SVGFeMorphologyElement) IfInF(condition bool, format string, args ...any) *SVGFeMorphologyElement {
+func (e *SVGFeMorphologyElement) IfInf(condition bool, format string, args ...any) *SVGFeMorphologyElement {
 	if condition {
 		e.In(fmt.Sprintf(format, args...))
 	}
@@ -219,7 +219,7 @@ func (e *SVGFeMorphologyElement) ID(s string) *SVGFeMorphologyElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeMorphologyElement) IDF(format string, args ...any) *SVGFeMorphologyElement {
+func (e *SVGFeMorphologyElement) IDf(format string, args ...any) *SVGFeMorphologyElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -232,7 +232,7 @@ func (e *SVGFeMorphologyElement) IfID(condition bool, s string) *SVGFeMorphology
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeMorphologyElement) IfIDF(condition bool, format string, args ...any) *SVGFeMorphologyElement {
+func (e *SVGFeMorphologyElement) IfIDf(condition bool, format string, args ...any) *SVGFeMorphologyElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -358,7 +358,7 @@ func (e *SVGFeMorphologyElement) StyleAdd(k string, v string) *SVGFeMorphologyEl
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeMorphologyElement) StyleAddF(k string, format string, args ...any) *SVGFeMorphologyElement {
+func (e *SVGFeMorphologyElement) StyleAddf(k string, format string, args ...any) *SVGFeMorphologyElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -371,9 +371,9 @@ func (e *SVGFeMorphologyElement) IfStyleAdd(condition bool, k string, v string) 
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeMorphologyElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeMorphologyElement {
+func (e *SVGFeMorphologyElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeMorphologyElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

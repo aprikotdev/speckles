@@ -82,7 +82,7 @@ func (e *MathMLSemanticsElement) Text(text string) *MathMLSemanticsElement {
 	return e
 }
 
-func (e *MathMLSemanticsElement) TextF(format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) Textf(format string, args ...any) *MathMLSemanticsElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -93,7 +93,7 @@ func (e *MathMLSemanticsElement) IfText(condition bool, text string) *MathMLSema
 	return e
 }
 
-func (e *MathMLSemanticsElement) IfTextF(condition bool, format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) IfTextf(condition bool, format string, args ...any) *MathMLSemanticsElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -112,13 +112,13 @@ func (e *MathMLSemanticsElement) IfEscaped(condition bool, text string) *MathMLS
 	return e
 }
 
-func (e *MathMLSemanticsElement) EscapedF(format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) Escapedf(format string, args ...any) *MathMLSemanticsElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *MathMLSemanticsElement) IfEscapedF(condition bool, format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) IfEscapedf(condition bool, format string, args ...any) *MathMLSemanticsElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -242,7 +242,7 @@ func (e *MathMLSemanticsElement) ID(s string) *MathMLSemanticsElement {
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLSemanticsElement) IDF(format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) IDf(format string, args ...any) *MathMLSemanticsElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -257,7 +257,7 @@ func (e *MathMLSemanticsElement) IfID(condition bool, s string) *MathMLSemantics
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLSemanticsElement) IfIDF(condition bool, format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) IfIDf(condition bool, format string, args ...any) *MathMLSemanticsElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -289,7 +289,7 @@ func (e *MathMLSemanticsElement) Mathbackground(s string) *MathMLSemanticsElemen
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLSemanticsElement) MathbackgroundF(format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) Mathbackgroundf(format string, args ...any) *MathMLSemanticsElement {
 	return e.Mathbackground(fmt.Sprintf(format, args...))
 }
 
@@ -306,7 +306,7 @@ func (e *MathMLSemanticsElement) IfMathbackground(condition bool, s string) *Mat
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLSemanticsElement) IfMathbackgroundF(condition bool, format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) IfMathbackgroundf(condition bool, format string, args ...any) *MathMLSemanticsElement {
 	if condition {
 		e.Mathbackground(fmt.Sprintf(format, args...))
 	}
@@ -339,7 +339,7 @@ func (e *MathMLSemanticsElement) Mathcolor(s string) *MathMLSemanticsElement {
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLSemanticsElement) MathcolorF(format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) Mathcolorf(format string, args ...any) *MathMLSemanticsElement {
 	return e.Mathcolor(fmt.Sprintf(format, args...))
 }
 
@@ -356,7 +356,7 @@ func (e *MathMLSemanticsElement) IfMathcolor(condition bool, s string) *MathMLSe
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLSemanticsElement) IfMathcolorF(condition bool, format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) IfMathcolorf(condition bool, format string, args ...any) *MathMLSemanticsElement {
 	if condition {
 		e.Mathcolor(fmt.Sprintf(format, args...))
 	}
@@ -387,7 +387,7 @@ func (e *MathMLSemanticsElement) MathsizeStr(s string) *MathMLSemanticsElement {
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLSemanticsElement) MathsizeStrF(format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) MathsizeStrf(format string, args ...any) *MathMLSemanticsElement {
 	return e.MathsizeStr(fmt.Sprintf(format, args...))
 }
 
@@ -402,7 +402,7 @@ func (e *MathMLSemanticsElement) IfMathsizeStr(condition bool, s string) *MathML
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLSemanticsElement) IfMathsizeStrF(condition bool, format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) IfMathsizeStrf(condition bool, format string, args ...any) *MathMLSemanticsElement {
 	if condition {
 		e.MathsizeStr(fmt.Sprintf(format, args...))
 	}
@@ -436,7 +436,7 @@ func (e *MathMLSemanticsElement) Nonce(s string) *MathMLSemanticsElement {
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLSemanticsElement) NonceF(format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) Noncef(format string, args ...any) *MathMLSemanticsElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -455,7 +455,7 @@ func (e *MathMLSemanticsElement) IfNonce(condition bool, s string) *MathMLSemant
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLSemanticsElement) IfNonceF(condition bool, format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) IfNoncef(condition bool, format string, args ...any) *MathMLSemanticsElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -579,7 +579,7 @@ func (e *MathMLSemanticsElement) StyleAdd(k string, v string) *MathMLSemanticsEl
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLSemanticsElement) StyleAddF(k string, format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) StyleAddf(k string, format string, args ...any) *MathMLSemanticsElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -594,9 +594,9 @@ func (e *MathMLSemanticsElement) IfStyleAdd(condition bool, k string, v string) 
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLSemanticsElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MathMLSemanticsElement {
+func (e *MathMLSemanticsElement) IfStyleAddf(condition bool, k string, format string, args ...any) *MathMLSemanticsElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

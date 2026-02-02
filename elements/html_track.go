@@ -86,7 +86,7 @@ func (e *TrackElement) Text(text string) *TrackElement {
 	return e
 }
 
-func (e *TrackElement) TextF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Textf(format string, args ...any) *TrackElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -97,7 +97,7 @@ func (e *TrackElement) IfText(condition bool, text string) *TrackElement {
 	return e
 }
 
-func (e *TrackElement) IfTextF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfTextf(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -116,13 +116,13 @@ func (e *TrackElement) IfEscaped(condition bool, text string) *TrackElement {
 	return e
 }
 
-func (e *TrackElement) EscapedF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Escapedf(format string, args ...any) *TrackElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *TrackElement) IfEscapedF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfEscapedf(condition bool, format string, args ...any) *TrackElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -213,7 +213,7 @@ func (e *TrackElement) Label(s string) *TrackElement {
 }
 
 // Specifies a user-readable title of the text track.
-func (e *TrackElement) LabelF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Labelf(format string, args ...any) *TrackElement {
 	return e.Label(fmt.Sprintf(format, args...))
 }
 
@@ -226,7 +226,7 @@ func (e *TrackElement) IfLabel(condition bool, s string) *TrackElement {
 }
 
 // Specifies a user-readable title of the text track.
-func (e *TrackElement) IfLabelF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfLabelf(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.Label(fmt.Sprintf(format, args...))
 	}
@@ -253,7 +253,7 @@ func (e *TrackElement) Src(s string) *TrackElement {
 }
 
 // Address of the resource.
-func (e *TrackElement) SrcF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Srcf(format string, args ...any) *TrackElement {
 	return e.Src(fmt.Sprintf(format, args...))
 }
 
@@ -266,7 +266,7 @@ func (e *TrackElement) IfSrc(condition bool, s string) *TrackElement {
 }
 
 // Address of the resource.
-func (e *TrackElement) IfSrcF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfSrcf(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.Src(fmt.Sprintf(format, args...))
 	}
@@ -293,7 +293,7 @@ func (e *TrackElement) Srclang(s string) *TrackElement {
 }
 
 // Language of the text track.
-func (e *TrackElement) SrclangF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Srclangf(format string, args ...any) *TrackElement {
 	return e.Srclang(fmt.Sprintf(format, args...))
 }
 
@@ -306,7 +306,7 @@ func (e *TrackElement) IfSrclang(condition bool, s string) *TrackElement {
 }
 
 // Language of the text track.
-func (e *TrackElement) IfSrclangF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfSrclangf(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.Srclang(fmt.Sprintf(format, args...))
 	}
@@ -904,7 +904,7 @@ func (e *TrackElement) ID(s string) *TrackElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *TrackElement) IDF(format string, args ...any) *TrackElement {
+func (e *TrackElement) IDf(format string, args ...any) *TrackElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -921,7 +921,7 @@ func (e *TrackElement) IfID(condition bool, s string) *TrackElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *TrackElement) IfIDF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfIDf(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1116,7 +1116,7 @@ func (e *TrackElement) Is(s string) *TrackElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *TrackElement) IsF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Isf(format string, args ...any) *TrackElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1137,7 +1137,7 @@ func (e *TrackElement) IfIs(condition bool, s string) *TrackElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *TrackElement) IfIsF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfIsf(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1188,7 +1188,7 @@ func (e *TrackElement) Itemid(s string) *TrackElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *TrackElement) ItemidF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Itemidf(format string, args ...any) *TrackElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1221,7 +1221,7 @@ func (e *TrackElement) IfItemid(condition bool, s string) *TrackElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *TrackElement) IfItemidF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfItemidf(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1270,7 +1270,7 @@ func (e *TrackElement) Itemprop(s string) *TrackElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *TrackElement) ItempropF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Itempropf(format string, args ...any) *TrackElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1295,7 +1295,7 @@ func (e *TrackElement) IfItemprop(condition bool, s string) *TrackElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *TrackElement) IfItempropF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfItempropf(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1336,7 +1336,7 @@ func (e *TrackElement) Itemref(s string) *TrackElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *TrackElement) ItemrefF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Itemreff(format string, args ...any) *TrackElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1357,7 +1357,7 @@ func (e *TrackElement) IfItemref(condition bool, s string) *TrackElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *TrackElement) IfItemrefF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfItemreff(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1472,7 +1472,7 @@ func (e *TrackElement) Itemtype(s string) *TrackElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *TrackElement) ItemtypeF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Itemtypef(format string, args ...any) *TrackElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1497,7 +1497,7 @@ func (e *TrackElement) IfItemtype(condition bool, s string) *TrackElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *TrackElement) IfItemtypeF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfItemtypef(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1538,7 +1538,7 @@ func (e *TrackElement) Lang(s string) *TrackElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *TrackElement) LangF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Langf(format string, args ...any) *TrackElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1559,7 +1559,7 @@ func (e *TrackElement) IfLang(condition bool, s string) *TrackElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *TrackElement) IfLangF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfLangf(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1598,7 +1598,7 @@ func (e *TrackElement) Nonce(s string) *TrackElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *TrackElement) NonceF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Noncef(format string, args ...any) *TrackElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1619,7 +1619,7 @@ func (e *TrackElement) IfNonce(condition bool, s string) *TrackElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *TrackElement) IfNonceF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfNoncef(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1744,7 +1744,7 @@ func (e *TrackElement) Role(s string) *TrackElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *TrackElement) RoleF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Rolef(format string, args ...any) *TrackElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1763,7 +1763,7 @@ func (e *TrackElement) IfRole(condition bool, s string) *TrackElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *TrackElement) IfRoleF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfRolef(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1799,7 +1799,7 @@ func (e *TrackElement) Slot(s string) *TrackElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *TrackElement) SlotF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Slotf(format string, args ...any) *TrackElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1818,7 +1818,7 @@ func (e *TrackElement) IfSlot(condition bool, s string) *TrackElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *TrackElement) IfSlotF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfSlotf(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1962,7 +1962,7 @@ func (e *TrackElement) StyleAdd(k string, v string) *TrackElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *TrackElement) StyleAddF(k string, format string, args ...any) *TrackElement {
+func (e *TrackElement) StyleAddf(k string, format string, args ...any) *TrackElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1977,9 +1977,9 @@ func (e *TrackElement) IfStyleAdd(condition bool, k string, v string) *TrackElem
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *TrackElement) IfStyleAddF(condition bool, k string, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfStyleAddf(condition bool, k string, format string, args ...any) *TrackElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2125,7 +2125,7 @@ func (e *TrackElement) Title(s string) *TrackElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *TrackElement) TitleF(format string, args ...any) *TrackElement {
+func (e *TrackElement) Titlef(format string, args ...any) *TrackElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2168,7 +2168,7 @@ func (e *TrackElement) IfTitle(condition bool, s string) *TrackElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *TrackElement) IfTitleF(condition bool, format string, args ...any) *TrackElement {
+func (e *TrackElement) IfTitlef(condition bool, format string, args ...any) *TrackElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

@@ -84,7 +84,7 @@ func (e *TimeElement) Text(text string) *TimeElement {
 	return e
 }
 
-func (e *TimeElement) TextF(format string, args ...any) *TimeElement {
+func (e *TimeElement) Textf(format string, args ...any) *TimeElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *TimeElement) IfText(condition bool, text string) *TimeElement {
 	return e
 }
 
-func (e *TimeElement) IfTextF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfTextf(condition bool, format string, args ...any) *TimeElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *TimeElement) IfEscaped(condition bool, text string) *TimeElement {
 	return e
 }
 
-func (e *TimeElement) EscapedF(format string, args ...any) *TimeElement {
+func (e *TimeElement) Escapedf(format string, args ...any) *TimeElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *TimeElement) IfEscapedF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfEscapedf(condition bool, format string, args ...any) *TimeElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -135,7 +135,7 @@ func (e *TimeElement) Datetime(s string) *TimeElement {
 }
 
 // Machine-readable value.
-func (e *TimeElement) DatetimeF(format string, args ...any) *TimeElement {
+func (e *TimeElement) Datetimef(format string, args ...any) *TimeElement {
 	return e.Datetime(fmt.Sprintf(format, args...))
 }
 
@@ -148,7 +148,7 @@ func (e *TimeElement) IfDatetime(condition bool, s string) *TimeElement {
 }
 
 // Machine-readable value.
-func (e *TimeElement) IfDatetimeF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfDatetimef(condition bool, format string, args ...any) *TimeElement {
 	if condition {
 		e.Datetime(fmt.Sprintf(format, args...))
 	}
@@ -746,7 +746,7 @@ func (e *TimeElement) ID(s string) *TimeElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *TimeElement) IDF(format string, args ...any) *TimeElement {
+func (e *TimeElement) IDf(format string, args ...any) *TimeElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -763,7 +763,7 @@ func (e *TimeElement) IfID(condition bool, s string) *TimeElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *TimeElement) IfIDF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfIDf(condition bool, format string, args ...any) *TimeElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -958,7 +958,7 @@ func (e *TimeElement) Is(s string) *TimeElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *TimeElement) IsF(format string, args ...any) *TimeElement {
+func (e *TimeElement) Isf(format string, args ...any) *TimeElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -979,7 +979,7 @@ func (e *TimeElement) IfIs(condition bool, s string) *TimeElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *TimeElement) IfIsF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfIsf(condition bool, format string, args ...any) *TimeElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1030,7 +1030,7 @@ func (e *TimeElement) Itemid(s string) *TimeElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *TimeElement) ItemidF(format string, args ...any) *TimeElement {
+func (e *TimeElement) Itemidf(format string, args ...any) *TimeElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1063,7 +1063,7 @@ func (e *TimeElement) IfItemid(condition bool, s string) *TimeElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *TimeElement) IfItemidF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfItemidf(condition bool, format string, args ...any) *TimeElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1112,7 +1112,7 @@ func (e *TimeElement) Itemprop(s string) *TimeElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *TimeElement) ItempropF(format string, args ...any) *TimeElement {
+func (e *TimeElement) Itempropf(format string, args ...any) *TimeElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1137,7 +1137,7 @@ func (e *TimeElement) IfItemprop(condition bool, s string) *TimeElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *TimeElement) IfItempropF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfItempropf(condition bool, format string, args ...any) *TimeElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1178,7 +1178,7 @@ func (e *TimeElement) Itemref(s string) *TimeElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *TimeElement) ItemrefF(format string, args ...any) *TimeElement {
+func (e *TimeElement) Itemreff(format string, args ...any) *TimeElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1199,7 +1199,7 @@ func (e *TimeElement) IfItemref(condition bool, s string) *TimeElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *TimeElement) IfItemrefF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfItemreff(condition bool, format string, args ...any) *TimeElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1314,7 +1314,7 @@ func (e *TimeElement) Itemtype(s string) *TimeElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *TimeElement) ItemtypeF(format string, args ...any) *TimeElement {
+func (e *TimeElement) Itemtypef(format string, args ...any) *TimeElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1339,7 +1339,7 @@ func (e *TimeElement) IfItemtype(condition bool, s string) *TimeElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *TimeElement) IfItemtypeF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfItemtypef(condition bool, format string, args ...any) *TimeElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1380,7 +1380,7 @@ func (e *TimeElement) Lang(s string) *TimeElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *TimeElement) LangF(format string, args ...any) *TimeElement {
+func (e *TimeElement) Langf(format string, args ...any) *TimeElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1401,7 +1401,7 @@ func (e *TimeElement) IfLang(condition bool, s string) *TimeElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *TimeElement) IfLangF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfLangf(condition bool, format string, args ...any) *TimeElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1440,7 +1440,7 @@ func (e *TimeElement) Nonce(s string) *TimeElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *TimeElement) NonceF(format string, args ...any) *TimeElement {
+func (e *TimeElement) Noncef(format string, args ...any) *TimeElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1461,7 +1461,7 @@ func (e *TimeElement) IfNonce(condition bool, s string) *TimeElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *TimeElement) IfNonceF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfNoncef(condition bool, format string, args ...any) *TimeElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1586,7 +1586,7 @@ func (e *TimeElement) Role(s string) *TimeElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *TimeElement) RoleF(format string, args ...any) *TimeElement {
+func (e *TimeElement) Rolef(format string, args ...any) *TimeElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1605,7 +1605,7 @@ func (e *TimeElement) IfRole(condition bool, s string) *TimeElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *TimeElement) IfRoleF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfRolef(condition bool, format string, args ...any) *TimeElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1641,7 +1641,7 @@ func (e *TimeElement) Slot(s string) *TimeElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *TimeElement) SlotF(format string, args ...any) *TimeElement {
+func (e *TimeElement) Slotf(format string, args ...any) *TimeElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1660,7 +1660,7 @@ func (e *TimeElement) IfSlot(condition bool, s string) *TimeElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *TimeElement) IfSlotF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfSlotf(condition bool, format string, args ...any) *TimeElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1804,7 +1804,7 @@ func (e *TimeElement) StyleAdd(k string, v string) *TimeElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *TimeElement) StyleAddF(k string, format string, args ...any) *TimeElement {
+func (e *TimeElement) StyleAddf(k string, format string, args ...any) *TimeElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1819,9 +1819,9 @@ func (e *TimeElement) IfStyleAdd(condition bool, k string, v string) *TimeElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *TimeElement) IfStyleAddF(condition bool, k string, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfStyleAddf(condition bool, k string, format string, args ...any) *TimeElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1967,7 +1967,7 @@ func (e *TimeElement) Title(s string) *TimeElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *TimeElement) TitleF(format string, args ...any) *TimeElement {
+func (e *TimeElement) Titlef(format string, args ...any) *TimeElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2010,7 +2010,7 @@ func (e *TimeElement) IfTitle(condition bool, s string) *TimeElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *TimeElement) IfTitleF(condition bool, format string, args ...any) *TimeElement {
+func (e *TimeElement) IfTitlef(condition bool, format string, args ...any) *TimeElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

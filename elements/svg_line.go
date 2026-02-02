@@ -83,7 +83,7 @@ func (e *SVGLineElement) Text(text string) *SVGLineElement {
 	return e
 }
 
-func (e *SVGLineElement) TextF(format string, args ...any) *SVGLineElement {
+func (e *SVGLineElement) Textf(format string, args ...any) *SVGLineElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGLineElement) IfText(condition bool, text string) *SVGLineElement {
 	return e
 }
 
-func (e *SVGLineElement) IfTextF(condition bool, format string, args ...any) *SVGLineElement {
+func (e *SVGLineElement) IfTextf(condition bool, format string, args ...any) *SVGLineElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGLineElement) IfEscaped(condition bool, text string) *SVGLineElement 
 	return e
 }
 
-func (e *SVGLineElement) EscapedF(format string, args ...any) *SVGLineElement {
+func (e *SVGLineElement) Escapedf(format string, args ...any) *SVGLineElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGLineElement) IfEscapedF(condition bool, format string, args ...any) *SVGLineElement {
+func (e *SVGLineElement) IfEscapedf(condition bool, format string, args ...any) *SVGLineElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -202,7 +202,7 @@ func (e *SVGLineElement) ID(s string) *SVGLineElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGLineElement) IDF(format string, args ...any) *SVGLineElement {
+func (e *SVGLineElement) IDf(format string, args ...any) *SVGLineElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -215,7 +215,7 @@ func (e *SVGLineElement) IfID(condition bool, s string) *SVGLineElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGLineElement) IfIDF(condition bool, format string, args ...any) *SVGLineElement {
+func (e *SVGLineElement) IfIDf(condition bool, format string, args ...any) *SVGLineElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -341,7 +341,7 @@ func (e *SVGLineElement) StyleAdd(k string, v string) *SVGLineElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGLineElement) StyleAddF(k string, format string, args ...any) *SVGLineElement {
+func (e *SVGLineElement) StyleAddf(k string, format string, args ...any) *SVGLineElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -354,9 +354,9 @@ func (e *SVGLineElement) IfStyleAdd(condition bool, k string, v string) *SVGLine
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGLineElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGLineElement {
+func (e *SVGLineElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGLineElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

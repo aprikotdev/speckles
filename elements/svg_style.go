@@ -84,7 +84,7 @@ func (e *SVGStyleElement) Text(text string) *SVGStyleElement {
 	return e
 }
 
-func (e *SVGStyleElement) TextF(format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) Textf(format string, args ...any) *SVGStyleElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGStyleElement) IfText(condition bool, text string) *SVGStyleElement {
 	return e
 }
 
-func (e *SVGStyleElement) IfTextF(condition bool, format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) IfTextf(condition bool, format string, args ...any) *SVGStyleElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGStyleElement) IfEscaped(condition bool, text string) *SVGStyleElemen
 	return e
 }
 
-func (e *SVGStyleElement) EscapedF(format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) Escapedf(format string, args ...any) *SVGStyleElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGStyleElement) IfEscapedF(condition bool, format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) IfEscapedf(condition bool, format string, args ...any) *SVGStyleElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -135,7 +135,7 @@ func (e *SVGStyleElement) Type(s string) *SVGStyleElement {
 }
 
 // The style sheet language.
-func (e *SVGStyleElement) TypeF(format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) Typef(format string, args ...any) *SVGStyleElement {
 	return e.Type(fmt.Sprintf(format, args...))
 }
 
@@ -148,7 +148,7 @@ func (e *SVGStyleElement) IfType(condition bool, s string) *SVGStyleElement {
 }
 
 // The style sheet language.
-func (e *SVGStyleElement) IfTypeF(condition bool, format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) IfTypef(condition bool, format string, args ...any) *SVGStyleElement {
 	if condition {
 		e.Type(fmt.Sprintf(format, args...))
 	}
@@ -175,7 +175,7 @@ func (e *SVGStyleElement) Media(s string) *SVGStyleElement {
 }
 
 // The intended destination medium for style information.
-func (e *SVGStyleElement) MediaF(format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) Mediaf(format string, args ...any) *SVGStyleElement {
 	return e.Media(fmt.Sprintf(format, args...))
 }
 
@@ -188,7 +188,7 @@ func (e *SVGStyleElement) IfMedia(condition bool, s string) *SVGStyleElement {
 }
 
 // The intended destination medium for style information.
-func (e *SVGStyleElement) IfMediaF(condition bool, format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) IfMediaf(condition bool, format string, args ...any) *SVGStyleElement {
 	if condition {
 		e.Media(fmt.Sprintf(format, args...))
 	}
@@ -215,7 +215,7 @@ func (e *SVGStyleElement) Title(s string) *SVGStyleElement {
 }
 
 // The advisory title.
-func (e *SVGStyleElement) TitleF(format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) Titlef(format string, args ...any) *SVGStyleElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -228,7 +228,7 @@ func (e *SVGStyleElement) IfTitle(condition bool, s string) *SVGStyleElement {
 }
 
 // The advisory title.
-func (e *SVGStyleElement) IfTitleF(condition bool, format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) IfTitlef(condition bool, format string, args ...any) *SVGStyleElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}
@@ -255,7 +255,7 @@ func (e *SVGStyleElement) ID(s string) *SVGStyleElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGStyleElement) IDF(format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) IDf(format string, args ...any) *SVGStyleElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -268,7 +268,7 @@ func (e *SVGStyleElement) IfID(condition bool, s string) *SVGStyleElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGStyleElement) IfIDF(condition bool, format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) IfIDf(condition bool, format string, args ...any) *SVGStyleElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -394,7 +394,7 @@ func (e *SVGStyleElement) StyleAdd(k string, v string) *SVGStyleElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGStyleElement) StyleAddF(k string, format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) StyleAddf(k string, format string, args ...any) *SVGStyleElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -407,9 +407,9 @@ func (e *SVGStyleElement) IfStyleAdd(condition bool, k string, v string) *SVGSty
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGStyleElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGStyleElement {
+func (e *SVGStyleElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGStyleElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

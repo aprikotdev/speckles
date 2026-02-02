@@ -84,7 +84,7 @@ func (e *BdoElement) Text(text string) *BdoElement {
 	return e
 }
 
-func (e *BdoElement) TextF(format string, args ...any) *BdoElement {
+func (e *BdoElement) Textf(format string, args ...any) *BdoElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *BdoElement) IfText(condition bool, text string) *BdoElement {
 	return e
 }
 
-func (e *BdoElement) IfTextF(condition bool, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfTextf(condition bool, format string, args ...any) *BdoElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *BdoElement) IfEscaped(condition bool, text string) *BdoElement {
 	return e
 }
 
-func (e *BdoElement) EscapedF(format string, args ...any) *BdoElement {
+func (e *BdoElement) Escapedf(format string, args ...any) *BdoElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *BdoElement) IfEscapedF(condition bool, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfEscapedf(condition bool, format string, args ...any) *BdoElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -706,7 +706,7 @@ func (e *BdoElement) ID(s string) *BdoElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *BdoElement) IDF(format string, args ...any) *BdoElement {
+func (e *BdoElement) IDf(format string, args ...any) *BdoElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -723,7 +723,7 @@ func (e *BdoElement) IfID(condition bool, s string) *BdoElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *BdoElement) IfIDF(condition bool, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfIDf(condition bool, format string, args ...any) *BdoElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -918,7 +918,7 @@ func (e *BdoElement) Is(s string) *BdoElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *BdoElement) IsF(format string, args ...any) *BdoElement {
+func (e *BdoElement) Isf(format string, args ...any) *BdoElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -939,7 +939,7 @@ func (e *BdoElement) IfIs(condition bool, s string) *BdoElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *BdoElement) IfIsF(condition bool, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfIsf(condition bool, format string, args ...any) *BdoElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -990,7 +990,7 @@ func (e *BdoElement) Itemid(s string) *BdoElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *BdoElement) ItemidF(format string, args ...any) *BdoElement {
+func (e *BdoElement) Itemidf(format string, args ...any) *BdoElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1023,7 +1023,7 @@ func (e *BdoElement) IfItemid(condition bool, s string) *BdoElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *BdoElement) IfItemidF(condition bool, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfItemidf(condition bool, format string, args ...any) *BdoElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1072,7 +1072,7 @@ func (e *BdoElement) Itemprop(s string) *BdoElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *BdoElement) ItempropF(format string, args ...any) *BdoElement {
+func (e *BdoElement) Itempropf(format string, args ...any) *BdoElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *BdoElement) IfItemprop(condition bool, s string) *BdoElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *BdoElement) IfItempropF(condition bool, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfItempropf(condition bool, format string, args ...any) *BdoElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1138,7 +1138,7 @@ func (e *BdoElement) Itemref(s string) *BdoElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *BdoElement) ItemrefF(format string, args ...any) *BdoElement {
+func (e *BdoElement) Itemreff(format string, args ...any) *BdoElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1159,7 +1159,7 @@ func (e *BdoElement) IfItemref(condition bool, s string) *BdoElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *BdoElement) IfItemrefF(condition bool, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfItemreff(condition bool, format string, args ...any) *BdoElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1274,7 +1274,7 @@ func (e *BdoElement) Itemtype(s string) *BdoElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *BdoElement) ItemtypeF(format string, args ...any) *BdoElement {
+func (e *BdoElement) Itemtypef(format string, args ...any) *BdoElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1299,7 +1299,7 @@ func (e *BdoElement) IfItemtype(condition bool, s string) *BdoElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *BdoElement) IfItemtypeF(condition bool, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfItemtypef(condition bool, format string, args ...any) *BdoElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1340,7 +1340,7 @@ func (e *BdoElement) Lang(s string) *BdoElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *BdoElement) LangF(format string, args ...any) *BdoElement {
+func (e *BdoElement) Langf(format string, args ...any) *BdoElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1361,7 +1361,7 @@ func (e *BdoElement) IfLang(condition bool, s string) *BdoElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *BdoElement) IfLangF(condition bool, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfLangf(condition bool, format string, args ...any) *BdoElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1400,7 +1400,7 @@ func (e *BdoElement) Nonce(s string) *BdoElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *BdoElement) NonceF(format string, args ...any) *BdoElement {
+func (e *BdoElement) Noncef(format string, args ...any) *BdoElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *BdoElement) IfNonce(condition bool, s string) *BdoElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *BdoElement) IfNonceF(condition bool, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfNoncef(condition bool, format string, args ...any) *BdoElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1546,7 +1546,7 @@ func (e *BdoElement) Role(s string) *BdoElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *BdoElement) RoleF(format string, args ...any) *BdoElement {
+func (e *BdoElement) Rolef(format string, args ...any) *BdoElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1565,7 +1565,7 @@ func (e *BdoElement) IfRole(condition bool, s string) *BdoElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *BdoElement) IfRoleF(condition bool, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfRolef(condition bool, format string, args ...any) *BdoElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1601,7 +1601,7 @@ func (e *BdoElement) Slot(s string) *BdoElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *BdoElement) SlotF(format string, args ...any) *BdoElement {
+func (e *BdoElement) Slotf(format string, args ...any) *BdoElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1620,7 +1620,7 @@ func (e *BdoElement) IfSlot(condition bool, s string) *BdoElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *BdoElement) IfSlotF(condition bool, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfSlotf(condition bool, format string, args ...any) *BdoElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1764,7 +1764,7 @@ func (e *BdoElement) StyleAdd(k string, v string) *BdoElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *BdoElement) StyleAddF(k string, format string, args ...any) *BdoElement {
+func (e *BdoElement) StyleAddf(k string, format string, args ...any) *BdoElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1779,9 +1779,9 @@ func (e *BdoElement) IfStyleAdd(condition bool, k string, v string) *BdoElement 
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *BdoElement) IfStyleAddF(condition bool, k string, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfStyleAddf(condition bool, k string, format string, args ...any) *BdoElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1927,7 +1927,7 @@ func (e *BdoElement) Title(s string) *BdoElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *BdoElement) TitleF(format string, args ...any) *BdoElement {
+func (e *BdoElement) Titlef(format string, args ...any) *BdoElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1970,7 +1970,7 @@ func (e *BdoElement) IfTitle(condition bool, s string) *BdoElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *BdoElement) IfTitleF(condition bool, format string, args ...any) *BdoElement {
+func (e *BdoElement) IfTitlef(condition bool, format string, args ...any) *BdoElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

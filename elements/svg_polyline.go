@@ -85,7 +85,7 @@ func (e *SVGPolylineElement) Text(text string) *SVGPolylineElement {
 	return e
 }
 
-func (e *SVGPolylineElement) TextF(format string, args ...any) *SVGPolylineElement {
+func (e *SVGPolylineElement) Textf(format string, args ...any) *SVGPolylineElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *SVGPolylineElement) IfText(condition bool, text string) *SVGPolylineEle
 	return e
 }
 
-func (e *SVGPolylineElement) IfTextF(condition bool, format string, args ...any) *SVGPolylineElement {
+func (e *SVGPolylineElement) IfTextf(condition bool, format string, args ...any) *SVGPolylineElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *SVGPolylineElement) IfEscaped(condition bool, text string) *SVGPolyline
 	return e
 }
 
-func (e *SVGPolylineElement) EscapedF(format string, args ...any) *SVGPolylineElement {
+func (e *SVGPolylineElement) Escapedf(format string, args ...any) *SVGPolylineElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGPolylineElement) IfEscapedF(condition bool, format string, args ...any) *SVGPolylineElement {
+func (e *SVGPolylineElement) IfEscapedf(condition bool, format string, args ...any) *SVGPolylineElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -136,7 +136,7 @@ func (e *SVGPolylineElement) Points(s string) *SVGPolylineElement {
 }
 
 // A list of points, each of which is a coordinate pair.
-func (e *SVGPolylineElement) PointsF(format string, args ...any) *SVGPolylineElement {
+func (e *SVGPolylineElement) Pointsf(format string, args ...any) *SVGPolylineElement {
 	return e.Points(fmt.Sprintf(format, args...))
 }
 
@@ -149,7 +149,7 @@ func (e *SVGPolylineElement) IfPoints(condition bool, s string) *SVGPolylineElem
 }
 
 // A list of points, each of which is a coordinate pair.
-func (e *SVGPolylineElement) IfPointsF(condition bool, format string, args ...any) *SVGPolylineElement {
+func (e *SVGPolylineElement) IfPointsf(condition bool, format string, args ...any) *SVGPolylineElement {
 	if condition {
 		e.Points(fmt.Sprintf(format, args...))
 	}
@@ -176,7 +176,7 @@ func (e *SVGPolylineElement) ID(s string) *SVGPolylineElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGPolylineElement) IDF(format string, args ...any) *SVGPolylineElement {
+func (e *SVGPolylineElement) IDf(format string, args ...any) *SVGPolylineElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -189,7 +189,7 @@ func (e *SVGPolylineElement) IfID(condition bool, s string) *SVGPolylineElement 
 }
 
 // Specifies a unique id for an element
-func (e *SVGPolylineElement) IfIDF(condition bool, format string, args ...any) *SVGPolylineElement {
+func (e *SVGPolylineElement) IfIDf(condition bool, format string, args ...any) *SVGPolylineElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -315,7 +315,7 @@ func (e *SVGPolylineElement) StyleAdd(k string, v string) *SVGPolylineElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGPolylineElement) StyleAddF(k string, format string, args ...any) *SVGPolylineElement {
+func (e *SVGPolylineElement) StyleAddf(k string, format string, args ...any) *SVGPolylineElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -328,9 +328,9 @@ func (e *SVGPolylineElement) IfStyleAdd(condition bool, k string, v string) *SVG
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGPolylineElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGPolylineElement {
+func (e *SVGPolylineElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGPolylineElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

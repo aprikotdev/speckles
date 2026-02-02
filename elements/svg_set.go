@@ -86,7 +86,7 @@ func (e *SVGSetElement) Text(text string) *SVGSetElement {
 	return e
 }
 
-func (e *SVGSetElement) TextF(format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) Textf(format string, args ...any) *SVGSetElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -97,7 +97,7 @@ func (e *SVGSetElement) IfText(condition bool, text string) *SVGSetElement {
 	return e
 }
 
-func (e *SVGSetElement) IfTextF(condition bool, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IfTextf(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -116,13 +116,13 @@ func (e *SVGSetElement) IfEscaped(condition bool, text string) *SVGSetElement {
 	return e
 }
 
-func (e *SVGSetElement) EscapedF(format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) Escapedf(format string, args ...any) *SVGSetElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGSetElement) IfEscapedF(condition bool, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IfEscapedf(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -137,7 +137,7 @@ func (e *SVGSetElement) To(s string) *SVGSetElement {
 }
 
 // The target Attribute value to assign on end.
-func (e *SVGSetElement) ToF(format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) Tof(format string, args ...any) *SVGSetElement {
 	return e.To(fmt.Sprintf(format, args...))
 }
 
@@ -150,7 +150,7 @@ func (e *SVGSetElement) IfTo(condition bool, s string) *SVGSetElement {
 }
 
 // The target Attribute value to assign on end.
-func (e *SVGSetElement) IfToF(condition bool, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IfTof(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.To(fmt.Sprintf(format, args...))
 	}
@@ -177,7 +177,7 @@ func (e *SVGSetElement) AttributeName(s string) *SVGSetElement {
 }
 
 // The name of the Attribute to assign.
-func (e *SVGSetElement) AttributeNameF(format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) AttributeNamef(format string, args ...any) *SVGSetElement {
 	return e.AttributeName(fmt.Sprintf(format, args...))
 }
 
@@ -190,7 +190,7 @@ func (e *SVGSetElement) IfAttributeName(condition bool, s string) *SVGSetElement
 }
 
 // The name of the Attribute to assign.
-func (e *SVGSetElement) IfAttributeNameF(condition bool, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IfAttributeNamef(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.AttributeName(fmt.Sprintf(format, args...))
 	}
@@ -258,7 +258,7 @@ func (e *SVGSetElement) Begin(s string) *SVGSetElement {
 }
 
 // The begin time for the element.
-func (e *SVGSetElement) BeginF(format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) Beginf(format string, args ...any) *SVGSetElement {
 	return e.Begin(fmt.Sprintf(format, args...))
 }
 
@@ -271,7 +271,7 @@ func (e *SVGSetElement) IfBegin(condition bool, s string) *SVGSetElement {
 }
 
 // The begin time for the element.
-func (e *SVGSetElement) IfBeginF(condition bool, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IfBeginf(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.Begin(fmt.Sprintf(format, args...))
 	}
@@ -298,7 +298,7 @@ func (e *SVGSetElement) Dur(s string) *SVGSetElement {
 }
 
 // The simple duration for the element.
-func (e *SVGSetElement) DurF(format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) Durf(format string, args ...any) *SVGSetElement {
 	return e.Dur(fmt.Sprintf(format, args...))
 }
 
@@ -311,7 +311,7 @@ func (e *SVGSetElement) IfDur(condition bool, s string) *SVGSetElement {
 }
 
 // The simple duration for the element.
-func (e *SVGSetElement) IfDurF(condition bool, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IfDurf(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.Dur(fmt.Sprintf(format, args...))
 	}
@@ -338,7 +338,7 @@ func (e *SVGSetElement) End(s string) *SVGSetElement {
 }
 
 // The end for the element.
-func (e *SVGSetElement) EndF(format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) Endf(format string, args ...any) *SVGSetElement {
 	return e.End(fmt.Sprintf(format, args...))
 }
 
@@ -351,7 +351,7 @@ func (e *SVGSetElement) IfEnd(condition bool, s string) *SVGSetElement {
 }
 
 // The end for the element.
-func (e *SVGSetElement) IfEndF(condition bool, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IfEndf(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.End(fmt.Sprintf(format, args...))
 	}
@@ -378,7 +378,7 @@ func (e *SVGSetElement) Min(s string) *SVGSetElement {
 }
 
 // The minimum value allowed for the Attribute.
-func (e *SVGSetElement) MinF(format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) Minf(format string, args ...any) *SVGSetElement {
 	return e.Min(fmt.Sprintf(format, args...))
 }
 
@@ -391,7 +391,7 @@ func (e *SVGSetElement) IfMin(condition bool, s string) *SVGSetElement {
 }
 
 // The minimum value allowed for the Attribute.
-func (e *SVGSetElement) IfMinF(condition bool, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IfMinf(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.Min(fmt.Sprintf(format, args...))
 	}
@@ -418,7 +418,7 @@ func (e *SVGSetElement) Max(s string) *SVGSetElement {
 }
 
 // The maximum value allowed for the Attribute.
-func (e *SVGSetElement) MaxF(format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) Maxf(format string, args ...any) *SVGSetElement {
 	return e.Max(fmt.Sprintf(format, args...))
 }
 
@@ -431,7 +431,7 @@ func (e *SVGSetElement) IfMax(condition bool, s string) *SVGSetElement {
 }
 
 // The maximum value allowed for the Attribute.
-func (e *SVGSetElement) IfMaxF(condition bool, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IfMaxf(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.Max(fmt.Sprintf(format, args...))
 	}
@@ -488,7 +488,7 @@ func (e *SVGSetElement) RepeatCount(s string) *SVGSetElement {
 }
 
 // Defines the number of times the element is repeated.
-func (e *SVGSetElement) RepeatCountF(format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) RepeatCountf(format string, args ...any) *SVGSetElement {
 	return e.RepeatCount(fmt.Sprintf(format, args...))
 }
 
@@ -501,7 +501,7 @@ func (e *SVGSetElement) IfRepeatCount(condition bool, s string) *SVGSetElement {
 }
 
 // Defines the number of times the element is repeated.
-func (e *SVGSetElement) IfRepeatCountF(condition bool, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IfRepeatCountf(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.RepeatCount(fmt.Sprintf(format, args...))
 	}
@@ -528,7 +528,7 @@ func (e *SVGSetElement) RepeatDur(s string) *SVGSetElement {
 }
 
 // Defines the duration for the element to repeat.
-func (e *SVGSetElement) RepeatDurF(format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) RepeatDurf(format string, args ...any) *SVGSetElement {
 	return e.RepeatDur(fmt.Sprintf(format, args...))
 }
 
@@ -541,7 +541,7 @@ func (e *SVGSetElement) IfRepeatDur(condition bool, s string) *SVGSetElement {
 }
 
 // Defines the duration for the element to repeat.
-func (e *SVGSetElement) IfRepeatDurF(condition bool, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IfRepeatDurf(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.RepeatDur(fmt.Sprintf(format, args...))
 	}
@@ -596,7 +596,7 @@ func (e *SVGSetElement) ID(s string) *SVGSetElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGSetElement) IDF(format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IDf(format string, args ...any) *SVGSetElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -609,7 +609,7 @@ func (e *SVGSetElement) IfID(condition bool, s string) *SVGSetElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGSetElement) IfIDF(condition bool, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IfIDf(condition bool, format string, args ...any) *SVGSetElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -735,7 +735,7 @@ func (e *SVGSetElement) StyleAdd(k string, v string) *SVGSetElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGSetElement) StyleAddF(k string, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) StyleAddf(k string, format string, args ...any) *SVGSetElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -748,9 +748,9 @@ func (e *SVGSetElement) IfStyleAdd(condition bool, k string, v string) *SVGSetEl
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGSetElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGSetElement {
+func (e *SVGSetElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGSetElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

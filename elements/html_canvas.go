@@ -84,7 +84,7 @@ func (e *CanvasElement) Text(text string) *CanvasElement {
 	return e
 }
 
-func (e *CanvasElement) TextF(format string, args ...any) *CanvasElement {
+func (e *CanvasElement) Textf(format string, args ...any) *CanvasElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *CanvasElement) IfText(condition bool, text string) *CanvasElement {
 	return e
 }
 
-func (e *CanvasElement) IfTextF(condition bool, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfTextf(condition bool, format string, args ...any) *CanvasElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *CanvasElement) IfEscaped(condition bool, text string) *CanvasElement {
 	return e
 }
 
-func (e *CanvasElement) EscapedF(format string, args ...any) *CanvasElement {
+func (e *CanvasElement) Escapedf(format string, args ...any) *CanvasElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *CanvasElement) IfEscapedF(condition bool, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfEscapedf(condition bool, format string, args ...any) *CanvasElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -760,7 +760,7 @@ func (e *CanvasElement) ID(s string) *CanvasElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *CanvasElement) IDF(format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IDf(format string, args ...any) *CanvasElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -777,7 +777,7 @@ func (e *CanvasElement) IfID(condition bool, s string) *CanvasElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *CanvasElement) IfIDF(condition bool, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfIDf(condition bool, format string, args ...any) *CanvasElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -972,7 +972,7 @@ func (e *CanvasElement) Is(s string) *CanvasElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *CanvasElement) IsF(format string, args ...any) *CanvasElement {
+func (e *CanvasElement) Isf(format string, args ...any) *CanvasElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -993,7 +993,7 @@ func (e *CanvasElement) IfIs(condition bool, s string) *CanvasElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *CanvasElement) IfIsF(condition bool, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfIsf(condition bool, format string, args ...any) *CanvasElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1044,7 +1044,7 @@ func (e *CanvasElement) Itemid(s string) *CanvasElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *CanvasElement) ItemidF(format string, args ...any) *CanvasElement {
+func (e *CanvasElement) Itemidf(format string, args ...any) *CanvasElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1077,7 +1077,7 @@ func (e *CanvasElement) IfItemid(condition bool, s string) *CanvasElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *CanvasElement) IfItemidF(condition bool, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfItemidf(condition bool, format string, args ...any) *CanvasElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1126,7 +1126,7 @@ func (e *CanvasElement) Itemprop(s string) *CanvasElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *CanvasElement) ItempropF(format string, args ...any) *CanvasElement {
+func (e *CanvasElement) Itempropf(format string, args ...any) *CanvasElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1151,7 +1151,7 @@ func (e *CanvasElement) IfItemprop(condition bool, s string) *CanvasElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *CanvasElement) IfItempropF(condition bool, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfItempropf(condition bool, format string, args ...any) *CanvasElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1192,7 +1192,7 @@ func (e *CanvasElement) Itemref(s string) *CanvasElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *CanvasElement) ItemrefF(format string, args ...any) *CanvasElement {
+func (e *CanvasElement) Itemreff(format string, args ...any) *CanvasElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1213,7 +1213,7 @@ func (e *CanvasElement) IfItemref(condition bool, s string) *CanvasElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *CanvasElement) IfItemrefF(condition bool, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfItemreff(condition bool, format string, args ...any) *CanvasElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1328,7 +1328,7 @@ func (e *CanvasElement) Itemtype(s string) *CanvasElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *CanvasElement) ItemtypeF(format string, args ...any) *CanvasElement {
+func (e *CanvasElement) Itemtypef(format string, args ...any) *CanvasElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1353,7 +1353,7 @@ func (e *CanvasElement) IfItemtype(condition bool, s string) *CanvasElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *CanvasElement) IfItemtypeF(condition bool, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfItemtypef(condition bool, format string, args ...any) *CanvasElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1394,7 +1394,7 @@ func (e *CanvasElement) Lang(s string) *CanvasElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *CanvasElement) LangF(format string, args ...any) *CanvasElement {
+func (e *CanvasElement) Langf(format string, args ...any) *CanvasElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1415,7 +1415,7 @@ func (e *CanvasElement) IfLang(condition bool, s string) *CanvasElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *CanvasElement) IfLangF(condition bool, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfLangf(condition bool, format string, args ...any) *CanvasElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1454,7 +1454,7 @@ func (e *CanvasElement) Nonce(s string) *CanvasElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *CanvasElement) NonceF(format string, args ...any) *CanvasElement {
+func (e *CanvasElement) Noncef(format string, args ...any) *CanvasElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1475,7 +1475,7 @@ func (e *CanvasElement) IfNonce(condition bool, s string) *CanvasElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *CanvasElement) IfNonceF(condition bool, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfNoncef(condition bool, format string, args ...any) *CanvasElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1600,7 +1600,7 @@ func (e *CanvasElement) Role(s string) *CanvasElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *CanvasElement) RoleF(format string, args ...any) *CanvasElement {
+func (e *CanvasElement) Rolef(format string, args ...any) *CanvasElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1619,7 +1619,7 @@ func (e *CanvasElement) IfRole(condition bool, s string) *CanvasElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *CanvasElement) IfRoleF(condition bool, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfRolef(condition bool, format string, args ...any) *CanvasElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1655,7 +1655,7 @@ func (e *CanvasElement) Slot(s string) *CanvasElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *CanvasElement) SlotF(format string, args ...any) *CanvasElement {
+func (e *CanvasElement) Slotf(format string, args ...any) *CanvasElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1674,7 +1674,7 @@ func (e *CanvasElement) IfSlot(condition bool, s string) *CanvasElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *CanvasElement) IfSlotF(condition bool, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfSlotf(condition bool, format string, args ...any) *CanvasElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1818,7 +1818,7 @@ func (e *CanvasElement) StyleAdd(k string, v string) *CanvasElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *CanvasElement) StyleAddF(k string, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) StyleAddf(k string, format string, args ...any) *CanvasElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1833,9 +1833,9 @@ func (e *CanvasElement) IfStyleAdd(condition bool, k string, v string) *CanvasEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *CanvasElement) IfStyleAddF(condition bool, k string, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfStyleAddf(condition bool, k string, format string, args ...any) *CanvasElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1981,7 +1981,7 @@ func (e *CanvasElement) Title(s string) *CanvasElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *CanvasElement) TitleF(format string, args ...any) *CanvasElement {
+func (e *CanvasElement) Titlef(format string, args ...any) *CanvasElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2024,7 +2024,7 @@ func (e *CanvasElement) IfTitle(condition bool, s string) *CanvasElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *CanvasElement) IfTitleF(condition bool, format string, args ...any) *CanvasElement {
+func (e *CanvasElement) IfTitlef(condition bool, format string, args ...any) *CanvasElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

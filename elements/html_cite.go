@@ -85,7 +85,7 @@ func (e *CiteElement) Text(text string) *CiteElement {
 	return e
 }
 
-func (e *CiteElement) TextF(format string, args ...any) *CiteElement {
+func (e *CiteElement) Textf(format string, args ...any) *CiteElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *CiteElement) IfText(condition bool, text string) *CiteElement {
 	return e
 }
 
-func (e *CiteElement) IfTextF(condition bool, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfTextf(condition bool, format string, args ...any) *CiteElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *CiteElement) IfEscaped(condition bool, text string) *CiteElement {
 	return e
 }
 
-func (e *CiteElement) EscapedF(format string, args ...any) *CiteElement {
+func (e *CiteElement) Escapedf(format string, args ...any) *CiteElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *CiteElement) IfEscapedF(condition bool, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfEscapedf(condition bool, format string, args ...any) *CiteElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -707,7 +707,7 @@ func (e *CiteElement) ID(s string) *CiteElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *CiteElement) IDF(format string, args ...any) *CiteElement {
+func (e *CiteElement) IDf(format string, args ...any) *CiteElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -724,7 +724,7 @@ func (e *CiteElement) IfID(condition bool, s string) *CiteElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *CiteElement) IfIDF(condition bool, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfIDf(condition bool, format string, args ...any) *CiteElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -919,7 +919,7 @@ func (e *CiteElement) Is(s string) *CiteElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *CiteElement) IsF(format string, args ...any) *CiteElement {
+func (e *CiteElement) Isf(format string, args ...any) *CiteElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -940,7 +940,7 @@ func (e *CiteElement) IfIs(condition bool, s string) *CiteElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *CiteElement) IfIsF(condition bool, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfIsf(condition bool, format string, args ...any) *CiteElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -991,7 +991,7 @@ func (e *CiteElement) Itemid(s string) *CiteElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *CiteElement) ItemidF(format string, args ...any) *CiteElement {
+func (e *CiteElement) Itemidf(format string, args ...any) *CiteElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1024,7 +1024,7 @@ func (e *CiteElement) IfItemid(condition bool, s string) *CiteElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *CiteElement) IfItemidF(condition bool, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfItemidf(condition bool, format string, args ...any) *CiteElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1073,7 +1073,7 @@ func (e *CiteElement) Itemprop(s string) *CiteElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *CiteElement) ItempropF(format string, args ...any) *CiteElement {
+func (e *CiteElement) Itempropf(format string, args ...any) *CiteElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1098,7 +1098,7 @@ func (e *CiteElement) IfItemprop(condition bool, s string) *CiteElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *CiteElement) IfItempropF(condition bool, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfItempropf(condition bool, format string, args ...any) *CiteElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1139,7 +1139,7 @@ func (e *CiteElement) Itemref(s string) *CiteElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *CiteElement) ItemrefF(format string, args ...any) *CiteElement {
+func (e *CiteElement) Itemreff(format string, args ...any) *CiteElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1160,7 +1160,7 @@ func (e *CiteElement) IfItemref(condition bool, s string) *CiteElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *CiteElement) IfItemrefF(condition bool, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfItemreff(condition bool, format string, args ...any) *CiteElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1275,7 +1275,7 @@ func (e *CiteElement) Itemtype(s string) *CiteElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *CiteElement) ItemtypeF(format string, args ...any) *CiteElement {
+func (e *CiteElement) Itemtypef(format string, args ...any) *CiteElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1300,7 +1300,7 @@ func (e *CiteElement) IfItemtype(condition bool, s string) *CiteElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *CiteElement) IfItemtypeF(condition bool, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfItemtypef(condition bool, format string, args ...any) *CiteElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1341,7 +1341,7 @@ func (e *CiteElement) Lang(s string) *CiteElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *CiteElement) LangF(format string, args ...any) *CiteElement {
+func (e *CiteElement) Langf(format string, args ...any) *CiteElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1362,7 +1362,7 @@ func (e *CiteElement) IfLang(condition bool, s string) *CiteElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *CiteElement) IfLangF(condition bool, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfLangf(condition bool, format string, args ...any) *CiteElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1401,7 +1401,7 @@ func (e *CiteElement) Nonce(s string) *CiteElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *CiteElement) NonceF(format string, args ...any) *CiteElement {
+func (e *CiteElement) Noncef(format string, args ...any) *CiteElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1422,7 +1422,7 @@ func (e *CiteElement) IfNonce(condition bool, s string) *CiteElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *CiteElement) IfNonceF(condition bool, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfNoncef(condition bool, format string, args ...any) *CiteElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1547,7 +1547,7 @@ func (e *CiteElement) Role(s string) *CiteElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *CiteElement) RoleF(format string, args ...any) *CiteElement {
+func (e *CiteElement) Rolef(format string, args ...any) *CiteElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1566,7 +1566,7 @@ func (e *CiteElement) IfRole(condition bool, s string) *CiteElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *CiteElement) IfRoleF(condition bool, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfRolef(condition bool, format string, args ...any) *CiteElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1602,7 +1602,7 @@ func (e *CiteElement) Slot(s string) *CiteElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *CiteElement) SlotF(format string, args ...any) *CiteElement {
+func (e *CiteElement) Slotf(format string, args ...any) *CiteElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1621,7 +1621,7 @@ func (e *CiteElement) IfSlot(condition bool, s string) *CiteElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *CiteElement) IfSlotF(condition bool, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfSlotf(condition bool, format string, args ...any) *CiteElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1765,7 +1765,7 @@ func (e *CiteElement) StyleAdd(k string, v string) *CiteElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *CiteElement) StyleAddF(k string, format string, args ...any) *CiteElement {
+func (e *CiteElement) StyleAddf(k string, format string, args ...any) *CiteElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1780,9 +1780,9 @@ func (e *CiteElement) IfStyleAdd(condition bool, k string, v string) *CiteElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *CiteElement) IfStyleAddF(condition bool, k string, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfStyleAddf(condition bool, k string, format string, args ...any) *CiteElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1928,7 +1928,7 @@ func (e *CiteElement) Title(s string) *CiteElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *CiteElement) TitleF(format string, args ...any) *CiteElement {
+func (e *CiteElement) Titlef(format string, args ...any) *CiteElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1971,7 +1971,7 @@ func (e *CiteElement) IfTitle(condition bool, s string) *CiteElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *CiteElement) IfTitleF(condition bool, format string, args ...any) *CiteElement {
+func (e *CiteElement) IfTitlef(condition bool, format string, args ...any) *CiteElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

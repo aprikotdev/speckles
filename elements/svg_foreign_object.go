@@ -85,7 +85,7 @@ func (e *SVGForeignObjectElement) Text(text string) *SVGForeignObjectElement {
 	return e
 }
 
-func (e *SVGForeignObjectElement) TextF(format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) Textf(format string, args ...any) *SVGForeignObjectElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *SVGForeignObjectElement) IfText(condition bool, text string) *SVGForeig
 	return e
 }
 
-func (e *SVGForeignObjectElement) IfTextF(condition bool, format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) IfTextf(condition bool, format string, args ...any) *SVGForeignObjectElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *SVGForeignObjectElement) IfEscaped(condition bool, text string) *SVGFor
 	return e
 }
 
-func (e *SVGForeignObjectElement) EscapedF(format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) Escapedf(format string, args ...any) *SVGForeignObjectElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGForeignObjectElement) IfEscapedF(condition bool, format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) IfEscapedf(condition bool, format string, args ...any) *SVGForeignObjectElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -138,7 +138,7 @@ func (e *SVGForeignObjectElement) X(s string) *SVGForeignObjectElement {
 
 // The x-axis coordinate of the side of the rectangular region which is closest
 // to the user.
-func (e *SVGForeignObjectElement) XF(format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) Xf(format string, args ...any) *SVGForeignObjectElement {
 	return e.X(fmt.Sprintf(format, args...))
 }
 
@@ -153,7 +153,7 @@ func (e *SVGForeignObjectElement) IfX(condition bool, s string) *SVGForeignObjec
 
 // The x-axis coordinate of the side of the rectangular region which is closest
 // to the user.
-func (e *SVGForeignObjectElement) IfXF(condition bool, format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) IfXf(condition bool, format string, args ...any) *SVGForeignObjectElement {
 	if condition {
 		e.X(fmt.Sprintf(format, args...))
 	}
@@ -183,7 +183,7 @@ func (e *SVGForeignObjectElement) Y(s string) *SVGForeignObjectElement {
 
 // The y-axis coordinate of the side of the rectangular region which is closest
 // to the user.
-func (e *SVGForeignObjectElement) YF(format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) Yf(format string, args ...any) *SVGForeignObjectElement {
 	return e.Y(fmt.Sprintf(format, args...))
 }
 
@@ -198,7 +198,7 @@ func (e *SVGForeignObjectElement) IfY(condition bool, s string) *SVGForeignObjec
 
 // The y-axis coordinate of the side of the rectangular region which is closest
 // to the user.
-func (e *SVGForeignObjectElement) IfYF(condition bool, format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) IfYf(condition bool, format string, args ...any) *SVGForeignObjectElement {
 	if condition {
 		e.Y(fmt.Sprintf(format, args...))
 	}
@@ -226,7 +226,7 @@ func (e *SVGForeignObjectElement) Width(s string) *SVGForeignObjectElement {
 }
 
 // The width of the rectangular region.
-func (e *SVGForeignObjectElement) WidthF(format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) Widthf(format string, args ...any) *SVGForeignObjectElement {
 	return e.Width(fmt.Sprintf(format, args...))
 }
 
@@ -239,7 +239,7 @@ func (e *SVGForeignObjectElement) IfWidth(condition bool, s string) *SVGForeignO
 }
 
 // The width of the rectangular region.
-func (e *SVGForeignObjectElement) IfWidthF(condition bool, format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) IfWidthf(condition bool, format string, args ...any) *SVGForeignObjectElement {
 	if condition {
 		e.Width(fmt.Sprintf(format, args...))
 	}
@@ -266,7 +266,7 @@ func (e *SVGForeignObjectElement) Height(s string) *SVGForeignObjectElement {
 }
 
 // The height of the rectangular region.
-func (e *SVGForeignObjectElement) HeightF(format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) Heightf(format string, args ...any) *SVGForeignObjectElement {
 	return e.Height(fmt.Sprintf(format, args...))
 }
 
@@ -279,7 +279,7 @@ func (e *SVGForeignObjectElement) IfHeight(condition bool, s string) *SVGForeign
 }
 
 // The height of the rectangular region.
-func (e *SVGForeignObjectElement) IfHeightF(condition bool, format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) IfHeightf(condition bool, format string, args ...any) *SVGForeignObjectElement {
 	if condition {
 		e.Height(fmt.Sprintf(format, args...))
 	}
@@ -308,7 +308,7 @@ func (e *SVGForeignObjectElement) RequiredExtensions(s string) *SVGForeignObject
 
 // A space-separated list of required extensions, indicating that the parent SVG
 // document must include the specified extensions for this element to be valid.
-func (e *SVGForeignObjectElement) RequiredExtensionsF(format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) RequiredExtensionsf(format string, args ...any) *SVGForeignObjectElement {
 	return e.RequiredExtensions(fmt.Sprintf(format, args...))
 }
 
@@ -323,7 +323,7 @@ func (e *SVGForeignObjectElement) IfRequiredExtensions(condition bool, s string)
 
 // A space-separated list of required extensions, indicating that the parent SVG
 // document must include the specified extensions for this element to be valid.
-func (e *SVGForeignObjectElement) IfRequiredExtensionsF(condition bool, format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) IfRequiredExtensionsf(condition bool, format string, args ...any) *SVGForeignObjectElement {
 	if condition {
 		e.RequiredExtensions(fmt.Sprintf(format, args...))
 	}
@@ -355,7 +355,7 @@ func (e *SVGForeignObjectElement) RequiredFeatures(s string) *SVGForeignObjectEl
 // A space-separated list of required features, indicating that the parent SVG
 // document must include support for all of the specified features for this
 // element to be valid.
-func (e *SVGForeignObjectElement) RequiredFeaturesF(format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) RequiredFeaturesf(format string, args ...any) *SVGForeignObjectElement {
 	return e.RequiredFeatures(fmt.Sprintf(format, args...))
 }
 
@@ -372,7 +372,7 @@ func (e *SVGForeignObjectElement) IfRequiredFeatures(condition bool, s string) *
 // A space-separated list of required features, indicating that the parent SVG
 // document must include support for all of the specified features for this
 // element to be valid.
-func (e *SVGForeignObjectElement) IfRequiredFeaturesF(condition bool, format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) IfRequiredFeaturesf(condition bool, format string, args ...any) *SVGForeignObjectElement {
 	if condition {
 		e.RequiredFeatures(fmt.Sprintf(format, args...))
 	}
@@ -405,7 +405,7 @@ func (e *SVGForeignObjectElement) SystemLanguage(s string) *SVGForeignObjectElem
 // A space-separated list of language codes, indicating that the parent SVG
 // document must include support for all of the specified languages for this
 // element to be valid.
-func (e *SVGForeignObjectElement) SystemLanguageF(format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) SystemLanguagef(format string, args ...any) *SVGForeignObjectElement {
 	return e.SystemLanguage(fmt.Sprintf(format, args...))
 }
 
@@ -422,7 +422,7 @@ func (e *SVGForeignObjectElement) IfSystemLanguage(condition bool, s string) *SV
 // A space-separated list of language codes, indicating that the parent SVG
 // document must include support for all of the specified languages for this
 // element to be valid.
-func (e *SVGForeignObjectElement) IfSystemLanguageF(condition bool, format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) IfSystemLanguagef(condition bool, format string, args ...any) *SVGForeignObjectElement {
 	if condition {
 		e.SystemLanguage(fmt.Sprintf(format, args...))
 	}
@@ -451,7 +451,7 @@ func (e *SVGForeignObjectElement) ID(s string) *SVGForeignObjectElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGForeignObjectElement) IDF(format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) IDf(format string, args ...any) *SVGForeignObjectElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -464,7 +464,7 @@ func (e *SVGForeignObjectElement) IfID(condition bool, s string) *SVGForeignObje
 }
 
 // Specifies a unique id for an element
-func (e *SVGForeignObjectElement) IfIDF(condition bool, format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) IfIDf(condition bool, format string, args ...any) *SVGForeignObjectElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -590,7 +590,7 @@ func (e *SVGForeignObjectElement) StyleAdd(k string, v string) *SVGForeignObject
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGForeignObjectElement) StyleAddF(k string, format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) StyleAddf(k string, format string, args ...any) *SVGForeignObjectElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -603,9 +603,9 @@ func (e *SVGForeignObjectElement) IfStyleAdd(condition bool, k string, v string)
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGForeignObjectElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGForeignObjectElement {
+func (e *SVGForeignObjectElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGForeignObjectElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

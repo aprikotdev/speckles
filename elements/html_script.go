@@ -83,7 +83,7 @@ func (e *ScriptElement) Text(text string) *ScriptElement {
 	return e
 }
 
-func (e *ScriptElement) TextF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Textf(format string, args ...any) *ScriptElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *ScriptElement) IfText(condition bool, text string) *ScriptElement {
 	return e
 }
 
-func (e *ScriptElement) IfTextF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfTextf(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *ScriptElement) IfEscaped(condition bool, text string) *ScriptElement {
 	return e
 }
 
-func (e *ScriptElement) EscapedF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Escapedf(format string, args ...any) *ScriptElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *ScriptElement) IfEscapedF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfEscapedf(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -248,7 +248,7 @@ func (e *ScriptElement) Integrity(s string) *ScriptElement {
 }
 
 // Subresource integrity.
-func (e *ScriptElement) IntegrityF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Integrityf(format string, args ...any) *ScriptElement {
 	return e.Integrity(fmt.Sprintf(format, args...))
 }
 
@@ -261,7 +261,7 @@ func (e *ScriptElement) IfIntegrity(condition bool, s string) *ScriptElement {
 }
 
 // Subresource integrity.
-func (e *ScriptElement) IfIntegrityF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfIntegrityf(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Integrity(fmt.Sprintf(format, args...))
 	}
@@ -288,7 +288,7 @@ func (e *ScriptElement) Language(s string) *ScriptElement {
 }
 
 // Type of script.
-func (e *ScriptElement) LanguageF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Languagef(format string, args ...any) *ScriptElement {
 	return e.Language(fmt.Sprintf(format, args...))
 }
 
@@ -301,7 +301,7 @@ func (e *ScriptElement) IfLanguage(condition bool, s string) *ScriptElement {
 }
 
 // Type of script.
-func (e *ScriptElement) IfLanguageF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfLanguagef(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Language(fmt.Sprintf(format, args...))
 	}
@@ -370,7 +370,7 @@ func (e *ScriptElement) Nonce(s string) *ScriptElement {
 }
 
 // Cryptographic nonce used in Content Security Policy checks [CSP]
-func (e *ScriptElement) NonceF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Noncef(format string, args ...any) *ScriptElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -383,7 +383,7 @@ func (e *ScriptElement) IfNonce(condition bool, s string) *ScriptElement {
 }
 
 // Cryptographic nonce used in Content Security Policy checks [CSP]
-func (e *ScriptElement) IfNonceF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfNoncef(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -457,7 +457,7 @@ func (e *ScriptElement) Src(s string) *ScriptElement {
 }
 
 // Address of the resource.
-func (e *ScriptElement) SrcF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Srcf(format string, args ...any) *ScriptElement {
 	return e.Src(fmt.Sprintf(format, args...))
 }
 
@@ -470,7 +470,7 @@ func (e *ScriptElement) IfSrc(condition bool, s string) *ScriptElement {
 }
 
 // Address of the resource.
-func (e *ScriptElement) IfSrcF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfSrcf(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Src(fmt.Sprintf(format, args...))
 	}
@@ -497,7 +497,7 @@ func (e *ScriptElement) Type(s string) *ScriptElement {
 }
 
 // Type of embedded resource.
-func (e *ScriptElement) TypeF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Typef(format string, args ...any) *ScriptElement {
 	return e.Type(fmt.Sprintf(format, args...))
 }
 
@@ -510,7 +510,7 @@ func (e *ScriptElement) IfType(condition bool, s string) *ScriptElement {
 }
 
 // Type of embedded resource.
-func (e *ScriptElement) IfTypeF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfTypef(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Type(fmt.Sprintf(format, args...))
 	}
@@ -1108,7 +1108,7 @@ func (e *ScriptElement) ID(s string) *ScriptElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ScriptElement) IDF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IDf(format string, args ...any) *ScriptElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -1125,7 +1125,7 @@ func (e *ScriptElement) IfID(condition bool, s string) *ScriptElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ScriptElement) IfIDF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfIDf(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1320,7 +1320,7 @@ func (e *ScriptElement) Is(s string) *ScriptElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ScriptElement) IsF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Isf(format string, args ...any) *ScriptElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1341,7 +1341,7 @@ func (e *ScriptElement) IfIs(condition bool, s string) *ScriptElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ScriptElement) IfIsF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfIsf(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1392,7 +1392,7 @@ func (e *ScriptElement) Itemid(s string) *ScriptElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ScriptElement) ItemidF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Itemidf(format string, args ...any) *ScriptElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1425,7 +1425,7 @@ func (e *ScriptElement) IfItemid(condition bool, s string) *ScriptElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ScriptElement) IfItemidF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfItemidf(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1474,7 +1474,7 @@ func (e *ScriptElement) Itemprop(s string) *ScriptElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ScriptElement) ItempropF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Itempropf(format string, args ...any) *ScriptElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1499,7 +1499,7 @@ func (e *ScriptElement) IfItemprop(condition bool, s string) *ScriptElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ScriptElement) IfItempropF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfItempropf(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1540,7 +1540,7 @@ func (e *ScriptElement) Itemref(s string) *ScriptElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ScriptElement) ItemrefF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Itemreff(format string, args ...any) *ScriptElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1561,7 +1561,7 @@ func (e *ScriptElement) IfItemref(condition bool, s string) *ScriptElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ScriptElement) IfItemrefF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfItemreff(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1676,7 +1676,7 @@ func (e *ScriptElement) Itemtype(s string) *ScriptElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ScriptElement) ItemtypeF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Itemtypef(format string, args ...any) *ScriptElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1701,7 +1701,7 @@ func (e *ScriptElement) IfItemtype(condition bool, s string) *ScriptElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ScriptElement) IfItemtypeF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfItemtypef(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1742,7 +1742,7 @@ func (e *ScriptElement) Lang(s string) *ScriptElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ScriptElement) LangF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Langf(format string, args ...any) *ScriptElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1763,7 +1763,7 @@ func (e *ScriptElement) IfLang(condition bool, s string) *ScriptElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ScriptElement) IfLangF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfLangf(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1888,7 +1888,7 @@ func (e *ScriptElement) Role(s string) *ScriptElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ScriptElement) RoleF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Rolef(format string, args ...any) *ScriptElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1907,7 +1907,7 @@ func (e *ScriptElement) IfRole(condition bool, s string) *ScriptElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ScriptElement) IfRoleF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfRolef(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1943,7 +1943,7 @@ func (e *ScriptElement) Slot(s string) *ScriptElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ScriptElement) SlotF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Slotf(format string, args ...any) *ScriptElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1962,7 +1962,7 @@ func (e *ScriptElement) IfSlot(condition bool, s string) *ScriptElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ScriptElement) IfSlotF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfSlotf(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -2106,7 +2106,7 @@ func (e *ScriptElement) StyleAdd(k string, v string) *ScriptElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ScriptElement) StyleAddF(k string, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) StyleAddf(k string, format string, args ...any) *ScriptElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -2121,9 +2121,9 @@ func (e *ScriptElement) IfStyleAdd(condition bool, k string, v string) *ScriptEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ScriptElement) IfStyleAddF(condition bool, k string, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfStyleAddf(condition bool, k string, format string, args ...any) *ScriptElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2269,7 +2269,7 @@ func (e *ScriptElement) Title(s string) *ScriptElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ScriptElement) TitleF(format string, args ...any) *ScriptElement {
+func (e *ScriptElement) Titlef(format string, args ...any) *ScriptElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2312,7 +2312,7 @@ func (e *ScriptElement) IfTitle(condition bool, s string) *ScriptElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ScriptElement) IfTitleF(condition bool, format string, args ...any) *ScriptElement {
+func (e *ScriptElement) IfTitlef(condition bool, format string, args ...any) *ScriptElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

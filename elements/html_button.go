@@ -83,7 +83,7 @@ func (e *ButtonElement) Text(text string) *ButtonElement {
 	return e
 }
 
-func (e *ButtonElement) TextF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Textf(format string, args ...any) *ButtonElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *ButtonElement) IfText(condition bool, text string) *ButtonElement {
 	return e
 }
 
-func (e *ButtonElement) IfTextF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfTextf(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *ButtonElement) IfEscaped(condition bool, text string) *ButtonElement {
 	return e
 }
 
-func (e *ButtonElement) EscapedF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Escapedf(format string, args ...any) *ButtonElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *ButtonElement) IfEscapedF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfEscapedf(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -223,7 +223,7 @@ func (e *ButtonElement) Form(s string) *ButtonElement {
 }
 
 // The id of the form with which to associate the element.
-func (e *ButtonElement) FormF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Formf(format string, args ...any) *ButtonElement {
 	return e.Form(fmt.Sprintf(format, args...))
 }
 
@@ -236,7 +236,7 @@ func (e *ButtonElement) IfForm(condition bool, s string) *ButtonElement {
 }
 
 // The id of the form with which to associate the element.
-func (e *ButtonElement) IfFormF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfFormf(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Form(fmt.Sprintf(format, args...))
 	}
@@ -265,7 +265,7 @@ func (e *ButtonElement) Formaction(s string) *ButtonElement {
 
 // The URI of a program that processes the information submitted by the button.
 // If specified, it overrides the action Attribute of the button's form owner.
-func (e *ButtonElement) FormactionF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Formactionf(format string, args ...any) *ButtonElement {
 	return e.Formaction(fmt.Sprintf(format, args...))
 }
 
@@ -280,7 +280,7 @@ func (e *ButtonElement) IfFormaction(condition bool, s string) *ButtonElement {
 
 // The URI of a program that processes the information submitted by the button.
 // If specified, it overrides the action Attribute of the button's form owner.
-func (e *ButtonElement) IfFormactionF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfFormactionf(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Formaction(fmt.Sprintf(format, args...))
 	}
@@ -474,7 +474,7 @@ func (e *ButtonElement) Name(s string) *ButtonElement {
 }
 
 // The name of the button, which is submitted with the form data.
-func (e *ButtonElement) NameF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Namef(format string, args ...any) *ButtonElement {
 	return e.Name(fmt.Sprintf(format, args...))
 }
 
@@ -487,7 +487,7 @@ func (e *ButtonElement) IfName(condition bool, s string) *ButtonElement {
 }
 
 // The name of the button, which is submitted with the form data.
-func (e *ButtonElement) IfNameF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfNamef(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Name(fmt.Sprintf(format, args...))
 	}
@@ -518,7 +518,7 @@ func (e *ButtonElement) Popovertarget(s string) *ButtonElement {
 // Turns a <button> element into a popover control button; takes the ID of the
 // popover element to control as its value. See the Popover API landing page for
 // more details.
-func (e *ButtonElement) PopovertargetF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Popovertargetf(format string, args ...any) *ButtonElement {
 	return e.Popovertarget(fmt.Sprintf(format, args...))
 }
 
@@ -535,7 +535,7 @@ func (e *ButtonElement) IfPopovertarget(condition bool, s string) *ButtonElement
 // Turns a <button> element into a popover control button; takes the ID of the
 // popover element to control as its value. See the Popover API landing page for
 // more details.
-func (e *ButtonElement) IfPopovertargetF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfPopovertargetf(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Popovertarget(fmt.Sprintf(format, args...))
 	}
@@ -632,7 +632,7 @@ func (e *ButtonElement) Value(s string) *ButtonElement {
 
 // The initial value of the button. This Attribute is optional except when the
 // value of the type attribute is radio or checkbox.
-func (e *ButtonElement) ValueF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Valuef(format string, args ...any) *ButtonElement {
 	return e.Value(fmt.Sprintf(format, args...))
 }
 
@@ -647,7 +647,7 @@ func (e *ButtonElement) IfValue(condition bool, s string) *ButtonElement {
 
 // The initial value of the button. This Attribute is optional except when the
 // value of the type attribute is radio or checkbox.
-func (e *ButtonElement) IfValueF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfValuef(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Value(fmt.Sprintf(format, args...))
 	}
@@ -1139,7 +1139,7 @@ func (e *ButtonElement) ID(s string) *ButtonElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ButtonElement) IDF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IDf(format string, args ...any) *ButtonElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -1156,7 +1156,7 @@ func (e *ButtonElement) IfID(condition bool, s string) *ButtonElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ButtonElement) IfIDF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfIDf(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1351,7 +1351,7 @@ func (e *ButtonElement) Is(s string) *ButtonElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ButtonElement) IsF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Isf(format string, args ...any) *ButtonElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1372,7 +1372,7 @@ func (e *ButtonElement) IfIs(condition bool, s string) *ButtonElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ButtonElement) IfIsF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfIsf(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1423,7 +1423,7 @@ func (e *ButtonElement) Itemid(s string) *ButtonElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ButtonElement) ItemidF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Itemidf(format string, args ...any) *ButtonElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1456,7 +1456,7 @@ func (e *ButtonElement) IfItemid(condition bool, s string) *ButtonElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ButtonElement) IfItemidF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfItemidf(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1505,7 +1505,7 @@ func (e *ButtonElement) Itemprop(s string) *ButtonElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ButtonElement) ItempropF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Itempropf(format string, args ...any) *ButtonElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1530,7 +1530,7 @@ func (e *ButtonElement) IfItemprop(condition bool, s string) *ButtonElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ButtonElement) IfItempropF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfItempropf(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1571,7 +1571,7 @@ func (e *ButtonElement) Itemref(s string) *ButtonElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ButtonElement) ItemrefF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Itemreff(format string, args ...any) *ButtonElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1592,7 +1592,7 @@ func (e *ButtonElement) IfItemref(condition bool, s string) *ButtonElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ButtonElement) IfItemrefF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfItemreff(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1707,7 +1707,7 @@ func (e *ButtonElement) Itemtype(s string) *ButtonElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ButtonElement) ItemtypeF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Itemtypef(format string, args ...any) *ButtonElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1732,7 +1732,7 @@ func (e *ButtonElement) IfItemtype(condition bool, s string) *ButtonElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ButtonElement) IfItemtypeF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfItemtypef(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1773,7 +1773,7 @@ func (e *ButtonElement) Lang(s string) *ButtonElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ButtonElement) LangF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Langf(format string, args ...any) *ButtonElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1794,7 +1794,7 @@ func (e *ButtonElement) IfLang(condition bool, s string) *ButtonElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ButtonElement) IfLangF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfLangf(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1833,7 +1833,7 @@ func (e *ButtonElement) Nonce(s string) *ButtonElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *ButtonElement) NonceF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Noncef(format string, args ...any) *ButtonElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1854,7 +1854,7 @@ func (e *ButtonElement) IfNonce(condition bool, s string) *ButtonElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *ButtonElement) IfNonceF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfNoncef(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1979,7 +1979,7 @@ func (e *ButtonElement) Role(s string) *ButtonElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ButtonElement) RoleF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Rolef(format string, args ...any) *ButtonElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1998,7 +1998,7 @@ func (e *ButtonElement) IfRole(condition bool, s string) *ButtonElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ButtonElement) IfRoleF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfRolef(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -2034,7 +2034,7 @@ func (e *ButtonElement) Slot(s string) *ButtonElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ButtonElement) SlotF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Slotf(format string, args ...any) *ButtonElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -2053,7 +2053,7 @@ func (e *ButtonElement) IfSlot(condition bool, s string) *ButtonElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ButtonElement) IfSlotF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfSlotf(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -2197,7 +2197,7 @@ func (e *ButtonElement) StyleAdd(k string, v string) *ButtonElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ButtonElement) StyleAddF(k string, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) StyleAddf(k string, format string, args ...any) *ButtonElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -2212,9 +2212,9 @@ func (e *ButtonElement) IfStyleAdd(condition bool, k string, v string) *ButtonEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ButtonElement) IfStyleAddF(condition bool, k string, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfStyleAddf(condition bool, k string, format string, args ...any) *ButtonElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2360,7 +2360,7 @@ func (e *ButtonElement) Title(s string) *ButtonElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ButtonElement) TitleF(format string, args ...any) *ButtonElement {
+func (e *ButtonElement) Titlef(format string, args ...any) *ButtonElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2403,7 +2403,7 @@ func (e *ButtonElement) IfTitle(condition bool, s string) *ButtonElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ButtonElement) IfTitleF(condition bool, format string, args ...any) *ButtonElement {
+func (e *ButtonElement) IfTitlef(condition bool, format string, args ...any) *ButtonElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

@@ -82,7 +82,7 @@ func (e *MathMLMtdElement) Text(text string) *MathMLMtdElement {
 	return e
 }
 
-func (e *MathMLMtdElement) TextF(format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) Textf(format string, args ...any) *MathMLMtdElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -93,7 +93,7 @@ func (e *MathMLMtdElement) IfText(condition bool, text string) *MathMLMtdElement
 	return e
 }
 
-func (e *MathMLMtdElement) IfTextF(condition bool, format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) IfTextf(condition bool, format string, args ...any) *MathMLMtdElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -112,13 +112,13 @@ func (e *MathMLMtdElement) IfEscaped(condition bool, text string) *MathMLMtdElem
 	return e
 }
 
-func (e *MathMLMtdElement) EscapedF(format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) Escapedf(format string, args ...any) *MathMLMtdElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *MathMLMtdElement) IfEscapedF(condition bool, format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) IfEscapedf(condition bool, format string, args ...any) *MathMLMtdElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -242,7 +242,7 @@ func (e *MathMLMtdElement) ID(s string) *MathMLMtdElement {
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLMtdElement) IDF(format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) IDf(format string, args ...any) *MathMLMtdElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -257,7 +257,7 @@ func (e *MathMLMtdElement) IfID(condition bool, s string) *MathMLMtdElement {
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLMtdElement) IfIDF(condition bool, format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) IfIDf(condition bool, format string, args ...any) *MathMLMtdElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -289,7 +289,7 @@ func (e *MathMLMtdElement) Mathbackground(s string) *MathMLMtdElement {
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLMtdElement) MathbackgroundF(format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) Mathbackgroundf(format string, args ...any) *MathMLMtdElement {
 	return e.Mathbackground(fmt.Sprintf(format, args...))
 }
 
@@ -306,7 +306,7 @@ func (e *MathMLMtdElement) IfMathbackground(condition bool, s string) *MathMLMtd
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLMtdElement) IfMathbackgroundF(condition bool, format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) IfMathbackgroundf(condition bool, format string, args ...any) *MathMLMtdElement {
 	if condition {
 		e.Mathbackground(fmt.Sprintf(format, args...))
 	}
@@ -339,7 +339,7 @@ func (e *MathMLMtdElement) Mathcolor(s string) *MathMLMtdElement {
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLMtdElement) MathcolorF(format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) Mathcolorf(format string, args ...any) *MathMLMtdElement {
 	return e.Mathcolor(fmt.Sprintf(format, args...))
 }
 
@@ -356,7 +356,7 @@ func (e *MathMLMtdElement) IfMathcolor(condition bool, s string) *MathMLMtdEleme
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLMtdElement) IfMathcolorF(condition bool, format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) IfMathcolorf(condition bool, format string, args ...any) *MathMLMtdElement {
 	if condition {
 		e.Mathcolor(fmt.Sprintf(format, args...))
 	}
@@ -387,7 +387,7 @@ func (e *MathMLMtdElement) MathsizeStr(s string) *MathMLMtdElement {
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLMtdElement) MathsizeStrF(format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) MathsizeStrf(format string, args ...any) *MathMLMtdElement {
 	return e.MathsizeStr(fmt.Sprintf(format, args...))
 }
 
@@ -402,7 +402,7 @@ func (e *MathMLMtdElement) IfMathsizeStr(condition bool, s string) *MathMLMtdEle
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLMtdElement) IfMathsizeStrF(condition bool, format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) IfMathsizeStrf(condition bool, format string, args ...any) *MathMLMtdElement {
 	if condition {
 		e.MathsizeStr(fmt.Sprintf(format, args...))
 	}
@@ -436,7 +436,7 @@ func (e *MathMLMtdElement) Nonce(s string) *MathMLMtdElement {
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLMtdElement) NonceF(format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) Noncef(format string, args ...any) *MathMLMtdElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -455,7 +455,7 @@ func (e *MathMLMtdElement) IfNonce(condition bool, s string) *MathMLMtdElement {
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLMtdElement) IfNonceF(condition bool, format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) IfNoncef(condition bool, format string, args ...any) *MathMLMtdElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -579,7 +579,7 @@ func (e *MathMLMtdElement) StyleAdd(k string, v string) *MathMLMtdElement {
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLMtdElement) StyleAddF(k string, format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) StyleAddf(k string, format string, args ...any) *MathMLMtdElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -594,9 +594,9 @@ func (e *MathMLMtdElement) IfStyleAdd(condition bool, k string, v string) *MathM
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLMtdElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MathMLMtdElement {
+func (e *MathMLMtdElement) IfStyleAddf(condition bool, k string, format string, args ...any) *MathMLMtdElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

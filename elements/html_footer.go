@@ -84,7 +84,7 @@ func (e *FooterElement) Text(text string) *FooterElement {
 	return e
 }
 
-func (e *FooterElement) TextF(format string, args ...any) *FooterElement {
+func (e *FooterElement) Textf(format string, args ...any) *FooterElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *FooterElement) IfText(condition bool, text string) *FooterElement {
 	return e
 }
 
-func (e *FooterElement) IfTextF(condition bool, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfTextf(condition bool, format string, args ...any) *FooterElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *FooterElement) IfEscaped(condition bool, text string) *FooterElement {
 	return e
 }
 
-func (e *FooterElement) EscapedF(format string, args ...any) *FooterElement {
+func (e *FooterElement) Escapedf(format string, args ...any) *FooterElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *FooterElement) IfEscapedF(condition bool, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfEscapedf(condition bool, format string, args ...any) *FooterElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -706,7 +706,7 @@ func (e *FooterElement) ID(s string) *FooterElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *FooterElement) IDF(format string, args ...any) *FooterElement {
+func (e *FooterElement) IDf(format string, args ...any) *FooterElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -723,7 +723,7 @@ func (e *FooterElement) IfID(condition bool, s string) *FooterElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *FooterElement) IfIDF(condition bool, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfIDf(condition bool, format string, args ...any) *FooterElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -918,7 +918,7 @@ func (e *FooterElement) Is(s string) *FooterElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *FooterElement) IsF(format string, args ...any) *FooterElement {
+func (e *FooterElement) Isf(format string, args ...any) *FooterElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -939,7 +939,7 @@ func (e *FooterElement) IfIs(condition bool, s string) *FooterElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *FooterElement) IfIsF(condition bool, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfIsf(condition bool, format string, args ...any) *FooterElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -990,7 +990,7 @@ func (e *FooterElement) Itemid(s string) *FooterElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *FooterElement) ItemidF(format string, args ...any) *FooterElement {
+func (e *FooterElement) Itemidf(format string, args ...any) *FooterElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1023,7 +1023,7 @@ func (e *FooterElement) IfItemid(condition bool, s string) *FooterElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *FooterElement) IfItemidF(condition bool, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfItemidf(condition bool, format string, args ...any) *FooterElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1072,7 +1072,7 @@ func (e *FooterElement) Itemprop(s string) *FooterElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *FooterElement) ItempropF(format string, args ...any) *FooterElement {
+func (e *FooterElement) Itempropf(format string, args ...any) *FooterElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *FooterElement) IfItemprop(condition bool, s string) *FooterElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *FooterElement) IfItempropF(condition bool, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfItempropf(condition bool, format string, args ...any) *FooterElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1138,7 +1138,7 @@ func (e *FooterElement) Itemref(s string) *FooterElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *FooterElement) ItemrefF(format string, args ...any) *FooterElement {
+func (e *FooterElement) Itemreff(format string, args ...any) *FooterElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1159,7 +1159,7 @@ func (e *FooterElement) IfItemref(condition bool, s string) *FooterElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *FooterElement) IfItemrefF(condition bool, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfItemreff(condition bool, format string, args ...any) *FooterElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1274,7 +1274,7 @@ func (e *FooterElement) Itemtype(s string) *FooterElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *FooterElement) ItemtypeF(format string, args ...any) *FooterElement {
+func (e *FooterElement) Itemtypef(format string, args ...any) *FooterElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1299,7 +1299,7 @@ func (e *FooterElement) IfItemtype(condition bool, s string) *FooterElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *FooterElement) IfItemtypeF(condition bool, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfItemtypef(condition bool, format string, args ...any) *FooterElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1340,7 +1340,7 @@ func (e *FooterElement) Lang(s string) *FooterElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *FooterElement) LangF(format string, args ...any) *FooterElement {
+func (e *FooterElement) Langf(format string, args ...any) *FooterElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1361,7 +1361,7 @@ func (e *FooterElement) IfLang(condition bool, s string) *FooterElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *FooterElement) IfLangF(condition bool, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfLangf(condition bool, format string, args ...any) *FooterElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1400,7 +1400,7 @@ func (e *FooterElement) Nonce(s string) *FooterElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *FooterElement) NonceF(format string, args ...any) *FooterElement {
+func (e *FooterElement) Noncef(format string, args ...any) *FooterElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *FooterElement) IfNonce(condition bool, s string) *FooterElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *FooterElement) IfNonceF(condition bool, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfNoncef(condition bool, format string, args ...any) *FooterElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1546,7 +1546,7 @@ func (e *FooterElement) Role(s string) *FooterElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *FooterElement) RoleF(format string, args ...any) *FooterElement {
+func (e *FooterElement) Rolef(format string, args ...any) *FooterElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1565,7 +1565,7 @@ func (e *FooterElement) IfRole(condition bool, s string) *FooterElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *FooterElement) IfRoleF(condition bool, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfRolef(condition bool, format string, args ...any) *FooterElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1601,7 +1601,7 @@ func (e *FooterElement) Slot(s string) *FooterElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *FooterElement) SlotF(format string, args ...any) *FooterElement {
+func (e *FooterElement) Slotf(format string, args ...any) *FooterElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1620,7 +1620,7 @@ func (e *FooterElement) IfSlot(condition bool, s string) *FooterElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *FooterElement) IfSlotF(condition bool, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfSlotf(condition bool, format string, args ...any) *FooterElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1764,7 +1764,7 @@ func (e *FooterElement) StyleAdd(k string, v string) *FooterElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *FooterElement) StyleAddF(k string, format string, args ...any) *FooterElement {
+func (e *FooterElement) StyleAddf(k string, format string, args ...any) *FooterElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1779,9 +1779,9 @@ func (e *FooterElement) IfStyleAdd(condition bool, k string, v string) *FooterEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *FooterElement) IfStyleAddF(condition bool, k string, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfStyleAddf(condition bool, k string, format string, args ...any) *FooterElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1927,7 +1927,7 @@ func (e *FooterElement) Title(s string) *FooterElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *FooterElement) TitleF(format string, args ...any) *FooterElement {
+func (e *FooterElement) Titlef(format string, args ...any) *FooterElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1970,7 +1970,7 @@ func (e *FooterElement) IfTitle(condition bool, s string) *FooterElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *FooterElement) IfTitleF(condition bool, format string, args ...any) *FooterElement {
+func (e *FooterElement) IfTitlef(condition bool, format string, args ...any) *FooterElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

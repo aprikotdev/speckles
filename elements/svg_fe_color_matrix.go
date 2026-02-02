@@ -84,7 +84,7 @@ func (e *SVGFeColorMatrixElement) Text(text string) *SVGFeColorMatrixElement {
 	return e
 }
 
-func (e *SVGFeColorMatrixElement) TextF(format string, args ...any) *SVGFeColorMatrixElement {
+func (e *SVGFeColorMatrixElement) Textf(format string, args ...any) *SVGFeColorMatrixElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGFeColorMatrixElement) IfText(condition bool, text string) *SVGFeColo
 	return e
 }
 
-func (e *SVGFeColorMatrixElement) IfTextF(condition bool, format string, args ...any) *SVGFeColorMatrixElement {
+func (e *SVGFeColorMatrixElement) IfTextf(condition bool, format string, args ...any) *SVGFeColorMatrixElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGFeColorMatrixElement) IfEscaped(condition bool, text string) *SVGFeC
 	return e
 }
 
-func (e *SVGFeColorMatrixElement) EscapedF(format string, args ...any) *SVGFeColorMatrixElement {
+func (e *SVGFeColorMatrixElement) Escapedf(format string, args ...any) *SVGFeColorMatrixElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeColorMatrixElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeColorMatrixElement {
+func (e *SVGFeColorMatrixElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeColorMatrixElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -135,7 +135,7 @@ func (e *SVGFeColorMatrixElement) In(s string) *SVGFeColorMatrixElement {
 }
 
 // The input for this filter.
-func (e *SVGFeColorMatrixElement) InF(format string, args ...any) *SVGFeColorMatrixElement {
+func (e *SVGFeColorMatrixElement) Inf(format string, args ...any) *SVGFeColorMatrixElement {
 	return e.In(fmt.Sprintf(format, args...))
 }
 
@@ -148,7 +148,7 @@ func (e *SVGFeColorMatrixElement) IfIn(condition bool, s string) *SVGFeColorMatr
 }
 
 // The input for this filter.
-func (e *SVGFeColorMatrixElement) IfInF(condition bool, format string, args ...any) *SVGFeColorMatrixElement {
+func (e *SVGFeColorMatrixElement) IfInf(condition bool, format string, args ...any) *SVGFeColorMatrixElement {
 	if condition {
 		e.In(fmt.Sprintf(format, args...))
 	}
@@ -207,7 +207,7 @@ func (e *SVGFeColorMatrixElement) Values(s string) *SVGFeColorMatrixElement {
 }
 
 // The list of one or more numbers that represent the matrix.
-func (e *SVGFeColorMatrixElement) ValuesF(format string, args ...any) *SVGFeColorMatrixElement {
+func (e *SVGFeColorMatrixElement) Valuesf(format string, args ...any) *SVGFeColorMatrixElement {
 	return e.Values(fmt.Sprintf(format, args...))
 }
 
@@ -220,7 +220,7 @@ func (e *SVGFeColorMatrixElement) IfValues(condition bool, s string) *SVGFeColor
 }
 
 // The list of one or more numbers that represent the matrix.
-func (e *SVGFeColorMatrixElement) IfValuesF(condition bool, format string, args ...any) *SVGFeColorMatrixElement {
+func (e *SVGFeColorMatrixElement) IfValuesf(condition bool, format string, args ...any) *SVGFeColorMatrixElement {
 	if condition {
 		e.Values(fmt.Sprintf(format, args...))
 	}
@@ -247,7 +247,7 @@ func (e *SVGFeColorMatrixElement) ID(s string) *SVGFeColorMatrixElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeColorMatrixElement) IDF(format string, args ...any) *SVGFeColorMatrixElement {
+func (e *SVGFeColorMatrixElement) IDf(format string, args ...any) *SVGFeColorMatrixElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -260,7 +260,7 @@ func (e *SVGFeColorMatrixElement) IfID(condition bool, s string) *SVGFeColorMatr
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeColorMatrixElement) IfIDF(condition bool, format string, args ...any) *SVGFeColorMatrixElement {
+func (e *SVGFeColorMatrixElement) IfIDf(condition bool, format string, args ...any) *SVGFeColorMatrixElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -386,7 +386,7 @@ func (e *SVGFeColorMatrixElement) StyleAdd(k string, v string) *SVGFeColorMatrix
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeColorMatrixElement) StyleAddF(k string, format string, args ...any) *SVGFeColorMatrixElement {
+func (e *SVGFeColorMatrixElement) StyleAddf(k string, format string, args ...any) *SVGFeColorMatrixElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -399,9 +399,9 @@ func (e *SVGFeColorMatrixElement) IfStyleAdd(condition bool, k string, v string)
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeColorMatrixElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeColorMatrixElement {
+func (e *SVGFeColorMatrixElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeColorMatrixElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

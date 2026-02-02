@@ -83,7 +83,7 @@ func (e *SVGTspanElement) Text(text string) *SVGTspanElement {
 	return e
 }
 
-func (e *SVGTspanElement) TextF(format string, args ...any) *SVGTspanElement {
+func (e *SVGTspanElement) Textf(format string, args ...any) *SVGTspanElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGTspanElement) IfText(condition bool, text string) *SVGTspanElement {
 	return e
 }
 
-func (e *SVGTspanElement) IfTextF(condition bool, format string, args ...any) *SVGTspanElement {
+func (e *SVGTspanElement) IfTextf(condition bool, format string, args ...any) *SVGTspanElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGTspanElement) IfEscaped(condition bool, text string) *SVGTspanElemen
 	return e
 }
 
-func (e *SVGTspanElement) EscapedF(format string, args ...any) *SVGTspanElement {
+func (e *SVGTspanElement) Escapedf(format string, args ...any) *SVGTspanElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGTspanElement) IfEscapedF(condition bool, format string, args ...any) *SVGTspanElement {
+func (e *SVGTspanElement) IfEscapedf(condition bool, format string, args ...any) *SVGTspanElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -219,7 +219,7 @@ func (e *SVGTspanElement) ID(s string) *SVGTspanElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGTspanElement) IDF(format string, args ...any) *SVGTspanElement {
+func (e *SVGTspanElement) IDf(format string, args ...any) *SVGTspanElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -232,7 +232,7 @@ func (e *SVGTspanElement) IfID(condition bool, s string) *SVGTspanElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGTspanElement) IfIDF(condition bool, format string, args ...any) *SVGTspanElement {
+func (e *SVGTspanElement) IfIDf(condition bool, format string, args ...any) *SVGTspanElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -358,7 +358,7 @@ func (e *SVGTspanElement) StyleAdd(k string, v string) *SVGTspanElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGTspanElement) StyleAddF(k string, format string, args ...any) *SVGTspanElement {
+func (e *SVGTspanElement) StyleAddf(k string, format string, args ...any) *SVGTspanElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -371,9 +371,9 @@ func (e *SVGTspanElement) IfStyleAdd(condition bool, k string, v string) *SVGTsp
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGTspanElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGTspanElement {
+func (e *SVGTspanElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGTspanElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

@@ -83,7 +83,7 @@ func (e *SVGPolygonElement) Text(text string) *SVGPolygonElement {
 	return e
 }
 
-func (e *SVGPolygonElement) TextF(format string, args ...any) *SVGPolygonElement {
+func (e *SVGPolygonElement) Textf(format string, args ...any) *SVGPolygonElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGPolygonElement) IfText(condition bool, text string) *SVGPolygonEleme
 	return e
 }
 
-func (e *SVGPolygonElement) IfTextF(condition bool, format string, args ...any) *SVGPolygonElement {
+func (e *SVGPolygonElement) IfTextf(condition bool, format string, args ...any) *SVGPolygonElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGPolygonElement) IfEscaped(condition bool, text string) *SVGPolygonEl
 	return e
 }
 
-func (e *SVGPolygonElement) EscapedF(format string, args ...any) *SVGPolygonElement {
+func (e *SVGPolygonElement) Escapedf(format string, args ...any) *SVGPolygonElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGPolygonElement) IfEscapedF(condition bool, format string, args ...any) *SVGPolygonElement {
+func (e *SVGPolygonElement) IfEscapedf(condition bool, format string, args ...any) *SVGPolygonElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *SVGPolygonElement) Points(s string) *SVGPolygonElement {
 }
 
 // A list of points, each of which is a coordinate pair.
-func (e *SVGPolygonElement) PointsF(format string, args ...any) *SVGPolygonElement {
+func (e *SVGPolygonElement) Pointsf(format string, args ...any) *SVGPolygonElement {
 	return e.Points(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *SVGPolygonElement) IfPoints(condition bool, s string) *SVGPolygonElemen
 }
 
 // A list of points, each of which is a coordinate pair.
-func (e *SVGPolygonElement) IfPointsF(condition bool, format string, args ...any) *SVGPolygonElement {
+func (e *SVGPolygonElement) IfPointsf(condition bool, format string, args ...any) *SVGPolygonElement {
 	if condition {
 		e.Points(fmt.Sprintf(format, args...))
 	}
@@ -174,7 +174,7 @@ func (e *SVGPolygonElement) ID(s string) *SVGPolygonElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGPolygonElement) IDF(format string, args ...any) *SVGPolygonElement {
+func (e *SVGPolygonElement) IDf(format string, args ...any) *SVGPolygonElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -187,7 +187,7 @@ func (e *SVGPolygonElement) IfID(condition bool, s string) *SVGPolygonElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGPolygonElement) IfIDF(condition bool, format string, args ...any) *SVGPolygonElement {
+func (e *SVGPolygonElement) IfIDf(condition bool, format string, args ...any) *SVGPolygonElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -313,7 +313,7 @@ func (e *SVGPolygonElement) StyleAdd(k string, v string) *SVGPolygonElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGPolygonElement) StyleAddF(k string, format string, args ...any) *SVGPolygonElement {
+func (e *SVGPolygonElement) StyleAddf(k string, format string, args ...any) *SVGPolygonElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -326,9 +326,9 @@ func (e *SVGPolygonElement) IfStyleAdd(condition bool, k string, v string) *SVGP
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGPolygonElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGPolygonElement {
+func (e *SVGPolygonElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGPolygonElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

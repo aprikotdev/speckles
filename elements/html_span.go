@@ -88,7 +88,7 @@ func (e *SpanElement) Text(text string) *SpanElement {
 	return e
 }
 
-func (e *SpanElement) TextF(format string, args ...any) *SpanElement {
+func (e *SpanElement) Textf(format string, args ...any) *SpanElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -99,7 +99,7 @@ func (e *SpanElement) IfText(condition bool, text string) *SpanElement {
 	return e
 }
 
-func (e *SpanElement) IfTextF(condition bool, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfTextf(condition bool, format string, args ...any) *SpanElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -118,13 +118,13 @@ func (e *SpanElement) IfEscaped(condition bool, text string) *SpanElement {
 	return e
 }
 
-func (e *SpanElement) EscapedF(format string, args ...any) *SpanElement {
+func (e *SpanElement) Escapedf(format string, args ...any) *SpanElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SpanElement) IfEscapedF(condition bool, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfEscapedf(condition bool, format string, args ...any) *SpanElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -710,7 +710,7 @@ func (e *SpanElement) ID(s string) *SpanElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *SpanElement) IDF(format string, args ...any) *SpanElement {
+func (e *SpanElement) IDf(format string, args ...any) *SpanElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -727,7 +727,7 @@ func (e *SpanElement) IfID(condition bool, s string) *SpanElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *SpanElement) IfIDF(condition bool, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfIDf(condition bool, format string, args ...any) *SpanElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -922,7 +922,7 @@ func (e *SpanElement) Is(s string) *SpanElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *SpanElement) IsF(format string, args ...any) *SpanElement {
+func (e *SpanElement) Isf(format string, args ...any) *SpanElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -943,7 +943,7 @@ func (e *SpanElement) IfIs(condition bool, s string) *SpanElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *SpanElement) IfIsF(condition bool, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfIsf(condition bool, format string, args ...any) *SpanElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -994,7 +994,7 @@ func (e *SpanElement) Itemid(s string) *SpanElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *SpanElement) ItemidF(format string, args ...any) *SpanElement {
+func (e *SpanElement) Itemidf(format string, args ...any) *SpanElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1027,7 +1027,7 @@ func (e *SpanElement) IfItemid(condition bool, s string) *SpanElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *SpanElement) IfItemidF(condition bool, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfItemidf(condition bool, format string, args ...any) *SpanElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1076,7 +1076,7 @@ func (e *SpanElement) Itemprop(s string) *SpanElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *SpanElement) ItempropF(format string, args ...any) *SpanElement {
+func (e *SpanElement) Itempropf(format string, args ...any) *SpanElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1101,7 +1101,7 @@ func (e *SpanElement) IfItemprop(condition bool, s string) *SpanElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *SpanElement) IfItempropF(condition bool, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfItempropf(condition bool, format string, args ...any) *SpanElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1142,7 +1142,7 @@ func (e *SpanElement) Itemref(s string) *SpanElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *SpanElement) ItemrefF(format string, args ...any) *SpanElement {
+func (e *SpanElement) Itemreff(format string, args ...any) *SpanElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1163,7 +1163,7 @@ func (e *SpanElement) IfItemref(condition bool, s string) *SpanElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *SpanElement) IfItemrefF(condition bool, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfItemreff(condition bool, format string, args ...any) *SpanElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1278,7 +1278,7 @@ func (e *SpanElement) Itemtype(s string) *SpanElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *SpanElement) ItemtypeF(format string, args ...any) *SpanElement {
+func (e *SpanElement) Itemtypef(format string, args ...any) *SpanElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1303,7 +1303,7 @@ func (e *SpanElement) IfItemtype(condition bool, s string) *SpanElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *SpanElement) IfItemtypeF(condition bool, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfItemtypef(condition bool, format string, args ...any) *SpanElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1344,7 +1344,7 @@ func (e *SpanElement) Lang(s string) *SpanElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *SpanElement) LangF(format string, args ...any) *SpanElement {
+func (e *SpanElement) Langf(format string, args ...any) *SpanElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1365,7 +1365,7 @@ func (e *SpanElement) IfLang(condition bool, s string) *SpanElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *SpanElement) IfLangF(condition bool, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfLangf(condition bool, format string, args ...any) *SpanElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1404,7 +1404,7 @@ func (e *SpanElement) Nonce(s string) *SpanElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *SpanElement) NonceF(format string, args ...any) *SpanElement {
+func (e *SpanElement) Noncef(format string, args ...any) *SpanElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1425,7 +1425,7 @@ func (e *SpanElement) IfNonce(condition bool, s string) *SpanElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *SpanElement) IfNonceF(condition bool, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfNoncef(condition bool, format string, args ...any) *SpanElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1550,7 +1550,7 @@ func (e *SpanElement) Role(s string) *SpanElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *SpanElement) RoleF(format string, args ...any) *SpanElement {
+func (e *SpanElement) Rolef(format string, args ...any) *SpanElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1569,7 +1569,7 @@ func (e *SpanElement) IfRole(condition bool, s string) *SpanElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *SpanElement) IfRoleF(condition bool, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfRolef(condition bool, format string, args ...any) *SpanElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1605,7 +1605,7 @@ func (e *SpanElement) Slot(s string) *SpanElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *SpanElement) SlotF(format string, args ...any) *SpanElement {
+func (e *SpanElement) Slotf(format string, args ...any) *SpanElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1624,7 +1624,7 @@ func (e *SpanElement) IfSlot(condition bool, s string) *SpanElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *SpanElement) IfSlotF(condition bool, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfSlotf(condition bool, format string, args ...any) *SpanElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1768,7 +1768,7 @@ func (e *SpanElement) StyleAdd(k string, v string) *SpanElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *SpanElement) StyleAddF(k string, format string, args ...any) *SpanElement {
+func (e *SpanElement) StyleAddf(k string, format string, args ...any) *SpanElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1783,9 +1783,9 @@ func (e *SpanElement) IfStyleAdd(condition bool, k string, v string) *SpanElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *SpanElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SpanElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1931,7 +1931,7 @@ func (e *SpanElement) Title(s string) *SpanElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *SpanElement) TitleF(format string, args ...any) *SpanElement {
+func (e *SpanElement) Titlef(format string, args ...any) *SpanElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1974,7 +1974,7 @@ func (e *SpanElement) IfTitle(condition bool, s string) *SpanElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *SpanElement) IfTitleF(condition bool, format string, args ...any) *SpanElement {
+func (e *SpanElement) IfTitlef(condition bool, format string, args ...any) *SpanElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

@@ -83,7 +83,7 @@ func (e *SVGFePointLightElement) Text(text string) *SVGFePointLightElement {
 	return e
 }
 
-func (e *SVGFePointLightElement) TextF(format string, args ...any) *SVGFePointLightElement {
+func (e *SVGFePointLightElement) Textf(format string, args ...any) *SVGFePointLightElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGFePointLightElement) IfText(condition bool, text string) *SVGFePoint
 	return e
 }
 
-func (e *SVGFePointLightElement) IfTextF(condition bool, format string, args ...any) *SVGFePointLightElement {
+func (e *SVGFePointLightElement) IfTextf(condition bool, format string, args ...any) *SVGFePointLightElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGFePointLightElement) IfEscaped(condition bool, text string) *SVGFePo
 	return e
 }
 
-func (e *SVGFePointLightElement) EscapedF(format string, args ...any) *SVGFePointLightElement {
+func (e *SVGFePointLightElement) Escapedf(format string, args ...any) *SVGFePointLightElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFePointLightElement) IfEscapedF(condition bool, format string, args ...any) *SVGFePointLightElement {
+func (e *SVGFePointLightElement) IfEscapedf(condition bool, format string, args ...any) *SVGFePointLightElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -197,7 +197,7 @@ func (e *SVGFePointLightElement) ID(s string) *SVGFePointLightElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFePointLightElement) IDF(format string, args ...any) *SVGFePointLightElement {
+func (e *SVGFePointLightElement) IDf(format string, args ...any) *SVGFePointLightElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -210,7 +210,7 @@ func (e *SVGFePointLightElement) IfID(condition bool, s string) *SVGFePointLight
 }
 
 // Specifies a unique id for an element
-func (e *SVGFePointLightElement) IfIDF(condition bool, format string, args ...any) *SVGFePointLightElement {
+func (e *SVGFePointLightElement) IfIDf(condition bool, format string, args ...any) *SVGFePointLightElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -336,7 +336,7 @@ func (e *SVGFePointLightElement) StyleAdd(k string, v string) *SVGFePointLightEl
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFePointLightElement) StyleAddF(k string, format string, args ...any) *SVGFePointLightElement {
+func (e *SVGFePointLightElement) StyleAddf(k string, format string, args ...any) *SVGFePointLightElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -349,9 +349,9 @@ func (e *SVGFePointLightElement) IfStyleAdd(condition bool, k string, v string) 
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFePointLightElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFePointLightElement {
+func (e *SVGFePointLightElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFePointLightElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

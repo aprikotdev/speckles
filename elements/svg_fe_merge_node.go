@@ -84,7 +84,7 @@ func (e *SVGFeMergeNodeElement) Text(text string) *SVGFeMergeNodeElement {
 	return e
 }
 
-func (e *SVGFeMergeNodeElement) TextF(format string, args ...any) *SVGFeMergeNodeElement {
+func (e *SVGFeMergeNodeElement) Textf(format string, args ...any) *SVGFeMergeNodeElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGFeMergeNodeElement) IfText(condition bool, text string) *SVGFeMergeN
 	return e
 }
 
-func (e *SVGFeMergeNodeElement) IfTextF(condition bool, format string, args ...any) *SVGFeMergeNodeElement {
+func (e *SVGFeMergeNodeElement) IfTextf(condition bool, format string, args ...any) *SVGFeMergeNodeElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGFeMergeNodeElement) IfEscaped(condition bool, text string) *SVGFeMer
 	return e
 }
 
-func (e *SVGFeMergeNodeElement) EscapedF(format string, args ...any) *SVGFeMergeNodeElement {
+func (e *SVGFeMergeNodeElement) Escapedf(format string, args ...any) *SVGFeMergeNodeElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeMergeNodeElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeMergeNodeElement {
+func (e *SVGFeMergeNodeElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeMergeNodeElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -137,7 +137,7 @@ func (e *SVGFeMergeNodeElement) In(s string) *SVGFeMergeNodeElement {
 
 // The identifier for the input SVGAnimatedString Attribute on the given
 // 'feMergeNode' element.
-func (e *SVGFeMergeNodeElement) InF(format string, args ...any) *SVGFeMergeNodeElement {
+func (e *SVGFeMergeNodeElement) Inf(format string, args ...any) *SVGFeMergeNodeElement {
 	return e.In(fmt.Sprintf(format, args...))
 }
 
@@ -152,7 +152,7 @@ func (e *SVGFeMergeNodeElement) IfIn(condition bool, s string) *SVGFeMergeNodeEl
 
 // The identifier for the input SVGAnimatedString Attribute on the given
 // 'feMergeNode' element.
-func (e *SVGFeMergeNodeElement) IfInF(condition bool, format string, args ...any) *SVGFeMergeNodeElement {
+func (e *SVGFeMergeNodeElement) IfInf(condition bool, format string, args ...any) *SVGFeMergeNodeElement {
 	if condition {
 		e.In(fmt.Sprintf(format, args...))
 	}
@@ -180,7 +180,7 @@ func (e *SVGFeMergeNodeElement) ID(s string) *SVGFeMergeNodeElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeMergeNodeElement) IDF(format string, args ...any) *SVGFeMergeNodeElement {
+func (e *SVGFeMergeNodeElement) IDf(format string, args ...any) *SVGFeMergeNodeElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -193,7 +193,7 @@ func (e *SVGFeMergeNodeElement) IfID(condition bool, s string) *SVGFeMergeNodeEl
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeMergeNodeElement) IfIDF(condition bool, format string, args ...any) *SVGFeMergeNodeElement {
+func (e *SVGFeMergeNodeElement) IfIDf(condition bool, format string, args ...any) *SVGFeMergeNodeElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -319,7 +319,7 @@ func (e *SVGFeMergeNodeElement) StyleAdd(k string, v string) *SVGFeMergeNodeElem
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeMergeNodeElement) StyleAddF(k string, format string, args ...any) *SVGFeMergeNodeElement {
+func (e *SVGFeMergeNodeElement) StyleAddf(k string, format string, args ...any) *SVGFeMergeNodeElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -332,9 +332,9 @@ func (e *SVGFeMergeNodeElement) IfStyleAdd(condition bool, k string, v string) *
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeMergeNodeElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeMergeNodeElement {
+func (e *SVGFeMergeNodeElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeMergeNodeElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

@@ -84,7 +84,7 @@ func (e *OptionElement) Text(text string) *OptionElement {
 	return e
 }
 
-func (e *OptionElement) TextF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Textf(format string, args ...any) *OptionElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *OptionElement) IfText(condition bool, text string) *OptionElement {
 	return e
 }
 
-func (e *OptionElement) IfTextF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfTextf(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *OptionElement) IfEscaped(condition bool, text string) *OptionElement {
 	return e
 }
 
-func (e *OptionElement) EscapedF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Escapedf(format string, args ...any) *OptionElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *OptionElement) IfEscapedF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfEscapedf(condition bool, format string, args ...any) *OptionElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -177,7 +177,7 @@ func (e *OptionElement) Label(s string) *OptionElement {
 }
 
 // User-visible label to give the option a caption.
-func (e *OptionElement) LabelF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Labelf(format string, args ...any) *OptionElement {
 	return e.Label(fmt.Sprintf(format, args...))
 }
 
@@ -190,7 +190,7 @@ func (e *OptionElement) IfLabel(condition bool, s string) *OptionElement {
 }
 
 // User-visible label to give the option a caption.
-func (e *OptionElement) IfLabelF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfLabelf(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.Label(fmt.Sprintf(format, args...))
 	}
@@ -259,7 +259,7 @@ func (e *OptionElement) Value(s string) *OptionElement {
 }
 
 // Value to be used for form submission.
-func (e *OptionElement) ValueF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Valuef(format string, args ...any) *OptionElement {
 	return e.Value(fmt.Sprintf(format, args...))
 }
 
@@ -272,7 +272,7 @@ func (e *OptionElement) IfValue(condition bool, s string) *OptionElement {
 }
 
 // Value to be used for form submission.
-func (e *OptionElement) IfValueF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfValuef(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.Value(fmt.Sprintf(format, args...))
 	}
@@ -870,7 +870,7 @@ func (e *OptionElement) ID(s string) *OptionElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *OptionElement) IDF(format string, args ...any) *OptionElement {
+func (e *OptionElement) IDf(format string, args ...any) *OptionElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -887,7 +887,7 @@ func (e *OptionElement) IfID(condition bool, s string) *OptionElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *OptionElement) IfIDF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfIDf(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1082,7 +1082,7 @@ func (e *OptionElement) Is(s string) *OptionElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *OptionElement) IsF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Isf(format string, args ...any) *OptionElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1103,7 +1103,7 @@ func (e *OptionElement) IfIs(condition bool, s string) *OptionElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *OptionElement) IfIsF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfIsf(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1154,7 +1154,7 @@ func (e *OptionElement) Itemid(s string) *OptionElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *OptionElement) ItemidF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Itemidf(format string, args ...any) *OptionElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1187,7 +1187,7 @@ func (e *OptionElement) IfItemid(condition bool, s string) *OptionElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *OptionElement) IfItemidF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfItemidf(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1236,7 +1236,7 @@ func (e *OptionElement) Itemprop(s string) *OptionElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *OptionElement) ItempropF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Itempropf(format string, args ...any) *OptionElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1261,7 +1261,7 @@ func (e *OptionElement) IfItemprop(condition bool, s string) *OptionElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *OptionElement) IfItempropF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfItempropf(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1302,7 +1302,7 @@ func (e *OptionElement) Itemref(s string) *OptionElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *OptionElement) ItemrefF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Itemreff(format string, args ...any) *OptionElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1323,7 +1323,7 @@ func (e *OptionElement) IfItemref(condition bool, s string) *OptionElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *OptionElement) IfItemrefF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfItemreff(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1438,7 +1438,7 @@ func (e *OptionElement) Itemtype(s string) *OptionElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *OptionElement) ItemtypeF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Itemtypef(format string, args ...any) *OptionElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1463,7 +1463,7 @@ func (e *OptionElement) IfItemtype(condition bool, s string) *OptionElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *OptionElement) IfItemtypeF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfItemtypef(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1504,7 +1504,7 @@ func (e *OptionElement) Lang(s string) *OptionElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *OptionElement) LangF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Langf(format string, args ...any) *OptionElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1525,7 +1525,7 @@ func (e *OptionElement) IfLang(condition bool, s string) *OptionElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *OptionElement) IfLangF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfLangf(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1564,7 +1564,7 @@ func (e *OptionElement) Nonce(s string) *OptionElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *OptionElement) NonceF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Noncef(format string, args ...any) *OptionElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1585,7 +1585,7 @@ func (e *OptionElement) IfNonce(condition bool, s string) *OptionElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *OptionElement) IfNonceF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfNoncef(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1710,7 +1710,7 @@ func (e *OptionElement) Role(s string) *OptionElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *OptionElement) RoleF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Rolef(format string, args ...any) *OptionElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1729,7 +1729,7 @@ func (e *OptionElement) IfRole(condition bool, s string) *OptionElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *OptionElement) IfRoleF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfRolef(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1765,7 +1765,7 @@ func (e *OptionElement) Slot(s string) *OptionElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *OptionElement) SlotF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Slotf(format string, args ...any) *OptionElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1784,7 +1784,7 @@ func (e *OptionElement) IfSlot(condition bool, s string) *OptionElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *OptionElement) IfSlotF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfSlotf(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1928,7 +1928,7 @@ func (e *OptionElement) StyleAdd(k string, v string) *OptionElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *OptionElement) StyleAddF(k string, format string, args ...any) *OptionElement {
+func (e *OptionElement) StyleAddf(k string, format string, args ...any) *OptionElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1943,9 +1943,9 @@ func (e *OptionElement) IfStyleAdd(condition bool, k string, v string) *OptionEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *OptionElement) IfStyleAddF(condition bool, k string, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfStyleAddf(condition bool, k string, format string, args ...any) *OptionElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2091,7 +2091,7 @@ func (e *OptionElement) Title(s string) *OptionElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *OptionElement) TitleF(format string, args ...any) *OptionElement {
+func (e *OptionElement) Titlef(format string, args ...any) *OptionElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2134,7 +2134,7 @@ func (e *OptionElement) IfTitle(condition bool, s string) *OptionElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *OptionElement) IfTitleF(condition bool, format string, args ...any) *OptionElement {
+func (e *OptionElement) IfTitlef(condition bool, format string, args ...any) *OptionElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

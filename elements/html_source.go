@@ -85,7 +85,7 @@ func (e *SourceElement) Text(text string) *SourceElement {
 	return e
 }
 
-func (e *SourceElement) TextF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Textf(format string, args ...any) *SourceElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *SourceElement) IfText(condition bool, text string) *SourceElement {
 	return e
 }
 
-func (e *SourceElement) IfTextF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfTextf(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *SourceElement) IfEscaped(condition bool, text string) *SourceElement {
 	return e
 }
 
-func (e *SourceElement) EscapedF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Escapedf(format string, args ...any) *SourceElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SourceElement) IfEscapedF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfEscapedf(condition bool, format string, args ...any) *SourceElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -138,7 +138,7 @@ func (e *SourceElement) Media(s string) *SourceElement {
 
 // Specifies the intended media type of the media resource, to help the browser
 // determine if it can be played.
-func (e *SourceElement) MediaF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Mediaf(format string, args ...any) *SourceElement {
 	return e.Media(fmt.Sprintf(format, args...))
 }
 
@@ -153,7 +153,7 @@ func (e *SourceElement) IfMedia(condition bool, s string) *SourceElement {
 
 // Specifies the intended media type of the media resource, to help the browser
 // determine if it can be played.
-func (e *SourceElement) IfMediaF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfMediaf(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Media(fmt.Sprintf(format, args...))
 	}
@@ -181,7 +181,7 @@ func (e *SourceElement) Sizes(s string) *SourceElement {
 }
 
 // Specifies the size of the linked resource.
-func (e *SourceElement) SizesF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Sizesf(format string, args ...any) *SourceElement {
 	return e.Sizes(fmt.Sprintf(format, args...))
 }
 
@@ -194,7 +194,7 @@ func (e *SourceElement) IfSizes(condition bool, s string) *SourceElement {
 }
 
 // Specifies the size of the linked resource.
-func (e *SourceElement) IfSizesF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfSizesf(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Sizes(fmt.Sprintf(format, args...))
 	}
@@ -221,7 +221,7 @@ func (e *SourceElement) Src(s string) *SourceElement {
 }
 
 // The URL of the media resource.
-func (e *SourceElement) SrcF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Srcf(format string, args ...any) *SourceElement {
 	return e.Src(fmt.Sprintf(format, args...))
 }
 
@@ -234,7 +234,7 @@ func (e *SourceElement) IfSrc(condition bool, s string) *SourceElement {
 }
 
 // The URL of the media resource.
-func (e *SourceElement) IfSrcF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfSrcf(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Src(fmt.Sprintf(format, args...))
 	}
@@ -263,7 +263,7 @@ func (e *SourceElement) Srcset(s string) *SourceElement {
 
 // A list of one or more strings separated by commas indicating a set of
 // possible image sources for the user agent to use.
-func (e *SourceElement) SrcsetF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Srcsetf(format string, args ...any) *SourceElement {
 	return e.Srcset(fmt.Sprintf(format, args...))
 }
 
@@ -278,7 +278,7 @@ func (e *SourceElement) IfSrcset(condition bool, s string) *SourceElement {
 
 // A list of one or more strings separated by commas indicating a set of
 // possible image sources for the user agent to use.
-func (e *SourceElement) IfSrcsetF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfSrcsetf(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Srcset(fmt.Sprintf(format, args...))
 	}
@@ -306,7 +306,7 @@ func (e *SourceElement) Type(s string) *SourceElement {
 }
 
 // Specifies the MIME type of the linked resource.
-func (e *SourceElement) TypeF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Typef(format string, args ...any) *SourceElement {
 	return e.Type(fmt.Sprintf(format, args...))
 }
 
@@ -319,7 +319,7 @@ func (e *SourceElement) IfType(condition bool, s string) *SourceElement {
 }
 
 // Specifies the MIME type of the linked resource.
-func (e *SourceElement) IfTypeF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfTypef(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Type(fmt.Sprintf(format, args...))
 	}
@@ -917,7 +917,7 @@ func (e *SourceElement) ID(s string) *SourceElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *SourceElement) IDF(format string, args ...any) *SourceElement {
+func (e *SourceElement) IDf(format string, args ...any) *SourceElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -934,7 +934,7 @@ func (e *SourceElement) IfID(condition bool, s string) *SourceElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *SourceElement) IfIDF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfIDf(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1129,7 +1129,7 @@ func (e *SourceElement) Is(s string) *SourceElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *SourceElement) IsF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Isf(format string, args ...any) *SourceElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1150,7 +1150,7 @@ func (e *SourceElement) IfIs(condition bool, s string) *SourceElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *SourceElement) IfIsF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfIsf(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1201,7 +1201,7 @@ func (e *SourceElement) Itemid(s string) *SourceElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *SourceElement) ItemidF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Itemidf(format string, args ...any) *SourceElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1234,7 +1234,7 @@ func (e *SourceElement) IfItemid(condition bool, s string) *SourceElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *SourceElement) IfItemidF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfItemidf(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1283,7 +1283,7 @@ func (e *SourceElement) Itemprop(s string) *SourceElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *SourceElement) ItempropF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Itempropf(format string, args ...any) *SourceElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1308,7 +1308,7 @@ func (e *SourceElement) IfItemprop(condition bool, s string) *SourceElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *SourceElement) IfItempropF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfItempropf(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1349,7 +1349,7 @@ func (e *SourceElement) Itemref(s string) *SourceElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *SourceElement) ItemrefF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Itemreff(format string, args ...any) *SourceElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1370,7 +1370,7 @@ func (e *SourceElement) IfItemref(condition bool, s string) *SourceElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *SourceElement) IfItemrefF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfItemreff(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1485,7 +1485,7 @@ func (e *SourceElement) Itemtype(s string) *SourceElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *SourceElement) ItemtypeF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Itemtypef(format string, args ...any) *SourceElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1510,7 +1510,7 @@ func (e *SourceElement) IfItemtype(condition bool, s string) *SourceElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *SourceElement) IfItemtypeF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfItemtypef(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1551,7 +1551,7 @@ func (e *SourceElement) Lang(s string) *SourceElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *SourceElement) LangF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Langf(format string, args ...any) *SourceElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1572,7 +1572,7 @@ func (e *SourceElement) IfLang(condition bool, s string) *SourceElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *SourceElement) IfLangF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfLangf(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1611,7 +1611,7 @@ func (e *SourceElement) Nonce(s string) *SourceElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *SourceElement) NonceF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Noncef(format string, args ...any) *SourceElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1632,7 +1632,7 @@ func (e *SourceElement) IfNonce(condition bool, s string) *SourceElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *SourceElement) IfNonceF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfNoncef(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1757,7 +1757,7 @@ func (e *SourceElement) Role(s string) *SourceElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *SourceElement) RoleF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Rolef(format string, args ...any) *SourceElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1776,7 +1776,7 @@ func (e *SourceElement) IfRole(condition bool, s string) *SourceElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *SourceElement) IfRoleF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfRolef(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1812,7 +1812,7 @@ func (e *SourceElement) Slot(s string) *SourceElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *SourceElement) SlotF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Slotf(format string, args ...any) *SourceElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1831,7 +1831,7 @@ func (e *SourceElement) IfSlot(condition bool, s string) *SourceElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *SourceElement) IfSlotF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfSlotf(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1975,7 +1975,7 @@ func (e *SourceElement) StyleAdd(k string, v string) *SourceElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *SourceElement) StyleAddF(k string, format string, args ...any) *SourceElement {
+func (e *SourceElement) StyleAddf(k string, format string, args ...any) *SourceElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1990,9 +1990,9 @@ func (e *SourceElement) IfStyleAdd(condition bool, k string, v string) *SourceEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *SourceElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SourceElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2138,7 +2138,7 @@ func (e *SourceElement) Title(s string) *SourceElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *SourceElement) TitleF(format string, args ...any) *SourceElement {
+func (e *SourceElement) Titlef(format string, args ...any) *SourceElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2181,7 +2181,7 @@ func (e *SourceElement) IfTitle(condition bool, s string) *SourceElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *SourceElement) IfTitleF(condition bool, format string, args ...any) *SourceElement {
+func (e *SourceElement) IfTitlef(condition bool, format string, args ...any) *SourceElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

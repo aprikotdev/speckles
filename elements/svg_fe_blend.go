@@ -84,7 +84,7 @@ func (e *SVGFeBlendElement) Text(text string) *SVGFeBlendElement {
 	return e
 }
 
-func (e *SVGFeBlendElement) TextF(format string, args ...any) *SVGFeBlendElement {
+func (e *SVGFeBlendElement) Textf(format string, args ...any) *SVGFeBlendElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGFeBlendElement) IfText(condition bool, text string) *SVGFeBlendEleme
 	return e
 }
 
-func (e *SVGFeBlendElement) IfTextF(condition bool, format string, args ...any) *SVGFeBlendElement {
+func (e *SVGFeBlendElement) IfTextf(condition bool, format string, args ...any) *SVGFeBlendElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGFeBlendElement) IfEscaped(condition bool, text string) *SVGFeBlendEl
 	return e
 }
 
-func (e *SVGFeBlendElement) EscapedF(format string, args ...any) *SVGFeBlendElement {
+func (e *SVGFeBlendElement) Escapedf(format string, args ...any) *SVGFeBlendElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeBlendElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeBlendElement {
+func (e *SVGFeBlendElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeBlendElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -135,7 +135,7 @@ func (e *SVGFeBlendElement) In(s string) *SVGFeBlendElement {
 }
 
 // Input for the blending.
-func (e *SVGFeBlendElement) InF(format string, args ...any) *SVGFeBlendElement {
+func (e *SVGFeBlendElement) Inf(format string, args ...any) *SVGFeBlendElement {
 	return e.In(fmt.Sprintf(format, args...))
 }
 
@@ -148,7 +148,7 @@ func (e *SVGFeBlendElement) IfIn(condition bool, s string) *SVGFeBlendElement {
 }
 
 // Input for the blending.
-func (e *SVGFeBlendElement) IfInF(condition bool, format string, args ...any) *SVGFeBlendElement {
+func (e *SVGFeBlendElement) IfInf(condition bool, format string, args ...any) *SVGFeBlendElement {
 	if condition {
 		e.In(fmt.Sprintf(format, args...))
 	}
@@ -175,7 +175,7 @@ func (e *SVGFeBlendElement) In2(s string) *SVGFeBlendElement {
 }
 
 // Second input for the blending.
-func (e *SVGFeBlendElement) In2F(format string, args ...any) *SVGFeBlendElement {
+func (e *SVGFeBlendElement) In2f(format string, args ...any) *SVGFeBlendElement {
 	return e.In2(fmt.Sprintf(format, args...))
 }
 
@@ -188,7 +188,7 @@ func (e *SVGFeBlendElement) IfIn2(condition bool, s string) *SVGFeBlendElement {
 }
 
 // Second input for the blending.
-func (e *SVGFeBlendElement) IfIn2F(condition bool, format string, args ...any) *SVGFeBlendElement {
+func (e *SVGFeBlendElement) IfIn2f(condition bool, format string, args ...any) *SVGFeBlendElement {
 	if condition {
 		e.In2(fmt.Sprintf(format, args...))
 	}
@@ -251,7 +251,7 @@ func (e *SVGFeBlendElement) ID(s string) *SVGFeBlendElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeBlendElement) IDF(format string, args ...any) *SVGFeBlendElement {
+func (e *SVGFeBlendElement) IDf(format string, args ...any) *SVGFeBlendElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -264,7 +264,7 @@ func (e *SVGFeBlendElement) IfID(condition bool, s string) *SVGFeBlendElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeBlendElement) IfIDF(condition bool, format string, args ...any) *SVGFeBlendElement {
+func (e *SVGFeBlendElement) IfIDf(condition bool, format string, args ...any) *SVGFeBlendElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -390,7 +390,7 @@ func (e *SVGFeBlendElement) StyleAdd(k string, v string) *SVGFeBlendElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeBlendElement) StyleAddF(k string, format string, args ...any) *SVGFeBlendElement {
+func (e *SVGFeBlendElement) StyleAddf(k string, format string, args ...any) *SVGFeBlendElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -403,9 +403,9 @@ func (e *SVGFeBlendElement) IfStyleAdd(condition bool, k string, v string) *SVGF
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeBlendElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeBlendElement {
+func (e *SVGFeBlendElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeBlendElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

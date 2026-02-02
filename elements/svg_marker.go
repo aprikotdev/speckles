@@ -84,7 +84,7 @@ func (e *SVGMarkerElement) Text(text string) *SVGMarkerElement {
 	return e
 }
 
-func (e *SVGMarkerElement) TextF(format string, args ...any) *SVGMarkerElement {
+func (e *SVGMarkerElement) Textf(format string, args ...any) *SVGMarkerElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGMarkerElement) IfText(condition bool, text string) *SVGMarkerElement
 	return e
 }
 
-func (e *SVGMarkerElement) IfTextF(condition bool, format string, args ...any) *SVGMarkerElement {
+func (e *SVGMarkerElement) IfTextf(condition bool, format string, args ...any) *SVGMarkerElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGMarkerElement) IfEscaped(condition bool, text string) *SVGMarkerElem
 	return e
 }
 
-func (e *SVGMarkerElement) EscapedF(format string, args ...any) *SVGMarkerElement {
+func (e *SVGMarkerElement) Escapedf(format string, args ...any) *SVGMarkerElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGMarkerElement) IfEscapedF(condition bool, format string, args ...any) *SVGMarkerElement {
+func (e *SVGMarkerElement) IfEscapedf(condition bool, format string, args ...any) *SVGMarkerElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -265,7 +265,7 @@ func (e *SVGMarkerElement) ViewBox(s string) *SVGMarkerElement {
 }
 
 // The position and size of the marker viewport (the bounds of the marker).
-func (e *SVGMarkerElement) ViewBoxF(format string, args ...any) *SVGMarkerElement {
+func (e *SVGMarkerElement) ViewBoxf(format string, args ...any) *SVGMarkerElement {
 	return e.ViewBox(fmt.Sprintf(format, args...))
 }
 
@@ -278,7 +278,7 @@ func (e *SVGMarkerElement) IfViewBox(condition bool, s string) *SVGMarkerElement
 }
 
 // The position and size of the marker viewport (the bounds of the marker).
-func (e *SVGMarkerElement) IfViewBoxF(condition bool, format string, args ...any) *SVGMarkerElement {
+func (e *SVGMarkerElement) IfViewBoxf(condition bool, format string, args ...any) *SVGMarkerElement {
 	if condition {
 		e.ViewBox(fmt.Sprintf(format, args...))
 	}
@@ -305,7 +305,7 @@ func (e *SVGMarkerElement) ID(s string) *SVGMarkerElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGMarkerElement) IDF(format string, args ...any) *SVGMarkerElement {
+func (e *SVGMarkerElement) IDf(format string, args ...any) *SVGMarkerElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -318,7 +318,7 @@ func (e *SVGMarkerElement) IfID(condition bool, s string) *SVGMarkerElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGMarkerElement) IfIDF(condition bool, format string, args ...any) *SVGMarkerElement {
+func (e *SVGMarkerElement) IfIDf(condition bool, format string, args ...any) *SVGMarkerElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -444,7 +444,7 @@ func (e *SVGMarkerElement) StyleAdd(k string, v string) *SVGMarkerElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGMarkerElement) StyleAddF(k string, format string, args ...any) *SVGMarkerElement {
+func (e *SVGMarkerElement) StyleAddf(k string, format string, args ...any) *SVGMarkerElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -457,9 +457,9 @@ func (e *SVGMarkerElement) IfStyleAdd(condition bool, k string, v string) *SVGMa
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGMarkerElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGMarkerElement {
+func (e *SVGMarkerElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGMarkerElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

@@ -84,7 +84,7 @@ func (e *DatalistElement) Text(text string) *DatalistElement {
 	return e
 }
 
-func (e *DatalistElement) TextF(format string, args ...any) *DatalistElement {
+func (e *DatalistElement) Textf(format string, args ...any) *DatalistElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *DatalistElement) IfText(condition bool, text string) *DatalistElement {
 	return e
 }
 
-func (e *DatalistElement) IfTextF(condition bool, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfTextf(condition bool, format string, args ...any) *DatalistElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *DatalistElement) IfEscaped(condition bool, text string) *DatalistElemen
 	return e
 }
 
-func (e *DatalistElement) EscapedF(format string, args ...any) *DatalistElement {
+func (e *DatalistElement) Escapedf(format string, args ...any) *DatalistElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *DatalistElement) IfEscapedF(condition bool, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfEscapedf(condition bool, format string, args ...any) *DatalistElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -706,7 +706,7 @@ func (e *DatalistElement) ID(s string) *DatalistElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *DatalistElement) IDF(format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IDf(format string, args ...any) *DatalistElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -723,7 +723,7 @@ func (e *DatalistElement) IfID(condition bool, s string) *DatalistElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *DatalistElement) IfIDF(condition bool, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfIDf(condition bool, format string, args ...any) *DatalistElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -918,7 +918,7 @@ func (e *DatalistElement) Is(s string) *DatalistElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *DatalistElement) IsF(format string, args ...any) *DatalistElement {
+func (e *DatalistElement) Isf(format string, args ...any) *DatalistElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -939,7 +939,7 @@ func (e *DatalistElement) IfIs(condition bool, s string) *DatalistElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *DatalistElement) IfIsF(condition bool, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfIsf(condition bool, format string, args ...any) *DatalistElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -990,7 +990,7 @@ func (e *DatalistElement) Itemid(s string) *DatalistElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *DatalistElement) ItemidF(format string, args ...any) *DatalistElement {
+func (e *DatalistElement) Itemidf(format string, args ...any) *DatalistElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1023,7 +1023,7 @@ func (e *DatalistElement) IfItemid(condition bool, s string) *DatalistElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *DatalistElement) IfItemidF(condition bool, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfItemidf(condition bool, format string, args ...any) *DatalistElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1072,7 +1072,7 @@ func (e *DatalistElement) Itemprop(s string) *DatalistElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *DatalistElement) ItempropF(format string, args ...any) *DatalistElement {
+func (e *DatalistElement) Itempropf(format string, args ...any) *DatalistElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *DatalistElement) IfItemprop(condition bool, s string) *DatalistElement 
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *DatalistElement) IfItempropF(condition bool, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfItempropf(condition bool, format string, args ...any) *DatalistElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1138,7 +1138,7 @@ func (e *DatalistElement) Itemref(s string) *DatalistElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *DatalistElement) ItemrefF(format string, args ...any) *DatalistElement {
+func (e *DatalistElement) Itemreff(format string, args ...any) *DatalistElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1159,7 +1159,7 @@ func (e *DatalistElement) IfItemref(condition bool, s string) *DatalistElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *DatalistElement) IfItemrefF(condition bool, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfItemreff(condition bool, format string, args ...any) *DatalistElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1274,7 +1274,7 @@ func (e *DatalistElement) Itemtype(s string) *DatalistElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *DatalistElement) ItemtypeF(format string, args ...any) *DatalistElement {
+func (e *DatalistElement) Itemtypef(format string, args ...any) *DatalistElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1299,7 +1299,7 @@ func (e *DatalistElement) IfItemtype(condition bool, s string) *DatalistElement 
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *DatalistElement) IfItemtypeF(condition bool, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfItemtypef(condition bool, format string, args ...any) *DatalistElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1340,7 +1340,7 @@ func (e *DatalistElement) Lang(s string) *DatalistElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *DatalistElement) LangF(format string, args ...any) *DatalistElement {
+func (e *DatalistElement) Langf(format string, args ...any) *DatalistElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1361,7 +1361,7 @@ func (e *DatalistElement) IfLang(condition bool, s string) *DatalistElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *DatalistElement) IfLangF(condition bool, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfLangf(condition bool, format string, args ...any) *DatalistElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1400,7 +1400,7 @@ func (e *DatalistElement) Nonce(s string) *DatalistElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *DatalistElement) NonceF(format string, args ...any) *DatalistElement {
+func (e *DatalistElement) Noncef(format string, args ...any) *DatalistElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *DatalistElement) IfNonce(condition bool, s string) *DatalistElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *DatalistElement) IfNonceF(condition bool, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfNoncef(condition bool, format string, args ...any) *DatalistElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1546,7 +1546,7 @@ func (e *DatalistElement) Role(s string) *DatalistElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *DatalistElement) RoleF(format string, args ...any) *DatalistElement {
+func (e *DatalistElement) Rolef(format string, args ...any) *DatalistElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1565,7 +1565,7 @@ func (e *DatalistElement) IfRole(condition bool, s string) *DatalistElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *DatalistElement) IfRoleF(condition bool, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfRolef(condition bool, format string, args ...any) *DatalistElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1601,7 +1601,7 @@ func (e *DatalistElement) Slot(s string) *DatalistElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *DatalistElement) SlotF(format string, args ...any) *DatalistElement {
+func (e *DatalistElement) Slotf(format string, args ...any) *DatalistElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1620,7 +1620,7 @@ func (e *DatalistElement) IfSlot(condition bool, s string) *DatalistElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *DatalistElement) IfSlotF(condition bool, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfSlotf(condition bool, format string, args ...any) *DatalistElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1764,7 +1764,7 @@ func (e *DatalistElement) StyleAdd(k string, v string) *DatalistElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *DatalistElement) StyleAddF(k string, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) StyleAddf(k string, format string, args ...any) *DatalistElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1779,9 +1779,9 @@ func (e *DatalistElement) IfStyleAdd(condition bool, k string, v string) *Datali
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *DatalistElement) IfStyleAddF(condition bool, k string, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfStyleAddf(condition bool, k string, format string, args ...any) *DatalistElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1927,7 +1927,7 @@ func (e *DatalistElement) Title(s string) *DatalistElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *DatalistElement) TitleF(format string, args ...any) *DatalistElement {
+func (e *DatalistElement) Titlef(format string, args ...any) *DatalistElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1970,7 +1970,7 @@ func (e *DatalistElement) IfTitle(condition bool, s string) *DatalistElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *DatalistElement) IfTitleF(condition bool, format string, args ...any) *DatalistElement {
+func (e *DatalistElement) IfTitlef(condition bool, format string, args ...any) *DatalistElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

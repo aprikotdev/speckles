@@ -83,7 +83,7 @@ func (e *StrikeElement) Text(text string) *StrikeElement {
 	return e
 }
 
-func (e *StrikeElement) TextF(format string, args ...any) *StrikeElement {
+func (e *StrikeElement) Textf(format string, args ...any) *StrikeElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *StrikeElement) IfText(condition bool, text string) *StrikeElement {
 	return e
 }
 
-func (e *StrikeElement) IfTextF(condition bool, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfTextf(condition bool, format string, args ...any) *StrikeElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *StrikeElement) IfEscaped(condition bool, text string) *StrikeElement {
 	return e
 }
 
-func (e *StrikeElement) EscapedF(format string, args ...any) *StrikeElement {
+func (e *StrikeElement) Escapedf(format string, args ...any) *StrikeElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *StrikeElement) IfEscapedF(condition bool, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfEscapedf(condition bool, format string, args ...any) *StrikeElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -705,7 +705,7 @@ func (e *StrikeElement) ID(s string) *StrikeElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *StrikeElement) IDF(format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IDf(format string, args ...any) *StrikeElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -722,7 +722,7 @@ func (e *StrikeElement) IfID(condition bool, s string) *StrikeElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *StrikeElement) IfIDF(condition bool, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfIDf(condition bool, format string, args ...any) *StrikeElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -917,7 +917,7 @@ func (e *StrikeElement) Is(s string) *StrikeElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *StrikeElement) IsF(format string, args ...any) *StrikeElement {
+func (e *StrikeElement) Isf(format string, args ...any) *StrikeElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -938,7 +938,7 @@ func (e *StrikeElement) IfIs(condition bool, s string) *StrikeElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *StrikeElement) IfIsF(condition bool, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfIsf(condition bool, format string, args ...any) *StrikeElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -989,7 +989,7 @@ func (e *StrikeElement) Itemid(s string) *StrikeElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *StrikeElement) ItemidF(format string, args ...any) *StrikeElement {
+func (e *StrikeElement) Itemidf(format string, args ...any) *StrikeElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1022,7 +1022,7 @@ func (e *StrikeElement) IfItemid(condition bool, s string) *StrikeElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *StrikeElement) IfItemidF(condition bool, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfItemidf(condition bool, format string, args ...any) *StrikeElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1071,7 +1071,7 @@ func (e *StrikeElement) Itemprop(s string) *StrikeElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *StrikeElement) ItempropF(format string, args ...any) *StrikeElement {
+func (e *StrikeElement) Itempropf(format string, args ...any) *StrikeElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1096,7 +1096,7 @@ func (e *StrikeElement) IfItemprop(condition bool, s string) *StrikeElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *StrikeElement) IfItempropF(condition bool, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfItempropf(condition bool, format string, args ...any) *StrikeElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1137,7 +1137,7 @@ func (e *StrikeElement) Itemref(s string) *StrikeElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *StrikeElement) ItemrefF(format string, args ...any) *StrikeElement {
+func (e *StrikeElement) Itemreff(format string, args ...any) *StrikeElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1158,7 +1158,7 @@ func (e *StrikeElement) IfItemref(condition bool, s string) *StrikeElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *StrikeElement) IfItemrefF(condition bool, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfItemreff(condition bool, format string, args ...any) *StrikeElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1273,7 +1273,7 @@ func (e *StrikeElement) Itemtype(s string) *StrikeElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *StrikeElement) ItemtypeF(format string, args ...any) *StrikeElement {
+func (e *StrikeElement) Itemtypef(format string, args ...any) *StrikeElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1298,7 +1298,7 @@ func (e *StrikeElement) IfItemtype(condition bool, s string) *StrikeElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *StrikeElement) IfItemtypeF(condition bool, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfItemtypef(condition bool, format string, args ...any) *StrikeElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1339,7 +1339,7 @@ func (e *StrikeElement) Lang(s string) *StrikeElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *StrikeElement) LangF(format string, args ...any) *StrikeElement {
+func (e *StrikeElement) Langf(format string, args ...any) *StrikeElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1360,7 +1360,7 @@ func (e *StrikeElement) IfLang(condition bool, s string) *StrikeElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *StrikeElement) IfLangF(condition bool, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfLangf(condition bool, format string, args ...any) *StrikeElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1399,7 +1399,7 @@ func (e *StrikeElement) Nonce(s string) *StrikeElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *StrikeElement) NonceF(format string, args ...any) *StrikeElement {
+func (e *StrikeElement) Noncef(format string, args ...any) *StrikeElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1420,7 +1420,7 @@ func (e *StrikeElement) IfNonce(condition bool, s string) *StrikeElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *StrikeElement) IfNonceF(condition bool, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfNoncef(condition bool, format string, args ...any) *StrikeElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1545,7 +1545,7 @@ func (e *StrikeElement) Role(s string) *StrikeElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *StrikeElement) RoleF(format string, args ...any) *StrikeElement {
+func (e *StrikeElement) Rolef(format string, args ...any) *StrikeElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1564,7 +1564,7 @@ func (e *StrikeElement) IfRole(condition bool, s string) *StrikeElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *StrikeElement) IfRoleF(condition bool, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfRolef(condition bool, format string, args ...any) *StrikeElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1600,7 +1600,7 @@ func (e *StrikeElement) Slot(s string) *StrikeElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *StrikeElement) SlotF(format string, args ...any) *StrikeElement {
+func (e *StrikeElement) Slotf(format string, args ...any) *StrikeElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1619,7 +1619,7 @@ func (e *StrikeElement) IfSlot(condition bool, s string) *StrikeElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *StrikeElement) IfSlotF(condition bool, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfSlotf(condition bool, format string, args ...any) *StrikeElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1763,7 +1763,7 @@ func (e *StrikeElement) StyleAdd(k string, v string) *StrikeElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *StrikeElement) StyleAddF(k string, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) StyleAddf(k string, format string, args ...any) *StrikeElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1778,9 +1778,9 @@ func (e *StrikeElement) IfStyleAdd(condition bool, k string, v string) *StrikeEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *StrikeElement) IfStyleAddF(condition bool, k string, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfStyleAddf(condition bool, k string, format string, args ...any) *StrikeElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1926,7 +1926,7 @@ func (e *StrikeElement) Title(s string) *StrikeElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *StrikeElement) TitleF(format string, args ...any) *StrikeElement {
+func (e *StrikeElement) Titlef(format string, args ...any) *StrikeElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1969,7 +1969,7 @@ func (e *StrikeElement) IfTitle(condition bool, s string) *StrikeElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *StrikeElement) IfTitleF(condition bool, format string, args ...any) *StrikeElement {
+func (e *StrikeElement) IfTitlef(condition bool, format string, args ...any) *StrikeElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

@@ -84,7 +84,7 @@ func (e *SlotElement) Text(text string) *SlotElement {
 	return e
 }
 
-func (e *SlotElement) TextF(format string, args ...any) *SlotElement {
+func (e *SlotElement) Textf(format string, args ...any) *SlotElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SlotElement) IfText(condition bool, text string) *SlotElement {
 	return e
 }
 
-func (e *SlotElement) IfTextF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfTextf(condition bool, format string, args ...any) *SlotElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SlotElement) IfEscaped(condition bool, text string) *SlotElement {
 	return e
 }
 
-func (e *SlotElement) EscapedF(format string, args ...any) *SlotElement {
+func (e *SlotElement) Escapedf(format string, args ...any) *SlotElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SlotElement) IfEscapedF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfEscapedf(condition bool, format string, args ...any) *SlotElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -135,7 +135,7 @@ func (e *SlotElement) Name(s string) *SlotElement {
 }
 
 // The name of the slot to assign the enclosed markup (and its descendants) to.
-func (e *SlotElement) NameF(format string, args ...any) *SlotElement {
+func (e *SlotElement) Namef(format string, args ...any) *SlotElement {
 	return e.Name(fmt.Sprintf(format, args...))
 }
 
@@ -148,7 +148,7 @@ func (e *SlotElement) IfName(condition bool, s string) *SlotElement {
 }
 
 // The name of the slot to assign the enclosed markup (and its descendants) to.
-func (e *SlotElement) IfNameF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfNamef(condition bool, format string, args ...any) *SlotElement {
 	if condition {
 		e.Name(fmt.Sprintf(format, args...))
 	}
@@ -746,7 +746,7 @@ func (e *SlotElement) ID(s string) *SlotElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *SlotElement) IDF(format string, args ...any) *SlotElement {
+func (e *SlotElement) IDf(format string, args ...any) *SlotElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -763,7 +763,7 @@ func (e *SlotElement) IfID(condition bool, s string) *SlotElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *SlotElement) IfIDF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfIDf(condition bool, format string, args ...any) *SlotElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -958,7 +958,7 @@ func (e *SlotElement) Is(s string) *SlotElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *SlotElement) IsF(format string, args ...any) *SlotElement {
+func (e *SlotElement) Isf(format string, args ...any) *SlotElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -979,7 +979,7 @@ func (e *SlotElement) IfIs(condition bool, s string) *SlotElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *SlotElement) IfIsF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfIsf(condition bool, format string, args ...any) *SlotElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1030,7 +1030,7 @@ func (e *SlotElement) Itemid(s string) *SlotElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *SlotElement) ItemidF(format string, args ...any) *SlotElement {
+func (e *SlotElement) Itemidf(format string, args ...any) *SlotElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1063,7 +1063,7 @@ func (e *SlotElement) IfItemid(condition bool, s string) *SlotElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *SlotElement) IfItemidF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfItemidf(condition bool, format string, args ...any) *SlotElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1112,7 +1112,7 @@ func (e *SlotElement) Itemprop(s string) *SlotElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *SlotElement) ItempropF(format string, args ...any) *SlotElement {
+func (e *SlotElement) Itempropf(format string, args ...any) *SlotElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1137,7 +1137,7 @@ func (e *SlotElement) IfItemprop(condition bool, s string) *SlotElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *SlotElement) IfItempropF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfItempropf(condition bool, format string, args ...any) *SlotElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1178,7 +1178,7 @@ func (e *SlotElement) Itemref(s string) *SlotElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *SlotElement) ItemrefF(format string, args ...any) *SlotElement {
+func (e *SlotElement) Itemreff(format string, args ...any) *SlotElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1199,7 +1199,7 @@ func (e *SlotElement) IfItemref(condition bool, s string) *SlotElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *SlotElement) IfItemrefF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfItemreff(condition bool, format string, args ...any) *SlotElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1314,7 +1314,7 @@ func (e *SlotElement) Itemtype(s string) *SlotElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *SlotElement) ItemtypeF(format string, args ...any) *SlotElement {
+func (e *SlotElement) Itemtypef(format string, args ...any) *SlotElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1339,7 +1339,7 @@ func (e *SlotElement) IfItemtype(condition bool, s string) *SlotElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *SlotElement) IfItemtypeF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfItemtypef(condition bool, format string, args ...any) *SlotElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1380,7 +1380,7 @@ func (e *SlotElement) Lang(s string) *SlotElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *SlotElement) LangF(format string, args ...any) *SlotElement {
+func (e *SlotElement) Langf(format string, args ...any) *SlotElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1401,7 +1401,7 @@ func (e *SlotElement) IfLang(condition bool, s string) *SlotElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *SlotElement) IfLangF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfLangf(condition bool, format string, args ...any) *SlotElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1440,7 +1440,7 @@ func (e *SlotElement) Nonce(s string) *SlotElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *SlotElement) NonceF(format string, args ...any) *SlotElement {
+func (e *SlotElement) Noncef(format string, args ...any) *SlotElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1461,7 +1461,7 @@ func (e *SlotElement) IfNonce(condition bool, s string) *SlotElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *SlotElement) IfNonceF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfNoncef(condition bool, format string, args ...any) *SlotElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1586,7 +1586,7 @@ func (e *SlotElement) Role(s string) *SlotElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *SlotElement) RoleF(format string, args ...any) *SlotElement {
+func (e *SlotElement) Rolef(format string, args ...any) *SlotElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1605,7 +1605,7 @@ func (e *SlotElement) IfRole(condition bool, s string) *SlotElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *SlotElement) IfRoleF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfRolef(condition bool, format string, args ...any) *SlotElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1641,7 +1641,7 @@ func (e *SlotElement) Slot(s string) *SlotElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *SlotElement) SlotF(format string, args ...any) *SlotElement {
+func (e *SlotElement) Slotf(format string, args ...any) *SlotElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1660,7 +1660,7 @@ func (e *SlotElement) IfSlot(condition bool, s string) *SlotElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *SlotElement) IfSlotF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfSlotf(condition bool, format string, args ...any) *SlotElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1804,7 +1804,7 @@ func (e *SlotElement) StyleAdd(k string, v string) *SlotElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *SlotElement) StyleAddF(k string, format string, args ...any) *SlotElement {
+func (e *SlotElement) StyleAddf(k string, format string, args ...any) *SlotElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1819,9 +1819,9 @@ func (e *SlotElement) IfStyleAdd(condition bool, k string, v string) *SlotElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *SlotElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SlotElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1967,7 +1967,7 @@ func (e *SlotElement) Title(s string) *SlotElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *SlotElement) TitleF(format string, args ...any) *SlotElement {
+func (e *SlotElement) Titlef(format string, args ...any) *SlotElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2010,7 +2010,7 @@ func (e *SlotElement) IfTitle(condition bool, s string) *SlotElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *SlotElement) IfTitleF(condition bool, format string, args ...any) *SlotElement {
+func (e *SlotElement) IfTitlef(condition bool, format string, args ...any) *SlotElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

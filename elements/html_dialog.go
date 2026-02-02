@@ -84,7 +84,7 @@ func (e *DialogElement) Text(text string) *DialogElement {
 	return e
 }
 
-func (e *DialogElement) TextF(format string, args ...any) *DialogElement {
+func (e *DialogElement) Textf(format string, args ...any) *DialogElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *DialogElement) IfText(condition bool, text string) *DialogElement {
 	return e
 }
 
-func (e *DialogElement) IfTextF(condition bool, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfTextf(condition bool, format string, args ...any) *DialogElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *DialogElement) IfEscaped(condition bool, text string) *DialogElement {
 	return e
 }
 
-func (e *DialogElement) EscapedF(format string, args ...any) *DialogElement {
+func (e *DialogElement) Escapedf(format string, args ...any) *DialogElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *DialogElement) IfEscapedF(condition bool, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfEscapedf(condition bool, format string, args ...any) *DialogElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -748,7 +748,7 @@ func (e *DialogElement) ID(s string) *DialogElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *DialogElement) IDF(format string, args ...any) *DialogElement {
+func (e *DialogElement) IDf(format string, args ...any) *DialogElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -765,7 +765,7 @@ func (e *DialogElement) IfID(condition bool, s string) *DialogElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *DialogElement) IfIDF(condition bool, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfIDf(condition bool, format string, args ...any) *DialogElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -960,7 +960,7 @@ func (e *DialogElement) Is(s string) *DialogElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *DialogElement) IsF(format string, args ...any) *DialogElement {
+func (e *DialogElement) Isf(format string, args ...any) *DialogElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -981,7 +981,7 @@ func (e *DialogElement) IfIs(condition bool, s string) *DialogElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *DialogElement) IfIsF(condition bool, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfIsf(condition bool, format string, args ...any) *DialogElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1032,7 +1032,7 @@ func (e *DialogElement) Itemid(s string) *DialogElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *DialogElement) ItemidF(format string, args ...any) *DialogElement {
+func (e *DialogElement) Itemidf(format string, args ...any) *DialogElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1065,7 +1065,7 @@ func (e *DialogElement) IfItemid(condition bool, s string) *DialogElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *DialogElement) IfItemidF(condition bool, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfItemidf(condition bool, format string, args ...any) *DialogElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1114,7 +1114,7 @@ func (e *DialogElement) Itemprop(s string) *DialogElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *DialogElement) ItempropF(format string, args ...any) *DialogElement {
+func (e *DialogElement) Itempropf(format string, args ...any) *DialogElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1139,7 +1139,7 @@ func (e *DialogElement) IfItemprop(condition bool, s string) *DialogElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *DialogElement) IfItempropF(condition bool, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfItempropf(condition bool, format string, args ...any) *DialogElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1180,7 +1180,7 @@ func (e *DialogElement) Itemref(s string) *DialogElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *DialogElement) ItemrefF(format string, args ...any) *DialogElement {
+func (e *DialogElement) Itemreff(format string, args ...any) *DialogElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1201,7 +1201,7 @@ func (e *DialogElement) IfItemref(condition bool, s string) *DialogElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *DialogElement) IfItemrefF(condition bool, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfItemreff(condition bool, format string, args ...any) *DialogElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1316,7 +1316,7 @@ func (e *DialogElement) Itemtype(s string) *DialogElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *DialogElement) ItemtypeF(format string, args ...any) *DialogElement {
+func (e *DialogElement) Itemtypef(format string, args ...any) *DialogElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1341,7 +1341,7 @@ func (e *DialogElement) IfItemtype(condition bool, s string) *DialogElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *DialogElement) IfItemtypeF(condition bool, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfItemtypef(condition bool, format string, args ...any) *DialogElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1382,7 +1382,7 @@ func (e *DialogElement) Lang(s string) *DialogElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *DialogElement) LangF(format string, args ...any) *DialogElement {
+func (e *DialogElement) Langf(format string, args ...any) *DialogElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1403,7 +1403,7 @@ func (e *DialogElement) IfLang(condition bool, s string) *DialogElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *DialogElement) IfLangF(condition bool, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfLangf(condition bool, format string, args ...any) *DialogElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1442,7 +1442,7 @@ func (e *DialogElement) Nonce(s string) *DialogElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *DialogElement) NonceF(format string, args ...any) *DialogElement {
+func (e *DialogElement) Noncef(format string, args ...any) *DialogElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1463,7 +1463,7 @@ func (e *DialogElement) IfNonce(condition bool, s string) *DialogElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *DialogElement) IfNonceF(condition bool, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfNoncef(condition bool, format string, args ...any) *DialogElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1588,7 +1588,7 @@ func (e *DialogElement) Role(s string) *DialogElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *DialogElement) RoleF(format string, args ...any) *DialogElement {
+func (e *DialogElement) Rolef(format string, args ...any) *DialogElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1607,7 +1607,7 @@ func (e *DialogElement) IfRole(condition bool, s string) *DialogElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *DialogElement) IfRoleF(condition bool, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfRolef(condition bool, format string, args ...any) *DialogElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1643,7 +1643,7 @@ func (e *DialogElement) Slot(s string) *DialogElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *DialogElement) SlotF(format string, args ...any) *DialogElement {
+func (e *DialogElement) Slotf(format string, args ...any) *DialogElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1662,7 +1662,7 @@ func (e *DialogElement) IfSlot(condition bool, s string) *DialogElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *DialogElement) IfSlotF(condition bool, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfSlotf(condition bool, format string, args ...any) *DialogElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1806,7 +1806,7 @@ func (e *DialogElement) StyleAdd(k string, v string) *DialogElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *DialogElement) StyleAddF(k string, format string, args ...any) *DialogElement {
+func (e *DialogElement) StyleAddf(k string, format string, args ...any) *DialogElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1821,9 +1821,9 @@ func (e *DialogElement) IfStyleAdd(condition bool, k string, v string) *DialogEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *DialogElement) IfStyleAddF(condition bool, k string, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfStyleAddf(condition bool, k string, format string, args ...any) *DialogElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1969,7 +1969,7 @@ func (e *DialogElement) Title(s string) *DialogElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *DialogElement) TitleF(format string, args ...any) *DialogElement {
+func (e *DialogElement) Titlef(format string, args ...any) *DialogElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2012,7 +2012,7 @@ func (e *DialogElement) IfTitle(condition bool, s string) *DialogElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *DialogElement) IfTitleF(condition bool, format string, args ...any) *DialogElement {
+func (e *DialogElement) IfTitlef(condition bool, format string, args ...any) *DialogElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

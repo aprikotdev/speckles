@@ -84,7 +84,7 @@ func (e *TrElement) Text(text string) *TrElement {
 	return e
 }
 
-func (e *TrElement) TextF(format string, args ...any) *TrElement {
+func (e *TrElement) Textf(format string, args ...any) *TrElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *TrElement) IfText(condition bool, text string) *TrElement {
 	return e
 }
 
-func (e *TrElement) IfTextF(condition bool, format string, args ...any) *TrElement {
+func (e *TrElement) IfTextf(condition bool, format string, args ...any) *TrElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *TrElement) IfEscaped(condition bool, text string) *TrElement {
 	return e
 }
 
-func (e *TrElement) EscapedF(format string, args ...any) *TrElement {
+func (e *TrElement) Escapedf(format string, args ...any) *TrElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *TrElement) IfEscapedF(condition bool, format string, args ...any) *TrElement {
+func (e *TrElement) IfEscapedf(condition bool, format string, args ...any) *TrElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -706,7 +706,7 @@ func (e *TrElement) ID(s string) *TrElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *TrElement) IDF(format string, args ...any) *TrElement {
+func (e *TrElement) IDf(format string, args ...any) *TrElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -723,7 +723,7 @@ func (e *TrElement) IfID(condition bool, s string) *TrElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *TrElement) IfIDF(condition bool, format string, args ...any) *TrElement {
+func (e *TrElement) IfIDf(condition bool, format string, args ...any) *TrElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -918,7 +918,7 @@ func (e *TrElement) Is(s string) *TrElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *TrElement) IsF(format string, args ...any) *TrElement {
+func (e *TrElement) Isf(format string, args ...any) *TrElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -939,7 +939,7 @@ func (e *TrElement) IfIs(condition bool, s string) *TrElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *TrElement) IfIsF(condition bool, format string, args ...any) *TrElement {
+func (e *TrElement) IfIsf(condition bool, format string, args ...any) *TrElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -990,7 +990,7 @@ func (e *TrElement) Itemid(s string) *TrElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *TrElement) ItemidF(format string, args ...any) *TrElement {
+func (e *TrElement) Itemidf(format string, args ...any) *TrElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1023,7 +1023,7 @@ func (e *TrElement) IfItemid(condition bool, s string) *TrElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *TrElement) IfItemidF(condition bool, format string, args ...any) *TrElement {
+func (e *TrElement) IfItemidf(condition bool, format string, args ...any) *TrElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1072,7 +1072,7 @@ func (e *TrElement) Itemprop(s string) *TrElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *TrElement) ItempropF(format string, args ...any) *TrElement {
+func (e *TrElement) Itempropf(format string, args ...any) *TrElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *TrElement) IfItemprop(condition bool, s string) *TrElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *TrElement) IfItempropF(condition bool, format string, args ...any) *TrElement {
+func (e *TrElement) IfItempropf(condition bool, format string, args ...any) *TrElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1138,7 +1138,7 @@ func (e *TrElement) Itemref(s string) *TrElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *TrElement) ItemrefF(format string, args ...any) *TrElement {
+func (e *TrElement) Itemreff(format string, args ...any) *TrElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1159,7 +1159,7 @@ func (e *TrElement) IfItemref(condition bool, s string) *TrElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *TrElement) IfItemrefF(condition bool, format string, args ...any) *TrElement {
+func (e *TrElement) IfItemreff(condition bool, format string, args ...any) *TrElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1274,7 +1274,7 @@ func (e *TrElement) Itemtype(s string) *TrElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *TrElement) ItemtypeF(format string, args ...any) *TrElement {
+func (e *TrElement) Itemtypef(format string, args ...any) *TrElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1299,7 +1299,7 @@ func (e *TrElement) IfItemtype(condition bool, s string) *TrElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *TrElement) IfItemtypeF(condition bool, format string, args ...any) *TrElement {
+func (e *TrElement) IfItemtypef(condition bool, format string, args ...any) *TrElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1340,7 +1340,7 @@ func (e *TrElement) Lang(s string) *TrElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *TrElement) LangF(format string, args ...any) *TrElement {
+func (e *TrElement) Langf(format string, args ...any) *TrElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1361,7 +1361,7 @@ func (e *TrElement) IfLang(condition bool, s string) *TrElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *TrElement) IfLangF(condition bool, format string, args ...any) *TrElement {
+func (e *TrElement) IfLangf(condition bool, format string, args ...any) *TrElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1400,7 +1400,7 @@ func (e *TrElement) Nonce(s string) *TrElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *TrElement) NonceF(format string, args ...any) *TrElement {
+func (e *TrElement) Noncef(format string, args ...any) *TrElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *TrElement) IfNonce(condition bool, s string) *TrElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *TrElement) IfNonceF(condition bool, format string, args ...any) *TrElement {
+func (e *TrElement) IfNoncef(condition bool, format string, args ...any) *TrElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1546,7 +1546,7 @@ func (e *TrElement) Role(s string) *TrElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *TrElement) RoleF(format string, args ...any) *TrElement {
+func (e *TrElement) Rolef(format string, args ...any) *TrElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1565,7 +1565,7 @@ func (e *TrElement) IfRole(condition bool, s string) *TrElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *TrElement) IfRoleF(condition bool, format string, args ...any) *TrElement {
+func (e *TrElement) IfRolef(condition bool, format string, args ...any) *TrElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1601,7 +1601,7 @@ func (e *TrElement) Slot(s string) *TrElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *TrElement) SlotF(format string, args ...any) *TrElement {
+func (e *TrElement) Slotf(format string, args ...any) *TrElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1620,7 +1620,7 @@ func (e *TrElement) IfSlot(condition bool, s string) *TrElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *TrElement) IfSlotF(condition bool, format string, args ...any) *TrElement {
+func (e *TrElement) IfSlotf(condition bool, format string, args ...any) *TrElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1764,7 +1764,7 @@ func (e *TrElement) StyleAdd(k string, v string) *TrElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *TrElement) StyleAddF(k string, format string, args ...any) *TrElement {
+func (e *TrElement) StyleAddf(k string, format string, args ...any) *TrElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1779,9 +1779,9 @@ func (e *TrElement) IfStyleAdd(condition bool, k string, v string) *TrElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *TrElement) IfStyleAddF(condition bool, k string, format string, args ...any) *TrElement {
+func (e *TrElement) IfStyleAddf(condition bool, k string, format string, args ...any) *TrElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1927,7 +1927,7 @@ func (e *TrElement) Title(s string) *TrElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *TrElement) TitleF(format string, args ...any) *TrElement {
+func (e *TrElement) Titlef(format string, args ...any) *TrElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1970,7 +1970,7 @@ func (e *TrElement) IfTitle(condition bool, s string) *TrElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *TrElement) IfTitleF(condition bool, format string, args ...any) *TrElement {
+func (e *TrElement) IfTitlef(condition bool, format string, args ...any) *TrElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

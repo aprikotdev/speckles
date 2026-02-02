@@ -83,7 +83,7 @@ func (e *DetailsElement) Text(text string) *DetailsElement {
 	return e
 }
 
-func (e *DetailsElement) TextF(format string, args ...any) *DetailsElement {
+func (e *DetailsElement) Textf(format string, args ...any) *DetailsElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *DetailsElement) IfText(condition bool, text string) *DetailsElement {
 	return e
 }
 
-func (e *DetailsElement) IfTextF(condition bool, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfTextf(condition bool, format string, args ...any) *DetailsElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *DetailsElement) IfEscaped(condition bool, text string) *DetailsElement 
 	return e
 }
 
-func (e *DetailsElement) EscapedF(format string, args ...any) *DetailsElement {
+func (e *DetailsElement) Escapedf(format string, args ...any) *DetailsElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *DetailsElement) IfEscapedF(condition bool, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfEscapedf(condition bool, format string, args ...any) *DetailsElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -747,7 +747,7 @@ func (e *DetailsElement) ID(s string) *DetailsElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *DetailsElement) IDF(format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IDf(format string, args ...any) *DetailsElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -764,7 +764,7 @@ func (e *DetailsElement) IfID(condition bool, s string) *DetailsElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *DetailsElement) IfIDF(condition bool, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfIDf(condition bool, format string, args ...any) *DetailsElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -959,7 +959,7 @@ func (e *DetailsElement) Is(s string) *DetailsElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *DetailsElement) IsF(format string, args ...any) *DetailsElement {
+func (e *DetailsElement) Isf(format string, args ...any) *DetailsElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -980,7 +980,7 @@ func (e *DetailsElement) IfIs(condition bool, s string) *DetailsElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *DetailsElement) IfIsF(condition bool, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfIsf(condition bool, format string, args ...any) *DetailsElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1031,7 +1031,7 @@ func (e *DetailsElement) Itemid(s string) *DetailsElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *DetailsElement) ItemidF(format string, args ...any) *DetailsElement {
+func (e *DetailsElement) Itemidf(format string, args ...any) *DetailsElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1064,7 +1064,7 @@ func (e *DetailsElement) IfItemid(condition bool, s string) *DetailsElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *DetailsElement) IfItemidF(condition bool, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfItemidf(condition bool, format string, args ...any) *DetailsElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1113,7 +1113,7 @@ func (e *DetailsElement) Itemprop(s string) *DetailsElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *DetailsElement) ItempropF(format string, args ...any) *DetailsElement {
+func (e *DetailsElement) Itempropf(format string, args ...any) *DetailsElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1138,7 +1138,7 @@ func (e *DetailsElement) IfItemprop(condition bool, s string) *DetailsElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *DetailsElement) IfItempropF(condition bool, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfItempropf(condition bool, format string, args ...any) *DetailsElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1179,7 +1179,7 @@ func (e *DetailsElement) Itemref(s string) *DetailsElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *DetailsElement) ItemrefF(format string, args ...any) *DetailsElement {
+func (e *DetailsElement) Itemreff(format string, args ...any) *DetailsElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1200,7 +1200,7 @@ func (e *DetailsElement) IfItemref(condition bool, s string) *DetailsElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *DetailsElement) IfItemrefF(condition bool, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfItemreff(condition bool, format string, args ...any) *DetailsElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1315,7 +1315,7 @@ func (e *DetailsElement) Itemtype(s string) *DetailsElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *DetailsElement) ItemtypeF(format string, args ...any) *DetailsElement {
+func (e *DetailsElement) Itemtypef(format string, args ...any) *DetailsElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1340,7 +1340,7 @@ func (e *DetailsElement) IfItemtype(condition bool, s string) *DetailsElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *DetailsElement) IfItemtypeF(condition bool, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfItemtypef(condition bool, format string, args ...any) *DetailsElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1381,7 +1381,7 @@ func (e *DetailsElement) Lang(s string) *DetailsElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *DetailsElement) LangF(format string, args ...any) *DetailsElement {
+func (e *DetailsElement) Langf(format string, args ...any) *DetailsElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1402,7 +1402,7 @@ func (e *DetailsElement) IfLang(condition bool, s string) *DetailsElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *DetailsElement) IfLangF(condition bool, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfLangf(condition bool, format string, args ...any) *DetailsElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1441,7 +1441,7 @@ func (e *DetailsElement) Nonce(s string) *DetailsElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *DetailsElement) NonceF(format string, args ...any) *DetailsElement {
+func (e *DetailsElement) Noncef(format string, args ...any) *DetailsElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1462,7 +1462,7 @@ func (e *DetailsElement) IfNonce(condition bool, s string) *DetailsElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *DetailsElement) IfNonceF(condition bool, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfNoncef(condition bool, format string, args ...any) *DetailsElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1587,7 +1587,7 @@ func (e *DetailsElement) Role(s string) *DetailsElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *DetailsElement) RoleF(format string, args ...any) *DetailsElement {
+func (e *DetailsElement) Rolef(format string, args ...any) *DetailsElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1606,7 +1606,7 @@ func (e *DetailsElement) IfRole(condition bool, s string) *DetailsElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *DetailsElement) IfRoleF(condition bool, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfRolef(condition bool, format string, args ...any) *DetailsElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1642,7 +1642,7 @@ func (e *DetailsElement) Slot(s string) *DetailsElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *DetailsElement) SlotF(format string, args ...any) *DetailsElement {
+func (e *DetailsElement) Slotf(format string, args ...any) *DetailsElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1661,7 +1661,7 @@ func (e *DetailsElement) IfSlot(condition bool, s string) *DetailsElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *DetailsElement) IfSlotF(condition bool, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfSlotf(condition bool, format string, args ...any) *DetailsElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1805,7 +1805,7 @@ func (e *DetailsElement) StyleAdd(k string, v string) *DetailsElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *DetailsElement) StyleAddF(k string, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) StyleAddf(k string, format string, args ...any) *DetailsElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1820,9 +1820,9 @@ func (e *DetailsElement) IfStyleAdd(condition bool, k string, v string) *Details
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *DetailsElement) IfStyleAddF(condition bool, k string, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfStyleAddf(condition bool, k string, format string, args ...any) *DetailsElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1968,7 +1968,7 @@ func (e *DetailsElement) Title(s string) *DetailsElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *DetailsElement) TitleF(format string, args ...any) *DetailsElement {
+func (e *DetailsElement) Titlef(format string, args ...any) *DetailsElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2011,7 +2011,7 @@ func (e *DetailsElement) IfTitle(condition bool, s string) *DetailsElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *DetailsElement) IfTitleF(condition bool, format string, args ...any) *DetailsElement {
+func (e *DetailsElement) IfTitlef(condition bool, format string, args ...any) *DetailsElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

@@ -84,7 +84,7 @@ func (e *MetaElement) Text(text string) *MetaElement {
 	return e
 }
 
-func (e *MetaElement) TextF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Textf(format string, args ...any) *MetaElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *MetaElement) IfText(condition bool, text string) *MetaElement {
 	return e
 }
 
-func (e *MetaElement) IfTextF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfTextf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *MetaElement) IfEscaped(condition bool, text string) *MetaElement {
 	return e
 }
 
-func (e *MetaElement) EscapedF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Escapedf(format string, args ...any) *MetaElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *MetaElement) IfEscapedF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfEscapedf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -135,7 +135,7 @@ func (e *MetaElement) Charset(s string) *MetaElement {
 }
 
 // Declares the document's character encoding.
-func (e *MetaElement) CharsetF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Charsetf(format string, args ...any) *MetaElement {
 	return e.Charset(fmt.Sprintf(format, args...))
 }
 
@@ -148,7 +148,7 @@ func (e *MetaElement) IfCharset(condition bool, s string) *MetaElement {
 }
 
 // Declares the document's character encoding.
-func (e *MetaElement) IfCharsetF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfCharsetf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Charset(fmt.Sprintf(format, args...))
 	}
@@ -175,7 +175,7 @@ func (e *MetaElement) Content(s string) *MetaElement {
 }
 
 // Gives the value associated with the http-equiv or name Attribute.
-func (e *MetaElement) ContentF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Contentf(format string, args ...any) *MetaElement {
 	return e.Content(fmt.Sprintf(format, args...))
 }
 
@@ -188,7 +188,7 @@ func (e *MetaElement) IfContent(condition bool, s string) *MetaElement {
 }
 
 // Gives the value associated with the http-equiv or name Attribute.
-func (e *MetaElement) IfContentF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfContentf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Content(fmt.Sprintf(format, args...))
 	}
@@ -215,7 +215,7 @@ func (e *MetaElement) HTTPEquiv(s string) *MetaElement {
 }
 
 // Provides an HTTP header for the information/value of the content Attribute.
-func (e *MetaElement) HTTPEquivF(format string, args ...any) *MetaElement {
+func (e *MetaElement) HTTPEquivf(format string, args ...any) *MetaElement {
 	return e.HTTPEquiv(fmt.Sprintf(format, args...))
 }
 
@@ -228,7 +228,7 @@ func (e *MetaElement) IfHTTPEquiv(condition bool, s string) *MetaElement {
 }
 
 // Provides an HTTP header for the information/value of the content Attribute.
-func (e *MetaElement) IfHTTPEquivF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfHTTPEquivf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.HTTPEquiv(fmt.Sprintf(format, args...))
 	}
@@ -255,7 +255,7 @@ func (e *MetaElement) Name(s string) *MetaElement {
 }
 
 // Specifies a name for the metadata.
-func (e *MetaElement) NameF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Namef(format string, args ...any) *MetaElement {
 	return e.Name(fmt.Sprintf(format, args...))
 }
 
@@ -268,7 +268,7 @@ func (e *MetaElement) IfName(condition bool, s string) *MetaElement {
 }
 
 // Specifies a name for the metadata.
-func (e *MetaElement) IfNameF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfNamef(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Name(fmt.Sprintf(format, args...))
 	}
@@ -866,7 +866,7 @@ func (e *MetaElement) ID(s string) *MetaElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *MetaElement) IDF(format string, args ...any) *MetaElement {
+func (e *MetaElement) IDf(format string, args ...any) *MetaElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -883,7 +883,7 @@ func (e *MetaElement) IfID(condition bool, s string) *MetaElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *MetaElement) IfIDF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfIDf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1078,7 +1078,7 @@ func (e *MetaElement) Is(s string) *MetaElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *MetaElement) IsF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Isf(format string, args ...any) *MetaElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1099,7 +1099,7 @@ func (e *MetaElement) IfIs(condition bool, s string) *MetaElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *MetaElement) IfIsF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfIsf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1150,7 +1150,7 @@ func (e *MetaElement) Itemid(s string) *MetaElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *MetaElement) ItemidF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Itemidf(format string, args ...any) *MetaElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1183,7 +1183,7 @@ func (e *MetaElement) IfItemid(condition bool, s string) *MetaElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *MetaElement) IfItemidF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfItemidf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1232,7 +1232,7 @@ func (e *MetaElement) Itemprop(s string) *MetaElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *MetaElement) ItempropF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Itempropf(format string, args ...any) *MetaElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1257,7 +1257,7 @@ func (e *MetaElement) IfItemprop(condition bool, s string) *MetaElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *MetaElement) IfItempropF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfItempropf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1298,7 +1298,7 @@ func (e *MetaElement) Itemref(s string) *MetaElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *MetaElement) ItemrefF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Itemreff(format string, args ...any) *MetaElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1319,7 +1319,7 @@ func (e *MetaElement) IfItemref(condition bool, s string) *MetaElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *MetaElement) IfItemrefF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfItemreff(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1434,7 +1434,7 @@ func (e *MetaElement) Itemtype(s string) *MetaElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *MetaElement) ItemtypeF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Itemtypef(format string, args ...any) *MetaElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1459,7 +1459,7 @@ func (e *MetaElement) IfItemtype(condition bool, s string) *MetaElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *MetaElement) IfItemtypeF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfItemtypef(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1500,7 +1500,7 @@ func (e *MetaElement) Lang(s string) *MetaElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *MetaElement) LangF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Langf(format string, args ...any) *MetaElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1521,7 +1521,7 @@ func (e *MetaElement) IfLang(condition bool, s string) *MetaElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *MetaElement) IfLangF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfLangf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1560,7 +1560,7 @@ func (e *MetaElement) Nonce(s string) *MetaElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *MetaElement) NonceF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Noncef(format string, args ...any) *MetaElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1581,7 +1581,7 @@ func (e *MetaElement) IfNonce(condition bool, s string) *MetaElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *MetaElement) IfNonceF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfNoncef(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1706,7 +1706,7 @@ func (e *MetaElement) Role(s string) *MetaElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *MetaElement) RoleF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Rolef(format string, args ...any) *MetaElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1725,7 +1725,7 @@ func (e *MetaElement) IfRole(condition bool, s string) *MetaElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *MetaElement) IfRoleF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfRolef(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1761,7 +1761,7 @@ func (e *MetaElement) Slot(s string) *MetaElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *MetaElement) SlotF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Slotf(format string, args ...any) *MetaElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1780,7 +1780,7 @@ func (e *MetaElement) IfSlot(condition bool, s string) *MetaElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *MetaElement) IfSlotF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfSlotf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1924,7 +1924,7 @@ func (e *MetaElement) StyleAdd(k string, v string) *MetaElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *MetaElement) StyleAddF(k string, format string, args ...any) *MetaElement {
+func (e *MetaElement) StyleAddf(k string, format string, args ...any) *MetaElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1939,9 +1939,9 @@ func (e *MetaElement) IfStyleAdd(condition bool, k string, v string) *MetaElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *MetaElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfStyleAddf(condition bool, k string, format string, args ...any) *MetaElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2087,7 +2087,7 @@ func (e *MetaElement) Title(s string) *MetaElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *MetaElement) TitleF(format string, args ...any) *MetaElement {
+func (e *MetaElement) Titlef(format string, args ...any) *MetaElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2130,7 +2130,7 @@ func (e *MetaElement) IfTitle(condition bool, s string) *MetaElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *MetaElement) IfTitleF(condition bool, format string, args ...any) *MetaElement {
+func (e *MetaElement) IfTitlef(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

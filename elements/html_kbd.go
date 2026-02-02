@@ -84,7 +84,7 @@ func (e *KbdElement) Text(text string) *KbdElement {
 	return e
 }
 
-func (e *KbdElement) TextF(format string, args ...any) *KbdElement {
+func (e *KbdElement) Textf(format string, args ...any) *KbdElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *KbdElement) IfText(condition bool, text string) *KbdElement {
 	return e
 }
 
-func (e *KbdElement) IfTextF(condition bool, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfTextf(condition bool, format string, args ...any) *KbdElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *KbdElement) IfEscaped(condition bool, text string) *KbdElement {
 	return e
 }
 
-func (e *KbdElement) EscapedF(format string, args ...any) *KbdElement {
+func (e *KbdElement) Escapedf(format string, args ...any) *KbdElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *KbdElement) IfEscapedF(condition bool, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfEscapedf(condition bool, format string, args ...any) *KbdElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -706,7 +706,7 @@ func (e *KbdElement) ID(s string) *KbdElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *KbdElement) IDF(format string, args ...any) *KbdElement {
+func (e *KbdElement) IDf(format string, args ...any) *KbdElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -723,7 +723,7 @@ func (e *KbdElement) IfID(condition bool, s string) *KbdElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *KbdElement) IfIDF(condition bool, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfIDf(condition bool, format string, args ...any) *KbdElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -918,7 +918,7 @@ func (e *KbdElement) Is(s string) *KbdElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *KbdElement) IsF(format string, args ...any) *KbdElement {
+func (e *KbdElement) Isf(format string, args ...any) *KbdElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -939,7 +939,7 @@ func (e *KbdElement) IfIs(condition bool, s string) *KbdElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *KbdElement) IfIsF(condition bool, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfIsf(condition bool, format string, args ...any) *KbdElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -990,7 +990,7 @@ func (e *KbdElement) Itemid(s string) *KbdElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *KbdElement) ItemidF(format string, args ...any) *KbdElement {
+func (e *KbdElement) Itemidf(format string, args ...any) *KbdElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1023,7 +1023,7 @@ func (e *KbdElement) IfItemid(condition bool, s string) *KbdElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *KbdElement) IfItemidF(condition bool, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfItemidf(condition bool, format string, args ...any) *KbdElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1072,7 +1072,7 @@ func (e *KbdElement) Itemprop(s string) *KbdElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *KbdElement) ItempropF(format string, args ...any) *KbdElement {
+func (e *KbdElement) Itempropf(format string, args ...any) *KbdElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *KbdElement) IfItemprop(condition bool, s string) *KbdElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *KbdElement) IfItempropF(condition bool, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfItempropf(condition bool, format string, args ...any) *KbdElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1138,7 +1138,7 @@ func (e *KbdElement) Itemref(s string) *KbdElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *KbdElement) ItemrefF(format string, args ...any) *KbdElement {
+func (e *KbdElement) Itemreff(format string, args ...any) *KbdElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1159,7 +1159,7 @@ func (e *KbdElement) IfItemref(condition bool, s string) *KbdElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *KbdElement) IfItemrefF(condition bool, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfItemreff(condition bool, format string, args ...any) *KbdElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1274,7 +1274,7 @@ func (e *KbdElement) Itemtype(s string) *KbdElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *KbdElement) ItemtypeF(format string, args ...any) *KbdElement {
+func (e *KbdElement) Itemtypef(format string, args ...any) *KbdElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1299,7 +1299,7 @@ func (e *KbdElement) IfItemtype(condition bool, s string) *KbdElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *KbdElement) IfItemtypeF(condition bool, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfItemtypef(condition bool, format string, args ...any) *KbdElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1340,7 +1340,7 @@ func (e *KbdElement) Lang(s string) *KbdElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *KbdElement) LangF(format string, args ...any) *KbdElement {
+func (e *KbdElement) Langf(format string, args ...any) *KbdElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1361,7 +1361,7 @@ func (e *KbdElement) IfLang(condition bool, s string) *KbdElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *KbdElement) IfLangF(condition bool, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfLangf(condition bool, format string, args ...any) *KbdElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1400,7 +1400,7 @@ func (e *KbdElement) Nonce(s string) *KbdElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *KbdElement) NonceF(format string, args ...any) *KbdElement {
+func (e *KbdElement) Noncef(format string, args ...any) *KbdElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *KbdElement) IfNonce(condition bool, s string) *KbdElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *KbdElement) IfNonceF(condition bool, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfNoncef(condition bool, format string, args ...any) *KbdElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1546,7 +1546,7 @@ func (e *KbdElement) Role(s string) *KbdElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *KbdElement) RoleF(format string, args ...any) *KbdElement {
+func (e *KbdElement) Rolef(format string, args ...any) *KbdElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1565,7 +1565,7 @@ func (e *KbdElement) IfRole(condition bool, s string) *KbdElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *KbdElement) IfRoleF(condition bool, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfRolef(condition bool, format string, args ...any) *KbdElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1601,7 +1601,7 @@ func (e *KbdElement) Slot(s string) *KbdElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *KbdElement) SlotF(format string, args ...any) *KbdElement {
+func (e *KbdElement) Slotf(format string, args ...any) *KbdElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1620,7 +1620,7 @@ func (e *KbdElement) IfSlot(condition bool, s string) *KbdElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *KbdElement) IfSlotF(condition bool, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfSlotf(condition bool, format string, args ...any) *KbdElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1764,7 +1764,7 @@ func (e *KbdElement) StyleAdd(k string, v string) *KbdElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *KbdElement) StyleAddF(k string, format string, args ...any) *KbdElement {
+func (e *KbdElement) StyleAddf(k string, format string, args ...any) *KbdElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1779,9 +1779,9 @@ func (e *KbdElement) IfStyleAdd(condition bool, k string, v string) *KbdElement 
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *KbdElement) IfStyleAddF(condition bool, k string, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfStyleAddf(condition bool, k string, format string, args ...any) *KbdElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1927,7 +1927,7 @@ func (e *KbdElement) Title(s string) *KbdElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *KbdElement) TitleF(format string, args ...any) *KbdElement {
+func (e *KbdElement) Titlef(format string, args ...any) *KbdElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1970,7 +1970,7 @@ func (e *KbdElement) IfTitle(condition bool, s string) *KbdElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *KbdElement) IfTitleF(condition bool, format string, args ...any) *KbdElement {
+func (e *KbdElement) IfTitlef(condition bool, format string, args ...any) *KbdElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

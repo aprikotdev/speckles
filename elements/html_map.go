@@ -83,7 +83,7 @@ func (e *MapElement) Text(text string) *MapElement {
 	return e
 }
 
-func (e *MapElement) TextF(format string, args ...any) *MapElement {
+func (e *MapElement) Textf(format string, args ...any) *MapElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *MapElement) IfText(condition bool, text string) *MapElement {
 	return e
 }
 
-func (e *MapElement) IfTextF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfTextf(condition bool, format string, args ...any) *MapElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *MapElement) IfEscaped(condition bool, text string) *MapElement {
 	return e
 }
 
-func (e *MapElement) EscapedF(format string, args ...any) *MapElement {
+func (e *MapElement) Escapedf(format string, args ...any) *MapElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *MapElement) IfEscapedF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfEscapedf(condition bool, format string, args ...any) *MapElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *MapElement) Name(s string) *MapElement {
 }
 
 // Name of the element to use as a target.
-func (e *MapElement) NameF(format string, args ...any) *MapElement {
+func (e *MapElement) Namef(format string, args ...any) *MapElement {
 	return e.Name(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *MapElement) IfName(condition bool, s string) *MapElement {
 }
 
 // Name of the element to use as a target.
-func (e *MapElement) IfNameF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfNamef(condition bool, format string, args ...any) *MapElement {
 	if condition {
 		e.Name(fmt.Sprintf(format, args...))
 	}
@@ -745,7 +745,7 @@ func (e *MapElement) ID(s string) *MapElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *MapElement) IDF(format string, args ...any) *MapElement {
+func (e *MapElement) IDf(format string, args ...any) *MapElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -762,7 +762,7 @@ func (e *MapElement) IfID(condition bool, s string) *MapElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *MapElement) IfIDF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfIDf(condition bool, format string, args ...any) *MapElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -957,7 +957,7 @@ func (e *MapElement) Is(s string) *MapElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *MapElement) IsF(format string, args ...any) *MapElement {
+func (e *MapElement) Isf(format string, args ...any) *MapElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -978,7 +978,7 @@ func (e *MapElement) IfIs(condition bool, s string) *MapElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *MapElement) IfIsF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfIsf(condition bool, format string, args ...any) *MapElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1029,7 +1029,7 @@ func (e *MapElement) Itemid(s string) *MapElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *MapElement) ItemidF(format string, args ...any) *MapElement {
+func (e *MapElement) Itemidf(format string, args ...any) *MapElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1062,7 +1062,7 @@ func (e *MapElement) IfItemid(condition bool, s string) *MapElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *MapElement) IfItemidF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfItemidf(condition bool, format string, args ...any) *MapElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1111,7 +1111,7 @@ func (e *MapElement) Itemprop(s string) *MapElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *MapElement) ItempropF(format string, args ...any) *MapElement {
+func (e *MapElement) Itempropf(format string, args ...any) *MapElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1136,7 +1136,7 @@ func (e *MapElement) IfItemprop(condition bool, s string) *MapElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *MapElement) IfItempropF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfItempropf(condition bool, format string, args ...any) *MapElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1177,7 +1177,7 @@ func (e *MapElement) Itemref(s string) *MapElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *MapElement) ItemrefF(format string, args ...any) *MapElement {
+func (e *MapElement) Itemreff(format string, args ...any) *MapElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1198,7 +1198,7 @@ func (e *MapElement) IfItemref(condition bool, s string) *MapElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *MapElement) IfItemrefF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfItemreff(condition bool, format string, args ...any) *MapElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1313,7 +1313,7 @@ func (e *MapElement) Itemtype(s string) *MapElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *MapElement) ItemtypeF(format string, args ...any) *MapElement {
+func (e *MapElement) Itemtypef(format string, args ...any) *MapElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1338,7 +1338,7 @@ func (e *MapElement) IfItemtype(condition bool, s string) *MapElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *MapElement) IfItemtypeF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfItemtypef(condition bool, format string, args ...any) *MapElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1379,7 +1379,7 @@ func (e *MapElement) Lang(s string) *MapElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *MapElement) LangF(format string, args ...any) *MapElement {
+func (e *MapElement) Langf(format string, args ...any) *MapElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1400,7 +1400,7 @@ func (e *MapElement) IfLang(condition bool, s string) *MapElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *MapElement) IfLangF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfLangf(condition bool, format string, args ...any) *MapElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1439,7 +1439,7 @@ func (e *MapElement) Nonce(s string) *MapElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *MapElement) NonceF(format string, args ...any) *MapElement {
+func (e *MapElement) Noncef(format string, args ...any) *MapElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1460,7 +1460,7 @@ func (e *MapElement) IfNonce(condition bool, s string) *MapElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *MapElement) IfNonceF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfNoncef(condition bool, format string, args ...any) *MapElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1585,7 +1585,7 @@ func (e *MapElement) Role(s string) *MapElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *MapElement) RoleF(format string, args ...any) *MapElement {
+func (e *MapElement) Rolef(format string, args ...any) *MapElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1604,7 +1604,7 @@ func (e *MapElement) IfRole(condition bool, s string) *MapElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *MapElement) IfRoleF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfRolef(condition bool, format string, args ...any) *MapElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1640,7 +1640,7 @@ func (e *MapElement) Slot(s string) *MapElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *MapElement) SlotF(format string, args ...any) *MapElement {
+func (e *MapElement) Slotf(format string, args ...any) *MapElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1659,7 +1659,7 @@ func (e *MapElement) IfSlot(condition bool, s string) *MapElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *MapElement) IfSlotF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfSlotf(condition bool, format string, args ...any) *MapElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1803,7 +1803,7 @@ func (e *MapElement) StyleAdd(k string, v string) *MapElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *MapElement) StyleAddF(k string, format string, args ...any) *MapElement {
+func (e *MapElement) StyleAddf(k string, format string, args ...any) *MapElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1818,9 +1818,9 @@ func (e *MapElement) IfStyleAdd(condition bool, k string, v string) *MapElement 
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *MapElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MapElement {
+func (e *MapElement) IfStyleAddf(condition bool, k string, format string, args ...any) *MapElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1966,7 +1966,7 @@ func (e *MapElement) Title(s string) *MapElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *MapElement) TitleF(format string, args ...any) *MapElement {
+func (e *MapElement) Titlef(format string, args ...any) *MapElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2009,7 +2009,7 @@ func (e *MapElement) IfTitle(condition bool, s string) *MapElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *MapElement) IfTitleF(condition bool, format string, args ...any) *MapElement {
+func (e *MapElement) IfTitlef(condition bool, format string, args ...any) *MapElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

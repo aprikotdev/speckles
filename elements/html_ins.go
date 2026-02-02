@@ -83,7 +83,7 @@ func (e *InsElement) Text(text string) *InsElement {
 	return e
 }
 
-func (e *InsElement) TextF(format string, args ...any) *InsElement {
+func (e *InsElement) Textf(format string, args ...any) *InsElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *InsElement) IfText(condition bool, text string) *InsElement {
 	return e
 }
 
-func (e *InsElement) IfTextF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfTextf(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *InsElement) IfEscaped(condition bool, text string) *InsElement {
 	return e
 }
 
-func (e *InsElement) EscapedF(format string, args ...any) *InsElement {
+func (e *InsElement) Escapedf(format string, args ...any) *InsElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *InsElement) IfEscapedF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfEscapedf(condition bool, format string, args ...any) *InsElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *InsElement) Cite(s string) *InsElement {
 }
 
 // Contains a URI which points to the source of the quote or change.
-func (e *InsElement) CiteF(format string, args ...any) *InsElement {
+func (e *InsElement) Citef(format string, args ...any) *InsElement {
 	return e.Cite(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *InsElement) IfCite(condition bool, s string) *InsElement {
 }
 
 // Contains a URI which points to the source of the quote or change.
-func (e *InsElement) IfCiteF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfCitef(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.Cite(fmt.Sprintf(format, args...))
 	}
@@ -174,7 +174,7 @@ func (e *InsElement) Datetime(s string) *InsElement {
 }
 
 // Indicates the date and time associated with the element.
-func (e *InsElement) DatetimeF(format string, args ...any) *InsElement {
+func (e *InsElement) Datetimef(format string, args ...any) *InsElement {
 	return e.Datetime(fmt.Sprintf(format, args...))
 }
 
@@ -187,7 +187,7 @@ func (e *InsElement) IfDatetime(condition bool, s string) *InsElement {
 }
 
 // Indicates the date and time associated with the element.
-func (e *InsElement) IfDatetimeF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfDatetimef(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.Datetime(fmt.Sprintf(format, args...))
 	}
@@ -785,7 +785,7 @@ func (e *InsElement) ID(s string) *InsElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *InsElement) IDF(format string, args ...any) *InsElement {
+func (e *InsElement) IDf(format string, args ...any) *InsElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -802,7 +802,7 @@ func (e *InsElement) IfID(condition bool, s string) *InsElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *InsElement) IfIDF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfIDf(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -997,7 +997,7 @@ func (e *InsElement) Is(s string) *InsElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *InsElement) IsF(format string, args ...any) *InsElement {
+func (e *InsElement) Isf(format string, args ...any) *InsElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1018,7 +1018,7 @@ func (e *InsElement) IfIs(condition bool, s string) *InsElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *InsElement) IfIsF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfIsf(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1069,7 +1069,7 @@ func (e *InsElement) Itemid(s string) *InsElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *InsElement) ItemidF(format string, args ...any) *InsElement {
+func (e *InsElement) Itemidf(format string, args ...any) *InsElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1102,7 +1102,7 @@ func (e *InsElement) IfItemid(condition bool, s string) *InsElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *InsElement) IfItemidF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfItemidf(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1151,7 +1151,7 @@ func (e *InsElement) Itemprop(s string) *InsElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *InsElement) ItempropF(format string, args ...any) *InsElement {
+func (e *InsElement) Itempropf(format string, args ...any) *InsElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1176,7 +1176,7 @@ func (e *InsElement) IfItemprop(condition bool, s string) *InsElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *InsElement) IfItempropF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfItempropf(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1217,7 +1217,7 @@ func (e *InsElement) Itemref(s string) *InsElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *InsElement) ItemrefF(format string, args ...any) *InsElement {
+func (e *InsElement) Itemreff(format string, args ...any) *InsElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1238,7 +1238,7 @@ func (e *InsElement) IfItemref(condition bool, s string) *InsElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *InsElement) IfItemrefF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfItemreff(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1353,7 +1353,7 @@ func (e *InsElement) Itemtype(s string) *InsElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *InsElement) ItemtypeF(format string, args ...any) *InsElement {
+func (e *InsElement) Itemtypef(format string, args ...any) *InsElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1378,7 +1378,7 @@ func (e *InsElement) IfItemtype(condition bool, s string) *InsElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *InsElement) IfItemtypeF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfItemtypef(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1419,7 +1419,7 @@ func (e *InsElement) Lang(s string) *InsElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *InsElement) LangF(format string, args ...any) *InsElement {
+func (e *InsElement) Langf(format string, args ...any) *InsElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1440,7 +1440,7 @@ func (e *InsElement) IfLang(condition bool, s string) *InsElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *InsElement) IfLangF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfLangf(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1479,7 +1479,7 @@ func (e *InsElement) Nonce(s string) *InsElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *InsElement) NonceF(format string, args ...any) *InsElement {
+func (e *InsElement) Noncef(format string, args ...any) *InsElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1500,7 +1500,7 @@ func (e *InsElement) IfNonce(condition bool, s string) *InsElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *InsElement) IfNonceF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfNoncef(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1625,7 +1625,7 @@ func (e *InsElement) Role(s string) *InsElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *InsElement) RoleF(format string, args ...any) *InsElement {
+func (e *InsElement) Rolef(format string, args ...any) *InsElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1644,7 +1644,7 @@ func (e *InsElement) IfRole(condition bool, s string) *InsElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *InsElement) IfRoleF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfRolef(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1680,7 +1680,7 @@ func (e *InsElement) Slot(s string) *InsElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *InsElement) SlotF(format string, args ...any) *InsElement {
+func (e *InsElement) Slotf(format string, args ...any) *InsElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1699,7 +1699,7 @@ func (e *InsElement) IfSlot(condition bool, s string) *InsElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *InsElement) IfSlotF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfSlotf(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1843,7 +1843,7 @@ func (e *InsElement) StyleAdd(k string, v string) *InsElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *InsElement) StyleAddF(k string, format string, args ...any) *InsElement {
+func (e *InsElement) StyleAddf(k string, format string, args ...any) *InsElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1858,9 +1858,9 @@ func (e *InsElement) IfStyleAdd(condition bool, k string, v string) *InsElement 
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *InsElement) IfStyleAddF(condition bool, k string, format string, args ...any) *InsElement {
+func (e *InsElement) IfStyleAddf(condition bool, k string, format string, args ...any) *InsElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2006,7 +2006,7 @@ func (e *InsElement) Title(s string) *InsElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *InsElement) TitleF(format string, args ...any) *InsElement {
+func (e *InsElement) Titlef(format string, args ...any) *InsElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2049,7 +2049,7 @@ func (e *InsElement) IfTitle(condition bool, s string) *InsElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *InsElement) IfTitleF(condition bool, format string, args ...any) *InsElement {
+func (e *InsElement) IfTitlef(condition bool, format string, args ...any) *InsElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

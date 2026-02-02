@@ -82,7 +82,7 @@ func (e *SVGImageElement) Text(text string) *SVGImageElement {
 	return e
 }
 
-func (e *SVGImageElement) TextF(format string, args ...any) *SVGImageElement {
+func (e *SVGImageElement) Textf(format string, args ...any) *SVGImageElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -93,7 +93,7 @@ func (e *SVGImageElement) IfText(condition bool, text string) *SVGImageElement {
 	return e
 }
 
-func (e *SVGImageElement) IfTextF(condition bool, format string, args ...any) *SVGImageElement {
+func (e *SVGImageElement) IfTextf(condition bool, format string, args ...any) *SVGImageElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -112,13 +112,13 @@ func (e *SVGImageElement) IfEscaped(condition bool, text string) *SVGImageElemen
 	return e
 }
 
-func (e *SVGImageElement) EscapedF(format string, args ...any) *SVGImageElement {
+func (e *SVGImageElement) Escapedf(format string, args ...any) *SVGImageElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGImageElement) IfEscapedF(condition bool, format string, args ...any) *SVGImageElement {
+func (e *SVGImageElement) IfEscapedf(condition bool, format string, args ...any) *SVGImageElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -255,7 +255,7 @@ func (e *SVGImageElement) Href(s string) *SVGImageElement {
 }
 
 // A URI reference to the image to embed.
-func (e *SVGImageElement) HrefF(format string, args ...any) *SVGImageElement {
+func (e *SVGImageElement) Hreff(format string, args ...any) *SVGImageElement {
 	return e.Href(fmt.Sprintf(format, args...))
 }
 
@@ -268,7 +268,7 @@ func (e *SVGImageElement) IfHref(condition bool, s string) *SVGImageElement {
 }
 
 // A URI reference to the image to embed.
-func (e *SVGImageElement) IfHrefF(condition bool, format string, args ...any) *SVGImageElement {
+func (e *SVGImageElement) IfHreff(condition bool, format string, args ...any) *SVGImageElement {
 	if condition {
 		e.Href(fmt.Sprintf(format, args...))
 	}
@@ -295,7 +295,7 @@ func (e *SVGImageElement) ID(s string) *SVGImageElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGImageElement) IDF(format string, args ...any) *SVGImageElement {
+func (e *SVGImageElement) IDf(format string, args ...any) *SVGImageElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -308,7 +308,7 @@ func (e *SVGImageElement) IfID(condition bool, s string) *SVGImageElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGImageElement) IfIDF(condition bool, format string, args ...any) *SVGImageElement {
+func (e *SVGImageElement) IfIDf(condition bool, format string, args ...any) *SVGImageElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -434,7 +434,7 @@ func (e *SVGImageElement) StyleAdd(k string, v string) *SVGImageElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGImageElement) StyleAddF(k string, format string, args ...any) *SVGImageElement {
+func (e *SVGImageElement) StyleAddf(k string, format string, args ...any) *SVGImageElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -447,9 +447,9 @@ func (e *SVGImageElement) IfStyleAdd(condition bool, k string, v string) *SVGIma
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGImageElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGImageElement {
+func (e *SVGImageElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGImageElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

@@ -84,7 +84,7 @@ func (e *AreaElement) Text(text string) *AreaElement {
 	return e
 }
 
-func (e *AreaElement) TextF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Textf(format string, args ...any) *AreaElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *AreaElement) IfText(condition bool, text string) *AreaElement {
 	return e
 }
 
-func (e *AreaElement) IfTextF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfTextf(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *AreaElement) IfEscaped(condition bool, text string) *AreaElement {
 	return e
 }
 
-func (e *AreaElement) EscapedF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Escapedf(format string, args ...any) *AreaElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *AreaElement) IfEscapedF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfEscapedf(condition bool, format string, args ...any) *AreaElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -135,7 +135,7 @@ func (e *AreaElement) Alt(s string) *AreaElement {
 }
 
 // Alternative text in case an image can't be displayed
-func (e *AreaElement) AltF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Altf(format string, args ...any) *AreaElement {
 	return e.Alt(fmt.Sprintf(format, args...))
 }
 
@@ -148,7 +148,7 @@ func (e *AreaElement) IfAlt(condition bool, s string) *AreaElement {
 }
 
 // Alternative text in case an image can't be displayed
-func (e *AreaElement) IfAltF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfAltf(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.Alt(fmt.Sprintf(format, args...))
 	}
@@ -214,7 +214,7 @@ func (e *AreaElement) Download(s string) *AreaElement {
 
 // Causes the browser to download the resource instead of navigating to it. Can
 // be used with or without a value
-func (e *AreaElement) DownloadF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Downloadf(format string, args ...any) *AreaElement {
 	return e.Download(fmt.Sprintf(format, args...))
 }
 
@@ -229,7 +229,7 @@ func (e *AreaElement) IfDownload(condition bool, s string) *AreaElement {
 
 // Causes the browser to download the resource instead of navigating to it. Can
 // be used with or without a value
-func (e *AreaElement) IfDownloadF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfDownloadf(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.Download(fmt.Sprintf(format, args...))
 	}
@@ -257,7 +257,7 @@ func (e *AreaElement) Href(s string) *AreaElement {
 }
 
 // The URL of a linked resource
-func (e *AreaElement) HrefF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Hreff(format string, args ...any) *AreaElement {
 	return e.Href(fmt.Sprintf(format, args...))
 }
 
@@ -270,7 +270,7 @@ func (e *AreaElement) IfHref(condition bool, s string) *AreaElement {
 }
 
 // The URL of a linked resource
-func (e *AreaElement) IfHrefF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfHreff(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.Href(fmt.Sprintf(format, args...))
 	}
@@ -1080,7 +1080,7 @@ func (e *AreaElement) ID(s string) *AreaElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *AreaElement) IDF(format string, args ...any) *AreaElement {
+func (e *AreaElement) IDf(format string, args ...any) *AreaElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *AreaElement) IfID(condition bool, s string) *AreaElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *AreaElement) IfIDF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfIDf(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1292,7 +1292,7 @@ func (e *AreaElement) Is(s string) *AreaElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *AreaElement) IsF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Isf(format string, args ...any) *AreaElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1313,7 +1313,7 @@ func (e *AreaElement) IfIs(condition bool, s string) *AreaElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *AreaElement) IfIsF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfIsf(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1364,7 +1364,7 @@ func (e *AreaElement) Itemid(s string) *AreaElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *AreaElement) ItemidF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Itemidf(format string, args ...any) *AreaElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1397,7 +1397,7 @@ func (e *AreaElement) IfItemid(condition bool, s string) *AreaElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *AreaElement) IfItemidF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfItemidf(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1446,7 +1446,7 @@ func (e *AreaElement) Itemprop(s string) *AreaElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *AreaElement) ItempropF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Itempropf(format string, args ...any) *AreaElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1471,7 +1471,7 @@ func (e *AreaElement) IfItemprop(condition bool, s string) *AreaElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *AreaElement) IfItempropF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfItempropf(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1512,7 +1512,7 @@ func (e *AreaElement) Itemref(s string) *AreaElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *AreaElement) ItemrefF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Itemreff(format string, args ...any) *AreaElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1533,7 +1533,7 @@ func (e *AreaElement) IfItemref(condition bool, s string) *AreaElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *AreaElement) IfItemrefF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfItemreff(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1648,7 +1648,7 @@ func (e *AreaElement) Itemtype(s string) *AreaElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *AreaElement) ItemtypeF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Itemtypef(format string, args ...any) *AreaElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1673,7 +1673,7 @@ func (e *AreaElement) IfItemtype(condition bool, s string) *AreaElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *AreaElement) IfItemtypeF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfItemtypef(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1714,7 +1714,7 @@ func (e *AreaElement) Lang(s string) *AreaElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *AreaElement) LangF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Langf(format string, args ...any) *AreaElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1735,7 +1735,7 @@ func (e *AreaElement) IfLang(condition bool, s string) *AreaElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *AreaElement) IfLangF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfLangf(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1774,7 +1774,7 @@ func (e *AreaElement) Nonce(s string) *AreaElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *AreaElement) NonceF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Noncef(format string, args ...any) *AreaElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1795,7 +1795,7 @@ func (e *AreaElement) IfNonce(condition bool, s string) *AreaElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *AreaElement) IfNonceF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfNoncef(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1920,7 +1920,7 @@ func (e *AreaElement) Role(s string) *AreaElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *AreaElement) RoleF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Rolef(format string, args ...any) *AreaElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1939,7 +1939,7 @@ func (e *AreaElement) IfRole(condition bool, s string) *AreaElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *AreaElement) IfRoleF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfRolef(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1975,7 +1975,7 @@ func (e *AreaElement) Slot(s string) *AreaElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *AreaElement) SlotF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Slotf(format string, args ...any) *AreaElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1994,7 +1994,7 @@ func (e *AreaElement) IfSlot(condition bool, s string) *AreaElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *AreaElement) IfSlotF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfSlotf(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -2138,7 +2138,7 @@ func (e *AreaElement) StyleAdd(k string, v string) *AreaElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *AreaElement) StyleAddF(k string, format string, args ...any) *AreaElement {
+func (e *AreaElement) StyleAddf(k string, format string, args ...any) *AreaElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -2153,9 +2153,9 @@ func (e *AreaElement) IfStyleAdd(condition bool, k string, v string) *AreaElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *AreaElement) IfStyleAddF(condition bool, k string, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfStyleAddf(condition bool, k string, format string, args ...any) *AreaElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2301,7 +2301,7 @@ func (e *AreaElement) Title(s string) *AreaElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *AreaElement) TitleF(format string, args ...any) *AreaElement {
+func (e *AreaElement) Titlef(format string, args ...any) *AreaElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2344,7 +2344,7 @@ func (e *AreaElement) IfTitle(condition bool, s string) *AreaElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *AreaElement) IfTitleF(condition bool, format string, args ...any) *AreaElement {
+func (e *AreaElement) IfTitlef(condition bool, format string, args ...any) *AreaElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

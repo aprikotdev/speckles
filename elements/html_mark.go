@@ -84,7 +84,7 @@ func (e *MarkElement) Text(text string) *MarkElement {
 	return e
 }
 
-func (e *MarkElement) TextF(format string, args ...any) *MarkElement {
+func (e *MarkElement) Textf(format string, args ...any) *MarkElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *MarkElement) IfText(condition bool, text string) *MarkElement {
 	return e
 }
 
-func (e *MarkElement) IfTextF(condition bool, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfTextf(condition bool, format string, args ...any) *MarkElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *MarkElement) IfEscaped(condition bool, text string) *MarkElement {
 	return e
 }
 
-func (e *MarkElement) EscapedF(format string, args ...any) *MarkElement {
+func (e *MarkElement) Escapedf(format string, args ...any) *MarkElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *MarkElement) IfEscapedF(condition bool, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfEscapedf(condition bool, format string, args ...any) *MarkElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -706,7 +706,7 @@ func (e *MarkElement) ID(s string) *MarkElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *MarkElement) IDF(format string, args ...any) *MarkElement {
+func (e *MarkElement) IDf(format string, args ...any) *MarkElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -723,7 +723,7 @@ func (e *MarkElement) IfID(condition bool, s string) *MarkElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *MarkElement) IfIDF(condition bool, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfIDf(condition bool, format string, args ...any) *MarkElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -918,7 +918,7 @@ func (e *MarkElement) Is(s string) *MarkElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *MarkElement) IsF(format string, args ...any) *MarkElement {
+func (e *MarkElement) Isf(format string, args ...any) *MarkElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -939,7 +939,7 @@ func (e *MarkElement) IfIs(condition bool, s string) *MarkElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *MarkElement) IfIsF(condition bool, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfIsf(condition bool, format string, args ...any) *MarkElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -990,7 +990,7 @@ func (e *MarkElement) Itemid(s string) *MarkElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *MarkElement) ItemidF(format string, args ...any) *MarkElement {
+func (e *MarkElement) Itemidf(format string, args ...any) *MarkElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1023,7 +1023,7 @@ func (e *MarkElement) IfItemid(condition bool, s string) *MarkElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *MarkElement) IfItemidF(condition bool, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfItemidf(condition bool, format string, args ...any) *MarkElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1072,7 +1072,7 @@ func (e *MarkElement) Itemprop(s string) *MarkElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *MarkElement) ItempropF(format string, args ...any) *MarkElement {
+func (e *MarkElement) Itempropf(format string, args ...any) *MarkElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *MarkElement) IfItemprop(condition bool, s string) *MarkElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *MarkElement) IfItempropF(condition bool, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfItempropf(condition bool, format string, args ...any) *MarkElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1138,7 +1138,7 @@ func (e *MarkElement) Itemref(s string) *MarkElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *MarkElement) ItemrefF(format string, args ...any) *MarkElement {
+func (e *MarkElement) Itemreff(format string, args ...any) *MarkElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1159,7 +1159,7 @@ func (e *MarkElement) IfItemref(condition bool, s string) *MarkElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *MarkElement) IfItemrefF(condition bool, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfItemreff(condition bool, format string, args ...any) *MarkElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1274,7 +1274,7 @@ func (e *MarkElement) Itemtype(s string) *MarkElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *MarkElement) ItemtypeF(format string, args ...any) *MarkElement {
+func (e *MarkElement) Itemtypef(format string, args ...any) *MarkElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1299,7 +1299,7 @@ func (e *MarkElement) IfItemtype(condition bool, s string) *MarkElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *MarkElement) IfItemtypeF(condition bool, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfItemtypef(condition bool, format string, args ...any) *MarkElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1340,7 +1340,7 @@ func (e *MarkElement) Lang(s string) *MarkElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *MarkElement) LangF(format string, args ...any) *MarkElement {
+func (e *MarkElement) Langf(format string, args ...any) *MarkElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1361,7 +1361,7 @@ func (e *MarkElement) IfLang(condition bool, s string) *MarkElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *MarkElement) IfLangF(condition bool, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfLangf(condition bool, format string, args ...any) *MarkElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1400,7 +1400,7 @@ func (e *MarkElement) Nonce(s string) *MarkElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *MarkElement) NonceF(format string, args ...any) *MarkElement {
+func (e *MarkElement) Noncef(format string, args ...any) *MarkElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *MarkElement) IfNonce(condition bool, s string) *MarkElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *MarkElement) IfNonceF(condition bool, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfNoncef(condition bool, format string, args ...any) *MarkElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1546,7 +1546,7 @@ func (e *MarkElement) Role(s string) *MarkElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *MarkElement) RoleF(format string, args ...any) *MarkElement {
+func (e *MarkElement) Rolef(format string, args ...any) *MarkElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1565,7 +1565,7 @@ func (e *MarkElement) IfRole(condition bool, s string) *MarkElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *MarkElement) IfRoleF(condition bool, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfRolef(condition bool, format string, args ...any) *MarkElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1601,7 +1601,7 @@ func (e *MarkElement) Slot(s string) *MarkElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *MarkElement) SlotF(format string, args ...any) *MarkElement {
+func (e *MarkElement) Slotf(format string, args ...any) *MarkElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1620,7 +1620,7 @@ func (e *MarkElement) IfSlot(condition bool, s string) *MarkElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *MarkElement) IfSlotF(condition bool, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfSlotf(condition bool, format string, args ...any) *MarkElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1764,7 +1764,7 @@ func (e *MarkElement) StyleAdd(k string, v string) *MarkElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *MarkElement) StyleAddF(k string, format string, args ...any) *MarkElement {
+func (e *MarkElement) StyleAddf(k string, format string, args ...any) *MarkElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1779,9 +1779,9 @@ func (e *MarkElement) IfStyleAdd(condition bool, k string, v string) *MarkElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *MarkElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfStyleAddf(condition bool, k string, format string, args ...any) *MarkElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1927,7 +1927,7 @@ func (e *MarkElement) Title(s string) *MarkElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *MarkElement) TitleF(format string, args ...any) *MarkElement {
+func (e *MarkElement) Titlef(format string, args ...any) *MarkElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1970,7 +1970,7 @@ func (e *MarkElement) IfTitle(condition bool, s string) *MarkElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *MarkElement) IfTitleF(condition bool, format string, args ...any) *MarkElement {
+func (e *MarkElement) IfTitlef(condition bool, format string, args ...any) *MarkElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

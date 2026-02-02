@@ -85,7 +85,7 @@ func (e *SVGAElement) Text(text string) *SVGAElement {
 	return e
 }
 
-func (e *SVGAElement) TextF(format string, args ...any) *SVGAElement {
+func (e *SVGAElement) Textf(format string, args ...any) *SVGAElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *SVGAElement) IfText(condition bool, text string) *SVGAElement {
 	return e
 }
 
-func (e *SVGAElement) IfTextF(condition bool, format string, args ...any) *SVGAElement {
+func (e *SVGAElement) IfTextf(condition bool, format string, args ...any) *SVGAElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *SVGAElement) IfEscaped(condition bool, text string) *SVGAElement {
 	return e
 }
 
-func (e *SVGAElement) EscapedF(format string, args ...any) *SVGAElement {
+func (e *SVGAElement) Escapedf(format string, args ...any) *SVGAElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGAElement) IfEscapedF(condition bool, format string, args ...any) *SVGAElement {
+func (e *SVGAElement) IfEscapedf(condition bool, format string, args ...any) *SVGAElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -144,7 +144,7 @@ func (e *SVGAElement) Download(s string) *SVGAElement {
 // as the file name of the downloaded file. There are no restrictions on allowed
 // values, though / and \ will be converted to underscores and leading spaces in
 // filenames will be removed.
-func (e *SVGAElement) DownloadF(format string, args ...any) *SVGAElement {
+func (e *SVGAElement) Downloadf(format string, args ...any) *SVGAElement {
 	return e.Download(fmt.Sprintf(format, args...))
 }
 
@@ -165,7 +165,7 @@ func (e *SVGAElement) IfDownload(condition bool, s string) *SVGAElement {
 // as the file name of the downloaded file. There are no restrictions on allowed
 // values, though / and \ will be converted to underscores and leading spaces in
 // filenames will be removed.
-func (e *SVGAElement) IfDownloadF(condition bool, format string, args ...any) *SVGAElement {
+func (e *SVGAElement) IfDownloadf(condition bool, format string, args ...any) *SVGAElement {
 	if condition {
 		e.Download(fmt.Sprintf(format, args...))
 	}
@@ -196,7 +196,7 @@ func (e *SVGAElement) Href(s string) *SVGAElement {
 }
 
 // The URL of a linked resource.
-func (e *SVGAElement) HrefF(format string, args ...any) *SVGAElement {
+func (e *SVGAElement) Hreff(format string, args ...any) *SVGAElement {
 	return e.Href(fmt.Sprintf(format, args...))
 }
 
@@ -209,7 +209,7 @@ func (e *SVGAElement) IfHref(condition bool, s string) *SVGAElement {
 }
 
 // The URL of a linked resource.
-func (e *SVGAElement) IfHrefF(condition bool, format string, args ...any) *SVGAElement {
+func (e *SVGAElement) IfHreff(condition bool, format string, args ...any) *SVGAElement {
 	if condition {
 		e.Href(fmt.Sprintf(format, args...))
 	}
@@ -236,7 +236,7 @@ func (e *SVGAElement) Hreflang(s string) *SVGAElement {
 }
 
 // Specifies the language of the linked resource.
-func (e *SVGAElement) HreflangF(format string, args ...any) *SVGAElement {
+func (e *SVGAElement) Hreflangf(format string, args ...any) *SVGAElement {
 	return e.Hreflang(fmt.Sprintf(format, args...))
 }
 
@@ -249,7 +249,7 @@ func (e *SVGAElement) IfHreflang(condition bool, s string) *SVGAElement {
 }
 
 // Specifies the language of the linked resource.
-func (e *SVGAElement) IfHreflangF(condition bool, format string, args ...any) *SVGAElement {
+func (e *SVGAElement) IfHreflangf(condition bool, format string, args ...any) *SVGAElement {
 	if condition {
 		e.Hreflang(fmt.Sprintf(format, args...))
 	}
@@ -478,7 +478,7 @@ func (e *SVGAElement) Type(s string) *SVGAElement {
 }
 
 // Specifies the MIME type of the linked resource.
-func (e *SVGAElement) TypeF(format string, args ...any) *SVGAElement {
+func (e *SVGAElement) Typef(format string, args ...any) *SVGAElement {
 	return e.Type(fmt.Sprintf(format, args...))
 }
 
@@ -491,7 +491,7 @@ func (e *SVGAElement) IfType(condition bool, s string) *SVGAElement {
 }
 
 // Specifies the MIME type of the linked resource.
-func (e *SVGAElement) IfTypeF(condition bool, format string, args ...any) *SVGAElement {
+func (e *SVGAElement) IfTypef(condition bool, format string, args ...any) *SVGAElement {
 	if condition {
 		e.Type(fmt.Sprintf(format, args...))
 	}
@@ -518,7 +518,7 @@ func (e *SVGAElement) ID(s string) *SVGAElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGAElement) IDF(format string, args ...any) *SVGAElement {
+func (e *SVGAElement) IDf(format string, args ...any) *SVGAElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -531,7 +531,7 @@ func (e *SVGAElement) IfID(condition bool, s string) *SVGAElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGAElement) IfIDF(condition bool, format string, args ...any) *SVGAElement {
+func (e *SVGAElement) IfIDf(condition bool, format string, args ...any) *SVGAElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -657,7 +657,7 @@ func (e *SVGAElement) StyleAdd(k string, v string) *SVGAElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGAElement) StyleAddF(k string, format string, args ...any) *SVGAElement {
+func (e *SVGAElement) StyleAddf(k string, format string, args ...any) *SVGAElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -670,9 +670,9 @@ func (e *SVGAElement) IfStyleAdd(condition bool, k string, v string) *SVGAElemen
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGAElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGAElement {
+func (e *SVGAElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGAElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

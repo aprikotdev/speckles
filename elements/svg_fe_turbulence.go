@@ -84,7 +84,7 @@ func (e *SVGFeTurbulenceElement) Text(text string) *SVGFeTurbulenceElement {
 	return e
 }
 
-func (e *SVGFeTurbulenceElement) TextF(format string, args ...any) *SVGFeTurbulenceElement {
+func (e *SVGFeTurbulenceElement) Textf(format string, args ...any) *SVGFeTurbulenceElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGFeTurbulenceElement) IfText(condition bool, text string) *SVGFeTurbu
 	return e
 }
 
-func (e *SVGFeTurbulenceElement) IfTextF(condition bool, format string, args ...any) *SVGFeTurbulenceElement {
+func (e *SVGFeTurbulenceElement) IfTextf(condition bool, format string, args ...any) *SVGFeTurbulenceElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGFeTurbulenceElement) IfEscaped(condition bool, text string) *SVGFeTu
 	return e
 }
 
-func (e *SVGFeTurbulenceElement) EscapedF(format string, args ...any) *SVGFeTurbulenceElement {
+func (e *SVGFeTurbulenceElement) Escapedf(format string, args ...any) *SVGFeTurbulenceElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeTurbulenceElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeTurbulenceElement {
+func (e *SVGFeTurbulenceElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeTurbulenceElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -137,7 +137,7 @@ func (e *SVGFeTurbulenceElement) BaseFrequency(s string) *SVGFeTurbulenceElement
 
 // The baseFrequency Attribute represent the base frequencies in the X and Y
 // directions of the turbulence function.
-func (e *SVGFeTurbulenceElement) BaseFrequencyF(format string, args ...any) *SVGFeTurbulenceElement {
+func (e *SVGFeTurbulenceElement) BaseFrequencyf(format string, args ...any) *SVGFeTurbulenceElement {
 	return e.BaseFrequency(fmt.Sprintf(format, args...))
 }
 
@@ -152,7 +152,7 @@ func (e *SVGFeTurbulenceElement) IfBaseFrequency(condition bool, s string) *SVGF
 
 // The baseFrequency Attribute represent the base frequencies in the X and Y
 // directions of the turbulence function.
-func (e *SVGFeTurbulenceElement) IfBaseFrequencyF(condition bool, format string, args ...any) *SVGFeTurbulenceElement {
+func (e *SVGFeTurbulenceElement) IfBaseFrequencyf(condition bool, format string, args ...any) *SVGFeTurbulenceElement {
 	if condition {
 		e.BaseFrequency(fmt.Sprintf(format, args...))
 	}
@@ -280,7 +280,7 @@ func (e *SVGFeTurbulenceElement) ID(s string) *SVGFeTurbulenceElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeTurbulenceElement) IDF(format string, args ...any) *SVGFeTurbulenceElement {
+func (e *SVGFeTurbulenceElement) IDf(format string, args ...any) *SVGFeTurbulenceElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -293,7 +293,7 @@ func (e *SVGFeTurbulenceElement) IfID(condition bool, s string) *SVGFeTurbulence
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeTurbulenceElement) IfIDF(condition bool, format string, args ...any) *SVGFeTurbulenceElement {
+func (e *SVGFeTurbulenceElement) IfIDf(condition bool, format string, args ...any) *SVGFeTurbulenceElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -419,7 +419,7 @@ func (e *SVGFeTurbulenceElement) StyleAdd(k string, v string) *SVGFeTurbulenceEl
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeTurbulenceElement) StyleAddF(k string, format string, args ...any) *SVGFeTurbulenceElement {
+func (e *SVGFeTurbulenceElement) StyleAddf(k string, format string, args ...any) *SVGFeTurbulenceElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -432,9 +432,9 @@ func (e *SVGFeTurbulenceElement) IfStyleAdd(condition bool, k string, v string) 
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeTurbulenceElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeTurbulenceElement {
+func (e *SVGFeTurbulenceElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeTurbulenceElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

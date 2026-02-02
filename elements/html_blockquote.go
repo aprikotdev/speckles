@@ -86,7 +86,7 @@ func (e *BlockquoteElement) Text(text string) *BlockquoteElement {
 	return e
 }
 
-func (e *BlockquoteElement) TextF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) Textf(format string, args ...any) *BlockquoteElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -97,7 +97,7 @@ func (e *BlockquoteElement) IfText(condition bool, text string) *BlockquoteEleme
 	return e
 }
 
-func (e *BlockquoteElement) IfTextF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfTextf(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -116,13 +116,13 @@ func (e *BlockquoteElement) IfEscaped(condition bool, text string) *BlockquoteEl
 	return e
 }
 
-func (e *BlockquoteElement) EscapedF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) Escapedf(format string, args ...any) *BlockquoteElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *BlockquoteElement) IfEscapedF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfEscapedf(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -137,7 +137,7 @@ func (e *BlockquoteElement) Cite(s string) *BlockquoteElement {
 }
 
 // Contains a URI which points to the source of the quote or change.
-func (e *BlockquoteElement) CiteF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) Citef(format string, args ...any) *BlockquoteElement {
 	return e.Cite(fmt.Sprintf(format, args...))
 }
 
@@ -150,7 +150,7 @@ func (e *BlockquoteElement) IfCite(condition bool, s string) *BlockquoteElement 
 }
 
 // Contains a URI which points to the source of the quote or change.
-func (e *BlockquoteElement) IfCiteF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfCitef(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
 		e.Cite(fmt.Sprintf(format, args...))
 	}
@@ -748,7 +748,7 @@ func (e *BlockquoteElement) ID(s string) *BlockquoteElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *BlockquoteElement) IDF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IDf(format string, args ...any) *BlockquoteElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -765,7 +765,7 @@ func (e *BlockquoteElement) IfID(condition bool, s string) *BlockquoteElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *BlockquoteElement) IfIDF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfIDf(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -960,7 +960,7 @@ func (e *BlockquoteElement) Is(s string) *BlockquoteElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *BlockquoteElement) IsF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) Isf(format string, args ...any) *BlockquoteElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -981,7 +981,7 @@ func (e *BlockquoteElement) IfIs(condition bool, s string) *BlockquoteElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *BlockquoteElement) IfIsF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfIsf(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1032,7 +1032,7 @@ func (e *BlockquoteElement) Itemid(s string) *BlockquoteElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *BlockquoteElement) ItemidF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) Itemidf(format string, args ...any) *BlockquoteElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1065,7 +1065,7 @@ func (e *BlockquoteElement) IfItemid(condition bool, s string) *BlockquoteElemen
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *BlockquoteElement) IfItemidF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfItemidf(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1114,7 +1114,7 @@ func (e *BlockquoteElement) Itemprop(s string) *BlockquoteElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *BlockquoteElement) ItempropF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) Itempropf(format string, args ...any) *BlockquoteElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1139,7 +1139,7 @@ func (e *BlockquoteElement) IfItemprop(condition bool, s string) *BlockquoteElem
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *BlockquoteElement) IfItempropF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfItempropf(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1180,7 +1180,7 @@ func (e *BlockquoteElement) Itemref(s string) *BlockquoteElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *BlockquoteElement) ItemrefF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) Itemreff(format string, args ...any) *BlockquoteElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1201,7 +1201,7 @@ func (e *BlockquoteElement) IfItemref(condition bool, s string) *BlockquoteEleme
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *BlockquoteElement) IfItemrefF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfItemreff(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1316,7 +1316,7 @@ func (e *BlockquoteElement) Itemtype(s string) *BlockquoteElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *BlockquoteElement) ItemtypeF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) Itemtypef(format string, args ...any) *BlockquoteElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1341,7 +1341,7 @@ func (e *BlockquoteElement) IfItemtype(condition bool, s string) *BlockquoteElem
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *BlockquoteElement) IfItemtypeF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfItemtypef(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1382,7 +1382,7 @@ func (e *BlockquoteElement) Lang(s string) *BlockquoteElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *BlockquoteElement) LangF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) Langf(format string, args ...any) *BlockquoteElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1403,7 +1403,7 @@ func (e *BlockquoteElement) IfLang(condition bool, s string) *BlockquoteElement 
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *BlockquoteElement) IfLangF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfLangf(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1442,7 +1442,7 @@ func (e *BlockquoteElement) Nonce(s string) *BlockquoteElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *BlockquoteElement) NonceF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) Noncef(format string, args ...any) *BlockquoteElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1463,7 +1463,7 @@ func (e *BlockquoteElement) IfNonce(condition bool, s string) *BlockquoteElement
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *BlockquoteElement) IfNonceF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfNoncef(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1588,7 +1588,7 @@ func (e *BlockquoteElement) Role(s string) *BlockquoteElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *BlockquoteElement) RoleF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) Rolef(format string, args ...any) *BlockquoteElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1607,7 +1607,7 @@ func (e *BlockquoteElement) IfRole(condition bool, s string) *BlockquoteElement 
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *BlockquoteElement) IfRoleF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfRolef(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1643,7 +1643,7 @@ func (e *BlockquoteElement) Slot(s string) *BlockquoteElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *BlockquoteElement) SlotF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) Slotf(format string, args ...any) *BlockquoteElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1662,7 +1662,7 @@ func (e *BlockquoteElement) IfSlot(condition bool, s string) *BlockquoteElement 
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *BlockquoteElement) IfSlotF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfSlotf(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1806,7 +1806,7 @@ func (e *BlockquoteElement) StyleAdd(k string, v string) *BlockquoteElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *BlockquoteElement) StyleAddF(k string, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) StyleAddf(k string, format string, args ...any) *BlockquoteElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1821,9 +1821,9 @@ func (e *BlockquoteElement) IfStyleAdd(condition bool, k string, v string) *Bloc
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *BlockquoteElement) IfStyleAddF(condition bool, k string, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfStyleAddf(condition bool, k string, format string, args ...any) *BlockquoteElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1969,7 +1969,7 @@ func (e *BlockquoteElement) Title(s string) *BlockquoteElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *BlockquoteElement) TitleF(format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) Titlef(format string, args ...any) *BlockquoteElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2012,7 +2012,7 @@ func (e *BlockquoteElement) IfTitle(condition bool, s string) *BlockquoteElement
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *BlockquoteElement) IfTitleF(condition bool, format string, args ...any) *BlockquoteElement {
+func (e *BlockquoteElement) IfTitlef(condition bool, format string, args ...any) *BlockquoteElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

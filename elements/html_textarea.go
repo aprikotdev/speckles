@@ -84,7 +84,7 @@ func (e *TextareaElement) Text(text string) *TextareaElement {
 	return e
 }
 
-func (e *TextareaElement) TextF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Textf(format string, args ...any) *TextareaElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *TextareaElement) IfText(condition bool, text string) *TextareaElement {
 	return e
 }
 
-func (e *TextareaElement) IfTextF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfTextf(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *TextareaElement) IfEscaped(condition bool, text string) *TextareaElemen
 	return e
 }
 
-func (e *TextareaElement) EscapedF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Escapedf(format string, args ...any) *TextareaElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *TextareaElement) IfEscapedF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfEscapedf(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -276,7 +276,7 @@ func (e *TextareaElement) Dirname(s string) *TextareaElement {
 
 // Name of form field to use for sending the element's directionality in form
 // submission.
-func (e *TextareaElement) DirnameF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Dirnamef(format string, args ...any) *TextareaElement {
 	return e.Dirname(fmt.Sprintf(format, args...))
 }
 
@@ -291,7 +291,7 @@ func (e *TextareaElement) IfDirname(condition bool, s string) *TextareaElement {
 
 // Name of form field to use for sending the element's directionality in form
 // submission.
-func (e *TextareaElement) IfDirnameF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfDirnamef(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Dirname(fmt.Sprintf(format, args...))
 	}
@@ -361,7 +361,7 @@ func (e *TextareaElement) Form(s string) *TextareaElement {
 }
 
 // Associates the control with a form element.
-func (e *TextareaElement) FormF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Formf(format string, args ...any) *TextareaElement {
 	return e.Form(fmt.Sprintf(format, args...))
 }
 
@@ -374,7 +374,7 @@ func (e *TextareaElement) IfForm(condition bool, s string) *TextareaElement {
 }
 
 // Associates the control with a form element.
-func (e *TextareaElement) IfFormF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfFormf(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Form(fmt.Sprintf(format, args...))
 	}
@@ -455,7 +455,7 @@ func (e *TextareaElement) Name(s string) *TextareaElement {
 }
 
 // Name of the element to use for form submission and in the form.elements API.
-func (e *TextareaElement) NameF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Namef(format string, args ...any) *TextareaElement {
 	return e.Name(fmt.Sprintf(format, args...))
 }
 
@@ -468,7 +468,7 @@ func (e *TextareaElement) IfName(condition bool, s string) *TextareaElement {
 }
 
 // Name of the element to use for form submission and in the form.elements API.
-func (e *TextareaElement) IfNameF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfNamef(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Name(fmt.Sprintf(format, args...))
 	}
@@ -495,7 +495,7 @@ func (e *TextareaElement) Placeholder(s string) *TextareaElement {
 }
 
 // User-visible label to give the user an idea of what to type.
-func (e *TextareaElement) PlaceholderF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Placeholderf(format string, args ...any) *TextareaElement {
 	return e.Placeholder(fmt.Sprintf(format, args...))
 }
 
@@ -508,7 +508,7 @@ func (e *TextareaElement) IfPlaceholder(condition bool, s string) *TextareaEleme
 }
 
 // User-visible label to give the user an idea of what to type.
-func (e *TextareaElement) IfPlaceholderF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfPlaceholderf(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Placeholder(fmt.Sprintf(format, args...))
 	}
@@ -1115,7 +1115,7 @@ func (e *TextareaElement) ID(s string) *TextareaElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *TextareaElement) IDF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IDf(format string, args ...any) *TextareaElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -1132,7 +1132,7 @@ func (e *TextareaElement) IfID(condition bool, s string) *TextareaElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *TextareaElement) IfIDF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfIDf(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1327,7 +1327,7 @@ func (e *TextareaElement) Is(s string) *TextareaElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *TextareaElement) IsF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Isf(format string, args ...any) *TextareaElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1348,7 +1348,7 @@ func (e *TextareaElement) IfIs(condition bool, s string) *TextareaElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *TextareaElement) IfIsF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfIsf(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1399,7 +1399,7 @@ func (e *TextareaElement) Itemid(s string) *TextareaElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *TextareaElement) ItemidF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Itemidf(format string, args ...any) *TextareaElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1432,7 +1432,7 @@ func (e *TextareaElement) IfItemid(condition bool, s string) *TextareaElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *TextareaElement) IfItemidF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfItemidf(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1481,7 +1481,7 @@ func (e *TextareaElement) Itemprop(s string) *TextareaElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *TextareaElement) ItempropF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Itempropf(format string, args ...any) *TextareaElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1506,7 +1506,7 @@ func (e *TextareaElement) IfItemprop(condition bool, s string) *TextareaElement 
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *TextareaElement) IfItempropF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfItempropf(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1547,7 +1547,7 @@ func (e *TextareaElement) Itemref(s string) *TextareaElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *TextareaElement) ItemrefF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Itemreff(format string, args ...any) *TextareaElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1568,7 +1568,7 @@ func (e *TextareaElement) IfItemref(condition bool, s string) *TextareaElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *TextareaElement) IfItemrefF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfItemreff(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1683,7 +1683,7 @@ func (e *TextareaElement) Itemtype(s string) *TextareaElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *TextareaElement) ItemtypeF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Itemtypef(format string, args ...any) *TextareaElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1708,7 +1708,7 @@ func (e *TextareaElement) IfItemtype(condition bool, s string) *TextareaElement 
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *TextareaElement) IfItemtypeF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfItemtypef(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1749,7 +1749,7 @@ func (e *TextareaElement) Lang(s string) *TextareaElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *TextareaElement) LangF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Langf(format string, args ...any) *TextareaElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1770,7 +1770,7 @@ func (e *TextareaElement) IfLang(condition bool, s string) *TextareaElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *TextareaElement) IfLangF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfLangf(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1809,7 +1809,7 @@ func (e *TextareaElement) Nonce(s string) *TextareaElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *TextareaElement) NonceF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Noncef(format string, args ...any) *TextareaElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1830,7 +1830,7 @@ func (e *TextareaElement) IfNonce(condition bool, s string) *TextareaElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *TextareaElement) IfNonceF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfNoncef(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1955,7 +1955,7 @@ func (e *TextareaElement) Role(s string) *TextareaElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *TextareaElement) RoleF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Rolef(format string, args ...any) *TextareaElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1974,7 +1974,7 @@ func (e *TextareaElement) IfRole(condition bool, s string) *TextareaElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *TextareaElement) IfRoleF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfRolef(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -2010,7 +2010,7 @@ func (e *TextareaElement) Slot(s string) *TextareaElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *TextareaElement) SlotF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Slotf(format string, args ...any) *TextareaElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -2029,7 +2029,7 @@ func (e *TextareaElement) IfSlot(condition bool, s string) *TextareaElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *TextareaElement) IfSlotF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfSlotf(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -2123,7 +2123,7 @@ func (e *TextareaElement) StyleAdd(k string, v string) *TextareaElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *TextareaElement) StyleAddF(k string, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) StyleAddf(k string, format string, args ...any) *TextareaElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -2138,9 +2138,9 @@ func (e *TextareaElement) IfStyleAdd(condition bool, k string, v string) *Textar
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *TextareaElement) IfStyleAddF(condition bool, k string, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfStyleAddf(condition bool, k string, format string, args ...any) *TextareaElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2286,7 +2286,7 @@ func (e *TextareaElement) Title(s string) *TextareaElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *TextareaElement) TitleF(format string, args ...any) *TextareaElement {
+func (e *TextareaElement) Titlef(format string, args ...any) *TextareaElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2329,7 +2329,7 @@ func (e *TextareaElement) IfTitle(condition bool, s string) *TextareaElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *TextareaElement) IfTitleF(condition bool, format string, args ...any) *TextareaElement {
+func (e *TextareaElement) IfTitlef(condition bool, format string, args ...any) *TextareaElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

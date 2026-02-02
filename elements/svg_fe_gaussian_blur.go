@@ -83,7 +83,7 @@ func (e *SVGFeGaussianBlurElement) Text(text string) *SVGFeGaussianBlurElement {
 	return e
 }
 
-func (e *SVGFeGaussianBlurElement) TextF(format string, args ...any) *SVGFeGaussianBlurElement {
+func (e *SVGFeGaussianBlurElement) Textf(format string, args ...any) *SVGFeGaussianBlurElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGFeGaussianBlurElement) IfText(condition bool, text string) *SVGFeGau
 	return e
 }
 
-func (e *SVGFeGaussianBlurElement) IfTextF(condition bool, format string, args ...any) *SVGFeGaussianBlurElement {
+func (e *SVGFeGaussianBlurElement) IfTextf(condition bool, format string, args ...any) *SVGFeGaussianBlurElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGFeGaussianBlurElement) IfEscaped(condition bool, text string) *SVGFe
 	return e
 }
 
-func (e *SVGFeGaussianBlurElement) EscapedF(format string, args ...any) *SVGFeGaussianBlurElement {
+func (e *SVGFeGaussianBlurElement) Escapedf(format string, args ...any) *SVGFeGaussianBlurElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeGaussianBlurElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeGaussianBlurElement {
+func (e *SVGFeGaussianBlurElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeGaussianBlurElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *SVGFeGaussianBlurElement) In(s string) *SVGFeGaussianBlurElement {
 }
 
 // The input for this filter.
-func (e *SVGFeGaussianBlurElement) InF(format string, args ...any) *SVGFeGaussianBlurElement {
+func (e *SVGFeGaussianBlurElement) Inf(format string, args ...any) *SVGFeGaussianBlurElement {
 	return e.In(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *SVGFeGaussianBlurElement) IfIn(condition bool, s string) *SVGFeGaussian
 }
 
 // The input for this filter.
-func (e *SVGFeGaussianBlurElement) IfInF(condition bool, format string, args ...any) *SVGFeGaussianBlurElement {
+func (e *SVGFeGaussianBlurElement) IfInf(condition bool, format string, args ...any) *SVGFeGaussianBlurElement {
 	if condition {
 		e.In(fmt.Sprintf(format, args...))
 	}
@@ -203,7 +203,7 @@ func (e *SVGFeGaussianBlurElement) ID(s string) *SVGFeGaussianBlurElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeGaussianBlurElement) IDF(format string, args ...any) *SVGFeGaussianBlurElement {
+func (e *SVGFeGaussianBlurElement) IDf(format string, args ...any) *SVGFeGaussianBlurElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -216,7 +216,7 @@ func (e *SVGFeGaussianBlurElement) IfID(condition bool, s string) *SVGFeGaussian
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeGaussianBlurElement) IfIDF(condition bool, format string, args ...any) *SVGFeGaussianBlurElement {
+func (e *SVGFeGaussianBlurElement) IfIDf(condition bool, format string, args ...any) *SVGFeGaussianBlurElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -342,7 +342,7 @@ func (e *SVGFeGaussianBlurElement) StyleAdd(k string, v string) *SVGFeGaussianBl
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeGaussianBlurElement) StyleAddF(k string, format string, args ...any) *SVGFeGaussianBlurElement {
+func (e *SVGFeGaussianBlurElement) StyleAddf(k string, format string, args ...any) *SVGFeGaussianBlurElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -355,9 +355,9 @@ func (e *SVGFeGaussianBlurElement) IfStyleAdd(condition bool, k string, v string
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeGaussianBlurElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeGaussianBlurElement {
+func (e *SVGFeGaussianBlurElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeGaussianBlurElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

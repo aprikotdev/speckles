@@ -82,7 +82,7 @@ func (e *SVGMaskElement) Text(text string) *SVGMaskElement {
 	return e
 }
 
-func (e *SVGMaskElement) TextF(format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) Textf(format string, args ...any) *SVGMaskElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -93,7 +93,7 @@ func (e *SVGMaskElement) IfText(condition bool, text string) *SVGMaskElement {
 	return e
 }
 
-func (e *SVGMaskElement) IfTextF(condition bool, format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) IfTextf(condition bool, format string, args ...any) *SVGMaskElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -112,13 +112,13 @@ func (e *SVGMaskElement) IfEscaped(condition bool, text string) *SVGMaskElement 
 	return e
 }
 
-func (e *SVGMaskElement) EscapedF(format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) Escapedf(format string, args ...any) *SVGMaskElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGMaskElement) IfEscapedF(condition bool, format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) IfEscapedf(condition bool, format string, args ...any) *SVGMaskElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -191,7 +191,7 @@ func (e *SVGMaskElement) X(s string) *SVGMaskElement {
 
 // The x-axis coordinate of the side of the rectangular region which is closest
 // to the user.
-func (e *SVGMaskElement) XF(format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) Xf(format string, args ...any) *SVGMaskElement {
 	return e.X(fmt.Sprintf(format, args...))
 }
 
@@ -206,7 +206,7 @@ func (e *SVGMaskElement) IfX(condition bool, s string) *SVGMaskElement {
 
 // The x-axis coordinate of the side of the rectangular region which is closest
 // to the user.
-func (e *SVGMaskElement) IfXF(condition bool, format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) IfXf(condition bool, format string, args ...any) *SVGMaskElement {
 	if condition {
 		e.X(fmt.Sprintf(format, args...))
 	}
@@ -236,7 +236,7 @@ func (e *SVGMaskElement) Y(s string) *SVGMaskElement {
 
 // The y-axis coordinate of the side of the rectangular region which is closest
 // to the user.
-func (e *SVGMaskElement) YF(format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) Yf(format string, args ...any) *SVGMaskElement {
 	return e.Y(fmt.Sprintf(format, args...))
 }
 
@@ -251,7 +251,7 @@ func (e *SVGMaskElement) IfY(condition bool, s string) *SVGMaskElement {
 
 // The y-axis coordinate of the side of the rectangular region which is closest
 // to the user.
-func (e *SVGMaskElement) IfYF(condition bool, format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) IfYf(condition bool, format string, args ...any) *SVGMaskElement {
 	if condition {
 		e.Y(fmt.Sprintf(format, args...))
 	}
@@ -279,7 +279,7 @@ func (e *SVGMaskElement) Width(s string) *SVGMaskElement {
 }
 
 // The width of the rectangular region.
-func (e *SVGMaskElement) WidthF(format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) Widthf(format string, args ...any) *SVGMaskElement {
 	return e.Width(fmt.Sprintf(format, args...))
 }
 
@@ -292,7 +292,7 @@ func (e *SVGMaskElement) IfWidth(condition bool, s string) *SVGMaskElement {
 }
 
 // The width of the rectangular region.
-func (e *SVGMaskElement) IfWidthF(condition bool, format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) IfWidthf(condition bool, format string, args ...any) *SVGMaskElement {
 	if condition {
 		e.Width(fmt.Sprintf(format, args...))
 	}
@@ -319,7 +319,7 @@ func (e *SVGMaskElement) Height(s string) *SVGMaskElement {
 }
 
 // The height of the rectangular region.
-func (e *SVGMaskElement) HeightF(format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) Heightf(format string, args ...any) *SVGMaskElement {
 	return e.Height(fmt.Sprintf(format, args...))
 }
 
@@ -332,7 +332,7 @@ func (e *SVGMaskElement) IfHeight(condition bool, s string) *SVGMaskElement {
 }
 
 // The height of the rectangular region.
-func (e *SVGMaskElement) IfHeightF(condition bool, format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) IfHeightf(condition bool, format string, args ...any) *SVGMaskElement {
 	if condition {
 		e.Height(fmt.Sprintf(format, args...))
 	}
@@ -359,7 +359,7 @@ func (e *SVGMaskElement) ID(s string) *SVGMaskElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGMaskElement) IDF(format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) IDf(format string, args ...any) *SVGMaskElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -372,7 +372,7 @@ func (e *SVGMaskElement) IfID(condition bool, s string) *SVGMaskElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGMaskElement) IfIDF(condition bool, format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) IfIDf(condition bool, format string, args ...any) *SVGMaskElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -498,7 +498,7 @@ func (e *SVGMaskElement) StyleAdd(k string, v string) *SVGMaskElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGMaskElement) StyleAddF(k string, format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) StyleAddf(k string, format string, args ...any) *SVGMaskElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -511,9 +511,9 @@ func (e *SVGMaskElement) IfStyleAdd(condition bool, k string, v string) *SVGMask
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGMaskElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGMaskElement {
+func (e *SVGMaskElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGMaskElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

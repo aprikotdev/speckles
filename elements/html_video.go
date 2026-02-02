@@ -82,7 +82,7 @@ func (e *VideoElement) Text(text string) *VideoElement {
 	return e
 }
 
-func (e *VideoElement) TextF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Textf(format string, args ...any) *VideoElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -93,7 +93,7 @@ func (e *VideoElement) IfText(condition bool, text string) *VideoElement {
 	return e
 }
 
-func (e *VideoElement) IfTextF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfTextf(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -112,13 +112,13 @@ func (e *VideoElement) IfEscaped(condition bool, text string) *VideoElement {
 	return e
 }
 
-func (e *VideoElement) EscapedF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Escapedf(format string, args ...any) *VideoElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *VideoElement) IfEscapedF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfEscapedf(condition bool, format string, args ...any) *VideoElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -405,7 +405,7 @@ func (e *VideoElement) Poster(s string) *VideoElement {
 }
 
 // Poster frame to show prior to video playback.
-func (e *VideoElement) PosterF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Posterf(format string, args ...any) *VideoElement {
 	return e.Poster(fmt.Sprintf(format, args...))
 }
 
@@ -418,7 +418,7 @@ func (e *VideoElement) IfPoster(condition bool, s string) *VideoElement {
 }
 
 // Poster frame to show prior to video playback.
-func (e *VideoElement) IfPosterF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfPosterf(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.Poster(fmt.Sprintf(format, args...))
 	}
@@ -475,7 +475,7 @@ func (e *VideoElement) Src(s string) *VideoElement {
 }
 
 // Address of the resource.
-func (e *VideoElement) SrcF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Srcf(format string, args ...any) *VideoElement {
 	return e.Src(fmt.Sprintf(format, args...))
 }
 
@@ -488,7 +488,7 @@ func (e *VideoElement) IfSrc(condition bool, s string) *VideoElement {
 }
 
 // Address of the resource.
-func (e *VideoElement) IfSrcF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfSrcf(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.Src(fmt.Sprintf(format, args...))
 	}
@@ -1113,7 +1113,7 @@ func (e *VideoElement) ID(s string) *VideoElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *VideoElement) IDF(format string, args ...any) *VideoElement {
+func (e *VideoElement) IDf(format string, args ...any) *VideoElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -1130,7 +1130,7 @@ func (e *VideoElement) IfID(condition bool, s string) *VideoElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *VideoElement) IfIDF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfIDf(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1325,7 +1325,7 @@ func (e *VideoElement) Is(s string) *VideoElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *VideoElement) IsF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Isf(format string, args ...any) *VideoElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1346,7 +1346,7 @@ func (e *VideoElement) IfIs(condition bool, s string) *VideoElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *VideoElement) IfIsF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfIsf(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1397,7 +1397,7 @@ func (e *VideoElement) Itemid(s string) *VideoElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *VideoElement) ItemidF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Itemidf(format string, args ...any) *VideoElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1430,7 +1430,7 @@ func (e *VideoElement) IfItemid(condition bool, s string) *VideoElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *VideoElement) IfItemidF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfItemidf(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1479,7 +1479,7 @@ func (e *VideoElement) Itemprop(s string) *VideoElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *VideoElement) ItempropF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Itempropf(format string, args ...any) *VideoElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1504,7 +1504,7 @@ func (e *VideoElement) IfItemprop(condition bool, s string) *VideoElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *VideoElement) IfItempropF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfItempropf(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1545,7 +1545,7 @@ func (e *VideoElement) Itemref(s string) *VideoElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *VideoElement) ItemrefF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Itemreff(format string, args ...any) *VideoElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1566,7 +1566,7 @@ func (e *VideoElement) IfItemref(condition bool, s string) *VideoElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *VideoElement) IfItemrefF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfItemreff(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1681,7 +1681,7 @@ func (e *VideoElement) Itemtype(s string) *VideoElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *VideoElement) ItemtypeF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Itemtypef(format string, args ...any) *VideoElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1706,7 +1706,7 @@ func (e *VideoElement) IfItemtype(condition bool, s string) *VideoElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *VideoElement) IfItemtypeF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfItemtypef(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1747,7 +1747,7 @@ func (e *VideoElement) Lang(s string) *VideoElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *VideoElement) LangF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Langf(format string, args ...any) *VideoElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1768,7 +1768,7 @@ func (e *VideoElement) IfLang(condition bool, s string) *VideoElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *VideoElement) IfLangF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfLangf(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1807,7 +1807,7 @@ func (e *VideoElement) Nonce(s string) *VideoElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *VideoElement) NonceF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Noncef(format string, args ...any) *VideoElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1828,7 +1828,7 @@ func (e *VideoElement) IfNonce(condition bool, s string) *VideoElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *VideoElement) IfNonceF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfNoncef(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1953,7 +1953,7 @@ func (e *VideoElement) Role(s string) *VideoElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *VideoElement) RoleF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Rolef(format string, args ...any) *VideoElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1972,7 +1972,7 @@ func (e *VideoElement) IfRole(condition bool, s string) *VideoElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *VideoElement) IfRoleF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfRolef(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -2008,7 +2008,7 @@ func (e *VideoElement) Slot(s string) *VideoElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *VideoElement) SlotF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Slotf(format string, args ...any) *VideoElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -2027,7 +2027,7 @@ func (e *VideoElement) IfSlot(condition bool, s string) *VideoElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *VideoElement) IfSlotF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfSlotf(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -2171,7 +2171,7 @@ func (e *VideoElement) StyleAdd(k string, v string) *VideoElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *VideoElement) StyleAddF(k string, format string, args ...any) *VideoElement {
+func (e *VideoElement) StyleAddf(k string, format string, args ...any) *VideoElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -2186,9 +2186,9 @@ func (e *VideoElement) IfStyleAdd(condition bool, k string, v string) *VideoElem
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *VideoElement) IfStyleAddF(condition bool, k string, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfStyleAddf(condition bool, k string, format string, args ...any) *VideoElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2334,7 +2334,7 @@ func (e *VideoElement) Title(s string) *VideoElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *VideoElement) TitleF(format string, args ...any) *VideoElement {
+func (e *VideoElement) Titlef(format string, args ...any) *VideoElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2377,7 +2377,7 @@ func (e *VideoElement) IfTitle(condition bool, s string) *VideoElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *VideoElement) IfTitleF(condition bool, format string, args ...any) *VideoElement {
+func (e *VideoElement) IfTitlef(condition bool, format string, args ...any) *VideoElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

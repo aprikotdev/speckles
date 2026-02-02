@@ -83,7 +83,7 @@ func (e *SVGFeMergeElement) Text(text string) *SVGFeMergeElement {
 	return e
 }
 
-func (e *SVGFeMergeElement) TextF(format string, args ...any) *SVGFeMergeElement {
+func (e *SVGFeMergeElement) Textf(format string, args ...any) *SVGFeMergeElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGFeMergeElement) IfText(condition bool, text string) *SVGFeMergeEleme
 	return e
 }
 
-func (e *SVGFeMergeElement) IfTextF(condition bool, format string, args ...any) *SVGFeMergeElement {
+func (e *SVGFeMergeElement) IfTextf(condition bool, format string, args ...any) *SVGFeMergeElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGFeMergeElement) IfEscaped(condition bool, text string) *SVGFeMergeEl
 	return e
 }
 
-func (e *SVGFeMergeElement) EscapedF(format string, args ...any) *SVGFeMergeElement {
+func (e *SVGFeMergeElement) Escapedf(format string, args ...any) *SVGFeMergeElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeMergeElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeMergeElement {
+func (e *SVGFeMergeElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeMergeElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *SVGFeMergeElement) ID(s string) *SVGFeMergeElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeMergeElement) IDF(format string, args ...any) *SVGFeMergeElement {
+func (e *SVGFeMergeElement) IDf(format string, args ...any) *SVGFeMergeElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *SVGFeMergeElement) IfID(condition bool, s string) *SVGFeMergeElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeMergeElement) IfIDF(condition bool, format string, args ...any) *SVGFeMergeElement {
+func (e *SVGFeMergeElement) IfIDf(condition bool, format string, args ...any) *SVGFeMergeElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -273,7 +273,7 @@ func (e *SVGFeMergeElement) StyleAdd(k string, v string) *SVGFeMergeElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeMergeElement) StyleAddF(k string, format string, args ...any) *SVGFeMergeElement {
+func (e *SVGFeMergeElement) StyleAddf(k string, format string, args ...any) *SVGFeMergeElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -286,9 +286,9 @@ func (e *SVGFeMergeElement) IfStyleAdd(condition bool, k string, v string) *SVGF
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeMergeElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeMergeElement {
+func (e *SVGFeMergeElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeMergeElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

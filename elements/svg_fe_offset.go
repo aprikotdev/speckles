@@ -83,7 +83,7 @@ func (e *SVGFeOffsetElement) Text(text string) *SVGFeOffsetElement {
 	return e
 }
 
-func (e *SVGFeOffsetElement) TextF(format string, args ...any) *SVGFeOffsetElement {
+func (e *SVGFeOffsetElement) Textf(format string, args ...any) *SVGFeOffsetElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGFeOffsetElement) IfText(condition bool, text string) *SVGFeOffsetEle
 	return e
 }
 
-func (e *SVGFeOffsetElement) IfTextF(condition bool, format string, args ...any) *SVGFeOffsetElement {
+func (e *SVGFeOffsetElement) IfTextf(condition bool, format string, args ...any) *SVGFeOffsetElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGFeOffsetElement) IfEscaped(condition bool, text string) *SVGFeOffset
 	return e
 }
 
-func (e *SVGFeOffsetElement) EscapedF(format string, args ...any) *SVGFeOffsetElement {
+func (e *SVGFeOffsetElement) Escapedf(format string, args ...any) *SVGFeOffsetElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeOffsetElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeOffsetElement {
+func (e *SVGFeOffsetElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeOffsetElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -168,7 +168,7 @@ func (e *SVGFeOffsetElement) ID(s string) *SVGFeOffsetElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeOffsetElement) IDF(format string, args ...any) *SVGFeOffsetElement {
+func (e *SVGFeOffsetElement) IDf(format string, args ...any) *SVGFeOffsetElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -181,7 +181,7 @@ func (e *SVGFeOffsetElement) IfID(condition bool, s string) *SVGFeOffsetElement 
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeOffsetElement) IfIDF(condition bool, format string, args ...any) *SVGFeOffsetElement {
+func (e *SVGFeOffsetElement) IfIDf(condition bool, format string, args ...any) *SVGFeOffsetElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -307,7 +307,7 @@ func (e *SVGFeOffsetElement) StyleAdd(k string, v string) *SVGFeOffsetElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeOffsetElement) StyleAddF(k string, format string, args ...any) *SVGFeOffsetElement {
+func (e *SVGFeOffsetElement) StyleAddf(k string, format string, args ...any) *SVGFeOffsetElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -320,9 +320,9 @@ func (e *SVGFeOffsetElement) IfStyleAdd(condition bool, k string, v string) *SVG
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeOffsetElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeOffsetElement {
+func (e *SVGFeOffsetElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeOffsetElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

@@ -83,7 +83,7 @@ func (e *BodyElement) Text(text string) *BodyElement {
 	return e
 }
 
-func (e *BodyElement) TextF(format string, args ...any) *BodyElement {
+func (e *BodyElement) Textf(format string, args ...any) *BodyElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *BodyElement) IfText(condition bool, text string) *BodyElement {
 	return e
 }
 
-func (e *BodyElement) IfTextF(condition bool, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfTextf(condition bool, format string, args ...any) *BodyElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *BodyElement) IfEscaped(condition bool, text string) *BodyElement {
 	return e
 }
 
-func (e *BodyElement) EscapedF(format string, args ...any) *BodyElement {
+func (e *BodyElement) Escapedf(format string, args ...any) *BodyElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *BodyElement) IfEscapedF(condition bool, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfEscapedf(condition bool, format string, args ...any) *BodyElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -705,7 +705,7 @@ func (e *BodyElement) ID(s string) *BodyElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *BodyElement) IDF(format string, args ...any) *BodyElement {
+func (e *BodyElement) IDf(format string, args ...any) *BodyElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -722,7 +722,7 @@ func (e *BodyElement) IfID(condition bool, s string) *BodyElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *BodyElement) IfIDF(condition bool, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfIDf(condition bool, format string, args ...any) *BodyElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -917,7 +917,7 @@ func (e *BodyElement) Is(s string) *BodyElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *BodyElement) IsF(format string, args ...any) *BodyElement {
+func (e *BodyElement) Isf(format string, args ...any) *BodyElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -938,7 +938,7 @@ func (e *BodyElement) IfIs(condition bool, s string) *BodyElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *BodyElement) IfIsF(condition bool, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfIsf(condition bool, format string, args ...any) *BodyElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -989,7 +989,7 @@ func (e *BodyElement) Itemid(s string) *BodyElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *BodyElement) ItemidF(format string, args ...any) *BodyElement {
+func (e *BodyElement) Itemidf(format string, args ...any) *BodyElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1022,7 +1022,7 @@ func (e *BodyElement) IfItemid(condition bool, s string) *BodyElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *BodyElement) IfItemidF(condition bool, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfItemidf(condition bool, format string, args ...any) *BodyElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1071,7 +1071,7 @@ func (e *BodyElement) Itemprop(s string) *BodyElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *BodyElement) ItempropF(format string, args ...any) *BodyElement {
+func (e *BodyElement) Itempropf(format string, args ...any) *BodyElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1096,7 +1096,7 @@ func (e *BodyElement) IfItemprop(condition bool, s string) *BodyElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *BodyElement) IfItempropF(condition bool, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfItempropf(condition bool, format string, args ...any) *BodyElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1137,7 +1137,7 @@ func (e *BodyElement) Itemref(s string) *BodyElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *BodyElement) ItemrefF(format string, args ...any) *BodyElement {
+func (e *BodyElement) Itemreff(format string, args ...any) *BodyElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1158,7 +1158,7 @@ func (e *BodyElement) IfItemref(condition bool, s string) *BodyElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *BodyElement) IfItemrefF(condition bool, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfItemreff(condition bool, format string, args ...any) *BodyElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1273,7 +1273,7 @@ func (e *BodyElement) Itemtype(s string) *BodyElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *BodyElement) ItemtypeF(format string, args ...any) *BodyElement {
+func (e *BodyElement) Itemtypef(format string, args ...any) *BodyElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1298,7 +1298,7 @@ func (e *BodyElement) IfItemtype(condition bool, s string) *BodyElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *BodyElement) IfItemtypeF(condition bool, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfItemtypef(condition bool, format string, args ...any) *BodyElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1339,7 +1339,7 @@ func (e *BodyElement) Lang(s string) *BodyElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *BodyElement) LangF(format string, args ...any) *BodyElement {
+func (e *BodyElement) Langf(format string, args ...any) *BodyElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1360,7 +1360,7 @@ func (e *BodyElement) IfLang(condition bool, s string) *BodyElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *BodyElement) IfLangF(condition bool, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfLangf(condition bool, format string, args ...any) *BodyElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1399,7 +1399,7 @@ func (e *BodyElement) Nonce(s string) *BodyElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *BodyElement) NonceF(format string, args ...any) *BodyElement {
+func (e *BodyElement) Noncef(format string, args ...any) *BodyElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1420,7 +1420,7 @@ func (e *BodyElement) IfNonce(condition bool, s string) *BodyElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *BodyElement) IfNonceF(condition bool, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfNoncef(condition bool, format string, args ...any) *BodyElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1545,7 +1545,7 @@ func (e *BodyElement) Role(s string) *BodyElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *BodyElement) RoleF(format string, args ...any) *BodyElement {
+func (e *BodyElement) Rolef(format string, args ...any) *BodyElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1564,7 +1564,7 @@ func (e *BodyElement) IfRole(condition bool, s string) *BodyElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *BodyElement) IfRoleF(condition bool, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfRolef(condition bool, format string, args ...any) *BodyElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1600,7 +1600,7 @@ func (e *BodyElement) Slot(s string) *BodyElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *BodyElement) SlotF(format string, args ...any) *BodyElement {
+func (e *BodyElement) Slotf(format string, args ...any) *BodyElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1619,7 +1619,7 @@ func (e *BodyElement) IfSlot(condition bool, s string) *BodyElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *BodyElement) IfSlotF(condition bool, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfSlotf(condition bool, format string, args ...any) *BodyElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1763,7 +1763,7 @@ func (e *BodyElement) StyleAdd(k string, v string) *BodyElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *BodyElement) StyleAddF(k string, format string, args ...any) *BodyElement {
+func (e *BodyElement) StyleAddf(k string, format string, args ...any) *BodyElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1778,9 +1778,9 @@ func (e *BodyElement) IfStyleAdd(condition bool, k string, v string) *BodyElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *BodyElement) IfStyleAddF(condition bool, k string, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfStyleAddf(condition bool, k string, format string, args ...any) *BodyElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1926,7 +1926,7 @@ func (e *BodyElement) Title(s string) *BodyElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *BodyElement) TitleF(format string, args ...any) *BodyElement {
+func (e *BodyElement) Titlef(format string, args ...any) *BodyElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1969,7 +1969,7 @@ func (e *BodyElement) IfTitle(condition bool, s string) *BodyElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *BodyElement) IfTitleF(condition bool, format string, args ...any) *BodyElement {
+func (e *BodyElement) IfTitlef(condition bool, format string, args ...any) *BodyElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

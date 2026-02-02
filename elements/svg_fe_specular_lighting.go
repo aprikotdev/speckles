@@ -86,7 +86,7 @@ func (e *SVGFeSpecularLightingElement) Text(text string) *SVGFeSpecularLightingE
 	return e
 }
 
-func (e *SVGFeSpecularLightingElement) TextF(format string, args ...any) *SVGFeSpecularLightingElement {
+func (e *SVGFeSpecularLightingElement) Textf(format string, args ...any) *SVGFeSpecularLightingElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -97,7 +97,7 @@ func (e *SVGFeSpecularLightingElement) IfText(condition bool, text string) *SVGF
 	return e
 }
 
-func (e *SVGFeSpecularLightingElement) IfTextF(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
+func (e *SVGFeSpecularLightingElement) IfTextf(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -116,13 +116,13 @@ func (e *SVGFeSpecularLightingElement) IfEscaped(condition bool, text string) *S
 	return e
 }
 
-func (e *SVGFeSpecularLightingElement) EscapedF(format string, args ...any) *SVGFeSpecularLightingElement {
+func (e *SVGFeSpecularLightingElement) Escapedf(format string, args ...any) *SVGFeSpecularLightingElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeSpecularLightingElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
+func (e *SVGFeSpecularLightingElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -137,7 +137,7 @@ func (e *SVGFeSpecularLightingElement) In(s string) *SVGFeSpecularLightingElemen
 }
 
 // The input for this filter.
-func (e *SVGFeSpecularLightingElement) InF(format string, args ...any) *SVGFeSpecularLightingElement {
+func (e *SVGFeSpecularLightingElement) Inf(format string, args ...any) *SVGFeSpecularLightingElement {
 	return e.In(fmt.Sprintf(format, args...))
 }
 
@@ -150,7 +150,7 @@ func (e *SVGFeSpecularLightingElement) IfIn(condition bool, s string) *SVGFeSpec
 }
 
 // The input for this filter.
-func (e *SVGFeSpecularLightingElement) IfInF(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
+func (e *SVGFeSpecularLightingElement) IfInf(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
 	if condition {
 		e.In(fmt.Sprintf(format, args...))
 	}
@@ -234,7 +234,7 @@ func (e *SVGFeSpecularLightingElement) KernelUnitLength(s string) *SVGFeSpecular
 // The kernelUnitLength Attribute defines the intended distance in current
 // filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
-func (e *SVGFeSpecularLightingElement) KernelUnitLengthF(format string, args ...any) *SVGFeSpecularLightingElement {
+func (e *SVGFeSpecularLightingElement) KernelUnitLengthf(format string, args ...any) *SVGFeSpecularLightingElement {
 	return e.KernelUnitLength(fmt.Sprintf(format, args...))
 }
 
@@ -251,7 +251,7 @@ func (e *SVGFeSpecularLightingElement) IfKernelUnitLength(condition bool, s stri
 // The kernelUnitLength Attribute defines the intended distance in current
 // filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
-func (e *SVGFeSpecularLightingElement) IfKernelUnitLengthF(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
+func (e *SVGFeSpecularLightingElement) IfKernelUnitLengthf(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
 	if condition {
 		e.KernelUnitLength(fmt.Sprintf(format, args...))
 	}
@@ -280,7 +280,7 @@ func (e *SVGFeSpecularLightingElement) ID(s string) *SVGFeSpecularLightingElemen
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeSpecularLightingElement) IDF(format string, args ...any) *SVGFeSpecularLightingElement {
+func (e *SVGFeSpecularLightingElement) IDf(format string, args ...any) *SVGFeSpecularLightingElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -293,7 +293,7 @@ func (e *SVGFeSpecularLightingElement) IfID(condition bool, s string) *SVGFeSpec
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeSpecularLightingElement) IfIDF(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
+func (e *SVGFeSpecularLightingElement) IfIDf(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -419,7 +419,7 @@ func (e *SVGFeSpecularLightingElement) StyleAdd(k string, v string) *SVGFeSpecul
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeSpecularLightingElement) StyleAddF(k string, format string, args ...any) *SVGFeSpecularLightingElement {
+func (e *SVGFeSpecularLightingElement) StyleAddf(k string, format string, args ...any) *SVGFeSpecularLightingElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -432,9 +432,9 @@ func (e *SVGFeSpecularLightingElement) IfStyleAdd(condition bool, k string, v st
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeSpecularLightingElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeSpecularLightingElement {
+func (e *SVGFeSpecularLightingElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeSpecularLightingElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

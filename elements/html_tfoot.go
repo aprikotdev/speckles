@@ -83,7 +83,7 @@ func (e *TfootElement) Text(text string) *TfootElement {
 	return e
 }
 
-func (e *TfootElement) TextF(format string, args ...any) *TfootElement {
+func (e *TfootElement) Textf(format string, args ...any) *TfootElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *TfootElement) IfText(condition bool, text string) *TfootElement {
 	return e
 }
 
-func (e *TfootElement) IfTextF(condition bool, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfTextf(condition bool, format string, args ...any) *TfootElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *TfootElement) IfEscaped(condition bool, text string) *TfootElement {
 	return e
 }
 
-func (e *TfootElement) EscapedF(format string, args ...any) *TfootElement {
+func (e *TfootElement) Escapedf(format string, args ...any) *TfootElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *TfootElement) IfEscapedF(condition bool, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfEscapedf(condition bool, format string, args ...any) *TfootElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -705,7 +705,7 @@ func (e *TfootElement) ID(s string) *TfootElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *TfootElement) IDF(format string, args ...any) *TfootElement {
+func (e *TfootElement) IDf(format string, args ...any) *TfootElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -722,7 +722,7 @@ func (e *TfootElement) IfID(condition bool, s string) *TfootElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *TfootElement) IfIDF(condition bool, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfIDf(condition bool, format string, args ...any) *TfootElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -917,7 +917,7 @@ func (e *TfootElement) Is(s string) *TfootElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *TfootElement) IsF(format string, args ...any) *TfootElement {
+func (e *TfootElement) Isf(format string, args ...any) *TfootElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -938,7 +938,7 @@ func (e *TfootElement) IfIs(condition bool, s string) *TfootElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *TfootElement) IfIsF(condition bool, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfIsf(condition bool, format string, args ...any) *TfootElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -989,7 +989,7 @@ func (e *TfootElement) Itemid(s string) *TfootElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *TfootElement) ItemidF(format string, args ...any) *TfootElement {
+func (e *TfootElement) Itemidf(format string, args ...any) *TfootElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1022,7 +1022,7 @@ func (e *TfootElement) IfItemid(condition bool, s string) *TfootElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *TfootElement) IfItemidF(condition bool, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfItemidf(condition bool, format string, args ...any) *TfootElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1071,7 +1071,7 @@ func (e *TfootElement) Itemprop(s string) *TfootElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *TfootElement) ItempropF(format string, args ...any) *TfootElement {
+func (e *TfootElement) Itempropf(format string, args ...any) *TfootElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1096,7 +1096,7 @@ func (e *TfootElement) IfItemprop(condition bool, s string) *TfootElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *TfootElement) IfItempropF(condition bool, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfItempropf(condition bool, format string, args ...any) *TfootElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1137,7 +1137,7 @@ func (e *TfootElement) Itemref(s string) *TfootElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *TfootElement) ItemrefF(format string, args ...any) *TfootElement {
+func (e *TfootElement) Itemreff(format string, args ...any) *TfootElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1158,7 +1158,7 @@ func (e *TfootElement) IfItemref(condition bool, s string) *TfootElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *TfootElement) IfItemrefF(condition bool, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfItemreff(condition bool, format string, args ...any) *TfootElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1273,7 +1273,7 @@ func (e *TfootElement) Itemtype(s string) *TfootElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *TfootElement) ItemtypeF(format string, args ...any) *TfootElement {
+func (e *TfootElement) Itemtypef(format string, args ...any) *TfootElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1298,7 +1298,7 @@ func (e *TfootElement) IfItemtype(condition bool, s string) *TfootElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *TfootElement) IfItemtypeF(condition bool, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfItemtypef(condition bool, format string, args ...any) *TfootElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1339,7 +1339,7 @@ func (e *TfootElement) Lang(s string) *TfootElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *TfootElement) LangF(format string, args ...any) *TfootElement {
+func (e *TfootElement) Langf(format string, args ...any) *TfootElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1360,7 +1360,7 @@ func (e *TfootElement) IfLang(condition bool, s string) *TfootElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *TfootElement) IfLangF(condition bool, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfLangf(condition bool, format string, args ...any) *TfootElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1399,7 +1399,7 @@ func (e *TfootElement) Nonce(s string) *TfootElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *TfootElement) NonceF(format string, args ...any) *TfootElement {
+func (e *TfootElement) Noncef(format string, args ...any) *TfootElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1420,7 +1420,7 @@ func (e *TfootElement) IfNonce(condition bool, s string) *TfootElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *TfootElement) IfNonceF(condition bool, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfNoncef(condition bool, format string, args ...any) *TfootElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1545,7 +1545,7 @@ func (e *TfootElement) Role(s string) *TfootElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *TfootElement) RoleF(format string, args ...any) *TfootElement {
+func (e *TfootElement) Rolef(format string, args ...any) *TfootElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1564,7 +1564,7 @@ func (e *TfootElement) IfRole(condition bool, s string) *TfootElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *TfootElement) IfRoleF(condition bool, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfRolef(condition bool, format string, args ...any) *TfootElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1600,7 +1600,7 @@ func (e *TfootElement) Slot(s string) *TfootElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *TfootElement) SlotF(format string, args ...any) *TfootElement {
+func (e *TfootElement) Slotf(format string, args ...any) *TfootElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1619,7 +1619,7 @@ func (e *TfootElement) IfSlot(condition bool, s string) *TfootElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *TfootElement) IfSlotF(condition bool, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfSlotf(condition bool, format string, args ...any) *TfootElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1763,7 +1763,7 @@ func (e *TfootElement) StyleAdd(k string, v string) *TfootElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *TfootElement) StyleAddF(k string, format string, args ...any) *TfootElement {
+func (e *TfootElement) StyleAddf(k string, format string, args ...any) *TfootElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1778,9 +1778,9 @@ func (e *TfootElement) IfStyleAdd(condition bool, k string, v string) *TfootElem
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *TfootElement) IfStyleAddF(condition bool, k string, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfStyleAddf(condition bool, k string, format string, args ...any) *TfootElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1926,7 +1926,7 @@ func (e *TfootElement) Title(s string) *TfootElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *TfootElement) TitleF(format string, args ...any) *TfootElement {
+func (e *TfootElement) Titlef(format string, args ...any) *TfootElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1969,7 +1969,7 @@ func (e *TfootElement) IfTitle(condition bool, s string) *TfootElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *TfootElement) IfTitleF(condition bool, format string, args ...any) *TfootElement {
+func (e *TfootElement) IfTitlef(condition bool, format string, args ...any) *TfootElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

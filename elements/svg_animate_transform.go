@@ -84,7 +84,7 @@ func (e *SVGAnimateTransformElement) Text(text string) *SVGAnimateTransformEleme
 	return e
 }
 
-func (e *SVGAnimateTransformElement) TextF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) Textf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGAnimateTransformElement) IfText(condition bool, text string) *SVGAni
 	return e
 }
 
-func (e *SVGAnimateTransformElement) IfTextF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfTextf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGAnimateTransformElement) IfEscaped(condition bool, text string) *SVG
 	return e
 }
 
-func (e *SVGAnimateTransformElement) EscapedF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) Escapedf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGAnimateTransformElement) IfEscapedF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfEscapedf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -193,7 +193,7 @@ func (e *SVGAnimateTransformElement) AttributeName(s string) *SVGAnimateTransfor
 }
 
 // The name of the Attribute to animate.
-func (e *SVGAnimateTransformElement) AttributeNameF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) AttributeNamef(format string, args ...any) *SVGAnimateTransformElement {
 	return e.AttributeName(fmt.Sprintf(format, args...))
 }
 
@@ -206,7 +206,7 @@ func (e *SVGAnimateTransformElement) IfAttributeName(condition bool, s string) *
 }
 
 // The name of the Attribute to animate.
-func (e *SVGAnimateTransformElement) IfAttributeNameF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfAttributeNamef(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.AttributeName(fmt.Sprintf(format, args...))
 	}
@@ -272,7 +272,7 @@ func (e *SVGAnimateTransformElement) Begin(s string) *SVGAnimateTransformElement
 }
 
 // Defines when the animation should begin.
-func (e *SVGAnimateTransformElement) BeginF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) Beginf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.Begin(fmt.Sprintf(format, args...))
 }
 
@@ -285,7 +285,7 @@ func (e *SVGAnimateTransformElement) IfBegin(condition bool, s string) *SVGAnima
 }
 
 // Defines when the animation should begin.
-func (e *SVGAnimateTransformElement) IfBeginF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfBeginf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.Begin(fmt.Sprintf(format, args...))
 	}
@@ -312,7 +312,7 @@ func (e *SVGAnimateTransformElement) By(s string) *SVGAnimateTransformElement {
 }
 
 // Defines a relative offset value for the animation.
-func (e *SVGAnimateTransformElement) ByF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) Byf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.By(fmt.Sprintf(format, args...))
 }
 
@@ -325,7 +325,7 @@ func (e *SVGAnimateTransformElement) IfBy(condition bool, s string) *SVGAnimateT
 }
 
 // Defines a relative offset value for the animation.
-func (e *SVGAnimateTransformElement) IfByF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfByf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.By(fmt.Sprintf(format, args...))
 	}
@@ -387,7 +387,7 @@ func (e *SVGAnimateTransformElement) Dur(s string) *SVGAnimateTransformElement {
 }
 
 // Defines the duration of the animation.
-func (e *SVGAnimateTransformElement) DurF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) Durf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.Dur(fmt.Sprintf(format, args...))
 }
 
@@ -400,7 +400,7 @@ func (e *SVGAnimateTransformElement) IfDur(condition bool, s string) *SVGAnimate
 }
 
 // Defines the duration of the animation.
-func (e *SVGAnimateTransformElement) IfDurF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfDurf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.Dur(fmt.Sprintf(format, args...))
 	}
@@ -427,7 +427,7 @@ func (e *SVGAnimateTransformElement) End(s string) *SVGAnimateTransformElement {
 }
 
 // Defines when the animation should end.
-func (e *SVGAnimateTransformElement) EndF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) Endf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.End(fmt.Sprintf(format, args...))
 }
 
@@ -440,7 +440,7 @@ func (e *SVGAnimateTransformElement) IfEnd(condition bool, s string) *SVGAnimate
 }
 
 // Defines when the animation should end.
-func (e *SVGAnimateTransformElement) IfEndF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfEndf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.End(fmt.Sprintf(format, args...))
 	}
@@ -495,7 +495,7 @@ func (e *SVGAnimateTransformElement) From(s string) *SVGAnimateTransformElement 
 }
 
 // Defines the initial value of the Attribute.
-func (e *SVGAnimateTransformElement) FromF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) Fromf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.From(fmt.Sprintf(format, args...))
 }
 
@@ -508,7 +508,7 @@ func (e *SVGAnimateTransformElement) IfFrom(condition bool, s string) *SVGAnimat
 }
 
 // Defines the initial value of the Attribute.
-func (e *SVGAnimateTransformElement) IfFromF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfFromf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.From(fmt.Sprintf(format, args...))
 	}
@@ -537,7 +537,7 @@ func (e *SVGAnimateTransformElement) KeySplines(s string) *SVGAnimateTransformEl
 
 // Defines the values for a cubic Bézier function that controls interval
 // pacing.
-func (e *SVGAnimateTransformElement) KeySplinesF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) KeySplinesf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.KeySplines(fmt.Sprintf(format, args...))
 }
 
@@ -552,7 +552,7 @@ func (e *SVGAnimateTransformElement) IfKeySplines(condition bool, s string) *SVG
 
 // Defines the values for a cubic Bézier function that controls interval
 // pacing.
-func (e *SVGAnimateTransformElement) IfKeySplinesF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfKeySplinesf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.KeySplines(fmt.Sprintf(format, args...))
 	}
@@ -580,7 +580,7 @@ func (e *SVGAnimateTransformElement) KeyTimes(s string) *SVGAnimateTransformElem
 }
 
 // Defines when the animation should take place in terms of time fractions.
-func (e *SVGAnimateTransformElement) KeyTimesF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) KeyTimesf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.KeyTimes(fmt.Sprintf(format, args...))
 }
 
@@ -593,7 +593,7 @@ func (e *SVGAnimateTransformElement) IfKeyTimes(condition bool, s string) *SVGAn
 }
 
 // Defines when the animation should take place in terms of time fractions.
-func (e *SVGAnimateTransformElement) IfKeyTimesF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfKeyTimesf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.KeyTimes(fmt.Sprintf(format, args...))
 	}
@@ -620,7 +620,7 @@ func (e *SVGAnimateTransformElement) Max(s string) *SVGAnimateTransformElement {
 }
 
 // Defines the maximum value allowed for the Attribute.
-func (e *SVGAnimateTransformElement) MaxF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) Maxf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.Max(fmt.Sprintf(format, args...))
 }
 
@@ -633,7 +633,7 @@ func (e *SVGAnimateTransformElement) IfMax(condition bool, s string) *SVGAnimate
 }
 
 // Defines the maximum value allowed for the Attribute.
-func (e *SVGAnimateTransformElement) IfMaxF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfMaxf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.Max(fmt.Sprintf(format, args...))
 	}
@@ -660,7 +660,7 @@ func (e *SVGAnimateTransformElement) Min(s string) *SVGAnimateTransformElement {
 }
 
 // Defines the minimum value allowed for the Attribute.
-func (e *SVGAnimateTransformElement) MinF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) Minf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.Min(fmt.Sprintf(format, args...))
 }
 
@@ -673,7 +673,7 @@ func (e *SVGAnimateTransformElement) IfMin(condition bool, s string) *SVGAnimate
 }
 
 // Defines the minimum value allowed for the Attribute.
-func (e *SVGAnimateTransformElement) IfMinF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfMinf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.Min(fmt.Sprintf(format, args...))
 	}
@@ -700,7 +700,7 @@ func (e *SVGAnimateTransformElement) RepeatCount(s string) *SVGAnimateTransformE
 }
 
 // Defines the number of times the animation should repeat.
-func (e *SVGAnimateTransformElement) RepeatCountF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) RepeatCountf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.RepeatCount(fmt.Sprintf(format, args...))
 }
 
@@ -713,7 +713,7 @@ func (e *SVGAnimateTransformElement) IfRepeatCount(condition bool, s string) *SV
 }
 
 // Defines the number of times the animation should repeat.
-func (e *SVGAnimateTransformElement) IfRepeatCountF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfRepeatCountf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.RepeatCount(fmt.Sprintf(format, args...))
 	}
@@ -740,7 +740,7 @@ func (e *SVGAnimateTransformElement) RepeatDur(s string) *SVGAnimateTransformEle
 }
 
 // Defines the duration for repeating an animation.
-func (e *SVGAnimateTransformElement) RepeatDurF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) RepeatDurf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.RepeatDur(fmt.Sprintf(format, args...))
 }
 
@@ -753,7 +753,7 @@ func (e *SVGAnimateTransformElement) IfRepeatDur(condition bool, s string) *SVGA
 }
 
 // Defines the duration for repeating an animation.
-func (e *SVGAnimateTransformElement) IfRepeatDurF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfRepeatDurf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.RepeatDur(fmt.Sprintf(format, args...))
 	}
@@ -811,7 +811,7 @@ func (e *SVGAnimateTransformElement) To(s string) *SVGAnimateTransformElement {
 }
 
 // Defines the ending value of the Attribute.
-func (e *SVGAnimateTransformElement) ToF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) Tof(format string, args ...any) *SVGAnimateTransformElement {
 	return e.To(fmt.Sprintf(format, args...))
 }
 
@@ -824,7 +824,7 @@ func (e *SVGAnimateTransformElement) IfTo(condition bool, s string) *SVGAnimateT
 }
 
 // Defines the ending value of the Attribute.
-func (e *SVGAnimateTransformElement) IfToF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfTof(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.To(fmt.Sprintf(format, args...))
 	}
@@ -881,7 +881,7 @@ func (e *SVGAnimateTransformElement) Values(s string) *SVGAnimateTransformElemen
 }
 
 // Defines a list of discrete values to interpolate.
-func (e *SVGAnimateTransformElement) ValuesF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) Valuesf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.Values(fmt.Sprintf(format, args...))
 }
 
@@ -894,7 +894,7 @@ func (e *SVGAnimateTransformElement) IfValues(condition bool, s string) *SVGAnim
 }
 
 // Defines a list of discrete values to interpolate.
-func (e *SVGAnimateTransformElement) IfValuesF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfValuesf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.Values(fmt.Sprintf(format, args...))
 	}
@@ -921,7 +921,7 @@ func (e *SVGAnimateTransformElement) ID(s string) *SVGAnimateTransformElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGAnimateTransformElement) IDF(format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IDf(format string, args ...any) *SVGAnimateTransformElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -934,7 +934,7 @@ func (e *SVGAnimateTransformElement) IfID(condition bool, s string) *SVGAnimateT
 }
 
 // Specifies a unique id for an element
-func (e *SVGAnimateTransformElement) IfIDF(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfIDf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1060,7 +1060,7 @@ func (e *SVGAnimateTransformElement) StyleAdd(k string, v string) *SVGAnimateTra
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGAnimateTransformElement) StyleAddF(k string, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) StyleAddf(k string, format string, args ...any) *SVGAnimateTransformElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1073,9 +1073,9 @@ func (e *SVGAnimateTransformElement) IfStyleAdd(condition bool, k string, v stri
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGAnimateTransformElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGAnimateTransformElement {
+func (e *SVGAnimateTransformElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGAnimateTransformElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

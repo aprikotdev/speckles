@@ -85,7 +85,7 @@ func (e *SummaryElement) Text(text string) *SummaryElement {
 	return e
 }
 
-func (e *SummaryElement) TextF(format string, args ...any) *SummaryElement {
+func (e *SummaryElement) Textf(format string, args ...any) *SummaryElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *SummaryElement) IfText(condition bool, text string) *SummaryElement {
 	return e
 }
 
-func (e *SummaryElement) IfTextF(condition bool, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfTextf(condition bool, format string, args ...any) *SummaryElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *SummaryElement) IfEscaped(condition bool, text string) *SummaryElement 
 	return e
 }
 
-func (e *SummaryElement) EscapedF(format string, args ...any) *SummaryElement {
+func (e *SummaryElement) Escapedf(format string, args ...any) *SummaryElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SummaryElement) IfEscapedF(condition bool, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfEscapedf(condition bool, format string, args ...any) *SummaryElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -707,7 +707,7 @@ func (e *SummaryElement) ID(s string) *SummaryElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *SummaryElement) IDF(format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IDf(format string, args ...any) *SummaryElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -724,7 +724,7 @@ func (e *SummaryElement) IfID(condition bool, s string) *SummaryElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *SummaryElement) IfIDF(condition bool, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfIDf(condition bool, format string, args ...any) *SummaryElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -919,7 +919,7 @@ func (e *SummaryElement) Is(s string) *SummaryElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *SummaryElement) IsF(format string, args ...any) *SummaryElement {
+func (e *SummaryElement) Isf(format string, args ...any) *SummaryElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -940,7 +940,7 @@ func (e *SummaryElement) IfIs(condition bool, s string) *SummaryElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *SummaryElement) IfIsF(condition bool, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfIsf(condition bool, format string, args ...any) *SummaryElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -991,7 +991,7 @@ func (e *SummaryElement) Itemid(s string) *SummaryElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *SummaryElement) ItemidF(format string, args ...any) *SummaryElement {
+func (e *SummaryElement) Itemidf(format string, args ...any) *SummaryElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1024,7 +1024,7 @@ func (e *SummaryElement) IfItemid(condition bool, s string) *SummaryElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *SummaryElement) IfItemidF(condition bool, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfItemidf(condition bool, format string, args ...any) *SummaryElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1073,7 +1073,7 @@ func (e *SummaryElement) Itemprop(s string) *SummaryElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *SummaryElement) ItempropF(format string, args ...any) *SummaryElement {
+func (e *SummaryElement) Itempropf(format string, args ...any) *SummaryElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1098,7 +1098,7 @@ func (e *SummaryElement) IfItemprop(condition bool, s string) *SummaryElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *SummaryElement) IfItempropF(condition bool, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfItempropf(condition bool, format string, args ...any) *SummaryElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1139,7 +1139,7 @@ func (e *SummaryElement) Itemref(s string) *SummaryElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *SummaryElement) ItemrefF(format string, args ...any) *SummaryElement {
+func (e *SummaryElement) Itemreff(format string, args ...any) *SummaryElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1160,7 +1160,7 @@ func (e *SummaryElement) IfItemref(condition bool, s string) *SummaryElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *SummaryElement) IfItemrefF(condition bool, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfItemreff(condition bool, format string, args ...any) *SummaryElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1275,7 +1275,7 @@ func (e *SummaryElement) Itemtype(s string) *SummaryElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *SummaryElement) ItemtypeF(format string, args ...any) *SummaryElement {
+func (e *SummaryElement) Itemtypef(format string, args ...any) *SummaryElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1300,7 +1300,7 @@ func (e *SummaryElement) IfItemtype(condition bool, s string) *SummaryElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *SummaryElement) IfItemtypeF(condition bool, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfItemtypef(condition bool, format string, args ...any) *SummaryElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1341,7 +1341,7 @@ func (e *SummaryElement) Lang(s string) *SummaryElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *SummaryElement) LangF(format string, args ...any) *SummaryElement {
+func (e *SummaryElement) Langf(format string, args ...any) *SummaryElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1362,7 +1362,7 @@ func (e *SummaryElement) IfLang(condition bool, s string) *SummaryElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *SummaryElement) IfLangF(condition bool, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfLangf(condition bool, format string, args ...any) *SummaryElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1401,7 +1401,7 @@ func (e *SummaryElement) Nonce(s string) *SummaryElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *SummaryElement) NonceF(format string, args ...any) *SummaryElement {
+func (e *SummaryElement) Noncef(format string, args ...any) *SummaryElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1422,7 +1422,7 @@ func (e *SummaryElement) IfNonce(condition bool, s string) *SummaryElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *SummaryElement) IfNonceF(condition bool, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfNoncef(condition bool, format string, args ...any) *SummaryElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1547,7 +1547,7 @@ func (e *SummaryElement) Role(s string) *SummaryElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *SummaryElement) RoleF(format string, args ...any) *SummaryElement {
+func (e *SummaryElement) Rolef(format string, args ...any) *SummaryElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1566,7 +1566,7 @@ func (e *SummaryElement) IfRole(condition bool, s string) *SummaryElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *SummaryElement) IfRoleF(condition bool, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfRolef(condition bool, format string, args ...any) *SummaryElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1602,7 +1602,7 @@ func (e *SummaryElement) Slot(s string) *SummaryElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *SummaryElement) SlotF(format string, args ...any) *SummaryElement {
+func (e *SummaryElement) Slotf(format string, args ...any) *SummaryElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1621,7 +1621,7 @@ func (e *SummaryElement) IfSlot(condition bool, s string) *SummaryElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *SummaryElement) IfSlotF(condition bool, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfSlotf(condition bool, format string, args ...any) *SummaryElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1765,7 +1765,7 @@ func (e *SummaryElement) StyleAdd(k string, v string) *SummaryElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *SummaryElement) StyleAddF(k string, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) StyleAddf(k string, format string, args ...any) *SummaryElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1780,9 +1780,9 @@ func (e *SummaryElement) IfStyleAdd(condition bool, k string, v string) *Summary
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *SummaryElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SummaryElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1928,7 +1928,7 @@ func (e *SummaryElement) Title(s string) *SummaryElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *SummaryElement) TitleF(format string, args ...any) *SummaryElement {
+func (e *SummaryElement) Titlef(format string, args ...any) *SummaryElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1971,7 +1971,7 @@ func (e *SummaryElement) IfTitle(condition bool, s string) *SummaryElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *SummaryElement) IfTitleF(condition bool, format string, args ...any) *SummaryElement {
+func (e *SummaryElement) IfTitlef(condition bool, format string, args ...any) *SummaryElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

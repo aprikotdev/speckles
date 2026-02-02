@@ -83,7 +83,7 @@ func (e *MathMLMmultiscriptsElement) Text(text string) *MathMLMmultiscriptsEleme
 	return e
 }
 
-func (e *MathMLMmultiscriptsElement) TextF(format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) Textf(format string, args ...any) *MathMLMmultiscriptsElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *MathMLMmultiscriptsElement) IfText(condition bool, text string) *MathML
 	return e
 }
 
-func (e *MathMLMmultiscriptsElement) IfTextF(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) IfTextf(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *MathMLMmultiscriptsElement) IfEscaped(condition bool, text string) *Mat
 	return e
 }
 
-func (e *MathMLMmultiscriptsElement) EscapedF(format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) Escapedf(format string, args ...any) *MathMLMmultiscriptsElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *MathMLMmultiscriptsElement) IfEscapedF(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) IfEscapedf(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -243,7 +243,7 @@ func (e *MathMLMmultiscriptsElement) ID(s string) *MathMLMmultiscriptsElement {
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLMmultiscriptsElement) IDF(format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) IDf(format string, args ...any) *MathMLMmultiscriptsElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -258,7 +258,7 @@ func (e *MathMLMmultiscriptsElement) IfID(condition bool, s string) *MathMLMmult
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLMmultiscriptsElement) IfIDF(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) IfIDf(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -290,7 +290,7 @@ func (e *MathMLMmultiscriptsElement) Mathbackground(s string) *MathMLMmultiscrip
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLMmultiscriptsElement) MathbackgroundF(format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) Mathbackgroundf(format string, args ...any) *MathMLMmultiscriptsElement {
 	return e.Mathbackground(fmt.Sprintf(format, args...))
 }
 
@@ -307,7 +307,7 @@ func (e *MathMLMmultiscriptsElement) IfMathbackground(condition bool, s string) 
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLMmultiscriptsElement) IfMathbackgroundF(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) IfMathbackgroundf(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
 	if condition {
 		e.Mathbackground(fmt.Sprintf(format, args...))
 	}
@@ -340,7 +340,7 @@ func (e *MathMLMmultiscriptsElement) Mathcolor(s string) *MathMLMmultiscriptsEle
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLMmultiscriptsElement) MathcolorF(format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) Mathcolorf(format string, args ...any) *MathMLMmultiscriptsElement {
 	return e.Mathcolor(fmt.Sprintf(format, args...))
 }
 
@@ -357,7 +357,7 @@ func (e *MathMLMmultiscriptsElement) IfMathcolor(condition bool, s string) *Math
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLMmultiscriptsElement) IfMathcolorF(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) IfMathcolorf(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
 	if condition {
 		e.Mathcolor(fmt.Sprintf(format, args...))
 	}
@@ -388,7 +388,7 @@ func (e *MathMLMmultiscriptsElement) MathsizeStr(s string) *MathMLMmultiscriptsE
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLMmultiscriptsElement) MathsizeStrF(format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) MathsizeStrf(format string, args ...any) *MathMLMmultiscriptsElement {
 	return e.MathsizeStr(fmt.Sprintf(format, args...))
 }
 
@@ -403,7 +403,7 @@ func (e *MathMLMmultiscriptsElement) IfMathsizeStr(condition bool, s string) *Ma
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLMmultiscriptsElement) IfMathsizeStrF(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) IfMathsizeStrf(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
 	if condition {
 		e.MathsizeStr(fmt.Sprintf(format, args...))
 	}
@@ -437,7 +437,7 @@ func (e *MathMLMmultiscriptsElement) Nonce(s string) *MathMLMmultiscriptsElement
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLMmultiscriptsElement) NonceF(format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) Noncef(format string, args ...any) *MathMLMmultiscriptsElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -456,7 +456,7 @@ func (e *MathMLMmultiscriptsElement) IfNonce(condition bool, s string) *MathMLMm
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLMmultiscriptsElement) IfNonceF(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) IfNoncef(condition bool, format string, args ...any) *MathMLMmultiscriptsElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -580,7 +580,7 @@ func (e *MathMLMmultiscriptsElement) StyleAdd(k string, v string) *MathMLMmultis
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLMmultiscriptsElement) StyleAddF(k string, format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) StyleAddf(k string, format string, args ...any) *MathMLMmultiscriptsElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -595,9 +595,9 @@ func (e *MathMLMmultiscriptsElement) IfStyleAdd(condition bool, k string, v stri
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLMmultiscriptsElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MathMLMmultiscriptsElement {
+func (e *MathMLMmultiscriptsElement) IfStyleAddf(condition bool, k string, format string, args ...any) *MathMLMmultiscriptsElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

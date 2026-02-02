@@ -83,7 +83,7 @@ func (e *MeterElement) Text(text string) *MeterElement {
 	return e
 }
 
-func (e *MeterElement) TextF(format string, args ...any) *MeterElement {
+func (e *MeterElement) Textf(format string, args ...any) *MeterElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *MeterElement) IfText(condition bool, text string) *MeterElement {
 	return e
 }
 
-func (e *MeterElement) IfTextF(condition bool, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfTextf(condition bool, format string, args ...any) *MeterElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *MeterElement) IfEscaped(condition bool, text string) *MeterElement {
 	return e
 }
 
-func (e *MeterElement) EscapedF(format string, args ...any) *MeterElement {
+func (e *MeterElement) Escapedf(format string, args ...any) *MeterElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *MeterElement) IfEscapedF(condition bool, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfEscapedf(condition bool, format string, args ...any) *MeterElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -807,7 +807,7 @@ func (e *MeterElement) ID(s string) *MeterElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *MeterElement) IDF(format string, args ...any) *MeterElement {
+func (e *MeterElement) IDf(format string, args ...any) *MeterElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -824,7 +824,7 @@ func (e *MeterElement) IfID(condition bool, s string) *MeterElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *MeterElement) IfIDF(condition bool, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfIDf(condition bool, format string, args ...any) *MeterElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1019,7 +1019,7 @@ func (e *MeterElement) Is(s string) *MeterElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *MeterElement) IsF(format string, args ...any) *MeterElement {
+func (e *MeterElement) Isf(format string, args ...any) *MeterElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1040,7 +1040,7 @@ func (e *MeterElement) IfIs(condition bool, s string) *MeterElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *MeterElement) IfIsF(condition bool, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfIsf(condition bool, format string, args ...any) *MeterElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1091,7 +1091,7 @@ func (e *MeterElement) Itemid(s string) *MeterElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *MeterElement) ItemidF(format string, args ...any) *MeterElement {
+func (e *MeterElement) Itemidf(format string, args ...any) *MeterElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1124,7 +1124,7 @@ func (e *MeterElement) IfItemid(condition bool, s string) *MeterElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *MeterElement) IfItemidF(condition bool, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfItemidf(condition bool, format string, args ...any) *MeterElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1173,7 +1173,7 @@ func (e *MeterElement) Itemprop(s string) *MeterElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *MeterElement) ItempropF(format string, args ...any) *MeterElement {
+func (e *MeterElement) Itempropf(format string, args ...any) *MeterElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1198,7 +1198,7 @@ func (e *MeterElement) IfItemprop(condition bool, s string) *MeterElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *MeterElement) IfItempropF(condition bool, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfItempropf(condition bool, format string, args ...any) *MeterElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1239,7 +1239,7 @@ func (e *MeterElement) Itemref(s string) *MeterElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *MeterElement) ItemrefF(format string, args ...any) *MeterElement {
+func (e *MeterElement) Itemreff(format string, args ...any) *MeterElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1260,7 +1260,7 @@ func (e *MeterElement) IfItemref(condition bool, s string) *MeterElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *MeterElement) IfItemrefF(condition bool, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfItemreff(condition bool, format string, args ...any) *MeterElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1375,7 +1375,7 @@ func (e *MeterElement) Itemtype(s string) *MeterElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *MeterElement) ItemtypeF(format string, args ...any) *MeterElement {
+func (e *MeterElement) Itemtypef(format string, args ...any) *MeterElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1400,7 +1400,7 @@ func (e *MeterElement) IfItemtype(condition bool, s string) *MeterElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *MeterElement) IfItemtypeF(condition bool, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfItemtypef(condition bool, format string, args ...any) *MeterElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1441,7 +1441,7 @@ func (e *MeterElement) Lang(s string) *MeterElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *MeterElement) LangF(format string, args ...any) *MeterElement {
+func (e *MeterElement) Langf(format string, args ...any) *MeterElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1462,7 +1462,7 @@ func (e *MeterElement) IfLang(condition bool, s string) *MeterElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *MeterElement) IfLangF(condition bool, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfLangf(condition bool, format string, args ...any) *MeterElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1501,7 +1501,7 @@ func (e *MeterElement) Nonce(s string) *MeterElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *MeterElement) NonceF(format string, args ...any) *MeterElement {
+func (e *MeterElement) Noncef(format string, args ...any) *MeterElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1522,7 +1522,7 @@ func (e *MeterElement) IfNonce(condition bool, s string) *MeterElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *MeterElement) IfNonceF(condition bool, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfNoncef(condition bool, format string, args ...any) *MeterElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1647,7 +1647,7 @@ func (e *MeterElement) Role(s string) *MeterElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *MeterElement) RoleF(format string, args ...any) *MeterElement {
+func (e *MeterElement) Rolef(format string, args ...any) *MeterElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1666,7 +1666,7 @@ func (e *MeterElement) IfRole(condition bool, s string) *MeterElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *MeterElement) IfRoleF(condition bool, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfRolef(condition bool, format string, args ...any) *MeterElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1702,7 +1702,7 @@ func (e *MeterElement) Slot(s string) *MeterElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *MeterElement) SlotF(format string, args ...any) *MeterElement {
+func (e *MeterElement) Slotf(format string, args ...any) *MeterElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1721,7 +1721,7 @@ func (e *MeterElement) IfSlot(condition bool, s string) *MeterElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *MeterElement) IfSlotF(condition bool, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfSlotf(condition bool, format string, args ...any) *MeterElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1865,7 +1865,7 @@ func (e *MeterElement) StyleAdd(k string, v string) *MeterElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *MeterElement) StyleAddF(k string, format string, args ...any) *MeterElement {
+func (e *MeterElement) StyleAddf(k string, format string, args ...any) *MeterElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1880,9 +1880,9 @@ func (e *MeterElement) IfStyleAdd(condition bool, k string, v string) *MeterElem
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *MeterElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfStyleAddf(condition bool, k string, format string, args ...any) *MeterElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2028,7 +2028,7 @@ func (e *MeterElement) Title(s string) *MeterElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *MeterElement) TitleF(format string, args ...any) *MeterElement {
+func (e *MeterElement) Titlef(format string, args ...any) *MeterElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2071,7 +2071,7 @@ func (e *MeterElement) IfTitle(condition bool, s string) *MeterElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *MeterElement) IfTitleF(condition bool, format string, args ...any) *MeterElement {
+func (e *MeterElement) IfTitlef(condition bool, format string, args ...any) *MeterElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

@@ -83,7 +83,7 @@ func (e *FigcaptionElement) Text(text string) *FigcaptionElement {
 	return e
 }
 
-func (e *FigcaptionElement) TextF(format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) Textf(format string, args ...any) *FigcaptionElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *FigcaptionElement) IfText(condition bool, text string) *FigcaptionEleme
 	return e
 }
 
-func (e *FigcaptionElement) IfTextF(condition bool, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfTextf(condition bool, format string, args ...any) *FigcaptionElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *FigcaptionElement) IfEscaped(condition bool, text string) *FigcaptionEl
 	return e
 }
 
-func (e *FigcaptionElement) EscapedF(format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) Escapedf(format string, args ...any) *FigcaptionElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *FigcaptionElement) IfEscapedF(condition bool, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfEscapedf(condition bool, format string, args ...any) *FigcaptionElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -705,7 +705,7 @@ func (e *FigcaptionElement) ID(s string) *FigcaptionElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *FigcaptionElement) IDF(format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IDf(format string, args ...any) *FigcaptionElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -722,7 +722,7 @@ func (e *FigcaptionElement) IfID(condition bool, s string) *FigcaptionElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *FigcaptionElement) IfIDF(condition bool, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfIDf(condition bool, format string, args ...any) *FigcaptionElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -917,7 +917,7 @@ func (e *FigcaptionElement) Is(s string) *FigcaptionElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *FigcaptionElement) IsF(format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) Isf(format string, args ...any) *FigcaptionElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -938,7 +938,7 @@ func (e *FigcaptionElement) IfIs(condition bool, s string) *FigcaptionElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *FigcaptionElement) IfIsF(condition bool, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfIsf(condition bool, format string, args ...any) *FigcaptionElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -989,7 +989,7 @@ func (e *FigcaptionElement) Itemid(s string) *FigcaptionElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *FigcaptionElement) ItemidF(format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) Itemidf(format string, args ...any) *FigcaptionElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1022,7 +1022,7 @@ func (e *FigcaptionElement) IfItemid(condition bool, s string) *FigcaptionElemen
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *FigcaptionElement) IfItemidF(condition bool, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfItemidf(condition bool, format string, args ...any) *FigcaptionElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1071,7 +1071,7 @@ func (e *FigcaptionElement) Itemprop(s string) *FigcaptionElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *FigcaptionElement) ItempropF(format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) Itempropf(format string, args ...any) *FigcaptionElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1096,7 +1096,7 @@ func (e *FigcaptionElement) IfItemprop(condition bool, s string) *FigcaptionElem
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *FigcaptionElement) IfItempropF(condition bool, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfItempropf(condition bool, format string, args ...any) *FigcaptionElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1137,7 +1137,7 @@ func (e *FigcaptionElement) Itemref(s string) *FigcaptionElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *FigcaptionElement) ItemrefF(format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) Itemreff(format string, args ...any) *FigcaptionElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1158,7 +1158,7 @@ func (e *FigcaptionElement) IfItemref(condition bool, s string) *FigcaptionEleme
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *FigcaptionElement) IfItemrefF(condition bool, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfItemreff(condition bool, format string, args ...any) *FigcaptionElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1273,7 +1273,7 @@ func (e *FigcaptionElement) Itemtype(s string) *FigcaptionElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *FigcaptionElement) ItemtypeF(format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) Itemtypef(format string, args ...any) *FigcaptionElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1298,7 +1298,7 @@ func (e *FigcaptionElement) IfItemtype(condition bool, s string) *FigcaptionElem
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *FigcaptionElement) IfItemtypeF(condition bool, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfItemtypef(condition bool, format string, args ...any) *FigcaptionElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1339,7 +1339,7 @@ func (e *FigcaptionElement) Lang(s string) *FigcaptionElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *FigcaptionElement) LangF(format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) Langf(format string, args ...any) *FigcaptionElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1360,7 +1360,7 @@ func (e *FigcaptionElement) IfLang(condition bool, s string) *FigcaptionElement 
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *FigcaptionElement) IfLangF(condition bool, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfLangf(condition bool, format string, args ...any) *FigcaptionElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1399,7 +1399,7 @@ func (e *FigcaptionElement) Nonce(s string) *FigcaptionElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *FigcaptionElement) NonceF(format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) Noncef(format string, args ...any) *FigcaptionElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1420,7 +1420,7 @@ func (e *FigcaptionElement) IfNonce(condition bool, s string) *FigcaptionElement
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *FigcaptionElement) IfNonceF(condition bool, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfNoncef(condition bool, format string, args ...any) *FigcaptionElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1545,7 +1545,7 @@ func (e *FigcaptionElement) Role(s string) *FigcaptionElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *FigcaptionElement) RoleF(format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) Rolef(format string, args ...any) *FigcaptionElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1564,7 +1564,7 @@ func (e *FigcaptionElement) IfRole(condition bool, s string) *FigcaptionElement 
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *FigcaptionElement) IfRoleF(condition bool, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfRolef(condition bool, format string, args ...any) *FigcaptionElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1600,7 +1600,7 @@ func (e *FigcaptionElement) Slot(s string) *FigcaptionElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *FigcaptionElement) SlotF(format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) Slotf(format string, args ...any) *FigcaptionElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1619,7 +1619,7 @@ func (e *FigcaptionElement) IfSlot(condition bool, s string) *FigcaptionElement 
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *FigcaptionElement) IfSlotF(condition bool, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfSlotf(condition bool, format string, args ...any) *FigcaptionElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1763,7 +1763,7 @@ func (e *FigcaptionElement) StyleAdd(k string, v string) *FigcaptionElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *FigcaptionElement) StyleAddF(k string, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) StyleAddf(k string, format string, args ...any) *FigcaptionElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1778,9 +1778,9 @@ func (e *FigcaptionElement) IfStyleAdd(condition bool, k string, v string) *Figc
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *FigcaptionElement) IfStyleAddF(condition bool, k string, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfStyleAddf(condition bool, k string, format string, args ...any) *FigcaptionElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1926,7 +1926,7 @@ func (e *FigcaptionElement) Title(s string) *FigcaptionElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *FigcaptionElement) TitleF(format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) Titlef(format string, args ...any) *FigcaptionElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1969,7 +1969,7 @@ func (e *FigcaptionElement) IfTitle(condition bool, s string) *FigcaptionElement
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *FigcaptionElement) IfTitleF(condition bool, format string, args ...any) *FigcaptionElement {
+func (e *FigcaptionElement) IfTitlef(condition bool, format string, args ...any) *FigcaptionElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

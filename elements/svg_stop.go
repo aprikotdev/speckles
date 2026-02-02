@@ -84,7 +84,7 @@ func (e *SVGStopElement) Text(text string) *SVGStopElement {
 	return e
 }
 
-func (e *SVGStopElement) TextF(format string, args ...any) *SVGStopElement {
+func (e *SVGStopElement) Textf(format string, args ...any) *SVGStopElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGStopElement) IfText(condition bool, text string) *SVGStopElement {
 	return e
 }
 
-func (e *SVGStopElement) IfTextF(condition bool, format string, args ...any) *SVGStopElement {
+func (e *SVGStopElement) IfTextf(condition bool, format string, args ...any) *SVGStopElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGStopElement) IfEscaped(condition bool, text string) *SVGStopElement 
 	return e
 }
 
-func (e *SVGStopElement) EscapedF(format string, args ...any) *SVGStopElement {
+func (e *SVGStopElement) Escapedf(format string, args ...any) *SVGStopElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGStopElement) IfEscapedF(condition bool, format string, args ...any) *SVGStopElement {
+func (e *SVGStopElement) IfEscapedf(condition bool, format string, args ...any) *SVGStopElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -152,7 +152,7 @@ func (e *SVGStopElement) StopColor(s string) *SVGStopElement {
 }
 
 // The color of the gradient stop.
-func (e *SVGStopElement) StopColorF(format string, args ...any) *SVGStopElement {
+func (e *SVGStopElement) StopColorf(format string, args ...any) *SVGStopElement {
 	return e.StopColor(fmt.Sprintf(format, args...))
 }
 
@@ -165,7 +165,7 @@ func (e *SVGStopElement) IfStopColor(condition bool, s string) *SVGStopElement {
 }
 
 // The color of the gradient stop.
-func (e *SVGStopElement) IfStopColorF(condition bool, format string, args ...any) *SVGStopElement {
+func (e *SVGStopElement) IfStopColorf(condition bool, format string, args ...any) *SVGStopElement {
 	if condition {
 		e.StopColor(fmt.Sprintf(format, args...))
 	}
@@ -192,7 +192,7 @@ func (e *SVGStopElement) ID(s string) *SVGStopElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGStopElement) IDF(format string, args ...any) *SVGStopElement {
+func (e *SVGStopElement) IDf(format string, args ...any) *SVGStopElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -205,7 +205,7 @@ func (e *SVGStopElement) IfID(condition bool, s string) *SVGStopElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGStopElement) IfIDF(condition bool, format string, args ...any) *SVGStopElement {
+func (e *SVGStopElement) IfIDf(condition bool, format string, args ...any) *SVGStopElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -331,7 +331,7 @@ func (e *SVGStopElement) StyleAdd(k string, v string) *SVGStopElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGStopElement) StyleAddF(k string, format string, args ...any) *SVGStopElement {
+func (e *SVGStopElement) StyleAddf(k string, format string, args ...any) *SVGStopElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -344,9 +344,9 @@ func (e *SVGStopElement) IfStyleAdd(condition bool, k string, v string) *SVGStop
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGStopElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGStopElement {
+func (e *SVGStopElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGStopElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

@@ -84,7 +84,7 @@ func (e *NoscriptElement) Text(text string) *NoscriptElement {
 	return e
 }
 
-func (e *NoscriptElement) TextF(format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) Textf(format string, args ...any) *NoscriptElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *NoscriptElement) IfText(condition bool, text string) *NoscriptElement {
 	return e
 }
 
-func (e *NoscriptElement) IfTextF(condition bool, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfTextf(condition bool, format string, args ...any) *NoscriptElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *NoscriptElement) IfEscaped(condition bool, text string) *NoscriptElemen
 	return e
 }
 
-func (e *NoscriptElement) EscapedF(format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) Escapedf(format string, args ...any) *NoscriptElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *NoscriptElement) IfEscapedF(condition bool, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfEscapedf(condition bool, format string, args ...any) *NoscriptElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -706,7 +706,7 @@ func (e *NoscriptElement) ID(s string) *NoscriptElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *NoscriptElement) IDF(format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IDf(format string, args ...any) *NoscriptElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -723,7 +723,7 @@ func (e *NoscriptElement) IfID(condition bool, s string) *NoscriptElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *NoscriptElement) IfIDF(condition bool, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfIDf(condition bool, format string, args ...any) *NoscriptElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -918,7 +918,7 @@ func (e *NoscriptElement) Is(s string) *NoscriptElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *NoscriptElement) IsF(format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) Isf(format string, args ...any) *NoscriptElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -939,7 +939,7 @@ func (e *NoscriptElement) IfIs(condition bool, s string) *NoscriptElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *NoscriptElement) IfIsF(condition bool, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfIsf(condition bool, format string, args ...any) *NoscriptElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -990,7 +990,7 @@ func (e *NoscriptElement) Itemid(s string) *NoscriptElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *NoscriptElement) ItemidF(format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) Itemidf(format string, args ...any) *NoscriptElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1023,7 +1023,7 @@ func (e *NoscriptElement) IfItemid(condition bool, s string) *NoscriptElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *NoscriptElement) IfItemidF(condition bool, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfItemidf(condition bool, format string, args ...any) *NoscriptElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1072,7 +1072,7 @@ func (e *NoscriptElement) Itemprop(s string) *NoscriptElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *NoscriptElement) ItempropF(format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) Itempropf(format string, args ...any) *NoscriptElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *NoscriptElement) IfItemprop(condition bool, s string) *NoscriptElement 
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *NoscriptElement) IfItempropF(condition bool, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfItempropf(condition bool, format string, args ...any) *NoscriptElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1138,7 +1138,7 @@ func (e *NoscriptElement) Itemref(s string) *NoscriptElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *NoscriptElement) ItemrefF(format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) Itemreff(format string, args ...any) *NoscriptElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1159,7 +1159,7 @@ func (e *NoscriptElement) IfItemref(condition bool, s string) *NoscriptElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *NoscriptElement) IfItemrefF(condition bool, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfItemreff(condition bool, format string, args ...any) *NoscriptElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1274,7 +1274,7 @@ func (e *NoscriptElement) Itemtype(s string) *NoscriptElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *NoscriptElement) ItemtypeF(format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) Itemtypef(format string, args ...any) *NoscriptElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1299,7 +1299,7 @@ func (e *NoscriptElement) IfItemtype(condition bool, s string) *NoscriptElement 
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *NoscriptElement) IfItemtypeF(condition bool, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfItemtypef(condition bool, format string, args ...any) *NoscriptElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1340,7 +1340,7 @@ func (e *NoscriptElement) Lang(s string) *NoscriptElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *NoscriptElement) LangF(format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) Langf(format string, args ...any) *NoscriptElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1361,7 +1361,7 @@ func (e *NoscriptElement) IfLang(condition bool, s string) *NoscriptElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *NoscriptElement) IfLangF(condition bool, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfLangf(condition bool, format string, args ...any) *NoscriptElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1400,7 +1400,7 @@ func (e *NoscriptElement) Nonce(s string) *NoscriptElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *NoscriptElement) NonceF(format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) Noncef(format string, args ...any) *NoscriptElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *NoscriptElement) IfNonce(condition bool, s string) *NoscriptElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *NoscriptElement) IfNonceF(condition bool, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfNoncef(condition bool, format string, args ...any) *NoscriptElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1546,7 +1546,7 @@ func (e *NoscriptElement) Role(s string) *NoscriptElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *NoscriptElement) RoleF(format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) Rolef(format string, args ...any) *NoscriptElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1565,7 +1565,7 @@ func (e *NoscriptElement) IfRole(condition bool, s string) *NoscriptElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *NoscriptElement) IfRoleF(condition bool, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfRolef(condition bool, format string, args ...any) *NoscriptElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1601,7 +1601,7 @@ func (e *NoscriptElement) Slot(s string) *NoscriptElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *NoscriptElement) SlotF(format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) Slotf(format string, args ...any) *NoscriptElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1620,7 +1620,7 @@ func (e *NoscriptElement) IfSlot(condition bool, s string) *NoscriptElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *NoscriptElement) IfSlotF(condition bool, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfSlotf(condition bool, format string, args ...any) *NoscriptElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1764,7 +1764,7 @@ func (e *NoscriptElement) StyleAdd(k string, v string) *NoscriptElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *NoscriptElement) StyleAddF(k string, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) StyleAddf(k string, format string, args ...any) *NoscriptElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1779,9 +1779,9 @@ func (e *NoscriptElement) IfStyleAdd(condition bool, k string, v string) *Noscri
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *NoscriptElement) IfStyleAddF(condition bool, k string, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfStyleAddf(condition bool, k string, format string, args ...any) *NoscriptElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1927,7 +1927,7 @@ func (e *NoscriptElement) Title(s string) *NoscriptElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *NoscriptElement) TitleF(format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) Titlef(format string, args ...any) *NoscriptElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1970,7 +1970,7 @@ func (e *NoscriptElement) IfTitle(condition bool, s string) *NoscriptElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *NoscriptElement) IfTitleF(condition bool, format string, args ...any) *NoscriptElement {
+func (e *NoscriptElement) IfTitlef(condition bool, format string, args ...any) *NoscriptElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

@@ -85,7 +85,7 @@ func (e *MenuElement) Text(text string) *MenuElement {
 	return e
 }
 
-func (e *MenuElement) TextF(format string, args ...any) *MenuElement {
+func (e *MenuElement) Textf(format string, args ...any) *MenuElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *MenuElement) IfText(condition bool, text string) *MenuElement {
 	return e
 }
 
-func (e *MenuElement) IfTextF(condition bool, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfTextf(condition bool, format string, args ...any) *MenuElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *MenuElement) IfEscaped(condition bool, text string) *MenuElement {
 	return e
 }
 
-func (e *MenuElement) EscapedF(format string, args ...any) *MenuElement {
+func (e *MenuElement) Escapedf(format string, args ...any) *MenuElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *MenuElement) IfEscapedF(condition bool, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfEscapedf(condition bool, format string, args ...any) *MenuElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -737,7 +737,7 @@ func (e *MenuElement) ID(s string) *MenuElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *MenuElement) IDF(format string, args ...any) *MenuElement {
+func (e *MenuElement) IDf(format string, args ...any) *MenuElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -754,7 +754,7 @@ func (e *MenuElement) IfID(condition bool, s string) *MenuElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *MenuElement) IfIDF(condition bool, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfIDf(condition bool, format string, args ...any) *MenuElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -949,7 +949,7 @@ func (e *MenuElement) Is(s string) *MenuElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *MenuElement) IsF(format string, args ...any) *MenuElement {
+func (e *MenuElement) Isf(format string, args ...any) *MenuElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -970,7 +970,7 @@ func (e *MenuElement) IfIs(condition bool, s string) *MenuElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *MenuElement) IfIsF(condition bool, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfIsf(condition bool, format string, args ...any) *MenuElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1021,7 +1021,7 @@ func (e *MenuElement) Itemid(s string) *MenuElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *MenuElement) ItemidF(format string, args ...any) *MenuElement {
+func (e *MenuElement) Itemidf(format string, args ...any) *MenuElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1054,7 +1054,7 @@ func (e *MenuElement) IfItemid(condition bool, s string) *MenuElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *MenuElement) IfItemidF(condition bool, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfItemidf(condition bool, format string, args ...any) *MenuElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1103,7 +1103,7 @@ func (e *MenuElement) Itemprop(s string) *MenuElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *MenuElement) ItempropF(format string, args ...any) *MenuElement {
+func (e *MenuElement) Itempropf(format string, args ...any) *MenuElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1128,7 +1128,7 @@ func (e *MenuElement) IfItemprop(condition bool, s string) *MenuElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *MenuElement) IfItempropF(condition bool, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfItempropf(condition bool, format string, args ...any) *MenuElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1169,7 +1169,7 @@ func (e *MenuElement) Itemref(s string) *MenuElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *MenuElement) ItemrefF(format string, args ...any) *MenuElement {
+func (e *MenuElement) Itemreff(format string, args ...any) *MenuElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1190,7 +1190,7 @@ func (e *MenuElement) IfItemref(condition bool, s string) *MenuElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *MenuElement) IfItemrefF(condition bool, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfItemreff(condition bool, format string, args ...any) *MenuElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1305,7 +1305,7 @@ func (e *MenuElement) Itemtype(s string) *MenuElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *MenuElement) ItemtypeF(format string, args ...any) *MenuElement {
+func (e *MenuElement) Itemtypef(format string, args ...any) *MenuElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1330,7 +1330,7 @@ func (e *MenuElement) IfItemtype(condition bool, s string) *MenuElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *MenuElement) IfItemtypeF(condition bool, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfItemtypef(condition bool, format string, args ...any) *MenuElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1371,7 +1371,7 @@ func (e *MenuElement) Lang(s string) *MenuElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *MenuElement) LangF(format string, args ...any) *MenuElement {
+func (e *MenuElement) Langf(format string, args ...any) *MenuElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1392,7 +1392,7 @@ func (e *MenuElement) IfLang(condition bool, s string) *MenuElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *MenuElement) IfLangF(condition bool, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfLangf(condition bool, format string, args ...any) *MenuElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1431,7 +1431,7 @@ func (e *MenuElement) Nonce(s string) *MenuElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *MenuElement) NonceF(format string, args ...any) *MenuElement {
+func (e *MenuElement) Noncef(format string, args ...any) *MenuElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1452,7 +1452,7 @@ func (e *MenuElement) IfNonce(condition bool, s string) *MenuElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *MenuElement) IfNonceF(condition bool, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfNoncef(condition bool, format string, args ...any) *MenuElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1577,7 +1577,7 @@ func (e *MenuElement) Role(s string) *MenuElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *MenuElement) RoleF(format string, args ...any) *MenuElement {
+func (e *MenuElement) Rolef(format string, args ...any) *MenuElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1596,7 +1596,7 @@ func (e *MenuElement) IfRole(condition bool, s string) *MenuElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *MenuElement) IfRoleF(condition bool, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfRolef(condition bool, format string, args ...any) *MenuElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1632,7 +1632,7 @@ func (e *MenuElement) Slot(s string) *MenuElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *MenuElement) SlotF(format string, args ...any) *MenuElement {
+func (e *MenuElement) Slotf(format string, args ...any) *MenuElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1651,7 +1651,7 @@ func (e *MenuElement) IfSlot(condition bool, s string) *MenuElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *MenuElement) IfSlotF(condition bool, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfSlotf(condition bool, format string, args ...any) *MenuElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1795,7 +1795,7 @@ func (e *MenuElement) StyleAdd(k string, v string) *MenuElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *MenuElement) StyleAddF(k string, format string, args ...any) *MenuElement {
+func (e *MenuElement) StyleAddf(k string, format string, args ...any) *MenuElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1810,9 +1810,9 @@ func (e *MenuElement) IfStyleAdd(condition bool, k string, v string) *MenuElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *MenuElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfStyleAddf(condition bool, k string, format string, args ...any) *MenuElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1958,7 +1958,7 @@ func (e *MenuElement) Title(s string) *MenuElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *MenuElement) TitleF(format string, args ...any) *MenuElement {
+func (e *MenuElement) Titlef(format string, args ...any) *MenuElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2001,7 +2001,7 @@ func (e *MenuElement) IfTitle(condition bool, s string) *MenuElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *MenuElement) IfTitleF(condition bool, format string, args ...any) *MenuElement {
+func (e *MenuElement) IfTitlef(condition bool, format string, args ...any) *MenuElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

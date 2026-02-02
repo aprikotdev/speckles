@@ -84,7 +84,7 @@ func (e *ColElement) Text(text string) *ColElement {
 	return e
 }
 
-func (e *ColElement) TextF(format string, args ...any) *ColElement {
+func (e *ColElement) Textf(format string, args ...any) *ColElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *ColElement) IfText(condition bool, text string) *ColElement {
 	return e
 }
 
-func (e *ColElement) IfTextF(condition bool, format string, args ...any) *ColElement {
+func (e *ColElement) IfTextf(condition bool, format string, args ...any) *ColElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *ColElement) IfEscaped(condition bool, text string) *ColElement {
 	return e
 }
 
-func (e *ColElement) EscapedF(format string, args ...any) *ColElement {
+func (e *ColElement) Escapedf(format string, args ...any) *ColElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *ColElement) IfEscapedF(condition bool, format string, args ...any) *ColElement {
+func (e *ColElement) IfEscapedf(condition bool, format string, args ...any) *ColElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -733,7 +733,7 @@ func (e *ColElement) ID(s string) *ColElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ColElement) IDF(format string, args ...any) *ColElement {
+func (e *ColElement) IDf(format string, args ...any) *ColElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -750,7 +750,7 @@ func (e *ColElement) IfID(condition bool, s string) *ColElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ColElement) IfIDF(condition bool, format string, args ...any) *ColElement {
+func (e *ColElement) IfIDf(condition bool, format string, args ...any) *ColElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -945,7 +945,7 @@ func (e *ColElement) Is(s string) *ColElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ColElement) IsF(format string, args ...any) *ColElement {
+func (e *ColElement) Isf(format string, args ...any) *ColElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -966,7 +966,7 @@ func (e *ColElement) IfIs(condition bool, s string) *ColElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ColElement) IfIsF(condition bool, format string, args ...any) *ColElement {
+func (e *ColElement) IfIsf(condition bool, format string, args ...any) *ColElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1017,7 +1017,7 @@ func (e *ColElement) Itemid(s string) *ColElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ColElement) ItemidF(format string, args ...any) *ColElement {
+func (e *ColElement) Itemidf(format string, args ...any) *ColElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1050,7 +1050,7 @@ func (e *ColElement) IfItemid(condition bool, s string) *ColElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ColElement) IfItemidF(condition bool, format string, args ...any) *ColElement {
+func (e *ColElement) IfItemidf(condition bool, format string, args ...any) *ColElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1099,7 +1099,7 @@ func (e *ColElement) Itemprop(s string) *ColElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ColElement) ItempropF(format string, args ...any) *ColElement {
+func (e *ColElement) Itempropf(format string, args ...any) *ColElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1124,7 +1124,7 @@ func (e *ColElement) IfItemprop(condition bool, s string) *ColElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ColElement) IfItempropF(condition bool, format string, args ...any) *ColElement {
+func (e *ColElement) IfItempropf(condition bool, format string, args ...any) *ColElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1165,7 +1165,7 @@ func (e *ColElement) Itemref(s string) *ColElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ColElement) ItemrefF(format string, args ...any) *ColElement {
+func (e *ColElement) Itemreff(format string, args ...any) *ColElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1186,7 +1186,7 @@ func (e *ColElement) IfItemref(condition bool, s string) *ColElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ColElement) IfItemrefF(condition bool, format string, args ...any) *ColElement {
+func (e *ColElement) IfItemreff(condition bool, format string, args ...any) *ColElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1301,7 +1301,7 @@ func (e *ColElement) Itemtype(s string) *ColElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ColElement) ItemtypeF(format string, args ...any) *ColElement {
+func (e *ColElement) Itemtypef(format string, args ...any) *ColElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1326,7 +1326,7 @@ func (e *ColElement) IfItemtype(condition bool, s string) *ColElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ColElement) IfItemtypeF(condition bool, format string, args ...any) *ColElement {
+func (e *ColElement) IfItemtypef(condition bool, format string, args ...any) *ColElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1367,7 +1367,7 @@ func (e *ColElement) Lang(s string) *ColElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ColElement) LangF(format string, args ...any) *ColElement {
+func (e *ColElement) Langf(format string, args ...any) *ColElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1388,7 +1388,7 @@ func (e *ColElement) IfLang(condition bool, s string) *ColElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ColElement) IfLangF(condition bool, format string, args ...any) *ColElement {
+func (e *ColElement) IfLangf(condition bool, format string, args ...any) *ColElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1427,7 +1427,7 @@ func (e *ColElement) Nonce(s string) *ColElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *ColElement) NonceF(format string, args ...any) *ColElement {
+func (e *ColElement) Noncef(format string, args ...any) *ColElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1448,7 +1448,7 @@ func (e *ColElement) IfNonce(condition bool, s string) *ColElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *ColElement) IfNonceF(condition bool, format string, args ...any) *ColElement {
+func (e *ColElement) IfNoncef(condition bool, format string, args ...any) *ColElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1573,7 +1573,7 @@ func (e *ColElement) Role(s string) *ColElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ColElement) RoleF(format string, args ...any) *ColElement {
+func (e *ColElement) Rolef(format string, args ...any) *ColElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1592,7 +1592,7 @@ func (e *ColElement) IfRole(condition bool, s string) *ColElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ColElement) IfRoleF(condition bool, format string, args ...any) *ColElement {
+func (e *ColElement) IfRolef(condition bool, format string, args ...any) *ColElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1628,7 +1628,7 @@ func (e *ColElement) Slot(s string) *ColElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ColElement) SlotF(format string, args ...any) *ColElement {
+func (e *ColElement) Slotf(format string, args ...any) *ColElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1647,7 +1647,7 @@ func (e *ColElement) IfSlot(condition bool, s string) *ColElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ColElement) IfSlotF(condition bool, format string, args ...any) *ColElement {
+func (e *ColElement) IfSlotf(condition bool, format string, args ...any) *ColElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1791,7 +1791,7 @@ func (e *ColElement) StyleAdd(k string, v string) *ColElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ColElement) StyleAddF(k string, format string, args ...any) *ColElement {
+func (e *ColElement) StyleAddf(k string, format string, args ...any) *ColElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1806,9 +1806,9 @@ func (e *ColElement) IfStyleAdd(condition bool, k string, v string) *ColElement 
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ColElement) IfStyleAddF(condition bool, k string, format string, args ...any) *ColElement {
+func (e *ColElement) IfStyleAddf(condition bool, k string, format string, args ...any) *ColElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1954,7 +1954,7 @@ func (e *ColElement) Title(s string) *ColElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ColElement) TitleF(format string, args ...any) *ColElement {
+func (e *ColElement) Titlef(format string, args ...any) *ColElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1997,7 +1997,7 @@ func (e *ColElement) IfTitle(condition bool, s string) *ColElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ColElement) IfTitleF(condition bool, format string, args ...any) *ColElement {
+func (e *ColElement) IfTitlef(condition bool, format string, args ...any) *ColElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

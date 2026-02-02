@@ -84,7 +84,7 @@ func (e *EmbedElement) Text(text string) *EmbedElement {
 	return e
 }
 
-func (e *EmbedElement) TextF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Textf(format string, args ...any) *EmbedElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *EmbedElement) IfText(condition bool, text string) *EmbedElement {
 	return e
 }
 
-func (e *EmbedElement) IfTextF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfTextf(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *EmbedElement) IfEscaped(condition bool, text string) *EmbedElement {
 	return e
 }
 
-func (e *EmbedElement) EscapedF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Escapedf(format string, args ...any) *EmbedElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *EmbedElement) IfEscapedF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfEscapedf(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -162,7 +162,7 @@ func (e *EmbedElement) Src(s string) *EmbedElement {
 }
 
 // The URL of the resource being embedded.
-func (e *EmbedElement) SrcF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Srcf(format string, args ...any) *EmbedElement {
 	return e.Src(fmt.Sprintf(format, args...))
 }
 
@@ -175,7 +175,7 @@ func (e *EmbedElement) IfSrc(condition bool, s string) *EmbedElement {
 }
 
 // The URL of the resource being embedded.
-func (e *EmbedElement) IfSrcF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfSrcf(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.Src(fmt.Sprintf(format, args...))
 	}
@@ -202,7 +202,7 @@ func (e *EmbedElement) Type(s string) *EmbedElement {
 }
 
 // The type of content being embedded.
-func (e *EmbedElement) TypeF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Typef(format string, args ...any) *EmbedElement {
 	return e.Type(fmt.Sprintf(format, args...))
 }
 
@@ -215,7 +215,7 @@ func (e *EmbedElement) IfType(condition bool, s string) *EmbedElement {
 }
 
 // The type of content being embedded.
-func (e *EmbedElement) IfTypeF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfTypef(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.Type(fmt.Sprintf(format, args...))
 	}
@@ -840,7 +840,7 @@ func (e *EmbedElement) ID(s string) *EmbedElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *EmbedElement) IDF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IDf(format string, args ...any) *EmbedElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -857,7 +857,7 @@ func (e *EmbedElement) IfID(condition bool, s string) *EmbedElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *EmbedElement) IfIDF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfIDf(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1052,7 +1052,7 @@ func (e *EmbedElement) Is(s string) *EmbedElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *EmbedElement) IsF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Isf(format string, args ...any) *EmbedElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1073,7 +1073,7 @@ func (e *EmbedElement) IfIs(condition bool, s string) *EmbedElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *EmbedElement) IfIsF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfIsf(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1124,7 +1124,7 @@ func (e *EmbedElement) Itemid(s string) *EmbedElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *EmbedElement) ItemidF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Itemidf(format string, args ...any) *EmbedElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1157,7 +1157,7 @@ func (e *EmbedElement) IfItemid(condition bool, s string) *EmbedElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *EmbedElement) IfItemidF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfItemidf(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1206,7 +1206,7 @@ func (e *EmbedElement) Itemprop(s string) *EmbedElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *EmbedElement) ItempropF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Itempropf(format string, args ...any) *EmbedElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1231,7 +1231,7 @@ func (e *EmbedElement) IfItemprop(condition bool, s string) *EmbedElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *EmbedElement) IfItempropF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfItempropf(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1272,7 +1272,7 @@ func (e *EmbedElement) Itemref(s string) *EmbedElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *EmbedElement) ItemrefF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Itemreff(format string, args ...any) *EmbedElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1293,7 +1293,7 @@ func (e *EmbedElement) IfItemref(condition bool, s string) *EmbedElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *EmbedElement) IfItemrefF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfItemreff(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1408,7 +1408,7 @@ func (e *EmbedElement) Itemtype(s string) *EmbedElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *EmbedElement) ItemtypeF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Itemtypef(format string, args ...any) *EmbedElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1433,7 +1433,7 @@ func (e *EmbedElement) IfItemtype(condition bool, s string) *EmbedElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *EmbedElement) IfItemtypeF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfItemtypef(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1474,7 +1474,7 @@ func (e *EmbedElement) Lang(s string) *EmbedElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *EmbedElement) LangF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Langf(format string, args ...any) *EmbedElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1495,7 +1495,7 @@ func (e *EmbedElement) IfLang(condition bool, s string) *EmbedElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *EmbedElement) IfLangF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfLangf(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1534,7 +1534,7 @@ func (e *EmbedElement) Nonce(s string) *EmbedElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *EmbedElement) NonceF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Noncef(format string, args ...any) *EmbedElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1555,7 +1555,7 @@ func (e *EmbedElement) IfNonce(condition bool, s string) *EmbedElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *EmbedElement) IfNonceF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfNoncef(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1680,7 +1680,7 @@ func (e *EmbedElement) Role(s string) *EmbedElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *EmbedElement) RoleF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Rolef(format string, args ...any) *EmbedElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1699,7 +1699,7 @@ func (e *EmbedElement) IfRole(condition bool, s string) *EmbedElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *EmbedElement) IfRoleF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfRolef(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1735,7 +1735,7 @@ func (e *EmbedElement) Slot(s string) *EmbedElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *EmbedElement) SlotF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Slotf(format string, args ...any) *EmbedElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1754,7 +1754,7 @@ func (e *EmbedElement) IfSlot(condition bool, s string) *EmbedElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *EmbedElement) IfSlotF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfSlotf(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1898,7 +1898,7 @@ func (e *EmbedElement) StyleAdd(k string, v string) *EmbedElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *EmbedElement) StyleAddF(k string, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) StyleAddf(k string, format string, args ...any) *EmbedElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1913,9 +1913,9 @@ func (e *EmbedElement) IfStyleAdd(condition bool, k string, v string) *EmbedElem
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *EmbedElement) IfStyleAddF(condition bool, k string, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfStyleAddf(condition bool, k string, format string, args ...any) *EmbedElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2061,7 +2061,7 @@ func (e *EmbedElement) Title(s string) *EmbedElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *EmbedElement) TitleF(format string, args ...any) *EmbedElement {
+func (e *EmbedElement) Titlef(format string, args ...any) *EmbedElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2104,7 +2104,7 @@ func (e *EmbedElement) IfTitle(condition bool, s string) *EmbedElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *EmbedElement) IfTitleF(condition bool, format string, args ...any) *EmbedElement {
+func (e *EmbedElement) IfTitlef(condition bool, format string, args ...any) *EmbedElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

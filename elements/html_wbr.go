@@ -84,7 +84,7 @@ func (e *WbrElement) Text(text string) *WbrElement {
 	return e
 }
 
-func (e *WbrElement) TextF(format string, args ...any) *WbrElement {
+func (e *WbrElement) Textf(format string, args ...any) *WbrElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *WbrElement) IfText(condition bool, text string) *WbrElement {
 	return e
 }
 
-func (e *WbrElement) IfTextF(condition bool, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfTextf(condition bool, format string, args ...any) *WbrElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *WbrElement) IfEscaped(condition bool, text string) *WbrElement {
 	return e
 }
 
-func (e *WbrElement) EscapedF(format string, args ...any) *WbrElement {
+func (e *WbrElement) Escapedf(format string, args ...any) *WbrElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *WbrElement) IfEscapedF(condition bool, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfEscapedf(condition bool, format string, args ...any) *WbrElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -706,7 +706,7 @@ func (e *WbrElement) ID(s string) *WbrElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *WbrElement) IDF(format string, args ...any) *WbrElement {
+func (e *WbrElement) IDf(format string, args ...any) *WbrElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -723,7 +723,7 @@ func (e *WbrElement) IfID(condition bool, s string) *WbrElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *WbrElement) IfIDF(condition bool, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfIDf(condition bool, format string, args ...any) *WbrElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -918,7 +918,7 @@ func (e *WbrElement) Is(s string) *WbrElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *WbrElement) IsF(format string, args ...any) *WbrElement {
+func (e *WbrElement) Isf(format string, args ...any) *WbrElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -939,7 +939,7 @@ func (e *WbrElement) IfIs(condition bool, s string) *WbrElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *WbrElement) IfIsF(condition bool, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfIsf(condition bool, format string, args ...any) *WbrElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -990,7 +990,7 @@ func (e *WbrElement) Itemid(s string) *WbrElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *WbrElement) ItemidF(format string, args ...any) *WbrElement {
+func (e *WbrElement) Itemidf(format string, args ...any) *WbrElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1023,7 +1023,7 @@ func (e *WbrElement) IfItemid(condition bool, s string) *WbrElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *WbrElement) IfItemidF(condition bool, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfItemidf(condition bool, format string, args ...any) *WbrElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1072,7 +1072,7 @@ func (e *WbrElement) Itemprop(s string) *WbrElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *WbrElement) ItempropF(format string, args ...any) *WbrElement {
+func (e *WbrElement) Itempropf(format string, args ...any) *WbrElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *WbrElement) IfItemprop(condition bool, s string) *WbrElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *WbrElement) IfItempropF(condition bool, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfItempropf(condition bool, format string, args ...any) *WbrElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1138,7 +1138,7 @@ func (e *WbrElement) Itemref(s string) *WbrElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *WbrElement) ItemrefF(format string, args ...any) *WbrElement {
+func (e *WbrElement) Itemreff(format string, args ...any) *WbrElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1159,7 +1159,7 @@ func (e *WbrElement) IfItemref(condition bool, s string) *WbrElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *WbrElement) IfItemrefF(condition bool, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfItemreff(condition bool, format string, args ...any) *WbrElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1274,7 +1274,7 @@ func (e *WbrElement) Itemtype(s string) *WbrElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *WbrElement) ItemtypeF(format string, args ...any) *WbrElement {
+func (e *WbrElement) Itemtypef(format string, args ...any) *WbrElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1299,7 +1299,7 @@ func (e *WbrElement) IfItemtype(condition bool, s string) *WbrElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *WbrElement) IfItemtypeF(condition bool, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfItemtypef(condition bool, format string, args ...any) *WbrElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1340,7 +1340,7 @@ func (e *WbrElement) Lang(s string) *WbrElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *WbrElement) LangF(format string, args ...any) *WbrElement {
+func (e *WbrElement) Langf(format string, args ...any) *WbrElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1361,7 +1361,7 @@ func (e *WbrElement) IfLang(condition bool, s string) *WbrElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *WbrElement) IfLangF(condition bool, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfLangf(condition bool, format string, args ...any) *WbrElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1400,7 +1400,7 @@ func (e *WbrElement) Nonce(s string) *WbrElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *WbrElement) NonceF(format string, args ...any) *WbrElement {
+func (e *WbrElement) Noncef(format string, args ...any) *WbrElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *WbrElement) IfNonce(condition bool, s string) *WbrElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *WbrElement) IfNonceF(condition bool, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfNoncef(condition bool, format string, args ...any) *WbrElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1546,7 +1546,7 @@ func (e *WbrElement) Role(s string) *WbrElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *WbrElement) RoleF(format string, args ...any) *WbrElement {
+func (e *WbrElement) Rolef(format string, args ...any) *WbrElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1565,7 +1565,7 @@ func (e *WbrElement) IfRole(condition bool, s string) *WbrElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *WbrElement) IfRoleF(condition bool, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfRolef(condition bool, format string, args ...any) *WbrElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1601,7 +1601,7 @@ func (e *WbrElement) Slot(s string) *WbrElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *WbrElement) SlotF(format string, args ...any) *WbrElement {
+func (e *WbrElement) Slotf(format string, args ...any) *WbrElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1620,7 +1620,7 @@ func (e *WbrElement) IfSlot(condition bool, s string) *WbrElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *WbrElement) IfSlotF(condition bool, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfSlotf(condition bool, format string, args ...any) *WbrElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1764,7 +1764,7 @@ func (e *WbrElement) StyleAdd(k string, v string) *WbrElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *WbrElement) StyleAddF(k string, format string, args ...any) *WbrElement {
+func (e *WbrElement) StyleAddf(k string, format string, args ...any) *WbrElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1779,9 +1779,9 @@ func (e *WbrElement) IfStyleAdd(condition bool, k string, v string) *WbrElement 
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *WbrElement) IfStyleAddF(condition bool, k string, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfStyleAddf(condition bool, k string, format string, args ...any) *WbrElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1927,7 +1927,7 @@ func (e *WbrElement) Title(s string) *WbrElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *WbrElement) TitleF(format string, args ...any) *WbrElement {
+func (e *WbrElement) Titlef(format string, args ...any) *WbrElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1970,7 +1970,7 @@ func (e *WbrElement) IfTitle(condition bool, s string) *WbrElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *WbrElement) IfTitleF(condition bool, format string, args ...any) *WbrElement {
+func (e *WbrElement) IfTitlef(condition bool, format string, args ...any) *WbrElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

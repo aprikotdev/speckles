@@ -84,7 +84,7 @@ func (e *MathMLAnnotationXMLElement) Text(text string) *MathMLAnnotationXMLEleme
 	return e
 }
 
-func (e *MathMLAnnotationXMLElement) TextF(format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) Textf(format string, args ...any) *MathMLAnnotationXMLElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *MathMLAnnotationXMLElement) IfText(condition bool, text string) *MathML
 	return e
 }
 
-func (e *MathMLAnnotationXMLElement) IfTextF(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) IfTextf(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *MathMLAnnotationXMLElement) IfEscaped(condition bool, text string) *Mat
 	return e
 }
 
-func (e *MathMLAnnotationXMLElement) EscapedF(format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) Escapedf(format string, args ...any) *MathMLAnnotationXMLElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *MathMLAnnotationXMLElement) IfEscapedF(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) IfEscapedf(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -139,7 +139,7 @@ func (e *MathMLAnnotationXMLElement) Encoding(s string) *MathMLAnnotationXMLElem
 // The encoding of the semantic information in the annotation (e.g.,
 // "application/mathml+xml", "application/mathml-presentation+xml",
 // "application/mathml-content+xml")
-func (e *MathMLAnnotationXMLElement) EncodingF(format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) Encodingf(format string, args ...any) *MathMLAnnotationXMLElement {
 	return e.Encoding(fmt.Sprintf(format, args...))
 }
 
@@ -156,7 +156,7 @@ func (e *MathMLAnnotationXMLElement) IfEncoding(condition bool, s string) *MathM
 // The encoding of the semantic information in the annotation (e.g.,
 // "application/mathml+xml", "application/mathml-presentation+xml",
 // "application/mathml-content+xml")
-func (e *MathMLAnnotationXMLElement) IfEncodingF(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) IfEncodingf(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
 	if condition {
 		e.Encoding(fmt.Sprintf(format, args...))
 	}
@@ -185,7 +185,7 @@ func (e *MathMLAnnotationXMLElement) Name(s string) *MathMLAnnotationXMLElement 
 }
 
 // This Attribute specifies the name of the annotation.
-func (e *MathMLAnnotationXMLElement) NameF(format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) Namef(format string, args ...any) *MathMLAnnotationXMLElement {
 	return e.Name(fmt.Sprintf(format, args...))
 }
 
@@ -198,7 +198,7 @@ func (e *MathMLAnnotationXMLElement) IfName(condition bool, s string) *MathMLAnn
 }
 
 // This Attribute specifies the name of the annotation.
-func (e *MathMLAnnotationXMLElement) IfNameF(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) IfNamef(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
 	if condition {
 		e.Name(fmt.Sprintf(format, args...))
 	}
@@ -334,7 +334,7 @@ func (e *MathMLAnnotationXMLElement) ID(s string) *MathMLAnnotationXMLElement {
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLAnnotationXMLElement) IDF(format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) IDf(format string, args ...any) *MathMLAnnotationXMLElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -349,7 +349,7 @@ func (e *MathMLAnnotationXMLElement) IfID(condition bool, s string) *MathMLAnnot
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLAnnotationXMLElement) IfIDF(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) IfIDf(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -381,7 +381,7 @@ func (e *MathMLAnnotationXMLElement) Mathbackground(s string) *MathMLAnnotationX
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLAnnotationXMLElement) MathbackgroundF(format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) Mathbackgroundf(format string, args ...any) *MathMLAnnotationXMLElement {
 	return e.Mathbackground(fmt.Sprintf(format, args...))
 }
 
@@ -398,7 +398,7 @@ func (e *MathMLAnnotationXMLElement) IfMathbackground(condition bool, s string) 
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLAnnotationXMLElement) IfMathbackgroundF(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) IfMathbackgroundf(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
 	if condition {
 		e.Mathbackground(fmt.Sprintf(format, args...))
 	}
@@ -431,7 +431,7 @@ func (e *MathMLAnnotationXMLElement) Mathcolor(s string) *MathMLAnnotationXMLEle
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLAnnotationXMLElement) MathcolorF(format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) Mathcolorf(format string, args ...any) *MathMLAnnotationXMLElement {
 	return e.Mathcolor(fmt.Sprintf(format, args...))
 }
 
@@ -448,7 +448,7 @@ func (e *MathMLAnnotationXMLElement) IfMathcolor(condition bool, s string) *Math
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLAnnotationXMLElement) IfMathcolorF(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) IfMathcolorf(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
 	if condition {
 		e.Mathcolor(fmt.Sprintf(format, args...))
 	}
@@ -479,7 +479,7 @@ func (e *MathMLAnnotationXMLElement) MathsizeStr(s string) *MathMLAnnotationXMLE
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLAnnotationXMLElement) MathsizeStrF(format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) MathsizeStrf(format string, args ...any) *MathMLAnnotationXMLElement {
 	return e.MathsizeStr(fmt.Sprintf(format, args...))
 }
 
@@ -494,7 +494,7 @@ func (e *MathMLAnnotationXMLElement) IfMathsizeStr(condition bool, s string) *Ma
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLAnnotationXMLElement) IfMathsizeStrF(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) IfMathsizeStrf(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
 	if condition {
 		e.MathsizeStr(fmt.Sprintf(format, args...))
 	}
@@ -528,7 +528,7 @@ func (e *MathMLAnnotationXMLElement) Nonce(s string) *MathMLAnnotationXMLElement
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLAnnotationXMLElement) NonceF(format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) Noncef(format string, args ...any) *MathMLAnnotationXMLElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -547,7 +547,7 @@ func (e *MathMLAnnotationXMLElement) IfNonce(condition bool, s string) *MathMLAn
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLAnnotationXMLElement) IfNonceF(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) IfNoncef(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -671,7 +671,7 @@ func (e *MathMLAnnotationXMLElement) StyleAdd(k string, v string) *MathMLAnnotat
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLAnnotationXMLElement) StyleAddF(k string, format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) StyleAddf(k string, format string, args ...any) *MathMLAnnotationXMLElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -686,9 +686,9 @@ func (e *MathMLAnnotationXMLElement) IfStyleAdd(condition bool, k string, v stri
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLAnnotationXMLElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MathMLAnnotationXMLElement {
+func (e *MathMLAnnotationXMLElement) IfStyleAddf(condition bool, k string, format string, args ...any) *MathMLAnnotationXMLElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

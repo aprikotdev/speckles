@@ -84,7 +84,7 @@ func (e *HeaderElement) Text(text string) *HeaderElement {
 	return e
 }
 
-func (e *HeaderElement) TextF(format string, args ...any) *HeaderElement {
+func (e *HeaderElement) Textf(format string, args ...any) *HeaderElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *HeaderElement) IfText(condition bool, text string) *HeaderElement {
 	return e
 }
 
-func (e *HeaderElement) IfTextF(condition bool, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfTextf(condition bool, format string, args ...any) *HeaderElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *HeaderElement) IfEscaped(condition bool, text string) *HeaderElement {
 	return e
 }
 
-func (e *HeaderElement) EscapedF(format string, args ...any) *HeaderElement {
+func (e *HeaderElement) Escapedf(format string, args ...any) *HeaderElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *HeaderElement) IfEscapedF(condition bool, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfEscapedf(condition bool, format string, args ...any) *HeaderElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -706,7 +706,7 @@ func (e *HeaderElement) ID(s string) *HeaderElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *HeaderElement) IDF(format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IDf(format string, args ...any) *HeaderElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -723,7 +723,7 @@ func (e *HeaderElement) IfID(condition bool, s string) *HeaderElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *HeaderElement) IfIDF(condition bool, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfIDf(condition bool, format string, args ...any) *HeaderElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -918,7 +918,7 @@ func (e *HeaderElement) Is(s string) *HeaderElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *HeaderElement) IsF(format string, args ...any) *HeaderElement {
+func (e *HeaderElement) Isf(format string, args ...any) *HeaderElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -939,7 +939,7 @@ func (e *HeaderElement) IfIs(condition bool, s string) *HeaderElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *HeaderElement) IfIsF(condition bool, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfIsf(condition bool, format string, args ...any) *HeaderElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -990,7 +990,7 @@ func (e *HeaderElement) Itemid(s string) *HeaderElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *HeaderElement) ItemidF(format string, args ...any) *HeaderElement {
+func (e *HeaderElement) Itemidf(format string, args ...any) *HeaderElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1023,7 +1023,7 @@ func (e *HeaderElement) IfItemid(condition bool, s string) *HeaderElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *HeaderElement) IfItemidF(condition bool, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfItemidf(condition bool, format string, args ...any) *HeaderElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1072,7 +1072,7 @@ func (e *HeaderElement) Itemprop(s string) *HeaderElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *HeaderElement) ItempropF(format string, args ...any) *HeaderElement {
+func (e *HeaderElement) Itempropf(format string, args ...any) *HeaderElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *HeaderElement) IfItemprop(condition bool, s string) *HeaderElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *HeaderElement) IfItempropF(condition bool, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfItempropf(condition bool, format string, args ...any) *HeaderElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1138,7 +1138,7 @@ func (e *HeaderElement) Itemref(s string) *HeaderElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *HeaderElement) ItemrefF(format string, args ...any) *HeaderElement {
+func (e *HeaderElement) Itemreff(format string, args ...any) *HeaderElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1159,7 +1159,7 @@ func (e *HeaderElement) IfItemref(condition bool, s string) *HeaderElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *HeaderElement) IfItemrefF(condition bool, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfItemreff(condition bool, format string, args ...any) *HeaderElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1274,7 +1274,7 @@ func (e *HeaderElement) Itemtype(s string) *HeaderElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *HeaderElement) ItemtypeF(format string, args ...any) *HeaderElement {
+func (e *HeaderElement) Itemtypef(format string, args ...any) *HeaderElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1299,7 +1299,7 @@ func (e *HeaderElement) IfItemtype(condition bool, s string) *HeaderElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *HeaderElement) IfItemtypeF(condition bool, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfItemtypef(condition bool, format string, args ...any) *HeaderElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1340,7 +1340,7 @@ func (e *HeaderElement) Lang(s string) *HeaderElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *HeaderElement) LangF(format string, args ...any) *HeaderElement {
+func (e *HeaderElement) Langf(format string, args ...any) *HeaderElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1361,7 +1361,7 @@ func (e *HeaderElement) IfLang(condition bool, s string) *HeaderElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *HeaderElement) IfLangF(condition bool, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfLangf(condition bool, format string, args ...any) *HeaderElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1400,7 +1400,7 @@ func (e *HeaderElement) Nonce(s string) *HeaderElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *HeaderElement) NonceF(format string, args ...any) *HeaderElement {
+func (e *HeaderElement) Noncef(format string, args ...any) *HeaderElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *HeaderElement) IfNonce(condition bool, s string) *HeaderElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *HeaderElement) IfNonceF(condition bool, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfNoncef(condition bool, format string, args ...any) *HeaderElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1546,7 +1546,7 @@ func (e *HeaderElement) Role(s string) *HeaderElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *HeaderElement) RoleF(format string, args ...any) *HeaderElement {
+func (e *HeaderElement) Rolef(format string, args ...any) *HeaderElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1565,7 +1565,7 @@ func (e *HeaderElement) IfRole(condition bool, s string) *HeaderElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *HeaderElement) IfRoleF(condition bool, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfRolef(condition bool, format string, args ...any) *HeaderElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1601,7 +1601,7 @@ func (e *HeaderElement) Slot(s string) *HeaderElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *HeaderElement) SlotF(format string, args ...any) *HeaderElement {
+func (e *HeaderElement) Slotf(format string, args ...any) *HeaderElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1620,7 +1620,7 @@ func (e *HeaderElement) IfSlot(condition bool, s string) *HeaderElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *HeaderElement) IfSlotF(condition bool, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfSlotf(condition bool, format string, args ...any) *HeaderElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1764,7 +1764,7 @@ func (e *HeaderElement) StyleAdd(k string, v string) *HeaderElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *HeaderElement) StyleAddF(k string, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) StyleAddf(k string, format string, args ...any) *HeaderElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1779,9 +1779,9 @@ func (e *HeaderElement) IfStyleAdd(condition bool, k string, v string) *HeaderEl
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *HeaderElement) IfStyleAddF(condition bool, k string, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfStyleAddf(condition bool, k string, format string, args ...any) *HeaderElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1927,7 +1927,7 @@ func (e *HeaderElement) Title(s string) *HeaderElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *HeaderElement) TitleF(format string, args ...any) *HeaderElement {
+func (e *HeaderElement) Titlef(format string, args ...any) *HeaderElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1970,7 +1970,7 @@ func (e *HeaderElement) IfTitle(condition bool, s string) *HeaderElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *HeaderElement) IfTitleF(condition bool, format string, args ...any) *HeaderElement {
+func (e *HeaderElement) IfTitlef(condition bool, format string, args ...any) *HeaderElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

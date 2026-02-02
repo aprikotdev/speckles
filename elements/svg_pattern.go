@@ -83,7 +83,7 @@ func (e *SVGPatternElement) Text(text string) *SVGPatternElement {
 	return e
 }
 
-func (e *SVGPatternElement) TextF(format string, args ...any) *SVGPatternElement {
+func (e *SVGPatternElement) Textf(format string, args ...any) *SVGPatternElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGPatternElement) IfText(condition bool, text string) *SVGPatternEleme
 	return e
 }
 
-func (e *SVGPatternElement) IfTextF(condition bool, format string, args ...any) *SVGPatternElement {
+func (e *SVGPatternElement) IfTextf(condition bool, format string, args ...any) *SVGPatternElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGPatternElement) IfEscaped(condition bool, text string) *SVGPatternEl
 	return e
 }
 
-func (e *SVGPatternElement) EscapedF(format string, args ...any) *SVGPatternElement {
+func (e *SVGPatternElement) Escapedf(format string, args ...any) *SVGPatternElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGPatternElement) IfEscapedF(condition bool, format string, args ...any) *SVGPatternElement {
+func (e *SVGPatternElement) IfEscapedf(condition bool, format string, args ...any) *SVGPatternElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -192,7 +192,7 @@ func (e *SVGPatternElement) PatternTransform(s string) *SVGPatternElement {
 
 // The definition of how the pattern is tiled, read about <a
 // href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/patternTransform">patternTransform</a>.
-func (e *SVGPatternElement) PatternTransformF(format string, args ...any) *SVGPatternElement {
+func (e *SVGPatternElement) PatternTransformf(format string, args ...any) *SVGPatternElement {
 	return e.PatternTransform(fmt.Sprintf(format, args...))
 }
 
@@ -207,7 +207,7 @@ func (e *SVGPatternElement) IfPatternTransform(condition bool, s string) *SVGPat
 
 // The definition of how the pattern is tiled, read about <a
 // href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/patternTransform">patternTransform</a>.
-func (e *SVGPatternElement) IfPatternTransformF(condition bool, format string, args ...any) *SVGPatternElement {
+func (e *SVGPatternElement) IfPatternTransformf(condition bool, format string, args ...any) *SVGPatternElement {
 	if condition {
 		e.PatternTransform(fmt.Sprintf(format, args...))
 	}
@@ -307,7 +307,7 @@ func (e *SVGPatternElement) Href(s string) *SVGPatternElement {
 }
 
 // A URI reference to the image to paint.
-func (e *SVGPatternElement) HrefF(format string, args ...any) *SVGPatternElement {
+func (e *SVGPatternElement) Hreff(format string, args ...any) *SVGPatternElement {
 	return e.Href(fmt.Sprintf(format, args...))
 }
 
@@ -320,7 +320,7 @@ func (e *SVGPatternElement) IfHref(condition bool, s string) *SVGPatternElement 
 }
 
 // A URI reference to the image to paint.
-func (e *SVGPatternElement) IfHrefF(condition bool, format string, args ...any) *SVGPatternElement {
+func (e *SVGPatternElement) IfHreff(condition bool, format string, args ...any) *SVGPatternElement {
 	if condition {
 		e.Href(fmt.Sprintf(format, args...))
 	}
@@ -347,7 +347,7 @@ func (e *SVGPatternElement) ID(s string) *SVGPatternElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGPatternElement) IDF(format string, args ...any) *SVGPatternElement {
+func (e *SVGPatternElement) IDf(format string, args ...any) *SVGPatternElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -360,7 +360,7 @@ func (e *SVGPatternElement) IfID(condition bool, s string) *SVGPatternElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGPatternElement) IfIDF(condition bool, format string, args ...any) *SVGPatternElement {
+func (e *SVGPatternElement) IfIDf(condition bool, format string, args ...any) *SVGPatternElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -486,7 +486,7 @@ func (e *SVGPatternElement) StyleAdd(k string, v string) *SVGPatternElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGPatternElement) StyleAddF(k string, format string, args ...any) *SVGPatternElement {
+func (e *SVGPatternElement) StyleAddf(k string, format string, args ...any) *SVGPatternElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -499,9 +499,9 @@ func (e *SVGPatternElement) IfStyleAdd(condition bool, k string, v string) *SVGP
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGPatternElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGPatternElement {
+func (e *SVGPatternElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGPatternElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

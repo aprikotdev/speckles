@@ -83,7 +83,7 @@ func (e *SVGViewElement) Text(text string) *SVGViewElement {
 	return e
 }
 
-func (e *SVGViewElement) TextF(format string, args ...any) *SVGViewElement {
+func (e *SVGViewElement) Textf(format string, args ...any) *SVGViewElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGViewElement) IfText(condition bool, text string) *SVGViewElement {
 	return e
 }
 
-func (e *SVGViewElement) IfTextF(condition bool, format string, args ...any) *SVGViewElement {
+func (e *SVGViewElement) IfTextf(condition bool, format string, args ...any) *SVGViewElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGViewElement) IfEscaped(condition bool, text string) *SVGViewElement 
 	return e
 }
 
-func (e *SVGViewElement) EscapedF(format string, args ...any) *SVGViewElement {
+func (e *SVGViewElement) Escapedf(format string, args ...any) *SVGViewElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGViewElement) IfEscapedF(condition bool, format string, args ...any) *SVGViewElement {
+func (e *SVGViewElement) IfEscapedf(condition bool, format string, args ...any) *SVGViewElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -136,7 +136,7 @@ func (e *SVGViewElement) ViewBox(s string) *SVGViewElement {
 
 // The position and size of the viewport (the viewBox) is defined by the viewBox
 // Attribute.
-func (e *SVGViewElement) ViewBoxF(format string, args ...any) *SVGViewElement {
+func (e *SVGViewElement) ViewBoxf(format string, args ...any) *SVGViewElement {
 	return e.ViewBox(fmt.Sprintf(format, args...))
 }
 
@@ -151,7 +151,7 @@ func (e *SVGViewElement) IfViewBox(condition bool, s string) *SVGViewElement {
 
 // The position and size of the viewport (the viewBox) is defined by the viewBox
 // Attribute.
-func (e *SVGViewElement) IfViewBoxF(condition bool, format string, args ...any) *SVGViewElement {
+func (e *SVGViewElement) IfViewBoxf(condition bool, format string, args ...any) *SVGViewElement {
 	if condition {
 		e.ViewBox(fmt.Sprintf(format, args...))
 	}
@@ -179,7 +179,7 @@ func (e *SVGViewElement) ID(s string) *SVGViewElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGViewElement) IDF(format string, args ...any) *SVGViewElement {
+func (e *SVGViewElement) IDf(format string, args ...any) *SVGViewElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -192,7 +192,7 @@ func (e *SVGViewElement) IfID(condition bool, s string) *SVGViewElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGViewElement) IfIDF(condition bool, format string, args ...any) *SVGViewElement {
+func (e *SVGViewElement) IfIDf(condition bool, format string, args ...any) *SVGViewElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -318,7 +318,7 @@ func (e *SVGViewElement) StyleAdd(k string, v string) *SVGViewElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGViewElement) StyleAddF(k string, format string, args ...any) *SVGViewElement {
+func (e *SVGViewElement) StyleAddf(k string, format string, args ...any) *SVGViewElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -331,9 +331,9 @@ func (e *SVGViewElement) IfStyleAdd(condition bool, k string, v string) *SVGView
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGViewElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGViewElement {
+func (e *SVGViewElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGViewElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

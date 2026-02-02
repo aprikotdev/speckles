@@ -84,7 +84,7 @@ func (e *RtcElement) Text(text string) *RtcElement {
 	return e
 }
 
-func (e *RtcElement) TextF(format string, args ...any) *RtcElement {
+func (e *RtcElement) Textf(format string, args ...any) *RtcElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *RtcElement) IfText(condition bool, text string) *RtcElement {
 	return e
 }
 
-func (e *RtcElement) IfTextF(condition bool, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfTextf(condition bool, format string, args ...any) *RtcElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *RtcElement) IfEscaped(condition bool, text string) *RtcElement {
 	return e
 }
 
-func (e *RtcElement) EscapedF(format string, args ...any) *RtcElement {
+func (e *RtcElement) Escapedf(format string, args ...any) *RtcElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *RtcElement) IfEscapedF(condition bool, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfEscapedf(condition bool, format string, args ...any) *RtcElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -706,7 +706,7 @@ func (e *RtcElement) ID(s string) *RtcElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *RtcElement) IDF(format string, args ...any) *RtcElement {
+func (e *RtcElement) IDf(format string, args ...any) *RtcElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -723,7 +723,7 @@ func (e *RtcElement) IfID(condition bool, s string) *RtcElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *RtcElement) IfIDF(condition bool, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfIDf(condition bool, format string, args ...any) *RtcElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -918,7 +918,7 @@ func (e *RtcElement) Is(s string) *RtcElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *RtcElement) IsF(format string, args ...any) *RtcElement {
+func (e *RtcElement) Isf(format string, args ...any) *RtcElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -939,7 +939,7 @@ func (e *RtcElement) IfIs(condition bool, s string) *RtcElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *RtcElement) IfIsF(condition bool, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfIsf(condition bool, format string, args ...any) *RtcElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -990,7 +990,7 @@ func (e *RtcElement) Itemid(s string) *RtcElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *RtcElement) ItemidF(format string, args ...any) *RtcElement {
+func (e *RtcElement) Itemidf(format string, args ...any) *RtcElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1023,7 +1023,7 @@ func (e *RtcElement) IfItemid(condition bool, s string) *RtcElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *RtcElement) IfItemidF(condition bool, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfItemidf(condition bool, format string, args ...any) *RtcElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1072,7 +1072,7 @@ func (e *RtcElement) Itemprop(s string) *RtcElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *RtcElement) ItempropF(format string, args ...any) *RtcElement {
+func (e *RtcElement) Itempropf(format string, args ...any) *RtcElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1097,7 +1097,7 @@ func (e *RtcElement) IfItemprop(condition bool, s string) *RtcElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *RtcElement) IfItempropF(condition bool, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfItempropf(condition bool, format string, args ...any) *RtcElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1138,7 +1138,7 @@ func (e *RtcElement) Itemref(s string) *RtcElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *RtcElement) ItemrefF(format string, args ...any) *RtcElement {
+func (e *RtcElement) Itemreff(format string, args ...any) *RtcElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1159,7 +1159,7 @@ func (e *RtcElement) IfItemref(condition bool, s string) *RtcElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *RtcElement) IfItemrefF(condition bool, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfItemreff(condition bool, format string, args ...any) *RtcElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1274,7 +1274,7 @@ func (e *RtcElement) Itemtype(s string) *RtcElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *RtcElement) ItemtypeF(format string, args ...any) *RtcElement {
+func (e *RtcElement) Itemtypef(format string, args ...any) *RtcElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1299,7 +1299,7 @@ func (e *RtcElement) IfItemtype(condition bool, s string) *RtcElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *RtcElement) IfItemtypeF(condition bool, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfItemtypef(condition bool, format string, args ...any) *RtcElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1340,7 +1340,7 @@ func (e *RtcElement) Lang(s string) *RtcElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *RtcElement) LangF(format string, args ...any) *RtcElement {
+func (e *RtcElement) Langf(format string, args ...any) *RtcElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1361,7 +1361,7 @@ func (e *RtcElement) IfLang(condition bool, s string) *RtcElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *RtcElement) IfLangF(condition bool, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfLangf(condition bool, format string, args ...any) *RtcElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1400,7 +1400,7 @@ func (e *RtcElement) Nonce(s string) *RtcElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *RtcElement) NonceF(format string, args ...any) *RtcElement {
+func (e *RtcElement) Noncef(format string, args ...any) *RtcElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1421,7 +1421,7 @@ func (e *RtcElement) IfNonce(condition bool, s string) *RtcElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *RtcElement) IfNonceF(condition bool, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfNoncef(condition bool, format string, args ...any) *RtcElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1546,7 +1546,7 @@ func (e *RtcElement) Role(s string) *RtcElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *RtcElement) RoleF(format string, args ...any) *RtcElement {
+func (e *RtcElement) Rolef(format string, args ...any) *RtcElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1565,7 +1565,7 @@ func (e *RtcElement) IfRole(condition bool, s string) *RtcElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *RtcElement) IfRoleF(condition bool, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfRolef(condition bool, format string, args ...any) *RtcElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1601,7 +1601,7 @@ func (e *RtcElement) Slot(s string) *RtcElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *RtcElement) SlotF(format string, args ...any) *RtcElement {
+func (e *RtcElement) Slotf(format string, args ...any) *RtcElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1620,7 +1620,7 @@ func (e *RtcElement) IfSlot(condition bool, s string) *RtcElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *RtcElement) IfSlotF(condition bool, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfSlotf(condition bool, format string, args ...any) *RtcElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1764,7 +1764,7 @@ func (e *RtcElement) StyleAdd(k string, v string) *RtcElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *RtcElement) StyleAddF(k string, format string, args ...any) *RtcElement {
+func (e *RtcElement) StyleAddf(k string, format string, args ...any) *RtcElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1779,9 +1779,9 @@ func (e *RtcElement) IfStyleAdd(condition bool, k string, v string) *RtcElement 
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *RtcElement) IfStyleAddF(condition bool, k string, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfStyleAddf(condition bool, k string, format string, args ...any) *RtcElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1927,7 +1927,7 @@ func (e *RtcElement) Title(s string) *RtcElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *RtcElement) TitleF(format string, args ...any) *RtcElement {
+func (e *RtcElement) Titlef(format string, args ...any) *RtcElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1970,7 +1970,7 @@ func (e *RtcElement) IfTitle(condition bool, s string) *RtcElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *RtcElement) IfTitleF(condition bool, format string, args ...any) *RtcElement {
+func (e *RtcElement) IfTitlef(condition bool, format string, args ...any) *RtcElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

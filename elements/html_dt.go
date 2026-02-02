@@ -83,7 +83,7 @@ func (e *DtElement) Text(text string) *DtElement {
 	return e
 }
 
-func (e *DtElement) TextF(format string, args ...any) *DtElement {
+func (e *DtElement) Textf(format string, args ...any) *DtElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *DtElement) IfText(condition bool, text string) *DtElement {
 	return e
 }
 
-func (e *DtElement) IfTextF(condition bool, format string, args ...any) *DtElement {
+func (e *DtElement) IfTextf(condition bool, format string, args ...any) *DtElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *DtElement) IfEscaped(condition bool, text string) *DtElement {
 	return e
 }
 
-func (e *DtElement) EscapedF(format string, args ...any) *DtElement {
+func (e *DtElement) Escapedf(format string, args ...any) *DtElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *DtElement) IfEscapedF(condition bool, format string, args ...any) *DtElement {
+func (e *DtElement) IfEscapedf(condition bool, format string, args ...any) *DtElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -705,7 +705,7 @@ func (e *DtElement) ID(s string) *DtElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *DtElement) IDF(format string, args ...any) *DtElement {
+func (e *DtElement) IDf(format string, args ...any) *DtElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -722,7 +722,7 @@ func (e *DtElement) IfID(condition bool, s string) *DtElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *DtElement) IfIDF(condition bool, format string, args ...any) *DtElement {
+func (e *DtElement) IfIDf(condition bool, format string, args ...any) *DtElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -917,7 +917,7 @@ func (e *DtElement) Is(s string) *DtElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *DtElement) IsF(format string, args ...any) *DtElement {
+func (e *DtElement) Isf(format string, args ...any) *DtElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -938,7 +938,7 @@ func (e *DtElement) IfIs(condition bool, s string) *DtElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *DtElement) IfIsF(condition bool, format string, args ...any) *DtElement {
+func (e *DtElement) IfIsf(condition bool, format string, args ...any) *DtElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -989,7 +989,7 @@ func (e *DtElement) Itemid(s string) *DtElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *DtElement) ItemidF(format string, args ...any) *DtElement {
+func (e *DtElement) Itemidf(format string, args ...any) *DtElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1022,7 +1022,7 @@ func (e *DtElement) IfItemid(condition bool, s string) *DtElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *DtElement) IfItemidF(condition bool, format string, args ...any) *DtElement {
+func (e *DtElement) IfItemidf(condition bool, format string, args ...any) *DtElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1071,7 +1071,7 @@ func (e *DtElement) Itemprop(s string) *DtElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *DtElement) ItempropF(format string, args ...any) *DtElement {
+func (e *DtElement) Itempropf(format string, args ...any) *DtElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1096,7 +1096,7 @@ func (e *DtElement) IfItemprop(condition bool, s string) *DtElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *DtElement) IfItempropF(condition bool, format string, args ...any) *DtElement {
+func (e *DtElement) IfItempropf(condition bool, format string, args ...any) *DtElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1137,7 +1137,7 @@ func (e *DtElement) Itemref(s string) *DtElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *DtElement) ItemrefF(format string, args ...any) *DtElement {
+func (e *DtElement) Itemreff(format string, args ...any) *DtElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1158,7 +1158,7 @@ func (e *DtElement) IfItemref(condition bool, s string) *DtElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *DtElement) IfItemrefF(condition bool, format string, args ...any) *DtElement {
+func (e *DtElement) IfItemreff(condition bool, format string, args ...any) *DtElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1273,7 +1273,7 @@ func (e *DtElement) Itemtype(s string) *DtElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *DtElement) ItemtypeF(format string, args ...any) *DtElement {
+func (e *DtElement) Itemtypef(format string, args ...any) *DtElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1298,7 +1298,7 @@ func (e *DtElement) IfItemtype(condition bool, s string) *DtElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *DtElement) IfItemtypeF(condition bool, format string, args ...any) *DtElement {
+func (e *DtElement) IfItemtypef(condition bool, format string, args ...any) *DtElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1339,7 +1339,7 @@ func (e *DtElement) Lang(s string) *DtElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *DtElement) LangF(format string, args ...any) *DtElement {
+func (e *DtElement) Langf(format string, args ...any) *DtElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1360,7 +1360,7 @@ func (e *DtElement) IfLang(condition bool, s string) *DtElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *DtElement) IfLangF(condition bool, format string, args ...any) *DtElement {
+func (e *DtElement) IfLangf(condition bool, format string, args ...any) *DtElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1399,7 +1399,7 @@ func (e *DtElement) Nonce(s string) *DtElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *DtElement) NonceF(format string, args ...any) *DtElement {
+func (e *DtElement) Noncef(format string, args ...any) *DtElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1420,7 +1420,7 @@ func (e *DtElement) IfNonce(condition bool, s string) *DtElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *DtElement) IfNonceF(condition bool, format string, args ...any) *DtElement {
+func (e *DtElement) IfNoncef(condition bool, format string, args ...any) *DtElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1545,7 +1545,7 @@ func (e *DtElement) Role(s string) *DtElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *DtElement) RoleF(format string, args ...any) *DtElement {
+func (e *DtElement) Rolef(format string, args ...any) *DtElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1564,7 +1564,7 @@ func (e *DtElement) IfRole(condition bool, s string) *DtElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *DtElement) IfRoleF(condition bool, format string, args ...any) *DtElement {
+func (e *DtElement) IfRolef(condition bool, format string, args ...any) *DtElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1600,7 +1600,7 @@ func (e *DtElement) Slot(s string) *DtElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *DtElement) SlotF(format string, args ...any) *DtElement {
+func (e *DtElement) Slotf(format string, args ...any) *DtElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1619,7 +1619,7 @@ func (e *DtElement) IfSlot(condition bool, s string) *DtElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *DtElement) IfSlotF(condition bool, format string, args ...any) *DtElement {
+func (e *DtElement) IfSlotf(condition bool, format string, args ...any) *DtElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1763,7 +1763,7 @@ func (e *DtElement) StyleAdd(k string, v string) *DtElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *DtElement) StyleAddF(k string, format string, args ...any) *DtElement {
+func (e *DtElement) StyleAddf(k string, format string, args ...any) *DtElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1778,9 +1778,9 @@ func (e *DtElement) IfStyleAdd(condition bool, k string, v string) *DtElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *DtElement) IfStyleAddF(condition bool, k string, format string, args ...any) *DtElement {
+func (e *DtElement) IfStyleAddf(condition bool, k string, format string, args ...any) *DtElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1926,7 +1926,7 @@ func (e *DtElement) Title(s string) *DtElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *DtElement) TitleF(format string, args ...any) *DtElement {
+func (e *DtElement) Titlef(format string, args ...any) *DtElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1969,7 +1969,7 @@ func (e *DtElement) IfTitle(condition bool, s string) *DtElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *DtElement) IfTitleF(condition bool, format string, args ...any) *DtElement {
+func (e *DtElement) IfTitlef(condition bool, format string, args ...any) *DtElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

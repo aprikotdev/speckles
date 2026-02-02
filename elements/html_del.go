@@ -85,7 +85,7 @@ func (e *DelElement) Text(text string) *DelElement {
 	return e
 }
 
-func (e *DelElement) TextF(format string, args ...any) *DelElement {
+func (e *DelElement) Textf(format string, args ...any) *DelElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *DelElement) IfText(condition bool, text string) *DelElement {
 	return e
 }
 
-func (e *DelElement) IfTextF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfTextf(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *DelElement) IfEscaped(condition bool, text string) *DelElement {
 	return e
 }
 
-func (e *DelElement) EscapedF(format string, args ...any) *DelElement {
+func (e *DelElement) Escapedf(format string, args ...any) *DelElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *DelElement) IfEscapedF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfEscapedf(condition bool, format string, args ...any) *DelElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -136,7 +136,7 @@ func (e *DelElement) Cite(s string) *DelElement {
 }
 
 // Contains a URI which points to the source of the quote or change.
-func (e *DelElement) CiteF(format string, args ...any) *DelElement {
+func (e *DelElement) Citef(format string, args ...any) *DelElement {
 	return e.Cite(fmt.Sprintf(format, args...))
 }
 
@@ -149,7 +149,7 @@ func (e *DelElement) IfCite(condition bool, s string) *DelElement {
 }
 
 // Contains a URI which points to the source of the quote or change.
-func (e *DelElement) IfCiteF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfCitef(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.Cite(fmt.Sprintf(format, args...))
 	}
@@ -176,7 +176,7 @@ func (e *DelElement) Datetime(s string) *DelElement {
 }
 
 // Indicates the date and time associated with the element.
-func (e *DelElement) DatetimeF(format string, args ...any) *DelElement {
+func (e *DelElement) Datetimef(format string, args ...any) *DelElement {
 	return e.Datetime(fmt.Sprintf(format, args...))
 }
 
@@ -189,7 +189,7 @@ func (e *DelElement) IfDatetime(condition bool, s string) *DelElement {
 }
 
 // Indicates the date and time associated with the element.
-func (e *DelElement) IfDatetimeF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfDatetimef(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.Datetime(fmt.Sprintf(format, args...))
 	}
@@ -787,7 +787,7 @@ func (e *DelElement) ID(s string) *DelElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *DelElement) IDF(format string, args ...any) *DelElement {
+func (e *DelElement) IDf(format string, args ...any) *DelElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -804,7 +804,7 @@ func (e *DelElement) IfID(condition bool, s string) *DelElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *DelElement) IfIDF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfIDf(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -999,7 +999,7 @@ func (e *DelElement) Is(s string) *DelElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *DelElement) IsF(format string, args ...any) *DelElement {
+func (e *DelElement) Isf(format string, args ...any) *DelElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1020,7 +1020,7 @@ func (e *DelElement) IfIs(condition bool, s string) *DelElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *DelElement) IfIsF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfIsf(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1071,7 +1071,7 @@ func (e *DelElement) Itemid(s string) *DelElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *DelElement) ItemidF(format string, args ...any) *DelElement {
+func (e *DelElement) Itemidf(format string, args ...any) *DelElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1104,7 +1104,7 @@ func (e *DelElement) IfItemid(condition bool, s string) *DelElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *DelElement) IfItemidF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfItemidf(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1153,7 +1153,7 @@ func (e *DelElement) Itemprop(s string) *DelElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *DelElement) ItempropF(format string, args ...any) *DelElement {
+func (e *DelElement) Itempropf(format string, args ...any) *DelElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1178,7 +1178,7 @@ func (e *DelElement) IfItemprop(condition bool, s string) *DelElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *DelElement) IfItempropF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfItempropf(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1219,7 +1219,7 @@ func (e *DelElement) Itemref(s string) *DelElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *DelElement) ItemrefF(format string, args ...any) *DelElement {
+func (e *DelElement) Itemreff(format string, args ...any) *DelElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1240,7 +1240,7 @@ func (e *DelElement) IfItemref(condition bool, s string) *DelElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *DelElement) IfItemrefF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfItemreff(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1355,7 +1355,7 @@ func (e *DelElement) Itemtype(s string) *DelElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *DelElement) ItemtypeF(format string, args ...any) *DelElement {
+func (e *DelElement) Itemtypef(format string, args ...any) *DelElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1380,7 +1380,7 @@ func (e *DelElement) IfItemtype(condition bool, s string) *DelElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *DelElement) IfItemtypeF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfItemtypef(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1421,7 +1421,7 @@ func (e *DelElement) Lang(s string) *DelElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *DelElement) LangF(format string, args ...any) *DelElement {
+func (e *DelElement) Langf(format string, args ...any) *DelElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1442,7 +1442,7 @@ func (e *DelElement) IfLang(condition bool, s string) *DelElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *DelElement) IfLangF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfLangf(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1481,7 +1481,7 @@ func (e *DelElement) Nonce(s string) *DelElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *DelElement) NonceF(format string, args ...any) *DelElement {
+func (e *DelElement) Noncef(format string, args ...any) *DelElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1502,7 +1502,7 @@ func (e *DelElement) IfNonce(condition bool, s string) *DelElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *DelElement) IfNonceF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfNoncef(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1627,7 +1627,7 @@ func (e *DelElement) Role(s string) *DelElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *DelElement) RoleF(format string, args ...any) *DelElement {
+func (e *DelElement) Rolef(format string, args ...any) *DelElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1646,7 +1646,7 @@ func (e *DelElement) IfRole(condition bool, s string) *DelElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *DelElement) IfRoleF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfRolef(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1682,7 +1682,7 @@ func (e *DelElement) Slot(s string) *DelElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *DelElement) SlotF(format string, args ...any) *DelElement {
+func (e *DelElement) Slotf(format string, args ...any) *DelElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1701,7 +1701,7 @@ func (e *DelElement) IfSlot(condition bool, s string) *DelElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *DelElement) IfSlotF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfSlotf(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1845,7 +1845,7 @@ func (e *DelElement) StyleAdd(k string, v string) *DelElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *DelElement) StyleAddF(k string, format string, args ...any) *DelElement {
+func (e *DelElement) StyleAddf(k string, format string, args ...any) *DelElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1860,9 +1860,9 @@ func (e *DelElement) IfStyleAdd(condition bool, k string, v string) *DelElement 
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *DelElement) IfStyleAddF(condition bool, k string, format string, args ...any) *DelElement {
+func (e *DelElement) IfStyleAddf(condition bool, k string, format string, args ...any) *DelElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2008,7 +2008,7 @@ func (e *DelElement) Title(s string) *DelElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *DelElement) TitleF(format string, args ...any) *DelElement {
+func (e *DelElement) Titlef(format string, args ...any) *DelElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2051,7 +2051,7 @@ func (e *DelElement) IfTitle(condition bool, s string) *DelElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *DelElement) IfTitleF(condition bool, format string, args ...any) *DelElement {
+func (e *DelElement) IfTitlef(condition bool, format string, args ...any) *DelElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

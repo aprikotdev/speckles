@@ -82,7 +82,7 @@ func (e *MathMLMrowElement) Text(text string) *MathMLMrowElement {
 	return e
 }
 
-func (e *MathMLMrowElement) TextF(format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) Textf(format string, args ...any) *MathMLMrowElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -93,7 +93,7 @@ func (e *MathMLMrowElement) IfText(condition bool, text string) *MathMLMrowEleme
 	return e
 }
 
-func (e *MathMLMrowElement) IfTextF(condition bool, format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) IfTextf(condition bool, format string, args ...any) *MathMLMrowElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -112,13 +112,13 @@ func (e *MathMLMrowElement) IfEscaped(condition bool, text string) *MathMLMrowEl
 	return e
 }
 
-func (e *MathMLMrowElement) EscapedF(format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) Escapedf(format string, args ...any) *MathMLMrowElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *MathMLMrowElement) IfEscapedF(condition bool, format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) IfEscapedf(condition bool, format string, args ...any) *MathMLMrowElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -242,7 +242,7 @@ func (e *MathMLMrowElement) ID(s string) *MathMLMrowElement {
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLMrowElement) IDF(format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) IDf(format string, args ...any) *MathMLMrowElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -257,7 +257,7 @@ func (e *MathMLMrowElement) IfID(condition bool, s string) *MathMLMrowElement {
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLMrowElement) IfIDF(condition bool, format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) IfIDf(condition bool, format string, args ...any) *MathMLMrowElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -289,7 +289,7 @@ func (e *MathMLMrowElement) Mathbackground(s string) *MathMLMrowElement {
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLMrowElement) MathbackgroundF(format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) Mathbackgroundf(format string, args ...any) *MathMLMrowElement {
 	return e.Mathbackground(fmt.Sprintf(format, args...))
 }
 
@@ -306,7 +306,7 @@ func (e *MathMLMrowElement) IfMathbackground(condition bool, s string) *MathMLMr
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLMrowElement) IfMathbackgroundF(condition bool, format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) IfMathbackgroundf(condition bool, format string, args ...any) *MathMLMrowElement {
 	if condition {
 		e.Mathbackground(fmt.Sprintf(format, args...))
 	}
@@ -339,7 +339,7 @@ func (e *MathMLMrowElement) Mathcolor(s string) *MathMLMrowElement {
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLMrowElement) MathcolorF(format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) Mathcolorf(format string, args ...any) *MathMLMrowElement {
 	return e.Mathcolor(fmt.Sprintf(format, args...))
 }
 
@@ -356,7 +356,7 @@ func (e *MathMLMrowElement) IfMathcolor(condition bool, s string) *MathMLMrowEle
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLMrowElement) IfMathcolorF(condition bool, format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) IfMathcolorf(condition bool, format string, args ...any) *MathMLMrowElement {
 	if condition {
 		e.Mathcolor(fmt.Sprintf(format, args...))
 	}
@@ -387,7 +387,7 @@ func (e *MathMLMrowElement) MathsizeStr(s string) *MathMLMrowElement {
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLMrowElement) MathsizeStrF(format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) MathsizeStrf(format string, args ...any) *MathMLMrowElement {
 	return e.MathsizeStr(fmt.Sprintf(format, args...))
 }
 
@@ -402,7 +402,7 @@ func (e *MathMLMrowElement) IfMathsizeStr(condition bool, s string) *MathMLMrowE
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLMrowElement) IfMathsizeStrF(condition bool, format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) IfMathsizeStrf(condition bool, format string, args ...any) *MathMLMrowElement {
 	if condition {
 		e.MathsizeStr(fmt.Sprintf(format, args...))
 	}
@@ -436,7 +436,7 @@ func (e *MathMLMrowElement) Nonce(s string) *MathMLMrowElement {
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLMrowElement) NonceF(format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) Noncef(format string, args ...any) *MathMLMrowElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -455,7 +455,7 @@ func (e *MathMLMrowElement) IfNonce(condition bool, s string) *MathMLMrowElement
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLMrowElement) IfNonceF(condition bool, format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) IfNoncef(condition bool, format string, args ...any) *MathMLMrowElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -579,7 +579,7 @@ func (e *MathMLMrowElement) StyleAdd(k string, v string) *MathMLMrowElement {
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLMrowElement) StyleAddF(k string, format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) StyleAddf(k string, format string, args ...any) *MathMLMrowElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -594,9 +594,9 @@ func (e *MathMLMrowElement) IfStyleAdd(condition bool, k string, v string) *Math
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLMrowElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MathMLMrowElement {
+func (e *MathMLMrowElement) IfStyleAddf(condition bool, k string, format string, args ...any) *MathMLMrowElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

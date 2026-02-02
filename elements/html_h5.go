@@ -83,7 +83,7 @@ func (e *H5Element) Text(text string) *H5Element {
 	return e
 }
 
-func (e *H5Element) TextF(format string, args ...any) *H5Element {
+func (e *H5Element) Textf(format string, args ...any) *H5Element {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *H5Element) IfText(condition bool, text string) *H5Element {
 	return e
 }
 
-func (e *H5Element) IfTextF(condition bool, format string, args ...any) *H5Element {
+func (e *H5Element) IfTextf(condition bool, format string, args ...any) *H5Element {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *H5Element) IfEscaped(condition bool, text string) *H5Element {
 	return e
 }
 
-func (e *H5Element) EscapedF(format string, args ...any) *H5Element {
+func (e *H5Element) Escapedf(format string, args ...any) *H5Element {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *H5Element) IfEscapedF(condition bool, format string, args ...any) *H5Element {
+func (e *H5Element) IfEscapedf(condition bool, format string, args ...any) *H5Element {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -705,7 +705,7 @@ func (e *H5Element) ID(s string) *H5Element {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *H5Element) IDF(format string, args ...any) *H5Element {
+func (e *H5Element) IDf(format string, args ...any) *H5Element {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -722,7 +722,7 @@ func (e *H5Element) IfID(condition bool, s string) *H5Element {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *H5Element) IfIDF(condition bool, format string, args ...any) *H5Element {
+func (e *H5Element) IfIDf(condition bool, format string, args ...any) *H5Element {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -917,7 +917,7 @@ func (e *H5Element) Is(s string) *H5Element {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *H5Element) IsF(format string, args ...any) *H5Element {
+func (e *H5Element) Isf(format string, args ...any) *H5Element {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -938,7 +938,7 @@ func (e *H5Element) IfIs(condition bool, s string) *H5Element {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *H5Element) IfIsF(condition bool, format string, args ...any) *H5Element {
+func (e *H5Element) IfIsf(condition bool, format string, args ...any) *H5Element {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -989,7 +989,7 @@ func (e *H5Element) Itemid(s string) *H5Element {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *H5Element) ItemidF(format string, args ...any) *H5Element {
+func (e *H5Element) Itemidf(format string, args ...any) *H5Element {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1022,7 +1022,7 @@ func (e *H5Element) IfItemid(condition bool, s string) *H5Element {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *H5Element) IfItemidF(condition bool, format string, args ...any) *H5Element {
+func (e *H5Element) IfItemidf(condition bool, format string, args ...any) *H5Element {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1071,7 +1071,7 @@ func (e *H5Element) Itemprop(s string) *H5Element {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *H5Element) ItempropF(format string, args ...any) *H5Element {
+func (e *H5Element) Itempropf(format string, args ...any) *H5Element {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1096,7 +1096,7 @@ func (e *H5Element) IfItemprop(condition bool, s string) *H5Element {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *H5Element) IfItempropF(condition bool, format string, args ...any) *H5Element {
+func (e *H5Element) IfItempropf(condition bool, format string, args ...any) *H5Element {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1137,7 +1137,7 @@ func (e *H5Element) Itemref(s string) *H5Element {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *H5Element) ItemrefF(format string, args ...any) *H5Element {
+func (e *H5Element) Itemreff(format string, args ...any) *H5Element {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1158,7 +1158,7 @@ func (e *H5Element) IfItemref(condition bool, s string) *H5Element {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *H5Element) IfItemrefF(condition bool, format string, args ...any) *H5Element {
+func (e *H5Element) IfItemreff(condition bool, format string, args ...any) *H5Element {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1273,7 +1273,7 @@ func (e *H5Element) Itemtype(s string) *H5Element {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *H5Element) ItemtypeF(format string, args ...any) *H5Element {
+func (e *H5Element) Itemtypef(format string, args ...any) *H5Element {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1298,7 +1298,7 @@ func (e *H5Element) IfItemtype(condition bool, s string) *H5Element {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *H5Element) IfItemtypeF(condition bool, format string, args ...any) *H5Element {
+func (e *H5Element) IfItemtypef(condition bool, format string, args ...any) *H5Element {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1339,7 +1339,7 @@ func (e *H5Element) Lang(s string) *H5Element {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *H5Element) LangF(format string, args ...any) *H5Element {
+func (e *H5Element) Langf(format string, args ...any) *H5Element {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1360,7 +1360,7 @@ func (e *H5Element) IfLang(condition bool, s string) *H5Element {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *H5Element) IfLangF(condition bool, format string, args ...any) *H5Element {
+func (e *H5Element) IfLangf(condition bool, format string, args ...any) *H5Element {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1399,7 +1399,7 @@ func (e *H5Element) Nonce(s string) *H5Element {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *H5Element) NonceF(format string, args ...any) *H5Element {
+func (e *H5Element) Noncef(format string, args ...any) *H5Element {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1420,7 +1420,7 @@ func (e *H5Element) IfNonce(condition bool, s string) *H5Element {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *H5Element) IfNonceF(condition bool, format string, args ...any) *H5Element {
+func (e *H5Element) IfNoncef(condition bool, format string, args ...any) *H5Element {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1545,7 +1545,7 @@ func (e *H5Element) Role(s string) *H5Element {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *H5Element) RoleF(format string, args ...any) *H5Element {
+func (e *H5Element) Rolef(format string, args ...any) *H5Element {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1564,7 +1564,7 @@ func (e *H5Element) IfRole(condition bool, s string) *H5Element {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *H5Element) IfRoleF(condition bool, format string, args ...any) *H5Element {
+func (e *H5Element) IfRolef(condition bool, format string, args ...any) *H5Element {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1600,7 +1600,7 @@ func (e *H5Element) Slot(s string) *H5Element {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *H5Element) SlotF(format string, args ...any) *H5Element {
+func (e *H5Element) Slotf(format string, args ...any) *H5Element {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1619,7 +1619,7 @@ func (e *H5Element) IfSlot(condition bool, s string) *H5Element {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *H5Element) IfSlotF(condition bool, format string, args ...any) *H5Element {
+func (e *H5Element) IfSlotf(condition bool, format string, args ...any) *H5Element {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1763,7 +1763,7 @@ func (e *H5Element) StyleAdd(k string, v string) *H5Element {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *H5Element) StyleAddF(k string, format string, args ...any) *H5Element {
+func (e *H5Element) StyleAddf(k string, format string, args ...any) *H5Element {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1778,9 +1778,9 @@ func (e *H5Element) IfStyleAdd(condition bool, k string, v string) *H5Element {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *H5Element) IfStyleAddF(condition bool, k string, format string, args ...any) *H5Element {
+func (e *H5Element) IfStyleAddf(condition bool, k string, format string, args ...any) *H5Element {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1926,7 +1926,7 @@ func (e *H5Element) Title(s string) *H5Element {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *H5Element) TitleF(format string, args ...any) *H5Element {
+func (e *H5Element) Titlef(format string, args ...any) *H5Element {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1969,7 +1969,7 @@ func (e *H5Element) IfTitle(condition bool, s string) *H5Element {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *H5Element) IfTitleF(condition bool, format string, args ...any) *H5Element {
+func (e *H5Element) IfTitlef(condition bool, format string, args ...any) *H5Element {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

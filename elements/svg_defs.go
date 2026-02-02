@@ -83,7 +83,7 @@ func (e *SVGDefsElement) Text(text string) *SVGDefsElement {
 	return e
 }
 
-func (e *SVGDefsElement) TextF(format string, args ...any) *SVGDefsElement {
+func (e *SVGDefsElement) Textf(format string, args ...any) *SVGDefsElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGDefsElement) IfText(condition bool, text string) *SVGDefsElement {
 	return e
 }
 
-func (e *SVGDefsElement) IfTextF(condition bool, format string, args ...any) *SVGDefsElement {
+func (e *SVGDefsElement) IfTextf(condition bool, format string, args ...any) *SVGDefsElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGDefsElement) IfEscaped(condition bool, text string) *SVGDefsElement 
 	return e
 }
 
-func (e *SVGDefsElement) EscapedF(format string, args ...any) *SVGDefsElement {
+func (e *SVGDefsElement) Escapedf(format string, args ...any) *SVGDefsElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGDefsElement) IfEscapedF(condition bool, format string, args ...any) *SVGDefsElement {
+func (e *SVGDefsElement) IfEscapedf(condition bool, format string, args ...any) *SVGDefsElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *SVGDefsElement) ID(s string) *SVGDefsElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGDefsElement) IDF(format string, args ...any) *SVGDefsElement {
+func (e *SVGDefsElement) IDf(format string, args ...any) *SVGDefsElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *SVGDefsElement) IfID(condition bool, s string) *SVGDefsElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGDefsElement) IfIDF(condition bool, format string, args ...any) *SVGDefsElement {
+func (e *SVGDefsElement) IfIDf(condition bool, format string, args ...any) *SVGDefsElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -273,7 +273,7 @@ func (e *SVGDefsElement) StyleAdd(k string, v string) *SVGDefsElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGDefsElement) StyleAddF(k string, format string, args ...any) *SVGDefsElement {
+func (e *SVGDefsElement) StyleAddf(k string, format string, args ...any) *SVGDefsElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -286,9 +286,9 @@ func (e *SVGDefsElement) IfStyleAdd(condition bool, k string, v string) *SVGDefs
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGDefsElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGDefsElement {
+func (e *SVGDefsElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGDefsElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

@@ -82,7 +82,7 @@ func (e *MathMLMoElement) Text(text string) *MathMLMoElement {
 	return e
 }
 
-func (e *MathMLMoElement) TextF(format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) Textf(format string, args ...any) *MathMLMoElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -93,7 +93,7 @@ func (e *MathMLMoElement) IfText(condition bool, text string) *MathMLMoElement {
 	return e
 }
 
-func (e *MathMLMoElement) IfTextF(condition bool, format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) IfTextf(condition bool, format string, args ...any) *MathMLMoElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -112,13 +112,13 @@ func (e *MathMLMoElement) IfEscaped(condition bool, text string) *MathMLMoElemen
 	return e
 }
 
-func (e *MathMLMoElement) EscapedF(format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) Escapedf(format string, args ...any) *MathMLMoElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *MathMLMoElement) IfEscapedF(condition bool, format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) IfEscapedf(condition bool, format string, args ...any) *MathMLMoElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -167,7 +167,7 @@ func (e *MathMLMoElement) Lspace(s string) *MathMLMoElement {
 // This Attribute specifies the minimum amount of space that should be left on
 // the left side of the operator. Possible values are a dimension or a
 // dimensionless number.
-func (e *MathMLMoElement) LspaceF(format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) Lspacef(format string, args ...any) *MathMLMoElement {
 	return e.Lspace(fmt.Sprintf(format, args...))
 }
 
@@ -184,7 +184,7 @@ func (e *MathMLMoElement) IfLspace(condition bool, s string) *MathMLMoElement {
 // This Attribute specifies the minimum amount of space that should be left on
 // the left side of the operator. Possible values are a dimension or a
 // dimensionless number.
-func (e *MathMLMoElement) IfLspaceF(condition bool, format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) IfLspacef(condition bool, format string, args ...any) *MathMLMoElement {
 	if condition {
 		e.Lspace(fmt.Sprintf(format, args...))
 	}
@@ -217,7 +217,7 @@ func (e *MathMLMoElement) Rspace(s string) *MathMLMoElement {
 // This Attribute specifies the minimum amount of space that should be left on
 // the right side of the operator. Possible values are a dimension or a
 // dimensionless number.
-func (e *MathMLMoElement) RspaceF(format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) Rspacef(format string, args ...any) *MathMLMoElement {
 	return e.Rspace(fmt.Sprintf(format, args...))
 }
 
@@ -234,7 +234,7 @@ func (e *MathMLMoElement) IfRspace(condition bool, s string) *MathMLMoElement {
 // This Attribute specifies the minimum amount of space that should be left on
 // the right side of the operator. Possible values are a dimension or a
 // dimensionless number.
-func (e *MathMLMoElement) IfRspaceF(condition bool, format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) IfRspacef(condition bool, format string, args ...any) *MathMLMoElement {
 	if condition {
 		e.Rspace(fmt.Sprintf(format, args...))
 	}
@@ -372,7 +372,7 @@ func (e *MathMLMoElement) ID(s string) *MathMLMoElement {
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLMoElement) IDF(format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) IDf(format string, args ...any) *MathMLMoElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -387,7 +387,7 @@ func (e *MathMLMoElement) IfID(condition bool, s string) *MathMLMoElement {
 
 // This Attribute assigns a name to an element. This name must be unique in a
 // document.
-func (e *MathMLMoElement) IfIDF(condition bool, format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) IfIDf(condition bool, format string, args ...any) *MathMLMoElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -419,7 +419,7 @@ func (e *MathMLMoElement) Mathbackground(s string) *MathMLMoElement {
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLMoElement) MathbackgroundF(format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) Mathbackgroundf(format string, args ...any) *MathMLMoElement {
 	return e.Mathbackground(fmt.Sprintf(format, args...))
 }
 
@@ -436,7 +436,7 @@ func (e *MathMLMoElement) IfMathbackground(condition bool, s string) *MathMLMoEl
 // This Attribute specifies the background color of the element. Possible values
 // are a color name or a color specification in the format defined in the CSS3
 // Color Module [CSS3COLOR].
-func (e *MathMLMoElement) IfMathbackgroundF(condition bool, format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) IfMathbackgroundf(condition bool, format string, args ...any) *MathMLMoElement {
 	if condition {
 		e.Mathbackground(fmt.Sprintf(format, args...))
 	}
@@ -469,7 +469,7 @@ func (e *MathMLMoElement) Mathcolor(s string) *MathMLMoElement {
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLMoElement) MathcolorF(format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) Mathcolorf(format string, args ...any) *MathMLMoElement {
 	return e.Mathcolor(fmt.Sprintf(format, args...))
 }
 
@@ -486,7 +486,7 @@ func (e *MathMLMoElement) IfMathcolor(condition bool, s string) *MathMLMoElement
 // This Attribute specifies the color of the element. Possible values are a
 // color name or a color specification in the format defined in the CSS3 Color
 // Module [CSS3COLOR].
-func (e *MathMLMoElement) IfMathcolorF(condition bool, format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) IfMathcolorf(condition bool, format string, args ...any) *MathMLMoElement {
 	if condition {
 		e.Mathcolor(fmt.Sprintf(format, args...))
 	}
@@ -517,7 +517,7 @@ func (e *MathMLMoElement) MathsizeStr(s string) *MathMLMoElement {
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLMoElement) MathsizeStrF(format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) MathsizeStrf(format string, args ...any) *MathMLMoElement {
 	return e.MathsizeStr(fmt.Sprintf(format, args...))
 }
 
@@ -532,7 +532,7 @@ func (e *MathMLMoElement) IfMathsizeStr(condition bool, s string) *MathMLMoEleme
 
 // This Attribute specifies the size of the element. Possible values are a
 // dimension or a dimensionless number.
-func (e *MathMLMoElement) IfMathsizeStrF(condition bool, format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) IfMathsizeStrf(condition bool, format string, args ...any) *MathMLMoElement {
 	if condition {
 		e.MathsizeStr(fmt.Sprintf(format, args...))
 	}
@@ -566,7 +566,7 @@ func (e *MathMLMoElement) Nonce(s string) *MathMLMoElement {
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLMoElement) NonceF(format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) Noncef(format string, args ...any) *MathMLMoElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -585,7 +585,7 @@ func (e *MathMLMoElement) IfNonce(condition bool, s string) *MathMLMoElement {
 // be used by the server processing the element’s submission, and the
 // resulting resource must be delivered with a Content-Security-Policy nonce
 // Attribute matching the value of the nonce Attribute.
-func (e *MathMLMoElement) IfNonceF(condition bool, format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) IfNoncef(condition bool, format string, args ...any) *MathMLMoElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -709,7 +709,7 @@ func (e *MathMLMoElement) StyleAdd(k string, v string) *MathMLMoElement {
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLMoElement) StyleAddF(k string, format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) StyleAddf(k string, format string, args ...any) *MathMLMoElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -724,9 +724,9 @@ func (e *MathMLMoElement) IfStyleAdd(condition bool, k string, v string) *MathML
 
 // This Attribute offers advisory information about the element for which it is
 // set.
-func (e *MathMLMoElement) IfStyleAddF(condition bool, k string, format string, args ...any) *MathMLMoElement {
+func (e *MathMLMoElement) IfStyleAddf(condition bool, k string, format string, args ...any) *MathMLMoElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

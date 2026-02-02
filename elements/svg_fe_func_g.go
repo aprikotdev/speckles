@@ -84,7 +84,7 @@ func (e *SVGFeFuncGElement) Text(text string) *SVGFeFuncGElement {
 	return e
 }
 
-func (e *SVGFeFuncGElement) TextF(format string, args ...any) *SVGFeFuncGElement {
+func (e *SVGFeFuncGElement) Textf(format string, args ...any) *SVGFeFuncGElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGFeFuncGElement) IfText(condition bool, text string) *SVGFeFuncGEleme
 	return e
 }
 
-func (e *SVGFeFuncGElement) IfTextF(condition bool, format string, args ...any) *SVGFeFuncGElement {
+func (e *SVGFeFuncGElement) IfTextf(condition bool, format string, args ...any) *SVGFeFuncGElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGFeFuncGElement) IfEscaped(condition bool, text string) *SVGFeFuncGEl
 	return e
 }
 
-func (e *SVGFeFuncGElement) EscapedF(format string, args ...any) *SVGFeFuncGElement {
+func (e *SVGFeFuncGElement) Escapedf(format string, args ...any) *SVGFeFuncGElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeFuncGElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeFuncGElement {
+func (e *SVGFeFuncGElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeFuncGElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -171,7 +171,7 @@ func (e *SVGFeFuncGElement) TableValues(s string) *SVGFeFuncGElement {
 
 // Contains the list of <number>s that define the lookup table. Values must be
 // in the 0-1 range and be equally spaced. There must be at least two values.
-func (e *SVGFeFuncGElement) TableValuesF(format string, args ...any) *SVGFeFuncGElement {
+func (e *SVGFeFuncGElement) TableValuesf(format string, args ...any) *SVGFeFuncGElement {
 	return e.TableValues(fmt.Sprintf(format, args...))
 }
 
@@ -186,7 +186,7 @@ func (e *SVGFeFuncGElement) IfTableValues(condition bool, s string) *SVGFeFuncGE
 
 // Contains the list of <number>s that define the lookup table. Values must be
 // in the 0-1 range and be equally spaced. There must be at least two values.
-func (e *SVGFeFuncGElement) IfTableValuesF(condition bool, format string, args ...any) *SVGFeFuncGElement {
+func (e *SVGFeFuncGElement) IfTableValuesf(condition bool, format string, args ...any) *SVGFeFuncGElement {
 	if condition {
 		e.TableValues(fmt.Sprintf(format, args...))
 	}
@@ -299,7 +299,7 @@ func (e *SVGFeFuncGElement) ID(s string) *SVGFeFuncGElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeFuncGElement) IDF(format string, args ...any) *SVGFeFuncGElement {
+func (e *SVGFeFuncGElement) IDf(format string, args ...any) *SVGFeFuncGElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -312,7 +312,7 @@ func (e *SVGFeFuncGElement) IfID(condition bool, s string) *SVGFeFuncGElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeFuncGElement) IfIDF(condition bool, format string, args ...any) *SVGFeFuncGElement {
+func (e *SVGFeFuncGElement) IfIDf(condition bool, format string, args ...any) *SVGFeFuncGElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -438,7 +438,7 @@ func (e *SVGFeFuncGElement) StyleAdd(k string, v string) *SVGFeFuncGElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeFuncGElement) StyleAddF(k string, format string, args ...any) *SVGFeFuncGElement {
+func (e *SVGFeFuncGElement) StyleAddf(k string, format string, args ...any) *SVGFeFuncGElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -451,9 +451,9 @@ func (e *SVGFeFuncGElement) IfStyleAdd(condition bool, k string, v string) *SVGF
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeFuncGElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeFuncGElement {
+func (e *SVGFeFuncGElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeFuncGElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

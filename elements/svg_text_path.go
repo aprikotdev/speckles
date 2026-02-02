@@ -83,7 +83,7 @@ func (e *SVGTextPathElement) Text(text string) *SVGTextPathElement {
 	return e
 }
 
-func (e *SVGTextPathElement) TextF(format string, args ...any) *SVGTextPathElement {
+func (e *SVGTextPathElement) Textf(format string, args ...any) *SVGTextPathElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGTextPathElement) IfText(condition bool, text string) *SVGTextPathEle
 	return e
 }
 
-func (e *SVGTextPathElement) IfTextF(condition bool, format string, args ...any) *SVGTextPathElement {
+func (e *SVGTextPathElement) IfTextf(condition bool, format string, args ...any) *SVGTextPathElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGTextPathElement) IfEscaped(condition bool, text string) *SVGTextPath
 	return e
 }
 
-func (e *SVGTextPathElement) EscapedF(format string, args ...any) *SVGTextPathElement {
+func (e *SVGTextPathElement) Escapedf(format string, args ...any) *SVGTextPathElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGTextPathElement) IfEscapedF(condition bool, format string, args ...any) *SVGTextPathElement {
+func (e *SVGTextPathElement) IfEscapedf(condition bool, format string, args ...any) *SVGTextPathElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *SVGTextPathElement) Href(s string) *SVGTextPathElement {
 }
 
 // A URI reference to the path to render along.
-func (e *SVGTextPathElement) HrefF(format string, args ...any) *SVGTextPathElement {
+func (e *SVGTextPathElement) Hreff(format string, args ...any) *SVGTextPathElement {
 	return e.Href(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *SVGTextPathElement) IfHref(condition bool, s string) *SVGTextPathElemen
 }
 
 // A URI reference to the path to render along.
-func (e *SVGTextPathElement) IfHrefF(condition bool, format string, args ...any) *SVGTextPathElement {
+func (e *SVGTextPathElement) IfHreff(condition bool, format string, args ...any) *SVGTextPathElement {
 	if condition {
 		e.Href(fmt.Sprintf(format, args...))
 	}
@@ -176,7 +176,7 @@ func (e *SVGTextPathElement) StartOffset(s string) *SVGTextPathElement {
 
 // Indicates an offset from the start of the path, where the first character is
 // rendered.
-func (e *SVGTextPathElement) StartOffsetF(format string, args ...any) *SVGTextPathElement {
+func (e *SVGTextPathElement) StartOffsetf(format string, args ...any) *SVGTextPathElement {
 	return e.StartOffset(fmt.Sprintf(format, args...))
 }
 
@@ -191,7 +191,7 @@ func (e *SVGTextPathElement) IfStartOffset(condition bool, s string) *SVGTextPat
 
 // Indicates an offset from the start of the path, where the first character is
 // rendered.
-func (e *SVGTextPathElement) IfStartOffsetF(condition bool, format string, args ...any) *SVGTextPathElement {
+func (e *SVGTextPathElement) IfStartOffsetf(condition bool, format string, args ...any) *SVGTextPathElement {
 	if condition {
 		e.StartOffset(fmt.Sprintf(format, args...))
 	}
@@ -275,7 +275,7 @@ func (e *SVGTextPathElement) ID(s string) *SVGTextPathElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGTextPathElement) IDF(format string, args ...any) *SVGTextPathElement {
+func (e *SVGTextPathElement) IDf(format string, args ...any) *SVGTextPathElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -288,7 +288,7 @@ func (e *SVGTextPathElement) IfID(condition bool, s string) *SVGTextPathElement 
 }
 
 // Specifies a unique id for an element
-func (e *SVGTextPathElement) IfIDF(condition bool, format string, args ...any) *SVGTextPathElement {
+func (e *SVGTextPathElement) IfIDf(condition bool, format string, args ...any) *SVGTextPathElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -414,7 +414,7 @@ func (e *SVGTextPathElement) StyleAdd(k string, v string) *SVGTextPathElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGTextPathElement) StyleAddF(k string, format string, args ...any) *SVGTextPathElement {
+func (e *SVGTextPathElement) StyleAddf(k string, format string, args ...any) *SVGTextPathElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -427,9 +427,9 @@ func (e *SVGTextPathElement) IfStyleAdd(condition bool, k string, v string) *SVG
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGTextPathElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGTextPathElement {
+func (e *SVGTextPathElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGTextPathElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

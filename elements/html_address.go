@@ -83,7 +83,7 @@ func (e *AddressElement) Text(text string) *AddressElement {
 	return e
 }
 
-func (e *AddressElement) TextF(format string, args ...any) *AddressElement {
+func (e *AddressElement) Textf(format string, args ...any) *AddressElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *AddressElement) IfText(condition bool, text string) *AddressElement {
 	return e
 }
 
-func (e *AddressElement) IfTextF(condition bool, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfTextf(condition bool, format string, args ...any) *AddressElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *AddressElement) IfEscaped(condition bool, text string) *AddressElement 
 	return e
 }
 
-func (e *AddressElement) EscapedF(format string, args ...any) *AddressElement {
+func (e *AddressElement) Escapedf(format string, args ...any) *AddressElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *AddressElement) IfEscapedF(condition bool, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfEscapedf(condition bool, format string, args ...any) *AddressElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -705,7 +705,7 @@ func (e *AddressElement) ID(s string) *AddressElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *AddressElement) IDF(format string, args ...any) *AddressElement {
+func (e *AddressElement) IDf(format string, args ...any) *AddressElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -722,7 +722,7 @@ func (e *AddressElement) IfID(condition bool, s string) *AddressElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *AddressElement) IfIDF(condition bool, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfIDf(condition bool, format string, args ...any) *AddressElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -917,7 +917,7 @@ func (e *AddressElement) Is(s string) *AddressElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *AddressElement) IsF(format string, args ...any) *AddressElement {
+func (e *AddressElement) Isf(format string, args ...any) *AddressElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -938,7 +938,7 @@ func (e *AddressElement) IfIs(condition bool, s string) *AddressElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *AddressElement) IfIsF(condition bool, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfIsf(condition bool, format string, args ...any) *AddressElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -989,7 +989,7 @@ func (e *AddressElement) Itemid(s string) *AddressElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *AddressElement) ItemidF(format string, args ...any) *AddressElement {
+func (e *AddressElement) Itemidf(format string, args ...any) *AddressElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1022,7 +1022,7 @@ func (e *AddressElement) IfItemid(condition bool, s string) *AddressElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *AddressElement) IfItemidF(condition bool, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfItemidf(condition bool, format string, args ...any) *AddressElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1071,7 +1071,7 @@ func (e *AddressElement) Itemprop(s string) *AddressElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *AddressElement) ItempropF(format string, args ...any) *AddressElement {
+func (e *AddressElement) Itempropf(format string, args ...any) *AddressElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1096,7 +1096,7 @@ func (e *AddressElement) IfItemprop(condition bool, s string) *AddressElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *AddressElement) IfItempropF(condition bool, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfItempropf(condition bool, format string, args ...any) *AddressElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1137,7 +1137,7 @@ func (e *AddressElement) Itemref(s string) *AddressElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *AddressElement) ItemrefF(format string, args ...any) *AddressElement {
+func (e *AddressElement) Itemreff(format string, args ...any) *AddressElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1158,7 +1158,7 @@ func (e *AddressElement) IfItemref(condition bool, s string) *AddressElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *AddressElement) IfItemrefF(condition bool, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfItemreff(condition bool, format string, args ...any) *AddressElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1273,7 +1273,7 @@ func (e *AddressElement) Itemtype(s string) *AddressElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *AddressElement) ItemtypeF(format string, args ...any) *AddressElement {
+func (e *AddressElement) Itemtypef(format string, args ...any) *AddressElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1298,7 +1298,7 @@ func (e *AddressElement) IfItemtype(condition bool, s string) *AddressElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *AddressElement) IfItemtypeF(condition bool, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfItemtypef(condition bool, format string, args ...any) *AddressElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1339,7 +1339,7 @@ func (e *AddressElement) Lang(s string) *AddressElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *AddressElement) LangF(format string, args ...any) *AddressElement {
+func (e *AddressElement) Langf(format string, args ...any) *AddressElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1360,7 +1360,7 @@ func (e *AddressElement) IfLang(condition bool, s string) *AddressElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *AddressElement) IfLangF(condition bool, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfLangf(condition bool, format string, args ...any) *AddressElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1399,7 +1399,7 @@ func (e *AddressElement) Nonce(s string) *AddressElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *AddressElement) NonceF(format string, args ...any) *AddressElement {
+func (e *AddressElement) Noncef(format string, args ...any) *AddressElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1420,7 +1420,7 @@ func (e *AddressElement) IfNonce(condition bool, s string) *AddressElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *AddressElement) IfNonceF(condition bool, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfNoncef(condition bool, format string, args ...any) *AddressElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1545,7 +1545,7 @@ func (e *AddressElement) Role(s string) *AddressElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *AddressElement) RoleF(format string, args ...any) *AddressElement {
+func (e *AddressElement) Rolef(format string, args ...any) *AddressElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1564,7 +1564,7 @@ func (e *AddressElement) IfRole(condition bool, s string) *AddressElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *AddressElement) IfRoleF(condition bool, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfRolef(condition bool, format string, args ...any) *AddressElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1600,7 +1600,7 @@ func (e *AddressElement) Slot(s string) *AddressElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *AddressElement) SlotF(format string, args ...any) *AddressElement {
+func (e *AddressElement) Slotf(format string, args ...any) *AddressElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1619,7 +1619,7 @@ func (e *AddressElement) IfSlot(condition bool, s string) *AddressElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *AddressElement) IfSlotF(condition bool, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfSlotf(condition bool, format string, args ...any) *AddressElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1763,7 +1763,7 @@ func (e *AddressElement) StyleAdd(k string, v string) *AddressElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *AddressElement) StyleAddF(k string, format string, args ...any) *AddressElement {
+func (e *AddressElement) StyleAddf(k string, format string, args ...any) *AddressElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1778,9 +1778,9 @@ func (e *AddressElement) IfStyleAdd(condition bool, k string, v string) *Address
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *AddressElement) IfStyleAddF(condition bool, k string, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfStyleAddf(condition bool, k string, format string, args ...any) *AddressElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1926,7 +1926,7 @@ func (e *AddressElement) Title(s string) *AddressElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *AddressElement) TitleF(format string, args ...any) *AddressElement {
+func (e *AddressElement) Titlef(format string, args ...any) *AddressElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -1969,7 +1969,7 @@ func (e *AddressElement) IfTitle(condition bool, s string) *AddressElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *AddressElement) IfTitleF(condition bool, format string, args ...any) *AddressElement {
+func (e *AddressElement) IfTitlef(condition bool, format string, args ...any) *AddressElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

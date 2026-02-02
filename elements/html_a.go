@@ -85,7 +85,7 @@ func (e *AElement) Text(text string) *AElement {
 	return e
 }
 
-func (e *AElement) TextF(format string, args ...any) *AElement {
+func (e *AElement) Textf(format string, args ...any) *AElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *AElement) IfText(condition bool, text string) *AElement {
 	return e
 }
 
-func (e *AElement) IfTextF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfTextf(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *AElement) IfEscaped(condition bool, text string) *AElement {
 	return e
 }
 
-func (e *AElement) EscapedF(format string, args ...any) *AElement {
+func (e *AElement) Escapedf(format string, args ...any) *AElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *AElement) IfEscapedF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfEscapedf(condition bool, format string, args ...any) *AElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -138,7 +138,7 @@ func (e *AElement) Download(s string) *AElement {
 
 // Causes the browser to treat the linked URL as a download. Can be used with or
 // without a filename
-func (e *AElement) DownloadF(format string, args ...any) *AElement {
+func (e *AElement) Downloadf(format string, args ...any) *AElement {
 	return e.Download(fmt.Sprintf(format, args...))
 }
 
@@ -153,7 +153,7 @@ func (e *AElement) IfDownload(condition bool, s string) *AElement {
 
 // Causes the browser to treat the linked URL as a download. Can be used with or
 // without a filename
-func (e *AElement) IfDownloadF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfDownloadf(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Download(fmt.Sprintf(format, args...))
 	}
@@ -183,7 +183,7 @@ func (e *AElement) Href(s string) *AElement {
 
 // The URL that the hyperlink points to. Links are not restricted to HTTP-based
 // URLs — they can use any URL scheme supported by browsers
-func (e *AElement) HrefF(format string, args ...any) *AElement {
+func (e *AElement) Hreff(format string, args ...any) *AElement {
 	return e.Href(fmt.Sprintf(format, args...))
 }
 
@@ -198,7 +198,7 @@ func (e *AElement) IfHref(condition bool, s string) *AElement {
 
 // The URL that the hyperlink points to. Links are not restricted to HTTP-based
 // URLs — they can use any URL scheme supported by browsers
-func (e *AElement) IfHrefF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfHreff(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Href(fmt.Sprintf(format, args...))
 	}
@@ -230,7 +230,7 @@ func (e *AElement) Hreflang(s string) *AElement {
 // Specifies the language of the linked resource. It is purely advisory. Allowed
 // values are determined by BCP47 for HTML5 and by RFC1766 for HTML 4. Use this
 // Attribute only if the href attribute is present
-func (e *AElement) HreflangF(format string, args ...any) *AElement {
+func (e *AElement) Hreflangf(format string, args ...any) *AElement {
 	return e.Hreflang(fmt.Sprintf(format, args...))
 }
 
@@ -247,7 +247,7 @@ func (e *AElement) IfHreflang(condition bool, s string) *AElement {
 // Specifies the language of the linked resource. It is purely advisory. Allowed
 // values are determined by BCP47 for HTML5 and by RFC1766 for HTML 4. Use this
 // Attribute only if the href attribute is present
-func (e *AElement) IfHreflangF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfHreflangf(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Hreflang(fmt.Sprintf(format, args...))
 	}
@@ -453,7 +453,7 @@ func (e *AElement) Type(s string) *AElement {
 }
 
 // Hints at the linked URL's format with a MIME type. No built-in functionality.
-func (e *AElement) TypeF(format string, args ...any) *AElement {
+func (e *AElement) Typef(format string, args ...any) *AElement {
 	return e.Type(fmt.Sprintf(format, args...))
 }
 
@@ -466,7 +466,7 @@ func (e *AElement) IfType(condition bool, s string) *AElement {
 }
 
 // Hints at the linked URL's format with a MIME type. No built-in functionality.
-func (e *AElement) IfTypeF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfTypef(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Type(fmt.Sprintf(format, args...))
 	}
@@ -1064,7 +1064,7 @@ func (e *AElement) ID(s string) *AElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *AElement) IDF(format string, args ...any) *AElement {
+func (e *AElement) IDf(format string, args ...any) *AElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -1081,7 +1081,7 @@ func (e *AElement) IfID(condition bool, s string) *AElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *AElement) IfIDF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfIDf(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1276,7 +1276,7 @@ func (e *AElement) Is(s string) *AElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *AElement) IsF(format string, args ...any) *AElement {
+func (e *AElement) Isf(format string, args ...any) *AElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1297,7 +1297,7 @@ func (e *AElement) IfIs(condition bool, s string) *AElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *AElement) IfIsF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfIsf(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1348,7 +1348,7 @@ func (e *AElement) Itemid(s string) *AElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *AElement) ItemidF(format string, args ...any) *AElement {
+func (e *AElement) Itemidf(format string, args ...any) *AElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1381,7 +1381,7 @@ func (e *AElement) IfItemid(condition bool, s string) *AElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *AElement) IfItemidF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfItemidf(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1430,7 +1430,7 @@ func (e *AElement) Itemprop(s string) *AElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *AElement) ItempropF(format string, args ...any) *AElement {
+func (e *AElement) Itempropf(format string, args ...any) *AElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1455,7 +1455,7 @@ func (e *AElement) IfItemprop(condition bool, s string) *AElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *AElement) IfItempropF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfItempropf(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1496,7 +1496,7 @@ func (e *AElement) Itemref(s string) *AElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *AElement) ItemrefF(format string, args ...any) *AElement {
+func (e *AElement) Itemreff(format string, args ...any) *AElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1517,7 +1517,7 @@ func (e *AElement) IfItemref(condition bool, s string) *AElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *AElement) IfItemrefF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfItemreff(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1632,7 +1632,7 @@ func (e *AElement) Itemtype(s string) *AElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *AElement) ItemtypeF(format string, args ...any) *AElement {
+func (e *AElement) Itemtypef(format string, args ...any) *AElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1657,7 +1657,7 @@ func (e *AElement) IfItemtype(condition bool, s string) *AElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *AElement) IfItemtypeF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfItemtypef(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1698,7 +1698,7 @@ func (e *AElement) Lang(s string) *AElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *AElement) LangF(format string, args ...any) *AElement {
+func (e *AElement) Langf(format string, args ...any) *AElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1719,7 +1719,7 @@ func (e *AElement) IfLang(condition bool, s string) *AElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *AElement) IfLangF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfLangf(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1758,7 +1758,7 @@ func (e *AElement) Nonce(s string) *AElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *AElement) NonceF(format string, args ...any) *AElement {
+func (e *AElement) Noncef(format string, args ...any) *AElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1779,7 +1779,7 @@ func (e *AElement) IfNonce(condition bool, s string) *AElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *AElement) IfNonceF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfNoncef(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1904,7 +1904,7 @@ func (e *AElement) Role(s string) *AElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *AElement) RoleF(format string, args ...any) *AElement {
+func (e *AElement) Rolef(format string, args ...any) *AElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1923,7 +1923,7 @@ func (e *AElement) IfRole(condition bool, s string) *AElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *AElement) IfRoleF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfRolef(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1959,7 +1959,7 @@ func (e *AElement) Slot(s string) *AElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *AElement) SlotF(format string, args ...any) *AElement {
+func (e *AElement) Slotf(format string, args ...any) *AElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1978,7 +1978,7 @@ func (e *AElement) IfSlot(condition bool, s string) *AElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *AElement) IfSlotF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfSlotf(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -2122,7 +2122,7 @@ func (e *AElement) StyleAdd(k string, v string) *AElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *AElement) StyleAddF(k string, format string, args ...any) *AElement {
+func (e *AElement) StyleAddf(k string, format string, args ...any) *AElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -2137,9 +2137,9 @@ func (e *AElement) IfStyleAdd(condition bool, k string, v string) *AElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *AElement) IfStyleAddF(condition bool, k string, format string, args ...any) *AElement {
+func (e *AElement) IfStyleAddf(condition bool, k string, format string, args ...any) *AElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2285,7 +2285,7 @@ func (e *AElement) Title(s string) *AElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *AElement) TitleF(format string, args ...any) *AElement {
+func (e *AElement) Titlef(format string, args ...any) *AElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2328,7 +2328,7 @@ func (e *AElement) IfTitle(condition bool, s string) *AElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *AElement) IfTitleF(condition bool, format string, args ...any) *AElement {
+func (e *AElement) IfTitlef(condition bool, format string, args ...any) *AElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

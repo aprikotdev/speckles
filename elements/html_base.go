@@ -83,7 +83,7 @@ func (e *BaseElement) Text(text string) *BaseElement {
 	return e
 }
 
-func (e *BaseElement) TextF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Textf(format string, args ...any) *BaseElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *BaseElement) IfText(condition bool, text string) *BaseElement {
 	return e
 }
 
-func (e *BaseElement) IfTextF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfTextf(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *BaseElement) IfEscaped(condition bool, text string) *BaseElement {
 	return e
 }
 
-func (e *BaseElement) EscapedF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Escapedf(format string, args ...any) *BaseElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *BaseElement) IfEscapedF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfEscapedf(condition bool, format string, args ...any) *BaseElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *BaseElement) Href(s string) *BaseElement {
 }
 
 // Specifies the base URL to use for all relative URLs in the page.
-func (e *BaseElement) HrefF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Hreff(format string, args ...any) *BaseElement {
 	return e.Href(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *BaseElement) IfHref(condition bool, s string) *BaseElement {
 }
 
 // Specifies the base URL to use for all relative URLs in the page.
-func (e *BaseElement) IfHrefF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfHreff(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.Href(fmt.Sprintf(format, args...))
 	}
@@ -174,7 +174,7 @@ func (e *BaseElement) Target(s string) *BaseElement {
 }
 
 // Specifies the default target Attribute to use for the page.
-func (e *BaseElement) TargetF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Targetf(format string, args ...any) *BaseElement {
 	return e.Target(fmt.Sprintf(format, args...))
 }
 
@@ -187,7 +187,7 @@ func (e *BaseElement) IfTarget(condition bool, s string) *BaseElement {
 }
 
 // Specifies the default target Attribute to use for the page.
-func (e *BaseElement) IfTargetF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfTargetf(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.Target(fmt.Sprintf(format, args...))
 	}
@@ -785,7 +785,7 @@ func (e *BaseElement) ID(s string) *BaseElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *BaseElement) IDF(format string, args ...any) *BaseElement {
+func (e *BaseElement) IDf(format string, args ...any) *BaseElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -802,7 +802,7 @@ func (e *BaseElement) IfID(condition bool, s string) *BaseElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *BaseElement) IfIDF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfIDf(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -997,7 +997,7 @@ func (e *BaseElement) Is(s string) *BaseElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *BaseElement) IsF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Isf(format string, args ...any) *BaseElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1018,7 +1018,7 @@ func (e *BaseElement) IfIs(condition bool, s string) *BaseElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *BaseElement) IfIsF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfIsf(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1069,7 +1069,7 @@ func (e *BaseElement) Itemid(s string) *BaseElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *BaseElement) ItemidF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Itemidf(format string, args ...any) *BaseElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1102,7 +1102,7 @@ func (e *BaseElement) IfItemid(condition bool, s string) *BaseElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *BaseElement) IfItemidF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfItemidf(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1151,7 +1151,7 @@ func (e *BaseElement) Itemprop(s string) *BaseElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *BaseElement) ItempropF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Itempropf(format string, args ...any) *BaseElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1176,7 +1176,7 @@ func (e *BaseElement) IfItemprop(condition bool, s string) *BaseElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *BaseElement) IfItempropF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfItempropf(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1217,7 +1217,7 @@ func (e *BaseElement) Itemref(s string) *BaseElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *BaseElement) ItemrefF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Itemreff(format string, args ...any) *BaseElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1238,7 +1238,7 @@ func (e *BaseElement) IfItemref(condition bool, s string) *BaseElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *BaseElement) IfItemrefF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfItemreff(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1353,7 +1353,7 @@ func (e *BaseElement) Itemtype(s string) *BaseElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *BaseElement) ItemtypeF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Itemtypef(format string, args ...any) *BaseElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1378,7 +1378,7 @@ func (e *BaseElement) IfItemtype(condition bool, s string) *BaseElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *BaseElement) IfItemtypeF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfItemtypef(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1419,7 +1419,7 @@ func (e *BaseElement) Lang(s string) *BaseElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *BaseElement) LangF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Langf(format string, args ...any) *BaseElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1440,7 +1440,7 @@ func (e *BaseElement) IfLang(condition bool, s string) *BaseElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *BaseElement) IfLangF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfLangf(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1479,7 +1479,7 @@ func (e *BaseElement) Nonce(s string) *BaseElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *BaseElement) NonceF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Noncef(format string, args ...any) *BaseElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1500,7 +1500,7 @@ func (e *BaseElement) IfNonce(condition bool, s string) *BaseElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *BaseElement) IfNonceF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfNoncef(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1625,7 +1625,7 @@ func (e *BaseElement) Role(s string) *BaseElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *BaseElement) RoleF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Rolef(format string, args ...any) *BaseElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1644,7 +1644,7 @@ func (e *BaseElement) IfRole(condition bool, s string) *BaseElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *BaseElement) IfRoleF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfRolef(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1680,7 +1680,7 @@ func (e *BaseElement) Slot(s string) *BaseElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *BaseElement) SlotF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Slotf(format string, args ...any) *BaseElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1699,7 +1699,7 @@ func (e *BaseElement) IfSlot(condition bool, s string) *BaseElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *BaseElement) IfSlotF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfSlotf(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1843,7 +1843,7 @@ func (e *BaseElement) StyleAdd(k string, v string) *BaseElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *BaseElement) StyleAddF(k string, format string, args ...any) *BaseElement {
+func (e *BaseElement) StyleAddf(k string, format string, args ...any) *BaseElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1858,9 +1858,9 @@ func (e *BaseElement) IfStyleAdd(condition bool, k string, v string) *BaseElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *BaseElement) IfStyleAddF(condition bool, k string, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfStyleAddf(condition bool, k string, format string, args ...any) *BaseElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2006,7 +2006,7 @@ func (e *BaseElement) Title(s string) *BaseElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *BaseElement) TitleF(format string, args ...any) *BaseElement {
+func (e *BaseElement) Titlef(format string, args ...any) *BaseElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2049,7 +2049,7 @@ func (e *BaseElement) IfTitle(condition bool, s string) *BaseElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *BaseElement) IfTitleF(condition bool, format string, args ...any) *BaseElement {
+func (e *BaseElement) IfTitlef(condition bool, format string, args ...any) *BaseElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

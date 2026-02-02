@@ -90,7 +90,7 @@ func (e *SVGSymbolElement) Text(text string) *SVGSymbolElement {
 	return e
 }
 
-func (e *SVGSymbolElement) TextF(format string, args ...any) *SVGSymbolElement {
+func (e *SVGSymbolElement) Textf(format string, args ...any) *SVGSymbolElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -101,7 +101,7 @@ func (e *SVGSymbolElement) IfText(condition bool, text string) *SVGSymbolElement
 	return e
 }
 
-func (e *SVGSymbolElement) IfTextF(condition bool, format string, args ...any) *SVGSymbolElement {
+func (e *SVGSymbolElement) IfTextf(condition bool, format string, args ...any) *SVGSymbolElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -120,13 +120,13 @@ func (e *SVGSymbolElement) IfEscaped(condition bool, text string) *SVGSymbolElem
 	return e
 }
 
-func (e *SVGSymbolElement) EscapedF(format string, args ...any) *SVGSymbolElement {
+func (e *SVGSymbolElement) Escapedf(format string, args ...any) *SVGSymbolElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGSymbolElement) IfEscapedF(condition bool, format string, args ...any) *SVGSymbolElement {
+func (e *SVGSymbolElement) IfEscapedf(condition bool, format string, args ...any) *SVGSymbolElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -191,7 +191,7 @@ func (e *SVGSymbolElement) ID(s string) *SVGSymbolElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGSymbolElement) IDF(format string, args ...any) *SVGSymbolElement {
+func (e *SVGSymbolElement) IDf(format string, args ...any) *SVGSymbolElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -204,7 +204,7 @@ func (e *SVGSymbolElement) IfID(condition bool, s string) *SVGSymbolElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGSymbolElement) IfIDF(condition bool, format string, args ...any) *SVGSymbolElement {
+func (e *SVGSymbolElement) IfIDf(condition bool, format string, args ...any) *SVGSymbolElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -330,7 +330,7 @@ func (e *SVGSymbolElement) StyleAdd(k string, v string) *SVGSymbolElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGSymbolElement) StyleAddF(k string, format string, args ...any) *SVGSymbolElement {
+func (e *SVGSymbolElement) StyleAddf(k string, format string, args ...any) *SVGSymbolElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -343,9 +343,9 @@ func (e *SVGSymbolElement) IfStyleAdd(condition bool, k string, v string) *SVGSy
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGSymbolElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGSymbolElement {
+func (e *SVGSymbolElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGSymbolElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

@@ -83,7 +83,7 @@ func (e *SVGTitleElement) Text(text string) *SVGTitleElement {
 	return e
 }
 
-func (e *SVGTitleElement) TextF(format string, args ...any) *SVGTitleElement {
+func (e *SVGTitleElement) Textf(format string, args ...any) *SVGTitleElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGTitleElement) IfText(condition bool, text string) *SVGTitleElement {
 	return e
 }
 
-func (e *SVGTitleElement) IfTextF(condition bool, format string, args ...any) *SVGTitleElement {
+func (e *SVGTitleElement) IfTextf(condition bool, format string, args ...any) *SVGTitleElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGTitleElement) IfEscaped(condition bool, text string) *SVGTitleElemen
 	return e
 }
 
-func (e *SVGTitleElement) EscapedF(format string, args ...any) *SVGTitleElement {
+func (e *SVGTitleElement) Escapedf(format string, args ...any) *SVGTitleElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGTitleElement) IfEscapedF(condition bool, format string, args ...any) *SVGTitleElement {
+func (e *SVGTitleElement) IfEscapedf(condition bool, format string, args ...any) *SVGTitleElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -134,7 +134,7 @@ func (e *SVGTitleElement) ID(s string) *SVGTitleElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGTitleElement) IDF(format string, args ...any) *SVGTitleElement {
+func (e *SVGTitleElement) IDf(format string, args ...any) *SVGTitleElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -147,7 +147,7 @@ func (e *SVGTitleElement) IfID(condition bool, s string) *SVGTitleElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGTitleElement) IfIDF(condition bool, format string, args ...any) *SVGTitleElement {
+func (e *SVGTitleElement) IfIDf(condition bool, format string, args ...any) *SVGTitleElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -273,7 +273,7 @@ func (e *SVGTitleElement) StyleAdd(k string, v string) *SVGTitleElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGTitleElement) StyleAddF(k string, format string, args ...any) *SVGTitleElement {
+func (e *SVGTitleElement) StyleAddf(k string, format string, args ...any) *SVGTitleElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -286,9 +286,9 @@ func (e *SVGTitleElement) IfStyleAdd(condition bool, k string, v string) *SVGTit
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGTitleElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGTitleElement {
+func (e *SVGTitleElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGTitleElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

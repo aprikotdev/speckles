@@ -85,7 +85,7 @@ func (e *SVGFeTileElement) Text(text string) *SVGFeTileElement {
 	return e
 }
 
-func (e *SVGFeTileElement) TextF(format string, args ...any) *SVGFeTileElement {
+func (e *SVGFeTileElement) Textf(format string, args ...any) *SVGFeTileElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *SVGFeTileElement) IfText(condition bool, text string) *SVGFeTileElement
 	return e
 }
 
-func (e *SVGFeTileElement) IfTextF(condition bool, format string, args ...any) *SVGFeTileElement {
+func (e *SVGFeTileElement) IfTextf(condition bool, format string, args ...any) *SVGFeTileElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *SVGFeTileElement) IfEscaped(condition bool, text string) *SVGFeTileElem
 	return e
 }
 
-func (e *SVGFeTileElement) EscapedF(format string, args ...any) *SVGFeTileElement {
+func (e *SVGFeTileElement) Escapedf(format string, args ...any) *SVGFeTileElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeTileElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeTileElement {
+func (e *SVGFeTileElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeTileElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -136,7 +136,7 @@ func (e *SVGFeTileElement) In(s string) *SVGFeTileElement {
 }
 
 // The input for this filter.
-func (e *SVGFeTileElement) InF(format string, args ...any) *SVGFeTileElement {
+func (e *SVGFeTileElement) Inf(format string, args ...any) *SVGFeTileElement {
 	return e.In(fmt.Sprintf(format, args...))
 }
 
@@ -149,7 +149,7 @@ func (e *SVGFeTileElement) IfIn(condition bool, s string) *SVGFeTileElement {
 }
 
 // The input for this filter.
-func (e *SVGFeTileElement) IfInF(condition bool, format string, args ...any) *SVGFeTileElement {
+func (e *SVGFeTileElement) IfInf(condition bool, format string, args ...any) *SVGFeTileElement {
 	if condition {
 		e.In(fmt.Sprintf(format, args...))
 	}
@@ -176,7 +176,7 @@ func (e *SVGFeTileElement) ID(s string) *SVGFeTileElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeTileElement) IDF(format string, args ...any) *SVGFeTileElement {
+func (e *SVGFeTileElement) IDf(format string, args ...any) *SVGFeTileElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -189,7 +189,7 @@ func (e *SVGFeTileElement) IfID(condition bool, s string) *SVGFeTileElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeTileElement) IfIDF(condition bool, format string, args ...any) *SVGFeTileElement {
+func (e *SVGFeTileElement) IfIDf(condition bool, format string, args ...any) *SVGFeTileElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -315,7 +315,7 @@ func (e *SVGFeTileElement) StyleAdd(k string, v string) *SVGFeTileElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeTileElement) StyleAddF(k string, format string, args ...any) *SVGFeTileElement {
+func (e *SVGFeTileElement) StyleAddf(k string, format string, args ...any) *SVGFeTileElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -328,9 +328,9 @@ func (e *SVGFeTileElement) IfStyleAdd(condition bool, k string, v string) *SVGFe
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeTileElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeTileElement {
+func (e *SVGFeTileElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeTileElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

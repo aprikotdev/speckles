@@ -84,7 +84,7 @@ func (e *SVGFeComponentTransferElement) Text(text string) *SVGFeComponentTransfe
 	return e
 }
 
-func (e *SVGFeComponentTransferElement) TextF(format string, args ...any) *SVGFeComponentTransferElement {
+func (e *SVGFeComponentTransferElement) Textf(format string, args ...any) *SVGFeComponentTransferElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGFeComponentTransferElement) IfText(condition bool, text string) *SVG
 	return e
 }
 
-func (e *SVGFeComponentTransferElement) IfTextF(condition bool, format string, args ...any) *SVGFeComponentTransferElement {
+func (e *SVGFeComponentTransferElement) IfTextf(condition bool, format string, args ...any) *SVGFeComponentTransferElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGFeComponentTransferElement) IfEscaped(condition bool, text string) *
 	return e
 }
 
-func (e *SVGFeComponentTransferElement) EscapedF(format string, args ...any) *SVGFeComponentTransferElement {
+func (e *SVGFeComponentTransferElement) Escapedf(format string, args ...any) *SVGFeComponentTransferElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeComponentTransferElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeComponentTransferElement {
+func (e *SVGFeComponentTransferElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeComponentTransferElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -135,7 +135,7 @@ func (e *SVGFeComponentTransferElement) In(s string) *SVGFeComponentTransferElem
 }
 
 // The input for this filter.
-func (e *SVGFeComponentTransferElement) InF(format string, args ...any) *SVGFeComponentTransferElement {
+func (e *SVGFeComponentTransferElement) Inf(format string, args ...any) *SVGFeComponentTransferElement {
 	return e.In(fmt.Sprintf(format, args...))
 }
 
@@ -148,7 +148,7 @@ func (e *SVGFeComponentTransferElement) IfIn(condition bool, s string) *SVGFeCom
 }
 
 // The input for this filter.
-func (e *SVGFeComponentTransferElement) IfInF(condition bool, format string, args ...any) *SVGFeComponentTransferElement {
+func (e *SVGFeComponentTransferElement) IfInf(condition bool, format string, args ...any) *SVGFeComponentTransferElement {
 	if condition {
 		e.In(fmt.Sprintf(format, args...))
 	}
@@ -175,7 +175,7 @@ func (e *SVGFeComponentTransferElement) ID(s string) *SVGFeComponentTransferElem
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeComponentTransferElement) IDF(format string, args ...any) *SVGFeComponentTransferElement {
+func (e *SVGFeComponentTransferElement) IDf(format string, args ...any) *SVGFeComponentTransferElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -188,7 +188,7 @@ func (e *SVGFeComponentTransferElement) IfID(condition bool, s string) *SVGFeCom
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeComponentTransferElement) IfIDF(condition bool, format string, args ...any) *SVGFeComponentTransferElement {
+func (e *SVGFeComponentTransferElement) IfIDf(condition bool, format string, args ...any) *SVGFeComponentTransferElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -314,7 +314,7 @@ func (e *SVGFeComponentTransferElement) StyleAdd(k string, v string) *SVGFeCompo
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeComponentTransferElement) StyleAddF(k string, format string, args ...any) *SVGFeComponentTransferElement {
+func (e *SVGFeComponentTransferElement) StyleAddf(k string, format string, args ...any) *SVGFeComponentTransferElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -327,9 +327,9 @@ func (e *SVGFeComponentTransferElement) IfStyleAdd(condition bool, k string, v s
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeComponentTransferElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeComponentTransferElement {
+func (e *SVGFeComponentTransferElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeComponentTransferElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

@@ -82,7 +82,7 @@ func (e *ImgElement) Text(text string) *ImgElement {
 	return e
 }
 
-func (e *ImgElement) TextF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Textf(format string, args ...any) *ImgElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -93,7 +93,7 @@ func (e *ImgElement) IfText(condition bool, text string) *ImgElement {
 	return e
 }
 
-func (e *ImgElement) IfTextF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfTextf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -112,13 +112,13 @@ func (e *ImgElement) IfEscaped(condition bool, text string) *ImgElement {
 	return e
 }
 
-func (e *ImgElement) EscapedF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Escapedf(format string, args ...any) *ImgElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *ImgElement) IfEscapedF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfEscapedf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -133,7 +133,7 @@ func (e *ImgElement) Alt(s string) *ImgElement {
 }
 
 // The text alternative of the element's content.
-func (e *ImgElement) AltF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Altf(format string, args ...any) *ImgElement {
 	return e.Alt(fmt.Sprintf(format, args...))
 }
 
@@ -146,7 +146,7 @@ func (e *ImgElement) IfAlt(condition bool, s string) *ImgElement {
 }
 
 // The text alternative of the element's content.
-func (e *ImgElement) IfAltF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfAltf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Alt(fmt.Sprintf(format, args...))
 	}
@@ -303,7 +303,7 @@ func (e *ImgElement) Longdesc(s string) *ImgElement {
 }
 
 // A URL to a detailed description of the image.
-func (e *ImgElement) LongdescF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Longdescf(format string, args ...any) *ImgElement {
 	return e.Longdesc(fmt.Sprintf(format, args...))
 }
 
@@ -316,7 +316,7 @@ func (e *ImgElement) IfLongdesc(condition bool, s string) *ImgElement {
 }
 
 // A URL to a detailed description of the image.
-func (e *ImgElement) IfLongdescF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfLongdescf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Longdesc(fmt.Sprintf(format, args...))
 	}
@@ -390,7 +390,7 @@ func (e *ImgElement) Sizes(s string) *ImgElement {
 }
 
 // A set of source sizes.
-func (e *ImgElement) SizesF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Sizesf(format string, args ...any) *ImgElement {
 	return e.Sizes(fmt.Sprintf(format, args...))
 }
 
@@ -403,7 +403,7 @@ func (e *ImgElement) IfSizes(condition bool, s string) *ImgElement {
 }
 
 // A set of source sizes.
-func (e *ImgElement) IfSizesF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfSizesf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Sizes(fmt.Sprintf(format, args...))
 	}
@@ -430,7 +430,7 @@ func (e *ImgElement) Src(s string) *ImgElement {
 }
 
 // The image URL.
-func (e *ImgElement) SrcF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Srcf(format string, args ...any) *ImgElement {
 	return e.Src(fmt.Sprintf(format, args...))
 }
 
@@ -443,7 +443,7 @@ func (e *ImgElement) IfSrc(condition bool, s string) *ImgElement {
 }
 
 // The image URL.
-func (e *ImgElement) IfSrcF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfSrcf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Src(fmt.Sprintf(format, args...))
 	}
@@ -472,7 +472,7 @@ func (e *ImgElement) Srcset(s string) *ImgElement {
 
 // A list of one or more strings separated by commas indicating a set of
 // possible image sources for the user agent to use.
-func (e *ImgElement) SrcsetF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Srcsetf(format string, args ...any) *ImgElement {
 	return e.Srcset(fmt.Sprintf(format, args...))
 }
 
@@ -487,7 +487,7 @@ func (e *ImgElement) IfSrcset(condition bool, s string) *ImgElement {
 
 // A list of one or more strings separated by commas indicating a set of
 // possible image sources for the user agent to use.
-func (e *ImgElement) IfSrcsetF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfSrcsetf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Srcset(fmt.Sprintf(format, args...))
 	}
@@ -515,7 +515,7 @@ func (e *ImgElement) Usemap(s string) *ImgElement {
 }
 
 // The <map> element id to use as an image map.
-func (e *ImgElement) UsemapF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Usemapf(format string, args ...any) *ImgElement {
 	return e.Usemap(fmt.Sprintf(format, args...))
 }
 
@@ -528,7 +528,7 @@ func (e *ImgElement) IfUsemap(condition bool, s string) *ImgElement {
 }
 
 // The <map> element id to use as an image map.
-func (e *ImgElement) IfUsemapF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfUsemapf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Usemap(fmt.Sprintf(format, args...))
 	}
@@ -1153,7 +1153,7 @@ func (e *ImgElement) ID(s string) *ImgElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ImgElement) IDF(format string, args ...any) *ImgElement {
+func (e *ImgElement) IDf(format string, args ...any) *ImgElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -1170,7 +1170,7 @@ func (e *ImgElement) IfID(condition bool, s string) *ImgElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ImgElement) IfIDF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfIDf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1365,7 +1365,7 @@ func (e *ImgElement) Is(s string) *ImgElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ImgElement) IsF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Isf(format string, args ...any) *ImgElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1386,7 +1386,7 @@ func (e *ImgElement) IfIs(condition bool, s string) *ImgElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ImgElement) IfIsF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfIsf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1437,7 +1437,7 @@ func (e *ImgElement) Itemid(s string) *ImgElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ImgElement) ItemidF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Itemidf(format string, args ...any) *ImgElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1470,7 +1470,7 @@ func (e *ImgElement) IfItemid(condition bool, s string) *ImgElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ImgElement) IfItemidF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfItemidf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1519,7 +1519,7 @@ func (e *ImgElement) Itemprop(s string) *ImgElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ImgElement) ItempropF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Itempropf(format string, args ...any) *ImgElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1544,7 +1544,7 @@ func (e *ImgElement) IfItemprop(condition bool, s string) *ImgElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ImgElement) IfItempropF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfItempropf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1585,7 +1585,7 @@ func (e *ImgElement) Itemref(s string) *ImgElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ImgElement) ItemrefF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Itemreff(format string, args ...any) *ImgElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1606,7 +1606,7 @@ func (e *ImgElement) IfItemref(condition bool, s string) *ImgElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ImgElement) IfItemrefF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfItemreff(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1721,7 +1721,7 @@ func (e *ImgElement) Itemtype(s string) *ImgElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ImgElement) ItemtypeF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Itemtypef(format string, args ...any) *ImgElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1746,7 +1746,7 @@ func (e *ImgElement) IfItemtype(condition bool, s string) *ImgElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ImgElement) IfItemtypeF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfItemtypef(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1787,7 +1787,7 @@ func (e *ImgElement) Lang(s string) *ImgElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ImgElement) LangF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Langf(format string, args ...any) *ImgElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1808,7 +1808,7 @@ func (e *ImgElement) IfLang(condition bool, s string) *ImgElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ImgElement) IfLangF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfLangf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1847,7 +1847,7 @@ func (e *ImgElement) Nonce(s string) *ImgElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *ImgElement) NonceF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Noncef(format string, args ...any) *ImgElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1868,7 +1868,7 @@ func (e *ImgElement) IfNonce(condition bool, s string) *ImgElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *ImgElement) IfNonceF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfNoncef(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1993,7 +1993,7 @@ func (e *ImgElement) Role(s string) *ImgElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ImgElement) RoleF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Rolef(format string, args ...any) *ImgElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -2012,7 +2012,7 @@ func (e *ImgElement) IfRole(condition bool, s string) *ImgElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ImgElement) IfRoleF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfRolef(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -2048,7 +2048,7 @@ func (e *ImgElement) Slot(s string) *ImgElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ImgElement) SlotF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Slotf(format string, args ...any) *ImgElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -2067,7 +2067,7 @@ func (e *ImgElement) IfSlot(condition bool, s string) *ImgElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ImgElement) IfSlotF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfSlotf(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -2211,7 +2211,7 @@ func (e *ImgElement) StyleAdd(k string, v string) *ImgElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ImgElement) StyleAddF(k string, format string, args ...any) *ImgElement {
+func (e *ImgElement) StyleAddf(k string, format string, args ...any) *ImgElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -2226,9 +2226,9 @@ func (e *ImgElement) IfStyleAdd(condition bool, k string, v string) *ImgElement 
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ImgElement) IfStyleAddF(condition bool, k string, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfStyleAddf(condition bool, k string, format string, args ...any) *ImgElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2374,7 +2374,7 @@ func (e *ImgElement) Title(s string) *ImgElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ImgElement) TitleF(format string, args ...any) *ImgElement {
+func (e *ImgElement) Titlef(format string, args ...any) *ImgElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2417,7 +2417,7 @@ func (e *ImgElement) IfTitle(condition bool, s string) *ImgElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ImgElement) IfTitleF(condition bool, format string, args ...any) *ImgElement {
+func (e *ImgElement) IfTitlef(condition bool, format string, args ...any) *ImgElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

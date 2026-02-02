@@ -83,7 +83,7 @@ func (e *SVGLinearGradientElement) Text(text string) *SVGLinearGradientElement {
 	return e
 }
 
-func (e *SVGLinearGradientElement) TextF(format string, args ...any) *SVGLinearGradientElement {
+func (e *SVGLinearGradientElement) Textf(format string, args ...any) *SVGLinearGradientElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *SVGLinearGradientElement) IfText(condition bool, text string) *SVGLinea
 	return e
 }
 
-func (e *SVGLinearGradientElement) IfTextF(condition bool, format string, args ...any) *SVGLinearGradientElement {
+func (e *SVGLinearGradientElement) IfTextf(condition bool, format string, args ...any) *SVGLinearGradientElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *SVGLinearGradientElement) IfEscaped(condition bool, text string) *SVGLi
 	return e
 }
 
-func (e *SVGLinearGradientElement) EscapedF(format string, args ...any) *SVGLinearGradientElement {
+func (e *SVGLinearGradientElement) Escapedf(format string, args ...any) *SVGLinearGradientElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGLinearGradientElement) IfEscapedF(condition bool, format string, args ...any) *SVGLinearGradientElement {
+func (e *SVGLinearGradientElement) IfEscapedf(condition bool, format string, args ...any) *SVGLinearGradientElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -164,7 +164,7 @@ func (e *SVGLinearGradientElement) GradientTransform(s string) *SVGLinearGradien
 
 // The definition of how the gradient is applied, read about <a
 // href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/gradientTransform">gradientTransform</a>.
-func (e *SVGLinearGradientElement) GradientTransformF(format string, args ...any) *SVGLinearGradientElement {
+func (e *SVGLinearGradientElement) GradientTransformf(format string, args ...any) *SVGLinearGradientElement {
 	return e.GradientTransform(fmt.Sprintf(format, args...))
 }
 
@@ -179,7 +179,7 @@ func (e *SVGLinearGradientElement) IfGradientTransform(condition bool, s string)
 
 // The definition of how the gradient is applied, read about <a
 // href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/gradientTransform">gradientTransform</a>.
-func (e *SVGLinearGradientElement) IfGradientTransformF(condition bool, format string, args ...any) *SVGLinearGradientElement {
+func (e *SVGLinearGradientElement) IfGradientTransformf(condition bool, format string, args ...any) *SVGLinearGradientElement {
 	if condition {
 		e.GradientTransform(fmt.Sprintf(format, args...))
 	}
@@ -305,7 +305,7 @@ func (e *SVGLinearGradientElement) ID(s string) *SVGLinearGradientElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGLinearGradientElement) IDF(format string, args ...any) *SVGLinearGradientElement {
+func (e *SVGLinearGradientElement) IDf(format string, args ...any) *SVGLinearGradientElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -318,7 +318,7 @@ func (e *SVGLinearGradientElement) IfID(condition bool, s string) *SVGLinearGrad
 }
 
 // Specifies a unique id for an element
-func (e *SVGLinearGradientElement) IfIDF(condition bool, format string, args ...any) *SVGLinearGradientElement {
+func (e *SVGLinearGradientElement) IfIDf(condition bool, format string, args ...any) *SVGLinearGradientElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -444,7 +444,7 @@ func (e *SVGLinearGradientElement) StyleAdd(k string, v string) *SVGLinearGradie
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGLinearGradientElement) StyleAddF(k string, format string, args ...any) *SVGLinearGradientElement {
+func (e *SVGLinearGradientElement) StyleAddf(k string, format string, args ...any) *SVGLinearGradientElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -457,9 +457,9 @@ func (e *SVGLinearGradientElement) IfStyleAdd(condition bool, k string, v string
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGLinearGradientElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGLinearGradientElement {
+func (e *SVGLinearGradientElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGLinearGradientElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

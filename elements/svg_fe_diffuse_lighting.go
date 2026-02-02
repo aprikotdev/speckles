@@ -85,7 +85,7 @@ func (e *SVGFeDiffuseLightingElement) Text(text string) *SVGFeDiffuseLightingEle
 	return e
 }
 
-func (e *SVGFeDiffuseLightingElement) TextF(format string, args ...any) *SVGFeDiffuseLightingElement {
+func (e *SVGFeDiffuseLightingElement) Textf(format string, args ...any) *SVGFeDiffuseLightingElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -96,7 +96,7 @@ func (e *SVGFeDiffuseLightingElement) IfText(condition bool, text string) *SVGFe
 	return e
 }
 
-func (e *SVGFeDiffuseLightingElement) IfTextF(condition bool, format string, args ...any) *SVGFeDiffuseLightingElement {
+func (e *SVGFeDiffuseLightingElement) IfTextf(condition bool, format string, args ...any) *SVGFeDiffuseLightingElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -115,13 +115,13 @@ func (e *SVGFeDiffuseLightingElement) IfEscaped(condition bool, text string) *SV
 	return e
 }
 
-func (e *SVGFeDiffuseLightingElement) EscapedF(format string, args ...any) *SVGFeDiffuseLightingElement {
+func (e *SVGFeDiffuseLightingElement) Escapedf(format string, args ...any) *SVGFeDiffuseLightingElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGFeDiffuseLightingElement) IfEscapedF(condition bool, format string, args ...any) *SVGFeDiffuseLightingElement {
+func (e *SVGFeDiffuseLightingElement) IfEscapedf(condition bool, format string, args ...any) *SVGFeDiffuseLightingElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -136,7 +136,7 @@ func (e *SVGFeDiffuseLightingElement) In(s string) *SVGFeDiffuseLightingElement 
 }
 
 // The input for this filter.
-func (e *SVGFeDiffuseLightingElement) InF(format string, args ...any) *SVGFeDiffuseLightingElement {
+func (e *SVGFeDiffuseLightingElement) Inf(format string, args ...any) *SVGFeDiffuseLightingElement {
 	return e.In(fmt.Sprintf(format, args...))
 }
 
@@ -149,7 +149,7 @@ func (e *SVGFeDiffuseLightingElement) IfIn(condition bool, s string) *SVGFeDiffu
 }
 
 // The input for this filter.
-func (e *SVGFeDiffuseLightingElement) IfInF(condition bool, format string, args ...any) *SVGFeDiffuseLightingElement {
+func (e *SVGFeDiffuseLightingElement) IfInf(condition bool, format string, args ...any) *SVGFeDiffuseLightingElement {
 	if condition {
 		e.In(fmt.Sprintf(format, args...))
 	}
@@ -218,7 +218,7 @@ func (e *SVGFeDiffuseLightingElement) KernelUnitLength(s string) *SVGFeDiffuseLi
 // The kernelUnitLength Attribute defines the intended distance in current
 // filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
-func (e *SVGFeDiffuseLightingElement) KernelUnitLengthF(format string, args ...any) *SVGFeDiffuseLightingElement {
+func (e *SVGFeDiffuseLightingElement) KernelUnitLengthf(format string, args ...any) *SVGFeDiffuseLightingElement {
 	return e.KernelUnitLength(fmt.Sprintf(format, args...))
 }
 
@@ -235,7 +235,7 @@ func (e *SVGFeDiffuseLightingElement) IfKernelUnitLength(condition bool, s strin
 // The kernelUnitLength Attribute defines the intended distance in current
 // filter units (i.e., units as determined by the value of Attribute
 // 'primitiveUnits') for dx and dy in the surface normal calculation formulas.
-func (e *SVGFeDiffuseLightingElement) IfKernelUnitLengthF(condition bool, format string, args ...any) *SVGFeDiffuseLightingElement {
+func (e *SVGFeDiffuseLightingElement) IfKernelUnitLengthf(condition bool, format string, args ...any) *SVGFeDiffuseLightingElement {
 	if condition {
 		e.KernelUnitLength(fmt.Sprintf(format, args...))
 	}
@@ -264,7 +264,7 @@ func (e *SVGFeDiffuseLightingElement) ID(s string) *SVGFeDiffuseLightingElement 
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeDiffuseLightingElement) IDF(format string, args ...any) *SVGFeDiffuseLightingElement {
+func (e *SVGFeDiffuseLightingElement) IDf(format string, args ...any) *SVGFeDiffuseLightingElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -277,7 +277,7 @@ func (e *SVGFeDiffuseLightingElement) IfID(condition bool, s string) *SVGFeDiffu
 }
 
 // Specifies a unique id for an element
-func (e *SVGFeDiffuseLightingElement) IfIDF(condition bool, format string, args ...any) *SVGFeDiffuseLightingElement {
+func (e *SVGFeDiffuseLightingElement) IfIDf(condition bool, format string, args ...any) *SVGFeDiffuseLightingElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -403,7 +403,7 @@ func (e *SVGFeDiffuseLightingElement) StyleAdd(k string, v string) *SVGFeDiffuse
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeDiffuseLightingElement) StyleAddF(k string, format string, args ...any) *SVGFeDiffuseLightingElement {
+func (e *SVGFeDiffuseLightingElement) StyleAddf(k string, format string, args ...any) *SVGFeDiffuseLightingElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -416,9 +416,9 @@ func (e *SVGFeDiffuseLightingElement) IfStyleAdd(condition bool, k string, v str
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGFeDiffuseLightingElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGFeDiffuseLightingElement {
+func (e *SVGFeDiffuseLightingElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGFeDiffuseLightingElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

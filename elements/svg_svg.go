@@ -84,7 +84,7 @@ func (e *SVGSVGElement) Text(text string) *SVGSVGElement {
 	return e
 }
 
-func (e *SVGSVGElement) TextF(format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) Textf(format string, args ...any) *SVGSVGElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGSVGElement) IfText(condition bool, text string) *SVGSVGElement {
 	return e
 }
 
-func (e *SVGSVGElement) IfTextF(condition bool, format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) IfTextf(condition bool, format string, args ...any) *SVGSVGElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGSVGElement) IfEscaped(condition bool, text string) *SVGSVGElement {
 	return e
 }
 
-func (e *SVGSVGElement) EscapedF(format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) Escapedf(format string, args ...any) *SVGSVGElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGSVGElement) IfEscapedF(condition bool, format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) IfEscapedf(condition bool, format string, args ...any) *SVGSVGElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -137,7 +137,7 @@ func (e *SVGSVGElement) X(s string) *SVGSVGElement {
 
 // The x-axis coordinate of the side of the rectangular region which is closest
 // to the user.
-func (e *SVGSVGElement) XF(format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) Xf(format string, args ...any) *SVGSVGElement {
 	return e.X(fmt.Sprintf(format, args...))
 }
 
@@ -152,7 +152,7 @@ func (e *SVGSVGElement) IfX(condition bool, s string) *SVGSVGElement {
 
 // The x-axis coordinate of the side of the rectangular region which is closest
 // to the user.
-func (e *SVGSVGElement) IfXF(condition bool, format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) IfXf(condition bool, format string, args ...any) *SVGSVGElement {
 	if condition {
 		e.X(fmt.Sprintf(format, args...))
 	}
@@ -182,7 +182,7 @@ func (e *SVGSVGElement) Y(s string) *SVGSVGElement {
 
 // The y-axis coordinate of the side of the rectangular region which is closest
 // to the user.
-func (e *SVGSVGElement) YF(format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) Yf(format string, args ...any) *SVGSVGElement {
 	return e.Y(fmt.Sprintf(format, args...))
 }
 
@@ -197,7 +197,7 @@ func (e *SVGSVGElement) IfY(condition bool, s string) *SVGSVGElement {
 
 // The y-axis coordinate of the side of the rectangular region which is closest
 // to the user.
-func (e *SVGSVGElement) IfYF(condition bool, format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) IfYf(condition bool, format string, args ...any) *SVGSVGElement {
 	if condition {
 		e.Y(fmt.Sprintf(format, args...))
 	}
@@ -225,7 +225,7 @@ func (e *SVGSVGElement) Width(s string) *SVGSVGElement {
 }
 
 // The width of the rectangular region.
-func (e *SVGSVGElement) WidthF(format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) Widthf(format string, args ...any) *SVGSVGElement {
 	return e.Width(fmt.Sprintf(format, args...))
 }
 
@@ -238,7 +238,7 @@ func (e *SVGSVGElement) IfWidth(condition bool, s string) *SVGSVGElement {
 }
 
 // The width of the rectangular region.
-func (e *SVGSVGElement) IfWidthF(condition bool, format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) IfWidthf(condition bool, format string, args ...any) *SVGSVGElement {
 	if condition {
 		e.Width(fmt.Sprintf(format, args...))
 	}
@@ -265,7 +265,7 @@ func (e *SVGSVGElement) Height(s string) *SVGSVGElement {
 }
 
 // The height of the rectangular region.
-func (e *SVGSVGElement) HeightF(format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) Heightf(format string, args ...any) *SVGSVGElement {
 	return e.Height(fmt.Sprintf(format, args...))
 }
 
@@ -278,7 +278,7 @@ func (e *SVGSVGElement) IfHeight(condition bool, s string) *SVGSVGElement {
 }
 
 // The height of the rectangular region.
-func (e *SVGSVGElement) IfHeightF(condition bool, format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) IfHeightf(condition bool, format string, args ...any) *SVGSVGElement {
 	if condition {
 		e.Height(fmt.Sprintf(format, args...))
 	}
@@ -307,7 +307,7 @@ func (e *SVGSVGElement) ViewBox(s string) *SVGSVGElement {
 
 // The position and size of the viewport (the viewBox) is defined by the viewBox
 // Attribute.
-func (e *SVGSVGElement) ViewBoxF(format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) ViewBoxf(format string, args ...any) *SVGSVGElement {
 	return e.ViewBox(fmt.Sprintf(format, args...))
 }
 
@@ -322,7 +322,7 @@ func (e *SVGSVGElement) IfViewBox(condition bool, s string) *SVGSVGElement {
 
 // The position and size of the viewport (the viewBox) is defined by the viewBox
 // Attribute.
-func (e *SVGSVGElement) IfViewBoxF(condition bool, format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) IfViewBoxf(condition bool, format string, args ...any) *SVGSVGElement {
 	if condition {
 		e.ViewBox(fmt.Sprintf(format, args...))
 	}
@@ -402,7 +402,7 @@ func (e *SVGSVGElement) ID(s string) *SVGSVGElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGSVGElement) IDF(format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) IDf(format string, args ...any) *SVGSVGElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -415,7 +415,7 @@ func (e *SVGSVGElement) IfID(condition bool, s string) *SVGSVGElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGSVGElement) IfIDF(condition bool, format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) IfIDf(condition bool, format string, args ...any) *SVGSVGElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -541,7 +541,7 @@ func (e *SVGSVGElement) StyleAdd(k string, v string) *SVGSVGElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGSVGElement) StyleAddF(k string, format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) StyleAddf(k string, format string, args ...any) *SVGSVGElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -554,9 +554,9 @@ func (e *SVGSVGElement) IfStyleAdd(condition bool, k string, v string) *SVGSVGEl
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGSVGElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGSVGElement {
+func (e *SVGSVGElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGSVGElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

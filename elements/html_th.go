@@ -83,7 +83,7 @@ func (e *ThElement) Text(text string) *ThElement {
 	return e
 }
 
-func (e *ThElement) TextF(format string, args ...any) *ThElement {
+func (e *ThElement) Textf(format string, args ...any) *ThElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *ThElement) IfText(condition bool, text string) *ThElement {
 	return e
 }
 
-func (e *ThElement) IfTextF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfTextf(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *ThElement) IfEscaped(condition bool, text string) *ThElement {
 	return e
 }
 
-func (e *ThElement) EscapedF(format string, args ...any) *ThElement {
+func (e *ThElement) Escapedf(format string, args ...any) *ThElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *ThElement) IfEscapedF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfEscapedf(condition bool, format string, args ...any) *ThElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -136,7 +136,7 @@ func (e *ThElement) Abbr(s string) *ThElement {
 
 // Alternative label to use for the header cell when referencing the cell in
 // other contexts.
-func (e *ThElement) AbbrF(format string, args ...any) *ThElement {
+func (e *ThElement) Abbrf(format string, args ...any) *ThElement {
 	return e.Abbr(fmt.Sprintf(format, args...))
 }
 
@@ -151,7 +151,7 @@ func (e *ThElement) IfAbbr(condition bool, s string) *ThElement {
 
 // Alternative label to use for the header cell when referencing the cell in
 // other contexts.
-func (e *ThElement) IfAbbrF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfAbbrf(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.Abbr(fmt.Sprintf(format, args...))
 	}
@@ -206,7 +206,7 @@ func (e *ThElement) Headers(s string) *ThElement {
 }
 
 // Specifies one or more header cells a cell is related to.
-func (e *ThElement) HeadersF(format string, args ...any) *ThElement {
+func (e *ThElement) Headersf(format string, args ...any) *ThElement {
 	return e.Headers(fmt.Sprintf(format, args...))
 }
 
@@ -219,7 +219,7 @@ func (e *ThElement) IfHeaders(condition bool, s string) *ThElement {
 }
 
 // Specifies one or more header cells a cell is related to.
-func (e *ThElement) IfHeadersF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfHeadersf(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.Headers(fmt.Sprintf(format, args...))
 	}
@@ -876,7 +876,7 @@ func (e *ThElement) ID(s string) *ThElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ThElement) IDF(format string, args ...any) *ThElement {
+func (e *ThElement) IDf(format string, args ...any) *ThElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -893,7 +893,7 @@ func (e *ThElement) IfID(condition bool, s string) *ThElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *ThElement) IfIDF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfIDf(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1088,7 +1088,7 @@ func (e *ThElement) Is(s string) *ThElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ThElement) IsF(format string, args ...any) *ThElement {
+func (e *ThElement) Isf(format string, args ...any) *ThElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1109,7 +1109,7 @@ func (e *ThElement) IfIs(condition bool, s string) *ThElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *ThElement) IfIsF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfIsf(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1160,7 +1160,7 @@ func (e *ThElement) Itemid(s string) *ThElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ThElement) ItemidF(format string, args ...any) *ThElement {
+func (e *ThElement) Itemidf(format string, args ...any) *ThElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1193,7 +1193,7 @@ func (e *ThElement) IfItemid(condition bool, s string) *ThElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *ThElement) IfItemidF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfItemidf(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1242,7 +1242,7 @@ func (e *ThElement) Itemprop(s string) *ThElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ThElement) ItempropF(format string, args ...any) *ThElement {
+func (e *ThElement) Itempropf(format string, args ...any) *ThElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1267,7 +1267,7 @@ func (e *ThElement) IfItemprop(condition bool, s string) *ThElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *ThElement) IfItempropF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfItempropf(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1308,7 +1308,7 @@ func (e *ThElement) Itemref(s string) *ThElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ThElement) ItemrefF(format string, args ...any) *ThElement {
+func (e *ThElement) Itemreff(format string, args ...any) *ThElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1329,7 +1329,7 @@ func (e *ThElement) IfItemref(condition bool, s string) *ThElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *ThElement) IfItemrefF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfItemreff(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1444,7 +1444,7 @@ func (e *ThElement) Itemtype(s string) *ThElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ThElement) ItemtypeF(format string, args ...any) *ThElement {
+func (e *ThElement) Itemtypef(format string, args ...any) *ThElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1469,7 +1469,7 @@ func (e *ThElement) IfItemtype(condition bool, s string) *ThElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *ThElement) IfItemtypeF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfItemtypef(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1510,7 +1510,7 @@ func (e *ThElement) Lang(s string) *ThElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ThElement) LangF(format string, args ...any) *ThElement {
+func (e *ThElement) Langf(format string, args ...any) *ThElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1531,7 +1531,7 @@ func (e *ThElement) IfLang(condition bool, s string) *ThElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *ThElement) IfLangF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfLangf(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1570,7 +1570,7 @@ func (e *ThElement) Nonce(s string) *ThElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *ThElement) NonceF(format string, args ...any) *ThElement {
+func (e *ThElement) Noncef(format string, args ...any) *ThElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1591,7 +1591,7 @@ func (e *ThElement) IfNonce(condition bool, s string) *ThElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *ThElement) IfNonceF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfNoncef(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1716,7 +1716,7 @@ func (e *ThElement) Role(s string) *ThElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ThElement) RoleF(format string, args ...any) *ThElement {
+func (e *ThElement) Rolef(format string, args ...any) *ThElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1735,7 +1735,7 @@ func (e *ThElement) IfRole(condition bool, s string) *ThElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *ThElement) IfRoleF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfRolef(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1771,7 +1771,7 @@ func (e *ThElement) Slot(s string) *ThElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ThElement) SlotF(format string, args ...any) *ThElement {
+func (e *ThElement) Slotf(format string, args ...any) *ThElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1790,7 +1790,7 @@ func (e *ThElement) IfSlot(condition bool, s string) *ThElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *ThElement) IfSlotF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfSlotf(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1934,7 +1934,7 @@ func (e *ThElement) StyleAdd(k string, v string) *ThElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ThElement) StyleAddF(k string, format string, args ...any) *ThElement {
+func (e *ThElement) StyleAddf(k string, format string, args ...any) *ThElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1949,9 +1949,9 @@ func (e *ThElement) IfStyleAdd(condition bool, k string, v string) *ThElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *ThElement) IfStyleAddF(condition bool, k string, format string, args ...any) *ThElement {
+func (e *ThElement) IfStyleAddf(condition bool, k string, format string, args ...any) *ThElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2097,7 +2097,7 @@ func (e *ThElement) Title(s string) *ThElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ThElement) TitleF(format string, args ...any) *ThElement {
+func (e *ThElement) Titlef(format string, args ...any) *ThElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2140,7 +2140,7 @@ func (e *ThElement) IfTitle(condition bool, s string) *ThElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *ThElement) IfTitleF(condition bool, format string, args ...any) *ThElement {
+func (e *ThElement) IfTitlef(condition bool, format string, args ...any) *ThElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

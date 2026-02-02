@@ -83,7 +83,7 @@ func (e *FormElement) Text(text string) *FormElement {
 	return e
 }
 
-func (e *FormElement) TextF(format string, args ...any) *FormElement {
+func (e *FormElement) Textf(format string, args ...any) *FormElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -94,7 +94,7 @@ func (e *FormElement) IfText(condition bool, text string) *FormElement {
 	return e
 }
 
-func (e *FormElement) IfTextF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfTextf(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -113,13 +113,13 @@ func (e *FormElement) IfEscaped(condition bool, text string) *FormElement {
 	return e
 }
 
-func (e *FormElement) EscapedF(format string, args ...any) *FormElement {
+func (e *FormElement) Escapedf(format string, args ...any) *FormElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *FormElement) IfEscapedF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfEscapedf(condition bool, format string, args ...any) *FormElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -136,7 +136,7 @@ func (e *FormElement) AcceptCharset(s string) *FormElement {
 
 // Specifies the character encodings that are to be used for the form
 // submission.
-func (e *FormElement) AcceptCharsetF(format string, args ...any) *FormElement {
+func (e *FormElement) AcceptCharsetf(format string, args ...any) *FormElement {
 	return e.AcceptCharset(fmt.Sprintf(format, args...))
 }
 
@@ -151,7 +151,7 @@ func (e *FormElement) IfAcceptCharset(condition bool, s string) *FormElement {
 
 // Specifies the character encodings that are to be used for the form
 // submission.
-func (e *FormElement) IfAcceptCharsetF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfAcceptCharsetf(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.AcceptCharset(fmt.Sprintf(format, args...))
 	}
@@ -181,7 +181,7 @@ func (e *FormElement) Action(s string) *FormElement {
 
 // Specifies where to send the form-data when a form is submitted. Only for
 // type="submit" and type="image".
-func (e *FormElement) ActionF(format string, args ...any) *FormElement {
+func (e *FormElement) Actionf(format string, args ...any) *FormElement {
 	return e.Action(fmt.Sprintf(format, args...))
 }
 
@@ -196,7 +196,7 @@ func (e *FormElement) IfAction(condition bool, s string) *FormElement {
 
 // Specifies where to send the form-data when a form is submitted. Only for
 // type="submit" and type="image".
-func (e *FormElement) IfActionF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfActionf(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.Action(fmt.Sprintf(format, args...))
 	}
@@ -317,7 +317,7 @@ func (e *FormElement) Name(s string) *FormElement {
 
 // Name of the element. For example used by the server to identify the fields in
 // form submits.
-func (e *FormElement) NameF(format string, args ...any) *FormElement {
+func (e *FormElement) Namef(format string, args ...any) *FormElement {
 	return e.Name(fmt.Sprintf(format, args...))
 }
 
@@ -332,7 +332,7 @@ func (e *FormElement) IfName(condition bool, s string) *FormElement {
 
 // Name of the element. For example used by the server to identify the fields in
 // form submits.
-func (e *FormElement) IfNameF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfNamef(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.Name(fmt.Sprintf(format, args...))
 	}
@@ -1029,7 +1029,7 @@ func (e *FormElement) ID(s string) *FormElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *FormElement) IDF(format string, args ...any) *FormElement {
+func (e *FormElement) IDf(format string, args ...any) *FormElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -1046,7 +1046,7 @@ func (e *FormElement) IfID(condition bool, s string) *FormElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *FormElement) IfIDF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfIDf(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -1241,7 +1241,7 @@ func (e *FormElement) Is(s string) *FormElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *FormElement) IsF(format string, args ...any) *FormElement {
+func (e *FormElement) Isf(format string, args ...any) *FormElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -1262,7 +1262,7 @@ func (e *FormElement) IfIs(condition bool, s string) *FormElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *FormElement) IfIsF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfIsf(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1313,7 +1313,7 @@ func (e *FormElement) Itemid(s string) *FormElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *FormElement) ItemidF(format string, args ...any) *FormElement {
+func (e *FormElement) Itemidf(format string, args ...any) *FormElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1346,7 +1346,7 @@ func (e *FormElement) IfItemid(condition bool, s string) *FormElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *FormElement) IfItemidF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfItemidf(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1395,7 +1395,7 @@ func (e *FormElement) Itemprop(s string) *FormElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *FormElement) ItempropF(format string, args ...any) *FormElement {
+func (e *FormElement) Itempropf(format string, args ...any) *FormElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1420,7 +1420,7 @@ func (e *FormElement) IfItemprop(condition bool, s string) *FormElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *FormElement) IfItempropF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfItempropf(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1461,7 +1461,7 @@ func (e *FormElement) Itemref(s string) *FormElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *FormElement) ItemrefF(format string, args ...any) *FormElement {
+func (e *FormElement) Itemreff(format string, args ...any) *FormElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1482,7 +1482,7 @@ func (e *FormElement) IfItemref(condition bool, s string) *FormElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *FormElement) IfItemrefF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfItemreff(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1597,7 +1597,7 @@ func (e *FormElement) Itemtype(s string) *FormElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *FormElement) ItemtypeF(format string, args ...any) *FormElement {
+func (e *FormElement) Itemtypef(format string, args ...any) *FormElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1622,7 +1622,7 @@ func (e *FormElement) IfItemtype(condition bool, s string) *FormElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *FormElement) IfItemtypeF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfItemtypef(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1663,7 +1663,7 @@ func (e *FormElement) Lang(s string) *FormElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *FormElement) LangF(format string, args ...any) *FormElement {
+func (e *FormElement) Langf(format string, args ...any) *FormElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1684,7 +1684,7 @@ func (e *FormElement) IfLang(condition bool, s string) *FormElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *FormElement) IfLangF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfLangf(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1723,7 +1723,7 @@ func (e *FormElement) Nonce(s string) *FormElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *FormElement) NonceF(format string, args ...any) *FormElement {
+func (e *FormElement) Noncef(format string, args ...any) *FormElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1744,7 +1744,7 @@ func (e *FormElement) IfNonce(condition bool, s string) *FormElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *FormElement) IfNonceF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfNoncef(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1869,7 +1869,7 @@ func (e *FormElement) Role(s string) *FormElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *FormElement) RoleF(format string, args ...any) *FormElement {
+func (e *FormElement) Rolef(format string, args ...any) *FormElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1888,7 +1888,7 @@ func (e *FormElement) IfRole(condition bool, s string) *FormElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *FormElement) IfRoleF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfRolef(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1924,7 +1924,7 @@ func (e *FormElement) Slot(s string) *FormElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *FormElement) SlotF(format string, args ...any) *FormElement {
+func (e *FormElement) Slotf(format string, args ...any) *FormElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1943,7 +1943,7 @@ func (e *FormElement) IfSlot(condition bool, s string) *FormElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *FormElement) IfSlotF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfSlotf(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -2087,7 +2087,7 @@ func (e *FormElement) StyleAdd(k string, v string) *FormElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *FormElement) StyleAddF(k string, format string, args ...any) *FormElement {
+func (e *FormElement) StyleAddf(k string, format string, args ...any) *FormElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -2102,9 +2102,9 @@ func (e *FormElement) IfStyleAdd(condition bool, k string, v string) *FormElemen
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *FormElement) IfStyleAddF(condition bool, k string, format string, args ...any) *FormElement {
+func (e *FormElement) IfStyleAddf(condition bool, k string, format string, args ...any) *FormElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -2250,7 +2250,7 @@ func (e *FormElement) Title(s string) *FormElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *FormElement) TitleF(format string, args ...any) *FormElement {
+func (e *FormElement) Titlef(format string, args ...any) *FormElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2293,7 +2293,7 @@ func (e *FormElement) IfTitle(condition bool, s string) *FormElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *FormElement) IfTitleF(condition bool, format string, args ...any) *FormElement {
+func (e *FormElement) IfTitlef(condition bool, format string, args ...any) *FormElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}

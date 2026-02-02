@@ -84,7 +84,7 @@ func (e *SVGMetadataElement) Text(text string) *SVGMetadataElement {
 	return e
 }
 
-func (e *SVGMetadataElement) TextF(format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) Textf(format string, args ...any) *SVGMetadataElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *SVGMetadataElement) IfText(condition bool, text string) *SVGMetadataEle
 	return e
 }
 
-func (e *SVGMetadataElement) IfTextF(condition bool, format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) IfTextf(condition bool, format string, args ...any) *SVGMetadataElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *SVGMetadataElement) IfEscaped(condition bool, text string) *SVGMetadata
 	return e
 }
 
-func (e *SVGMetadataElement) EscapedF(format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) Escapedf(format string, args ...any) *SVGMetadataElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGMetadataElement) IfEscapedF(condition bool, format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) IfEscapedf(condition bool, format string, args ...any) *SVGMetadataElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -137,7 +137,7 @@ func (e *SVGMetadataElement) RequiredExtensions(s string) *SVGMetadataElement {
 
 // A space-separated list of required extensions, indicating that the parent SVG
 // document must include the specified extensions for this element to be valid.
-func (e *SVGMetadataElement) RequiredExtensionsF(format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) RequiredExtensionsf(format string, args ...any) *SVGMetadataElement {
 	return e.RequiredExtensions(fmt.Sprintf(format, args...))
 }
 
@@ -152,7 +152,7 @@ func (e *SVGMetadataElement) IfRequiredExtensions(condition bool, s string) *SVG
 
 // A space-separated list of required extensions, indicating that the parent SVG
 // document must include the specified extensions for this element to be valid.
-func (e *SVGMetadataElement) IfRequiredExtensionsF(condition bool, format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) IfRequiredExtensionsf(condition bool, format string, args ...any) *SVGMetadataElement {
 	if condition {
 		e.RequiredExtensions(fmt.Sprintf(format, args...))
 	}
@@ -184,7 +184,7 @@ func (e *SVGMetadataElement) RequiredFeatures(s string) *SVGMetadataElement {
 // A space-separated list of required features, indicating that the parent SVG
 // document must include support for all of the specified features for this
 // element to be valid.
-func (e *SVGMetadataElement) RequiredFeaturesF(format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) RequiredFeaturesf(format string, args ...any) *SVGMetadataElement {
 	return e.RequiredFeatures(fmt.Sprintf(format, args...))
 }
 
@@ -201,7 +201,7 @@ func (e *SVGMetadataElement) IfRequiredFeatures(condition bool, s string) *SVGMe
 // A space-separated list of required features, indicating that the parent SVG
 // document must include support for all of the specified features for this
 // element to be valid.
-func (e *SVGMetadataElement) IfRequiredFeaturesF(condition bool, format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) IfRequiredFeaturesf(condition bool, format string, args ...any) *SVGMetadataElement {
 	if condition {
 		e.RequiredFeatures(fmt.Sprintf(format, args...))
 	}
@@ -234,7 +234,7 @@ func (e *SVGMetadataElement) SystemLanguage(s string) *SVGMetadataElement {
 // A space-separated list of language codes, indicating that the parent SVG
 // document must include support for all of the specified languages for this
 // element to be valid.
-func (e *SVGMetadataElement) SystemLanguageF(format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) SystemLanguagef(format string, args ...any) *SVGMetadataElement {
 	return e.SystemLanguage(fmt.Sprintf(format, args...))
 }
 
@@ -251,7 +251,7 @@ func (e *SVGMetadataElement) IfSystemLanguage(condition bool, s string) *SVGMeta
 // A space-separated list of language codes, indicating that the parent SVG
 // document must include support for all of the specified languages for this
 // element to be valid.
-func (e *SVGMetadataElement) IfSystemLanguageF(condition bool, format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) IfSystemLanguagef(condition bool, format string, args ...any) *SVGMetadataElement {
 	if condition {
 		e.SystemLanguage(fmt.Sprintf(format, args...))
 	}
@@ -280,7 +280,7 @@ func (e *SVGMetadataElement) ID(s string) *SVGMetadataElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGMetadataElement) IDF(format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) IDf(format string, args ...any) *SVGMetadataElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -293,7 +293,7 @@ func (e *SVGMetadataElement) IfID(condition bool, s string) *SVGMetadataElement 
 }
 
 // Specifies a unique id for an element
-func (e *SVGMetadataElement) IfIDF(condition bool, format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) IfIDf(condition bool, format string, args ...any) *SVGMetadataElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -419,7 +419,7 @@ func (e *SVGMetadataElement) StyleAdd(k string, v string) *SVGMetadataElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGMetadataElement) StyleAddF(k string, format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) StyleAddf(k string, format string, args ...any) *SVGMetadataElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -432,9 +432,9 @@ func (e *SVGMetadataElement) IfStyleAdd(condition bool, k string, v string) *SVG
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGMetadataElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGMetadataElement {
+func (e *SVGMetadataElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGMetadataElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

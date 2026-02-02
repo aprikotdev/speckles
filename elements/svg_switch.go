@@ -87,7 +87,7 @@ func (e *SVGSwitchElement) Text(text string) *SVGSwitchElement {
 	return e
 }
 
-func (e *SVGSwitchElement) TextF(format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) Textf(format string, args ...any) *SVGSwitchElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -98,7 +98,7 @@ func (e *SVGSwitchElement) IfText(condition bool, text string) *SVGSwitchElement
 	return e
 }
 
-func (e *SVGSwitchElement) IfTextF(condition bool, format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) IfTextf(condition bool, format string, args ...any) *SVGSwitchElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -117,13 +117,13 @@ func (e *SVGSwitchElement) IfEscaped(condition bool, text string) *SVGSwitchElem
 	return e
 }
 
-func (e *SVGSwitchElement) EscapedF(format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) Escapedf(format string, args ...any) *SVGSwitchElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *SVGSwitchElement) IfEscapedF(condition bool, format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) IfEscapedf(condition bool, format string, args ...any) *SVGSwitchElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -142,7 +142,7 @@ func (e *SVGSwitchElement) RequiredFeatures(s string) *SVGSwitchElement {
 // A space-separated list of required features, indicating that the parent SVG
 // document must include support for all of the specified features for this
 // element to be valid.
-func (e *SVGSwitchElement) RequiredFeaturesF(format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) RequiredFeaturesf(format string, args ...any) *SVGSwitchElement {
 	return e.RequiredFeatures(fmt.Sprintf(format, args...))
 }
 
@@ -159,7 +159,7 @@ func (e *SVGSwitchElement) IfRequiredFeatures(condition bool, s string) *SVGSwit
 // A space-separated list of required features, indicating that the parent SVG
 // document must include support for all of the specified features for this
 // element to be valid.
-func (e *SVGSwitchElement) IfRequiredFeaturesF(condition bool, format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) IfRequiredFeaturesf(condition bool, format string, args ...any) *SVGSwitchElement {
 	if condition {
 		e.RequiredFeatures(fmt.Sprintf(format, args...))
 	}
@@ -190,7 +190,7 @@ func (e *SVGSwitchElement) RequiredExtensions(s string) *SVGSwitchElement {
 
 // A space-separated list of required extensions, indicating that the parent SVG
 // document must include the specified extensions for this element to be valid.
-func (e *SVGSwitchElement) RequiredExtensionsF(format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) RequiredExtensionsf(format string, args ...any) *SVGSwitchElement {
 	return e.RequiredExtensions(fmt.Sprintf(format, args...))
 }
 
@@ -205,7 +205,7 @@ func (e *SVGSwitchElement) IfRequiredExtensions(condition bool, s string) *SVGSw
 
 // A space-separated list of required extensions, indicating that the parent SVG
 // document must include the specified extensions for this element to be valid.
-func (e *SVGSwitchElement) IfRequiredExtensionsF(condition bool, format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) IfRequiredExtensionsf(condition bool, format string, args ...any) *SVGSwitchElement {
 	if condition {
 		e.RequiredExtensions(fmt.Sprintf(format, args...))
 	}
@@ -237,7 +237,7 @@ func (e *SVGSwitchElement) SystemLanguage(s string) *SVGSwitchElement {
 // A space-separated list of language codes, indicating that the parent SVG
 // document must include support for all of the specified languages for this
 // element to be valid.
-func (e *SVGSwitchElement) SystemLanguageF(format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) SystemLanguagef(format string, args ...any) *SVGSwitchElement {
 	return e.SystemLanguage(fmt.Sprintf(format, args...))
 }
 
@@ -254,7 +254,7 @@ func (e *SVGSwitchElement) IfSystemLanguage(condition bool, s string) *SVGSwitch
 // A space-separated list of language codes, indicating that the parent SVG
 // document must include support for all of the specified languages for this
 // element to be valid.
-func (e *SVGSwitchElement) IfSystemLanguageF(condition bool, format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) IfSystemLanguagef(condition bool, format string, args ...any) *SVGSwitchElement {
 	if condition {
 		e.SystemLanguage(fmt.Sprintf(format, args...))
 	}
@@ -283,7 +283,7 @@ func (e *SVGSwitchElement) ID(s string) *SVGSwitchElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGSwitchElement) IDF(format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) IDf(format string, args ...any) *SVGSwitchElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -296,7 +296,7 @@ func (e *SVGSwitchElement) IfID(condition bool, s string) *SVGSwitchElement {
 }
 
 // Specifies a unique id for an element
-func (e *SVGSwitchElement) IfIDF(condition bool, format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) IfIDf(condition bool, format string, args ...any) *SVGSwitchElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -422,7 +422,7 @@ func (e *SVGSwitchElement) StyleAdd(k string, v string) *SVGSwitchElement {
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGSwitchElement) StyleAddF(k string, format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) StyleAddf(k string, format string, args ...any) *SVGSwitchElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -435,9 +435,9 @@ func (e *SVGSwitchElement) IfStyleAdd(condition bool, k string, v string) *SVGSw
 }
 
 // Specifies an inline CSS style for an element
-func (e *SVGSwitchElement) IfStyleAddF(condition bool, k string, format string, args ...any) *SVGSwitchElement {
+func (e *SVGSwitchElement) IfStyleAddf(condition bool, k string, format string, args ...any) *SVGSwitchElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }

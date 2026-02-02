@@ -84,7 +84,7 @@ func (e *QElement) Text(text string) *QElement {
 	return e
 }
 
-func (e *QElement) TextF(format string, args ...any) *QElement {
+func (e *QElement) Textf(format string, args ...any) *QElement {
 	return e.Text(fmt.Sprintf(format, args...))
 }
 
@@ -95,7 +95,7 @@ func (e *QElement) IfText(condition bool, text string) *QElement {
 	return e
 }
 
-func (e *QElement) IfTextF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfTextf(condition bool, format string, args ...any) *QElement {
 	if condition {
 		e.descendants = append(e.descendants, Text(fmt.Sprintf(format, args...)))
 	}
@@ -114,13 +114,13 @@ func (e *QElement) IfEscaped(condition bool, text string) *QElement {
 	return e
 }
 
-func (e *QElement) EscapedF(format string, args ...any) *QElement {
+func (e *QElement) Escapedf(format string, args ...any) *QElement {
 	return e.Escaped(fmt.Sprintf(format, args...))
 }
 
-func (e *QElement) IfEscapedF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfEscapedf(condition bool, format string, args ...any) *QElement {
 	if condition {
-		e.descendants = append(e.descendants, EscapedF(format, args...))
+		e.descendants = append(e.descendants, Escapedf(format, args...))
 	}
 	return e
 }
@@ -135,7 +135,7 @@ func (e *QElement) Cite(s string) *QElement {
 }
 
 // Contains a URI which points to the source of the quote or change.
-func (e *QElement) CiteF(format string, args ...any) *QElement {
+func (e *QElement) Citef(format string, args ...any) *QElement {
 	return e.Cite(fmt.Sprintf(format, args...))
 }
 
@@ -148,7 +148,7 @@ func (e *QElement) IfCite(condition bool, s string) *QElement {
 }
 
 // Contains a URI which points to the source of the quote or change.
-func (e *QElement) IfCiteF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfCitef(condition bool, format string, args ...any) *QElement {
 	if condition {
 		e.Cite(fmt.Sprintf(format, args...))
 	}
@@ -746,7 +746,7 @@ func (e *QElement) ID(s string) *QElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *QElement) IDF(format string, args ...any) *QElement {
+func (e *QElement) IDf(format string, args ...any) *QElement {
 	return e.ID(fmt.Sprintf(format, args...))
 }
 
@@ -763,7 +763,7 @@ func (e *QElement) IfID(condition bool, s string) *QElement {
 // The id global Attribute defines a unique identifier (ID) which must be unique
 // in the whole document. Its purpose is to identify the element when linking
 // (using a fragment identifier), scripting, or styling (with CSS).
-func (e *QElement) IfIDF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfIDf(condition bool, format string, args ...any) *QElement {
 	if condition {
 		e.ID(fmt.Sprintf(format, args...))
 	}
@@ -958,7 +958,7 @@ func (e *QElement) Is(s string) *QElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *QElement) IsF(format string, args ...any) *QElement {
+func (e *QElement) Isf(format string, args ...any) *QElement {
 	return e.Is(fmt.Sprintf(format, args...))
 }
 
@@ -979,7 +979,7 @@ func (e *QElement) IfIs(condition bool, s string) *QElement {
 // elements for more details). This attribute can only be used if the specified
 // custom element name has been successfully defined in the current document,
 // and extends the element type it is being applied to.
-func (e *QElement) IfIsF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfIsf(condition bool, format string, args ...any) *QElement {
 	if condition {
 		e.Is(fmt.Sprintf(format, args...))
 	}
@@ -1030,7 +1030,7 @@ func (e *QElement) Itemid(s string) *QElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *QElement) ItemidF(format string, args ...any) *QElement {
+func (e *QElement) Itemidf(format string, args ...any) *QElement {
 	return e.Itemid(fmt.Sprintf(format, args...))
 }
 
@@ -1063,7 +1063,7 @@ func (e *QElement) IfItemid(condition bool, s string) *QElement {
 // that identifier within the specified vocabulary. The vocabulary defines
 // whether several items with the same global identifier can coexist and, if so,
 // how items with the same identifier are handled.
-func (e *QElement) IfItemidF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfItemidf(condition bool, format string, args ...any) *QElement {
 	if condition {
 		e.Itemid(fmt.Sprintf(format, args...))
 	}
@@ -1112,7 +1112,7 @@ func (e *QElement) Itemprop(s string) *QElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *QElement) ItempropF(format string, args ...any) *QElement {
+func (e *QElement) Itempropf(format string, args ...any) *QElement {
 	return e.Itemprop(fmt.Sprintf(format, args...))
 }
 
@@ -1137,7 +1137,7 @@ func (e *QElement) IfItemprop(condition bool, s string) *QElement {
 // string or a URL and can be associated with a very wide range of elements
 // including <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>,
 // <track>, and <video>.
-func (e *QElement) IfItempropF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfItempropf(condition bool, format string, args ...any) *QElement {
 	if condition {
 		e.Itemprop(fmt.Sprintf(format, args...))
 	}
@@ -1178,7 +1178,7 @@ func (e *QElement) Itemref(s string) *QElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *QElement) ItemrefF(format string, args ...any) *QElement {
+func (e *QElement) Itemreff(format string, args ...any) *QElement {
 	return e.Itemref(fmt.Sprintf(format, args...))
 }
 
@@ -1199,7 +1199,7 @@ func (e *QElement) IfItemref(condition bool, s string) *QElement {
 // itemref provides a list of element IDs (not itemids) elsewhere in the
 // document, with additional properties The itemref attribute can only be
 // specified on elements that have an itemscope attribute specified.
-func (e *QElement) IfItemrefF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfItemreff(condition bool, format string, args ...any) *QElement {
 	if condition {
 		e.Itemref(fmt.Sprintf(format, args...))
 	}
@@ -1314,7 +1314,7 @@ func (e *QElement) Itemtype(s string) *QElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *QElement) ItemtypeF(format string, args ...any) *QElement {
+func (e *QElement) Itemtypef(format string, args ...any) *QElement {
 	return e.Itemtype(fmt.Sprintf(format, args...))
 }
 
@@ -1339,7 +1339,7 @@ func (e *QElement) IfItemtype(condition bool, s string) *QElement {
 // a URL and can be associated with a very wide range of elements including
 // <audio>, <embed>, <iframe>, <img>, <link>, <object>, <source>, <track>, and
 // <video>.
-func (e *QElement) IfItemtypeF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfItemtypef(condition bool, format string, args ...any) *QElement {
 	if condition {
 		e.Itemtype(fmt.Sprintf(format, args...))
 	}
@@ -1380,7 +1380,7 @@ func (e *QElement) Lang(s string) *QElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *QElement) LangF(format string, args ...any) *QElement {
+func (e *QElement) Langf(format string, args ...any) *QElement {
 	return e.Lang(fmt.Sprintf(format, args...))
 }
 
@@ -1401,7 +1401,7 @@ func (e *QElement) IfLang(condition bool, s string) *QElement {
 // editable elements should be written in by the user. The tag contains one
 // single entry value in the format defines in the Tags for Identifying
 // Languages (BCP47) IETF document. xml:lang has priority over it.
-func (e *QElement) IfLangF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfLangf(condition bool, format string, args ...any) *QElement {
 	if condition {
 		e.Lang(fmt.Sprintf(format, args...))
 	}
@@ -1440,7 +1440,7 @@ func (e *QElement) Nonce(s string) *QElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *QElement) NonceF(format string, args ...any) *QElement {
+func (e *QElement) Noncef(format string, args ...any) *QElement {
 	return e.Nonce(fmt.Sprintf(format, args...))
 }
 
@@ -1461,7 +1461,7 @@ func (e *QElement) IfNonce(condition bool, s string) *QElement {
 // cryptographic nonce (number used once) that is used by Content Security
 // Policy to determine whether or not a given inline script is allowed to
 // execute.
-func (e *QElement) IfNonceF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfNoncef(condition bool, format string, args ...any) *QElement {
 	if condition {
 		e.Nonce(fmt.Sprintf(format, args...))
 	}
@@ -1586,7 +1586,7 @@ func (e *QElement) Role(s string) *QElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *QElement) RoleF(format string, args ...any) *QElement {
+func (e *QElement) Rolef(format string, args ...any) *QElement {
 	return e.Role(fmt.Sprintf(format, args...))
 }
 
@@ -1605,7 +1605,7 @@ func (e *QElement) IfRole(condition bool, s string) *QElement {
 // element to the browser, in order to facilitate assistive technology such as
 // screen readers. It is a simple string value that can be used to describe the
 // role of an element.
-func (e *QElement) IfRoleF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfRolef(condition bool, format string, args ...any) *QElement {
 	if condition {
 		e.Role(fmt.Sprintf(format, args...))
 	}
@@ -1641,7 +1641,7 @@ func (e *QElement) Slot(s string) *QElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *QElement) SlotF(format string, args ...any) *QElement {
+func (e *QElement) Slotf(format string, args ...any) *QElement {
 	return e.Slot(fmt.Sprintf(format, args...))
 }
 
@@ -1660,7 +1660,7 @@ func (e *QElement) IfSlot(condition bool, s string) *QElement {
 // element: An element with a slot attribute is assigned to the slot created by
 // the <slot> element whose name attribute's value matches that slot attribute's
 // value.
-func (e *QElement) IfSlotF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfSlotf(condition bool, format string, args ...any) *QElement {
 	if condition {
 		e.Slot(fmt.Sprintf(format, args...))
 	}
@@ -1804,7 +1804,7 @@ func (e *QElement) StyleAdd(k string, v string) *QElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *QElement) StyleAddF(k string, format string, args ...any) *QElement {
+func (e *QElement) StyleAddf(k string, format string, args ...any) *QElement {
 	return e.StyleAdd(k, fmt.Sprintf(format, args...))
 }
 
@@ -1819,9 +1819,9 @@ func (e *QElement) IfStyleAdd(condition bool, k string, v string) *QElement {
 
 // The style global Attribute is used to add styles to an element, such as
 // color, font, size, and more. Styles are written in CSS.
-func (e *QElement) IfStyleAddF(condition bool, k string, format string, args ...any) *QElement {
+func (e *QElement) IfStyleAddf(condition bool, k string, format string, args ...any) *QElement {
 	if condition {
-		e.StyleAddF(k, format, args...)
+		e.StyleAddf(k, format, args...)
 	}
 	return e
 }
@@ -1967,7 +1967,7 @@ func (e *QElement) Title(s string) *QElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *QElement) TitleF(format string, args ...any) *QElement {
+func (e *QElement) Titlef(format string, args ...any) *QElement {
 	return e.Title(fmt.Sprintf(format, args...))
 }
 
@@ -2010,7 +2010,7 @@ func (e *QElement) IfTitle(condition bool, s string) *QElement {
 // providing a hint to user agents on how to announce the content. While title
 // can be used to provide a programmatically associated label for an <input>
 // element, this is not good practice. Use a <label> instead.
-func (e *QElement) IfTitleF(condition bool, format string, args ...any) *QElement {
+func (e *QElement) IfTitlef(condition bool, format string, args ...any) *QElement {
 	if condition {
 		e.Title(fmt.Sprintf(format, args...))
 	}
