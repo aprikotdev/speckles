@@ -364,6 +364,14 @@ func RangeI[T any](values []T, cb func(int, T) ElementRenderer) *Grouper {
 	return Group(children...)
 }
 
+func RangeMap[K comparable, V any](values map[K]V, cb func(K, V) ElementRenderer) *Grouper {
+	children := make([]ElementRenderer, 0, len(values))
+	for k, v := range values {
+		children = append(children, cb(k, v))
+	}
+	return Group(children...)
+}
+
 func DynGroup(childrenFuncs ...ElementRendererFunc) *Grouper {
 	children := make([]ElementRenderer, 0, len(childrenFuncs))
 	for _, childFunc := range childrenFuncs {
@@ -403,8 +411,4 @@ func NewElement(tag string, children ...ElementRenderer) *Element {
 		tag:         []byte(tag),
 		descendants: children,
 	}
-}
-
-func Error(err error) ElementRenderer {
-	return Text(err.Error())
 }
