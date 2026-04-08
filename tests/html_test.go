@@ -249,3 +249,37 @@ func TestGrouper(t *testing.T) {
 		},
 	})
 }
+
+func TestIf(t *testing.T) {
+	run(t, []result{
+		{
+			Expected: `<div><p>Condition is true</p></div>`,
+			Actual: Div(
+				If(true, P().Text("Condition is true")),
+			),
+		},
+		{
+			Expected: `<div></div>`,
+			Actual: Div(
+				If(false, P().Text("Condition is false")),
+			),
+		},
+	})
+}
+
+func TestDynIf(t *testing.T) {
+	run(t, []result{
+		{
+			Expected: `<div><p>Condition is true</p></div>`,
+			Actual: Div(
+				DynIf(true, func() ElementRenderer { return P().Text("Condition is true") }),
+			),
+		},
+		{
+			Expected: `<div></div>`,
+			Actual: Div(
+				DynIf(false, func() ElementRenderer { return P().Text("Condition is false") }),
+			),
+		},
+	})
+}

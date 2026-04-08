@@ -320,11 +320,16 @@ type Grouper struct {
 }
 
 func (g *Grouper) Render(w io.Writer) error {
+	if g == nil {
+		return nil
+	}
+
 	for _, child := range g.Children {
 		if err := child.Render(w); err != nil {
 			return fmt.Errorf("failed to build element: %w", err)
 		}
 	}
+
 	return nil
 }
 
