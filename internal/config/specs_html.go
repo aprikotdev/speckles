@@ -1499,22 +1499,27 @@ var HTML = &Namespace{
 			Attributes: []*Attribute{
 				{
 					Key:         "charset",
-					Description: "Declares the document's character encoding.",
+					Description: "This attribute declares the document's character encoding.",
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "content",
-					Description: "Gives the value associated with the http-equiv or name Attribute.",
+					Description: "This attribute contains the value for the http-equiv or name attribute, depending on which is used.",
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "http-equiv",
-					Description: "Provides an HTTP header for the information/value of the content Attribute.",
+					Description: "Defines a pragma directive, which are instructions for the browser for processing the document.",
+					Type:        AttributeTypeString(),
+				},
+				{
+					Key:         "media",
+					Description: "The media attribute defines which media the theme color defined in the content attribute should be applied to.",
 					Type:        AttributeTypeString(),
 				},
 				{
 					Key:         "name",
-					Description: "Specifies a name for the metadata.",
+					Description: "The name and content attributes can be used together to provide document metadata in terms of name-value pairs, with the name attribute giving the metadata name, and the content attribute giving the value.",
 					Type:        AttributeTypeString(),
 				},
 			},

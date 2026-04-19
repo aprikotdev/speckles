@@ -125,7 +125,7 @@ func (e *MetaElement) IfEscapedf(condition bool, format string, args ...any) *Me
 	return e
 }
 
-// Declares the document's character encoding.
+// This attribute declares the document's character encoding.
 func (e *MetaElement) Charset(s string) *MetaElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -134,12 +134,12 @@ func (e *MetaElement) Charset(s string) *MetaElement {
 	return e
 }
 
-// Declares the document's character encoding.
+// This attribute declares the document's character encoding.
 func (e *MetaElement) Charsetf(format string, args ...any) *MetaElement {
 	return e.Charset(fmt.Sprintf(format, args...))
 }
 
-// Declares the document's character encoding.
+// This attribute declares the document's character encoding.
 func (e *MetaElement) IfCharset(condition bool, s string) *MetaElement {
 	if condition {
 		e.Charset(s)
@@ -147,7 +147,7 @@ func (e *MetaElement) IfCharset(condition bool, s string) *MetaElement {
 	return e
 }
 
-// Declares the document's character encoding.
+// This attribute declares the document's character encoding.
 func (e *MetaElement) IfCharsetf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Charset(fmt.Sprintf(format, args...))
@@ -155,7 +155,7 @@ func (e *MetaElement) IfCharsetf(condition bool, format string, args ...any) *Me
 	return e
 }
 
-// Declares the document's character encoding.
+// This attribute declares the document's character encoding.
 // Remove the attribute Charset from the element.
 func (e *MetaElement) CharsetRemove() *MetaElement {
 	if e.stringAttributes == nil {
@@ -165,7 +165,8 @@ func (e *MetaElement) CharsetRemove() *MetaElement {
 	return e
 }
 
-// Gives the value associated with the http-equiv or name Attribute.
+// This attribute contains the value for the http-equiv or name attribute,
+// depending on which is used.
 func (e *MetaElement) Content(s string) *MetaElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -174,12 +175,14 @@ func (e *MetaElement) Content(s string) *MetaElement {
 	return e
 }
 
-// Gives the value associated with the http-equiv or name Attribute.
+// This attribute contains the value for the http-equiv or name attribute,
+// depending on which is used.
 func (e *MetaElement) Contentf(format string, args ...any) *MetaElement {
 	return e.Content(fmt.Sprintf(format, args...))
 }
 
-// Gives the value associated with the http-equiv or name Attribute.
+// This attribute contains the value for the http-equiv or name attribute,
+// depending on which is used.
 func (e *MetaElement) IfContent(condition bool, s string) *MetaElement {
 	if condition {
 		e.Content(s)
@@ -187,7 +190,8 @@ func (e *MetaElement) IfContent(condition bool, s string) *MetaElement {
 	return e
 }
 
-// Gives the value associated with the http-equiv or name Attribute.
+// This attribute contains the value for the http-equiv or name attribute,
+// depending on which is used.
 func (e *MetaElement) IfContentf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Content(fmt.Sprintf(format, args...))
@@ -195,7 +199,8 @@ func (e *MetaElement) IfContentf(condition bool, format string, args ...any) *Me
 	return e
 }
 
-// Gives the value associated with the http-equiv or name Attribute.
+// This attribute contains the value for the http-equiv or name attribute,
+// depending on which is used.
 // Remove the attribute Content from the element.
 func (e *MetaElement) ContentRemove() *MetaElement {
 	if e.stringAttributes == nil {
@@ -205,7 +210,8 @@ func (e *MetaElement) ContentRemove() *MetaElement {
 	return e
 }
 
-// Provides an HTTP header for the information/value of the content Attribute.
+// Defines a pragma directive, which are instructions for the browser for
+// processing the document.
 func (e *MetaElement) HTTPEquiv(s string) *MetaElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -214,12 +220,14 @@ func (e *MetaElement) HTTPEquiv(s string) *MetaElement {
 	return e
 }
 
-// Provides an HTTP header for the information/value of the content Attribute.
+// Defines a pragma directive, which are instructions for the browser for
+// processing the document.
 func (e *MetaElement) HTTPEquivf(format string, args ...any) *MetaElement {
 	return e.HTTPEquiv(fmt.Sprintf(format, args...))
 }
 
-// Provides an HTTP header for the information/value of the content Attribute.
+// Defines a pragma directive, which are instructions for the browser for
+// processing the document.
 func (e *MetaElement) IfHTTPEquiv(condition bool, s string) *MetaElement {
 	if condition {
 		e.HTTPEquiv(s)
@@ -227,7 +235,8 @@ func (e *MetaElement) IfHTTPEquiv(condition bool, s string) *MetaElement {
 	return e
 }
 
-// Provides an HTTP header for the information/value of the content Attribute.
+// Defines a pragma directive, which are instructions for the browser for
+// processing the document.
 func (e *MetaElement) IfHTTPEquivf(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.HTTPEquiv(fmt.Sprintf(format, args...))
@@ -235,7 +244,8 @@ func (e *MetaElement) IfHTTPEquivf(condition bool, format string, args ...any) *
 	return e
 }
 
-// Provides an HTTP header for the information/value of the content Attribute.
+// Defines a pragma directive, which are instructions for the browser for
+// processing the document.
 // Remove the attribute HTTPEquiv from the element.
 func (e *MetaElement) HTTPEquivRemove() *MetaElement {
 	if e.stringAttributes == nil {
@@ -245,7 +255,54 @@ func (e *MetaElement) HTTPEquivRemove() *MetaElement {
 	return e
 }
 
-// Specifies a name for the metadata.
+// The media attribute defines which media the theme color defined in the
+// content attribute should be applied to.
+func (e *MetaElement) Media(s string) *MetaElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	e.stringAttributes.Set("media", s)
+	return e
+}
+
+// The media attribute defines which media the theme color defined in the
+// content attribute should be applied to.
+func (e *MetaElement) Mediaf(format string, args ...any) *MetaElement {
+	return e.Media(fmt.Sprintf(format, args...))
+}
+
+// The media attribute defines which media the theme color defined in the
+// content attribute should be applied to.
+func (e *MetaElement) IfMedia(condition bool, s string) *MetaElement {
+	if condition {
+		e.Media(s)
+	}
+	return e
+}
+
+// The media attribute defines which media the theme color defined in the
+// content attribute should be applied to.
+func (e *MetaElement) IfMediaf(condition bool, format string, args ...any) *MetaElement {
+	if condition {
+		e.Media(fmt.Sprintf(format, args...))
+	}
+	return e
+}
+
+// The media attribute defines which media the theme color defined in the
+// content attribute should be applied to.
+// Remove the attribute Media from the element.
+func (e *MetaElement) MediaRemove() *MetaElement {
+	if e.stringAttributes == nil {
+		return e
+	}
+	e.stringAttributes.Del("media")
+	return e
+}
+
+// The name and content attributes can be used together to provide document
+// metadata in terms of name-value pairs, with the name attribute giving the
+// metadata name, and the content attribute giving the value.
 func (e *MetaElement) Name(s string) *MetaElement {
 	if e.stringAttributes == nil {
 		e.stringAttributes = treemap.New[string, string]()
@@ -254,12 +311,16 @@ func (e *MetaElement) Name(s string) *MetaElement {
 	return e
 }
 
-// Specifies a name for the metadata.
+// The name and content attributes can be used together to provide document
+// metadata in terms of name-value pairs, with the name attribute giving the
+// metadata name, and the content attribute giving the value.
 func (e *MetaElement) Namef(format string, args ...any) *MetaElement {
 	return e.Name(fmt.Sprintf(format, args...))
 }
 
-// Specifies a name for the metadata.
+// The name and content attributes can be used together to provide document
+// metadata in terms of name-value pairs, with the name attribute giving the
+// metadata name, and the content attribute giving the value.
 func (e *MetaElement) IfName(condition bool, s string) *MetaElement {
 	if condition {
 		e.Name(s)
@@ -267,7 +328,9 @@ func (e *MetaElement) IfName(condition bool, s string) *MetaElement {
 	return e
 }
 
-// Specifies a name for the metadata.
+// The name and content attributes can be used together to provide document
+// metadata in terms of name-value pairs, with the name attribute giving the
+// metadata name, and the content attribute giving the value.
 func (e *MetaElement) IfNamef(condition bool, format string, args ...any) *MetaElement {
 	if condition {
 		e.Name(fmt.Sprintf(format, args...))
@@ -275,7 +338,9 @@ func (e *MetaElement) IfNamef(condition bool, format string, args ...any) *MetaE
 	return e
 }
 
-// Specifies a name for the metadata.
+// The name and content attributes can be used together to provide document
+// metadata in terms of name-value pairs, with the name attribute giving the
+// metadata name, and the content attribute giving the value.
 // Remove the attribute Name from the element.
 func (e *MetaElement) NameRemove() *MetaElement {
 	if e.stringAttributes == nil {
