@@ -163,6 +163,58 @@ func (e *ImgElement) AltRemove() *ImgElement {
 	return e
 }
 
+// Indicates that the user agent may expose a user interface to the user. The
+// attribute must not be specified on an element that does not have an alt
+// attribute, or whose alt attribute's value is the empty string.
+func (e *ImgElement) Controls() *ImgElement {
+	e.ControlsSet(true)
+	return e
+}
+
+// Indicates that the user agent may expose a user interface to the user. The
+// attribute must not be specified on an element that does not have an alt
+// attribute, or whose alt attribute's value is the empty string.
+func (e *ImgElement) IfControls(condition bool) *ImgElement {
+	if condition {
+		e.ControlsSet(true)
+	}
+	return e
+}
+
+// Indicates that the user agent may expose a user interface to the user. The
+// attribute must not be specified on an element that does not have an alt
+// attribute, or whose alt attribute's value is the empty string.
+// Set the attribute Controls to the value b explicitly.
+func (e *ImgElement) ControlsSet(b bool) *ImgElement {
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, bool]()
+	}
+	e.boolAttributes.Set("controls", b)
+	return e
+}
+
+// Indicates that the user agent may expose a user interface to the user. The
+// attribute must not be specified on an element that does not have an alt
+// attribute, or whose alt attribute's value is the empty string.
+func (e *ImgElement) IfSetControls(condition bool, b bool) *ImgElement {
+	if condition {
+		e.ControlsSet(b)
+	}
+	return e
+}
+
+// Remove the attribute Controls from the element.
+// Indicates that the user agent may expose a user interface to the user. The
+// attribute must not be specified on an element that does not have an alt
+// attribute, or whose alt attribute's value is the empty string.
+func (e *ImgElement) ControlsRemove() *ImgElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("controls")
+	return e
+}
+
 // How the element handles crossorigin requests.
 func (e *ImgElement) Crossorigin(c ImgCrossoriginChoice) *ImgElement {
 	if e.stringAttributes == nil {
@@ -190,6 +242,78 @@ func (e *ImgElement) CrossoriginRemove() *ImgElement {
 		return e
 	}
 	e.stringAttributes.Del("crossorigin")
+	return e
+}
+
+// This attribute provides a hint to the browser as to whether it should perform
+// image decoding along with rendering the other DOM content in a single
+// presentation step that looks more "correct" (sync), or render and present the
+// other DOM content first and then decode the image and present it later
+// (async).
+func (e *ImgElement) Decoding(c ImgDecodingChoice) *ImgElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	e.stringAttributes.Set("decoding", string(c))
+	return e
+}
+
+type ImgDecodingChoice string
+
+const (
+	// Decode the image synchronously along with rendering the other DOM content,
+	// and present everything together.
+	ImgDecodingSync ImgDecodingChoice = "sync"
+	// Decode the image asynchronously, after rendering and presenting the other DOM
+	// content.
+	ImgDecodingAsync ImgDecodingChoice = "async"
+	// No preference for the decoding mode; the browser decides what is best for the
+	// user. This is the default value.
+	ImgDecodingAuto ImgDecodingChoice = "auto"
+)
+
+// This attribute provides a hint to the browser as to whether it should perform
+// image decoding along with rendering the other DOM content in a single
+// presentation step that looks more "correct" (sync), or render and present the
+// other DOM content first and then decode the image and present it later
+// (async).
+// Remove the attribute Decoding from the element.
+func (e *ImgElement) DecodingRemove() *ImgElement {
+	if e.stringAttributes == nil {
+		return e
+	}
+	e.stringAttributes.Del("decoding")
+	return e
+}
+
+// Provides a hint of the relative priority to use when fetching the image.
+func (e *ImgElement) Fetchpriority(c ImgFetchpriorityChoice) *ImgElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	e.stringAttributes.Set("fetchpriority", string(c))
+	return e
+}
+
+type ImgFetchpriorityChoice string
+
+const (
+	// Fetch the image at a high priority relative to other images.
+	ImgFetchpriorityHigh ImgFetchpriorityChoice = "high"
+	// Fetch the image at a low priority relative to other images.
+	ImgFetchpriorityLow ImgFetchpriorityChoice = "low"
+	// Don't set a preference for the fetch priority. This is the default. It is
+	// used if no value or an invalid value is set.
+	ImgFetchpriorityAuto ImgFetchpriorityChoice = "auto"
+)
+
+// Provides a hint of the relative priority to use when fetching the image.
+// Remove the attribute Fetchpriority from the element.
+func (e *ImgElement) FetchpriorityRemove() *ImgElement {
+	if e.stringAttributes == nil {
+		return e
+	}
+	e.stringAttributes.Del("fetchpriority")
 	return e
 }
 
@@ -290,46 +414,6 @@ func (e *ImgElement) LoadingRemove() *ImgElement {
 		return e
 	}
 	e.stringAttributes.Del("loading")
-	return e
-}
-
-// A URL to a detailed description of the image.
-func (e *ImgElement) Longdesc(s string) *ImgElement {
-	if e.stringAttributes == nil {
-		e.stringAttributes = treemap.New[string, string]()
-	}
-	e.stringAttributes.Set("longdesc", s)
-	return e
-}
-
-// A URL to a detailed description of the image.
-func (e *ImgElement) Longdescf(format string, args ...any) *ImgElement {
-	return e.Longdesc(fmt.Sprintf(format, args...))
-}
-
-// A URL to a detailed description of the image.
-func (e *ImgElement) IfLongdesc(condition bool, s string) *ImgElement {
-	if condition {
-		e.Longdesc(s)
-	}
-	return e
-}
-
-// A URL to a detailed description of the image.
-func (e *ImgElement) IfLongdescf(condition bool, format string, args ...any) *ImgElement {
-	if condition {
-		e.Longdesc(fmt.Sprintf(format, args...))
-	}
-	return e
-}
-
-// A URL to a detailed description of the image.
-// Remove the attribute Longdesc from the element.
-func (e *ImgElement) LongdescRemove() *ImgElement {
-	if e.stringAttributes == nil {
-		return e
-	}
-	e.stringAttributes.Del("longdesc")
 	return e
 }
 

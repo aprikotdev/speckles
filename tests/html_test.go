@@ -250,6 +250,23 @@ func TestGrouper(t *testing.T) {
 	})
 }
 
+func TestImgElement(t *testing.T) {
+	run(t, []result{
+		{
+			Expected: `<img alt="Example Image" fetchpriority="high" height="400" src="http://example.com/image.jpg" width="600">`,
+			Actual:   Img().Src("http://example.com/image.jpg").Alt("Example Image").Width(600).Height(400).Fetchpriority(ImgFetchpriorityHigh),
+		},
+		{
+			Expected: `<img controls src="flamingo.jpg">`,
+			Actual:   Img().Src("flamingo.jpg").Controls(),
+		},
+		{
+			Expected: `<img decoding="sync" width="1200">`,
+			Actual:   Img().Width(1200).Decoding(ImgDecodingSync),
+		},
+	})
+}
+
 func TestIf(t *testing.T) {
 	run(t, []result{
 		{

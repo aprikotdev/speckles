@@ -1019,12 +1019,35 @@ var HTML = &Namespace{
 					Type:        AttributeTypeString(),
 				},
 				{
+					Key:         "controls",
+					Description: "Indicates that the user agent may expose a user interface to the user. The attribute must not be specified on an element that does not have an alt attribute, or whose alt attribute's value is the empty string.",
+					Type:        AttributeTypeBool(),
+				},
+				{
 					Key:         "crossorigin",
 					Description: "How the element handles crossorigin requests.",
 					Type: AttributeTypeChoices(
 						AttributeTypeChoice("", "Anonymous usage. Send no cookies and no TLS certificate (if applicable)."),
 						AttributeTypeChoice("anonymous", "Anonymous usage. Send no cookies and no TLS certificate (if applicable)."),
 						AttributeTypeChoice("use-credentials", "Send cookies and a TLS certificate (if applicable)."),
+					),
+				},
+				{
+					Key:         "decoding",
+					Description: "This attribute provides a hint to the browser as to whether it should perform image decoding along with rendering the other DOM content in a single presentation step that looks more \"correct\" (sync), or render and present the other DOM content first and then decode the image and present it later (async).",
+					Type: AttributeTypeChoices(
+						AttributeTypeChoice("sync", "Decode the image synchronously along with rendering the other DOM content, and present everything together."),
+						AttributeTypeChoice("async", "Decode the image asynchronously, after rendering and presenting the other DOM content."),
+						AttributeTypeChoice("auto", "No preference for the decoding mode; the browser decides what is best for the user. This is the default value."),
+					),
+				},
+				{
+					Key:         "fetchpriority",
+					Description: "Provides a hint of the relative priority to use when fetching the image.",
+					Type: AttributeTypeChoices(
+						AttributeTypeChoice("high", "Fetch the image at a high priority relative to other images."),
+						AttributeTypeChoice("low", "Fetch the image at a low priority relative to other images."),
+						AttributeTypeChoice("auto", "Don't set a preference for the fetch priority. This is the default. It is used if no value or an invalid value is set."),
 					),
 				},
 				{
@@ -1046,12 +1069,6 @@ var HTML = &Namespace{
 						AttributeTypeChoice("lazy", "Hint to the browser that the image can be loaded lazily, after the rest of the page content is loaded."),
 					),
 				},
-				{
-					Key:         "longdesc",
-					Description: "A URL to a detailed description of the image.",
-					Type:        AttributeTypeString(),
-				},
-
 				{
 					Key:         "referrerpolicy",
 					Description: "Specifies which referrer to send when fetching the resource. See Referrer-Policy for possible values and their effects.",
