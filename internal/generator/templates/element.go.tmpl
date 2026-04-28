@@ -50,15 +50,48 @@ func(e *{{$elStructName}}) TernChildren(condition bool, trueChildren, falseChild
 
 func (e *{{$elStructName}}) BoolAttr(name string) *{{$elStructName}} {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *{{$elStructName}}) BoolAttrRemove(name string) *{{$elStructName}} {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *{{$elStructName}}) IfBoolAttr(condition bool, name string) *{{$elStructName}} {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *{{$elStructName}}) BoolAttrf(format string, args ...any) *{{$elStructName}} {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *{{$elStructName}}) IfBoolAttrf(condition bool, format string, args ...any) *{{$elStructName}} {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *{{$elStructName}}) BoolAttrs(names ...string) *{{$elStructName}} {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *{{$elStructName}}) IfBoolAttrs(condition bool, names ...string) *{{$elStructName}} {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *{{$elStructName}}) Attr(name, value string) *{{$elStructName}} {
 func (e *{{$elStructName}}) IfAttr(condition bool, name, value string) *{{$elStructName}} {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *{{$elStructName}}) Attrf(name, format string, args ...any) *{{$elStructName}} {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *{{$elStructName}}) IfAttrf(condition bool, name, format string, args ...any) *{{$elStructName}} {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *{{$elStructName}}) Attrs(attrs ...string) *{{$elStructName}} {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *{{$elStructName}}) IfAttrs(condition bool, attrs ...string) *{{$elStructName}} {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *{{$elStructName}}) AttrsMap(attrs map[string]string) *{{$elStructName}} {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *{{$elStructName}}) IfAttrsMap(condition bool, attrs map[string]string) *{{$elStructName}} {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }
@@ -413,32 +496,17 @@ func (e *{{$elStructName}}) IfEscapedf(condition bool, format string, args ...an
     {{else if .Type | attrIsBool -}}
         {{.Description | comments}}
         func(e *{{$elStructName}}) {{.Name}}() *{{$elStructName}}{
-            e.{{.Name}}Set(true)
+            if e.boolAttributes == nil {
+                e.boolAttributes = treemap.New[string,struct{}]()
+            }
+            e.boolAttributes.Set("{{.Key}}", struct{}{})
             return e
         }
 
         {{.Description | comments}}
         func(e *{{$elStructName}}) If{{.Name}}(condition bool) *{{$elStructName}} {
             if condition {
-                e.{{.Name}}Set(true)
-            }
-            return e
-        }
-
-        {{.Description | comments}}
-        // Set the attribute {{.Name}} to the value b explicitly.
-        func(e *{{$elStructName}}) {{.Name}}Set(b bool) *{{$elStructName}}{
-            if e.boolAttributes == nil {
-                e.boolAttributes = treemap.New[string,bool]()
-            }
-            e.boolAttributes.Set("{{.Key}}", b)
-            return e
-        }
-
-        {{.Description | comments}}
-        func (e *{{$elStructName}}) IfSet{{.Name}}(condition bool, b bool) *{{$elStructName}} {
-            if condition {
-                e.{{.Name}}Set(b)
+								e.{{.Name}}()
             }
             return e
         }
@@ -452,6 +520,16 @@ func (e *{{$elStructName}}) IfEscapedf(condition bool, format string, args ...an
             e.boolAttributes.Del("{{.Key}}")
             return e
         }
+
+        // Remove the attribute {{.Name}} from the element.
+				{{.Description | comments}}
+				func(e *{{$elStructName}}) {{.Name}}IfRemove() *{{$elStructName}} {
+						if e.boolAttributes == nil {
+								return e
+						}
+						e.boolAttributes.Del("{{.Key}}")
+						return e
+				}
 
     {{else if .Type | attrIsRune -}}
         {{.Description | comments}}

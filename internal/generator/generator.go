@@ -27,7 +27,7 @@ func GenerateAll(ctx context.Context, outPath string, namespaces []*config.Names
 
 	files, _ := os.ReadDir(outPath)
 	for _, file := range files {
-		if file.Name() != "elements.go" {
+		if file.Name() != "builder.go" {
 			if err := os.Remove(filepath.Join(outPath, file.Name())); err != nil {
 				return fmt.Errorf("failed to clean output directory: %w", err)
 			}

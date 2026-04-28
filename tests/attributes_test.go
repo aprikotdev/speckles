@@ -54,16 +54,24 @@ func TestBoolAttributes(t *testing.T) {
 			Actual:   Video().Autoplay().Muted(),
 		},
 		{
-			Expected: "<video autoplay muted></video>",
-			Actual:   Video().Autoplay().MutedSet(true),
-		},
-		{
-			Expected: "<video autoplay></video>",
-			Actual:   Video().Autoplay().MutedSet(false),
-		},
-		{
 			Expected: "<video autoplay></video>",
 			Actual:   Video().Autoplay().Muted().MutedRemove(),
+		},
+		{
+			Expected: "<input data-ignore-morph>",
+			Actual:   Input().BoolAttr("data-ignore-morph"),
+		},
+		{
+			Expected: `<input data-id-foo>`,
+			Actual:   Input().BoolAttrf("data-id-%s", "foo"),
+		},
+		{
+			Expected: `<input type="text">`,
+			Actual:   Input().Type(InputTypeText).BoolAttr("data-foo").BoolAttrRemove("data-foo"),
+		},
+		{
+			Expected: `<input data-bind="_foo">`,
+			Actual:   Input().Attrf("data-bind", "_%s", "foo"),
 		},
 	})
 }
