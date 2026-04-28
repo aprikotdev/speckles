@@ -53,15 +53,48 @@ func (e *SVGFeSpecularLightingElement) TernChildren(condition bool, trueChildren
 
 func (e *SVGFeSpecularLightingElement) BoolAttr(name string) *SVGFeSpecularLightingElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeSpecularLightingElement) BoolAttrRemove(name string) *SVGFeSpecularLightingElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeSpecularLightingElement) IfBoolAttr(condition bool, name string) *SVGFeSpecularLightingElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeSpecularLightingElement) BoolAttrf(format string, args ...any) *SVGFeSpecularLightingElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeSpecularLightingElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeSpecularLightingElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeSpecularLightingElement) BoolAttrs(names ...string) *SVGFeSpecularLightingElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeSpecularLightingElement) IfBoolAttrs(condition bool, names ...string) *SVGFeSpecularLightingElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -77,6 +110,56 @@ func (e *SVGFeSpecularLightingElement) Attr(name, value string) *SVGFeSpecularLi
 func (e *SVGFeSpecularLightingElement) IfAttr(condition bool, name, value string) *SVGFeSpecularLightingElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeSpecularLightingElement) Attrf(name, format string, args ...any) *SVGFeSpecularLightingElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeSpecularLightingElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeSpecularLightingElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeSpecularLightingElement) Attrs(attrs ...string) *SVGFeSpecularLightingElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeSpecularLightingElement) IfAttrs(condition bool, attrs ...string) *SVGFeSpecularLightingElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeSpecularLightingElement) AttrsMap(attrs map[string]string) *SVGFeSpecularLightingElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeSpecularLightingElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeSpecularLightingElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

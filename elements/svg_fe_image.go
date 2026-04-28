@@ -51,15 +51,48 @@ func (e *SVGFeImageElement) TernChildren(condition bool, trueChildren, falseChil
 
 func (e *SVGFeImageElement) BoolAttr(name string) *SVGFeImageElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeImageElement) BoolAttrRemove(name string) *SVGFeImageElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeImageElement) IfBoolAttr(condition bool, name string) *SVGFeImageElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeImageElement) BoolAttrf(format string, args ...any) *SVGFeImageElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeImageElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeImageElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeImageElement) BoolAttrs(names ...string) *SVGFeImageElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeImageElement) IfBoolAttrs(condition bool, names ...string) *SVGFeImageElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *SVGFeImageElement) Attr(name, value string) *SVGFeImageElement {
 func (e *SVGFeImageElement) IfAttr(condition bool, name, value string) *SVGFeImageElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeImageElement) Attrf(name, format string, args ...any) *SVGFeImageElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeImageElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeImageElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeImageElement) Attrs(attrs ...string) *SVGFeImageElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeImageElement) IfAttrs(condition bool, attrs ...string) *SVGFeImageElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeImageElement) AttrsMap(attrs map[string]string) *SVGFeImageElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeImageElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeImageElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }
@@ -127,32 +210,17 @@ func (e *SVGFeImageElement) IfEscapedf(condition bool, format string, args ...an
 
 // Indicates whether or not to force synchronous behavior.
 func (e *SVGFeImageElement) ExternalResourcesRequired() *SVGFeImageElement {
-	e.ExternalResourcesRequiredSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("externalResourcesRequired", struct{}{})
 	return e
 }
 
 // Indicates whether or not to force synchronous behavior.
 func (e *SVGFeImageElement) IfExternalResourcesRequired(condition bool) *SVGFeImageElement {
 	if condition {
-		e.ExternalResourcesRequiredSet(true)
-	}
-	return e
-}
-
-// Indicates whether or not to force synchronous behavior.
-// Set the attribute ExternalResourcesRequired to the value b explicitly.
-func (e *SVGFeImageElement) ExternalResourcesRequiredSet(b bool) *SVGFeImageElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("externalResourcesRequired", b)
-	return e
-}
-
-// Indicates whether or not to force synchronous behavior.
-func (e *SVGFeImageElement) IfSetExternalResourcesRequired(condition bool, b bool) *SVGFeImageElement {
-	if condition {
-		e.ExternalResourcesRequiredSet(b)
+		e.ExternalResourcesRequired()
 	}
 	return e
 }
@@ -160,6 +228,16 @@ func (e *SVGFeImageElement) IfSetExternalResourcesRequired(condition bool, b boo
 // Remove the attribute ExternalResourcesRequired from the element.
 // Indicates whether or not to force synchronous behavior.
 func (e *SVGFeImageElement) ExternalResourcesRequiredRemove() *SVGFeImageElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("externalResourcesRequired")
+	return e
+}
+
+// Remove the attribute ExternalResourcesRequired from the element.
+// Indicates whether or not to force synchronous behavior.
+func (e *SVGFeImageElement) ExternalResourcesRequiredIfRemove() *SVGFeImageElement {
 	if e.boolAttributes == nil {
 		return e
 	}

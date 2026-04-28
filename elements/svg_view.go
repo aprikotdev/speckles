@@ -50,15 +50,48 @@ func (e *SVGViewElement) TernChildren(condition bool, trueChildren, falseChildre
 
 func (e *SVGViewElement) BoolAttr(name string) *SVGViewElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGViewElement) BoolAttrRemove(name string) *SVGViewElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGViewElement) IfBoolAttr(condition bool, name string) *SVGViewElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGViewElement) BoolAttrf(format string, args ...any) *SVGViewElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGViewElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGViewElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGViewElement) BoolAttrs(names ...string) *SVGViewElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGViewElement) IfBoolAttrs(condition bool, names ...string) *SVGViewElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGViewElement) Attr(name, value string) *SVGViewElement {
 func (e *SVGViewElement) IfAttr(condition bool, name, value string) *SVGViewElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGViewElement) Attrf(name, format string, args ...any) *SVGViewElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGViewElement) IfAttrf(condition bool, name, format string, args ...any) *SVGViewElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGViewElement) Attrs(attrs ...string) *SVGViewElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGViewElement) IfAttrs(condition bool, attrs ...string) *SVGViewElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGViewElement) AttrsMap(attrs map[string]string) *SVGViewElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGViewElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGViewElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

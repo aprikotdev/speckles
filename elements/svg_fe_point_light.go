@@ -50,15 +50,48 @@ func (e *SVGFePointLightElement) TernChildren(condition bool, trueChildren, fals
 
 func (e *SVGFePointLightElement) BoolAttr(name string) *SVGFePointLightElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFePointLightElement) BoolAttrRemove(name string) *SVGFePointLightElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFePointLightElement) IfBoolAttr(condition bool, name string) *SVGFePointLightElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFePointLightElement) BoolAttrf(format string, args ...any) *SVGFePointLightElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFePointLightElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFePointLightElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFePointLightElement) BoolAttrs(names ...string) *SVGFePointLightElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFePointLightElement) IfBoolAttrs(condition bool, names ...string) *SVGFePointLightElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGFePointLightElement) Attr(name, value string) *SVGFePointLightElemen
 func (e *SVGFePointLightElement) IfAttr(condition bool, name, value string) *SVGFePointLightElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFePointLightElement) Attrf(name, format string, args ...any) *SVGFePointLightElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFePointLightElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFePointLightElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFePointLightElement) Attrs(attrs ...string) *SVGFePointLightElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFePointLightElement) IfAttrs(condition bool, attrs ...string) *SVGFePointLightElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFePointLightElement) AttrsMap(attrs map[string]string) *SVGFePointLightElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFePointLightElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFePointLightElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

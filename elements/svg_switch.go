@@ -54,15 +54,48 @@ func (e *SVGSwitchElement) TernChildren(condition bool, trueChildren, falseChild
 
 func (e *SVGSwitchElement) BoolAttr(name string) *SVGSwitchElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGSwitchElement) BoolAttrRemove(name string) *SVGSwitchElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGSwitchElement) IfBoolAttr(condition bool, name string) *SVGSwitchElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGSwitchElement) BoolAttrf(format string, args ...any) *SVGSwitchElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGSwitchElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGSwitchElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGSwitchElement) BoolAttrs(names ...string) *SVGSwitchElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGSwitchElement) IfBoolAttrs(condition bool, names ...string) *SVGSwitchElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -78,6 +111,56 @@ func (e *SVGSwitchElement) Attr(name, value string) *SVGSwitchElement {
 func (e *SVGSwitchElement) IfAttr(condition bool, name, value string) *SVGSwitchElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGSwitchElement) Attrf(name, format string, args ...any) *SVGSwitchElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGSwitchElement) IfAttrf(condition bool, name, format string, args ...any) *SVGSwitchElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGSwitchElement) Attrs(attrs ...string) *SVGSwitchElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGSwitchElement) IfAttrs(condition bool, attrs ...string) *SVGSwitchElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGSwitchElement) AttrsMap(attrs map[string]string) *SVGSwitchElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGSwitchElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGSwitchElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

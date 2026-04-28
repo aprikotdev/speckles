@@ -50,15 +50,48 @@ func (e *SVGFeConvolveMatrixElement) TernChildren(condition bool, trueChildren, 
 
 func (e *SVGFeConvolveMatrixElement) BoolAttr(name string) *SVGFeConvolveMatrixElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeConvolveMatrixElement) BoolAttrRemove(name string) *SVGFeConvolveMatrixElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeConvolveMatrixElement) IfBoolAttr(condition bool, name string) *SVGFeConvolveMatrixElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeConvolveMatrixElement) BoolAttrf(format string, args ...any) *SVGFeConvolveMatrixElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeConvolveMatrixElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeConvolveMatrixElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeConvolveMatrixElement) BoolAttrs(names ...string) *SVGFeConvolveMatrixElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeConvolveMatrixElement) IfBoolAttrs(condition bool, names ...string) *SVGFeConvolveMatrixElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGFeConvolveMatrixElement) Attr(name, value string) *SVGFeConvolveMatr
 func (e *SVGFeConvolveMatrixElement) IfAttr(condition bool, name, value string) *SVGFeConvolveMatrixElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeConvolveMatrixElement) Attrf(name, format string, args ...any) *SVGFeConvolveMatrixElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeConvolveMatrixElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeConvolveMatrixElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeConvolveMatrixElement) Attrs(attrs ...string) *SVGFeConvolveMatrixElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeConvolveMatrixElement) IfAttrs(condition bool, attrs ...string) *SVGFeConvolveMatrixElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeConvolveMatrixElement) AttrsMap(attrs map[string]string) *SVGFeConvolveMatrixElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeConvolveMatrixElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeConvolveMatrixElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }
@@ -409,7 +492,10 @@ func (e *SVGFeConvolveMatrixElement) KernelUnitLengthRemove() *SVGFeConvolveMatr
 // The preserveAlpha Attribute indicates how the convolution will handle the
 // alpha channel of the input image.
 func (e *SVGFeConvolveMatrixElement) PreserveAlpha() *SVGFeConvolveMatrixElement {
-	e.PreserveAlphaSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("preserveAlpha", struct{}{})
 	return e
 }
 
@@ -417,27 +503,7 @@ func (e *SVGFeConvolveMatrixElement) PreserveAlpha() *SVGFeConvolveMatrixElement
 // alpha channel of the input image.
 func (e *SVGFeConvolveMatrixElement) IfPreserveAlpha(condition bool) *SVGFeConvolveMatrixElement {
 	if condition {
-		e.PreserveAlphaSet(true)
-	}
-	return e
-}
-
-// The preserveAlpha Attribute indicates how the convolution will handle the
-// alpha channel of the input image.
-// Set the attribute PreserveAlpha to the value b explicitly.
-func (e *SVGFeConvolveMatrixElement) PreserveAlphaSet(b bool) *SVGFeConvolveMatrixElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("preserveAlpha", b)
-	return e
-}
-
-// The preserveAlpha Attribute indicates how the convolution will handle the
-// alpha channel of the input image.
-func (e *SVGFeConvolveMatrixElement) IfSetPreserveAlpha(condition bool, b bool) *SVGFeConvolveMatrixElement {
-	if condition {
-		e.PreserveAlphaSet(b)
+		e.PreserveAlpha()
 	}
 	return e
 }
@@ -446,6 +512,17 @@ func (e *SVGFeConvolveMatrixElement) IfSetPreserveAlpha(condition bool, b bool) 
 // The preserveAlpha Attribute indicates how the convolution will handle the
 // alpha channel of the input image.
 func (e *SVGFeConvolveMatrixElement) PreserveAlphaRemove() *SVGFeConvolveMatrixElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("preserveAlpha")
+	return e
+}
+
+// Remove the attribute PreserveAlpha from the element.
+// The preserveAlpha Attribute indicates how the convolution will handle the
+// alpha channel of the input image.
+func (e *SVGFeConvolveMatrixElement) PreserveAlphaIfRemove() *SVGFeConvolveMatrixElement {
 	if e.boolAttributes == nil {
 		return e
 	}

@@ -50,15 +50,48 @@ func (e *SVGTextPathElement) TernChildren(condition bool, trueChildren, falseChi
 
 func (e *SVGTextPathElement) BoolAttr(name string) *SVGTextPathElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGTextPathElement) BoolAttrRemove(name string) *SVGTextPathElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGTextPathElement) IfBoolAttr(condition bool, name string) *SVGTextPathElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGTextPathElement) BoolAttrf(format string, args ...any) *SVGTextPathElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGTextPathElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGTextPathElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGTextPathElement) BoolAttrs(names ...string) *SVGTextPathElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGTextPathElement) IfBoolAttrs(condition bool, names ...string) *SVGTextPathElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGTextPathElement) Attr(name, value string) *SVGTextPathElement {
 func (e *SVGTextPathElement) IfAttr(condition bool, name, value string) *SVGTextPathElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGTextPathElement) Attrf(name, format string, args ...any) *SVGTextPathElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGTextPathElement) IfAttrf(condition bool, name, format string, args ...any) *SVGTextPathElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGTextPathElement) Attrs(attrs ...string) *SVGTextPathElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGTextPathElement) IfAttrs(condition bool, attrs ...string) *SVGTextPathElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGTextPathElement) AttrsMap(attrs map[string]string) *SVGTextPathElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGTextPathElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGTextPathElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

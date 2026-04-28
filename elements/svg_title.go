@@ -50,15 +50,48 @@ func (e *SVGTitleElement) TernChildren(condition bool, trueChildren, falseChildr
 
 func (e *SVGTitleElement) BoolAttr(name string) *SVGTitleElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGTitleElement) BoolAttrRemove(name string) *SVGTitleElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGTitleElement) IfBoolAttr(condition bool, name string) *SVGTitleElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGTitleElement) BoolAttrf(format string, args ...any) *SVGTitleElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGTitleElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGTitleElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGTitleElement) BoolAttrs(names ...string) *SVGTitleElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGTitleElement) IfBoolAttrs(condition bool, names ...string) *SVGTitleElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGTitleElement) Attr(name, value string) *SVGTitleElement {
 func (e *SVGTitleElement) IfAttr(condition bool, name, value string) *SVGTitleElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGTitleElement) Attrf(name, format string, args ...any) *SVGTitleElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGTitleElement) IfAttrf(condition bool, name, format string, args ...any) *SVGTitleElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGTitleElement) Attrs(attrs ...string) *SVGTitleElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGTitleElement) IfAttrs(condition bool, attrs ...string) *SVGTitleElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGTitleElement) AttrsMap(attrs map[string]string) *SVGTitleElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGTitleElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGTitleElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

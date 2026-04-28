@@ -49,15 +49,48 @@ func (e *MathMLSemanticsElement) TernChildren(condition bool, trueChildren, fals
 
 func (e *MathMLSemanticsElement) BoolAttr(name string) *MathMLSemanticsElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *MathMLSemanticsElement) BoolAttrRemove(name string) *MathMLSemanticsElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *MathMLSemanticsElement) IfBoolAttr(condition bool, name string) *MathMLSemanticsElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *MathMLSemanticsElement) BoolAttrf(format string, args ...any) *MathMLSemanticsElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *MathMLSemanticsElement) IfBoolAttrf(condition bool, format string, args ...any) *MathMLSemanticsElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *MathMLSemanticsElement) BoolAttrs(names ...string) *MathMLSemanticsElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *MathMLSemanticsElement) IfBoolAttrs(condition bool, names ...string) *MathMLSemanticsElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -73,6 +106,56 @@ func (e *MathMLSemanticsElement) Attr(name, value string) *MathMLSemanticsElemen
 func (e *MathMLSemanticsElement) IfAttr(condition bool, name, value string) *MathMLSemanticsElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *MathMLSemanticsElement) Attrf(name, format string, args ...any) *MathMLSemanticsElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *MathMLSemanticsElement) IfAttrf(condition bool, name, format string, args ...any) *MathMLSemanticsElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *MathMLSemanticsElement) Attrs(attrs ...string) *MathMLSemanticsElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *MathMLSemanticsElement) IfAttrs(condition bool, attrs ...string) *MathMLSemanticsElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *MathMLSemanticsElement) AttrsMap(attrs map[string]string) *MathMLSemanticsElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *MathMLSemanticsElement) IfAttrsMap(condition bool, attrs map[string]string) *MathMLSemanticsElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

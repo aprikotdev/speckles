@@ -50,15 +50,48 @@ func (e *SVGFeFuncBElement) TernChildren(condition bool, trueChildren, falseChil
 
 func (e *SVGFeFuncBElement) BoolAttr(name string) *SVGFeFuncBElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeFuncBElement) BoolAttrRemove(name string) *SVGFeFuncBElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeFuncBElement) IfBoolAttr(condition bool, name string) *SVGFeFuncBElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeFuncBElement) BoolAttrf(format string, args ...any) *SVGFeFuncBElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeFuncBElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeFuncBElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeFuncBElement) BoolAttrs(names ...string) *SVGFeFuncBElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeFuncBElement) IfBoolAttrs(condition bool, names ...string) *SVGFeFuncBElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGFeFuncBElement) Attr(name, value string) *SVGFeFuncBElement {
 func (e *SVGFeFuncBElement) IfAttr(condition bool, name, value string) *SVGFeFuncBElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeFuncBElement) Attrf(name, format string, args ...any) *SVGFeFuncBElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeFuncBElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeFuncBElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeFuncBElement) Attrs(attrs ...string) *SVGFeFuncBElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeFuncBElement) IfAttrs(condition bool, attrs ...string) *SVGFeFuncBElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeFuncBElement) AttrsMap(attrs map[string]string) *SVGFeFuncBElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeFuncBElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeFuncBElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

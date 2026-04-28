@@ -51,15 +51,48 @@ func (e *SVGFeComponentTransferElement) TernChildren(condition bool, trueChildre
 
 func (e *SVGFeComponentTransferElement) BoolAttr(name string) *SVGFeComponentTransferElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeComponentTransferElement) BoolAttrRemove(name string) *SVGFeComponentTransferElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeComponentTransferElement) IfBoolAttr(condition bool, name string) *SVGFeComponentTransferElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeComponentTransferElement) BoolAttrf(format string, args ...any) *SVGFeComponentTransferElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeComponentTransferElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeComponentTransferElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeComponentTransferElement) BoolAttrs(names ...string) *SVGFeComponentTransferElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeComponentTransferElement) IfBoolAttrs(condition bool, names ...string) *SVGFeComponentTransferElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *SVGFeComponentTransferElement) Attr(name, value string) *SVGFeComponent
 func (e *SVGFeComponentTransferElement) IfAttr(condition bool, name, value string) *SVGFeComponentTransferElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeComponentTransferElement) Attrf(name, format string, args ...any) *SVGFeComponentTransferElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeComponentTransferElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeComponentTransferElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeComponentTransferElement) Attrs(attrs ...string) *SVGFeComponentTransferElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeComponentTransferElement) IfAttrs(condition bool, attrs ...string) *SVGFeComponentTransferElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeComponentTransferElement) AttrsMap(attrs map[string]string) *SVGFeComponentTransferElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeComponentTransferElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeComponentTransferElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

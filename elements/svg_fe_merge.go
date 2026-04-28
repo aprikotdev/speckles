@@ -50,15 +50,48 @@ func (e *SVGFeMergeElement) TernChildren(condition bool, trueChildren, falseChil
 
 func (e *SVGFeMergeElement) BoolAttr(name string) *SVGFeMergeElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeMergeElement) BoolAttrRemove(name string) *SVGFeMergeElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeMergeElement) IfBoolAttr(condition bool, name string) *SVGFeMergeElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeMergeElement) BoolAttrf(format string, args ...any) *SVGFeMergeElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeMergeElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeMergeElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeMergeElement) BoolAttrs(names ...string) *SVGFeMergeElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeMergeElement) IfBoolAttrs(condition bool, names ...string) *SVGFeMergeElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGFeMergeElement) Attr(name, value string) *SVGFeMergeElement {
 func (e *SVGFeMergeElement) IfAttr(condition bool, name, value string) *SVGFeMergeElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeMergeElement) Attrf(name, format string, args ...any) *SVGFeMergeElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeMergeElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeMergeElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeMergeElement) Attrs(attrs ...string) *SVGFeMergeElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeMergeElement) IfAttrs(condition bool, attrs ...string) *SVGFeMergeElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeMergeElement) AttrsMap(attrs map[string]string) *SVGFeMergeElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeMergeElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeMergeElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

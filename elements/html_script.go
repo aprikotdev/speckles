@@ -50,15 +50,48 @@ func (e *ScriptElement) TernChildren(condition bool, trueChildren, falseChildren
 
 func (e *ScriptElement) BoolAttr(name string) *ScriptElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *ScriptElement) BoolAttrRemove(name string) *ScriptElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *ScriptElement) IfBoolAttr(condition bool, name string) *ScriptElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *ScriptElement) BoolAttrf(format string, args ...any) *ScriptElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *ScriptElement) IfBoolAttrf(condition bool, format string, args ...any) *ScriptElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *ScriptElement) BoolAttrs(names ...string) *ScriptElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *ScriptElement) IfBoolAttrs(condition bool, names ...string) *ScriptElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *ScriptElement) Attr(name, value string) *ScriptElement {
 func (e *ScriptElement) IfAttr(condition bool, name, value string) *ScriptElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *ScriptElement) Attrf(name, format string, args ...any) *ScriptElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *ScriptElement) IfAttrf(condition bool, name, format string, args ...any) *ScriptElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *ScriptElement) Attrs(attrs ...string) *ScriptElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *ScriptElement) IfAttrs(condition bool, attrs ...string) *ScriptElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *ScriptElement) AttrsMap(attrs map[string]string) *ScriptElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *ScriptElement) IfAttrsMap(condition bool, attrs map[string]string) *ScriptElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }
@@ -126,32 +209,17 @@ func (e *ScriptElement) IfEscapedf(condition bool, format string, args ...any) *
 
 // Execute script when available, without blocking.
 func (e *ScriptElement) Async() *ScriptElement {
-	e.AsyncSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("async", struct{}{})
 	return e
 }
 
 // Execute script when available, without blocking.
 func (e *ScriptElement) IfAsync(condition bool) *ScriptElement {
 	if condition {
-		e.AsyncSet(true)
-	}
-	return e
-}
-
-// Execute script when available, without blocking.
-// Set the attribute Async to the value b explicitly.
-func (e *ScriptElement) AsyncSet(b bool) *ScriptElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("async", b)
-	return e
-}
-
-// Execute script when available, without blocking.
-func (e *ScriptElement) IfSetAsync(condition bool, b bool) *ScriptElement {
-	if condition {
-		e.AsyncSet(b)
+		e.Async()
 	}
 	return e
 }
@@ -159,6 +227,16 @@ func (e *ScriptElement) IfSetAsync(condition bool, b bool) *ScriptElement {
 // Remove the attribute Async from the element.
 // Execute script when available, without blocking.
 func (e *ScriptElement) AsyncRemove() *ScriptElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("async")
+	return e
+}
+
+// Remove the attribute Async from the element.
+// Execute script when available, without blocking.
+func (e *ScriptElement) AsyncIfRemove() *ScriptElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -198,32 +276,17 @@ func (e *ScriptElement) CrossoriginRemove() *ScriptElement {
 
 // Defer script execution.
 func (e *ScriptElement) Defer() *ScriptElement {
-	e.DeferSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("defer", struct{}{})
 	return e
 }
 
 // Defer script execution.
 func (e *ScriptElement) IfDefer(condition bool) *ScriptElement {
 	if condition {
-		e.DeferSet(true)
-	}
-	return e
-}
-
-// Defer script execution.
-// Set the attribute Defer to the value b explicitly.
-func (e *ScriptElement) DeferSet(b bool) *ScriptElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("defer", b)
-	return e
-}
-
-// Defer script execution.
-func (e *ScriptElement) IfSetDefer(condition bool, b bool) *ScriptElement {
-	if condition {
-		e.DeferSet(b)
+		e.Defer()
 	}
 	return e
 }
@@ -231,6 +294,16 @@ func (e *ScriptElement) IfSetDefer(condition bool, b bool) *ScriptElement {
 // Remove the attribute Defer from the element.
 // Defer script execution.
 func (e *ScriptElement) DeferRemove() *ScriptElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("defer")
+	return e
+}
+
+// Remove the attribute Defer from the element.
+// Defer script execution.
+func (e *ScriptElement) DeferIfRemove() *ScriptElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -320,32 +393,17 @@ func (e *ScriptElement) LanguageRemove() *ScriptElement {
 
 // Prevents execution in user agents that support module scripts.
 func (e *ScriptElement) Nomodule() *ScriptElement {
-	e.NomoduleSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("nomodule", struct{}{})
 	return e
 }
 
 // Prevents execution in user agents that support module scripts.
 func (e *ScriptElement) IfNomodule(condition bool) *ScriptElement {
 	if condition {
-		e.NomoduleSet(true)
-	}
-	return e
-}
-
-// Prevents execution in user agents that support module scripts.
-// Set the attribute Nomodule to the value b explicitly.
-func (e *ScriptElement) NomoduleSet(b bool) *ScriptElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("nomodule", b)
-	return e
-}
-
-// Prevents execution in user agents that support module scripts.
-func (e *ScriptElement) IfSetNomodule(condition bool, b bool) *ScriptElement {
-	if condition {
-		e.NomoduleSet(b)
+		e.Nomodule()
 	}
 	return e
 }
@@ -353,6 +411,16 @@ func (e *ScriptElement) IfSetNomodule(condition bool, b bool) *ScriptElement {
 // Remove the attribute Nomodule from the element.
 // Prevents execution in user agents that support module scripts.
 func (e *ScriptElement) NomoduleRemove() *ScriptElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("nomodule")
+	return e
+}
+
+// Remove the attribute Nomodule from the element.
+// Prevents execution in user agents that support module scripts.
+func (e *ScriptElement) NomoduleIfRemove() *ScriptElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -634,7 +702,10 @@ func (e *ScriptElement) AutocapitalizeRemove() *ScriptElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *ScriptElement) Autofocus() *ScriptElement {
-	e.AutofocusSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("autofocus", struct{}{})
 	return e
 }
 
@@ -654,51 +725,7 @@ func (e *ScriptElement) Autofocus() *ScriptElement {
 // created by the preceding content.
 func (e *ScriptElement) IfAutofocus(condition bool) *ScriptElement {
 	if condition {
-		e.AutofocusSet(true)
-	}
-	return e
-}
-
-// The autofocus global Attribute is a Boolean attribute indicating that an
-// element should be focused on page load, or when the <dialog> that it is part
-// of is displayed.
-// Accessibility concerns Automatically focusing a form control can confuse
-// visually-impaired people using screen-reading technology and people with
-// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
-// their user to the form control without warning them beforehand.
-// Use careful consideration for accessibility when applying the autofocus
-// Attribute. Automatically focusing on a control can cause the page to scroll
-// on load. The focus can also cause dynamic keyboards to display on some touch
-// devices. While a screen reader will announce the label of the form control
-// receiving focus, the screen reader will not announce anything before the
-// label, and the sighted user on a small device will equally miss the context
-// created by the preceding content.
-// Set the attribute Autofocus to the value b explicitly.
-func (e *ScriptElement) AutofocusSet(b bool) *ScriptElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("autofocus", b)
-	return e
-}
-
-// The autofocus global Attribute is a Boolean attribute indicating that an
-// element should be focused on page load, or when the <dialog> that it is part
-// of is displayed.
-// Accessibility concerns Automatically focusing a form control can confuse
-// visually-impaired people using screen-reading technology and people with
-// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
-// their user to the form control without warning them beforehand.
-// Use careful consideration for accessibility when applying the autofocus
-// Attribute. Automatically focusing on a control can cause the page to scroll
-// on load. The focus can also cause dynamic keyboards to display on some touch
-// devices. While a screen reader will announce the label of the form control
-// receiving focus, the screen reader will not announce anything before the
-// label, and the sighted user on a small device will equally miss the context
-// created by the preceding content.
-func (e *ScriptElement) IfSetAutofocus(condition bool, b bool) *ScriptElement {
-	if condition {
-		e.AutofocusSet(b)
+		e.Autofocus()
 	}
 	return e
 }
@@ -719,6 +746,29 @@ func (e *ScriptElement) IfSetAutofocus(condition bool, b bool) *ScriptElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *ScriptElement) AutofocusRemove() *ScriptElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("autofocus")
+	return e
+}
+
+// Remove the attribute Autofocus from the element.
+// The autofocus global Attribute is a Boolean attribute indicating that an
+// element should be focused on page load, or when the <dialog> that it is part
+// of is displayed.
+// Accessibility concerns Automatically focusing a form control can confuse
+// visually-impaired people using screen-reading technology and people with
+// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
+// their user to the form control without warning them beforehand.
+// Use careful consideration for accessibility when applying the autofocus
+// Attribute. Automatically focusing on a control can cause the page to scroll
+// on load. The focus can also cause dynamic keyboards to display on some touch
+// devices. While a screen reader will announce the label of the form control
+// receiving focus, the screen reader will not announce anything before the
+// label, and the sighted user on a small device will equally miss the context
+// created by the preceding content.
+func (e *ScriptElement) AutofocusIfRemove() *ScriptElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1155,7 +1205,10 @@ func (e *ScriptElement) IDRemove() *ScriptElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *ScriptElement) Inert() *ScriptElement {
-	e.InertSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("inert", struct{}{})
 	return e
 }
 
@@ -1171,43 +1224,7 @@ func (e *ScriptElement) Inert() *ScriptElement {
 // excluding them from the accessibility tree.
 func (e *ScriptElement) IfInert(condition bool) *ScriptElement {
 	if condition {
-		e.InertSet(true)
-	}
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-// Set the attribute Inert to the value b explicitly.
-func (e *ScriptElement) InertSet(b bool) *ScriptElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("inert", b)
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-func (e *ScriptElement) IfSetInert(condition bool, b bool) *ScriptElement {
-	if condition {
-		e.InertSet(b)
+		e.Inert()
 	}
 	return e
 }
@@ -1224,6 +1241,25 @@ func (e *ScriptElement) IfSetInert(condition bool, b bool) *ScriptElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *ScriptElement) InertRemove() *ScriptElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("inert")
+	return e
+}
+
+// Remove the attribute Inert from the element.
+// The inert global Attribute is a Boolean attribute indicating that the browser
+// will ignore the element. With the inert attribute, all of the element's flat
+// tree descendants (such as modal <dialog>s) that don't otherwise escape
+// inertness are ignored. The inert attribute also makes the browser ignore
+// input events sent by the user, including focus-related events and events from
+// assistive technologies. Specifically, inert does the following: Prevents the
+// click event from being fired when the user clicks on the element. Prevents
+// the focus event from being raised by preventing the element from gaining
+// focus. Hides the element and its content from assistive technologies by
+// excluding them from the accessibility tree.
+func (e *ScriptElement) InertIfRemove() *ScriptElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1590,7 +1626,10 @@ func (e *ScriptElement) ItemrefRemove() *ScriptElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *ScriptElement) Itemscope() *ScriptElement {
-	e.ItemscopeSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("itemscope", struct{}{})
 	return e
 }
 
@@ -1603,37 +1642,7 @@ func (e *ScriptElement) Itemscope() *ScriptElement {
 // <object>, <source>, <track>, and <video>.
 func (e *ScriptElement) IfItemscope(condition bool) *ScriptElement {
 	if condition {
-		e.ItemscopeSet(true)
-	}
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-// Set the attribute Itemscope to the value b explicitly.
-func (e *ScriptElement) ItemscopeSet(b bool) *ScriptElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("itemscope", b)
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-func (e *ScriptElement) IfSetItemscope(condition bool, b bool) *ScriptElement {
-	if condition {
-		e.ItemscopeSet(b)
+		e.Itemscope()
 	}
 	return e
 }
@@ -1647,6 +1656,22 @@ func (e *ScriptElement) IfSetItemscope(condition bool, b bool) *ScriptElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *ScriptElement) ItemscopeRemove() *ScriptElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("itemscope")
+	return e
+}
+
+// Remove the attribute Itemscope from the element.
+// The itemscope global Attribute is used to add an item to a microdata DOM
+// tree. Every HTML element can have an itemscope attribute specified, and an
+// itemscope consists of a name-value pair. Each name-value pair is called a
+// property, and a group of one or more properties forms an item. Property
+// values are either a string or a URL and can be associated with a very wide
+// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
+// <object>, <source>, <track>, and <video>.
+func (e *ScriptElement) ItemscopeIfRemove() *ScriptElement {
 	if e.boolAttributes == nil {
 		return e
 	}

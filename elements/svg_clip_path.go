@@ -50,15 +50,48 @@ func (e *SVGClipPathElement) TernChildren(condition bool, trueChildren, falseChi
 
 func (e *SVGClipPathElement) BoolAttr(name string) *SVGClipPathElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGClipPathElement) BoolAttrRemove(name string) *SVGClipPathElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGClipPathElement) IfBoolAttr(condition bool, name string) *SVGClipPathElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGClipPathElement) BoolAttrf(format string, args ...any) *SVGClipPathElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGClipPathElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGClipPathElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGClipPathElement) BoolAttrs(names ...string) *SVGClipPathElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGClipPathElement) IfBoolAttrs(condition bool, names ...string) *SVGClipPathElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGClipPathElement) Attr(name, value string) *SVGClipPathElement {
 func (e *SVGClipPathElement) IfAttr(condition bool, name, value string) *SVGClipPathElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGClipPathElement) Attrf(name, format string, args ...any) *SVGClipPathElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGClipPathElement) IfAttrf(condition bool, name, format string, args ...any) *SVGClipPathElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGClipPathElement) Attrs(attrs ...string) *SVGClipPathElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGClipPathElement) IfAttrs(condition bool, attrs ...string) *SVGClipPathElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGClipPathElement) AttrsMap(attrs map[string]string) *SVGClipPathElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGClipPathElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGClipPathElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

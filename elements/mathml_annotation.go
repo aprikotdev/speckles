@@ -51,15 +51,48 @@ func (e *MathMLAnnotationElement) TernChildren(condition bool, trueChildren, fal
 
 func (e *MathMLAnnotationElement) BoolAttr(name string) *MathMLAnnotationElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *MathMLAnnotationElement) BoolAttrRemove(name string) *MathMLAnnotationElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *MathMLAnnotationElement) IfBoolAttr(condition bool, name string) *MathMLAnnotationElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationElement) BoolAttrf(format string, args ...any) *MathMLAnnotationElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *MathMLAnnotationElement) IfBoolAttrf(condition bool, format string, args ...any) *MathMLAnnotationElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationElement) BoolAttrs(names ...string) *MathMLAnnotationElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationElement) IfBoolAttrs(condition bool, names ...string) *MathMLAnnotationElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *MathMLAnnotationElement) Attr(name, value string) *MathMLAnnotationElem
 func (e *MathMLAnnotationElement) IfAttr(condition bool, name, value string) *MathMLAnnotationElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationElement) Attrf(name, format string, args ...any) *MathMLAnnotationElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *MathMLAnnotationElement) IfAttrf(condition bool, name, format string, args ...any) *MathMLAnnotationElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationElement) Attrs(attrs ...string) *MathMLAnnotationElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationElement) IfAttrs(condition bool, attrs ...string) *MathMLAnnotationElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationElement) AttrsMap(attrs map[string]string) *MathMLAnnotationElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationElement) IfAttrsMap(condition bool, attrs map[string]string) *MathMLAnnotationElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

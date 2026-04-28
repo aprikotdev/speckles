@@ -52,15 +52,48 @@ func (e *AudioElement) TernChildren(condition bool, trueChildren, falseChildren 
 
 func (e *AudioElement) BoolAttr(name string) *AudioElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *AudioElement) BoolAttrRemove(name string) *AudioElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *AudioElement) IfBoolAttr(condition bool, name string) *AudioElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *AudioElement) BoolAttrf(format string, args ...any) *AudioElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *AudioElement) IfBoolAttrf(condition bool, format string, args ...any) *AudioElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *AudioElement) BoolAttrs(names ...string) *AudioElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *AudioElement) IfBoolAttrs(condition bool, names ...string) *AudioElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -76,6 +109,56 @@ func (e *AudioElement) Attr(name, value string) *AudioElement {
 func (e *AudioElement) IfAttr(condition bool, name, value string) *AudioElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *AudioElement) Attrf(name, format string, args ...any) *AudioElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *AudioElement) IfAttrf(condition bool, name, format string, args ...any) *AudioElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *AudioElement) Attrs(attrs ...string) *AudioElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *AudioElement) IfAttrs(condition bool, attrs ...string) *AudioElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *AudioElement) AttrsMap(attrs map[string]string) *AudioElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *AudioElement) IfAttrsMap(condition bool, attrs map[string]string) *AudioElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }
@@ -130,7 +213,10 @@ func (e *AudioElement) IfEscapedf(condition bool, format string, args ...any) *A
 // will automatically begin playback as soon as it can do so, without waiting
 // for the entire audio file to finish downloading.
 func (e *AudioElement) Autoplay() *AudioElement {
-	e.AutoplaySet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("autoplay", struct{}{})
 	return e
 }
 
@@ -139,29 +225,7 @@ func (e *AudioElement) Autoplay() *AudioElement {
 // for the entire audio file to finish downloading.
 func (e *AudioElement) IfAutoplay(condition bool) *AudioElement {
 	if condition {
-		e.AutoplaySet(true)
-	}
-	return e
-}
-
-// A Boolean Attribute; if specified (even if the value is "false"!), the audio
-// will automatically begin playback as soon as it can do so, without waiting
-// for the entire audio file to finish downloading.
-// Set the attribute Autoplay to the value b explicitly.
-func (e *AudioElement) AutoplaySet(b bool) *AudioElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("autoplay", b)
-	return e
-}
-
-// A Boolean Attribute; if specified (even if the value is "false"!), the audio
-// will automatically begin playback as soon as it can do so, without waiting
-// for the entire audio file to finish downloading.
-func (e *AudioElement) IfSetAutoplay(condition bool, b bool) *AudioElement {
-	if condition {
-		e.AutoplaySet(b)
+		e.Autoplay()
 	}
 	return e
 }
@@ -178,11 +242,26 @@ func (e *AudioElement) AutoplayRemove() *AudioElement {
 	return e
 }
 
+// Remove the attribute Autoplay from the element.
+// A Boolean Attribute; if specified (even if the value is "false"!), the audio
+// will automatically begin playback as soon as it can do so, without waiting
+// for the entire audio file to finish downloading.
+func (e *AudioElement) AutoplayIfRemove() *AudioElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("autoplay")
+	return e
+}
+
 // If this Attribute is present, the browser will offer controls to allow the
 // user to control audio playback, including volume, seeking, and pause/resume
 // playback.
 func (e *AudioElement) Controls() *AudioElement {
-	e.ControlsSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("controls", struct{}{})
 	return e
 }
 
@@ -191,29 +270,7 @@ func (e *AudioElement) Controls() *AudioElement {
 // playback.
 func (e *AudioElement) IfControls(condition bool) *AudioElement {
 	if condition {
-		e.ControlsSet(true)
-	}
-	return e
-}
-
-// If this Attribute is present, the browser will offer controls to allow the
-// user to control audio playback, including volume, seeking, and pause/resume
-// playback.
-// Set the attribute Controls to the value b explicitly.
-func (e *AudioElement) ControlsSet(b bool) *AudioElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("controls", b)
-	return e
-}
-
-// If this Attribute is present, the browser will offer controls to allow the
-// user to control audio playback, including volume, seeking, and pause/resume
-// playback.
-func (e *AudioElement) IfSetControls(condition bool, b bool) *AudioElement {
-	if condition {
-		e.ControlsSet(b)
+		e.Controls()
 	}
 	return e
 }
@@ -230,10 +287,25 @@ func (e *AudioElement) ControlsRemove() *AudioElement {
 	return e
 }
 
+// Remove the attribute Controls from the element.
+// If this Attribute is present, the browser will offer controls to allow the
+// user to control audio playback, including volume, seeking, and pause/resume
+// playback.
+func (e *AudioElement) ControlsIfRemove() *AudioElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("controls")
+	return e
+}
+
 // A Boolean Attribute; if specified, the audio player will automatically seek
 // back to the start upon reaching the end of the audio.
 func (e *AudioElement) Loop() *AudioElement {
-	e.LoopSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("loop", struct{}{})
 	return e
 }
 
@@ -241,27 +313,7 @@ func (e *AudioElement) Loop() *AudioElement {
 // back to the start upon reaching the end of the audio.
 func (e *AudioElement) IfLoop(condition bool) *AudioElement {
 	if condition {
-		e.LoopSet(true)
-	}
-	return e
-}
-
-// A Boolean Attribute; if specified, the audio player will automatically seek
-// back to the start upon reaching the end of the audio.
-// Set the attribute Loop to the value b explicitly.
-func (e *AudioElement) LoopSet(b bool) *AudioElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("loop", b)
-	return e
-}
-
-// A Boolean Attribute; if specified, the audio player will automatically seek
-// back to the start upon reaching the end of the audio.
-func (e *AudioElement) IfSetLoop(condition bool, b bool) *AudioElement {
-	if condition {
-		e.LoopSet(b)
+		e.Loop()
 	}
 	return e
 }
@@ -277,11 +329,25 @@ func (e *AudioElement) LoopRemove() *AudioElement {
 	return e
 }
 
+// Remove the attribute Loop from the element.
+// A Boolean Attribute; if specified, the audio player will automatically seek
+// back to the start upon reaching the end of the audio.
+func (e *AudioElement) LoopIfRemove() *AudioElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("loop")
+	return e
+}
+
 // A Boolean Attribute which indicates whether the audio will be initially
 // silenced. Its default value is false, meaning that the audio will be played
 // when the <audio> element is loaded.
 func (e *AudioElement) Muted() *AudioElement {
-	e.MutedSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("muted", struct{}{})
 	return e
 }
 
@@ -290,29 +356,7 @@ func (e *AudioElement) Muted() *AudioElement {
 // when the <audio> element is loaded.
 func (e *AudioElement) IfMuted(condition bool) *AudioElement {
 	if condition {
-		e.MutedSet(true)
-	}
-	return e
-}
-
-// A Boolean Attribute which indicates whether the audio will be initially
-// silenced. Its default value is false, meaning that the audio will be played
-// when the <audio> element is loaded.
-// Set the attribute Muted to the value b explicitly.
-func (e *AudioElement) MutedSet(b bool) *AudioElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("muted", b)
-	return e
-}
-
-// A Boolean Attribute which indicates whether the audio will be initially
-// silenced. Its default value is false, meaning that the audio will be played
-// when the <audio> element is loaded.
-func (e *AudioElement) IfSetMuted(condition bool, b bool) *AudioElement {
-	if condition {
-		e.MutedSet(b)
+		e.Muted()
 	}
 	return e
 }
@@ -322,6 +366,18 @@ func (e *AudioElement) IfSetMuted(condition bool, b bool) *AudioElement {
 // silenced. Its default value is false, meaning that the audio will be played
 // when the <audio> element is loaded.
 func (e *AudioElement) MutedRemove() *AudioElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("muted")
+	return e
+}
+
+// Remove the attribute Muted from the element.
+// A Boolean Attribute which indicates whether the audio will be initially
+// silenced. Its default value is false, meaning that the audio will be played
+// when the <audio> element is loaded.
+func (e *AudioElement) MutedIfRemove() *AudioElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -514,7 +570,10 @@ func (e *AudioElement) AutocapitalizeRemove() *AudioElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *AudioElement) Autofocus() *AudioElement {
-	e.AutofocusSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("autofocus", struct{}{})
 	return e
 }
 
@@ -534,51 +593,7 @@ func (e *AudioElement) Autofocus() *AudioElement {
 // created by the preceding content.
 func (e *AudioElement) IfAutofocus(condition bool) *AudioElement {
 	if condition {
-		e.AutofocusSet(true)
-	}
-	return e
-}
-
-// The autofocus global Attribute is a Boolean attribute indicating that an
-// element should be focused on page load, or when the <dialog> that it is part
-// of is displayed.
-// Accessibility concerns Automatically focusing a form control can confuse
-// visually-impaired people using screen-reading technology and people with
-// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
-// their user to the form control without warning them beforehand.
-// Use careful consideration for accessibility when applying the autofocus
-// Attribute. Automatically focusing on a control can cause the page to scroll
-// on load. The focus can also cause dynamic keyboards to display on some touch
-// devices. While a screen reader will announce the label of the form control
-// receiving focus, the screen reader will not announce anything before the
-// label, and the sighted user on a small device will equally miss the context
-// created by the preceding content.
-// Set the attribute Autofocus to the value b explicitly.
-func (e *AudioElement) AutofocusSet(b bool) *AudioElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("autofocus", b)
-	return e
-}
-
-// The autofocus global Attribute is a Boolean attribute indicating that an
-// element should be focused on page load, or when the <dialog> that it is part
-// of is displayed.
-// Accessibility concerns Automatically focusing a form control can confuse
-// visually-impaired people using screen-reading technology and people with
-// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
-// their user to the form control without warning them beforehand.
-// Use careful consideration for accessibility when applying the autofocus
-// Attribute. Automatically focusing on a control can cause the page to scroll
-// on load. The focus can also cause dynamic keyboards to display on some touch
-// devices. While a screen reader will announce the label of the form control
-// receiving focus, the screen reader will not announce anything before the
-// label, and the sighted user on a small device will equally miss the context
-// created by the preceding content.
-func (e *AudioElement) IfSetAutofocus(condition bool, b bool) *AudioElement {
-	if condition {
-		e.AutofocusSet(b)
+		e.Autofocus()
 	}
 	return e
 }
@@ -599,6 +614,29 @@ func (e *AudioElement) IfSetAutofocus(condition bool, b bool) *AudioElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *AudioElement) AutofocusRemove() *AudioElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("autofocus")
+	return e
+}
+
+// Remove the attribute Autofocus from the element.
+// The autofocus global Attribute is a Boolean attribute indicating that an
+// element should be focused on page load, or when the <dialog> that it is part
+// of is displayed.
+// Accessibility concerns Automatically focusing a form control can confuse
+// visually-impaired people using screen-reading technology and people with
+// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
+// their user to the form control without warning them beforehand.
+// Use careful consideration for accessibility when applying the autofocus
+// Attribute. Automatically focusing on a control can cause the page to scroll
+// on load. The focus can also cause dynamic keyboards to display on some touch
+// devices. While a screen reader will announce the label of the form control
+// receiving focus, the screen reader will not announce anything before the
+// label, and the sighted user on a small device will equally miss the context
+// created by the preceding content.
+func (e *AudioElement) AutofocusIfRemove() *AudioElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1035,7 +1073,10 @@ func (e *AudioElement) IDRemove() *AudioElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *AudioElement) Inert() *AudioElement {
-	e.InertSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("inert", struct{}{})
 	return e
 }
 
@@ -1051,43 +1092,7 @@ func (e *AudioElement) Inert() *AudioElement {
 // excluding them from the accessibility tree.
 func (e *AudioElement) IfInert(condition bool) *AudioElement {
 	if condition {
-		e.InertSet(true)
-	}
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-// Set the attribute Inert to the value b explicitly.
-func (e *AudioElement) InertSet(b bool) *AudioElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("inert", b)
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-func (e *AudioElement) IfSetInert(condition bool, b bool) *AudioElement {
-	if condition {
-		e.InertSet(b)
+		e.Inert()
 	}
 	return e
 }
@@ -1104,6 +1109,25 @@ func (e *AudioElement) IfSetInert(condition bool, b bool) *AudioElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *AudioElement) InertRemove() *AudioElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("inert")
+	return e
+}
+
+// Remove the attribute Inert from the element.
+// The inert global Attribute is a Boolean attribute indicating that the browser
+// will ignore the element. With the inert attribute, all of the element's flat
+// tree descendants (such as modal <dialog>s) that don't otherwise escape
+// inertness are ignored. The inert attribute also makes the browser ignore
+// input events sent by the user, including focus-related events and events from
+// assistive technologies. Specifically, inert does the following: Prevents the
+// click event from being fired when the user clicks on the element. Prevents
+// the focus event from being raised by preventing the element from gaining
+// focus. Hides the element and its content from assistive technologies by
+// excluding them from the accessibility tree.
+func (e *AudioElement) InertIfRemove() *AudioElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1470,7 +1494,10 @@ func (e *AudioElement) ItemrefRemove() *AudioElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *AudioElement) Itemscope() *AudioElement {
-	e.ItemscopeSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("itemscope", struct{}{})
 	return e
 }
 
@@ -1483,37 +1510,7 @@ func (e *AudioElement) Itemscope() *AudioElement {
 // <object>, <source>, <track>, and <video>.
 func (e *AudioElement) IfItemscope(condition bool) *AudioElement {
 	if condition {
-		e.ItemscopeSet(true)
-	}
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-// Set the attribute Itemscope to the value b explicitly.
-func (e *AudioElement) ItemscopeSet(b bool) *AudioElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("itemscope", b)
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-func (e *AudioElement) IfSetItemscope(condition bool, b bool) *AudioElement {
-	if condition {
-		e.ItemscopeSet(b)
+		e.Itemscope()
 	}
 	return e
 }
@@ -1527,6 +1524,22 @@ func (e *AudioElement) IfSetItemscope(condition bool, b bool) *AudioElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *AudioElement) ItemscopeRemove() *AudioElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("itemscope")
+	return e
+}
+
+// Remove the attribute Itemscope from the element.
+// The itemscope global Attribute is used to add an item to a microdata DOM
+// tree. Every HTML element can have an itemscope attribute specified, and an
+// itemscope consists of a name-value pair. Each name-value pair is called a
+// property, and a group of one or more properties forms an item. Property
+// values are either a string or a URL and can be associated with a very wide
+// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
+// <object>, <source>, <track>, and <video>.
+func (e *AudioElement) ItemscopeIfRemove() *AudioElement {
 	if e.boolAttributes == nil {
 		return e
 	}

@@ -52,15 +52,48 @@ func (e *InputElement) TernChildren(condition bool, trueChildren, falseChildren 
 
 func (e *InputElement) BoolAttr(name string) *InputElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *InputElement) BoolAttrRemove(name string) *InputElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *InputElement) IfBoolAttr(condition bool, name string) *InputElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *InputElement) BoolAttrf(format string, args ...any) *InputElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *InputElement) IfBoolAttrf(condition bool, format string, args ...any) *InputElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *InputElement) BoolAttrs(names ...string) *InputElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *InputElement) IfBoolAttrs(condition bool, names ...string) *InputElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -76,6 +109,56 @@ func (e *InputElement) Attr(name, value string) *InputElement {
 func (e *InputElement) IfAttr(condition bool, name, value string) *InputElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *InputElement) Attrf(name, format string, args ...any) *InputElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *InputElement) IfAttrf(condition bool, name, format string, args ...any) *InputElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *InputElement) Attrs(attrs ...string) *InputElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *InputElement) IfAttrs(condition bool, attrs ...string) *InputElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *InputElement) AttrsMap(attrs map[string]string) *InputElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *InputElement) IfAttrsMap(condition bool, attrs map[string]string) *InputElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }
@@ -236,32 +319,17 @@ func (e *InputElement) AutocompleteRemove() *InputElement {
 
 // Automatically focus the form control when the page is loaded.
 func (e *InputElement) Autofocus() *InputElement {
-	e.AutofocusSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("autofocus", struct{}{})
 	return e
 }
 
 // Automatically focus the form control when the page is loaded.
 func (e *InputElement) IfAutofocus(condition bool) *InputElement {
 	if condition {
-		e.AutofocusSet(true)
-	}
-	return e
-}
-
-// Automatically focus the form control when the page is loaded.
-// Set the attribute Autofocus to the value b explicitly.
-func (e *InputElement) AutofocusSet(b bool) *InputElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("autofocus", b)
-	return e
-}
-
-// Automatically focus the form control when the page is loaded.
-func (e *InputElement) IfSetAutofocus(condition bool, b bool) *InputElement {
-	if condition {
-		e.AutofocusSet(b)
+		e.Autofocus()
 	}
 	return e
 }
@@ -276,34 +344,29 @@ func (e *InputElement) AutofocusRemove() *InputElement {
 	return e
 }
 
+// Remove the attribute Autofocus from the element.
+// Automatically focus the form control when the page is loaded.
+func (e *InputElement) AutofocusIfRemove() *InputElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("autofocus")
+	return e
+}
+
 // Whether the command or control is checked.
 func (e *InputElement) Checked() *InputElement {
-	e.CheckedSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("checked", struct{}{})
 	return e
 }
 
 // Whether the command or control is checked.
 func (e *InputElement) IfChecked(condition bool) *InputElement {
 	if condition {
-		e.CheckedSet(true)
-	}
-	return e
-}
-
-// Whether the command or control is checked.
-// Set the attribute Checked to the value b explicitly.
-func (e *InputElement) CheckedSet(b bool) *InputElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("checked", b)
-	return e
-}
-
-// Whether the command or control is checked.
-func (e *InputElement) IfSetChecked(condition bool, b bool) *InputElement {
-	if condition {
-		e.CheckedSet(b)
+		e.Checked()
 	}
 	return e
 }
@@ -311,6 +374,16 @@ func (e *InputElement) IfSetChecked(condition bool, b bool) *InputElement {
 // Remove the attribute Checked from the element.
 // Whether the command or control is checked.
 func (e *InputElement) CheckedRemove() *InputElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("checked")
+	return e
+}
+
+// Remove the attribute Checked from the element.
+// Whether the command or control is checked.
+func (e *InputElement) CheckedIfRemove() *InputElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -365,32 +438,17 @@ func (e *InputElement) DirnameRemove() *InputElement {
 
 // Whether the form control is disabled.
 func (e *InputElement) Disabled() *InputElement {
-	e.DisabledSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("disabled", struct{}{})
 	return e
 }
 
 // Whether the form control is disabled.
 func (e *InputElement) IfDisabled(condition bool) *InputElement {
 	if condition {
-		e.DisabledSet(true)
-	}
-	return e
-}
-
-// Whether the form control is disabled.
-// Set the attribute Disabled to the value b explicitly.
-func (e *InputElement) DisabledSet(b bool) *InputElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("disabled", b)
-	return e
-}
-
-// Whether the form control is disabled.
-func (e *InputElement) IfSetDisabled(condition bool, b bool) *InputElement {
-	if condition {
-		e.DisabledSet(b)
+		e.Disabled()
 	}
 	return e
 }
@@ -398,6 +456,16 @@ func (e *InputElement) IfSetDisabled(condition bool, b bool) *InputElement {
 // Remove the attribute Disabled from the element.
 // Whether the form control is disabled.
 func (e *InputElement) DisabledRemove() *InputElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("disabled")
+	return e
+}
+
+// Remove the attribute Disabled from the element.
+// Whether the form control is disabled.
+func (e *InputElement) DisabledIfRemove() *InputElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -551,32 +619,17 @@ func (e *InputElement) FormmethodRemove() *InputElement {
 
 // Bypass form control validation for form submission.
 func (e *InputElement) Formnovalidate() *InputElement {
-	e.FormnovalidateSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("formnovalidate", struct{}{})
 	return e
 }
 
 // Bypass form control validation for form submission.
 func (e *InputElement) IfFormnovalidate(condition bool) *InputElement {
 	if condition {
-		e.FormnovalidateSet(true)
-	}
-	return e
-}
-
-// Bypass form control validation for form submission.
-// Set the attribute Formnovalidate to the value b explicitly.
-func (e *InputElement) FormnovalidateSet(b bool) *InputElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("formnovalidate", b)
-	return e
-}
-
-// Bypass form control validation for form submission.
-func (e *InputElement) IfSetFormnovalidate(condition bool, b bool) *InputElement {
-	if condition {
-		e.FormnovalidateSet(b)
+		e.Formnovalidate()
 	}
 	return e
 }
@@ -584,6 +637,16 @@ func (e *InputElement) IfSetFormnovalidate(condition bool, b bool) *InputElement
 // Remove the attribute Formnovalidate from the element.
 // Bypass form control validation for form submission.
 func (e *InputElement) FormnovalidateRemove() *InputElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("formnovalidate")
+	return e
+}
+
+// Remove the attribute Formnovalidate from the element.
+// Bypass form control validation for form submission.
+func (e *InputElement) FormnovalidateIfRemove() *InputElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -854,32 +917,17 @@ func (e *InputElement) MinlengthRemove() *InputElement {
 
 // Whether to allow multiple values.
 func (e *InputElement) Multiple() *InputElement {
-	e.MultipleSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("multiple", struct{}{})
 	return e
 }
 
 // Whether to allow multiple values.
 func (e *InputElement) IfMultiple(condition bool) *InputElement {
 	if condition {
-		e.MultipleSet(true)
-	}
-	return e
-}
-
-// Whether to allow multiple values.
-// Set the attribute Multiple to the value b explicitly.
-func (e *InputElement) MultipleSet(b bool) *InputElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("multiple", b)
-	return e
-}
-
-// Whether to allow multiple values.
-func (e *InputElement) IfSetMultiple(condition bool, b bool) *InputElement {
-	if condition {
-		e.MultipleSet(b)
+		e.Multiple()
 	}
 	return e
 }
@@ -887,6 +935,16 @@ func (e *InputElement) IfSetMultiple(condition bool, b bool) *InputElement {
 // Remove the attribute Multiple from the element.
 // Whether to allow multiple values.
 func (e *InputElement) MultipleRemove() *InputElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("multiple")
+	return e
+}
+
+// Remove the attribute Multiple from the element.
+// Whether to allow multiple values.
+func (e *InputElement) MultipleIfRemove() *InputElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1016,32 +1074,17 @@ func (e *InputElement) PlaceholderRemove() *InputElement {
 
 // Whether to allow the value to be edited by the user.
 func (e *InputElement) Readonly() *InputElement {
-	e.ReadonlySet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("readonly", struct{}{})
 	return e
 }
 
 // Whether to allow the value to be edited by the user.
 func (e *InputElement) IfReadonly(condition bool) *InputElement {
 	if condition {
-		e.ReadonlySet(true)
-	}
-	return e
-}
-
-// Whether to allow the value to be edited by the user.
-// Set the attribute Readonly to the value b explicitly.
-func (e *InputElement) ReadonlySet(b bool) *InputElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("readonly", b)
-	return e
-}
-
-// Whether to allow the value to be edited by the user.
-func (e *InputElement) IfSetReadonly(condition bool, b bool) *InputElement {
-	if condition {
-		e.ReadonlySet(b)
+		e.Readonly()
 	}
 	return e
 }
@@ -1056,34 +1099,29 @@ func (e *InputElement) ReadonlyRemove() *InputElement {
 	return e
 }
 
+// Remove the attribute Readonly from the element.
+// Whether to allow the value to be edited by the user.
+func (e *InputElement) ReadonlyIfRemove() *InputElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("readonly")
+	return e
+}
+
 // Whether the control is required for form submission.
 func (e *InputElement) Required() *InputElement {
-	e.RequiredSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("required", struct{}{})
 	return e
 }
 
 // Whether the control is required for form submission.
 func (e *InputElement) IfRequired(condition bool) *InputElement {
 	if condition {
-		e.RequiredSet(true)
-	}
-	return e
-}
-
-// Whether the control is required for form submission.
-// Set the attribute Required to the value b explicitly.
-func (e *InputElement) RequiredSet(b bool) *InputElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("required", b)
-	return e
-}
-
-// Whether the control is required for form submission.
-func (e *InputElement) IfSetRequired(condition bool, b bool) *InputElement {
-	if condition {
-		e.RequiredSet(b)
+		e.Required()
 	}
 	return e
 }
@@ -1091,6 +1129,16 @@ func (e *InputElement) IfSetRequired(condition bool, b bool) *InputElement {
 // Remove the attribute Required from the element.
 // Whether the control is required for form submission.
 func (e *InputElement) RequiredRemove() *InputElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("required")
+	return e
+}
+
+// Remove the attribute Required from the element.
+// Whether the control is required for form submission.
+func (e *InputElement) RequiredIfRemove() *InputElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1870,7 +1918,10 @@ func (e *InputElement) IDRemove() *InputElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *InputElement) Inert() *InputElement {
-	e.InertSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("inert", struct{}{})
 	return e
 }
 
@@ -1886,43 +1937,7 @@ func (e *InputElement) Inert() *InputElement {
 // excluding them from the accessibility tree.
 func (e *InputElement) IfInert(condition bool) *InputElement {
 	if condition {
-		e.InertSet(true)
-	}
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-// Set the attribute Inert to the value b explicitly.
-func (e *InputElement) InertSet(b bool) *InputElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("inert", b)
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-func (e *InputElement) IfSetInert(condition bool, b bool) *InputElement {
-	if condition {
-		e.InertSet(b)
+		e.Inert()
 	}
 	return e
 }
@@ -1939,6 +1954,25 @@ func (e *InputElement) IfSetInert(condition bool, b bool) *InputElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *InputElement) InertRemove() *InputElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("inert")
+	return e
+}
+
+// Remove the attribute Inert from the element.
+// The inert global Attribute is a Boolean attribute indicating that the browser
+// will ignore the element. With the inert attribute, all of the element's flat
+// tree descendants (such as modal <dialog>s) that don't otherwise escape
+// inertness are ignored. The inert attribute also makes the browser ignore
+// input events sent by the user, including focus-related events and events from
+// assistive technologies. Specifically, inert does the following: Prevents the
+// click event from being fired when the user clicks on the element. Prevents
+// the focus event from being raised by preventing the element from gaining
+// focus. Hides the element and its content from assistive technologies by
+// excluding them from the accessibility tree.
+func (e *InputElement) InertIfRemove() *InputElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -2305,7 +2339,10 @@ func (e *InputElement) ItemrefRemove() *InputElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *InputElement) Itemscope() *InputElement {
-	e.ItemscopeSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("itemscope", struct{}{})
 	return e
 }
 
@@ -2318,37 +2355,7 @@ func (e *InputElement) Itemscope() *InputElement {
 // <object>, <source>, <track>, and <video>.
 func (e *InputElement) IfItemscope(condition bool) *InputElement {
 	if condition {
-		e.ItemscopeSet(true)
-	}
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-// Set the attribute Itemscope to the value b explicitly.
-func (e *InputElement) ItemscopeSet(b bool) *InputElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("itemscope", b)
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-func (e *InputElement) IfSetItemscope(condition bool, b bool) *InputElement {
-	if condition {
-		e.ItemscopeSet(b)
+		e.Itemscope()
 	}
 	return e
 }
@@ -2362,6 +2369,22 @@ func (e *InputElement) IfSetItemscope(condition bool, b bool) *InputElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *InputElement) ItemscopeRemove() *InputElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("itemscope")
+	return e
+}
+
+// Remove the attribute Itemscope from the element.
+// The itemscope global Attribute is used to add an item to a microdata DOM
+// tree. Every HTML element can have an itemscope attribute specified, and an
+// itemscope consists of a name-value pair. Each name-value pair is called a
+// property, and a group of one or more properties forms an item. Property
+// values are either a string or a URL and can be associated with a very wide
+// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
+// <object>, <source>, <track>, and <video>.
+func (e *InputElement) ItemscopeIfRemove() *InputElement {
 	if e.boolAttributes == nil {
 		return e
 	}

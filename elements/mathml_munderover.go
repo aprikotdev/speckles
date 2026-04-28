@@ -50,15 +50,48 @@ func (e *MathMLMunderoverElement) TernChildren(condition bool, trueChildren, fal
 
 func (e *MathMLMunderoverElement) BoolAttr(name string) *MathMLMunderoverElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *MathMLMunderoverElement) BoolAttrRemove(name string) *MathMLMunderoverElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *MathMLMunderoverElement) IfBoolAttr(condition bool, name string) *MathMLMunderoverElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *MathMLMunderoverElement) BoolAttrf(format string, args ...any) *MathMLMunderoverElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *MathMLMunderoverElement) IfBoolAttrf(condition bool, format string, args ...any) *MathMLMunderoverElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *MathMLMunderoverElement) BoolAttrs(names ...string) *MathMLMunderoverElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *MathMLMunderoverElement) IfBoolAttrs(condition bool, names ...string) *MathMLMunderoverElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *MathMLMunderoverElement) Attr(name, value string) *MathMLMunderoverElem
 func (e *MathMLMunderoverElement) IfAttr(condition bool, name, value string) *MathMLMunderoverElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *MathMLMunderoverElement) Attrf(name, format string, args ...any) *MathMLMunderoverElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *MathMLMunderoverElement) IfAttrf(condition bool, name, format string, args ...any) *MathMLMunderoverElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *MathMLMunderoverElement) Attrs(attrs ...string) *MathMLMunderoverElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *MathMLMunderoverElement) IfAttrs(condition bool, attrs ...string) *MathMLMunderoverElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *MathMLMunderoverElement) AttrsMap(attrs map[string]string) *MathMLMunderoverElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *MathMLMunderoverElement) IfAttrsMap(condition bool, attrs map[string]string) *MathMLMunderoverElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

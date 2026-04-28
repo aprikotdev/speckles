@@ -50,15 +50,48 @@ func (e *SVGFeMorphologyElement) TernChildren(condition bool, trueChildren, fals
 
 func (e *SVGFeMorphologyElement) BoolAttr(name string) *SVGFeMorphologyElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeMorphologyElement) BoolAttrRemove(name string) *SVGFeMorphologyElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeMorphologyElement) IfBoolAttr(condition bool, name string) *SVGFeMorphologyElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeMorphologyElement) BoolAttrf(format string, args ...any) *SVGFeMorphologyElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeMorphologyElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeMorphologyElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeMorphologyElement) BoolAttrs(names ...string) *SVGFeMorphologyElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeMorphologyElement) IfBoolAttrs(condition bool, names ...string) *SVGFeMorphologyElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGFeMorphologyElement) Attr(name, value string) *SVGFeMorphologyElemen
 func (e *SVGFeMorphologyElement) IfAttr(condition bool, name, value string) *SVGFeMorphologyElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeMorphologyElement) Attrf(name, format string, args ...any) *SVGFeMorphologyElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeMorphologyElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeMorphologyElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeMorphologyElement) Attrs(attrs ...string) *SVGFeMorphologyElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeMorphologyElement) IfAttrs(condition bool, attrs ...string) *SVGFeMorphologyElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeMorphologyElement) AttrsMap(attrs map[string]string) *SVGFeMorphologyElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeMorphologyElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeMorphologyElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

@@ -52,15 +52,48 @@ func (e *SVGFeDiffuseLightingElement) TernChildren(condition bool, trueChildren,
 
 func (e *SVGFeDiffuseLightingElement) BoolAttr(name string) *SVGFeDiffuseLightingElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeDiffuseLightingElement) BoolAttrRemove(name string) *SVGFeDiffuseLightingElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeDiffuseLightingElement) IfBoolAttr(condition bool, name string) *SVGFeDiffuseLightingElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeDiffuseLightingElement) BoolAttrf(format string, args ...any) *SVGFeDiffuseLightingElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeDiffuseLightingElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeDiffuseLightingElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeDiffuseLightingElement) BoolAttrs(names ...string) *SVGFeDiffuseLightingElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeDiffuseLightingElement) IfBoolAttrs(condition bool, names ...string) *SVGFeDiffuseLightingElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -76,6 +109,56 @@ func (e *SVGFeDiffuseLightingElement) Attr(name, value string) *SVGFeDiffuseLigh
 func (e *SVGFeDiffuseLightingElement) IfAttr(condition bool, name, value string) *SVGFeDiffuseLightingElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeDiffuseLightingElement) Attrf(name, format string, args ...any) *SVGFeDiffuseLightingElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeDiffuseLightingElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeDiffuseLightingElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeDiffuseLightingElement) Attrs(attrs ...string) *SVGFeDiffuseLightingElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeDiffuseLightingElement) IfAttrs(condition bool, attrs ...string) *SVGFeDiffuseLightingElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeDiffuseLightingElement) AttrsMap(attrs map[string]string) *SVGFeDiffuseLightingElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeDiffuseLightingElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeDiffuseLightingElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

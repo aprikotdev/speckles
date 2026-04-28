@@ -52,15 +52,48 @@ func (e *SVGPolylineElement) TernChildren(condition bool, trueChildren, falseChi
 
 func (e *SVGPolylineElement) BoolAttr(name string) *SVGPolylineElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGPolylineElement) BoolAttrRemove(name string) *SVGPolylineElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGPolylineElement) IfBoolAttr(condition bool, name string) *SVGPolylineElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGPolylineElement) BoolAttrf(format string, args ...any) *SVGPolylineElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGPolylineElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGPolylineElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGPolylineElement) BoolAttrs(names ...string) *SVGPolylineElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGPolylineElement) IfBoolAttrs(condition bool, names ...string) *SVGPolylineElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -76,6 +109,56 @@ func (e *SVGPolylineElement) Attr(name, value string) *SVGPolylineElement {
 func (e *SVGPolylineElement) IfAttr(condition bool, name, value string) *SVGPolylineElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGPolylineElement) Attrf(name, format string, args ...any) *SVGPolylineElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGPolylineElement) IfAttrf(condition bool, name, format string, args ...any) *SVGPolylineElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGPolylineElement) Attrs(attrs ...string) *SVGPolylineElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGPolylineElement) IfAttrs(condition bool, attrs ...string) *SVGPolylineElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGPolylineElement) AttrsMap(attrs map[string]string) *SVGPolylineElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGPolylineElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGPolylineElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

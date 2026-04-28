@@ -50,15 +50,48 @@ func (e *SVGLinearGradientElement) TernChildren(condition bool, trueChildren, fa
 
 func (e *SVGLinearGradientElement) BoolAttr(name string) *SVGLinearGradientElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGLinearGradientElement) BoolAttrRemove(name string) *SVGLinearGradientElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGLinearGradientElement) IfBoolAttr(condition bool, name string) *SVGLinearGradientElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGLinearGradientElement) BoolAttrf(format string, args ...any) *SVGLinearGradientElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGLinearGradientElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGLinearGradientElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGLinearGradientElement) BoolAttrs(names ...string) *SVGLinearGradientElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGLinearGradientElement) IfBoolAttrs(condition bool, names ...string) *SVGLinearGradientElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGLinearGradientElement) Attr(name, value string) *SVGLinearGradientEl
 func (e *SVGLinearGradientElement) IfAttr(condition bool, name, value string) *SVGLinearGradientElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGLinearGradientElement) Attrf(name, format string, args ...any) *SVGLinearGradientElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGLinearGradientElement) IfAttrf(condition bool, name, format string, args ...any) *SVGLinearGradientElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGLinearGradientElement) Attrs(attrs ...string) *SVGLinearGradientElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGLinearGradientElement) IfAttrs(condition bool, attrs ...string) *SVGLinearGradientElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGLinearGradientElement) AttrsMap(attrs map[string]string) *SVGLinearGradientElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGLinearGradientElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGLinearGradientElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

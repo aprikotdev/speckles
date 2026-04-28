@@ -50,15 +50,48 @@ func (e *FormElement) TernChildren(condition bool, trueChildren, falseChildren E
 
 func (e *FormElement) BoolAttr(name string) *FormElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *FormElement) BoolAttrRemove(name string) *FormElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *FormElement) IfBoolAttr(condition bool, name string) *FormElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *FormElement) BoolAttrf(format string, args ...any) *FormElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *FormElement) IfBoolAttrf(condition bool, format string, args ...any) *FormElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *FormElement) BoolAttrs(names ...string) *FormElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *FormElement) IfBoolAttrs(condition bool, names ...string) *FormElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *FormElement) Attr(name, value string) *FormElement {
 func (e *FormElement) IfAttr(condition bool, name, value string) *FormElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *FormElement) Attrf(name, format string, args ...any) *FormElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *FormElement) IfAttrf(condition bool, name, format string, args ...any) *FormElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *FormElement) Attrs(attrs ...string) *FormElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *FormElement) IfAttrs(condition bool, attrs ...string) *FormElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *FormElement) AttrsMap(attrs map[string]string) *FormElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *FormElement) IfAttrsMap(condition bool, attrs map[string]string) *FormElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }
@@ -356,7 +439,10 @@ func (e *FormElement) NameRemove() *FormElement {
 // attribute on a <button>, <input type="submit">, or <input type="image">
 // element belonging to the form.
 func (e *FormElement) Novalidate() *FormElement {
-	e.NovalidateSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("novalidate", struct{}{})
 	return e
 }
 
@@ -367,33 +453,7 @@ func (e *FormElement) Novalidate() *FormElement {
 // element belonging to the form.
 func (e *FormElement) IfNovalidate(condition bool) *FormElement {
 	if condition {
-		e.NovalidateSet(true)
-	}
-	return e
-}
-
-// This Boolean Attribute indicates that the form is not to be validated when
-// submitted. If this attribute is not specified (and therefore the form is
-// validated), this default setting can be overridden by a formnovalidate
-// attribute on a <button>, <input type="submit">, or <input type="image">
-// element belonging to the form.
-// Set the attribute Novalidate to the value b explicitly.
-func (e *FormElement) NovalidateSet(b bool) *FormElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("novalidate", b)
-	return e
-}
-
-// This Boolean Attribute indicates that the form is not to be validated when
-// submitted. If this attribute is not specified (and therefore the form is
-// validated), this default setting can be overridden by a formnovalidate
-// attribute on a <button>, <input type="submit">, or <input type="image">
-// element belonging to the form.
-func (e *FormElement) IfSetNovalidate(condition bool, b bool) *FormElement {
-	if condition {
-		e.NovalidateSet(b)
+		e.Novalidate()
 	}
 	return e
 }
@@ -405,6 +465,20 @@ func (e *FormElement) IfSetNovalidate(condition bool, b bool) *FormElement {
 // attribute on a <button>, <input type="submit">, or <input type="image">
 // element belonging to the form.
 func (e *FormElement) NovalidateRemove() *FormElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("novalidate")
+	return e
+}
+
+// Remove the attribute Novalidate from the element.
+// This Boolean Attribute indicates that the form is not to be validated when
+// submitted. If this attribute is not specified (and therefore the form is
+// validated), this default setting can be overridden by a formnovalidate
+// attribute on a <button>, <input type="submit">, or <input type="image">
+// element belonging to the form.
+func (e *FormElement) NovalidateIfRemove() *FormElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -555,7 +629,10 @@ func (e *FormElement) AutocapitalizeRemove() *FormElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *FormElement) Autofocus() *FormElement {
-	e.AutofocusSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("autofocus", struct{}{})
 	return e
 }
 
@@ -575,51 +652,7 @@ func (e *FormElement) Autofocus() *FormElement {
 // created by the preceding content.
 func (e *FormElement) IfAutofocus(condition bool) *FormElement {
 	if condition {
-		e.AutofocusSet(true)
-	}
-	return e
-}
-
-// The autofocus global Attribute is a Boolean attribute indicating that an
-// element should be focused on page load, or when the <dialog> that it is part
-// of is displayed.
-// Accessibility concerns Automatically focusing a form control can confuse
-// visually-impaired people using screen-reading technology and people with
-// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
-// their user to the form control without warning them beforehand.
-// Use careful consideration for accessibility when applying the autofocus
-// Attribute. Automatically focusing on a control can cause the page to scroll
-// on load. The focus can also cause dynamic keyboards to display on some touch
-// devices. While a screen reader will announce the label of the form control
-// receiving focus, the screen reader will not announce anything before the
-// label, and the sighted user on a small device will equally miss the context
-// created by the preceding content.
-// Set the attribute Autofocus to the value b explicitly.
-func (e *FormElement) AutofocusSet(b bool) *FormElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("autofocus", b)
-	return e
-}
-
-// The autofocus global Attribute is a Boolean attribute indicating that an
-// element should be focused on page load, or when the <dialog> that it is part
-// of is displayed.
-// Accessibility concerns Automatically focusing a form control can confuse
-// visually-impaired people using screen-reading technology and people with
-// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
-// their user to the form control without warning them beforehand.
-// Use careful consideration for accessibility when applying the autofocus
-// Attribute. Automatically focusing on a control can cause the page to scroll
-// on load. The focus can also cause dynamic keyboards to display on some touch
-// devices. While a screen reader will announce the label of the form control
-// receiving focus, the screen reader will not announce anything before the
-// label, and the sighted user on a small device will equally miss the context
-// created by the preceding content.
-func (e *FormElement) IfSetAutofocus(condition bool, b bool) *FormElement {
-	if condition {
-		e.AutofocusSet(b)
+		e.Autofocus()
 	}
 	return e
 }
@@ -640,6 +673,29 @@ func (e *FormElement) IfSetAutofocus(condition bool, b bool) *FormElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *FormElement) AutofocusRemove() *FormElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("autofocus")
+	return e
+}
+
+// Remove the attribute Autofocus from the element.
+// The autofocus global Attribute is a Boolean attribute indicating that an
+// element should be focused on page load, or when the <dialog> that it is part
+// of is displayed.
+// Accessibility concerns Automatically focusing a form control can confuse
+// visually-impaired people using screen-reading technology and people with
+// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
+// their user to the form control without warning them beforehand.
+// Use careful consideration for accessibility when applying the autofocus
+// Attribute. Automatically focusing on a control can cause the page to scroll
+// on load. The focus can also cause dynamic keyboards to display on some touch
+// devices. While a screen reader will announce the label of the form control
+// receiving focus, the screen reader will not announce anything before the
+// label, and the sighted user on a small device will equally miss the context
+// created by the preceding content.
+func (e *FormElement) AutofocusIfRemove() *FormElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1076,7 +1132,10 @@ func (e *FormElement) IDRemove() *FormElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *FormElement) Inert() *FormElement {
-	e.InertSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("inert", struct{}{})
 	return e
 }
 
@@ -1092,43 +1151,7 @@ func (e *FormElement) Inert() *FormElement {
 // excluding them from the accessibility tree.
 func (e *FormElement) IfInert(condition bool) *FormElement {
 	if condition {
-		e.InertSet(true)
-	}
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-// Set the attribute Inert to the value b explicitly.
-func (e *FormElement) InertSet(b bool) *FormElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("inert", b)
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-func (e *FormElement) IfSetInert(condition bool, b bool) *FormElement {
-	if condition {
-		e.InertSet(b)
+		e.Inert()
 	}
 	return e
 }
@@ -1145,6 +1168,25 @@ func (e *FormElement) IfSetInert(condition bool, b bool) *FormElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *FormElement) InertRemove() *FormElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("inert")
+	return e
+}
+
+// Remove the attribute Inert from the element.
+// The inert global Attribute is a Boolean attribute indicating that the browser
+// will ignore the element. With the inert attribute, all of the element's flat
+// tree descendants (such as modal <dialog>s) that don't otherwise escape
+// inertness are ignored. The inert attribute also makes the browser ignore
+// input events sent by the user, including focus-related events and events from
+// assistive technologies. Specifically, inert does the following: Prevents the
+// click event from being fired when the user clicks on the element. Prevents
+// the focus event from being raised by preventing the element from gaining
+// focus. Hides the element and its content from assistive technologies by
+// excluding them from the accessibility tree.
+func (e *FormElement) InertIfRemove() *FormElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1511,7 +1553,10 @@ func (e *FormElement) ItemrefRemove() *FormElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *FormElement) Itemscope() *FormElement {
-	e.ItemscopeSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("itemscope", struct{}{})
 	return e
 }
 
@@ -1524,37 +1569,7 @@ func (e *FormElement) Itemscope() *FormElement {
 // <object>, <source>, <track>, and <video>.
 func (e *FormElement) IfItemscope(condition bool) *FormElement {
 	if condition {
-		e.ItemscopeSet(true)
-	}
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-// Set the attribute Itemscope to the value b explicitly.
-func (e *FormElement) ItemscopeSet(b bool) *FormElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("itemscope", b)
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-func (e *FormElement) IfSetItemscope(condition bool, b bool) *FormElement {
-	if condition {
-		e.ItemscopeSet(b)
+		e.Itemscope()
 	}
 	return e
 }
@@ -1568,6 +1583,22 @@ func (e *FormElement) IfSetItemscope(condition bool, b bool) *FormElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *FormElement) ItemscopeRemove() *FormElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("itemscope")
+	return e
+}
+
+// Remove the attribute Itemscope from the element.
+// The itemscope global Attribute is used to add an item to a microdata DOM
+// tree. Every HTML element can have an itemscope attribute specified, and an
+// itemscope consists of a name-value pair. Each name-value pair is called a
+// property, and a group of one or more properties forms an item. Property
+// values are either a string or a URL and can be associated with a very wide
+// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
+// <object>, <source>, <track>, and <video>.
+func (e *FormElement) ItemscopeIfRemove() *FormElement {
 	if e.boolAttributes == nil {
 		return e
 	}

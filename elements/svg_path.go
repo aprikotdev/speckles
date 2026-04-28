@@ -50,15 +50,48 @@ func (e *SVGPathElement) TernChildren(condition bool, trueChildren, falseChildre
 
 func (e *SVGPathElement) BoolAttr(name string) *SVGPathElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGPathElement) BoolAttrRemove(name string) *SVGPathElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGPathElement) IfBoolAttr(condition bool, name string) *SVGPathElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGPathElement) BoolAttrf(format string, args ...any) *SVGPathElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGPathElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGPathElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGPathElement) BoolAttrs(names ...string) *SVGPathElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGPathElement) IfBoolAttrs(condition bool, names ...string) *SVGPathElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGPathElement) Attr(name, value string) *SVGPathElement {
 func (e *SVGPathElement) IfAttr(condition bool, name, value string) *SVGPathElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGPathElement) Attrf(name, format string, args ...any) *SVGPathElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGPathElement) IfAttrf(condition bool, name, format string, args ...any) *SVGPathElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGPathElement) Attrs(attrs ...string) *SVGPathElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGPathElement) IfAttrs(condition bool, attrs ...string) *SVGPathElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGPathElement) AttrsMap(attrs map[string]string) *SVGPathElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGPathElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGPathElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

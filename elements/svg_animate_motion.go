@@ -51,15 +51,48 @@ func (e *SVGAnimateMotionElement) TernChildren(condition bool, trueChildren, fal
 
 func (e *SVGAnimateMotionElement) BoolAttr(name string) *SVGAnimateMotionElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGAnimateMotionElement) BoolAttrRemove(name string) *SVGAnimateMotionElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGAnimateMotionElement) IfBoolAttr(condition bool, name string) *SVGAnimateMotionElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGAnimateMotionElement) BoolAttrf(format string, args ...any) *SVGAnimateMotionElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGAnimateMotionElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGAnimateMotionElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGAnimateMotionElement) BoolAttrs(names ...string) *SVGAnimateMotionElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGAnimateMotionElement) IfBoolAttrs(condition bool, names ...string) *SVGAnimateMotionElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *SVGAnimateMotionElement) Attr(name, value string) *SVGAnimateMotionElem
 func (e *SVGAnimateMotionElement) IfAttr(condition bool, name, value string) *SVGAnimateMotionElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGAnimateMotionElement) Attrf(name, format string, args ...any) *SVGAnimateMotionElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGAnimateMotionElement) IfAttrf(condition bool, name, format string, args ...any) *SVGAnimateMotionElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGAnimateMotionElement) Attrs(attrs ...string) *SVGAnimateMotionElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGAnimateMotionElement) IfAttrs(condition bool, attrs ...string) *SVGAnimateMotionElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGAnimateMotionElement) AttrsMap(attrs map[string]string) *SVGAnimateMotionElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGAnimateMotionElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGAnimateMotionElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

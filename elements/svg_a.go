@@ -52,15 +52,48 @@ func (e *SVGAElement) TernChildren(condition bool, trueChildren, falseChildren E
 
 func (e *SVGAElement) BoolAttr(name string) *SVGAElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGAElement) BoolAttrRemove(name string) *SVGAElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGAElement) IfBoolAttr(condition bool, name string) *SVGAElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGAElement) BoolAttrf(format string, args ...any) *SVGAElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGAElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGAElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGAElement) BoolAttrs(names ...string) *SVGAElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGAElement) IfBoolAttrs(condition bool, names ...string) *SVGAElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -76,6 +109,56 @@ func (e *SVGAElement) Attr(name, value string) *SVGAElement {
 func (e *SVGAElement) IfAttr(condition bool, name, value string) *SVGAElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGAElement) Attrf(name, format string, args ...any) *SVGAElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGAElement) IfAttrf(condition bool, name, format string, args ...any) *SVGAElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGAElement) Attrs(attrs ...string) *SVGAElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGAElement) IfAttrs(condition bool, attrs ...string) *SVGAElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGAElement) AttrsMap(attrs map[string]string) *SVGAElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGAElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGAElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

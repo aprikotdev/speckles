@@ -51,15 +51,48 @@ func (e *SVGFeCompositeElement) TernChildren(condition bool, trueChildren, false
 
 func (e *SVGFeCompositeElement) BoolAttr(name string) *SVGFeCompositeElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeCompositeElement) BoolAttrRemove(name string) *SVGFeCompositeElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeCompositeElement) IfBoolAttr(condition bool, name string) *SVGFeCompositeElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeCompositeElement) BoolAttrf(format string, args ...any) *SVGFeCompositeElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeCompositeElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeCompositeElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeCompositeElement) BoolAttrs(names ...string) *SVGFeCompositeElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeCompositeElement) IfBoolAttrs(condition bool, names ...string) *SVGFeCompositeElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *SVGFeCompositeElement) Attr(name, value string) *SVGFeCompositeElement 
 func (e *SVGFeCompositeElement) IfAttr(condition bool, name, value string) *SVGFeCompositeElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeCompositeElement) Attrf(name, format string, args ...any) *SVGFeCompositeElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeCompositeElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeCompositeElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeCompositeElement) Attrs(attrs ...string) *SVGFeCompositeElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeCompositeElement) IfAttrs(condition bool, attrs ...string) *SVGFeCompositeElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeCompositeElement) AttrsMap(attrs map[string]string) *SVGFeCompositeElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeCompositeElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeCompositeElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

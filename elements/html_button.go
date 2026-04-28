@@ -50,15 +50,48 @@ func (e *ButtonElement) TernChildren(condition bool, trueChildren, falseChildren
 
 func (e *ButtonElement) BoolAttr(name string) *ButtonElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *ButtonElement) BoolAttrRemove(name string) *ButtonElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *ButtonElement) IfBoolAttr(condition bool, name string) *ButtonElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *ButtonElement) BoolAttrf(format string, args ...any) *ButtonElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *ButtonElement) IfBoolAttrf(condition bool, format string, args ...any) *ButtonElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *ButtonElement) BoolAttrs(names ...string) *ButtonElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *ButtonElement) IfBoolAttrs(condition bool, names ...string) *ButtonElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *ButtonElement) Attr(name, value string) *ButtonElement {
 func (e *ButtonElement) IfAttr(condition bool, name, value string) *ButtonElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *ButtonElement) Attrf(name, format string, args ...any) *ButtonElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *ButtonElement) IfAttrf(condition bool, name, format string, args ...any) *ButtonElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *ButtonElement) Attrs(attrs ...string) *ButtonElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *ButtonElement) IfAttrs(condition bool, attrs ...string) *ButtonElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *ButtonElement) AttrsMap(attrs map[string]string) *ButtonElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *ButtonElement) IfAttrsMap(condition bool, attrs map[string]string) *ButtonElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }
@@ -127,7 +210,10 @@ func (e *ButtonElement) IfEscapedf(condition bool, format string, args ...any) *
 // A Boolean Attribute which, if present, indicates that the button should be
 // focused as soon as the page is loaded.
 func (e *ButtonElement) Autofocus() *ButtonElement {
-	e.AutofocusSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("autofocus", struct{}{})
 	return e
 }
 
@@ -135,27 +221,7 @@ func (e *ButtonElement) Autofocus() *ButtonElement {
 // focused as soon as the page is loaded.
 func (e *ButtonElement) IfAutofocus(condition bool) *ButtonElement {
 	if condition {
-		e.AutofocusSet(true)
-	}
-	return e
-}
-
-// A Boolean Attribute which, if present, indicates that the button should be
-// focused as soon as the page is loaded.
-// Set the attribute Autofocus to the value b explicitly.
-func (e *ButtonElement) AutofocusSet(b bool) *ButtonElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("autofocus", b)
-	return e
-}
-
-// A Boolean Attribute which, if present, indicates that the button should be
-// focused as soon as the page is loaded.
-func (e *ButtonElement) IfSetAutofocus(condition bool, b bool) *ButtonElement {
-	if condition {
-		e.AutofocusSet(b)
+		e.Autofocus()
 	}
 	return e
 }
@@ -171,34 +237,30 @@ func (e *ButtonElement) AutofocusRemove() *ButtonElement {
 	return e
 }
 
+// Remove the attribute Autofocus from the element.
+// A Boolean Attribute which, if present, indicates that the button should be
+// focused as soon as the page is loaded.
+func (e *ButtonElement) AutofocusIfRemove() *ButtonElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("autofocus")
+	return e
+}
+
 // A Boolean Attribute which is present if the button is disabled.
 func (e *ButtonElement) Disabled() *ButtonElement {
-	e.DisabledSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("disabled", struct{}{})
 	return e
 }
 
 // A Boolean Attribute which is present if the button is disabled.
 func (e *ButtonElement) IfDisabled(condition bool) *ButtonElement {
 	if condition {
-		e.DisabledSet(true)
-	}
-	return e
-}
-
-// A Boolean Attribute which is present if the button is disabled.
-// Set the attribute Disabled to the value b explicitly.
-func (e *ButtonElement) DisabledSet(b bool) *ButtonElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("disabled", b)
-	return e
-}
-
-// A Boolean Attribute which is present if the button is disabled.
-func (e *ButtonElement) IfSetDisabled(condition bool, b bool) *ButtonElement {
-	if condition {
-		e.DisabledSet(b)
+		e.Disabled()
 	}
 	return e
 }
@@ -206,6 +268,16 @@ func (e *ButtonElement) IfSetDisabled(condition bool, b bool) *ButtonElement {
 // Remove the attribute Disabled from the element.
 // A Boolean Attribute which is present if the button is disabled.
 func (e *ButtonElement) DisabledRemove() *ButtonElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("disabled")
+	return e
+}
+
+// Remove the attribute Disabled from the element.
+// A Boolean Attribute which is present if the button is disabled.
+func (e *ButtonElement) DisabledIfRemove() *ButtonElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -370,7 +442,10 @@ func (e *ButtonElement) FormmethodRemove() *ButtonElement {
 // form is not to be validated when it is submitted. If this attribute is
 // specified, it overrides the novalidate attribute of the button's form owner.
 func (e *ButtonElement) Formnovalidate() *ButtonElement {
-	e.FormnovalidateSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("formnovalidate", struct{}{})
 	return e
 }
 
@@ -379,29 +454,7 @@ func (e *ButtonElement) Formnovalidate() *ButtonElement {
 // specified, it overrides the novalidate attribute of the button's form owner.
 func (e *ButtonElement) IfFormnovalidate(condition bool) *ButtonElement {
 	if condition {
-		e.FormnovalidateSet(true)
-	}
-	return e
-}
-
-// If the button is a submit button, this Boolean Attribute specifies that the
-// form is not to be validated when it is submitted. If this attribute is
-// specified, it overrides the novalidate attribute of the button's form owner.
-// Set the attribute Formnovalidate to the value b explicitly.
-func (e *ButtonElement) FormnovalidateSet(b bool) *ButtonElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("formnovalidate", b)
-	return e
-}
-
-// If the button is a submit button, this Boolean Attribute specifies that the
-// form is not to be validated when it is submitted. If this attribute is
-// specified, it overrides the novalidate attribute of the button's form owner.
-func (e *ButtonElement) IfSetFormnovalidate(condition bool, b bool) *ButtonElement {
-	if condition {
-		e.FormnovalidateSet(b)
+		e.Formnovalidate()
 	}
 	return e
 }
@@ -411,6 +464,18 @@ func (e *ButtonElement) IfSetFormnovalidate(condition bool, b bool) *ButtonEleme
 // form is not to be validated when it is submitted. If this attribute is
 // specified, it overrides the novalidate attribute of the button's form owner.
 func (e *ButtonElement) FormnovalidateRemove() *ButtonElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("formnovalidate")
+	return e
+}
+
+// Remove the attribute Formnovalidate from the element.
+// If the button is a submit button, this Boolean Attribute specifies that the
+// form is not to be validated when it is submitted. If this attribute is
+// specified, it overrides the novalidate attribute of the button's form owner.
+func (e *ButtonElement) FormnovalidateIfRemove() *ButtonElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1186,7 +1251,10 @@ func (e *ButtonElement) IDRemove() *ButtonElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *ButtonElement) Inert() *ButtonElement {
-	e.InertSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("inert", struct{}{})
 	return e
 }
 
@@ -1202,43 +1270,7 @@ func (e *ButtonElement) Inert() *ButtonElement {
 // excluding them from the accessibility tree.
 func (e *ButtonElement) IfInert(condition bool) *ButtonElement {
 	if condition {
-		e.InertSet(true)
-	}
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-// Set the attribute Inert to the value b explicitly.
-func (e *ButtonElement) InertSet(b bool) *ButtonElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("inert", b)
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-func (e *ButtonElement) IfSetInert(condition bool, b bool) *ButtonElement {
-	if condition {
-		e.InertSet(b)
+		e.Inert()
 	}
 	return e
 }
@@ -1255,6 +1287,25 @@ func (e *ButtonElement) IfSetInert(condition bool, b bool) *ButtonElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *ButtonElement) InertRemove() *ButtonElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("inert")
+	return e
+}
+
+// Remove the attribute Inert from the element.
+// The inert global Attribute is a Boolean attribute indicating that the browser
+// will ignore the element. With the inert attribute, all of the element's flat
+// tree descendants (such as modal <dialog>s) that don't otherwise escape
+// inertness are ignored. The inert attribute also makes the browser ignore
+// input events sent by the user, including focus-related events and events from
+// assistive technologies. Specifically, inert does the following: Prevents the
+// click event from being fired when the user clicks on the element. Prevents
+// the focus event from being raised by preventing the element from gaining
+// focus. Hides the element and its content from assistive technologies by
+// excluding them from the accessibility tree.
+func (e *ButtonElement) InertIfRemove() *ButtonElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1621,7 +1672,10 @@ func (e *ButtonElement) ItemrefRemove() *ButtonElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *ButtonElement) Itemscope() *ButtonElement {
-	e.ItemscopeSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("itemscope", struct{}{})
 	return e
 }
 
@@ -1634,37 +1688,7 @@ func (e *ButtonElement) Itemscope() *ButtonElement {
 // <object>, <source>, <track>, and <video>.
 func (e *ButtonElement) IfItemscope(condition bool) *ButtonElement {
 	if condition {
-		e.ItemscopeSet(true)
-	}
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-// Set the attribute Itemscope to the value b explicitly.
-func (e *ButtonElement) ItemscopeSet(b bool) *ButtonElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("itemscope", b)
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-func (e *ButtonElement) IfSetItemscope(condition bool, b bool) *ButtonElement {
-	if condition {
-		e.ItemscopeSet(b)
+		e.Itemscope()
 	}
 	return e
 }
@@ -1678,6 +1702,22 @@ func (e *ButtonElement) IfSetItemscope(condition bool, b bool) *ButtonElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *ButtonElement) ItemscopeRemove() *ButtonElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("itemscope")
+	return e
+}
+
+// Remove the attribute Itemscope from the element.
+// The itemscope global Attribute is used to add an item to a microdata DOM
+// tree. Every HTML element can have an itemscope attribute specified, and an
+// itemscope consists of a name-value pair. Each name-value pair is called a
+// property, and a group of one or more properties forms an item. Property
+// values are either a string or a URL and can be associated with a very wide
+// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
+// <object>, <source>, <track>, and <video>.
+func (e *ButtonElement) ItemscopeIfRemove() *ButtonElement {
 	if e.boolAttributes == nil {
 		return e
 	}

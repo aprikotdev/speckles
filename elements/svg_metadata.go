@@ -51,15 +51,48 @@ func (e *SVGMetadataElement) TernChildren(condition bool, trueChildren, falseChi
 
 func (e *SVGMetadataElement) BoolAttr(name string) *SVGMetadataElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGMetadataElement) BoolAttrRemove(name string) *SVGMetadataElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGMetadataElement) IfBoolAttr(condition bool, name string) *SVGMetadataElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGMetadataElement) BoolAttrf(format string, args ...any) *SVGMetadataElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGMetadataElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGMetadataElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGMetadataElement) BoolAttrs(names ...string) *SVGMetadataElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGMetadataElement) IfBoolAttrs(condition bool, names ...string) *SVGMetadataElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *SVGMetadataElement) Attr(name, value string) *SVGMetadataElement {
 func (e *SVGMetadataElement) IfAttr(condition bool, name, value string) *SVGMetadataElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGMetadataElement) Attrf(name, format string, args ...any) *SVGMetadataElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGMetadataElement) IfAttrf(condition bool, name, format string, args ...any) *SVGMetadataElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGMetadataElement) Attrs(attrs ...string) *SVGMetadataElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGMetadataElement) IfAttrs(condition bool, attrs ...string) *SVGMetadataElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGMetadataElement) AttrsMap(attrs map[string]string) *SVGMetadataElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGMetadataElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGMetadataElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

@@ -51,15 +51,48 @@ func (e *SlotElement) TernChildren(condition bool, trueChildren, falseChildren E
 
 func (e *SlotElement) BoolAttr(name string) *SlotElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SlotElement) BoolAttrRemove(name string) *SlotElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SlotElement) IfBoolAttr(condition bool, name string) *SlotElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SlotElement) BoolAttrf(format string, args ...any) *SlotElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SlotElement) IfBoolAttrf(condition bool, format string, args ...any) *SlotElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SlotElement) BoolAttrs(names ...string) *SlotElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SlotElement) IfBoolAttrs(condition bool, names ...string) *SlotElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *SlotElement) Attr(name, value string) *SlotElement {
 func (e *SlotElement) IfAttr(condition bool, name, value string) *SlotElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SlotElement) Attrf(name, format string, args ...any) *SlotElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SlotElement) IfAttrf(condition bool, name, format string, args ...any) *SlotElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SlotElement) Attrs(attrs ...string) *SlotElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SlotElement) IfAttrs(condition bool, attrs ...string) *SlotElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SlotElement) AttrsMap(attrs map[string]string) *SlotElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SlotElement) IfAttrsMap(condition bool, attrs map[string]string) *SlotElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }
@@ -272,7 +355,10 @@ func (e *SlotElement) AutocapitalizeRemove() *SlotElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *SlotElement) Autofocus() *SlotElement {
-	e.AutofocusSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("autofocus", struct{}{})
 	return e
 }
 
@@ -292,51 +378,7 @@ func (e *SlotElement) Autofocus() *SlotElement {
 // created by the preceding content.
 func (e *SlotElement) IfAutofocus(condition bool) *SlotElement {
 	if condition {
-		e.AutofocusSet(true)
-	}
-	return e
-}
-
-// The autofocus global Attribute is a Boolean attribute indicating that an
-// element should be focused on page load, or when the <dialog> that it is part
-// of is displayed.
-// Accessibility concerns Automatically focusing a form control can confuse
-// visually-impaired people using screen-reading technology and people with
-// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
-// their user to the form control without warning them beforehand.
-// Use careful consideration for accessibility when applying the autofocus
-// Attribute. Automatically focusing on a control can cause the page to scroll
-// on load. The focus can also cause dynamic keyboards to display on some touch
-// devices. While a screen reader will announce the label of the form control
-// receiving focus, the screen reader will not announce anything before the
-// label, and the sighted user on a small device will equally miss the context
-// created by the preceding content.
-// Set the attribute Autofocus to the value b explicitly.
-func (e *SlotElement) AutofocusSet(b bool) *SlotElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("autofocus", b)
-	return e
-}
-
-// The autofocus global Attribute is a Boolean attribute indicating that an
-// element should be focused on page load, or when the <dialog> that it is part
-// of is displayed.
-// Accessibility concerns Automatically focusing a form control can confuse
-// visually-impaired people using screen-reading technology and people with
-// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
-// their user to the form control without warning them beforehand.
-// Use careful consideration for accessibility when applying the autofocus
-// Attribute. Automatically focusing on a control can cause the page to scroll
-// on load. The focus can also cause dynamic keyboards to display on some touch
-// devices. While a screen reader will announce the label of the form control
-// receiving focus, the screen reader will not announce anything before the
-// label, and the sighted user on a small device will equally miss the context
-// created by the preceding content.
-func (e *SlotElement) IfSetAutofocus(condition bool, b bool) *SlotElement {
-	if condition {
-		e.AutofocusSet(b)
+		e.Autofocus()
 	}
 	return e
 }
@@ -357,6 +399,29 @@ func (e *SlotElement) IfSetAutofocus(condition bool, b bool) *SlotElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *SlotElement) AutofocusRemove() *SlotElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("autofocus")
+	return e
+}
+
+// Remove the attribute Autofocus from the element.
+// The autofocus global Attribute is a Boolean attribute indicating that an
+// element should be focused on page load, or when the <dialog> that it is part
+// of is displayed.
+// Accessibility concerns Automatically focusing a form control can confuse
+// visually-impaired people using screen-reading technology and people with
+// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
+// their user to the form control without warning them beforehand.
+// Use careful consideration for accessibility when applying the autofocus
+// Attribute. Automatically focusing on a control can cause the page to scroll
+// on load. The focus can also cause dynamic keyboards to display on some touch
+// devices. While a screen reader will announce the label of the form control
+// receiving focus, the screen reader will not announce anything before the
+// label, and the sighted user on a small device will equally miss the context
+// created by the preceding content.
+func (e *SlotElement) AutofocusIfRemove() *SlotElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -793,7 +858,10 @@ func (e *SlotElement) IDRemove() *SlotElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *SlotElement) Inert() *SlotElement {
-	e.InertSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("inert", struct{}{})
 	return e
 }
 
@@ -809,43 +877,7 @@ func (e *SlotElement) Inert() *SlotElement {
 // excluding them from the accessibility tree.
 func (e *SlotElement) IfInert(condition bool) *SlotElement {
 	if condition {
-		e.InertSet(true)
-	}
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-// Set the attribute Inert to the value b explicitly.
-func (e *SlotElement) InertSet(b bool) *SlotElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("inert", b)
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-func (e *SlotElement) IfSetInert(condition bool, b bool) *SlotElement {
-	if condition {
-		e.InertSet(b)
+		e.Inert()
 	}
 	return e
 }
@@ -862,6 +894,25 @@ func (e *SlotElement) IfSetInert(condition bool, b bool) *SlotElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *SlotElement) InertRemove() *SlotElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("inert")
+	return e
+}
+
+// Remove the attribute Inert from the element.
+// The inert global Attribute is a Boolean attribute indicating that the browser
+// will ignore the element. With the inert attribute, all of the element's flat
+// tree descendants (such as modal <dialog>s) that don't otherwise escape
+// inertness are ignored. The inert attribute also makes the browser ignore
+// input events sent by the user, including focus-related events and events from
+// assistive technologies. Specifically, inert does the following: Prevents the
+// click event from being fired when the user clicks on the element. Prevents
+// the focus event from being raised by preventing the element from gaining
+// focus. Hides the element and its content from assistive technologies by
+// excluding them from the accessibility tree.
+func (e *SlotElement) InertIfRemove() *SlotElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1228,7 +1279,10 @@ func (e *SlotElement) ItemrefRemove() *SlotElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *SlotElement) Itemscope() *SlotElement {
-	e.ItemscopeSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("itemscope", struct{}{})
 	return e
 }
 
@@ -1241,37 +1295,7 @@ func (e *SlotElement) Itemscope() *SlotElement {
 // <object>, <source>, <track>, and <video>.
 func (e *SlotElement) IfItemscope(condition bool) *SlotElement {
 	if condition {
-		e.ItemscopeSet(true)
-	}
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-// Set the attribute Itemscope to the value b explicitly.
-func (e *SlotElement) ItemscopeSet(b bool) *SlotElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("itemscope", b)
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-func (e *SlotElement) IfSetItemscope(condition bool, b bool) *SlotElement {
-	if condition {
-		e.ItemscopeSet(b)
+		e.Itemscope()
 	}
 	return e
 }
@@ -1285,6 +1309,22 @@ func (e *SlotElement) IfSetItemscope(condition bool, b bool) *SlotElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *SlotElement) ItemscopeRemove() *SlotElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("itemscope")
+	return e
+}
+
+// Remove the attribute Itemscope from the element.
+// The itemscope global Attribute is used to add an item to a microdata DOM
+// tree. Every HTML element can have an itemscope attribute specified, and an
+// itemscope consists of a name-value pair. Each name-value pair is called a
+// property, and a group of one or more properties forms an item. Property
+// values are either a string or a URL and can be associated with a very wide
+// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
+// <object>, <source>, <track>, and <video>.
+func (e *SlotElement) ItemscopeIfRemove() *SlotElement {
 	if e.boolAttributes == nil {
 		return e
 	}

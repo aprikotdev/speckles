@@ -50,15 +50,48 @@ func (e *SVGFeGaussianBlurElement) TernChildren(condition bool, trueChildren, fa
 
 func (e *SVGFeGaussianBlurElement) BoolAttr(name string) *SVGFeGaussianBlurElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeGaussianBlurElement) BoolAttrRemove(name string) *SVGFeGaussianBlurElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeGaussianBlurElement) IfBoolAttr(condition bool, name string) *SVGFeGaussianBlurElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeGaussianBlurElement) BoolAttrf(format string, args ...any) *SVGFeGaussianBlurElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeGaussianBlurElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeGaussianBlurElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeGaussianBlurElement) BoolAttrs(names ...string) *SVGFeGaussianBlurElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeGaussianBlurElement) IfBoolAttrs(condition bool, names ...string) *SVGFeGaussianBlurElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGFeGaussianBlurElement) Attr(name, value string) *SVGFeGaussianBlurEl
 func (e *SVGFeGaussianBlurElement) IfAttr(condition bool, name, value string) *SVGFeGaussianBlurElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeGaussianBlurElement) Attrf(name, format string, args ...any) *SVGFeGaussianBlurElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeGaussianBlurElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeGaussianBlurElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeGaussianBlurElement) Attrs(attrs ...string) *SVGFeGaussianBlurElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeGaussianBlurElement) IfAttrs(condition bool, attrs ...string) *SVGFeGaussianBlurElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeGaussianBlurElement) AttrsMap(attrs map[string]string) *SVGFeGaussianBlurElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeGaussianBlurElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeGaussianBlurElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

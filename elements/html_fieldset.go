@@ -50,15 +50,48 @@ func (e *FieldsetElement) TernChildren(condition bool, trueChildren, falseChildr
 
 func (e *FieldsetElement) BoolAttr(name string) *FieldsetElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *FieldsetElement) BoolAttrRemove(name string) *FieldsetElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *FieldsetElement) IfBoolAttr(condition bool, name string) *FieldsetElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *FieldsetElement) BoolAttrf(format string, args ...any) *FieldsetElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *FieldsetElement) IfBoolAttrf(condition bool, format string, args ...any) *FieldsetElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *FieldsetElement) BoolAttrs(names ...string) *FieldsetElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *FieldsetElement) IfBoolAttrs(condition bool, names ...string) *FieldsetElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *FieldsetElement) Attr(name, value string) *FieldsetElement {
 func (e *FieldsetElement) IfAttr(condition bool, name, value string) *FieldsetElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *FieldsetElement) Attrf(name, format string, args ...any) *FieldsetElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *FieldsetElement) IfAttrf(condition bool, name, format string, args ...any) *FieldsetElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *FieldsetElement) Attrs(attrs ...string) *FieldsetElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *FieldsetElement) IfAttrs(condition bool, attrs ...string) *FieldsetElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *FieldsetElement) AttrsMap(attrs map[string]string) *FieldsetElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *FieldsetElement) IfAttrsMap(condition bool, attrs map[string]string) *FieldsetElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }
@@ -131,7 +214,10 @@ func (e *FieldsetElement) IfEscapedf(condition bool, format string, args ...any)
 // controls grayed out. Note that form elements inside the <legend> element
 // won't be disabled.
 func (e *FieldsetElement) Disabled() *FieldsetElement {
-	e.DisabledSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("disabled", struct{}{})
 	return e
 }
 
@@ -143,35 +229,7 @@ func (e *FieldsetElement) Disabled() *FieldsetElement {
 // won't be disabled.
 func (e *FieldsetElement) IfDisabled(condition bool) *FieldsetElement {
 	if condition {
-		e.DisabledSet(true)
-	}
-	return e
-}
-
-// If this Boolean Attribute is set, all form controls that are descendants of
-// the <fieldset>, are disabled, meaning they are not editable and won't be
-// submitted along with the <form>. They won't receive any browsing events, like
-// mouse clicks or focus-related events. By default browsers display such
-// controls grayed out. Note that form elements inside the <legend> element
-// won't be disabled.
-// Set the attribute Disabled to the value b explicitly.
-func (e *FieldsetElement) DisabledSet(b bool) *FieldsetElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("disabled", b)
-	return e
-}
-
-// If this Boolean Attribute is set, all form controls that are descendants of
-// the <fieldset>, are disabled, meaning they are not editable and won't be
-// submitted along with the <form>. They won't receive any browsing events, like
-// mouse clicks or focus-related events. By default browsers display such
-// controls grayed out. Note that form elements inside the <legend> element
-// won't be disabled.
-func (e *FieldsetElement) IfSetDisabled(condition bool, b bool) *FieldsetElement {
-	if condition {
-		e.DisabledSet(b)
+		e.Disabled()
 	}
 	return e
 }
@@ -184,6 +242,21 @@ func (e *FieldsetElement) IfSetDisabled(condition bool, b bool) *FieldsetElement
 // controls grayed out. Note that form elements inside the <legend> element
 // won't be disabled.
 func (e *FieldsetElement) DisabledRemove() *FieldsetElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("disabled")
+	return e
+}
+
+// Remove the attribute Disabled from the element.
+// If this Boolean Attribute is set, all form controls that are descendants of
+// the <fieldset>, are disabled, meaning they are not editable and won't be
+// submitted along with the <form>. They won't receive any browsing events, like
+// mouse clicks or focus-related events. By default browsers display such
+// controls grayed out. Note that form elements inside the <legend> element
+// won't be disabled.
+func (e *FieldsetElement) DisabledIfRemove() *FieldsetElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -403,7 +476,10 @@ func (e *FieldsetElement) AutocapitalizeRemove() *FieldsetElement {
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *FieldsetElement) Autofocus() *FieldsetElement {
-	e.AutofocusSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("autofocus", struct{}{})
 	return e
 }
 
@@ -423,51 +499,7 @@ func (e *FieldsetElement) Autofocus() *FieldsetElement {
 // created by the preceding content.
 func (e *FieldsetElement) IfAutofocus(condition bool) *FieldsetElement {
 	if condition {
-		e.AutofocusSet(true)
-	}
-	return e
-}
-
-// The autofocus global Attribute is a Boolean attribute indicating that an
-// element should be focused on page load, or when the <dialog> that it is part
-// of is displayed.
-// Accessibility concerns Automatically focusing a form control can confuse
-// visually-impaired people using screen-reading technology and people with
-// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
-// their user to the form control without warning them beforehand.
-// Use careful consideration for accessibility when applying the autofocus
-// Attribute. Automatically focusing on a control can cause the page to scroll
-// on load. The focus can also cause dynamic keyboards to display on some touch
-// devices. While a screen reader will announce the label of the form control
-// receiving focus, the screen reader will not announce anything before the
-// label, and the sighted user on a small device will equally miss the context
-// created by the preceding content.
-// Set the attribute Autofocus to the value b explicitly.
-func (e *FieldsetElement) AutofocusSet(b bool) *FieldsetElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("autofocus", b)
-	return e
-}
-
-// The autofocus global Attribute is a Boolean attribute indicating that an
-// element should be focused on page load, or when the <dialog> that it is part
-// of is displayed.
-// Accessibility concerns Automatically focusing a form control can confuse
-// visually-impaired people using screen-reading technology and people with
-// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
-// their user to the form control without warning them beforehand.
-// Use careful consideration for accessibility when applying the autofocus
-// Attribute. Automatically focusing on a control can cause the page to scroll
-// on load. The focus can also cause dynamic keyboards to display on some touch
-// devices. While a screen reader will announce the label of the form control
-// receiving focus, the screen reader will not announce anything before the
-// label, and the sighted user on a small device will equally miss the context
-// created by the preceding content.
-func (e *FieldsetElement) IfSetAutofocus(condition bool, b bool) *FieldsetElement {
-	if condition {
-		e.AutofocusSet(b)
+		e.Autofocus()
 	}
 	return e
 }
@@ -488,6 +520,29 @@ func (e *FieldsetElement) IfSetAutofocus(condition bool, b bool) *FieldsetElemen
 // label, and the sighted user on a small device will equally miss the context
 // created by the preceding content.
 func (e *FieldsetElement) AutofocusRemove() *FieldsetElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("autofocus")
+	return e
+}
+
+// Remove the attribute Autofocus from the element.
+// The autofocus global Attribute is a Boolean attribute indicating that an
+// element should be focused on page load, or when the <dialog> that it is part
+// of is displayed.
+// Accessibility concerns Automatically focusing a form control can confuse
+// visually-impaired people using screen-reading technology and people with
+// cognitive impairments. When autofocus is assigned, screen-readers "teleport"
+// their user to the form control without warning them beforehand.
+// Use careful consideration for accessibility when applying the autofocus
+// Attribute. Automatically focusing on a control can cause the page to scroll
+// on load. The focus can also cause dynamic keyboards to display on some touch
+// devices. While a screen reader will announce the label of the form control
+// receiving focus, the screen reader will not announce anything before the
+// label, and the sighted user on a small device will equally miss the context
+// created by the preceding content.
+func (e *FieldsetElement) AutofocusIfRemove() *FieldsetElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -924,7 +979,10 @@ func (e *FieldsetElement) IDRemove() *FieldsetElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *FieldsetElement) Inert() *FieldsetElement {
-	e.InertSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("inert", struct{}{})
 	return e
 }
 
@@ -940,43 +998,7 @@ func (e *FieldsetElement) Inert() *FieldsetElement {
 // excluding them from the accessibility tree.
 func (e *FieldsetElement) IfInert(condition bool) *FieldsetElement {
 	if condition {
-		e.InertSet(true)
-	}
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-// Set the attribute Inert to the value b explicitly.
-func (e *FieldsetElement) InertSet(b bool) *FieldsetElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("inert", b)
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-func (e *FieldsetElement) IfSetInert(condition bool, b bool) *FieldsetElement {
-	if condition {
-		e.InertSet(b)
+		e.Inert()
 	}
 	return e
 }
@@ -993,6 +1015,25 @@ func (e *FieldsetElement) IfSetInert(condition bool, b bool) *FieldsetElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *FieldsetElement) InertRemove() *FieldsetElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("inert")
+	return e
+}
+
+// Remove the attribute Inert from the element.
+// The inert global Attribute is a Boolean attribute indicating that the browser
+// will ignore the element. With the inert attribute, all of the element's flat
+// tree descendants (such as modal <dialog>s) that don't otherwise escape
+// inertness are ignored. The inert attribute also makes the browser ignore
+// input events sent by the user, including focus-related events and events from
+// assistive technologies. Specifically, inert does the following: Prevents the
+// click event from being fired when the user clicks on the element. Prevents
+// the focus event from being raised by preventing the element from gaining
+// focus. Hides the element and its content from assistive technologies by
+// excluding them from the accessibility tree.
+func (e *FieldsetElement) InertIfRemove() *FieldsetElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1359,7 +1400,10 @@ func (e *FieldsetElement) ItemrefRemove() *FieldsetElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *FieldsetElement) Itemscope() *FieldsetElement {
-	e.ItemscopeSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("itemscope", struct{}{})
 	return e
 }
 
@@ -1372,37 +1416,7 @@ func (e *FieldsetElement) Itemscope() *FieldsetElement {
 // <object>, <source>, <track>, and <video>.
 func (e *FieldsetElement) IfItemscope(condition bool) *FieldsetElement {
 	if condition {
-		e.ItemscopeSet(true)
-	}
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-// Set the attribute Itemscope to the value b explicitly.
-func (e *FieldsetElement) ItemscopeSet(b bool) *FieldsetElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("itemscope", b)
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-func (e *FieldsetElement) IfSetItemscope(condition bool, b bool) *FieldsetElement {
-	if condition {
-		e.ItemscopeSet(b)
+		e.Itemscope()
 	}
 	return e
 }
@@ -1416,6 +1430,22 @@ func (e *FieldsetElement) IfSetItemscope(condition bool, b bool) *FieldsetElemen
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *FieldsetElement) ItemscopeRemove() *FieldsetElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("itemscope")
+	return e
+}
+
+// Remove the attribute Itemscope from the element.
+// The itemscope global Attribute is used to add an item to a microdata DOM
+// tree. Every HTML element can have an itemscope attribute specified, and an
+// itemscope consists of a name-value pair. Each name-value pair is called a
+// property, and a group of one or more properties forms an item. Property
+// values are either a string or a URL and can be associated with a very wide
+// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
+// <object>, <source>, <track>, and <video>.
+func (e *FieldsetElement) ItemscopeIfRemove() *FieldsetElement {
 	if e.boolAttributes == nil {
 		return e
 	}

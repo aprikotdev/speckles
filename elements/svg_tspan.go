@@ -50,15 +50,48 @@ func (e *SVGTspanElement) TernChildren(condition bool, trueChildren, falseChildr
 
 func (e *SVGTspanElement) BoolAttr(name string) *SVGTspanElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGTspanElement) BoolAttrRemove(name string) *SVGTspanElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGTspanElement) IfBoolAttr(condition bool, name string) *SVGTspanElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGTspanElement) BoolAttrf(format string, args ...any) *SVGTspanElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGTspanElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGTspanElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGTspanElement) BoolAttrs(names ...string) *SVGTspanElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGTspanElement) IfBoolAttrs(condition bool, names ...string) *SVGTspanElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGTspanElement) Attr(name, value string) *SVGTspanElement {
 func (e *SVGTspanElement) IfAttr(condition bool, name, value string) *SVGTspanElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGTspanElement) Attrf(name, format string, args ...any) *SVGTspanElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGTspanElement) IfAttrf(condition bool, name, format string, args ...any) *SVGTspanElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGTspanElement) Attrs(attrs ...string) *SVGTspanElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGTspanElement) IfAttrs(condition bool, attrs ...string) *SVGTspanElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGTspanElement) AttrsMap(attrs map[string]string) *SVGTspanElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGTspanElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGTspanElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

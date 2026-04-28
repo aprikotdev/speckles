@@ -51,15 +51,48 @@ func (e *SVGFeDropShadowElement) TernChildren(condition bool, trueChildren, fals
 
 func (e *SVGFeDropShadowElement) BoolAttr(name string) *SVGFeDropShadowElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeDropShadowElement) BoolAttrRemove(name string) *SVGFeDropShadowElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeDropShadowElement) IfBoolAttr(condition bool, name string) *SVGFeDropShadowElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeDropShadowElement) BoolAttrf(format string, args ...any) *SVGFeDropShadowElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeDropShadowElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeDropShadowElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeDropShadowElement) BoolAttrs(names ...string) *SVGFeDropShadowElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeDropShadowElement) IfBoolAttrs(condition bool, names ...string) *SVGFeDropShadowElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *SVGFeDropShadowElement) Attr(name, value string) *SVGFeDropShadowElemen
 func (e *SVGFeDropShadowElement) IfAttr(condition bool, name, value string) *SVGFeDropShadowElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeDropShadowElement) Attrf(name, format string, args ...any) *SVGFeDropShadowElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeDropShadowElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeDropShadowElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeDropShadowElement) Attrs(attrs ...string) *SVGFeDropShadowElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeDropShadowElement) IfAttrs(condition bool, attrs ...string) *SVGFeDropShadowElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeDropShadowElement) AttrsMap(attrs map[string]string) *SVGFeDropShadowElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeDropShadowElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeDropShadowElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

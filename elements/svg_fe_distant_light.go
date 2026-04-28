@@ -51,15 +51,48 @@ func (e *SVGFeDistantLightElement) TernChildren(condition bool, trueChildren, fa
 
 func (e *SVGFeDistantLightElement) BoolAttr(name string) *SVGFeDistantLightElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeDistantLightElement) BoolAttrRemove(name string) *SVGFeDistantLightElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeDistantLightElement) IfBoolAttr(condition bool, name string) *SVGFeDistantLightElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeDistantLightElement) BoolAttrf(format string, args ...any) *SVGFeDistantLightElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeDistantLightElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeDistantLightElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeDistantLightElement) BoolAttrs(names ...string) *SVGFeDistantLightElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeDistantLightElement) IfBoolAttrs(condition bool, names ...string) *SVGFeDistantLightElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *SVGFeDistantLightElement) Attr(name, value string) *SVGFeDistantLightEl
 func (e *SVGFeDistantLightElement) IfAttr(condition bool, name, value string) *SVGFeDistantLightElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeDistantLightElement) Attrf(name, format string, args ...any) *SVGFeDistantLightElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeDistantLightElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeDistantLightElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeDistantLightElement) Attrs(attrs ...string) *SVGFeDistantLightElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeDistantLightElement) IfAttrs(condition bool, attrs ...string) *SVGFeDistantLightElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeDistantLightElement) AttrsMap(attrs map[string]string) *SVGFeDistantLightElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeDistantLightElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeDistantLightElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

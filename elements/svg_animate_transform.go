@@ -51,15 +51,48 @@ func (e *SVGAnimateTransformElement) TernChildren(condition bool, trueChildren, 
 
 func (e *SVGAnimateTransformElement) BoolAttr(name string) *SVGAnimateTransformElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGAnimateTransformElement) BoolAttrRemove(name string) *SVGAnimateTransformElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGAnimateTransformElement) IfBoolAttr(condition bool, name string) *SVGAnimateTransformElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGAnimateTransformElement) BoolAttrf(format string, args ...any) *SVGAnimateTransformElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGAnimateTransformElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGAnimateTransformElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGAnimateTransformElement) BoolAttrs(names ...string) *SVGAnimateTransformElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGAnimateTransformElement) IfBoolAttrs(condition bool, names ...string) *SVGAnimateTransformElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *SVGAnimateTransformElement) Attr(name, value string) *SVGAnimateTransfo
 func (e *SVGAnimateTransformElement) IfAttr(condition bool, name, value string) *SVGAnimateTransformElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGAnimateTransformElement) Attrf(name, format string, args ...any) *SVGAnimateTransformElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGAnimateTransformElement) IfAttrf(condition bool, name, format string, args ...any) *SVGAnimateTransformElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGAnimateTransformElement) Attrs(attrs ...string) *SVGAnimateTransformElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGAnimateTransformElement) IfAttrs(condition bool, attrs ...string) *SVGAnimateTransformElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGAnimateTransformElement) AttrsMap(attrs map[string]string) *SVGAnimateTransformElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGAnimateTransformElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGAnimateTransformElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

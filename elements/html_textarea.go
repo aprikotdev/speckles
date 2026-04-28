@@ -51,15 +51,48 @@ func (e *TextareaElement) TernChildren(condition bool, trueChildren, falseChildr
 
 func (e *TextareaElement) BoolAttr(name string) *TextareaElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *TextareaElement) BoolAttrRemove(name string) *TextareaElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *TextareaElement) IfBoolAttr(condition bool, name string) *TextareaElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *TextareaElement) BoolAttrf(format string, args ...any) *TextareaElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *TextareaElement) IfBoolAttrf(condition bool, format string, args ...any) *TextareaElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *TextareaElement) BoolAttrs(names ...string) *TextareaElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *TextareaElement) IfBoolAttrs(condition bool, names ...string) *TextareaElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *TextareaElement) Attr(name, value string) *TextareaElement {
 func (e *TextareaElement) IfAttr(condition bool, name, value string) *TextareaElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *TextareaElement) Attrf(name, format string, args ...any) *TextareaElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *TextareaElement) IfAttrf(condition bool, name, format string, args ...any) *TextareaElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *TextareaElement) Attrs(attrs ...string) *TextareaElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *TextareaElement) IfAttrs(condition bool, attrs ...string) *TextareaElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *TextareaElement) AttrsMap(attrs map[string]string) *TextareaElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *TextareaElement) IfAttrsMap(condition bool, attrs map[string]string) *TextareaElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }
@@ -197,32 +280,17 @@ func (e *TextareaElement) AutocompleteRemove() *TextareaElement {
 
 // Automatically focus the form control when the page is loaded.
 func (e *TextareaElement) Autofocus() *TextareaElement {
-	e.AutofocusSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("autofocus", struct{}{})
 	return e
 }
 
 // Automatically focus the form control when the page is loaded.
 func (e *TextareaElement) IfAutofocus(condition bool) *TextareaElement {
 	if condition {
-		e.AutofocusSet(true)
-	}
-	return e
-}
-
-// Automatically focus the form control when the page is loaded.
-// Set the attribute Autofocus to the value b explicitly.
-func (e *TextareaElement) AutofocusSet(b bool) *TextareaElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("autofocus", b)
-	return e
-}
-
-// Automatically focus the form control when the page is loaded.
-func (e *TextareaElement) IfSetAutofocus(condition bool, b bool) *TextareaElement {
-	if condition {
-		e.AutofocusSet(b)
+		e.Autofocus()
 	}
 	return e
 }
@@ -230,6 +298,16 @@ func (e *TextareaElement) IfSetAutofocus(condition bool, b bool) *TextareaElemen
 // Remove the attribute Autofocus from the element.
 // Automatically focus the form control when the page is loaded.
 func (e *TextareaElement) AutofocusRemove() *TextareaElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("autofocus")
+	return e
+}
+
+// Remove the attribute Autofocus from the element.
+// Automatically focus the form control when the page is loaded.
+func (e *TextareaElement) AutofocusIfRemove() *TextareaElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -311,32 +389,17 @@ func (e *TextareaElement) DirnameRemove() *TextareaElement {
 
 // Whether the form control is disabled.
 func (e *TextareaElement) Disabled() *TextareaElement {
-	e.DisabledSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("disabled", struct{}{})
 	return e
 }
 
 // Whether the form control is disabled.
 func (e *TextareaElement) IfDisabled(condition bool) *TextareaElement {
 	if condition {
-		e.DisabledSet(true)
-	}
-	return e
-}
-
-// Whether the form control is disabled.
-// Set the attribute Disabled to the value b explicitly.
-func (e *TextareaElement) DisabledSet(b bool) *TextareaElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("disabled", b)
-	return e
-}
-
-// Whether the form control is disabled.
-func (e *TextareaElement) IfSetDisabled(condition bool, b bool) *TextareaElement {
-	if condition {
-		e.DisabledSet(b)
+		e.Disabled()
 	}
 	return e
 }
@@ -344,6 +407,16 @@ func (e *TextareaElement) IfSetDisabled(condition bool, b bool) *TextareaElement
 // Remove the attribute Disabled from the element.
 // Whether the form control is disabled.
 func (e *TextareaElement) DisabledRemove() *TextareaElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("disabled")
+	return e
+}
+
+// Remove the attribute Disabled from the element.
+// Whether the form control is disabled.
+func (e *TextareaElement) DisabledIfRemove() *TextareaElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -527,32 +600,17 @@ func (e *TextareaElement) PlaceholderRemove() *TextareaElement {
 
 // Whether to allow the value to be edited by the user.
 func (e *TextareaElement) Readonly() *TextareaElement {
-	e.ReadonlySet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("readonly", struct{}{})
 	return e
 }
 
 // Whether to allow the value to be edited by the user.
 func (e *TextareaElement) IfReadonly(condition bool) *TextareaElement {
 	if condition {
-		e.ReadonlySet(true)
-	}
-	return e
-}
-
-// Whether to allow the value to be edited by the user.
-// Set the attribute Readonly to the value b explicitly.
-func (e *TextareaElement) ReadonlySet(b bool) *TextareaElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("readonly", b)
-	return e
-}
-
-// Whether to allow the value to be edited by the user.
-func (e *TextareaElement) IfSetReadonly(condition bool, b bool) *TextareaElement {
-	if condition {
-		e.ReadonlySet(b)
+		e.Readonly()
 	}
 	return e
 }
@@ -567,34 +625,29 @@ func (e *TextareaElement) ReadonlyRemove() *TextareaElement {
 	return e
 }
 
+// Remove the attribute Readonly from the element.
+// Whether to allow the value to be edited by the user.
+func (e *TextareaElement) ReadonlyIfRemove() *TextareaElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("readonly")
+	return e
+}
+
 // Whether the control is required for form submission.
 func (e *TextareaElement) Required() *TextareaElement {
-	e.RequiredSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("required", struct{}{})
 	return e
 }
 
 // Whether the control is required for form submission.
 func (e *TextareaElement) IfRequired(condition bool) *TextareaElement {
 	if condition {
-		e.RequiredSet(true)
-	}
-	return e
-}
-
-// Whether the control is required for form submission.
-// Set the attribute Required to the value b explicitly.
-func (e *TextareaElement) RequiredSet(b bool) *TextareaElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("required", b)
-	return e
-}
-
-// Whether the control is required for form submission.
-func (e *TextareaElement) IfSetRequired(condition bool, b bool) *TextareaElement {
-	if condition {
-		e.RequiredSet(b)
+		e.Required()
 	}
 	return e
 }
@@ -602,6 +655,16 @@ func (e *TextareaElement) IfSetRequired(condition bool, b bool) *TextareaElement
 // Remove the attribute Required from the element.
 // Whether the control is required for form submission.
 func (e *TextareaElement) RequiredRemove() *TextareaElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("required")
+	return e
+}
+
+// Remove the attribute Required from the element.
+// Whether the control is required for form submission.
+func (e *TextareaElement) RequiredIfRemove() *TextareaElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1162,7 +1225,10 @@ func (e *TextareaElement) IDRemove() *TextareaElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *TextareaElement) Inert() *TextareaElement {
-	e.InertSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("inert", struct{}{})
 	return e
 }
 
@@ -1178,43 +1244,7 @@ func (e *TextareaElement) Inert() *TextareaElement {
 // excluding them from the accessibility tree.
 func (e *TextareaElement) IfInert(condition bool) *TextareaElement {
 	if condition {
-		e.InertSet(true)
-	}
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-// Set the attribute Inert to the value b explicitly.
-func (e *TextareaElement) InertSet(b bool) *TextareaElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("inert", b)
-	return e
-}
-
-// The inert global Attribute is a Boolean attribute indicating that the browser
-// will ignore the element. With the inert attribute, all of the element's flat
-// tree descendants (such as modal <dialog>s) that don't otherwise escape
-// inertness are ignored. The inert attribute also makes the browser ignore
-// input events sent by the user, including focus-related events and events from
-// assistive technologies. Specifically, inert does the following: Prevents the
-// click event from being fired when the user clicks on the element. Prevents
-// the focus event from being raised by preventing the element from gaining
-// focus. Hides the element and its content from assistive technologies by
-// excluding them from the accessibility tree.
-func (e *TextareaElement) IfSetInert(condition bool, b bool) *TextareaElement {
-	if condition {
-		e.InertSet(b)
+		e.Inert()
 	}
 	return e
 }
@@ -1231,6 +1261,25 @@ func (e *TextareaElement) IfSetInert(condition bool, b bool) *TextareaElement {
 // focus. Hides the element and its content from assistive technologies by
 // excluding them from the accessibility tree.
 func (e *TextareaElement) InertRemove() *TextareaElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("inert")
+	return e
+}
+
+// Remove the attribute Inert from the element.
+// The inert global Attribute is a Boolean attribute indicating that the browser
+// will ignore the element. With the inert attribute, all of the element's flat
+// tree descendants (such as modal <dialog>s) that don't otherwise escape
+// inertness are ignored. The inert attribute also makes the browser ignore
+// input events sent by the user, including focus-related events and events from
+// assistive technologies. Specifically, inert does the following: Prevents the
+// click event from being fired when the user clicks on the element. Prevents
+// the focus event from being raised by preventing the element from gaining
+// focus. Hides the element and its content from assistive technologies by
+// excluding them from the accessibility tree.
+func (e *TextareaElement) InertIfRemove() *TextareaElement {
 	if e.boolAttributes == nil {
 		return e
 	}
@@ -1597,7 +1646,10 @@ func (e *TextareaElement) ItemrefRemove() *TextareaElement {
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *TextareaElement) Itemscope() *TextareaElement {
-	e.ItemscopeSet(true)
+	if e.boolAttributes == nil {
+		e.boolAttributes = treemap.New[string, struct{}]()
+	}
+	e.boolAttributes.Set("itemscope", struct{}{})
 	return e
 }
 
@@ -1610,37 +1662,7 @@ func (e *TextareaElement) Itemscope() *TextareaElement {
 // <object>, <source>, <track>, and <video>.
 func (e *TextareaElement) IfItemscope(condition bool) *TextareaElement {
 	if condition {
-		e.ItemscopeSet(true)
-	}
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-// Set the attribute Itemscope to the value b explicitly.
-func (e *TextareaElement) ItemscopeSet(b bool) *TextareaElement {
-	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
-	}
-	e.boolAttributes.Set("itemscope", b)
-	return e
-}
-
-// The itemscope global Attribute is used to add an item to a microdata DOM
-// tree. Every HTML element can have an itemscope attribute specified, and an
-// itemscope consists of a name-value pair. Each name-value pair is called a
-// property, and a group of one or more properties forms an item. Property
-// values are either a string or a URL and can be associated with a very wide
-// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
-// <object>, <source>, <track>, and <video>.
-func (e *TextareaElement) IfSetItemscope(condition bool, b bool) *TextareaElement {
-	if condition {
-		e.ItemscopeSet(b)
+		e.Itemscope()
 	}
 	return e
 }
@@ -1654,6 +1676,22 @@ func (e *TextareaElement) IfSetItemscope(condition bool, b bool) *TextareaElemen
 // range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
 // <object>, <source>, <track>, and <video>.
 func (e *TextareaElement) ItemscopeRemove() *TextareaElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del("itemscope")
+	return e
+}
+
+// Remove the attribute Itemscope from the element.
+// The itemscope global Attribute is used to add an item to a microdata DOM
+// tree. Every HTML element can have an itemscope attribute specified, and an
+// itemscope consists of a name-value pair. Each name-value pair is called a
+// property, and a group of one or more properties forms an item. Property
+// values are either a string or a URL and can be associated with a very wide
+// range of elements including <audio>, <embed>, <iframe>, <img>, <link>,
+// <object>, <source>, <track>, and <video>.
+func (e *TextareaElement) ItemscopeIfRemove() *TextareaElement {
 	if e.boolAttributes == nil {
 		return e
 	}

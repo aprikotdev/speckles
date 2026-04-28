@@ -49,15 +49,48 @@ func (e *SVGMaskElement) TernChildren(condition bool, trueChildren, falseChildre
 
 func (e *SVGMaskElement) BoolAttr(name string) *SVGMaskElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGMaskElement) BoolAttrRemove(name string) *SVGMaskElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGMaskElement) IfBoolAttr(condition bool, name string) *SVGMaskElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGMaskElement) BoolAttrf(format string, args ...any) *SVGMaskElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGMaskElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGMaskElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGMaskElement) BoolAttrs(names ...string) *SVGMaskElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGMaskElement) IfBoolAttrs(condition bool, names ...string) *SVGMaskElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -73,6 +106,56 @@ func (e *SVGMaskElement) Attr(name, value string) *SVGMaskElement {
 func (e *SVGMaskElement) IfAttr(condition bool, name, value string) *SVGMaskElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGMaskElement) Attrf(name, format string, args ...any) *SVGMaskElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGMaskElement) IfAttrf(condition bool, name, format string, args ...any) *SVGMaskElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGMaskElement) Attrs(attrs ...string) *SVGMaskElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGMaskElement) IfAttrs(condition bool, attrs ...string) *SVGMaskElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGMaskElement) AttrsMap(attrs map[string]string) *SVGMaskElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGMaskElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGMaskElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

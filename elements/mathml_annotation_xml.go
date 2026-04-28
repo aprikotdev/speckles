@@ -51,15 +51,48 @@ func (e *MathMLAnnotationXMLElement) TernChildren(condition bool, trueChildren, 
 
 func (e *MathMLAnnotationXMLElement) BoolAttr(name string) *MathMLAnnotationXMLElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *MathMLAnnotationXMLElement) BoolAttrRemove(name string) *MathMLAnnotationXMLElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *MathMLAnnotationXMLElement) IfBoolAttr(condition bool, name string) *MathMLAnnotationXMLElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationXMLElement) BoolAttrf(format string, args ...any) *MathMLAnnotationXMLElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *MathMLAnnotationXMLElement) IfBoolAttrf(condition bool, format string, args ...any) *MathMLAnnotationXMLElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationXMLElement) BoolAttrs(names ...string) *MathMLAnnotationXMLElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationXMLElement) IfBoolAttrs(condition bool, names ...string) *MathMLAnnotationXMLElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *MathMLAnnotationXMLElement) Attr(name, value string) *MathMLAnnotationX
 func (e *MathMLAnnotationXMLElement) IfAttr(condition bool, name, value string) *MathMLAnnotationXMLElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationXMLElement) Attrf(name, format string, args ...any) *MathMLAnnotationXMLElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *MathMLAnnotationXMLElement) IfAttrf(condition bool, name, format string, args ...any) *MathMLAnnotationXMLElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationXMLElement) Attrs(attrs ...string) *MathMLAnnotationXMLElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationXMLElement) IfAttrs(condition bool, attrs ...string) *MathMLAnnotationXMLElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationXMLElement) AttrsMap(attrs map[string]string) *MathMLAnnotationXMLElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *MathMLAnnotationXMLElement) IfAttrsMap(condition bool, attrs map[string]string) *MathMLAnnotationXMLElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

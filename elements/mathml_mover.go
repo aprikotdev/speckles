@@ -49,15 +49,48 @@ func (e *MathMLMoverElement) TernChildren(condition bool, trueChildren, falseChi
 
 func (e *MathMLMoverElement) BoolAttr(name string) *MathMLMoverElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *MathMLMoverElement) BoolAttrRemove(name string) *MathMLMoverElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *MathMLMoverElement) IfBoolAttr(condition bool, name string) *MathMLMoverElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *MathMLMoverElement) BoolAttrf(format string, args ...any) *MathMLMoverElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *MathMLMoverElement) IfBoolAttrf(condition bool, format string, args ...any) *MathMLMoverElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *MathMLMoverElement) BoolAttrs(names ...string) *MathMLMoverElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *MathMLMoverElement) IfBoolAttrs(condition bool, names ...string) *MathMLMoverElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -73,6 +106,56 @@ func (e *MathMLMoverElement) Attr(name, value string) *MathMLMoverElement {
 func (e *MathMLMoverElement) IfAttr(condition bool, name, value string) *MathMLMoverElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *MathMLMoverElement) Attrf(name, format string, args ...any) *MathMLMoverElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *MathMLMoverElement) IfAttrf(condition bool, name, format string, args ...any) *MathMLMoverElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *MathMLMoverElement) Attrs(attrs ...string) *MathMLMoverElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *MathMLMoverElement) IfAttrs(condition bool, attrs ...string) *MathMLMoverElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *MathMLMoverElement) AttrsMap(attrs map[string]string) *MathMLMoverElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *MathMLMoverElement) IfAttrsMap(condition bool, attrs map[string]string) *MathMLMoverElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

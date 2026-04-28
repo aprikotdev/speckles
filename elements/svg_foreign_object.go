@@ -52,15 +52,48 @@ func (e *SVGForeignObjectElement) TernChildren(condition bool, trueChildren, fal
 
 func (e *SVGForeignObjectElement) BoolAttr(name string) *SVGForeignObjectElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGForeignObjectElement) BoolAttrRemove(name string) *SVGForeignObjectElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGForeignObjectElement) IfBoolAttr(condition bool, name string) *SVGForeignObjectElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGForeignObjectElement) BoolAttrf(format string, args ...any) *SVGForeignObjectElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGForeignObjectElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGForeignObjectElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGForeignObjectElement) BoolAttrs(names ...string) *SVGForeignObjectElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGForeignObjectElement) IfBoolAttrs(condition bool, names ...string) *SVGForeignObjectElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -76,6 +109,56 @@ func (e *SVGForeignObjectElement) Attr(name, value string) *SVGForeignObjectElem
 func (e *SVGForeignObjectElement) IfAttr(condition bool, name, value string) *SVGForeignObjectElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGForeignObjectElement) Attrf(name, format string, args ...any) *SVGForeignObjectElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGForeignObjectElement) IfAttrf(condition bool, name, format string, args ...any) *SVGForeignObjectElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGForeignObjectElement) Attrs(attrs ...string) *SVGForeignObjectElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGForeignObjectElement) IfAttrs(condition bool, attrs ...string) *SVGForeignObjectElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGForeignObjectElement) AttrsMap(attrs map[string]string) *SVGForeignObjectElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGForeignObjectElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGForeignObjectElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

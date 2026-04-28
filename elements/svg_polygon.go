@@ -50,15 +50,48 @@ func (e *SVGPolygonElement) TernChildren(condition bool, trueChildren, falseChil
 
 func (e *SVGPolygonElement) BoolAttr(name string) *SVGPolygonElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGPolygonElement) BoolAttrRemove(name string) *SVGPolygonElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGPolygonElement) IfBoolAttr(condition bool, name string) *SVGPolygonElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGPolygonElement) BoolAttrf(format string, args ...any) *SVGPolygonElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGPolygonElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGPolygonElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGPolygonElement) BoolAttrs(names ...string) *SVGPolygonElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGPolygonElement) IfBoolAttrs(condition bool, names ...string) *SVGPolygonElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -74,6 +107,56 @@ func (e *SVGPolygonElement) Attr(name, value string) *SVGPolygonElement {
 func (e *SVGPolygonElement) IfAttr(condition bool, name, value string) *SVGPolygonElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGPolygonElement) Attrf(name, format string, args ...any) *SVGPolygonElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGPolygonElement) IfAttrf(condition bool, name, format string, args ...any) *SVGPolygonElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGPolygonElement) Attrs(attrs ...string) *SVGPolygonElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGPolygonElement) IfAttrs(condition bool, attrs ...string) *SVGPolygonElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGPolygonElement) AttrsMap(attrs map[string]string) *SVGPolygonElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGPolygonElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGPolygonElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

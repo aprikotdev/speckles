@@ -51,15 +51,48 @@ func (e *SVGFeBlendElement) TernChildren(condition bool, trueChildren, falseChil
 
 func (e *SVGFeBlendElement) BoolAttr(name string) *SVGFeBlendElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeBlendElement) BoolAttrRemove(name string) *SVGFeBlendElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeBlendElement) IfBoolAttr(condition bool, name string) *SVGFeBlendElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeBlendElement) BoolAttrf(format string, args ...any) *SVGFeBlendElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeBlendElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeBlendElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeBlendElement) BoolAttrs(names ...string) *SVGFeBlendElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeBlendElement) IfBoolAttrs(condition bool, names ...string) *SVGFeBlendElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *SVGFeBlendElement) Attr(name, value string) *SVGFeBlendElement {
 func (e *SVGFeBlendElement) IfAttr(condition bool, name, value string) *SVGFeBlendElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeBlendElement) Attrf(name, format string, args ...any) *SVGFeBlendElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeBlendElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeBlendElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeBlendElement) Attrs(attrs ...string) *SVGFeBlendElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeBlendElement) IfAttrs(condition bool, attrs ...string) *SVGFeBlendElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeBlendElement) AttrsMap(attrs map[string]string) *SVGFeBlendElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeBlendElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeBlendElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

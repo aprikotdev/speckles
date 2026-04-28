@@ -51,15 +51,48 @@ func (e *SVGFeTurbulenceElement) TernChildren(condition bool, trueChildren, fals
 
 func (e *SVGFeTurbulenceElement) BoolAttr(name string) *SVGFeTurbulenceElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGFeTurbulenceElement) BoolAttrRemove(name string) *SVGFeTurbulenceElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGFeTurbulenceElement) IfBoolAttr(condition bool, name string) *SVGFeTurbulenceElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeTurbulenceElement) BoolAttrf(format string, args ...any) *SVGFeTurbulenceElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeTurbulenceElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGFeTurbulenceElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeTurbulenceElement) BoolAttrs(names ...string) *SVGFeTurbulenceElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGFeTurbulenceElement) IfBoolAttrs(condition bool, names ...string) *SVGFeTurbulenceElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *SVGFeTurbulenceElement) Attr(name, value string) *SVGFeTurbulenceElemen
 func (e *SVGFeTurbulenceElement) IfAttr(condition bool, name, value string) *SVGFeTurbulenceElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGFeTurbulenceElement) Attrf(name, format string, args ...any) *SVGFeTurbulenceElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGFeTurbulenceElement) IfAttrf(condition bool, name, format string, args ...any) *SVGFeTurbulenceElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGFeTurbulenceElement) Attrs(attrs ...string) *SVGFeTurbulenceElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeTurbulenceElement) IfAttrs(condition bool, attrs ...string) *SVGFeTurbulenceElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGFeTurbulenceElement) AttrsMap(attrs map[string]string) *SVGFeTurbulenceElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGFeTurbulenceElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGFeTurbulenceElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }

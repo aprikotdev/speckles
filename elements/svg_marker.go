@@ -51,15 +51,48 @@ func (e *SVGMarkerElement) TernChildren(condition bool, trueChildren, falseChild
 
 func (e *SVGMarkerElement) BoolAttr(name string) *SVGMarkerElement {
 	if e.boolAttributes == nil {
-		e.boolAttributes = treemap.New[string, bool]()
+		e.boolAttributes = treemap.New[string, struct{}]()
 	}
-	e.boolAttributes.Set(name, true)
+	e.boolAttributes.Set(name, struct{}{})
+	return e
+}
+
+func (e *SVGMarkerElement) BoolAttrRemove(name string) *SVGMarkerElement {
+	if e.boolAttributes == nil {
+		return e
+	}
+	e.boolAttributes.Del(name)
 	return e
 }
 
 func (e *SVGMarkerElement) IfBoolAttr(condition bool, name string) *SVGMarkerElement {
 	if condition {
 		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGMarkerElement) BoolAttrf(format string, args ...any) *SVGMarkerElement {
+	return e.BoolAttr(fmt.Sprintf(format, args...))
+}
+
+func (e *SVGMarkerElement) IfBoolAttrf(condition bool, format string, args ...any) *SVGMarkerElement {
+	if condition {
+		e.BoolAttrf(format, args...)
+	}
+	return e
+}
+
+func (e *SVGMarkerElement) BoolAttrs(names ...string) *SVGMarkerElement {
+	for _, name := range names {
+		e.BoolAttr(name)
+	}
+	return e
+}
+
+func (e *SVGMarkerElement) IfBoolAttrs(condition bool, names ...string) *SVGMarkerElement {
+	if condition {
+		e.BoolAttrs(names...)
 	}
 	return e
 }
@@ -75,6 +108,56 @@ func (e *SVGMarkerElement) Attr(name, value string) *SVGMarkerElement {
 func (e *SVGMarkerElement) IfAttr(condition bool, name, value string) *SVGMarkerElement {
 	if condition {
 		e.Attr(name, value)
+	}
+	return e
+}
+
+func (e *SVGMarkerElement) Attrf(name, format string, args ...any) *SVGMarkerElement {
+	return e.Attr(name, fmt.Sprintf(format, args...))
+}
+
+func (e *SVGMarkerElement) IfAttrf(condition bool, name, format string, args ...any) *SVGMarkerElement {
+	if condition {
+		e.Attrf(name, format, args...)
+	}
+	return e
+}
+
+func (e *SVGMarkerElement) Attrs(attrs ...string) *SVGMarkerElement {
+	if len(attrs)%2 != 0 {
+		panic("attrs must be a multiple of 2")
+	}
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for i := 0; i < len(attrs); i += 2 {
+		k := attrs[i]
+		v := attrs[i+1]
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGMarkerElement) IfAttrs(condition bool, attrs ...string) *SVGMarkerElement {
+	if condition {
+		e.Attrs(attrs...)
+	}
+	return e
+}
+
+func (e *SVGMarkerElement) AttrsMap(attrs map[string]string) *SVGMarkerElement {
+	if e.stringAttributes == nil {
+		e.stringAttributes = treemap.New[string, string]()
+	}
+	for k, v := range attrs {
+		e.stringAttributes.Set(k, v)
+	}
+	return e
+}
+
+func (e *SVGMarkerElement) IfAttrsMap(condition bool, attrs map[string]string) *SVGMarkerElement {
+	if condition {
+		e.AttrsMap(attrs)
 	}
 	return e
 }
